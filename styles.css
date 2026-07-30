@@ -161,15 +161,19 @@ em { font-style: italic; }
 .cursor-dot, .cursor-ring {
   position: fixed; top: 0; left: 0; pointer-events: none; will-change: transform;
 }
+/* mix-blend-mode: difference self-inverts against ANY backdrop only when
+   the blended element's own color is pure white — difference(white, X) =
+   255-X, always legible. Using --ink (near-black) here made the cursor
+   vanish on dark sections (difference(black, black) = black). */
 .cursor-dot {
   width: 6px; height: 6px; margin: -3px;
-  background: var(--ink); border-radius: 50%;
+  background: #fff; border-radius: 50%;
   mix-blend-mode: difference;
   transition: opacity .2s;
 }
 .cursor-ring {
   width: 36px; height: 36px; margin: -18px;
-  border: 1px solid var(--ink);
+  border: 1px solid #fff;
   border-radius: 50%;
   display: grid; place-items: center;
   mix-blend-mode: difference;
@@ -182,7 +186,8 @@ em { font-style: italic; }
   font-size: .7rem;
   font-weight: 500;
   letter-spacing: .04em;
-  color: var(--cream);
+  color: #fff;
+  mix-blend-mode: difference;
   opacity: 0;
   transform: scale(.7);
   transition: opacity .25s var(--ease-out), transform .25s var(--ease-out);
@@ -191,8 +196,8 @@ em { font-style: italic; }
 .cursor.is-interactive .cursor-dot { opacity: 0; }
 .cursor.is-interactive .cursor-ring {
   width: 96px; height: 96px; margin: -48px;
-  background: var(--ink);
-  border-color: var(--ink);
+  background: #fff;
+  border-color: #fff;
 }
 .cursor.is-interactive .cursor-label { opacity: 1; transform: scale(1); }
 
