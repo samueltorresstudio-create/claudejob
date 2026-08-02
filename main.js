@@ -179,26 +179,43 @@
     if (!root || !fineHover) return;
     document.documentElement.classList.add("has-cursor");
 
-    var ring = $(".cursor-ring", root);
-    var dot = $(".cursor-dot", root);
-    var label = $("[data-cursor-label]", root);
-    var tx = 0, ty = 0, rx = 0, ry = 0, firstMove = false;
+    var arrow = $(".cursor-arrow", root);
+    var halo = $(".cursor-halo", root);
+    var labelPill = $(".cursor-label", root);
+    var labelText = $("[data-cursor-label]", root);
+
+    // Position (lerp-follow, never 1:1) — animates transform only.
+    var tx = 0, ty = 0, cx = 0, cy = 0, firstMove = false;
+    // Rotation toward travel direction (lerp'd separately so it doesn't jitter).
+    var angle = 0, targetAngle = -45; // -45 compensates the arrow's own tip offset
+    var lastX = 0, lastY = 0;
+    var LERP_POS = 0.18; // 0.15–0.2 per spec
 
     window.addEventListener("mousemove", function (e) {
       tx = e.clientX; ty = e.clientY;
-      if (dot) dot.style.transform = "translate3d(" + tx + "px," + ty + "px,0)";
+      var dx = tx - lastX, dy = ty - lastY;
+      if (Math.abs(dx) > 0.4 || Math.abs(dy) > 0.4) {
+        targetAngle = Math.atan2(dy, dx) * 180 / Math.PI - 45;
+      }
+      lastX = tx; lastY = ty;
       if (!firstMove) {
         firstMove = true;
-        rx = tx; ry = ty;
-        if (ring) ring.style.transform = "translate3d(" + rx + "px," + ry + "px,0)";
+        cx = tx; cy = ty;
         root.classList.add("is-ready");
       }
     }, { passive: true });
 
     function tick() {
-      rx += (tx - rx) * 0.18;
-      ry += (ty - ry) * 0.18;
-      if (ring) ring.style.transform = "translate3d(" + rx + "px," + ry + "px,0)";
+      cx += (tx - cx) * LERP_POS;
+      cy += (ty - cy) * LERP_POS;
+      var diff = targetAngle - angle;
+      while (diff > 180) diff -= 360;
+      while (diff < -180) diff += 360;
+      angle += diff * 0.18;
+      var pos = "translate3d(" + cx + "px," + cy + "px,0)";
+      if (arrow) arrow.style.transform = pos + " rotate(" + angle.toFixed(1) + "deg)";
+      if (halo) halo.style.transform = pos;
+      if (labelPill) labelPill.style.transform = pos;
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
@@ -208,13 +225,13 @@
       var t = e.target.closest ? e.target.closest(HOVERABLES) : null;
       if (!t) return;
       root.classList.add("is-interactive");
-      if (label) label.textContent = t.getAttribute("data-cursor") || "";
+      if (labelText) labelText.textContent = t.getAttribute("data-cursor") || "";
     });
     document.addEventListener("mouseout", function (e) {
       var t = e.target.closest ? e.target.closest(HOVERABLES) : null;
       if (t && (!e.relatedTarget || !e.relatedTarget.closest || !e.relatedTarget.closest(HOVERABLES))) {
         root.classList.remove("is-interactive");
-        if (label) label.textContent = "";
+        if (labelText) labelText.textContent = "";
       }
     });
   }
@@ -306,7 +323,8 @@
   }
 
   /* -----------------------------------------------------------
-     Hero parallax on scroll (GSAP)
+     Hero parallax on scroll (GSAP) — differential ~18pt between
+     the photo and the copy so they drift apart as you scroll.
      ----------------------------------------------------------- */
   function initHeroParallax() {
     if (!window.gsap || !window.ScrollTrigger) return;
@@ -314,16 +332,70 @@
     var copy = $(".hero-copy");
     if (fig) {
       gsap.to(fig, {
-        yPercent: 8, ease: "none",
+        yPercent: -6, ease: "none",
         scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
       });
     }
     if (copy) {
       gsap.to(copy, {
-        yPercent: -12, opacity: 0.4, ease: "none",
+        yPercent: -24, opacity: 0.4, ease: "none",
         scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
       });
     }
+  }
+
+  /* -----------------------------------------------------------
+     Hero mist — a handful of soft, slow-drifting specks confined
+     to the hero canvas. Purely atmospheric, so it's gated behind
+     reduced-motion (unlike hover/tilt/reveal, which never are).
+     ----------------------------------------------------------- */
+  function initHeroMist() {
+    var canvas = $("[data-hero-mist]");
+    if (!canvas || reduced) return;
+    var ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    var hero = $(".hero");
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var particles = [];
+    var COUNT = 34;
+    var w = 0, h = 0;
+
+    function resize() {
+      w = hero.offsetWidth; h = hero.offsetHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + "px"; canvas.style.height = h + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    for (var i = 0; i < COUNT; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: 1 + Math.random() * 2.6,
+        vx: (Math.random() - 0.5) * 0.09,
+        vy: -0.05 - Math.random() * 0.16,
+        a: 0.08 + Math.random() * 0.22,
+      });
+    }
+
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.y < -8) { p.y = h + 8; p.x = Math.random() * w; }
+        if (p.x < -8) p.x = w + 8;
+        if (p.x > w + 8) p.x = -8;
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(21,19,15," + p.a + ")";
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
   }
 
   /* -----------------------------------------------------------
@@ -339,6 +411,7 @@
     safe(initMagnetic, "initMagnetic");
     safe(initHeroTilt, "initHeroTilt");
     safe(initCardTilt, "initCardTilt");
+    safe(initHeroMist, "initHeroMist");
 
     if (window.gsap && window.ScrollTrigger) {
       try { gsap.registerPlugin(ScrollTrigger); } catch (e) {}
