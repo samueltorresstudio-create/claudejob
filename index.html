@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nuovolaser — Clínica Estética · Láser Avanzado en Alcorcón, Madrid</title>
-<meta name="description" content="Nuovolaser, clínica estética de láser avanzado en Alcorcón, Madrid. Depilación láser, lifting de pestañas, manicura, pedicura, masajes y cejas. Resultados visibles desde las primeras sesiones.">
+<title>Nuovolaser — Centro Estético · Láser Avanzado en Alcorcón, Madrid</title>
+<meta name="description" content="Nuovolaser, centro de estética de láser avanzado en Alcorcón, Madrid. Depilación láser, lifting de pestañas, manicura, pedicura, masajes y cejas. Resultados visibles desde las primeras sesiones.">
 <meta name="theme-color" content="#f7f4ee">
 
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="styles.css?v=20260730">
 <script>document.documentElement.classList.add('js');</script>
 
-<meta property="og:title" content="Nuovolaser — Clínica Estética · Láser Avanzado">
+<meta property="og:title" content="Nuovolaser — Centro Estético · Láser Avanzado">
 <meta property="og:description" content="Resultados visibles desde las primeras sesiones. Alcorcón, Madrid.">
 <meta property="og:type" content="business.business">
 <meta property="og:image" content="assets/img/tratamiento-laser.webp">
@@ -94,7 +94,7 @@
         <p class="eyebrow reveal" data-reveal>Alcorcón · Madrid</p>
         <h1 class="hero-title">
           <span class="hero-title-script reveal" data-reveal data-split="chars">Nuovolaser</span>
-          <span class="hero-title-caps reveal" data-reveal data-split="words">Clínica Estética</span>
+          <span class="hero-title-caps reveal" data-reveal data-split="words">Centro Estético</span>
           <span class="hero-title-caps hero-title-caps-mute reveal" data-reveal data-split="words">Láser Avanzado</span>
         </h1>
         <p class="hero-sub reveal" data-reveal>Resultados visibles desde las primeras sesiones.</p>
@@ -125,23 +125,25 @@
 
       <div class="services-grid">
 
-        <article class="service-card reveal" data-reveal data-cursor="Explorar">
+        <article class="service-card has-gallery reveal" data-reveal data-cursor="Explorar" data-gallery="laser" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Explorar fotos reales de Depilación Láser">
           <div class="service-card-img">
             <img src="assets/img/tratamiento-laser.webp" alt="Depilación láser en Nuovolaser" loading="lazy" decoding="async">
           </div>
           <div class="service-card-body">
             <h3>Depilación Láser</h3>
             <p>Diodo de última generación para una piel lisa y uniforme, sesión tras sesión.</p>
+            <span class="service-card-explore">Explorar →</span>
           </div>
         </article>
 
-        <article class="service-card reveal" data-reveal data-cursor="Explorar">
+        <article class="service-card has-gallery reveal" data-reveal data-cursor="Explorar" data-gallery="pestanas" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Explorar fotos reales de Lifting de Pestañas">
           <div class="service-card-img">
             <img src="assets/img/tratamiento-cejas.webp" alt="Lifting de pestañas en Nuovolaser" loading="lazy" decoding="async">
           </div>
           <div class="service-card-body">
             <h3>Lifting de Pestañas</h3>
             <p>Curvatura natural y mirada despierta, sin necesidad de extensiones.</p>
+            <span class="service-card-explore">Explorar →</span>
           </div>
         </article>
 
@@ -294,7 +296,7 @@
       <div class="location-card reveal" data-reveal>
         <div class="location-map">
           <iframe
-            src="https://www.google.com/maps?q=Nuovolaser%2C%20Calle%20la%20Alameda%201%2C%2028922%20Alcorc%C3%B3n%2C%20Madrid&output=embed"
+            src="https://www.google.com/maps?q=place_id:ChIJp1rP1HKPQQ0RCjdK0dcFQVM&output=embed"
             title="Mapa de ubicación de Nuovolaser en Calle la Alameda 1, Alcorcón"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
@@ -361,9 +363,32 @@
   </div>
 </footer>
 
+<!-- Reusable "Explorar" gallery modal — one instance, driven by JS -->
+<div class="gallery-modal" data-gallery-modal aria-hidden="true" role="dialog" aria-modal="true" aria-label="Galería de fotos">
+  <div class="gallery-modal-backdrop" data-gallery-close></div>
+  <div class="gallery-modal-inner">
+    <button class="gallery-modal-close" data-gallery-close aria-label="Cerrar galería">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+    <button class="gallery-modal-arrow gallery-modal-prev" data-gallery-prev aria-label="Foto anterior">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+    </button>
+    <div class="gallery-modal-stage" data-gallery-stage>
+      <div class="gallery-modal-track" data-gallery-track></div>
+      <span class="gallery-modal-chip" data-gallery-chip hidden></span>
+    </div>
+    <button class="gallery-modal-arrow gallery-modal-next" data-gallery-next aria-label="Foto siguiente">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+    </button>
+    <p class="gallery-modal-caption" data-gallery-caption></p>
+    <div class="gallery-modal-dots" data-gallery-dots></div>
+  </div>
+</div>
+
 <script defer src="lib/gsap.min.js"></script>
 <script defer src="lib/ScrollTrigger.min.js"></script>
 <script defer src="lib/manifest.js"></script>
+<script defer src="lib/gallery-manifest.js"></script>
 <script defer src="main.js?v=20260730"></script>
 </body>
 </html>

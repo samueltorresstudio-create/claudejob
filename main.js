@@ -399,6 +399,187 @@
   }
 
   /* -----------------------------------------------------------
+     "Explorar" gallery modal — reusable, driven by window.__GALLERY__
+     (see lib/gallery-manifest.js). One modal instance in the DOM,
+     opened with the clicked service's slug. Animates only
+     transform/opacity; listeners are attached once and scoped by
+     an is-open check rather than added/removed per-open, except the
+     keydown/pointer handlers used only while open, which are added on
+     open and explicitly removed on close.
+     ----------------------------------------------------------- */
+  function initGalleryModal() {
+    var triggers = $$("[data-gallery]");
+    if (!triggers.length) return;
+    var modal = $("[data-gallery-modal]");
+    if (!modal) return;
+
+    var gallery = window.__GALLERY__ || {};
+    var backdrop = $$("[data-gallery-close]", modal);
+    var track = $("[data-gallery-track]", modal);
+    var stage = $("[data-gallery-stage]", modal);
+    var chip = $("[data-gallery-chip]", modal);
+    var caption = $("[data-gallery-caption]", modal);
+    var dotsWrap = $("[data-gallery-dots]", modal);
+    var prevBtn = $("[data-gallery-prev]", modal);
+    var nextBtn = $("[data-gallery-next]", modal);
+    var inner = $(".gallery-modal-inner", modal);
+
+    var current = null; // { slug, files, folder, caption }
+    var index = 0;
+    var slides = [];
+    var lastFocused = null;
+    var dragging = false, dragStartX = 0, dragDeltaX = 0, stageWidth = 0;
+
+    function chipFor(filename) {
+      var lower = filename.toLowerCase();
+      if (lower.indexOf("antes-") === 0) return "Antes";
+      if (lower.indexOf("despues-") === 0) return "Después";
+      return null;
+    }
+
+    function loadSlide(i) {
+      var el = slides[i];
+      if (!el) return;
+      var img = el.querySelector("img[data-src]");
+      if (img) { img.src = img.getAttribute("data-src"); img.removeAttribute("data-src"); }
+    }
+
+    function loadWindow(i) {
+      var n = slides.length;
+      loadSlide(i);
+      loadSlide((i + 1) % n);
+      loadSlide((i - 1 + n) % n);
+    }
+
+    function update(animate) {
+      var n = slides.length;
+      stageWidth = stage.offsetWidth;
+      track.style.transition = animate ? "transform .5s " + "cubic-bezier(0.16,1,0.3,1)" : "none";
+      track.style.transform = "translate3d(" + (-index * stageWidth) + "px,0,0)";
+      slides.forEach(function (el, i) { el.classList.toggle("is-active", i === index); });
+      loadWindow(index);
+      var fname = current.files[index];
+      var chipText = chipFor(fname);
+      if (chipText) { chip.textContent = chipText; chip.hidden = false; }
+      else { chip.hidden = true; }
+      $$("button", dotsWrap).forEach(function (d, i) { d.classList.toggle("is-active", i === index); });
+    }
+
+    function goTo(i) {
+      var n = slides.length;
+      index = ((i % n) + n) % n;
+      update(true);
+    }
+
+    function buildSlides() {
+      track.innerHTML = "";
+      dotsWrap.innerHTML = "";
+      slides = current.files.map(function (fname, i) {
+        var slide = document.createElement("div");
+        slide.className = "gallery-modal-slide";
+        var img = document.createElement("img");
+        img.setAttribute("data-src", current.folder + fname);
+        img.alt = current.caption + " — foto " + (i + 1);
+        img.loading = "eager";
+        slide.appendChild(img);
+        track.appendChild(slide);
+
+        var dot = document.createElement("button");
+        dot.type = "button";
+        dot.setAttribute("aria-label", "Ir a la foto " + (i + 1));
+        dot.addEventListener("click", function () { goTo(i); });
+        dotsWrap.appendChild(dot);
+
+        return slide;
+      });
+      inner.toggleAttribute("data-single", current.files.length <= 1);
+    }
+
+    function getFocusable() {
+      return $$('button, [href], [tabindex]:not([tabindex="-1"])', modal).filter(function (el) {
+        return el.offsetParent !== null;
+      });
+    }
+
+    function onKeydown(e) {
+      if (e.key === "Escape") { close(); return; }
+      if (e.key === "ArrowRight") { goTo(index + 1); return; }
+      if (e.key === "ArrowLeft") { goTo(index - 1); return; }
+      if (e.key === "Tab") {
+        var focusable = getFocusable();
+        if (!focusable.length) return;
+        var first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+
+    function onPointerDown(e) {
+      dragging = true; dragStartX = e.clientX; dragDeltaX = 0;
+      stageWidth = stage.offsetWidth;
+      track.style.transition = "none";
+      stage.setPointerCapture && stage.setPointerCapture(e.pointerId);
+    }
+    function onPointerMove(e) {
+      if (!dragging) return;
+      dragDeltaX = e.clientX - dragStartX;
+      track.style.transform = "translate3d(" + (-index * stageWidth + dragDeltaX) + "px,0,0)";
+    }
+    function onPointerUp() {
+      if (!dragging) return;
+      dragging = false;
+      var threshold = stageWidth * 0.15;
+      if (dragDeltaX > threshold) goTo(index - 1);
+      else if (dragDeltaX < -threshold) goTo(index + 1);
+      else update(true);
+    }
+
+    function open(slug, triggerEl) {
+      var cfg = gallery[slug];
+      if (!cfg || !cfg.files || !cfg.files.length) return;
+      current = cfg;
+      index = 0;
+      lastFocused = triggerEl || document.activeElement;
+      caption.textContent = cfg.caption || "";
+      buildSlides();
+      modal.setAttribute("aria-hidden", "false");
+      modal.classList.add("is-open");
+      document.documentElement.style.overflow = "hidden";
+      document.addEventListener("keydown", onKeydown);
+      stage.addEventListener("pointerdown", onPointerDown);
+      stage.addEventListener("pointermove", onPointerMove);
+      stage.addEventListener("pointerup", onPointerUp);
+      stage.addEventListener("pointercancel", onPointerUp);
+      requestAnimationFrame(function () { update(false); });
+      var closeBtn = $(".gallery-modal-close", modal);
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function close() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.documentElement.style.overflow = "";
+      document.removeEventListener("keydown", onKeydown);
+      stage.removeEventListener("pointerdown", onPointerDown);
+      stage.removeEventListener("pointermove", onPointerMove);
+      stage.removeEventListener("pointerup", onPointerUp);
+      stage.removeEventListener("pointercancel", onPointerUp);
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    triggers.forEach(function (el) {
+      el.addEventListener("click", function () { open(el.getAttribute("data-gallery"), el); });
+      el.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(el.getAttribute("data-gallery"), el); }
+      });
+    });
+    backdrop.forEach(function (el) { el.addEventListener("click", close); });
+    if (prevBtn) prevBtn.addEventListener("click", function () { goTo(index - 1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { goTo(index + 1); });
+    window.addEventListener("resize", function () { if (modal.classList.contains("is-open")) update(false); });
+  }
+
+  /* -----------------------------------------------------------
      Boot
      ----------------------------------------------------------- */
   function boot() {
@@ -412,6 +593,7 @@
     safe(initHeroTilt, "initHeroTilt");
     safe(initCardTilt, "initCardTilt");
     safe(initHeroMist, "initHeroMist");
+    safe(initGalleryModal, "initGalleryModal");
 
     if (window.gsap && window.ScrollTrigger) {
       try { gsap.registerPlugin(ScrollTrigger); } catch (e) {}
