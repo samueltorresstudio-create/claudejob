@@ -584,6 +584,17 @@ em { font-style: italic; }
   position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
   filter: grayscale(.25) contrast(1.03);
 }
+.location-map-openlink {
+  position: absolute; left: .9rem; bottom: .9rem; z-index: 2;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: .78rem; font-weight: 500;
+  padding: .5rem .9rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(21,19,15,.18);
+  transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out);
+}
+.location-map-openlink:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(21,19,15,.24); }
 .location-info {
   background: var(--paper);
   padding: clamp(2rem, 4vw, 3rem);

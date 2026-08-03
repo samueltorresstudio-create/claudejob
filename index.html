@@ -293,12 +293,20 @@
       <div class="location-card reveal" data-reveal>
         <div class="location-map">
           <iframe
-            src="https://www.google.com/maps?q=place_id:ChIJp1rP1HKPQQ0RCjdK0dcFQVM&output=embed"
+            src="https://www.google.com/maps?q=Nuovolaser%2C%20Calle%20la%20Alameda%201%2C%2028922%20Alcorc%C3%B3n%2C%20Madrid&output=embed"
             title="Mapa de ubicación de Nuovolaser en Calle la Alameda 1, Alcorcón"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             allowfullscreen>
           </iframe>
+          <!-- Always-present, not conditional: cross-origin iframes can't
+               reliably report a content failure to JS (the load event fires
+               even when the request is blocked), so a "show only if it
+               failed" banner would be dishonest. This redundant link always
+               works regardless of the embed's state. -->
+          <a class="location-map-openlink" href="https://www.google.com/maps/dir/?api=1&destination=Nuovolaser&destination_place_id=ChIJp1rP1HKPQQ0RCjdK0dcFQVM" target="_blank" rel="noopener" data-cursor="Ver">
+            Abrir en Google Maps ↗
+          </a>
         </div>
         <div class="location-info">
           <h3>Nuovolaser</h3>
