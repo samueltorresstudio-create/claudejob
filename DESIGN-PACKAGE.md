@@ -62,25 +62,23 @@ about 7 normal flicks. Video is 6.6s; time = progress × 6.6.
 
 Ranges are starting points, validated by the flick test in Phase 9.
 
-**The scrim plan.** The door is dead centre in bands 1 and 2 and the garbled
-window posters sit exactly where the text goes, so those bands use the
-two-sided variant: a left flank under the text column and a matching right
-flank carrying no text at all, purely to bury the right poster. The centre
-lane, which holds the door and the good *Nuovolaser* sign, is left completely
-alone. Bands 3 and 4 move the text down over the empty wood floor and use a
-single lower scrim. That progression is deliberate: words at the sides while
-you are outside looking in, words at your feet once you are inside.
+**The scrim plan (revised after the client saw it).** The first build read the
+window lettering as an AI artefact and buried both flanks under heavy scrims to
+hide it. The client corrected that: the lettering is the shop's own, the
+footage's highlights are the point, and it should read as shot. So the flank
+scrims are gone entirely.
 
-Each flank is a horizontal linear gradient rather than an ellipse, holding
-near its peak out to 70 percent of its half before falling to zero at the
-centre lane. The first tuning used ellipses and failed the audit at the text's
-right edge, where the falloff had already died: the ink sat exactly in the
-gradient's tail. Holding the plateau longer and narrowing the text column to
-44 percent of the viewport fixed it.
+What replaced them is composition rather than darkening: every beat now sits
+low in frame, in the dark ground the footage already provides. The polished
+pavement outside, the marble base at the threshold, the wood floor once inside.
+White type on the shot's own black needs almost nothing added. The remaining
+scrims are light bottom washes (0.50 / 0.52 / 0.44 / 0.70 peak), and the text
+shadow carries most of the work.
 
-Peak alphas as shipped: band 1 flanks 0.93, band 2 flanks 0.93, band 3 lower
-0.84, band 4 lower 0.90. Tuned against each band's worst frame and then
-audited on the real composited page, not on the average frame.
+The nav bar was the one place that still needed its own ground, because the
+shop's illuminated sign sits directly behind it at scroll zero. It carries a
+gradient the height of the bar only, rather than dimming a twelfth of the
+footage to make room for it. Measured worst-pixel contrast there: 7.27.
 
 ## 5. Static-hero copy (phones, reduced motion)
 
@@ -169,7 +167,8 @@ for AI tells before anyone sees it.
 
 | Check | Result |
 |---|---|
-| Worst-frame legibility, band 1 to 4 | 16.3 / 13.7 / 11.7 / 5.7 (floor is 3.5) |
+| Worst-frame legibility, band 1 to 4 | 10.6 / 7.0 / 4.3 / 4.1 (floor is 3.5), with the footage ungraded |
+| Nav worst-pixel contrast over the lit sign | 7.27 (floor is 4.5) |
 | Flick test, 120px steps | every beat readable for 6 to 12 flicks |
 | Flick test, 360px steps | no beat skippable, all four peak at full opacity |
 | Scrub tracking | currentTime follows scroll exactly, 0 to 6.6s |

@@ -27,7 +27,7 @@
   --ease-out:cubic-bezier(.16,1,.3,1);
 
   --nav-h:84px;
-  --tshadow:0 1px 2px rgba(6,4,2,.95),0 3px 12px rgba(6,4,2,.78),0 10px 44px rgba(6,4,2,.8);
+  --tshadow:0 1px 2px rgba(4,2,1,1),0 2px 6px rgba(4,2,1,.95),0 6px 20px rgba(4,2,1,.9),0 14px 56px rgba(4,2,1,.85);
 }
 
 /* ---------- 2. Reset & base ---------- */
@@ -108,7 +108,10 @@ em{font-style:italic}
 .nav{position:fixed;top:0;left:0;right:0;z-index:900;height:var(--nav-h);display:flex;align-items:center;transition:background-color .5s var(--ease),border-color .5s var(--ease);border-bottom:1px solid transparent}
 .nav.is-solid{background:rgba(244,237,226,.86);backdrop-filter:blur(14px);border-bottom-color:var(--line-soft)}
 /* over the hero the ground is dark footage, so the whole bar goes light */
-.nav.over-hero{color:var(--cream)}
+.nav.over-hero{color:var(--cream);text-shadow:0 1px 2px rgba(4,2,1,.9),0 2px 10px rgba(4,2,1,.75)}
+.nav.over-hero::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;
+  background:linear-gradient(to bottom,rgba(6,4,2,.92),rgba(6,4,2,.8) 58%,rgba(6,4,2,.42) 88%,rgba(6,4,2,0))}
+.nav.over-hero img,.nav.over-hero .btn{text-shadow:none}
 .nav.over-hero .nav-link,.nav.over-hero .nav-logo-tagline{color:rgba(246,239,228,.82)}
 .nav.over-hero .nav-link::after{background:var(--cream)}
 .nav.over-hero .btn-ghost{border-color:rgba(246,239,228,.4);color:var(--cream)}
@@ -152,8 +155,8 @@ em{font-style:italic}
 .stage.video-failed .stage-video{display:none}
 /* the global base scrim: no frame is ever raw behind the page */
 .stage-scrim{position:absolute;inset:0;pointer-events:none;background:
-  linear-gradient(to bottom,rgba(6,4,2,.62) 0,rgba(6,4,2,.18) 13%,rgba(6,4,2,0) 22%),
-  radial-gradient(ellipse 120% 92% at 50% 45%,rgba(8,5,3,0) 34%,rgba(8,5,3,.60) 100%)}
+  linear-gradient(to bottom,rgba(6,4,2,.20) 0,rgba(6,4,2,.06) 10%,rgba(6,4,2,0) 16%),
+  radial-gradient(ellipse 130% 100% at 50% 45%,rgba(8,5,3,0) 52%,rgba(8,5,3,.26) 100%)}
 
 .loader{position:absolute;right:2rem;bottom:2rem;width:34px;height:34px;color:rgba(255,246,234,.8);opacity:1;transition:opacity .5s var(--ease)}
 .loader.is-done{opacity:0}
@@ -174,33 +177,17 @@ em{font-style:italic}
 .band [data-split]{display:inline-block}
 
 /* side bands: text in the left column, both flanks scrimmed, centre lane clear */
-.band-side{align-items:center;padding-left:clamp(1.5rem,7vw,7rem);padding-right:56%}
-/* Two flank scrims with the centre lane left completely alone, so the door
-   and the good Nuovolaser sign stay bright while the garbled window posters
-   on both sides go dark and the text on the left stays readable. */
-.band-side::before,.band-side::after{content:"";position:absolute;top:0;bottom:0;width:50%;pointer-events:none;opacity:calc(.3 + .7*var(--k,1))}
-.band-side::before{left:0;background:linear-gradient(to right,
-  rgba(4,3,2,var(--sa,.88)) 0%,
-  rgba(4,3,2,calc(var(--sa,.88)*.97)) 70%,
-  rgba(4,3,2,calc(var(--sa,.88)*.78)) 88%,
-  rgba(4,3,2,0) 100%)}
-/* no text lives on the right, so this flank exists purely to bury the poster */
-.band-side::after{right:0;background:linear-gradient(to left,
-  rgba(4,3,2,var(--sa,.88)) 0%,
-  rgba(4,3,2,calc(var(--sa,.88)*.95)) 58%,
-  rgba(4,3,2,calc(var(--sa,.88)*.66)) 82%,
-  rgba(4,3,2,0) 100%)}
-.band-side[data-fx="depth"]{--sa:.93}
-.band-side[data-fx="part"]{--sa:.93}
-
-/* low bands: the visitor is inside now, so the words move down to the floor */
+/* every beat sits low, in the dark ground the footage already gives us:
+   the polished pavement outside, the marble base at the door, the wood floor in */
 .band-low,.band-settle{align-items:flex-end;padding:0 clamp(1.5rem,7vw,7rem) clamp(4rem,11vh,8rem)}
 .band-low .band-inner,.band-settle .band-inner{max-width:44ch}
 .band-low::before,.band-settle::before{content:"";position:absolute;left:0;right:0;bottom:0;height:88%;pointer-events:none;opacity:calc(.3 + .7*var(--k,1));background:
-  linear-gradient(to top,rgba(4,3,2,var(--sa,.84)) 0%,rgba(4,3,2,calc(var(--sa,.84)*.88)) 32%,rgba(4,3,2,calc(var(--sa,.84)*.44)) 62%,rgba(4,3,2,0) 100%),
-  linear-gradient(to right,rgba(4,3,2,calc(var(--sa,.84)*.55)) 0%,rgba(4,3,2,calc(var(--sa,.84)*.2)) 42%,rgba(4,3,2,0) 68%)}
-.band-low{--sa:.84}
-.band-settle{--sa:.90}
+  linear-gradient(to top,rgba(4,3,2,var(--sa,.44)) 0%,rgba(4,3,2,calc(var(--sa,.44)*.88)) 32%,rgba(4,3,2,calc(var(--sa,.44)*.44)) 62%,rgba(4,3,2,0) 100%),
+  linear-gradient(to right,rgba(4,3,2,calc(var(--sa,.44)*.55)) 0%,rgba(4,3,2,calc(var(--sa,.44)*.2)) 42%,rgba(4,3,2,0) 68%)}
+.band[data-fx="depth"]{--sa:.50}
+.band[data-fx="part"]{--sa:.52}
+.band-low{--sa:.44}
+.band-settle{--sa:.70}
 
 /* --- text choreography, all transform and opacity, scrubbed off --k --- */
 .w{display:inline-block;will-change:transform}
