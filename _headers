@@ -1,0 +1,9 @@
+# Netlify: fingerprinted media never changes, the page always revalidates.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+/
+  Cache-Control: public, max-age=0, must-revalidate
