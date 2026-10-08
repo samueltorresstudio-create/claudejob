@@ -1,0 +1,493 @@
+<mxfile host="app.diagrams.net" agent="Claude Code" version="24.7.17" type="device">
+  <diagram id="tema1-dossier" name="Tema 1 - Dossier en espina">
+    <mxGraphModel dx="1422" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0" background="#FAF6ED">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bg" value="" style="rounded=0;html=1;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0.0" y="0.0" width="1680.0" height="10.0" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:15px;letter-spacing:2px;color:#8A7A63;&quot;&gt;AULA VIRTUAL &amp;#183; NUEVAS TECNOLOG&amp;Iacute;AS&lt;/div&gt;&lt;div style=&quot;fontFamily=Georgia,&quot;Times New Roman&quot;,serif; font-size:38px;font-weight:700;color:#2B231C;margin-top:4px;&quot;&gt;Tema 1 &amp;#183; La sociedad del conocimiento&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:15px;color:#5B4E3D;margin-top:8px;&quot;&gt;Dossier en espina &amp;#183; cap&amp;iacute;tulos y ep&amp;iacute;grafes desarrollados, con conectores que trazan el hilo de lectura&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;align=center;verticalAlign=middle;spacingLeft=40;spacingRight=40;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="0.0" y="24.0" width="1680.0" height="118.0" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" value="&lt;font style=&quot;font-size:12px;color:#6B5C48;&quot;&gt;&lt;tspan/&gt; &amp;#9733; = contenido del guion del Tema 1 &amp;#160;&amp;#160;&amp;#8226;&amp;#160;&amp;#160; el color identifica el cap&amp;iacute;tulo &amp;#160;&amp;#160;&amp;#8226;&amp;#160;&amp;#160; las tarjetas cuelgan de la espina central en orden de lectura&lt;/font&gt;" style="rounded=1;arcSize=60;whiteSpace=wrap;html=1;fillColor=#F1E9D8;strokeColor=#E4D6BC;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="410.0" y="148.0" width="860.0" height="26.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ban1" value="&lt;div style=&quot;fontFamily=Georgia,&quot;Times New Roman&quot;,serif; font-size:20px;font-weight:700;color:#FFFFFF;&quot;&gt;1 &amp;#183; Hacia la sociedad actual&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.5px;color:#FFFFFF;opacity:.92;margin-top:3px;&quot;&gt;Cuatro revoluciones econ&amp;oacute;micas y sociales encadenadas que explican d&amp;oacute;nde estamos hoy.&lt;/div&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#8B5A34;strokeColor=none;align=center;verticalAlign=middle;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="380.0" y="204.0" width="920.0" height="64.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chiptitle1" value="&lt;font style=&quot;font-size:11.5px;color:#8B5A34;font-weight:700;letter-spacing:.4px;&quot;&gt;Tres consecuencias sociales del uso de las TIC&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="300.0" y="294.0" width="1080.0" height="18.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip1_0_0" value="&lt;font style=&quot;font-size:12px;color:#8B5A34;&quot;&gt;Brecha digital&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#FBF3EA;strokeColor=#8B5A34;strokeWidth=1;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="596.8" y="314.0" width="130.5" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip1_0_1" value="&lt;font style=&quot;font-size:12px;color:#8B5A34;&quot;&gt;Analfabetismo digital&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#FBF3EA;strokeColor=#8B5A34;strokeWidth=1;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="737.3" y="314.0" width="181.3" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip1_0_2" value="&lt;font style=&quot;font-size:12px;color:#8B5A34;&quot;&gt;Adicci&amp;oacute;n a las TIC&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#FBF3EA;strokeColor=#8B5A34;strokeWidth=1;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="928.6" y="314.0" width="154.5" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="cse1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C9BB9E;strokeWidth=3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endArrow=none;" edge="1" parent="1" source="ban1" target="chiptitle1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card1_0" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#8B5A34;font-weight:700;&quot;&gt;1.1&amp;#160;Sociedad agraria y artesanal&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;El dominio del fuego y la domesticaci&amp;oacute;n de animales y cultivos permitieron a los primeros grupos humanos asentarse. Al acumular bienes se desarroll&amp;oacute; una sociedad agraria compleja, y ya en la Edad Antigua la artesan&amp;iacute;a y el comercio se convirtieron en sus actividades econ&amp;oacute;micas b&amp;aacute;sicas.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#8B5A34;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="374.0" width="470.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card1_0bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#8B5A34;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="374.0" width="5.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk1_0" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#8B5A34;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="452.5" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce1_0" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#8B5A34;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk1_0" target="card1_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card1_1" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#8B5A34;font-weight:700;&quot;&gt;1.2&amp;#160;La sociedad industrial&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Al final de la Edad Media resurgen las ciudades y la econom&amp;iacute;a; nace una nueva clase, la burgues&amp;iacute;a, que pronto se enriquece a costa del trabajo asalariado. La m&amp;aacute;quina de vapor y la mejora de los transportes aceleran el desarrollo econ&amp;oacute;mico y disparan el comercio.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#8B5A34;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="577.0" width="470.0" height="151.5" as="geometry" />
+        </mxCell>
+        <mxCell id="card1_1bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#8B5A34;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="577.0" width="5.0" height="151.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mk1_1" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#8B5A34;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="646.8" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce1_1" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#8B5A34;strokeWidth=2;endArrow=none;startArrow=none;entryX=0;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk1_1" target="card1_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card1_2" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#8B5A34;font-weight:700;&quot;&gt;1.3&amp;#160;La sociedad de la informaci&amp;oacute;n&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;El r&amp;aacute;pido crecimiento del sector servicios y el desarrollo de las tecnolog&amp;iacute;as de la informaci&amp;oacute;n dan lugar a una nueva era: la capacidad de sus miembros para crear, distribuir y editar informaci&amp;oacute;n desde cualquier lugar supone una forma de desarrollo en la que la informaci&amp;oacute;n es poder.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#8B5A34;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="762.5" width="470.0" height="151.5" as="geometry" />
+        </mxCell>
+        <mxCell id="card1_2bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#8B5A34;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="762.5" width="5.0" height="151.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mk1_2" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#8B5A34;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="832.2" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce1_2" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#8B5A34;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk1_2" target="card1_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card1_3" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#8B5A34;font-weight:700;&quot;&gt;1.4&amp;#160;La sociedad del conocimiento&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Informaci&amp;oacute;n no es lo mismo que conocimiento: mientras la primera se compone de datos y hechos, el conocimiento es su interpretaci&amp;oacute;n, al procesarla, relacionarla y darle significado. Esta sociedad tiene la capacidad de generar y utilizar conocimiento propio para atender las necesidades de su desarrollo, y por eso est&amp;aacute; centrada en las personas.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#8B5A34;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="948.0" width="470.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card1_3bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#8B5A34;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="948.0" width="5.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk1_3" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#8B5A34;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="1026.5" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce1_3" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#8B5A34;strokeWidth=2;endArrow=none;startArrow=none;entryX=0;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk1_3" target="card1_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ban2" value="&lt;div style=&quot;fontFamily=Georgia,&quot;Times New Roman&quot;,serif; font-size:20px;font-weight:700;color:#FFFFFF;&quot;&gt;2 &amp;#183; Evoluci&amp;oacute;n tecnol&amp;oacute;gica&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.5px;color:#FFFFFF;opacity:.92;margin-top:3px;&quot;&gt;El recorrido t&amp;eacute;cnico desde la Prehistoria hasta la inform&amp;aacute;tica actual, &amp;eacute;poca a &amp;eacute;poca.&lt;/div&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;align=center;verticalAlign=middle;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="380.0" y="1159.0" width="920.0" height="64.0" as="geometry" />
+        </mxCell>
+        <mxCell id="espine2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C9BB9E;strokeWidth=3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endArrow=none;" edge="1" parent="1" source="mk1_3" target="ban2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="chiptitle2" value="&lt;font style=&quot;font-size:11.5px;color:#A6303F;font-weight:700;letter-spacing:.4px;&quot;&gt;Generaciones de los ordenadores &amp;#183; cada una reduce coste y tama&amp;ntilde;o, y gana velocidad&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="300.0" y="1249.0" width="1080.0" height="18.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip2_0_0" value="&lt;font style=&quot;font-size:12px;color:#A6303F;&quot;&gt;&lt;font color=&quot;#A6303F&quot;&gt;&amp;#9733; &lt;/font&gt;1.&amp;ordf; &amp;#183; 1944-53 &amp;#183; v&amp;aacute;lvulas de vac&amp;iacute;o&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#FCEEEF;strokeColor=#A6303F;strokeWidth=1.6;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="162.3" y="1269.0" width="268.8" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip2_0_1" value="&lt;font style=&quot;font-size:12px;color:#A6303F;&quot;&gt;&lt;font color=&quot;#A6303F&quot;&gt;&amp;#9733; &lt;/font&gt;2.&amp;ordf; &amp;#183; 1955-63 &amp;#183; transistor&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#FCEEEF;strokeColor=#A6303F;strokeWidth=1.6;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="441.0" y="1269.0" width="219.1" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip2_0_2" value="&lt;font style=&quot;font-size:12px;color:#A6303F;&quot;&gt;&lt;font color=&quot;#A6303F&quot;&gt;&amp;#9733; &lt;/font&gt;3.&amp;ordf; &amp;#183; 1964-70 &amp;#183; circuitos integrados&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#FCEEEF;strokeColor=#A6303F;strokeWidth=1.6;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="670.1" y="1269.0" width="287.9" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip2_0_3" value="&lt;font style=&quot;font-size:12px;color:#A6303F;&quot;&gt;&lt;font color=&quot;#A6303F&quot;&gt;&amp;#9733; &lt;/font&gt;4.&amp;ordf; &amp;#183; 1971-83 &amp;#183; microprocesador&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#FCEEEF;strokeColor=#A6303F;strokeWidth=1.6;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="968.0" y="1269.0" width="266.4" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip2_0_4" value="&lt;font style=&quot;font-size:12px;color:#A6303F;&quot;&gt;&lt;font color=&quot;#A6303F&quot;&gt;&amp;#9733; &lt;/font&gt;5.&amp;ordf; &amp;#183; 1984-98 &amp;#183; PC e Internet civil&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#FCEEEF;strokeColor=#A6303F;strokeWidth=1.6;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="1244.4" y="1269.0" width="273.3" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip2_1_0" value="&lt;font style=&quot;font-size:12px;color:#A6303F;&quot;&gt;&lt;font color=&quot;#A6303F&quot;&gt;&amp;#9733; &lt;/font&gt;6.&amp;ordf; &amp;#183; 1999-hoy &amp;#183; m&amp;oacute;vil y paralelismo&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#FCEEEF;strokeColor=#A6303F;strokeWidth=1.6;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="693.8" y="1309.0" width="292.5" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="cse2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C9BB9E;strokeWidth=3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endArrow=none;" edge="1" parent="1" source="ban2" target="chiptitle2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card2_0" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#A6303F;font-weight:700;&quot;&gt;2.1&amp;#160;Prehistoria y Antig&amp;uuml;edad&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;El descubrimiento del fuego, el origen de las peque&amp;ntilde;as sociedades y la aparici&amp;oacute;n del lenguaje oral y los alfabetos son hitos clave. El &amp;aacute;baco, usado en Babilonia hacia 3500 a. C., es uno de los primeros instrumentos para hacer c&amp;aacute;lculos, y sigue empleando en muchos pa&amp;iacute;ses orientales.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="1369.0" width="470.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card2_0bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="1369.0" width="5.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk2_0" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="1447.5" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce2_0" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#A6303F;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk2_0" target="card2_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card2_1" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#A6303F;font-weight:700;&quot;&gt;2.2&amp;#160;La Edad Media&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;El conocimiento queda relegado principalmente a monasterios y universidades bajo el control del clero. El periodo experimenta avances tecnol&amp;oacute;gicos importantes: p&amp;oacute;lvora, br&amp;uacute;jula, molinos de viento, gafas y nuevas t&amp;eacute;cnicas de construcci&amp;oacute;n; destacan el uso del cero como n&amp;uacute;mero (India) y la invenci&amp;oacute;n de la imprenta moderna de Gutenberg hacia 1440.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="1572.0" width="470.0" height="186.5" as="geometry" />
+        </mxCell>
+        <mxCell id="card2_1bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="1572.0" width="5.0" height="186.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mk2_1" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="1659.2" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce2_1" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#A6303F;strokeWidth=2;endArrow=none;startArrow=none;entryX=0;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk2_1" target="card2_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card2_2" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#A6303F;font-weight:700;&quot;&gt;2.3&amp;#160;La Edad Moderna&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Abarca desde el descubrimiento de Am&amp;eacute;rica (1492) hasta la Revoluci&amp;oacute;n Francesa (1789); en este periodo desarrollan su obra cient&amp;iacute;fica Cop&amp;eacute;rnico, Da Vinci, Galileo y Newton. Nacen la regla de c&amp;aacute;lculo, la pascalina y la calculadora universal de Leibniz, mientras la m&amp;aacute;quina de vapor y la electricidad anuncian ya la Revoluci&amp;oacute;n Industrial.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="1792.5" width="470.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card2_2bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="1792.5" width="5.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk2_2" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="1871.0" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce2_2" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#A6303F;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk2_2" target="card2_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card2_3" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#A6303F;font-weight:700;&quot;&gt;&lt;span style=&quot;color:#A6303F;font-weight:700;&quot;&gt;&amp;#9733; GUION&amp;#160;&amp;#160;&lt;/span&gt;2.4&amp;#160;La Edad Contempor&amp;aacute;nea&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Comprende el periodo entre la Edad Moderna y la actualidad, marcado por transformaciones aceleradas en econom&amp;iacute;a, sociedad y tecnolog&amp;iacute;a. Charles Babbage concibe la m&amp;aacute;quina diferencial y dise&amp;ntilde;a la anal&amp;iacute;tica (1822); Herman Hollerith desarrolla la m&amp;aacute;quina tabuladora con tarjetas perforadas, y Konrad Zuse construye las Z1-Z4 y el primer ordenador con interruptores electromec&amp;aacute;nicos, el Mark I.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="1995.5" width="470.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card2_3bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="1995.5" width="5.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk2_3" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="2091.5" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce2_3" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#A6303F;strokeWidth=2;endArrow=none;startArrow=none;entryX=0;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk2_3" target="card2_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ban3" value="&lt;div style=&quot;fontFamily=Georgia,&quot;Times New Roman&quot;,serif; font-size:20px;font-weight:700;color:#FFFFFF;&quot;&gt;3 &amp;#183; Un mundo digital conectado a la red&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.5px;color:#FFFFFF;opacity:.92;margin-top:3px;&quot;&gt;Internet nace en los a&amp;ntilde;os sesenta y hoy permite conectarse desde cualquier lugar y momento.&lt;/div&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#276B66;strokeColor=none;align=center;verticalAlign=middle;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="380.0" y="2241.5" width="920.0" height="64.0" as="geometry" />
+        </mxCell>
+        <mxCell id="espine3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C9BB9E;strokeWidth=3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endArrow=none;" edge="1" parent="1" source="mk2_3" target="ban3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="chiptitle3" value="&lt;font style=&quot;font-size:11.5px;color:#276B66;font-weight:700;letter-spacing:.4px;&quot;&gt;Cinco servicios de la ciudad inteligente&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="300.0" y="2331.5" width="1080.0" height="18.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip3_0_0" value="&lt;font style=&quot;font-size:12px;color:#276B66;&quot;&gt;&lt;font color=&quot;#A6303F&quot;&gt;&amp;#9733; &lt;/font&gt;eAdministraci&amp;oacute;n&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#EAF4F2;strokeColor=#A6303F;strokeWidth=1.6;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="423.8" y="2351.5" width="162.2" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip3_0_1" value="&lt;font style=&quot;font-size:12px;color:#276B66;&quot;&gt;&lt;font color=&quot;#A6303F&quot;&gt;&amp;#9733; &lt;/font&gt;Teletrabajo&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#EAF4F2;strokeColor=#A6303F;strokeWidth=1.6;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="596.0" y="2351.5" width="127.8" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip3_0_2" value="&lt;font style=&quot;font-size:12px;color:#276B66;&quot;&gt;&lt;font color=&quot;#A6303F&quot;&gt;&amp;#9733; &lt;/font&gt;Tr&amp;aacute;fico y coches aut&amp;oacute;nomos&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#EAF4F2;strokeColor=#A6303F;strokeWidth=1.6;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="733.8" y="2351.5" width="239.1" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip3_0_3" value="&lt;font style=&quot;font-size:12px;color:#276B66;&quot;&gt;&lt;font color=&quot;#A6303F&quot;&gt;&amp;#9733; &lt;/font&gt;eSalud&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#EAF4F2;strokeColor=#A6303F;strokeWidth=1.6;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="982.9" y="2351.5" width="98.1" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="chip3_0_4" value="&lt;font style=&quot;font-size:12px;color:#276B66;&quot;&gt;&lt;font color=&quot;#A6303F&quot;&gt;&amp;#9733; &lt;/font&gt;Casas dom&amp;oacute;ticas&lt;/font&gt;" style="rounded=1;arcSize=50;whiteSpace=nowrap;html=1;fillColor=#EAF4F2;strokeColor=#A6303F;strokeWidth=1.6;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="1091.0" y="2351.5" width="165.2" height="30.0" as="geometry" />
+        </mxCell>
+        <mxCell id="cse3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C9BB9E;strokeWidth=3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endArrow=none;" edge="1" parent="1" source="ban3" target="chiptitle3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card3_0" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#276B66;font-weight:700;&quot;&gt;3.1&amp;#160;Nativos digitales&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;En nuestra sociedad coexisten dos comunidades generacionales bien diferentes: los nativos digitales, que han crecido rodeados de tecnolog&amp;iacute;a y la usan con soltura, y los inmigrantes digitales, procedentes del mundo anal&amp;oacute;gico, que tienen m&amp;aacute;s dificultad para adaptarse a estas herramientas.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#276B66;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="2411.5" width="470.0" height="151.5" as="geometry" />
+        </mxCell>
+        <mxCell id="card3_0bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#276B66;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="2411.5" width="5.0" height="151.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mk3_0" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#276B66;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="2481.2" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce3_0" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#276B66;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk3_0" target="card3_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card3_1" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#276B66;font-weight:700;&quot;&gt;&lt;span style=&quot;color:#A6303F;font-weight:700;&quot;&gt;&amp;#9733; GUION&amp;#160;&amp;#160;&lt;/span&gt;3.2&amp;#160;El Internet de las cosas&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Hace referencia a todos los objetos que nos rodean y que, sin intervenci&amp;oacute;n del usuario, pueden conectarse para intercambiar informaci&amp;oacute;n mediante comunicaci&amp;oacute;n M2M (machine to machine). Se estimaba que para el a&amp;ntilde;o 2020 habr&amp;iacute;a m&amp;aacute;s de 50 000 millones de objetos conectados: un promedio de seis por cada habitante del planeta. Ejemplos ya comercializados son juguetes con sensores que interact&amp;uacute;an con comunidades virtuales, camisetas que cambian de mensaje seg&amp;uacute;n las redes sociales y calzado deportivo con GPS que controla la rutina de ejercicio.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="2597.0" width="470.0" height="239.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card3_1bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="2597.0" width="5.0" height="239.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk3_1" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#276B66;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="2710.5" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce3_1" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#276B66;strokeWidth=2;endArrow=none;startArrow=none;entryX=0;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk3_1" target="card3_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card3_2" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#276B66;font-weight:700;&quot;&gt;&lt;span style=&quot;color:#A6303F;font-weight:700;&quot;&gt;&amp;#9733; GUION&amp;#160;&amp;#160;&lt;/span&gt;3.3&amp;#160;Ciudades inteligentes&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Es aquella que hace uso de los avances tecnol&amp;oacute;gicos para mejorar tanto la calidad de vida de sus habitantes como sus recursos y su gesti&amp;oacute;n energ&amp;eacute;tica. Cada vez son m&amp;aacute;s las ciudades que trabajan en innovaci&amp;oacute;n, sostenibilidad, gobierno digital, etc., y prestan servicios similares a los que se describen a continuaci&amp;oacute;n.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="2870.0" width="470.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card3_2bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="2870.0" width="5.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk3_2" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#276B66;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="2948.5" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce3_2" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#276B66;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk3_2" target="card3_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ban4" value="&lt;div style=&quot;fontFamily=Georgia,&quot;Times New Roman&quot;,serif; font-size:20px;font-weight:700;color:#FFFFFF;&quot;&gt;4 &amp;#183; Identidad digital&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.5px;color:#FFFFFF;opacity:.92;margin-top:3px;&quot;&gt;Tambi&amp;eacute;n en la Red hay que acreditar qui&amp;eacute;n es cada uno: documento, certificado y contrase&amp;ntilde;a.&lt;/div&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#1E4E7C;strokeColor=none;align=center;verticalAlign=middle;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="380.0" y="3081.0" width="920.0" height="64.0" as="geometry" />
+        </mxCell>
+        <mxCell id="espine4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C9BB9E;strokeWidth=3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endArrow=none;" edge="1" parent="1" source="mk3_2" target="ban4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card4_0" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#1E4E7C;font-weight:700;&quot;&gt;4.1&amp;#160;DNIe&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;El DNI electr&amp;oacute;nico, emitido por la Direcci&amp;oacute;n General de la Polic&amp;iacute;a, acredita electr&amp;oacute;nica y de forma inequ&amp;iacute;voca la identidad de su titular y permite firmar digitalmente documentos con la misma validez jur&amp;iacute;dica que la firma manuscrita. Incorpora un peque&amp;ntilde;o circuito integrado o chip con los mismos datos que aparecen impresos en la tarjeta, junto con certificados de autenticaci&amp;oacute;n y firma electr&amp;oacute;nica.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#1E4E7C;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="3171.0" width="470.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card4_0bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1E4E7C;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="3171.0" width="5.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk4_0" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1E4E7C;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="3267.0" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce4_0" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#1E4E7C;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk4_0" target="card4_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card4_1" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#1E4E7C;font-weight:700;&quot;&gt;&lt;span style=&quot;color:#A6303F;font-weight:700;&quot;&gt;&amp;#9733; GUION&amp;#160;&amp;#160;&lt;/span&gt;4.2&amp;#160;El certificado digital&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Permite autenticar y garantizar la confidencialidad de las comunicaciones entre ciudadanos, empresas u otras instituciones a trav&amp;eacute;s de las redes abiertas de comunicaci&amp;oacute;n, de forma que solo el ciudadano puede acceder a su informaci&amp;oacute;n, evitando suplantaciones. En Espa&amp;ntilde;a lo emiten, adem&amp;aacute;s del DNIe, entidades como la F&amp;aacute;brica Nacional de Moneda y Timbre. Para obtenerlo hay que dirigirse presencialmente a una oficina de registro e instalar en el ordenador el software y la clave privada que facilitan.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="3409.0" width="470.0" height="221.5" as="geometry" />
+        </mxCell>
+        <mxCell id="card4_1bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="3409.0" width="5.0" height="221.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mk4_1" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1E4E7C;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="3513.8" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce4_1" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#1E4E7C;strokeWidth=2;endArrow=none;startArrow=none;entryX=0;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk4_1" target="card4_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card4_2" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#1E4E7C;font-weight:700;&quot;&gt;&lt;span style=&quot;color:#A6303F;font-weight:700;&quot;&gt;&amp;#9733; GUION&amp;#160;&amp;#160;&lt;/span&gt;4.3&amp;#160;Contrase&amp;ntilde;as&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Es el m&amp;eacute;todo m&amp;aacute;s extendido para identificarse y obtener acceso a la informaci&amp;oacute;n personal. Debe tener una longitud no inferior a ocho caracteres, formarse con una mezcla de may&amp;uacute;sculas, min&amp;uacute;sculas, n&amp;uacute;meros y s&amp;iacute;mbolos, no incluir informaci&amp;oacute;n personal reconocible y cambiarse con regularidad. Un buen truco es partir de una frase f&amp;aacute;cil de memorizar: &amp;laquo;Mi perro Canela es un Setter Irland&amp;eacute;s&amp;raquo; puede convertirse en MpCe1setterIr.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="3664.5" width="470.0" height="221.5" as="geometry" />
+        </mxCell>
+        <mxCell id="card4_2bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="3664.5" width="5.0" height="221.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mk4_2" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1E4E7C;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="3769.2" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce4_2" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#1E4E7C;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk4_2" target="card4_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ban5" value="&lt;div style=&quot;fontFamily=Georgia,&quot;Times New Roman&quot;,serif; font-size:20px;font-weight:700;color:#FFFFFF;&quot;&gt;5 &amp;#183; Conocimiento colectivo&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.5px;color:#FFFFFF;opacity:.92;margin-top:3px;&quot;&gt;Los usuarios dejan de ser receptores pasivos y pasan a crear conocimiento compartido en la Red.&lt;/div&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#6A4692;strokeColor=none;align=center;verticalAlign=middle;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="380.0" y="3928.0" width="920.0" height="64.0" as="geometry" />
+        </mxCell>
+        <mxCell id="espine5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C9BB9E;strokeWidth=3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endArrow=none;" edge="1" parent="1" source="mk4_2" target="ban5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card5_0" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#6A4692;font-weight:700;&quot;&gt;5.1&amp;#160;Inteligencia colectiva&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Es consecuencia de la colaboraci&amp;oacute;n entre muchos individuos o seres vivos de una misma especie. Este producto social reporta beneficios como la resoluci&amp;oacute;n de problemas que requieren conocimientos multidisciplinares, la interpretaci&amp;oacute;n de ideas desde distintos puntos de vista o la creatividad. Con la Web 2.0, los consumidores pasan tambi&amp;eacute;n a ser creadores, construyendo contenido colaborando entre ellos.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#6A4692;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="4018.0" width="470.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card5_0bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6A4692;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="4018.0" width="5.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk5_0" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#6A4692;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="4114.0" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce5_0" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#6A4692;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk5_0" target="card5_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card5_1" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#6A4692;font-weight:700;&quot;&gt;5.2&amp;#160;Contenidos abiertos&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Describe cualquier tipo de trabajo creativo &amp;mdash;art&amp;iacute;culos, dibujos, audios, v&amp;iacute;deos&amp;mdash; publicado bajo una licencia no restrictiva que permite su copia, distribuci&amp;oacute;n y modificaci&amp;oacute;n. En el &amp;aacute;mbito educativo se utilizan t&amp;eacute;rminos como REA (Recursos Educativos Abiertos), MOOC (Cursos en L&amp;iacute;nea Masivos) u Open Course, y suelen publicarse bajo licencias Creative Commons o Copyleft.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#6A4692;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="4256.0" width="470.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card5_1bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6A4692;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="4256.0" width="5.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk5_1" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#6A4692;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="4352.0" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce5_1" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#6A4692;strokeWidth=2;endArrow=none;startArrow=none;entryX=0;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk5_1" target="card5_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card5_2" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#6A4692;font-weight:700;&quot;&gt;5.3&amp;#160;Dimensi&amp;oacute;n social del conocimiento&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;La Red es din&amp;aacute;mica, participativa y colaborativa: sus usuarios son protagonistas activos que crean contenidos, comparten informaci&amp;oacute;n, opinan, interact&amp;uacute;an y se relacionan a trav&amp;eacute;s de blogs, wikis y redes sociales. YouTube, Wikipedia o Google Earth y Maps son buenos ejemplos de c&amp;oacute;mo el conocimiento se genera, comparte y comenta entre los propios usuarios; y millones de sitios accesibles por buscadores completan esta gran fuente com&amp;uacute;n de saber.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#6A4692;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="4494.0" width="470.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card5_2bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6A4692;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="4494.0" width="5.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk5_2" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#6A4692;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="4590.0" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce5_2" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#6A4692;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk5_2" target="card5_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ban6" value="&lt;div style=&quot;fontFamily=Georgia,&quot;Times New Roman&quot;,serif; font-size:20px;font-weight:700;color:#FFFFFF;&quot;&gt;6 &amp;#183; Movilidad, ubicuidad y disponibilidad&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.5px;color:#FFFFFF;opacity:.92;margin-top:3px;&quot;&gt;Los dispositivos m&amp;oacute;viles hacen posible interactuar y comunicarse en cualquier lugar y momento.&lt;/div&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#B9740E;strokeColor=none;align=center;verticalAlign=middle;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="380.0" y="4740.0" width="920.0" height="64.0" as="geometry" />
+        </mxCell>
+        <mxCell id="espine6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C9BB9E;strokeWidth=3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endArrow=none;" edge="1" parent="1" source="mk5_2" target="ban6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_0" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#B9740E;font-weight:700;&quot;&gt;6.1&amp;#160;El tel&amp;eacute;fono inteligente&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;El smartphone es un dispositivo m&amp;oacute;vil con caracter&amp;iacute;sticas similares a las de un ordenador personal: pantalla t&amp;aacute;ctil de gran resoluci&amp;oacute;n, agenda digital, GPS, Wi-Fi, Bluetooth, c&amp;aacute;mara de fotos y v&amp;iacute;deo, grabadora, asistente por voz, acceso a Internet y multitud de aplicaciones que pueden ejecutarse simult&amp;aacute;neamente.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#B9740E;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="4830.0" width="470.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_0bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B9740E;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="4830.0" width="5.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk6_0" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#B9740E;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="4908.5" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce6_0" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#B9740E;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk6_0" target="card6_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_1" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#B9740E;font-weight:700;&quot;&gt;6.2&amp;#160;Tecnolog&amp;iacute;as ubicuas&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Ubicuo procede del lat&amp;iacute;n ubique, &amp;laquo;en todas partes&amp;raquo;. La computaci&amp;oacute;n ubicua integra la inform&amp;aacute;tica en las tareas diarias de forma natural, de manera que los ordenadores dejan de percibirse como objetos diferenciados; su objetivo es mejorar el bienestar de las personas haciendo la vida m&amp;aacute;s f&amp;aacute;cil y c&amp;oacute;moda.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#B9740E;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="5033.0" width="470.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_1bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B9740E;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="5033.0" width="5.0" height="169.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk6_1" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#B9740E;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="5111.5" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce6_1" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#B9740E;strokeWidth=2;endArrow=none;startArrow=none;entryX=0;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk6_1" target="card6_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_2" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#B9740E;font-weight:700;&quot;&gt;6.3&amp;#160;Navegar con dispositivos m&amp;oacute;viles&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;El acceso a Internet desde un dispositivo m&amp;oacute;vil se realiza de manera similar a como se hace con un ordenador de sobremesa, utilizando un navegador convencional o alguna de las aplicaciones para acceder a la Red. La mayor&amp;iacute;a de sitios web cuentan con una versi&amp;oacute;n m&amp;oacute;vil que se activa autom&amp;aacute;ticamente, y la interacci&amp;oacute;n es t&amp;aacute;ctil: deslizar, tocar o girar la pantalla.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#B9740E;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="5236.0" width="470.0" height="186.5" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_2bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B9740E;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="5236.0" width="5.0" height="186.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mk6_2" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#B9740E;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="5323.2" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce6_2" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#B9740E;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk6_2" target="card6_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_3" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#B9740E;font-weight:700;&quot;&gt;6.4&amp;#160;Correo electr&amp;oacute;nico&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Se puede leer con dispositivos m&amp;oacute;viles desde cualquier lugar y en tiempo real: los datos se sincronizan de forma autom&amp;aacute;tica y se recibe un aviso cada vez que llega un nuevo mensaje, igual que sucede con los SMS. El acceso puede hacerse desde el navegador o con aplicaciones espec&amp;iacute;ficas compatibles con los proveedores de correo m&amp;aacute;s conocidos, como Outlook o Gmail.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#B9740E;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="5456.5" width="470.0" height="186.5" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_3bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B9740E;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="5456.5" width="5.0" height="186.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mk6_3" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#B9740E;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="5543.8" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce6_3" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#B9740E;strokeWidth=2;endArrow=none;startArrow=none;entryX=0;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk6_3" target="card6_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_4" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#B9740E;font-weight:700;&quot;&gt;&lt;span style=&quot;color:#A6303F;font-weight:700;&quot;&gt;&amp;#9733; GUION&amp;#160;&amp;#160;&lt;/span&gt;6.5&amp;#160;Geolocalizaci&amp;oacute;n&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Se utiliza para conocer la ubicaci&amp;oacute;n geogr&amp;aacute;fica de modo autom&amp;aacute;tico, es decir, la localizaci&amp;oacute;n de un objeto en un sistema de coordenadas determinado. Este proceso requiere de un dispositivo dotado de GPS junto con un sistema cartogr&amp;aacute;fico de apoyo. Sirve para planificar recorridos, obtener informaci&amp;oacute;n del lugar donde se encuentra o compartir la posici&amp;oacute;n geogr&amp;aacute;fica en tiempo real a trav&amp;eacute;s de redes sociales.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="5677.0" width="470.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_4bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="5677.0" width="5.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk6_4" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#B9740E;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="5773.0" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce6_4" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#B9740E;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk6_4" target="card6_4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_5" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#B9740E;font-weight:700;&quot;&gt;&lt;span style=&quot;color:#A6303F;font-weight:700;&quot;&gt;&amp;#9733; GUION&amp;#160;&amp;#160;&lt;/span&gt;6.6&amp;#160;Realidad aumentada&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;A&amp;ntilde;ade informaci&amp;oacute;n virtual a la realidad; uno de los ejemplos m&amp;aacute;s populares es Layar. Esta aplicaci&amp;oacute;n utiliza el receptor GPS y la br&amp;uacute;jula del tel&amp;eacute;fono m&amp;oacute;vil para ubicar la posici&amp;oacute;n del usuario y su orientaci&amp;oacute;n; la pantalla muestra lo que la c&amp;aacute;mara capta y, sobre esa imagen del entorno, superpone en tiempo real informaci&amp;oacute;n relativa a lo que hay delante del usuario: paradas de autob&amp;uacute;s, restaurantes, cajeros, informaci&amp;oacute;n sobre monumentos, etc.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="5915.0" width="470.0" height="221.5" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_5bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="5915.0" width="5.0" height="221.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mk6_5" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#B9740E;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="6019.8" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce6_5" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#B9740E;strokeWidth=2;endArrow=none;startArrow=none;entryX=0;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk6_5" target="card6_5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_6" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#B9740E;font-weight:700;&quot;&gt;6.7&amp;#160;Apps&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Las aplicaciones de los tel&amp;eacute;fonos inteligentes, tambi&amp;eacute;n conocidas como apps, son innumerables y abarcan diversas facetas relacionadas con la vida diaria: b&amp;uacute;squedas, juegos, mapas, videoconferencias, v&amp;iacute;deo, m&amp;uacute;sica y fotos, entre muchas otras herramientas que hacen m&amp;aacute;s f&amp;aacute;cil y c&amp;oacute;moda la sociedad digital.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#B9740E;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="6170.5" width="470.0" height="186.5" as="geometry" />
+        </mxCell>
+        <mxCell id="card6_6bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B9740E;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="6170.5" width="5.0" height="186.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mk6_6" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#B9740E;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="6257.8" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce6_6" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#B9740E;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk6_6" target="card6_6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ban7" value="&lt;div style=&quot;fontFamily=Georgia,&quot;Times New Roman&quot;,serif; font-size:20px;font-weight:700;color:#FFFFFF;&quot;&gt;7 &amp;#183; Nuevos desarrollos de las TIC&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.5px;color:#FFFFFF;opacity:.92;margin-top:3px;&quot;&gt;Los avances que hoy impulsan la evoluci&amp;oacute;n de la inform&amp;aacute;tica y las comunicaciones.&lt;/div&gt;" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#3B7040;strokeColor=none;align=center;verticalAlign=middle;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="380.0" y="6399.0" width="920.0" height="64.0" as="geometry" />
+        </mxCell>
+        <mxCell id="espine7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C9BB9E;strokeWidth=3;exitX=0.5;exitY=1;entryX=0.5;entryY=0;endArrow=none;" edge="1" parent="1" source="mk6_6" target="ban7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_0" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#3B7040;font-weight:700;&quot;&gt;&lt;span style=&quot;color:#A6303F;font-weight:700;&quot;&gt;&amp;#9733; GUION&amp;#160;&amp;#160;&lt;/span&gt;7.1&amp;#160;Rob&amp;oacute;tica&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Un robot es una m&amp;aacute;quina programable capaz de ejecutar varias funciones o tareas complejas, incluyendo diferentes tipos de movimientos, para manipular objetos y llevar a cabo operaciones autom&amp;aacute;ticamente. Los nuevos materiales y los avances en mec&amp;aacute;nica han llevado a la creaci&amp;oacute;n de robots inimaginables: industriales, espaciales, m&amp;oacute;viles y zoomorfos, como ASIMO (ayuda a personas con movilidad reducida) o Robonaut (primer robot humanoide en el espacio).&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="6489.0" width="470.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_0bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="6489.0" width="5.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk7_0" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B7040;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="6585.0" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce7_0" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#3B7040;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk7_0" target="card7_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_1" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#3B7040;font-weight:700;&quot;&gt;&lt;span style=&quot;color:#A6303F;font-weight:700;&quot;&gt;&amp;#9733; GUION&amp;#160;&amp;#160;&lt;/span&gt;7.2&amp;#160;Inteligencia artificial&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Se denomina inteligencia artificial a la rama de la inform&amp;aacute;tica que desarrolla procesos que imitan la inteligencia de los seres vivos. Su principal aplicaci&amp;oacute;n es la creaci&amp;oacute;n de m&amp;aacute;quinas para la automatizaci&amp;oacute;n de tareas que requieren comportamiento inteligente: planificaci&amp;oacute;n autom&amp;aacute;tica, la habilidad de responder a diagn&amp;oacute;sticos y consultas de los consumidores, o el reconocimiento de escritura, habla y patrones. Est&amp;aacute; ya plenamente consolidada en econom&amp;iacute;a, medicina, ingenier&amp;iacute;a e inform&amp;aacute;tica.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="6727.0" width="470.0" height="239.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_1bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="6727.0" width="5.0" height="239.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk7_1" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B7040;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="6840.5" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce7_1" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#3B7040;strokeWidth=2;endArrow=none;startArrow=none;entryX=0;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk7_1" target="card7_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_2" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#3B7040;font-weight:700;&quot;&gt;7.3&amp;#160;Sistemas distribuidos&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Son un conjunto de ordenadores conectados entre s&amp;iacute; mediante una red, que trabajan con un fin com&amp;uacute;n. Permiten crear superordenadores compartiendo recursos hardware y software de los diferentes equipos para distribuir el trabajo y obtener un mayor aprovechamiento, mediante un proceso de comunicaci&amp;oacute;n m&amp;aacute;quina a m&amp;aacute;quina transparente al usuario.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#3B7040;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="7000.0" width="470.0" height="186.5" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_2bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#3B7040;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="7000.0" width="5.0" height="186.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mk7_2" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B7040;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="7087.2" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce7_2" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#3B7040;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk7_2" target="card7_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_3" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#3B7040;font-weight:700;&quot;&gt;7.4&amp;#160;Litograf&amp;iacute;a&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;T&amp;eacute;cnica utilizada tradicionalmente en los trabajos de impresi&amp;oacute;n y fotograf&amp;iacute;a. En inform&amp;aacute;tica, los fabricantes han utilizado durante a&amp;ntilde;os la fotolitograf&amp;iacute;a para crear chips cada vez m&amp;aacute;s peque&amp;ntilde;os; la nueva t&amp;eacute;cnica de haz de electrones o e-beam resuelve las limitaciones de tama&amp;ntilde;o que la fotolitograf&amp;iacute;a ya no puede superar.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#3B7040;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="7220.5" width="470.0" height="186.5" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_3bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#3B7040;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="7220.5" width="5.0" height="186.5" as="geometry" />
+        </mxCell>
+        <mxCell id="mk7_3" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B7040;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="7307.8" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce7_3" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#3B7040;strokeWidth=2;endArrow=none;startArrow=none;entryX=0;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk7_3" target="card7_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_4" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#3B7040;font-weight:700;&quot;&gt;&lt;span style=&quot;color:#A6303F;font-weight:700;&quot;&gt;&amp;#9733; GUION&amp;#160;&amp;#160;&lt;/span&gt;7.5&amp;#160;Nanotecnolog&amp;iacute;a&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Aborda el estudio y desarrollo de sistemas a escala de &amp;aacute;tomos y mol&amp;eacute;culas. Nano es un prefijo griego asociado a la unidad de medida 10&amp;#8315;&amp;#8313;; por tanto, un nan&amp;oacute;metro equivale a la millon&amp;eacute;sima parte de un mil&amp;iacute;metro. Sus tres grandes sectores son la nanoelectr&amp;oacute;nica (dispositivos electr&amp;oacute;nicos a escalas diminutas, como transistores), la nanobiotecnolog&amp;iacute;a (combina ingenier&amp;iacute;a con biolog&amp;iacute;a) y los nanomateriales, entre los que destacan el grafeno y las nanopart&amp;iacute;culas de &amp;oacute;xido met&amp;aacute;lico.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="7441.0" width="470.0" height="239.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_4bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="7441.0" width="5.0" height="239.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk7_4" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B7040;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="7554.5" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce7_4" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#3B7040;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk7_4" target="card7_4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_5" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#3B7040;font-weight:700;&quot;&gt;&lt;span style=&quot;color:#A6303F;font-weight:700;&quot;&gt;&amp;#9733; GUION&amp;#160;&amp;#160;&lt;/span&gt;7.6&amp;#160;Inform&amp;aacute;tica cu&amp;aacute;ntica&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Basa el funcionamiento de los ordenadores en las propiedades cu&amp;aacute;nticas de las part&amp;iacute;culas, en lugar de en los voltajes el&amp;eacute;ctricos como se ha hecho tradicionalmente. El qubit o bit cu&amp;aacute;ntico admite diferentes valores superpuestos de forma simult&amp;aacute;nea, a diferencia del bit, que toma un solo valor en cada instante; esto ofrece una potencia de c&amp;aacute;lculo casi ilimitada, y aunque est&amp;aacute;n en fase de desarrollo, ya se han creado chips cu&amp;aacute;nticos.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="7714.0" width="470.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_5bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="886.0" y="7714.0" width="5.0" height="204.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk7_5" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B7040;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="7810.0" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce7_5" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#3B7040;strokeWidth=2;endArrow=none;startArrow=none;entryX=0;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk7_5" target="card7_5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_6" value="&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:11.5px;color:#3B7040;font-weight:700;&quot;&gt;&lt;span style=&quot;color:#A6303F;font-weight:700;&quot;&gt;&amp;#9733; GUION&amp;#160;&amp;#160;&lt;/span&gt;7.7&amp;#160;Bioinform&amp;aacute;tica&lt;/div&gt;&lt;div style=&quot;fontFamily=Verdana,Arial,sans-serif; font-size:12.8px;line-height:1.42;color:#3A332A;margin-top:8px;&quot;&gt;Es un campo de la ciencia en el que confluyen varias disciplinas: biolog&amp;iacute;a, inform&amp;aacute;tica y tecnolog&amp;iacute;as de la informaci&amp;oacute;n. Un ejemplo son los biochips y los transistores org&amp;aacute;nicos, capaces de transferir la se&amp;ntilde;al el&amp;eacute;ctrica a trav&amp;eacute;s de mol&amp;eacute;culas org&amp;aacute;nicas; esto se puede utilizar en microprocesadores para imitar las funciones de las neuronas y conseguir que los ordenadores piensen y aprendan igual que lo hacen los humanos. Otro ejemplo son los diodos org&amp;aacute;nicos OLED, utilizados en pantallas flexibles y de bajo consumo.&lt;/div&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFFEFA;strokeColor=#A6303F;strokeWidth=1.4;align=left;verticalAlign=top;spacingLeft=16;spacingRight=16;spacingTop=12;shadow=1;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="7952.0" width="470.0" height="239.0" as="geometry" />
+        </mxCell>
+        <mxCell id="card7_6bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6303F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="324.0" y="7952.0" width="5.0" height="239.0" as="geometry" />
+        </mxCell>
+        <mxCell id="mk7_6" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#3B7040;strokeColor=#FAF6ED;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="834.0" y="8065.5" width="12.0" height="12.0" as="geometry" />
+        </mxCell>
+        <mxCell id="ce7_6" style="edgeStyle=none;curved=1;rounded=0;html=1;strokeColor=#3B7040;strokeWidth=2;endArrow=none;startArrow=none;entryX=1;entryY=0.5;exitX=0.5;exitY=0.5;" edge="1" parent="1" source="mk7_6" target="card7_6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="footer" value="&lt;font style=&quot;font-size:11.5px;color:#7A6C56;&quot;&gt;Fuente: Tema 1 &amp;laquo;La sociedad del conocimiento. Nuevas tecnolog&amp;iacute;as&amp;raquo; (Aula Virtual). Cada tarjeta desarrolla en 3-5 frases el contenido de su ep&amp;iacute;grafe, a partir de la lectura directa del texto: no es un resumen ni un &amp;iacute;ndice.&lt;/font&gt;" style="rounded=1;arcSize=40;whiteSpace=wrap;html=1;fillColor=#F1E9D8;strokeColor=#E4D6BC;align=center;verticalAlign=middle;fontFamily=Verdana,Arial,sans-serif;" vertex="1" parent="1">
+          <mxGeometry x="380.0" y="8233.0" width="920.0" height="30.0" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
