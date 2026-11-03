@@ -1,0 +1,17 @@
+[
+ {"sc":"cam","hud":"SALÓN · 03:06","say":"Hay una cámara en tu salón que no instalaste.","cap":"HAY UNA CÁMARA EN TU SALÓN QUE NO INSTALASTE.|p","pause":0.2,"whisper":true},
+ {"sc":"cam","hud":"CÁM 1 · SALÓN · 03:07","say":"Anoche la revisaste. Y tenías que verla.","cap":"ANOCHE LA REVISASTE. Y TENÍAS QUE VERLA.|p","pause":0.25},
+ {"sc":"hall","hud":"CÁM 1 · PASILLO · 03:07","say":"Enfoca el pasillo. Y al fondo, la puerta de tu habitación abierta.","cap":"ENFOCA EL PASILLO. Y AL FONDO, LA PUERTA DE TU HABITACIÓN ABIERTA.|p","pause":0.2},
+ {"sc":"hall","hud":"CÁM 1 · PASILLO · 03:07","say":"Tu cama está vacía. Las sábanas, aplastadas. Pero alguien está sentado a los pies.","cap":"TU CAMA ESTÁ VACÍA. LAS SÁBANAS, APLASTADAS.|p PERO ALGUIEN ESTÁ SENTADO A LOS PIES.|p","pause":0.25},
+ {"sc":"hall","hud":"CÁM 1 · PASILLO · 03:07","alert":true,"say":"No se mueve. No respira. Solo mira hacia la puerta.","cap":"NO SE MUEVE. NO RESPIRA. SOLO MIRA HACIA LA PUERTA.|p","pause":0.25},
+ {"sc":"sofa","hud":"SALÓN · EN DIRECTO","say":"Tú no estás en la cama. Estás en el sofá. Con la tele encendida.","cap":"TÚ NO ESTÁS EN LA CAMA. ESTÁS EN EL SOFÁ.|p CON LA TELE ENCENDIDA.|p","pause":0.2},
+ {"sc":"sofa","hud":"SALÓN · EN DIRECTO","alert":true,"say":"Y no recuerdas haber salido de la cama.","cap":"Y NO RECUERDAS HABER SALIDO DE LA CAMA.|p","pause":0.3},
+ {"sc":"rec","hud":"CÁM 1 · PASILLO · 03:07","alert":true,"say":"En la grabación, la figura se levanta.","cap":"EN LA GRABACIÓN, LA FIGURA SE LEVANTA.|p","pause":0.25},
+ {"sc":"rec","hud":"CÁM 1 · PASILLO · 03:07","say":"Despacio. Como si supiera que la estás viendo.","cap":"DESPACIO. COMO SI SUPIERA QUE LA ESTÁS VIENDO.|p","pause":0.25,"whisper":true},
+ {"sc":"rec","hud":"CÁM 1 · PASILLO · 03:08","alert":true,"say":"Camina por el pasillo. Hacia el salón. Hacia la cámara.","cap":"CAMINA POR EL PASILLO. HACIA EL SALÓN. HACIA LA CÁMARA.|p","pause":0.2},
+ {"sc":"rec","hud":"CÁM 1 · PASILLO · 03:08","say":"Una. Dos. Tres pasos.","cap":"UNA. DOS. TRES PASOS.|p","pause":0.3},
+ {"sc":"rec","hud":"CÁM 1 · PASILLO · 03:08","alert":true,"say":"Y en la grabación, se para justo delante del objetivo.","cap":"Y EN LA GRABACIÓN, SE PARA JUSTO DELANTE DEL OBJETIVO.|p","pause":0.3},
+ {"sc":"breath","hud":"SALÓN · 03:08","alert":true,"say":"Y tú, en el sofá, sientes una respiración detrás de la oreja.","cap":"Y TÚ, EN EL SOFÁ, SIENTES UNA RESPIRACIÓN DETRÁS DE LA OREJA.|p","pause":0.3,"whisper":true},
+ {"sc":"phone","hud":"MÓVIL · EN DIRECTO","say":"Miras la pantalla del móvil. La cámara en directo enfoca tu salón. Y a tu espalda, de pie, alguien.","cap":"MIRAS LA PANTALLA DEL MÓVIL. LA CÁMARA EN DIRECTO ENFOCA TU SALÓN.|p Y A TU ESPALDA, DE PIE, ALGUIEN.|p","pause":0.3},
+ {"sc":"end","hud":"CÁM 1 · SALÓN · 03:08","alert":true,"cut":true,"say":"La cámara ya no enfoca el pasillo. Te enfoca a ti.","cap":"LA CÁMARA YA NO ENFOCA EL PASILLO. TE ENFOCA A TI.|p","pause":0.2}
+]

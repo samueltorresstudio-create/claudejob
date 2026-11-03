@@ -1,0 +1,20 @@
+[
+ {"sc":"hook","hud":"PUERTO ARENA · 13:49","alert":true,"say":"Si en un tsunami te fías de cualquiera... lo pagas muy caro.","cap":"SI EN UN TSUNAMI TE FÍAS DE CUALQUIERA...|p LO PAGAS MUY CARO.|p","pause":0.2},
+ {"sc":"back","hud":"CALLEJÓN · 13:50","say":"Lucía desata a su madre y salen con Marco por detrás.","cap":"LUCÍA DESATA A SU MADRE Y SALEN CON MARCO POR DETRÁS.|p","pause":0.2},
+ {"sc":"walkie","hud":"CALLEJÓN · 13:50","say":"A la madre se le cae un walkie-talkie. Y el walkie habla.","cap":"A LA MADRE SE LE CAE UN WALKIE-TALKIE.|y Y EL WALKIE HABLA.|p","pause":0.2},
+ {"sc":"walkie","hud":"CALLEJÓN · 13:50","alert":true,"say":"«¿Estáis ya con Marco? Nosotros tenemos al perro.»","cap":"«¿ESTÁIS YA CON MARCO?|p NOSOTROS TENEMOS AL PERRO.»|p","pause":0.3},
+ {"sc":"reveal","hud":"TODO ERA UN MONTAJE","alert":true,"say":"Todo era un montaje. Querían su mapa... y su sitio en el helicóptero.","cap":"TODO ERA UN MONTAJE.|p QUERÍAN SU MAPA...|y Y SU SITIO EN EL HELICÓPTERO.|p","pause":0.3},
+ {"sc":"alley","hud":"CALLEJÓN · 13:51","say":"Marco corre al callejón. Duque está atado entre los dos hombres.","cap":"MARCO CORRE AL CALLEJÓN.|p DUQUE ESTÁ ATADO ENTRE LOS DOS HOMBRES.|p","pause":0.2},
+ {"sc":"alley","hud":"PASO 1 · POR LA ESPALDA","step":0,"say":"Paso uno: si son dos, ataca primero al que te da la espalda.","cap":"PASO|y UNO: SI SON DOS, ATACA PRIMERO AL QUE TE DA LA ESPALDA.|b","pause":0.2},
+ {"sc":"fight","hud":"CALLEJÓN · 13:51","alert":true,"say":"Un golpe seco. El de la chaqueta roja cae. El otro huye. Duque cojea... pero mueve la cola.","cap":"UN GOLPE SECO.|p EL DE LA CHAQUETA ROJA CAE.|p EL OTRO HUYE.|y DUQUE COJEA...|y PERO MUEVE LA COLA.|g","pause":0.3},
+ {"sc":"radio","hud":"RADIO · 14:00","alert":true,"say":"Marco enciende la radio de bolsillo. «Alerta de tsunami. Viene una segunda ola, mayor que la primera.»","cap":"MARCO ENCIENDE LA RADIO DE BOLSILLO.|y «ALERTA DE TSUNAMI.|p VIENE UNA SEGUNDA OLA, MAYOR QUE LA PRIMERA.»|p","pause":0.2},
+ {"sc":"radio","hud":"#cd","say":"«El último helicóptero sale de San Telmo mañana a mediodía.»","cap":"«EL ÚLTIMO HELICÓPTERO SALE DE SAN TELMO|b MAÑANA A MEDIODÍA.»|y","pause":0.2},
+ {"sc":"radio","hud":"#cd","say":"Veintidós horas. Catorce kilómetros. Y la mochila vacía.","cap":"VEINTIDÓS HORAS.|y CATORCE KILÓMETROS.|y Y LA MOCHILA VACÍA.|p","pause":0.3},
+ {"sc":"cars","hud":"#cd","step":1,"say":"Paso dos: busca en los coches abandonados.","cap":"PASO|y DOS: BUSCA EN LOS COCHES ABANDONADOS.|b","pause":0.2},
+ {"sc":"cars","hud":"#cd","say":"Dos botellas de agua. Una lata de atún. Y un mechero.","cap":"DOS BOTELLAS DE AGUA.|b UNA LATA DE ATÚN.|g Y UN MECHERO.|y","pause":0.3},
+ {"sc":"fire","hud":"#cd","step":2,"say":"Paso tres: fuego pequeño. Una llama grande se ve desde lejos.","cap":"PASO|y TRES: FUEGO PEQUEÑO.|y UNA LLAMA GRANDE SE VE DESDE LEJOS.|p","pause":0.2},
+ {"sc":"fire","hud":"#cd","say":"Cae la noche a mitad de la montaña. Una hoguera del tamaño de una mano.","cap":"CAE LA NOCHE A MITAD DE LA MONTAÑA.|b UNA HOGUERA DEL TAMAÑO DE UNA MANO.|y","pause":0.3},
+ {"sc":"sleep","hud":"#cd","step":3,"say":"Paso cuatro: duerme pegado a tu perro. El calor compartido os salva a los dos.","cap":"PASO|y CUATRO: DUERME PEGADO A TU PERRO.|g EL CALOR COMPARTIDO OS SALVA A LOS DOS.|g","pause":0.2},
+ {"sc":"sleep","hud":"#cd","say":"Duque apoya la cabeza en su pecho. Mañana es el día de la evacuación.","cap":"DUQUE APOYA LA CABEZA EN SU PECHO.|p MAÑANA ES EL DÍA DE LA EVACUACIÓN.|y","pause":0.3},
+ {"sc":"sea","hud":"#cd","alert":true,"cut":true,"say":"Pero a las cinco y doce de la madrugada... el mar vuelve a retirarse.","cap":"PERO A LAS 5:12 DE LA MADRUGADA...|p EL MAR VUELVE A RETIRARSE.|p","pause":0.2,"whisper":true}
+]

@@ -1,0 +1,50 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0b0c16}
+#img{position:absolute;left:0;top:0;width:1080px;height:1360px;background-size:cover;overflow:hidden}
+#img img{position:absolute}
+#fade{position:absolute;left:0;top:900px;width:1080px;height:470px;background:linear-gradient(rgba(11,12,22,0),#0b0c16 92%)}
+#top{position:absolute;left:0;top:0;width:1080px;height:300px;background:linear-gradient(#0b0c16 0%,rgba(11,12,22,0))}
+#title{position:absolute;left:50px;right:50px;top:1230px;text-align:center;font-family:'Inter';font-weight:900;color:#fff;
+  text-transform:uppercase;letter-spacing:-3px;line-height:.98;text-shadow:0 8px 0 rgba(0,0,0,.35)}
+.y{color:#f7d23e;text-shadow:0 0 30px #f7d23e66,0 8px 0 rgba(0,0,0,.35)}
+.p{color:#ff3e6c;text-shadow:0 0 30px #ff3e6c66,0 8px 0 rgba(0,0,0,.35)}
+#hook{position:absolute;left:0;right:0;top:1160px;text-align:center}
+#hook span{font-family:'JetBrains Mono';font-weight:800;font-size:34px;letter-spacing:4px;color:#f7d23e;background:#11131fdd;border:3px solid #f7d23e;padding:10px 24px}
+#part{position:absolute;left:0;right:0;top:290px;text-align:center}
+#part span{font-family:'JetBrains Mono';font-weight:800;font-size:64px;letter-spacing:6px;color:#11131f;background:#f7d23e;padding:14px 34px;box-shadow:0 10px 0 rgba(0,0,0,.35)}
+#part span.p2{background:#ff3e6c;color:#fff}
+#part span.p3{background:#6cc6ff;color:#11131f}
+#part span.p4{background:#45e07e;color:#11131f}
+#part span.p5{background:#fff;color:#11131f}
+</style></head><body>
+<div id="img"><img id="pic"></div><div id="fade"></div><div id="top"></div>
+<div id="hook"><span id="hk"></span></div>
+<div id="title"></div>
+<div id="part"><span id="pt"></span></div>
+<script>
+// one cover per video; x0,y0,z frame the source still (1080x1920) inside the 1080x1360 picture area
+const C={
+  avion:{f:'f_avion.png',z:1.35,x:-380,y:-180,hook:'SI TE DESPIERTAS EN UN…',title:'AVIÓN <span class="y">VACÍO</span>',size:150},
+  '2cm':{f:'f_2cm.png',z:1.25,x:-135,y:-40,hook:'SI MAÑANA…',title:'MIDES <span class="y">2&nbsp;CM</span>',size:160},
+  adultos1:{f:'f_adultos1.png',z:1.45,x:-300,y:-200,hook:'SI UN DÍA…',title:'DESAPARECEN LOS <span class="p">ADULTOS</span>',size:118,part:'PARTE 1'},
+  adultos2:{f:'f_adultos2.png',z:1.35,x:-200,y:-220,hook:'SI UN DÍA…',title:'DESAPARECEN LOS <span class="p">ADULTOS</span>',size:118,part:'PARTE 2',p2:1},
+  adultos3:{f:'f_adultos3.png',z:1,x:0,y:-60,hook:'SI UN DÍA…',title:'DESAPARECEN LOS <span class="p">ADULTOS</span>',size:118,part:'PARTE 3',p3:1},
+  adultos4:{f:'f_adultos4.png',z:1.05,x:-27,y:60,hook:'SI UN DÍA…',title:'DESAPARECEN LOS <span class="p">ADULTOS</span>',size:118,part:'PARTE 4',cls:'p4'},
+  adultos5:{f:'f_adultos5.png',z:1.25,x:-135,y:-40,hook:'SI UN DÍA…',title:'DESAPARECEN LOS <span class="p">ADULTOS</span>',size:118,part:'PARTE 5 · FINAL',cls:'p5'},
+  futuro:{f:'f_futuro.png',z:1.6,x:-40,y:-60,hook:'SI EMPIEZAS A RECIBIR…',title:'MENSAJES DE TU <span class="y">YO DEL FUTURO</span>',size:112},
+  doble:{f:'f_doble.png',z:1.15,x:-80,y:-30,hook:'SI LLEGAS AL COLE Y…',title:'TU <span class="p">DOBLE</span> EN CLASE',size:140},
+  prehistoria:{f:'f_prehistoria.png',z:1.25,x:-50,y:-110,hook:'SI TE DESPIERTAS EN LA…',title:'<span class="y">PREHISTORIA</span>',size:150},
+  tsunami1:{f:'f_tsunami1.png',z:1.2,x:-50,y:-10,hook:'SI EL MAR SE RETIRA…',title:'<span style="color:#6cc6ff;text-shadow:0 0 30px #6cc6ff66,0 8px 0 rgba(0,0,0,.35)">TSUNAMI</span>',size:200,part:'PARTE 1'},
+  tsunami2:{f:'f_tsunami2.png',z:1.22,x:-20,y:-20,hook:'LA SEGUNDA OLA',title:'<span style="color:#6cc6ff;text-shadow:0 0 30px #6cc6ff66,0 8px 0 rgba(0,0,0,.35)">TSUNAMI</span>',size:200,part:'PARTE 2',p2:1},
+  tsunami3:{f:'f_tsunami3.png',z:1.16,x:-155,y:10,hook:'EL RASTRO',title:'<span style="color:#6cc6ff;text-shadow:0 0 30px #6cc6ff66,0 8px 0 rgba(0,0,0,.35)">TSUNAMI</span>',size:200,part:'PARTE 3',p3:1},
+  tsunami4:{f:'f_tsunami4.png',z:1.2,x:-40,y:-20,hook:'UNA NOTA EN LA MOCHILA',title:'<span style="color:#6cc6ff;text-shadow:0 0 30px #6cc6ff66,0 8px 0 rgba(0,0,0,.35)">TSUNAMI</span>',size:200,part:'PARTE 4',cls:'p4'},
+  tsunami5:{f:'f_tsunami5.png',z:1.2,x:-60,y:-20,hook:'LA PINTADA DICE TU HORA',title:'<span style="color:#6cc6ff;text-shadow:0 0 30px #6cc6ff66,0 8px 0 rgba(0,0,0,.35)">TSUNAMI</span>',size:200,part:'PARTE 5',cls:'p5'},
+  estatica1:{f:'f_estatica1.png',z:1.3,x:-160,y:10,hook:'SI TU TELE SE ENCIENDE SOLA…',title:'EL HOMBRE DE LA <span style="color:#e9e6dc;text-shadow:0 0 30px #9fd0ff,0 8px 0 rgba(0,0,0,.35)">ESTÁTICA</span>',size:112,part:'PARTE 1'},
+  millon:{f:'f_millon.png',z:1.3,x:-280,y:-120,hook:'SI ABRES TU MOCHILA…',title:'<span class="y">UN MILLÓN</span> EN LA MOCHILA',size:130},
+};
+const c=C[new URLSearchParams(location.search).get('v')];
+const im=document.getElementById('pic');im.src=c.f;im.style.width=(1080*c.z)+'px';im.style.left=c.x+'px';im.style.top=c.y+'px';
+document.getElementById('title').innerHTML=c.title;document.getElementById('title').style.fontSize=c.size+'px';
+document.getElementById('hk').textContent=c.hook;
+if(c.part){const p=document.getElementById('pt');p.textContent=c.part;if(c.p2)p.className='p2';if(c.p3)p.className='p3';if(c.cls)p.className=c.cls}else document.getElementById('part').style.display='none';
+</script></body></html>
