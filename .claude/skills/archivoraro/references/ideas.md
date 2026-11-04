@@ -55,7 +55,7 @@ Si encuentras un fallo en partes ya publicadas, no propongas resubir: arréglalo
 Voz del usuario: **Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural»**. Él genera el MP3 y te lo pasa.
 
 - Una frase por línea, sin título, sin numeración, dentro de un bloque de código para copiar.
-- Etiquetas de emoción al principio de la frase o del tramo: `[whispers] [serious] [tense] [urgent] [ominous] [sad] [hopeful] [suspicious] [sighs] [quietly]`.
+- Etiquetas de emoción **muy pocas** (2–4 en todo el guion), solo en los momentos especiales, al principio de la frase: `[serious] [tense] [urgent] [ominous] [sad] [hopeful]`. **Nada de `[whispers]`** (el usuario no quiere susurros).
 - Diálogos entre «comillas españolas».
 - Números con letra si se leen («cinco y doce», «veintidós horas»); en los subtítulos van en cifras.
 - Longitud: ≈2,4 palabras por segundo con las pausas de esta voz. 60–70 s ≈ 150–170 palabras; 80–90 s ≈ 200–215 palabras.
