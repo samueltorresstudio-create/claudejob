@@ -60,8 +60,8 @@ S.alley=(t,D,B)=>{const E=EVS.alley(B);
 window.CFG={steps:['1. …','2. …'],listEnd:'escena_final',band:{alley:'#5a4e3e',…},hud:(h,bt,st,T)=>'…'};
 ```
 
-- **Rótulo de arriba (HUD)**: escribe `hud` como `«ETIQUETA · VALOR»` («VENTAJA · 44:32», «LUNES · 12:33», «SELVA · DÍA 4») y sale como tarjeta con icono (reloj si el valor es una hora, aviso si la línea es `alert`), etiqueta pequeña y valor grande. Sin `·` sale en una sola línea. `CFG.hudFrac:T=>0..1` (o `null`) añade una barra de progreso para cuentas atrás. `CFG.stepsTitle` cambia «PASOS» por «REGLAS», etc.
-- `tag`, `bubble`, `bang`, `countPop` ya tienen el diseño nuevo (tarjetas con barra de color y sombra, bocadillo con contorno, textos con contorno grueso y brillo): no los imites con rectángulos propios.
+- **Rótulo de arriba (HUD)**: escribe `hud` como `«ETIQUETA · VALOR»` («VENTAJA · 44:32», «LUNES · 12:33», «SELVA · DÍA 4») y sale como recuadro del canal (recto, fondo oscuro, doble borde amarillo, esquinas marcadas, punto rojo parpadeante) con un cuadrado de icono (reloj si el valor es una hora, aviso si la línea es `alert`), etiqueta pequeña y valor grande. Nada de pastillas ni círculos: el usuario quiere recuadros. Sin `·` sale en una sola línea. `CFG.hudFrac:T=>0..1` (o `null`) añade una barra de progreso para cuentas atrás. `CFG.stepsTitle` cambia «PASOS» por «REGLAS», etc.
+- `tag`, `bubble`, `bang`, `countPop` ya tienen el diseño nuevo (recuadros rectos con bloque de color, esquinas y sombra; lista de pasos con cabecera amarilla y casillas cuadradas; bocadillo con contorno, textos con contorno grueso y brillo): no los imites con rectángulos propios.
 
 - Cada escena necesita entrada en `EVS` **y** en `S`, aunque `EVS` devuelva `{}`.
 - `band`: color de fondo detrás de los subtítulos para cada escena (que combine con el decorado).

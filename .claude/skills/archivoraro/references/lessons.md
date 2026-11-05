@@ -16,6 +16,8 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
 
 ## Composición
 
+- Rótulos y cuadros: «hazlos recuadros, no círculos, pero mejora el original». Estilo del canal = recuadro recto oscuro con borde amarillo y letra tipo máquina; se mejora con doble borde, esquinas, sombra e iconos cuadrados, nunca con pastillas redondeadas.
+
 - «Tamaños descompensados y sonrisas muy raras» (la calle de «Apagón 1»): cada vecino a una escala distinta y con los pies a distinta altura, y una sonrisa enorme con los ojos cerrados. Usa `crowd()` para grupos y `mouth:'laugh', eyes:'happy'` para reír.
 
 - «Se mueven como Legos»: piernas rectas, brazos tiesos. El motor v4 ya anda con zancada, rodillas, codos y rebote; no lo anules con `walk` lento ni con `aL/aR` fijos al andar.

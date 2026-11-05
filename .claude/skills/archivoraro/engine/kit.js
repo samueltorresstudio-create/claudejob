@@ -123,7 +123,7 @@ function bathroomK(t,o={}){ // mirror over the sink; mirror rect x 330..750, y 1
 function bubble(x,y,w,h,txt,o={}){ // comic speech bubble sized to its text; short wide tail to (o.tx,o.ty)
   const col=o.col||'#fff', fg=o.fg||'#1d1b2a', op=o.op??1, K='#1d1b2a', sz=o.size||40, k=.85+.15*eBack(clamp(op));
   w=Math.max(160,txt.length*sz*.6+70); h=Math.max(h,sz*1.9);
-  const r=h/2, tx=o.tx??x-40, ty=o.ty??y+h/2+60, bx=clamp((tx-x)/(w/2),-.75,.75)*w/2+x, by=ty<y?y-h/2:y+h/2, sgn=ty<y?-1:1;
+  const r=12, tx=o.tx??x-40, ty=o.ty??y+h/2+60, bx=clamp((tx-x)/(w/2),-.75,.75)*w/2+x, by=ty<y?y-h/2:y+h/2, sgn=ty<y?-1:1;
   const tail=`M${bx-28},${by-sgn*6} Q${bx-6},${by+sgn*(Math.abs(ty-by)*.45)} ${tx},${ty} Q${bx+10},${by+sgn*(Math.abs(ty-by)*.35)} ${bx+30},${by-sgn*6}Z`;
   return `<g opacity="${clamp(op*1.5).toFixed(2)}" transform="translate(${x},${y}) scale(${k.toFixed(3)}) translate(${-x},${-y})"><g transform="translate(5,8)" opacity=".28"><path d="${tail}" fill="#000"/><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="${r}" fill="#000"/></g>
     <path d="${tail}" fill="${col}" stroke="${K}" stroke-width="10" stroke-linejoin="round"/><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="${r}" fill="${col}" stroke="${K}" stroke-width="5"/><path d="${tail}" fill="${col}" transform="translate(0,${-sgn*7})"/>

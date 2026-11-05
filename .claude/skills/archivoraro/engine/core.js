@@ -29,40 +29,41 @@ const stepStart=STEPS.map((_,i)=>BEATS.find(b=>b.step===i).start), listEnd=CFG.l
 const GRAIN=(()=>{const r=rng(99);let g='';for(let i=0;i<260;i++)g+=`<rect x="${(r()*240).toFixed(0)}" y="${(r()*240).toFixed(0)}" width="2" height="2" fill="${r()<.5?'#fff':'#000'}"/>`;return g})();
 
 function hudSvg(text,alert,reveal,T){
-  // top card: «LABEL · VALUE» → small label + big value with an icon; plain text → one big line. Alert = red, pulsing.
+  // top box (channel style, improved): square dark panel, double border, corner brackets, icon square, label + big value, REC dot.
   const col=alert?'#ff4a6a':'#ffd34a', pulse=alert?.5+.5*Math.sin(T*6):0;
   const parts=String(text).split(' · '), label=parts.length>1?parts[0]:'', value=parts.length>1?parts.slice(1).join(' · '):parts[0];
   const vis=s=>s.slice(0,Math.ceil(s.length*reveal));
-  const isTime=/\d{1,2}:\d{2}/.test(value);
-  const vW=value.length*(isTime?26:22), lW=label.length*16.5, h=label?(CFG.hudFrac&&CFG.hudFrac(T)!=null?100:90):74, w=Math.max(260,h+Math.max(vW,lW)+48), x=540-w/2, y=80;
-  let s=`<defs><linearGradient id="hudG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2033"/><stop offset="1" stop-color="#0b0d17"/></linearGradient></defs>`;
-  s+=`<rect x="${x-4}" y="${y-4}" width="${w+8}" height="${h+8}" rx="${h/2+4}" fill="${col}" opacity="${(.14+.22*pulse).toFixed(2)}" style="filter:blur(8px)"/>`;
-  s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${h/2}" fill="url(#hudG)" stroke="${col}" stroke-width="3"/>`;
-  s+=`<rect x="${x+h/2}" y="${y+3}" width="${w-h}" height="2" fill="#fff" opacity=".12"/>`;
-  // icon badge
-  const ix=x+h/2+2, iy=y+h/2;
-  s+=`<circle cx="${ix}" cy="${iy}" r="${h/2-12}" fill="${col}" opacity="${alert?(.85+.15*pulse).toFixed(2):'.95'}"/>`;
-  if(alert) s+=`<path d="M${ix},${iy-17} L${ix+17},${iy+13} L${ix-17},${iy+13}Z" fill="#11131f"/><rect x="${ix-2.5}" y="${iy-7}" width="5" height="11" rx="2" fill="${col}"/><circle cx="${ix}" cy="${iy+8}" r="2.8" fill="${col}"/>`;
-  else if(isTime) s+=`<circle cx="${ix}" cy="${iy}" r="17" fill="none" stroke="#11131f" stroke-width="4.5"/><path d="M${ix},${iy-10} L${ix},${iy} L${ix+8},${iy+5}" stroke="#11131f" stroke-width="4.5" fill="none" stroke-linecap="round"/>`;
-  else s+=`<circle cx="${ix}" cy="${iy}" r="7" fill="#11131f" opacity="${(Math.floor(T*2)%2)?.4:1}"/>`;
-  const tx=x+h-8+(w-h+8)/2-10;
-  if(label){s+=`<text x="${tx}" y="${y+33}" text-anchor="middle" font-family="Inter" font-weight="800" font-size="20" letter-spacing="4" fill="${col}" opacity=".9">${vis(label)}</text>`;
-    s+=`<text x="${tx}" y="${y+72}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="${isTime?40:32}" letter-spacing="2" fill="#fff">${vis(value)}</text>`;}
-  else s+=`<text x="${tx}" y="${y+48}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="32" letter-spacing="2" fill="#fff">${vis(value)}</text>`;
-  if(CFG.hudFrac&&CFG.hudFrac(T)!=null&&label){const f=clamp(CFG.hudFrac(T));s+=`<rect x="${x+h-4}" y="${y+h-17}" width="${w-h-24}" height="5" rx="2.5" fill="#fff" opacity=".12"/><rect x="${x+h-4}" y="${y+h-17}" width="${((w-h-24)*f).toFixed(1)}" height="5" rx="2.5" fill="${col}"/>`;}
-  // steps card
+  const isTime=/\d{1,2}:\d{2}/.test(value), bar=CFG.hudFrac&&CFG.hudFrac(T)!=null&&label;
+  const h=label?(bar?98:88):70, vW=value.length*(isTime?25:21), lW=label.length*15, w=Math.max(300,h+Math.max(vW,lW)+70), x=540-w/2, y=82;
+  let s=`<defs><linearGradient id="hudG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1f2e"/><stop offset="1" stop-color="#0c0e17"/></linearGradient></defs>`;
+  s+=`<rect x="${x+6}" y="${y+8}" width="${w}" height="${h}" fill="#000" opacity=".4"/>`;
+  if(alert) s+=`<rect x="${x-6}" y="${y-6}" width="${w+12}" height="${h+12}" fill="${col}" opacity="${(.12+.2*pulse).toFixed(2)}"/>`;
+  s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#hudG)" stroke="${col}" stroke-width="3"/>`;
+  s+=`<rect x="${x+6}" y="${y+6}" width="${w-12}" height="${h-12}" fill="none" stroke="${col}" stroke-opacity=".25" stroke-width="1.5"/>`;
+  for(const [cx,cy,sx,sy] of [[x,y,1,1],[x+w,y,-1,1],[x,y+h,1,-1],[x+w,y+h,-1,-1]]) s+=`<path d="M${cx-sx*7},${cy+sy*16} L${cx-sx*7},${cy-sy*7} L${cx+sx*16},${cy-sy*7}" stroke="${col}" stroke-width="4" fill="none"/>`;
+  // icon square
+  const q=h-24, ix=x+12, iy=y+12, icx=ix+q/2, icy=iy+q/2;
+  s+=`<rect x="${ix}" y="${iy}" width="${q}" height="${q}" fill="${col}"/>`;
+  if(alert) s+=`<path d="M${icx},${icy-q*.3} L${icx+q*.3},${icy+q*.24} L${icx-q*.3},${icy+q*.24}Z" fill="#11131f"/><rect x="${icx-2.5}" y="${icy-q*.1}" width="5" height="${q*.18}" fill="${col}"/><rect x="${icx-2.5}" y="${icy+q*.12}" width="5" height="5" fill="${col}"/>`;
+  else if(isTime) s+=`<rect x="${icx-q*.28}" y="${icy-q*.28}" width="${q*.56}" height="${q*.56}" fill="none" stroke="#11131f" stroke-width="4.5"/><path d="M${icx},${icy-q*.16} L${icx},${icy} L${icx+q*.13},${icy+q*.08}" stroke="#11131f" stroke-width="4.5" fill="none"/>`;
+  else s+=`<rect x="${icx-q*.16}" y="${icy-q*.16}" width="${q*.32}" height="${q*.32}" fill="#11131f"/>`;
+  const tx=ix+q+(w-q-12-34)/2;
+  if(label){s+=`<text x="${tx}" y="${y+33}" text-anchor="middle" font-family="${MONO}" font-weight="700" font-size="20" letter-spacing="5" fill="${col}">${vis(label)}</text>`;
+    s+=`<text x="${tx}" y="${y+70}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="${isTime?38:30}" letter-spacing="3" fill="#fff">${vis(value)}</text>`;}
+  else s+=`<text x="${tx}" y="${y+46}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="30" letter-spacing="3" fill="#fff">${vis(value)}</text>`;
+  s+=`<circle cx="${x+w-22}" cy="${y+20}" r="6" fill="#ff4a6a" opacity="${(Math.floor(T*2)%2)?.2:1}"/>`;
+  if(bar){const f=clamp(CFG.hudFrac(T)), bw=w-q-60;s+=`<rect x="${tx-bw/2}" y="${y+h-18}" width="${bw}" height="6" fill="#fff" opacity=".12"/><rect x="${tx-bw/2}" y="${y+h-18}" width="${(bw*f).toFixed(1)}" height="6" fill="${col}"/>`;}
+  // steps box
   if(T>=stepStart[0]&&T<listEnd){
-    const n=stepStart.filter(st=>T>=st).length, cw=Math.max(...STEPS.map(x=>x.replace(/^\d+\.\s*/,'').length))*14.6+120, ch=58+n*52, cx=24, cy=y+h+22;
+    const n=stepStart.filter(st=>T>=st).length, cw=Math.max(...STEPS.map(x=>x.replace(/^\d+\.\s*/,'').length))*15+110, ch=54+n*50, cx=22, cy=y+h+24;
     const appear=eOut(prog(T,stepStart[0],stepStart[0]+.35));
     s+=`<g transform="translate(${((appear-1)*60).toFixed(1)},0)" opacity="${appear.toFixed(2)}">`;
-    s+=`<rect x="${cx}" y="${cy}" width="${cw}" height="${ch}" rx="20" fill="url(#hudG)" fill-opacity=".94" stroke="#ffffff" stroke-opacity=".14" stroke-width="2"/>`;
-    s+=`<rect x="${cx}" y="${cy}" width="7" height="${ch}" rx="3.5" fill="${YEL}"/>`;
-    s+=`<text x="${cx+26}" y="${cy+34}" font-family="Inter" font-weight="900" font-size="19" letter-spacing="5" fill="${YEL}" opacity=".9">${CFG.stepsTitle||'PASOS'}</text><text x="${cx+cw-22}" y="${cy+34}" text-anchor="end" font-family="${MONO}" font-weight="800" font-size="19" fill="#fff" opacity=".5">${Math.max(0,n-1)}/${STEPS.length}</text>`;
-    for(let i=0;i<n;i++){const a=prog(T,stepStart[i]+.15,stepStart[i]+.45),done=i<n-1, ry=cy+58+i*52, txt=STEPS[i].replace(/^\d+\.\s*/,'');
-      const bx=cx+44, by=ry+12;
-      if(done) s+=`<circle cx="${bx}" cy="${by}" r="17" fill="${GREEN}"/><path d="M${bx-8},${by} L${bx-2},${by+7} L${bx+9},${by-6}" stroke="#11131f" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
-      else s+=`<circle cx="${bx}" cy="${by}" r="${(17+2*Math.sin(T*5)).toFixed(1)}" fill="${YEL}"/><text x="${bx}" y="${by+7}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="20" fill="#11131f">${i+1}</text>`;
-      s+=`<text x="${bx+32}" y="${by+8}" font-family="Inter" font-weight="800" font-size="23" fill="${done?'#9aa3ad':'#fff'}"${done?' text-decoration="line-through"':''}>${txt.slice(0,Math.ceil(txt.length*a))}</text>`;}
+    s+=`<rect x="${cx+6}" y="${cy+8}" width="${cw}" height="${ch}" fill="#000" opacity=".35"/><rect x="${cx}" y="${cy}" width="${cw}" height="${ch}" fill="url(#hudG)" fill-opacity=".95" stroke="${YEL}" stroke-width="2.5"/>`;
+    s+=`<rect x="${cx}" y="${cy}" width="${cw}" height="34" fill="${YEL}"/><text x="${cx+16}" y="${cy+24}" font-family="${MONO}" font-weight="800" font-size="19" letter-spacing="4" fill="#11131f">${CFG.stepsTitle||'PASOS'}</text><text x="${cx+cw-14}" y="${cy+24}" text-anchor="end" font-family="${MONO}" font-weight="800" font-size="19" fill="#11131f">${Math.max(0,n-1)}/${STEPS.length}</text>`;
+    for(let i=0;i<n;i++){const a=prog(T,stepStart[i]+.15,stepStart[i]+.45),done=i<n-1, by=cy+34+28+i*50, txt=STEPS[i].replace(/^\d+\.\s*/,''), bx=cx+30;
+      if(done) s+=`<rect x="${bx-15}" y="${by-15}" width="30" height="30" fill="${GREEN}"/><path d="M${bx-8},${by} L${bx-2},${by+7} L${bx+9},${by-6}" stroke="#11131f" stroke-width="4.5" fill="none" stroke-linecap="square"/>`;
+      else {const pz=1+.08*Math.sin(T*5);s+=`<rect x="${bx-15*pz}" y="${by-15*pz}" width="${30*pz}" height="${30*pz}" fill="none" stroke="${YEL}" stroke-width="3"/><text x="${bx}" y="${by+7}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="20" fill="${YEL}">${i+1}</text>`;}
+      s+=`<text x="${bx+28}" y="${by+8}" font-family="${MONO}" font-weight="700" font-size="22" letter-spacing="1" fill="${done?'#8a929c':'#fff'}"${done?' text-decoration="line-through"':''}>${txt.slice(0,Math.ceil(txt.length*a))}</text>`;}
     s+=`</g>`;
   }
   return s;

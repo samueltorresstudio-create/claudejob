@@ -368,10 +368,12 @@ function pill(x,y,text,bg,fg,size=24,op=1,sc=1){
   const w=text.length*size*.62+size*1.6,h=size*1.9;
   return `<g opacity="${op}" transform="translate(${x},${y}) scale(${sc})"><rect x="${-w/2}" y="${-h/2}" width="${w}" height="${h}" rx="${h/2}" fill="${bg}"/><text x="0" y="${size*.36}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="${size}" fill="${fg}" letter-spacing="2">${text}</text></g>`;
 }
-function tag(x,y,text,col,op=1){ // annotation label: dark rounded card, coloured accent bar, pops in
+function tag(x,y,text,col,op=1){ // annotation box (channel style, improved): square dark box, coloured border, side block, brackets, pop-in
   if(op<=0) return '';
-  const size=27, w=text.length*size*.66+66, h=54, k=.82+.18*eBack(clamp(op));
-  return `<g opacity="${clamp(op*1.4).toFixed(2)}" transform="translate(${x},${y}) scale(${k.toFixed(3)}) translate(${-x},${-y})"><rect x="${x-w/2+3}" y="${y-h/2+6}" width="${w}" height="${h}" rx="14" fill="#000" opacity=".35"/><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="14" fill="#141725" stroke="${col}" stroke-opacity=".75" stroke-width="2.5"/><rect x="${x-w/2}" y="${y-h/2}" width="12" height="${h}" rx="6" fill="${col}"/><rect x="${x-w/2+8}" y="${y-h/2}" width="6" height="${h}" fill="${col}"/><text x="${x+8}" y="${y+10}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="${size}" letter-spacing="2" fill="#fff">${text}</text></g>`;
+  const size=26, w=text.length*size*.64+58, h=50, k=.82+.18*eBack(clamp(op)), X=x-w/2, Y=y-h/2;
+  return `<g opacity="${clamp(op*1.4).toFixed(2)}" transform="translate(${x},${y}) scale(${k.toFixed(3)}) translate(${-x},${-y})"><rect x="${X+5}" y="${Y+7}" width="${w}" height="${h}" fill="#000" opacity=".38"/><rect x="${X}" y="${Y}" width="${w}" height="${h}" fill="#11131f" fill-opacity=".94" stroke="${col}" stroke-width="2.5"/><rect x="${X}" y="${Y}" width="12" height="${h}" fill="${col}"/>`+
+    [[X+w,Y,-1,1],[X+w,Y+h,-1,-1]].map(([cx,cy,sx,sy])=>`<path d="M${cx-sx*6},${cy+sy*13} L${cx-sx*6},${cy-sy*6} L${cx+sx*13},${cy-sy*6}" stroke="${col}" stroke-width="3.5" fill="none"/>`).join('')+
+    `<text x="${x+6}" y="${y+9}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="${size}" letter-spacing="2" fill="${col}">${text}</text></g>`;
 }
 
 function brackets(cx,cy,w,h,col,L=30,sw=6){let s='';for(const [sx,sy] of [[-1,-1],[1,-1],[-1,1],[1,1]]){const X=cx+sx*w/2,Y=cy+sy*h/2;s+=`<path d="M${X},${Y-sy*L} L${X},${Y} L${X-sx*L},${Y}" fill="none" stroke="${col}" stroke-width="${sw}"/>`}return s}
