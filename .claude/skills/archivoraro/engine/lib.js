@@ -365,12 +365,14 @@ function pill(x,y,text,bg,fg,size=24,op=1,sc=1){
   const w=text.length*size*.62+size*1.6,h=size*1.9;
   return `<g opacity="${op}" transform="translate(${x},${y}) scale(${sc})"><rect x="${-w/2}" y="${-h/2}" width="${w}" height="${h}" rx="${h/2}" fill="${bg}"/><text x="0" y="${size*.36}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="${size}" fill="${fg}" letter-spacing="2">${text}</text></g>`;
 }
-function tag(x,y,text,col,op=1){ // outlined annotation box like the original's labels
-  const size=27,w=text.length*size*.62+34,h=48;
-  return `<g opacity="${op}"><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" fill="#11131f" fill-opacity=".86" stroke="${col}" stroke-width="2.5"/><text x="${x}" y="${y+10}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="${size}" fill="${col}" letter-spacing="2">${text}</text></g>`;
+function tag(x,y,text,col,op=1){ // annotation label: dark rounded card, coloured accent bar, pops in
+  if(op<=0) return '';
+  const size=27, w=text.length*size*.66+66, h=54, k=.82+.18*eBack(clamp(op));
+  return `<g opacity="${clamp(op*1.4).toFixed(2)}" transform="translate(${x},${y}) scale(${k.toFixed(3)}) translate(${-x},${-y})"><rect x="${x-w/2+3}" y="${y-h/2+6}" width="${w}" height="${h}" rx="14" fill="#000" opacity=".35"/><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="14" fill="#141725" stroke="${col}" stroke-opacity=".75" stroke-width="2.5"/><rect x="${x-w/2}" y="${y-h/2}" width="12" height="${h}" rx="6" fill="${col}"/><rect x="${x-w/2+8}" y="${y-h/2}" width="6" height="${h}" fill="${col}"/><text x="${x+8}" y="${y+10}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="${size}" letter-spacing="2" fill="#fff">${text}</text></g>`;
 }
+
 function brackets(cx,cy,w,h,col,L=30,sw=6){let s='';for(const [sx,sy] of [[-1,-1],[1,-1],[-1,1],[1,1]]){const X=cx+sx*w/2,Y=cy+sy*h/2;s+=`<path d="M${X},${Y-sy*L} L${X},${Y} L${X-sx*L},${Y}" fill="none" stroke="${col}" stroke-width="${sw}"/>`}return s}
-function bang(x,y,txt,col,a,size=70){return a>0?`<text x="${x}" y="${y}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="${size}" fill="${col}" opacity="${a.toFixed(2)}" transform="translate(${x},${y}) scale(${(.6+.4*eBack(a)).toFixed(3)}) translate(${-x},${-y})">${txt}</text>`:''}
+function bang(x,y,txt,col,a,size=70){return a>0?`<g transform="translate(${x},${y}) rotate(-6) scale(${(.6+.4*eBack(a)).toFixed(3)})" opacity="${clamp(a*1.5).toFixed(2)}"><text x="0" y="0" text-anchor="middle" font-family="Inter" font-weight="900" font-style="italic" font-size="${size}" fill="${col}" stroke="#11131f" stroke-width="${(size*.16).toFixed(1)}" stroke-linejoin="round" paint-order="stroke" style="filter:drop-shadow(0 6px 0 rgba(0,0,0,.35))">${txt}</text></g>`:''}
 function soundArcs(x,y,t,col,dir=1,n=3){let s='';for(let i=0;i<n;i++){const p=(t*1.6+i/n)%1;const r=20+p*70;s+=`<path d="M${x+dir*r*.5},${y-r*.8} Q${x+dir*r},${y} ${x+dir*r*.5},${y+r*.8}" fill="none" stroke="${col}" stroke-width="6" stroke-linecap="round" opacity="${(1-p).toFixed(2)}"/>`}return s}
 
 

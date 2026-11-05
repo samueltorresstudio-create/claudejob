@@ -120,10 +120,12 @@ function bathroomK(t,o={}){ // mirror over the sink; mirror rect x 330..750, y 1
   return s}
 
 // ---------- props ----------
-function bubble(x,y,w,h,txt,o={}){ // speech bubble; tail points to (o.tx,o.ty)
-  const col=o.col||'#fff', fg=o.fg||'#2a2233', op=o.op??1;
-  return `<g opacity="${op}"><path d="M${x-w/2+30},${y+h/2-2} L${o.tx??x-20},${o.ty??y+h/2+50} L${x-w/2+80},${y+h/2-2}Z" fill="${col}"/><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="${Math.min(h/2,40)}" fill="${col}"/>
-    <text x="${x}" y="${y+(o.size||40)*.36}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="${o.size||40}" fill="${fg}" ${o.italic?'font-style="italic"':''}>${txt}</text></g>`}
+function bubble(x,y,w,h,txt,o={}){ // speech bubble with outline + shadow; tail points to (o.tx,o.ty)
+  const col=o.col||'#fff', fg=o.fg||'#1d1b2a', op=o.op??1, K='#1d1b2a', r=Math.min(h/2,34), sz=o.size||40, k=.85+.15*eBack(clamp(op));
+  const tail=`M${x-w/2+40},${y+h/2-4} L${o.tx??x-20},${o.ty??y+h/2+50} L${x-w/2+96},${y+h/2-4}Z`;
+  return `<g opacity="${clamp(op*1.5).toFixed(2)}" transform="translate(${x},${y}) scale(${k.toFixed(3)}) translate(${-x},${-y})"><g transform="translate(5,8)" opacity=".3"><path d="${tail}" fill="#000"/><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="${r}" fill="#000"/></g>
+    <path d="${tail}" fill="${col}" stroke="${K}" stroke-width="10" stroke-linejoin="round"/><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="${r}" fill="${col}" stroke="${K}" stroke-width="5"/><path d="${tail}" fill="${col}" transform="translate(0,-6)"/>
+    <text x="${x}" y="${y+sz*.36}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="${sz}" fill="${fg}" ${o.italic?'font-style="italic"':''}>${txt}</text></g>`}
 const dots=t=>['·','··','···'][Math.floor(t*3)%3];
 function noteK(x,y,s,col='#f7d23e',op=1){return `<g transform="translate(${x},${y}) scale(${s}) rotate(-12)" opacity="${op}"><ellipse cx="0" cy="0" rx="16" ry="12" fill="${col}"/><rect x="12" y="-62" width="6" height="62" fill="${col}"/><path d="M18,-62 q22,10 18,32 q-6,-14 -18,-16Z" fill="${col}"/></g>`}
 function dark(op,holes=[],col='#04050a'){ // darkness with soft holes of light, holes: [x,y,rx,ry]
@@ -160,7 +162,7 @@ function paperNote(x,y,s,title,lines,o={}){ // sticky/paper note with a title an
   lines.forEach(([tx,rv],i)=>{g+=`<text x="-226" y="${-130+i*48}" font-family="Inter" font-weight="700" font-style="italic" font-size="36" fill="${o.ink||'#283a8a'}">${tx.slice(0,Math.ceil(tx.length*clamp(rv??1)))}</text>`});
   return `<g transform="translate(${x},${y}) rotate(${o.rot??-3}) scale(${s})"><rect x="-252" y="-292" width="520" height="${o.h||560}" fill="#000" opacity=".14"/>${g}<circle cx="0" cy="-300" r="24" fill="#e2453b"/></g>`}
 function firework(cx,cy,r,col,a){if(a<=0||a>=1)return'';let s='';for(let i=0;i<16;i++){const an=i/16*Math.PI*2,rr=r*eOut(a);s+=`<line x1="${(cx+Math.cos(an)*rr*.55).toFixed(1)}" y1="${(cy+Math.sin(an)*rr*.55+a*a*40).toFixed(1)}" x2="${(cx+Math.cos(an)*rr).toFixed(1)}" y2="${(cy+Math.sin(an)*rr+a*a*60).toFixed(1)}" stroke="${col}" stroke-width="${(7*(1-a)+2).toFixed(1)}" stroke-linecap="round" opacity="${(1-a*a).toFixed(2)}"/>`}return s}
-function bigText(txt,x,y,size,col='#fff',a=1,glow='#ffd76a'){return a>0?`<text x="${x}" y="${y}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="${size}" fill="${col}" opacity="${a.toFixed(2)}" style="filter:drop-shadow(0 0 26px ${glow})">${txt}</text>`:''}
+function bigText(txt,x,y,size,col='#fff',a=1,glow='#ffd76a'){return a>0?`<text x="${x}" y="${y}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="${size}" fill="${col}" opacity="${a.toFixed(2)}" stroke="#11131f" stroke-width="${(size*.14).toFixed(1)}" stroke-linejoin="round" paint-order="stroke" style="filter:drop-shadow(0 0 22px ${col}88) drop-shadow(0 8px 0 rgba(0,0,0,.35))">${txt}</text>`:''}
 function countPop(txt,x,y,size,k,col='#fff'){return `<g transform="translate(${x},${y}) scale(${(1+.3*Math.exp(-k*8)).toFixed(3)}) translate(${-x},${-y})">${bigText(txt,x,y,size,col,1)}</g>`}
 function shake(t,a,amt=10){return a>0?Math.sin(t*61)*amt*a:0}
 // ---------- phones ----------

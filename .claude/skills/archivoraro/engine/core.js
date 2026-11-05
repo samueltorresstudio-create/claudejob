@@ -29,16 +29,41 @@ const stepStart=STEPS.map((_,i)=>BEATS.find(b=>b.step===i).start), listEnd=CFG.l
 const GRAIN=(()=>{const r=rng(99);let g='';for(let i=0;i<260;i++)g+=`<rect x="${(r()*240).toFixed(0)}" y="${(r()*240).toFixed(0)}" width="2" height="2" fill="${r()<.5?'#fff':'#000'}"/>`;return g})();
 
 function hudSvg(text,alert,reveal,T){
-  const col=alert?PINK:YEL;
-  const w=Math.max(500,text.length*24+140),x=540-w/2,y=92;
-  let s=`<rect x="${x}" y="${y}" width="${w}" height="76" fill="#11131f" fill-opacity=".9" stroke="${col}" stroke-width="3"/>`;
-  s+=`<circle cx="${x+32}" cy="${y+38}" r="8" fill="${PINK}" opacity="${(Math.floor(T*2)%2)?.25:1}"/>`;
-  s+=`<text x="540" y="${y+50}" text-anchor="middle" font-family="${MONO}" font-weight="700" font-size="34" letter-spacing="4" fill="${col}">${text.slice(0,Math.ceil(text.length*reveal))}</text>`;
+  // top card: «LABEL · VALUE» → small label + big value with an icon; plain text → one big line. Alert = red, pulsing.
+  const col=alert?'#ff4a6a':'#ffd34a', pulse=alert?.5+.5*Math.sin(T*6):0;
+  const parts=String(text).split(' · '), label=parts.length>1?parts[0]:'', value=parts.length>1?parts.slice(1).join(' · '):parts[0];
+  const vis=s=>s.slice(0,Math.ceil(s.length*reveal));
+  const isTime=/\d{1,2}:\d{2}/.test(value);
+  const vW=value.length*(isTime?27:24), lW=label.length*15.5, w=Math.max(360,Math.max(vW,lW)+150), h=label?(CFG.hudFrac&&CFG.hudFrac(T)!=null?108:96):80, x=540-w/2, y=78;
+  let s=`<defs><linearGradient id="hudG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2033"/><stop offset="1" stop-color="#0b0d17"/></linearGradient></defs>`;
+  s+=`<rect x="${x-4}" y="${y-4}" width="${w+8}" height="${h+8}" rx="${h/2+4}" fill="${col}" opacity="${(.14+.22*pulse).toFixed(2)}" style="filter:blur(8px)"/>`;
+  s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${h/2}" fill="url(#hudG)" stroke="${col}" stroke-width="3"/>`;
+  s+=`<rect x="${x+h/2}" y="${y+3}" width="${w-h}" height="2" fill="#fff" opacity=".12"/>`;
+  // icon badge
+  const ix=x+h/2+2, iy=y+h/2;
+  s+=`<circle cx="${ix}" cy="${iy}" r="${h/2-12}" fill="${col}" opacity="${alert?(.85+.15*pulse).toFixed(2):'.95'}"/>`;
+  if(alert) s+=`<path d="M${ix},${iy-17} L${ix+17},${iy+13} L${ix-17},${iy+13}Z" fill="#11131f"/><rect x="${ix-2.5}" y="${iy-7}" width="5" height="11" rx="2" fill="${col}"/><circle cx="${ix}" cy="${iy+8}" r="2.8" fill="${col}"/>`;
+  else if(isTime) s+=`<circle cx="${ix}" cy="${iy}" r="17" fill="none" stroke="#11131f" stroke-width="4.5"/><path d="M${ix},${iy-10} L${ix},${iy} L${ix+8},${iy+5}" stroke="#11131f" stroke-width="4.5" fill="none" stroke-linecap="round"/>`;
+  else s+=`<circle cx="${ix}" cy="${iy}" r="7" fill="#11131f" opacity="${(Math.floor(T*2)%2)?.4:1}"/>`;
+  const tx=x+h+(w-h-24)/2;
+  if(label){s+=`<text x="${tx}" y="${y+36}" text-anchor="middle" font-family="Inter" font-weight="800" font-size="21" letter-spacing="5" fill="${col}" opacity=".85">${vis(label)}</text>`;
+    s+=`<text x="${tx}" y="${y+78}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="${isTime?42:36}" letter-spacing="3" fill="#fff">${vis(value)}</text>`;}
+  else s+=`<text x="${tx}" y="${y+52}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="34" letter-spacing="3" fill="#fff">${vis(value)}</text>`;
+  if(CFG.hudFrac&&CFG.hudFrac(T)!=null&&label){const f=clamp(CFG.hudFrac(T));s+=`<rect x="${x+h}" y="${y+h-16}" width="${w-h-28}" height="5" rx="2.5" fill="#fff" opacity=".12"/><rect x="${x+h}" y="${y+h-16}" width="${((w-h-28)*f).toFixed(1)}" height="5" rx="2.5" fill="${col}"/>`;}
+  // steps card
   if(T>=stepStart[0]&&T<listEnd){
-    const n=stepStart.filter(st=>T>=st).length;
-    s+=`<rect x="22" y="186" width="${Math.max(...STEPS.map(x=>x.length))*16+70}" height="${22+n*40}" rx="10" fill="#11131f" fill-opacity=".82"/>`;
-    for(let i=0;i<n;i++){const a=prog(T,stepStart[i]+.15,stepStart[i]+.4),done=i<n-1;
-      s+=`<text x="40" y="${222+i*40}" font-family="${MONO}" font-weight="700" font-size="25" letter-spacing="1" fill="${done?GREEN:YEL}">${STEPS[i].slice(0,Math.ceil(STEPS[i].length*a))}${done?' ✓':''}</text>`;}
+    const n=stepStart.filter(st=>T>=st).length, cw=Math.max(...STEPS.map(x=>x.replace(/^\d+\.\s*/,'').length))*14.6+120, ch=58+n*52, cx=24, cy=y+h+22;
+    const appear=eOut(prog(T,stepStart[0],stepStart[0]+.35));
+    s+=`<g transform="translate(${((appear-1)*60).toFixed(1)},0)" opacity="${appear.toFixed(2)}">`;
+    s+=`<rect x="${cx}" y="${cy}" width="${cw}" height="${ch}" rx="20" fill="url(#hudG)" fill-opacity=".94" stroke="#ffffff" stroke-opacity=".14" stroke-width="2"/>`;
+    s+=`<rect x="${cx}" y="${cy}" width="7" height="${ch}" rx="3.5" fill="${YEL}"/>`;
+    s+=`<text x="${cx+26}" y="${cy+34}" font-family="Inter" font-weight="900" font-size="19" letter-spacing="5" fill="${YEL}" opacity=".9">${CFG.stepsTitle||'PASOS'}</text><text x="${cx+cw-22}" y="${cy+34}" text-anchor="end" font-family="${MONO}" font-weight="800" font-size="19" fill="#fff" opacity=".5">${Math.max(0,n-1)}/${STEPS.length}</text>`;
+    for(let i=0;i<n;i++){const a=prog(T,stepStart[i]+.15,stepStart[i]+.45),done=i<n-1, ry=cy+58+i*52, txt=STEPS[i].replace(/^\d+\.\s*/,'');
+      const bx=cx+44, by=ry+12;
+      if(done) s+=`<circle cx="${bx}" cy="${by}" r="17" fill="${GREEN}"/><path d="M${bx-8},${by} L${bx-2},${by+7} L${bx+9},${by-6}" stroke="#11131f" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+      else s+=`<circle cx="${bx}" cy="${by}" r="${(17+2*Math.sin(T*5)).toFixed(1)}" fill="${YEL}"/><text x="${bx}" y="${by+7}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="20" fill="#11131f">${i+1}</text>`;
+      s+=`<text x="${bx+32}" y="${by+8}" font-family="Inter" font-weight="800" font-size="23" fill="${done?'#9aa3ad':'#fff'}"${done?' text-decoration="line-through"':''}>${txt.slice(0,Math.ceil(txt.length*a))}</text>`;}
+    s+=`</g>`;
   }
   return s;
 }
