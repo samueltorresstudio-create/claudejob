@@ -103,6 +103,18 @@ Para que dos personajes se distingan, cambia **silueta** (pelo, sombrero, comple
 
 `focusCam(bg, fg, k, fx, fy, o)`: separa el decorado (`bg`) de los personajes (`fg`) y, con `k` de 0 a 1 (`eIO(prog(t,a,b))`, 1–1,3 s), acerca la cámara al punto `(fx,fy)` (la cara: `x, y - s*640` para `A()` a escala `s`), desenfoca y oscurece el fondo y mete franjas de cine. Opciones: `z0` (1.05), `z1` (2.5), `blur` (7), `ty`, `bars:false`, `dx` (temblor). Úsalo en 2–4 momentos fuertes por vídeo (se apaga la luz, la noticia, el giro, la última frase), nunca en todos los planos.
 
+### Edad: `age` (pónsela a todos los personajes de una serie)
+
+`A({...ALEX, age:31})`, `A({...NORA, age:14})`. La edad cambia proporciones y rasgos para que se distinga a simple vista:
+| edad | cuerpo | cara |
+|---|---|---|
+| < 11 (niño) | cuerpo corto | cabeza grande, ojos grandes, mejillas muy sonrosadas, sin barba |
+| 11–17 (adolescente) | cuerpo intermedio (más bajo y estrecho que un adulto) | cabeza algo grande, ojos un poco más grandes, mejillas sonrosadas, nunca barba ni bigote |
+| 18–34 (joven) | adulto alto, hombros anchos | cara algo más alargada, cabeza más pequeña respecto al cuerpo, ojos más pequeños; barba incipiente si encaja |
+| 35–59 | adulto | igual + canas suaves (más a partir de 50) y arrugas desde 50 |
+| 60+ | adulto | pelo canoso, arrugas; añade bastón, gafas o chaleco |
+Refuerza la edad con la ropa: adolescente con sudadera, mochila, gorra o camiseta de color; 20–30 con chaqueta, camisa o barba de pocos días; 40–55 con camisa, gafas o americana; mayores con chaleco, rebeca, bastón. `greyHair:false` evita las canas automáticas. Con `age` puesta, usa siempre `A()`: el motor elige el cuerpo de niño o adolescente solo.
+
 ### Grupos de personajes: `crowd(list, o)`
 
 Para 3 o más personajes juntos usa siempre `crowd([{c:'C12', mouth:'laugh', eyes:'happy', look:[4,0], phoneR:true}, …], {y:1000, s:.5, x0:110, x1:970})`. Todos los de una fila tienen la misma escala y los pies en la misma línea; los niños (`kid:true` en el reparto) usan cuerpo de niño a casi la misma escala (×.92), nunca a una escala mucho menor. Con más de 6 hace dos filas (la de atrás más pequeña y más alta). No mezcles escalas a ojo (.42/.54/.6) ni subas y bajes los pies de uno en uno: eso es lo que dejaba el grupo «descompensado».

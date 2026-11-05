@@ -79,13 +79,23 @@ function person(o){
     brows:null,op:1,tilt:0,sit:false,fem:false,reachL:null,reachR:null,phoneL:false,phoneR:false,jacket:null,skirt:null,dress:false,shortSleeves:false,hat:null,hoodUp:false,mask:false,lashes:false,glasses:null,cane:false,mopen:null,beard:null,overalls:null,backpack:null,aL:null,aR:null,handle:null,bucket:false,flash:null,build:null,freckles:false,scar:false,mustache:null,stubble:false,wrinkles:false,earrings:null,eyepatch:false,tie:null,scarf:null,coat:null,labcoat:false,vest:null,badge:false,hatCol:null,lip:null},o);
   if(d.labcoat&&!d.coat) d.coat='#f3f3ee'; if(d.coat&&!d.jacket) d.jacket=d.coat;
   // life: every character blinks on its own schedule and breathes when idle (window.__T = current time)
+  // ---- age: proportions and features that make a 14-year-old read differently from a 22-year-old ----
+  let AG=null;
+  if(d.age!=null){const a=d.age;
+    AG=a<11?'kid':a<18?'teen':a<35?'young':a<60?'mid':'old';
+    if(AG==='kid') d.tall=false; else if(AG==='teen'){d.tall=false;d.teen=true;} else d.tall=true;
+    if(AG==='mid'&&d.greyHair!==false) d.hair=mix(d.hair,'#cfcac2',a>=50?.45:.2);
+    if(AG==='old'){if(d.greyHair!==false) d.hair=mix(d.hair,'#e2ded6',.8); if(d.wrinkles==null) d.wrinkles=true;}
+    if(AG==='mid'&&a>=50&&d.wrinkles==null) d.wrinkles=true;
+    if((AG==='kid'||AG==='teen')){d.stubble=false;d.beard=null;d.mustache=null;}}
+  const headS=AG==='kid'?1.04:AG==='teen'?.98:AG?.86:1, adultFace=AG==='young'||AG==='mid'||AG==='old';
   const T_=window.__T||0, seed=d.seed??hashStr(d.skin+d.top+d.hair+d.hs);
   const per=3.2+(seed%100)/100*2.0;
   if(!d.still&&d.blink!==false&&((T_+(seed%37)/10)%per)<.13&&(d.eyes==='open'||d.eyes==='wide')) d.eyes='closed';
   const br=(d.walk==null&&!d.still)?Math.sin(T_*2.1+seed%10)*2.4:0;
   // ---- body (v3): shaped torso, two-segment arms, tapered legs ----
   const fem=!!d.fem;
-  const TB=d.tall?{S:-548,H:-300,UA:104,FA:100,tw:31,kw:24,aw:18,SW:fem?76:88,WW:fem?56:70,HW:fem?80:76,aw1:34,aw2:29}
+  const TB=d.teen?{S:-452,H:-222,UA:90,FA:86,tw:27,kw:21,aw:17,SW:fem?70:76,WW:fem?54:62,HW:fem?74:66,aw1:31,aw2:27}:d.tall?{S:-548,H:-300,UA:104,FA:100,tw:31,kw:24,aw:18,SW:fem?76:88,WW:fem?56:70,HW:fem?80:76,aw1:34,aw2:29}
                  :{S:-322,H:-128,UA:72,FA:68,tw:29,kw:23,aw:18,SW:fem?80:88,WW:fem?66:76,HW:fem?82:80,aw1:34,aw2:29};
   if(d.build==='heavy'){TB.SW*=1.18;TB.WW*=1.4;TB.HW*=1.16;TB.tw*=1.2;} else if(d.build==='slim'){TB.SW*=.88;TB.WW*=.84;TB.HW*=.88;TB.tw*=.88;}
   const Sy=TB.S, Hy=TB.H, HIP=Hy-14, ARM=TB.UA+TB.FA, SHy=Sy+30;
@@ -175,10 +185,11 @@ function person(o){
   h+=`<rect x="-15" y="62" width="30" height="52" fill="${d.skin}"/><rect x="-15" y="62" width="30" height="52" fill="#000" opacity=".14"/>`;
   h+=hairSvg(d.hs,d.hair,true);
   h+=`<circle cx="-90" cy="12" r="17" fill="${d.skin}"/><circle cx="90" cy="12" r="17" fill="${d.skin}"/>`;
-  h+=`<circle cx="0" cy="0" r="92" fill="${d.skin}"/><path d="M40.5,-82.6 A92,92 0 1 1 -56.5,72.6 A92,92 0 0 0 40.5,-82.6Z" fill="#000" opacity=".07"/>`;
+  h+=adultFace?`<path d="M-90,-6 C-92,-62 -52,-94 0,-94 C52,-94 92,-62 90,-6 C88,44 62,96 0,100 C-62,96 -88,44 -90,-6Z" fill="${d.skin}"/><path d="M42,-86 C80,-64 96,-20 88,20 C82,62 52,96 0,100 C40,80 62,40 62,0 C62,-40 54,-66 42,-86Z" fill="#000" opacity=".07"/>`
+    :`<circle cx="0" cy="0" r="92" fill="${d.skin}"/><path d="M40.5,-82.6 A92,92 0 1 1 -56.5,72.6 A92,92 0 0 0 40.5,-82.6Z" fill="#000" opacity=".07"/>`;
   h+=hairSvg(d.hs,d.hair,false);
   if(d.hs!=='bald'&&!d.hat&&!d.hoodUp) h+=`<path d="M-62,-66 Q-34,-96 6,-99" stroke="#fff" stroke-width="9" opacity=".13" fill="none" stroke-linecap="round"/>`;
-  h+=`<ellipse cx="-60" cy="40" rx="16" ry="10" fill="#f08f8f" opacity=".5"/><ellipse cx="60" cy="40" rx="16" ry="10" fill="#f08f8f" opacity=".5"/>`;
+  {const bo=AG==='kid'||AG==='teen'?.68:adultFace?(fem?.38:.22):.5, br_=AG==='kid'||AG==='teen'?18:14;h+=`<ellipse cx="-60" cy="40" rx="${br_}" ry="${br_*.62}" fill="#f08f8f" opacity="${bo}"/><ellipse cx="60" cy="40" rx="${br_}" ry="${br_*.62}" fill="#f08f8f" opacity="${bo}"/>`;}
   if(d.beard) h+=`<path d="M-88,16 C-88,98 -42,116 0,116 C42,116 88,98 88,16 C72,54 40,76 0,76 C-40,76 -72,54 -88,16Z" fill="${d.beard}"/>
     <path d="M-32,46 Q-14,34 0,43 Q14,34 32,46 Q14,54 0,49 Q-14,54 -32,46Z" fill="${d.beard}"/>`;
   if(d.hat==='straw') h+=`<path d="M-76,-64 L-64,-132 Q0,-146 64,-132 L76,-64Z" fill="#eec36c"/><rect x="-71" y="-102" width="142" height="18" fill="#b5482f"/>
@@ -190,7 +201,7 @@ function person(o){
   if(d.hat==='police') h+=`<path d="M-90,-48 L-80,-112 Q0,-132 80,-112 L90,-48Z" fill="#1f2d4a"/><path d="M-96,-50 Q0,-34 96,-50 L110,-34 Q0,-14 -110,-34Z" fill="#11182a"/><circle cx="0" cy="-86" r="14" fill="#f1c84b"/>`;
   if(d.hoodUp) h+=`<path d="M-120,70 C-132,-92 -66,-142 0,-142 C66,-142 132,-92 120,70 L100,92 C110,-40 64,-110 0,-110 C-64,-110 -110,-40 -100,92Z" fill="${d.top}"/><path d="M-100,92 C-110,-40 -64,-110 0,-110 C64,-110 110,-40 100,92" fill="none" stroke="${d.topD}" stroke-width="7"/>`;
   if(d.stubble) h+=`<path d="M-88,16 C-88,98 -42,116 0,116 C42,116 88,98 88,16 C72,54 40,76 0,76 C-40,76 -72,54 -88,16Z" fill="${d.hair}" opacity=".28"/>`;
-  h+=eyesSvg(d.eyes,d.look);
+  h+=adultFace?`<g transform="translate(0,6) scale(.88) translate(0,-6)">${eyesSvg(d.eyes,d.look)}</g>`:AG==='kid'||AG==='teen'?`<g transform="translate(0,6) scale(1.06) translate(0,-6)">${eyesSvg(d.eyes,d.look)}</g>`:eyesSvg(d.eyes,d.look);
   if(d.wrinkles) h+=`<path d="M-40,-52 Q0,-58 40,-52 M-34,-64 Q0,-70 34,-64 M-74,0 L-86,-6 M-74,8 L-86,10 M74,0 L86,-6 M74,8 L86,10" stroke="#000" stroke-opacity=".18" stroke-width="4" fill="none" stroke-linecap="round"/>`;
   if(d.freckles) h+=[[-58,24],[-46,32],[-64,34],[-52,18],[58,24],[46,32],[64,34],[52,18]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3.5" fill="#a0603a" opacity=".6"/>`).join('');
   if(d.scar) h+=`<path d="M30,-46 L52,10 M34,-30 L44,-34 M40,-14 L50,-18 M46,2 L56,-2" stroke="#b5584a" stroke-width="5" stroke-linecap="round"/>`;
@@ -219,7 +230,7 @@ function person(o){
   const lean=(d.lean??0)+(ph!=null?(d.dirW??1)*3:0), sq=ph!=null?1-Math.abs(Math.sin(ph))*.015:(1+br*.002);
   return `<g transform="translate(${d.x.toFixed(1)},${d.y.toFixed(1)}) rotate(${(d.rot+lean).toFixed(2)}) scale(${d.s},${(d.s*sq).toFixed(4)})" opacity="${d.op}">
     ${d.noShadow?'':`<ellipse cx="0" cy="4" rx="${d.sit?135:118}" ry="20" fill="#000" opacity=".17"/>`}<g filter="url(#chFX)"><g transform="translate(0,${bob})">${legs}<g transform="translate(0,${(so+br).toFixed(2)})">${back}${torso}${d.sit?`<g transform="translate(0,${(-(so+br)).toFixed(2)})"><rect x="${-TB.HW+4}" y="${SEAT-58}" width="${2*TB.HW-8}" height="80" rx="22" fill="${pants}"/>${lap}</g>`:''}${arms}
-    <g transform="translate(0,${Sy-90}) rotate(${(d.tilt+(ph!=null?Math.sin(ph*2+.7)*2.6:(!d.still?Math.sin(T_*.8+seed%5)*1.6:0))).toFixed(2)})">${h}</g>${front}</g></g></g></g>`;
+    <g transform="translate(0,${Sy-90*headS}) scale(${headS}) rotate(${(d.tilt+(ph!=null?Math.sin(ph*2+.7)*2.6:(!d.still?Math.sin(T_*.8+seed%5)*1.6:0))).toFixed(2)})">${h}</g>${front}</g></g></g></g>`;
 }
 const FARMER={skin:'#f3c7a1',top:'#d8574a',topD:'#a63d33',hs:'short',hair:'#5a3a24',hat:'straw',beard:'#6b4428',overalls:'#3f6fb5'};
 const ZOMBIE={skin:'#a8c48f',top:'#6b7a5a',topD:'#4b563f',pants:'#3f4636',hs:'messy',hair:'#3b3f2a',eyes:'zombie',mouth:'jag',aL:100,aR:95};
