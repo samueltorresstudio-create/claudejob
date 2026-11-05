@@ -34,7 +34,7 @@ function hudSvg(text,alert,reveal,T){
   const parts=String(text).split(' · '), label=parts.length>1?parts[0]:'', value=parts.length>1?parts.slice(1).join(' · '):parts[0];
   const vis=s=>s.slice(0,Math.ceil(s.length*reveal));
   const isTime=/\d{1,2}:\d{2}/.test(value);
-  const vW=value.length*(isTime?27:24), lW=label.length*15.5, w=Math.max(360,Math.max(vW,lW)+150), h=label?(CFG.hudFrac&&CFG.hudFrac(T)!=null?108:96):80, x=540-w/2, y=78;
+  const vW=value.length*(isTime?26:22), lW=label.length*16.5, h=label?(CFG.hudFrac&&CFG.hudFrac(T)!=null?100:90):74, w=Math.max(260,h+Math.max(vW,lW)+48), x=540-w/2, y=80;
   let s=`<defs><linearGradient id="hudG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2033"/><stop offset="1" stop-color="#0b0d17"/></linearGradient></defs>`;
   s+=`<rect x="${x-4}" y="${y-4}" width="${w+8}" height="${h+8}" rx="${h/2+4}" fill="${col}" opacity="${(.14+.22*pulse).toFixed(2)}" style="filter:blur(8px)"/>`;
   s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${h/2}" fill="url(#hudG)" stroke="${col}" stroke-width="3"/>`;
@@ -45,11 +45,11 @@ function hudSvg(text,alert,reveal,T){
   if(alert) s+=`<path d="M${ix},${iy-17} L${ix+17},${iy+13} L${ix-17},${iy+13}Z" fill="#11131f"/><rect x="${ix-2.5}" y="${iy-7}" width="5" height="11" rx="2" fill="${col}"/><circle cx="${ix}" cy="${iy+8}" r="2.8" fill="${col}"/>`;
   else if(isTime) s+=`<circle cx="${ix}" cy="${iy}" r="17" fill="none" stroke="#11131f" stroke-width="4.5"/><path d="M${ix},${iy-10} L${ix},${iy} L${ix+8},${iy+5}" stroke="#11131f" stroke-width="4.5" fill="none" stroke-linecap="round"/>`;
   else s+=`<circle cx="${ix}" cy="${iy}" r="7" fill="#11131f" opacity="${(Math.floor(T*2)%2)?.4:1}"/>`;
-  const tx=x+h+(w-h-24)/2;
-  if(label){s+=`<text x="${tx}" y="${y+36}" text-anchor="middle" font-family="Inter" font-weight="800" font-size="21" letter-spacing="5" fill="${col}" opacity=".85">${vis(label)}</text>`;
-    s+=`<text x="${tx}" y="${y+78}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="${isTime?42:36}" letter-spacing="3" fill="#fff">${vis(value)}</text>`;}
-  else s+=`<text x="${tx}" y="${y+52}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="34" letter-spacing="3" fill="#fff">${vis(value)}</text>`;
-  if(CFG.hudFrac&&CFG.hudFrac(T)!=null&&label){const f=clamp(CFG.hudFrac(T));s+=`<rect x="${x+h}" y="${y+h-16}" width="${w-h-28}" height="5" rx="2.5" fill="#fff" opacity=".12"/><rect x="${x+h}" y="${y+h-16}" width="${((w-h-28)*f).toFixed(1)}" height="5" rx="2.5" fill="${col}"/>`;}
+  const tx=x+h-8+(w-h+8)/2-10;
+  if(label){s+=`<text x="${tx}" y="${y+33}" text-anchor="middle" font-family="Inter" font-weight="800" font-size="20" letter-spacing="4" fill="${col}" opacity=".9">${vis(label)}</text>`;
+    s+=`<text x="${tx}" y="${y+72}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="${isTime?40:32}" letter-spacing="2" fill="#fff">${vis(value)}</text>`;}
+  else s+=`<text x="${tx}" y="${y+48}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="32" letter-spacing="2" fill="#fff">${vis(value)}</text>`;
+  if(CFG.hudFrac&&CFG.hudFrac(T)!=null&&label){const f=clamp(CFG.hudFrac(T));s+=`<rect x="${x+h-4}" y="${y+h-17}" width="${w-h-24}" height="5" rx="2.5" fill="#fff" opacity=".12"/><rect x="${x+h-4}" y="${y+h-17}" width="${((w-h-24)*f).toFixed(1)}" height="5" rx="2.5" fill="${col}"/>`;}
   // steps card
   if(T>=stepStart[0]&&T<listEnd){
     const n=stepStart.filter(st=>T>=st).length, cw=Math.max(...STEPS.map(x=>x.replace(/^\d+\.\s*/,'').length))*14.6+120, ch=58+n*52, cx=24, cy=y+h+22;

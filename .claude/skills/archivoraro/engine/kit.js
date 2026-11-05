@@ -120,11 +120,13 @@ function bathroomK(t,o={}){ // mirror over the sink; mirror rect x 330..750, y 1
   return s}
 
 // ---------- props ----------
-function bubble(x,y,w,h,txt,o={}){ // speech bubble with outline + shadow; tail points to (o.tx,o.ty)
-  const col=o.col||'#fff', fg=o.fg||'#1d1b2a', op=o.op??1, K='#1d1b2a', r=Math.min(h/2,34), sz=o.size||40, k=.85+.15*eBack(clamp(op));
-  const tail=`M${x-w/2+40},${y+h/2-4} L${o.tx??x-20},${o.ty??y+h/2+50} L${x-w/2+96},${y+h/2-4}Z`;
-  return `<g opacity="${clamp(op*1.5).toFixed(2)}" transform="translate(${x},${y}) scale(${k.toFixed(3)}) translate(${-x},${-y})"><g transform="translate(5,8)" opacity=".3"><path d="${tail}" fill="#000"/><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="${r}" fill="#000"/></g>
-    <path d="${tail}" fill="${col}" stroke="${K}" stroke-width="10" stroke-linejoin="round"/><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="${r}" fill="${col}" stroke="${K}" stroke-width="5"/><path d="${tail}" fill="${col}" transform="translate(0,-6)"/>
+function bubble(x,y,w,h,txt,o={}){ // comic speech bubble sized to its text; short wide tail to (o.tx,o.ty)
+  const col=o.col||'#fff', fg=o.fg||'#1d1b2a', op=o.op??1, K='#1d1b2a', sz=o.size||40, k=.85+.15*eBack(clamp(op));
+  w=Math.max(160,txt.length*sz*.6+70); h=Math.max(h,sz*1.9);
+  const r=h/2, tx=o.tx??x-40, ty=o.ty??y+h/2+60, bx=clamp((tx-x)/(w/2),-.75,.75)*w/2+x, by=ty<y?y-h/2:y+h/2, sgn=ty<y?-1:1;
+  const tail=`M${bx-28},${by-sgn*6} Q${bx-6},${by+sgn*(Math.abs(ty-by)*.45)} ${tx},${ty} Q${bx+10},${by+sgn*(Math.abs(ty-by)*.35)} ${bx+30},${by-sgn*6}Z`;
+  return `<g opacity="${clamp(op*1.5).toFixed(2)}" transform="translate(${x},${y}) scale(${k.toFixed(3)}) translate(${-x},${-y})"><g transform="translate(5,8)" opacity=".28"><path d="${tail}" fill="#000"/><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="${r}" fill="#000"/></g>
+    <path d="${tail}" fill="${col}" stroke="${K}" stroke-width="10" stroke-linejoin="round"/><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="${r}" fill="${col}" stroke="${K}" stroke-width="5"/><path d="${tail}" fill="${col}" transform="translate(0,${-sgn*7})"/>
     <text x="${x}" y="${y+sz*.36}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="${sz}" fill="${fg}" ${o.italic?'font-style="italic"':''}>${txt}</text></g>`}
 const dots=t=>['·','··','···'][Math.floor(t*3)%3];
 function noteK(x,y,s,col='#f7d23e',op=1){return `<g transform="translate(${x},${y}) scale(${s}) rotate(-12)" opacity="${op}"><ellipse cx="0" cy="0" rx="16" ry="12" fill="${col}"/><rect x="12" y="-62" width="6" height="62" fill="${col}"/><path d="M18,-62 q22,10 18,32 q-6,-14 -18,-16Z" fill="${col}"/></g>`}
