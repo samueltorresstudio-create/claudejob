@@ -204,3 +204,19 @@ function focusCam(bg,fg,k,fx,fy,o={}){
   s+=T(`<g filter="url(#${id})">${bg}</g><rect x="-900" y="-900" width="2900" height="2900" fill="#000" opacity="${(.28*k).toFixed(2)}"/>`)+T(fg);
   if(o.bars!==false&&k>.02) s+=`<rect x="0" y="0" width="1080" height="${(70*k).toFixed(1)}" fill="#000"/><rect x="0" y="${(1100-70*k).toFixed(1)}" width="1080" height="${(70*k).toFixed(1)}" fill="#000"/>`;
   return s}
+
+// ---- ambience particles: dust in a light beam, rain, snow, sparks, embers ----
+function particles(t,kind,o={}){
+  const r=rng(o.seed||kind.length*13), n=o.n||({dust:26,rain:70,snow:50,sparks:18,embers:22}[kind]), x0=o.x0??-100, x1=o.x1??1180, y0=o.y0??-100, y1=o.y1??1100, op=o.op??1;
+  let s='';
+  for(let i=0;i<n;i++){const bx=x0+r()*(x1-x0), by=y0+r()*(y1-y0), sp=.6+r()*.8, ph=r()*10;
+    if(kind==='dust'){const x=bx+Math.sin(t*.4*sp+ph)*24, y=by+Math.cos(t*.3*sp+ph)*18;s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(1.5+r()*2.5).toFixed(1)}" fill="${o.col||'#fff6d8'}" opacity="${(op*(.35+.4*Math.abs(Math.sin(t*1.3+ph)))).toFixed(2)}"/>`;}
+    else if(kind==='rain'){const H=y1-y0, y=y0+((by-y0+t*1400*sp)%H), x=bx-(y-y0)*.12;s+=`<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${(x-6).toFixed(1)}" y2="${(y+38*sp).toFixed(1)}" stroke="${o.col||'#cfe2f0'}" stroke-width="2.5" opacity="${(.55*op).toFixed(2)}" stroke-linecap="round"/>`;}
+    else if(kind==='snow'){const H=y1-y0, y=y0+((by-y0+t*90*sp)%H), x=bx+Math.sin(t*1.2+ph)*20;s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(2.5+r()*3.5).toFixed(1)}" fill="${o.col||'#fff'}" opacity="${(.85*op).toFixed(2)}"/>`;}
+    else {const p=((t*(kind==='sparks'?1.6:.45)*sp+ph)%1), x=bx+Math.sin(ph+t*2)*(kind==='sparks'?60:22)*p, y=by-p*(kind==='sparks'?160:320);
+      s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(kind==='sparks'?2.5:3.2).toFixed(1)}" fill="${o.col||(kind==='sparks'?'#ffe27a':'#ff9a3a')}" opacity="${(op*(1-p)).toFixed(2)}"/>`;}}
+  return s}
+// ---- sweat drops next to a character's head (x,y = feet, s = scale) ----
+function sweat(x,y,s,t){let g='';for(const [dx,dy,ph] of [[96,-720,0],[-104,-690,.5]]){const p=(t*.9+ph)%1, yy=dy+p*50;
+  g+=`<path d="M${dx},${yy-38} Q${dx+20},${yy} ${dx},${yy+16} Q${dx-20},${yy} ${dx},${yy-38}Z" fill="#bfe6ff" stroke="#1d1b2a" stroke-width="4" opacity="${(1-p*.6).toFixed(2)}"/>`;}
+  return `<g transform="translate(${x},${y}) scale(${s})">${g}</g>`}

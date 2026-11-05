@@ -14,7 +14,7 @@ El motor ya está hecho: personajes con decenas de rasgos, decorados, cámara, s
 | el usuario… | haces |
 |---|---|
 | escribe solo `/archivoraro` o pide ideas | 3 ideas (gancho, giro, final; 2–3 líneas cada una). Pregunta si es serie para TikTok o vídeo suelto para YouTube si no lo dice. Espera su elección. |
-| elige una idea o pide el guion | Guion para ElevenLabs (ver `references/ideas.md`) + resumen de 5 líneas. Revisa la lógica antes de darlo. Espera el audio. |
+| elige una idea o pide el guion | Guion para ElevenLabs (ver `references/ideas.md` y `references/nivel.md`) + resumen de 5 líneas. Revisa la lógica antes de darlo. Espera el audio. |
 | pasa un MP3 | Monta el vídeo completo (sección «Montar un vídeo») y entrégalo. |
 | pide portada / descripción / título | `references/publishing.md`. |
 | señala un fallo de un vídeo | Arréglalo, re-renderiza solo el tramo afectado y vuelve a entregar. |
@@ -26,6 +26,7 @@ No puedes generar la voz: si quiere el vídeo, necesitas su MP3. Al darle el gui
 - `references/ideas.md` — fórmulas de gancho, estructura de serie y de vídeo suelto, duraciones, revisión de lógica, formato del guion para ElevenLabs.
 - `references/engine.md` — cómo funciona el motor, `script.json`, `scenes_p.js`, todas las opciones de personajes, helpers y atrezo.
 - `references/sound.md` — `audio.py`: API del mezclador, estructura de la banda sonora y recetas de efectos.
+- `references/nivel.md` — **lista para subir el nivel**: retención (primer fotograma con acción, nada quieto más de 3 s), enfoques, acting, partículas, historia sin desviarse, voz, sonido y publicación. Repásala con cada guion y cada montaje.
 - `references/lessons.md` — **lista de errores que el usuario ya detectó**. Repásala siempre antes de entregar.
 - `references/publishing.md` — portada, títulos y descripciones, nombres de archivo.
 - `example/tsunami6/` (82 s, serie) y `example/camara/` (66 s, YouTube) — `script.json`, `scenes_p.js` y `audio.py` de dos vídeos aprobados.
@@ -50,7 +51,7 @@ bash <skill>/scripts/new_project.sh "$WS" 45_nombre_corto
 
 Escribe `script.json`: una entrada por frase del audio, en el mismo orden y con el texto exacto (ver `engine.md`). Agrupa las frases en escenas de 4–8 s: cada cambio de escena es un cambio de sitio, de plano o de ángulo, y eso mantiene la atención.
 
-**Antes de programar, haz la lista de planos** (en tu cabeza o en un archivo): para cada escena, qué se ve, dónde está cada personaje y hacia dónde mira, qué se mueve, qué rótulo aparece y qué suena. Comprueba la geografía y la lógica con `lessons.md`: quién ve a quién, dónde está cada objeto, que lo que se dice se vea. Es mucho más barato corregir aquí que después de renderizar.
+**Antes de programar, haz la lista de planos** (con `references/nivel.md` delante: qué pasa en el primer segundo, qué cambia cada 3 s, dónde van los 2–4 enfoques) (en tu cabeza o en un archivo): para cada escena, qué se ve, dónde está cada personaje y hacia dónde mira, qué se mueve, qué rótulo aparece y qué suena. Comprueba la geografía y la lógica con `lessons.md`: quién ve a quién, dónde está cada objeto, que lo que se dice se vea. Es mucho más barato corregir aquí que después de renderizar.
 
 ### 2. Escenas (`scenes_p.js`)
 
@@ -109,4 +110,5 @@ Espera en segundo plano con `until grep -q "^DONE" finish.log …` (el render de
 - YouTube: vídeos sueltos de más de 60 s (60–70 s). TikTok: series, con la duración que pida.
 - Portada con el protagonista visible y sin rótulos encima.
 - Personajes distinguibles por silueta, no solo por color (reparto en `cast.js`, códigos C01–C27).
+- Con cada descripción, da también un comentario para fijar con una pregunta.
 - Si algo ya está publicado y tiene un fallo, no propongas resubirlo: corrígelo en la parte siguiente o con un comentario fijado.

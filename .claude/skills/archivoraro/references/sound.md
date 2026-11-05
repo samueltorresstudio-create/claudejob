@@ -57,3 +57,19 @@ Volúmenes: ambientes .006–.03, pasos .03–.05, efectos .05–.25, golpes .3�
 - `sync_voice.py <proyecto> <mp3>` reparte el audio de ElevenLabs entre las líneas de `script.json` (debe decir «N lines matched»). Revisa con `check_lines.py`: cada línea debe tener trozos de voz razonables.
 - Si una frase se pega a la siguiente, corrige a mano `start`/`d`/`vdur` en `voice.js`.
 - Los susurros de ElevenLabs salen bajos: `whisper_boost.py <proyecto> 1.3` sube un 30 % (≈2,3 dB) solo las líneas `whisper:true`. «Un poquito más, no mucho» = 1.3.
+
+## Sonidos reales (si el usuario los da)
+
+Si hay una carpeta `<WS>/sonidos/` con efectos o música libres de derechos (WAV/MP3), cárgalos y mézclalos como cualquier señal:
+
+```python
+import subprocess, numpy as np
+def load(path, sec=None):   # cualquier formato → mono a SR
+    a = subprocess.run(['ffmpeg','-v','error','-i',path,'-ac','1','-ar',str(SR),'-f','f32le','-'],capture_output=True).stdout
+    x = np.frombuffer(a, np.float32).copy()
+    return x[:int(sec*SR)] if sec else x
+m.add(load(os.path.join(WS,'sonidos','puerta.wav')), E['x.door'], .3)
+m.amb(load(os.path.join(WS,'sonidos','lluvia.wav'))[:N] if len(load(...))>=N else ..., a, b, .05)   # o repítelo con np.tile hasta N
+```
+
+Música: pon la pista con `m.add(load(...), 0, .12)` y baja el `drone`; el ducking bajo la voz lo hace `finish`. Corta la música justo en `CUT`.

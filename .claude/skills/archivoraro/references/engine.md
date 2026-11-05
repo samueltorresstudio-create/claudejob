@@ -100,6 +100,11 @@ Para que dos personajes se distingan, cambia **silueta** (pelo, sombrero, comple
 
 `focusCam(bg, fg, k, fx, fy, o)`: separa el decorado (`bg`) de los personajes (`fg`) y, con `k` de 0 a 1 (`eIO(prog(t,a,b))`, 1–1,3 s), acerca la cámara al punto `(fx,fy)` (la cara: `x, y - s*640` para `A()` a escala `s`), desenfoca y oscurece el fondo y mete franjas de cine. Opciones: `z0` (1.05), `z1` (2.5), `blur` (7), `ty`, `bars:false`, `dx` (temblor). Úsalo en 2–4 momentos fuertes por vídeo (se apaga la luz, la noticia, el giro, la última frase), nunca en todos los planos.
 
+### Partículas y sudor
+
+`particles(t, kind, o)`: `'dust'` (motas en un rayo de luz), `'rain'`, `'snow'`, `'sparks'`, `'embers'` (brasas que suben). Opciones: `n` (cantidad), `x0,x1,y0,y1` (zona), `op`, `col`. Dibújalas en el decorado (debajo de los personajes) o encima para lluvia o nieve en primer plano.
+`sweat(x, y, s, t)`: gotas de sudor junto a la cabeza de un personaje (`x, y` = sus pies, `s` = su escala), para miedo y esfuerzo.
+
 ### Movimiento natural (motor v4)
 
 `A()`/`person()` ya andan con zancada larga, rodilla que se dobla, brazos que balancean con codo, rebote del cuerpo, inclinación al andar y cabeza con retraso; quietos respiran y se mueven un poco. Opciones: `stride` (1 = normal, 1.4 = correr), `lean` (grados, para frenar, asustarse o empujar), `dirW` (1/−1, hacia dónde se inclina al andar). Al frenar, mete un pequeño asentamiento (`lean` que oscila y se apaga en 0,5 s). Todos los personajes y perros llevan contorno único y sombra de volumen (filtro `chFX`, ya incluido).

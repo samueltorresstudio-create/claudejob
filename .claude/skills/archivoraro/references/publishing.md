@@ -16,6 +16,13 @@ Guárdalos en `<WS>/entregas/titulos_y_descripciones.txt` y dalos también en el
 - **Descripción de YouTube**: 2–3 frases que vendan el giro sin destriparlo, luego hashtags (`#shorts` + temáticos).
 - **TikTok**: la primera línea es el gancho (lo único que se ve en pantalla). Si pide la descripción larga: gancho, 2 párrafos de historia, las reglas con 1️⃣ 2️⃣ 3️⃣, «🐾 PARTE N de M…», «👉 Sígueme…», «💬 pregunta», y 10–13 hashtags. Si pide una sencilla: pocos emojis.
 
+## Comentario fijado y constancia
+
+- Con cada descripción, da un **comentario para fijar** con una pregunta que invite a responder («¿Tú qué harías la primera hora?», «¿Te habrías subido sin tu perro?»).
+- Portada: cara del protagonista grande, emoción clara, 2–3 palabras como mucho.
+- Recomienda publicar siempre los mismos días y horas; con datos de Metricool, di qué horas funcionan mejor.
+- Al acabar una serie, ofrece el vídeo largo en horizontal para YouTube (1920×1080, escena a la izquierda, subtítulos a la derecha, cortinillas «PARTE N», capítulos en la descripción y versión ligera de < 45 MB para que se pueda descargar desde el móvil).
+
 ## Archivos
 
 - Vídeo final: `<WS>/entregas/<NN>_<nombre>_CON_VOZ.mp4` (lo deja `finish.py`). Envíalo con `SendUserFile` (display `attach`), igual que la portada: el usuario los descarga «como siempre».

@@ -28,7 +28,7 @@ Si el audio se queda corto, `extend_total.py` alarga la última escena sin voz (
 2. Quién y dónde (1–2 frases, con un detalle concreto: edad, hora, objeto).
 3. 3–4 **pasos/reglas** útiles o creíbles, cada uno seguido de lo que pasa al aplicarlo.
 4. Un giro que cambia lo que el espectador creía.
-5. Final: una imagen + una frase corta susurrada. En series, cliffhanger; en vídeos sueltos, cierre que deja mal cuerpo.
+5. Final: una imagen + una frase corta (si se puede, que enlace con el gancho para que el vídeo haga bucle). En series, cliffhanger; en vídeos sueltos, cierre que deja mal cuerpo.
 
 Las reglas deben ser verdad o sonar a verdad (supervivencia real, psicología, física). Si una regla es dudosa, no la presentes como «truco real».
 
@@ -38,6 +38,10 @@ Las reglas deben ser verdad o sonar a verdad (supervivencia real, psicología, f
 - Cada parte empieza donde acabó la anterior (el espectador la acaba de ver) y retoma el tema de la serie en los primeros segundos.
 - Cada parte necesita su propia amenaza; si la historia se desvía (ladrones, traiciones…), vuelve al tema central con una alerta, un reloj o una cuenta atrás.
 - Cuenta atrás en el HUD (`CFG.hud`) = urgencia gratis.
+- **Un solo tema, sin desviarse** (el tsunami bajó de 1,3 M a 1.000 visitas al irse a ladrones y traiciones). Cada parte = una fase del tema con sus reglas.
+- **Cada parte se entiende sola**: los primeros 3 s sitúan al que llega nuevo («Día 3 sin luz…»).
+- **4–5 partes**, no más, salvo que el usuario pida otra cosa.
+- En la parte 1, **avance en el gancho** («El día 1… el día 3… el día 7…»).
 
 ## Revisión de lógica (antes de dar el guion)
 
@@ -55,6 +59,7 @@ Si encuentras un fallo en partes ya publicadas, no propongas resubir: arréglalo
 Voz del usuario: **Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural»**. Él genera el MP3 y te lo pasa.
 
 - Una frase por línea, sin título, sin numeración, dentro de un bloque de código para copiar.
+- **Energía en el gancho**: si va una etiqueta, que sea en la 1.ª o 2.ª frase (`[urgent]`/`[tense]`).
 - Etiquetas de emoción **muy pocas** (2–4 en todo el guion), solo en los momentos especiales, al principio de la frase: `[serious] [tense] [urgent] [ominous] [sad] [hopeful]`. **Nada de `[whispers]`** (el usuario no quiere susurros).
 - Diálogos entre «comillas españolas».
 - Números con letra si se leen («cinco y doce», «veintidós horas»); en los subtítulos van en cifras.
