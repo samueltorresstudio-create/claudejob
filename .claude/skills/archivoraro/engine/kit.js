@@ -239,3 +239,51 @@ function crowd(list,o={}){
       const fn=isKid?kid:A, q={...base,...p};delete q.c;delete q.row;delete q.kid;
       out+=fn({look:[0,0],...q,x,y:ry,s:isKid?rs*.92:rs});});}
   return out}
+
+// ================= WALL & ROOM DETAILS — no empty walls, ever =================
+// Each returns svg at (x,y) = its anchor (top-left for frames/posters, bottom-centre for floor items), s = scale.
+const D_K='#2a2420';
+function dFrame(x,y,s=1,o={}){const w=o.w||150,h=o.h||110,f=o.frame||'#5a3e2a',pic=o.pic||'land';let g=`<rect x="4" y="6" width="${w}" height="${h}" fill="#000" opacity=".18"/><rect width="${w}" height="${h}" fill="${f}"/><rect x="10" y="10" width="${w-20}" height="${h-20}" fill="#f3eee2"/>`;
+  if(pic==='land') g+=`<rect x="16" y="16" width="${w-32}" height="${h-32}" fill="#9cc4dc"/><path d="M16,${h-16} L${w*.38},${h*.45} L${w*.6},${h-30} L${w*.75},${h*.55} L${w-16},${h-16}Z" fill="#5a8a5a"/><circle cx="${w*.75}" cy="${h*.32}" r="${h*.09}" fill="#ffe08a"/>`;
+  else if(pic==='photo') g+=`<rect x="16" y="16" width="${w-32}" height="${h-32}" fill="#c8b8a0"/><circle cx="${w*.38}" cy="${h*.45}" r="${h*.13}" fill="#e2b08a"/><circle cx="${w*.62}" cy="${h*.48}" r="${h*.12}" fill="#d9a07a"/><rect x="${w*.26}" y="${h*.58}" width="${w*.48}" height="${h*.26}" fill="#5a6a8a"/>`;
+  else if(pic==='abstract') g+=`<rect x="16" y="16" width="${w-32}" height="${h-32}" fill="#e9dcc0"/><circle cx="${w*.4}" cy="${h*.5}" r="${h*.2}" fill="#d4782a"/><rect x="${w*.5}" y="${h*.3}" width="${w*.25}" height="${h*.4}" fill="#3a6aa8"/>`;
+  return `<g transform="translate(${x},${y}) scale(${s})">${g}</g>`}
+function dShelf(x,y,s=1,o={}){const w=o.w||240;let g=`<rect x="0" y="0" width="${w}" height="14" fill="#6a4a30"/><rect x="0" y="14" width="${w}" height="4" fill="#000" opacity=".2"/><path d="M20,14 l0,22 l14,-22Z M${w-34},14 l14,22 l0,-22Z" fill="#4a3220"/>`;
+  const r=rng(o.seed||x);let bx=12;const cols=['#c23a3a','#3a6aa8','#e0b04a','#3a8a5a','#e9e4d8','#7a4a8a'];
+  for(let i=0;i<5&&bx<w*.55;i++){const bw=14+r()*10,bh=44+r()*22;g+=`<rect x="${bx}" y="${-bh}" width="${bw}" height="${bh}" fill="${cols[Math.floor(r()*6)]}"/><rect x="${bx}" y="${-bh+8}" width="${bw}" height="4" fill="#fff" opacity=".25"/>`;bx+=bw+3;}
+  g+=`<path d="M${w*.68},0 l-12,-40 l40,0 l-12,40Z" fill="#c2603a"/>`+[0,1,2,3].map(i=>`<path d="M${w*.68+8},-40 Q${w*.68-20+i*16},${-90+i*6} ${w*.68-14+i*16},${-70+i*8}" stroke="#3a7a4a" stroke-width="9" fill="none" stroke-linecap="round"/>`).join('');
+  g+=`<rect x="${w*.84}" y="-30" width="26" height="30" rx="4" fill="#e9e4d8"/><rect x="${w*.84+4}" y="-24" width="18" height="10" fill="#9aa3ad"/>`;
+  return `<g transform="translate(${x},${y}) scale(${s})">${g}</g>`}
+function dClock(x,y,s=1,t=0,o={}){const r=o.r||46, stopped=o.stopped;const hA=stopped?(o.h??12.55)*30:(t*.5)%360, mA=stopped?(o.m??33)*6:(t*6)%360;
+  return `<g transform="translate(${x},${y}) scale(${s})"><circle r="${r+8}" fill="#2a2e3a"/><circle r="${r}" fill="#f3eee6"/>${[...Array(12)].map((_,i)=>`<rect x="-2" y="${-r+4}" width="4" height="${i%3?7:12}" fill="#2a2e3a" transform="rotate(${i*30})"/>`).join('')}<rect x="-3" y="${-r*.5}" width="6" height="${r*.5}" fill="#2a2e3a" transform="rotate(${hA})"/><rect x="-2" y="${-r*.75}" width="4" height="${r*.75}" fill="#2a2e3a" transform="rotate(${mA})"/><circle r="5" fill="#c23a3a"/></g>`}
+function dSocket(x,y,s=1){return `<g transform="translate(${x},${y}) scale(${s})"><rect x="-20" y="-20" width="40" height="40" rx="5" fill="#f3eee6" stroke="#c9c2b0" stroke-width="2"/><circle cx="-7" cy="0" r="3.5" fill="#6a6a6a"/><circle cx="7" cy="0" r="3.5" fill="#6a6a6a"/></g>`}
+function dSwitch(x,y,s=1){return `<g transform="translate(${x},${y}) scale(${s})"><rect x="-18" y="-26" width="36" height="52" rx="5" fill="#f3eee6" stroke="#c9c2b0" stroke-width="2"/><rect x="-8" y="-14" width="16" height="28" rx="3" fill="#e2dccf" stroke="#b8b0a2" stroke-width="2"/></g>`}
+function dCalendar(x,y,s=1,o={}){let g=`<rect x="3" y="5" width="110" height="140" fill="#000" opacity=".15"/><rect width="110" height="140" fill="#fff"/><rect width="110" height="34" fill="${o.col||'#c23a3a'}"/><text x="55" y="24" text-anchor="middle" font-family="Inter" font-weight="900" font-size="16" fill="#fff">${o.month||'NOVIEMBRE'}</text>`;
+  for(let r=0;r<4;r++) for(let c=0;c<5;c++) g+=`<rect x="${10+c*19}" y="${44+r*22}" width="13" height="13" fill="${o.mark&&r===1&&c===2?'#c23a3a':'#d9d4ca'}"/>`;
+  return `<g transform="translate(${x},${y}) scale(${s}) rotate(${o.rot??-2})"><circle cx="55" cy="-8" r="5" fill="#9aa3ad"/>${g}</g>`}
+function dPoster(x,y,s=1,o={}){const w=o.w||130,h=o.h||180,c1=o.c1||'#3a4a8a',c2=o.c2||'#ffd34a';return `<g transform="translate(${x},${y}) scale(${s}) rotate(${o.rot??1.5})"><rect x="4" y="6" width="${w}" height="${h}" fill="#000" opacity=".15"/><rect width="${w}" height="${h}" fill="${c1}"/><circle cx="${w/2}" cy="${h*.42}" r="${w*.28}" fill="${c2}"/><rect x="${w*.15}" y="${h*.78}" width="${w*.7}" height="10" fill="#fff" opacity=".8"/><rect x="${w*.25}" y="${h*.86}" width="${w*.5}" height="7" fill="#fff" opacity=".5"/><circle cx="8" cy="8" r="4" fill="#c9c2b0"/><circle cx="${w-8}" cy="8" r="4" fill="#c9c2b0"/></g>`}
+function dSconce(x,y,s=1,on=1){return `<g transform="translate(${x},${y}) scale(${s})">${on?'<circle cx="0" cy="10" r="120" fill="url(#glowY)" opacity=".6"/>':''}<rect x="-6" y="0" width="12" height="40" fill="#2a2e3a"/><path d="M-34,-6 L34,-6 L22,-50 L-22,-50Z" fill="${on?'#fff2c8':'#d8cfba'}" stroke="#a8a090" stroke-width="2"/></g>`}
+function dRadiator(x,y,s=1,o={}){const n=o.n||8;let g='';for(let i=0;i<n;i++) g+=`<rect x="${i*22}" y="-110" width="18" height="110" rx="7" fill="#e9e4d8" stroke="#c9c2b0" stroke-width="2"/>`;return `<g transform="translate(${x},${y}) scale(${s})"><rect x="-6" y="-8" width="${n*22+10}" height="10" fill="#c9c2b0"/>${g}</g>`}
+function dPlant(x,y,s=1,o={}){const pot=o.pot||'#b8603a';let g=`<path d="M-34,0 L-26,-70 L26,-70 L34,0Z" fill="${pot}"/><rect x="-30" y="-78" width="60" height="12" fill="${mix(pot,'#000000',.15)}"/>`;
+  for(let i=0;i<7;i++){const a=-75+i*25;g+=`<g transform="translate(0,-76) rotate(${a})"><path d="M0,0 Q16,-60 0,-${110+(i%3)*20} Q-16,-60 0,0Z" fill="${i%2?'#3a7a4a':'#4f9a5a'}"/></g>`;}
+  return `<g transform="translate(${x},${y}) scale(${s})">${g}</g>`}
+function dHooks(x,y,s=1,o={}){let g=`<rect x="0" y="0" width="200" height="16" fill="#6a4a30"/>`+[30,100,170].map(hx=>`<rect x="${hx-4}" y="12" width="8" height="22" fill="#2a2420"/>`).join('');
+  if(o.coat!==false) g+=`<path d="M86,30 L70,40 L60,150 L140,150 L130,40 L114,30Z" fill="${o.coat||'#8a5a3a'}"/><path d="M100,30 L100,150" stroke="#000" opacity=".15" stroke-width="4"/>`;
+  if(o.bag) g+=`<path d="M160,30 Q170,60 180,40" stroke="#5a4030" stroke-width="5" fill="none"/><rect x="152" y="54" width="42" height="50" rx="8" fill="${o.bag}"/>`;
+  return `<g transform="translate(${x},${y}) scale(${s})">${g}</g>`}
+function dWallpaper(o={}){ // pattern over a wall rectangle: 'stripes' | 'dots' | 'diamonds' | 'tiles'
+  const x0=o.x0??-600, y0=o.y0??-900, w=o.w??2280, h=o.h??1790, c=o.col||'#000', op=o.op??.035, k=o.kind||'stripes';let s='';
+  if(k==='stripes') for(let x=x0;x<x0+w;x+=48) s+=`<rect x="${x}" y="${y0}" width="16" height="${h}" fill="${c}" opacity="${op}"/>`;
+  else if(k==='dots') for(let y=y0;y<y0+h;y+=60) for(let x=x0+((y/60)%2)*30;x<x0+w;x+=60) s+=`<circle cx="${x}" cy="${y}" r="4" fill="${c}" opacity="${op*2}"/>`;
+  else if(k==='diamonds') for(let y=y0;y<y0+h;y+=70) for(let x=x0+((y/70)%2)*40;x<x0+w;x+=80) s+=`<path d="M${x},${y-12} l12,12 l-12,12 l-12,-12Z" fill="${c}" opacity="${op*1.8}"/>`;
+  else if(k==='tiles') for(let y=y0;y<y0+h;y+=64) s+=`<line x1="${x0}" y1="${y}" x2="${x0+w}" y2="${y}" stroke="${c}" stroke-opacity="${op*3}" stroke-width="3"/>`+'';
+  return s}
+function dBaseboard(y,col='#efe6d6'){return `<rect x="-600" y="${y-24}" width="2280" height="24" fill="${col}"/><rect x="-600" y="${y-4}" width="2280" height="5" fill="#000" opacity=".18"/>`}
+function dCorner(op=.25){return `<radialGradient id="dcv" cx=".5" cy=".45" r=".7"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#2a1a10" stop-opacity="${op}"/></radialGradient><rect x="-600" y="-900" width="2280" height="2400" fill="url(#dcv)"/>`}
+// a lived-in wall in one call: wallpaper + baseboard + the items you list (kind, x, y, scale, options).
+// e.g. decorWall({floor:900, items:[['frame',120,300,1,{pic:'photo'}],['shelf',420,330],['clock',900,260],['socket',640,820],['plant',980,900]]})
+function decorWall(o={}){const F={frame:dFrame,shelf:dShelf,clock:(x,y,s,op)=>dClock(x,y,s,window.__T||0,op),socket:dSocket,switch:dSwitch,calendar:dCalendar,poster:dPoster,sconce:dSconce,radiator:dRadiator,plant:dPlant,hooks:dHooks};
+  let s=dWallpaper({kind:o.paper||'stripes',col:o.paperCol,op:o.paperOp,h:(o.floor??900)+900});
+  for(const [k,x,y,sc,op] of (o.items||[])) s+=F[k]?F[k](x,y,sc??1,op||{}):'';
+  if(o.floor!==null) s+=dBaseboard(o.floor??900,o.base);
+  return s}

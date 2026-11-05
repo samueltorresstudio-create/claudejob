@@ -56,6 +56,7 @@ Escribe `script.json`: una entrada por frase del audio, en el mismo orden y con 
 ### 2. Escenas (`scenes_p.js`)
 
 Copia la estructura de los ejemplos. Para cada escena, busca este nivel de calidad:
+- **Ninguna pared vacía, nunca** (exigencia del usuario para todas las escenas): 5–6 detalles mínimo por decorado con `decorWall()` y los objetos `d*` (cuadros, estante, reloj, calendario, póster, enchufes, radiador, planta, perchero).
 - **Decorado con 3–4 capas** (fondo, pared u horizonte con detalles, objetos, suelo) y luz (`dark` con huecos, `glowY`, cielo según la hora).
 - **Personajes vivos**: andan (`walk`), miran a lo que importa (`look`), cambian de cara (`brows`, `mouth`, `eyes`) cuando cambia la historia; aspecto fijo en todo el vídeo.
 - **Personajes grandes en el plano** (escala .6–.9, en primer plano, no muñequitos en medio de una pared) y **decorados con perspectiva y luz propia** (rayo de sol, velas, atardecer, fondo que se pierde a lo lejos).

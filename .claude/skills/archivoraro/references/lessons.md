@@ -16,6 +16,9 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
 
 ## Composición
 
+- «Fíjate en la pared, no hay nada, quiero detalles, que no sea un muermo, siempre, en cualquier escena». Toda pared, calle o interior lleva detalles (`decorWall`, `nivel.md` §2).
+- El punto rojo parpadeante del rótulo de arriba se queda: «me gustaba más con el punto rojo que con un reloj».
+
 - Rótulos y cuadros: «hazlos recuadros, no círculos, pero mejora el original». Estilo del canal = recuadro recto oscuro con borde amarillo y letra tipo máquina; se mejora con doble borde, esquinas, sombra e iconos cuadrados, nunca con pastillas redondeadas.
 
 - «Tamaños descompensados y sonrisas muy raras» (la calle de «Apagón 1»): cada vecino a una escala distinta y con los pies a distinta altura, y una sonrisa enorme con los ojos cerrados. Usa `crowd()` para grupos y `mouth:'laugh', eyes:'happy'` para reír.

@@ -41,17 +41,14 @@ function hudSvg(text,alert,reveal,T){
   s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#hudG)" stroke="${col}" stroke-width="3"/>`;
   s+=`<rect x="${x+6}" y="${y+6}" width="${w-12}" height="${h-12}" fill="none" stroke="${col}" stroke-opacity=".25" stroke-width="1.5"/>`;
   for(const [cx,cy,sx,sy] of [[x,y,1,1],[x+w,y,-1,1],[x,y+h,1,-1],[x+w,y+h,-1,-1]]) s+=`<path d="M${cx-sx*7},${cy+sy*16} L${cx-sx*7},${cy-sy*7} L${cx+sx*16},${cy-sy*7}" stroke="${col}" stroke-width="4" fill="none"/>`;
-  // icon square
-  const q=h-24, ix=x+12, iy=y+12, icx=ix+q/2, icy=iy+q/2;
-  s+=`<rect x="${ix}" y="${iy}" width="${q}" height="${q}" fill="${col}"/>`;
-  if(alert) s+=`<path d="M${icx},${icy-q*.3} L${icx+q*.3},${icy+q*.24} L${icx-q*.3},${icy+q*.24}Z" fill="#11131f"/><rect x="${icx-2.5}" y="${icy-q*.1}" width="5" height="${q*.18}" fill="${col}"/><rect x="${icx-2.5}" y="${icy+q*.12}" width="5" height="5" fill="${col}"/>`;
-  else if(isTime) s+=`<rect x="${icx-q*.28}" y="${icy-q*.28}" width="${q*.56}" height="${q*.56}" fill="none" stroke="#11131f" stroke-width="4.5"/><path d="M${icx},${icy-q*.16} L${icx},${icy} L${icx+q*.13},${icy+q*.08}" stroke="#11131f" stroke-width="4.5" fill="none"/>`;
-  else s+=`<rect x="${icx-q*.16}" y="${icy-q*.16}" width="${q*.32}" height="${q*.32}" fill="#11131f"/>`;
+  // REC dot on the left (the channel's original touch), bigger and blinking
+  const q=h-24, ix=x+12, iy=y+12, on=(Math.floor(T*2)%2)===0||alert;
+  s+=`<circle cx="${ix+q/2}" cy="${iy+q/2}" r="${q*.26}" fill="#ff4a6a" opacity="${on?1:.25}"/>`;
+  if(on) s+=`<circle cx="${ix+q/2}" cy="${iy+q/2}" r="${q*.42}" fill="#ff4a6a" opacity=".18"/>`;
   const tx=ix+q+(w-q-12-34)/2;
   if(label){s+=`<text x="${tx}" y="${y+33}" text-anchor="middle" font-family="${MONO}" font-weight="700" font-size="20" letter-spacing="5" fill="${col}">${vis(label)}</text>`;
     s+=`<text x="${tx}" y="${y+70}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="${isTime?38:30}" letter-spacing="3" fill="#fff">${vis(value)}</text>`;}
   else s+=`<text x="${tx}" y="${y+46}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="30" letter-spacing="3" fill="#fff">${vis(value)}</text>`;
-  s+=`<circle cx="${x+w-22}" cy="${y+20}" r="6" fill="#ff4a6a" opacity="${(Math.floor(T*2)%2)?.2:1}"/>`;
   if(bar){const f=clamp(CFG.hudFrac(T)), bw=w-q-60;s+=`<rect x="${tx-bw/2}" y="${y+h-18}" width="${bw}" height="6" fill="#fff" opacity=".12"/><rect x="${tx-bw/2}" y="${y+h-18}" width="${(bw*f).toFixed(1)}" height="6" fill="${col}"/>`;}
   // steps box
   if(T>=stepStart[0]&&T<listEnd){

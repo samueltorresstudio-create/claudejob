@@ -60,7 +60,7 @@ S.alley=(t,D,B)=>{const E=EVS.alley(B);
 window.CFG={steps:['1. …','2. …'],listEnd:'escena_final',band:{alley:'#5a4e3e',…},hud:(h,bt,st,T)=>'…'};
 ```
 
-- **Rótulo de arriba (HUD)**: escribe `hud` como `«ETIQUETA · VALOR»` («VENTAJA · 44:32», «LUNES · 12:33», «SELVA · DÍA 4») y sale como recuadro del canal (recto, fondo oscuro, doble borde amarillo, esquinas marcadas, punto rojo parpadeante) con un cuadrado de icono (reloj si el valor es una hora, aviso si la línea es `alert`), etiqueta pequeña y valor grande. Nada de pastillas ni círculos: el usuario quiere recuadros. Sin `·` sale en una sola línea. `CFG.hudFrac:T=>0..1` (o `null`) añade una barra de progreso para cuentas atrás. `CFG.stepsTitle` cambia «PASOS» por «REGLAS», etc.
+- **Rótulo de arriba (HUD)**: escribe `hud` como `«ETIQUETA · VALOR»` («VENTAJA · 44:32», «LUNES · 12:33», «SELVA · DÍA 4») y sale como recuadro del canal (recto, fondo oscuro, doble borde amarillo, esquinas marcadas) con el punto rojo parpadeante a la izquierda (el usuario lo prefiere a un icono de reloj), etiqueta pequeña y valor grande. Nada de pastillas ni círculos: el usuario quiere recuadros. Sin `·` sale en una sola línea. `CFG.hudFrac:T=>0..1` (o `null`) añade una barra de progreso para cuentas atrás. `CFG.stepsTitle` cambia «PASOS» por «REGLAS», etc.
 - `tag`, `bubble`, `bang`, `countPop` ya tienen el diseño nuevo (recuadros rectos con bloque de color, esquinas y sombra; lista de pasos con cabecera amarilla y casillas cuadradas; bocadillo con contorno, textos con contorno grueso y brillo): no los imites con rectángulos propios.
 
 - Cada escena necesita entrada en `EVS` **y** en `S`, aunque `EVS` devuelva `{}`.
@@ -114,6 +114,10 @@ Para 3 o más personajes juntos usa siempre `crowd([{c:'C12', mouth:'laugh', eye
 - Para reír: `mouth:'laugh', eyes:'happy'`. Nunca `closed` + boca enorme (daba grima). Las pestañas se ocultan solas con los ojos cerrados o felices.
 - Mirada: `look:[0,0]` o hacia quien habla; evita `look:[0,-6]` en grupo (todos con los ojos en blanco hacia arriba).
 - Bocadillo: la cola (`tx,ty`) tiene que acabar en la cabeza de quien habla (para `A()` a escala `s` con los pies en `y`: `ty ≈ y - s*800`), y quien habla mueve la boca (`mouth:'o', mopen`).
+
+### Detalles de pared y de habitación (obligatorio: ninguna pared vacía)
+
+`decorWall({floor:900, paper:'stripes'|'dots'|'diamonds'|'tiles', items:[[tipo,x,y,escala,opciones],…]})` pinta papel de pared, rodapié y los objetos que pongas. Tipos: `frame` (cuadro; `pic:'land'|'photo'|'abstract'`, `w,h`), `shelf` (estante con libros, planta y bote), `clock` (reloj; `stopped:true,h,m` para uno parado a la hora del apagón), `calendar` (`month`, `mark`), `poster`, `sconce` (aplique de luz, `on`), `radiator`, `switch`, `socket`, `hooks` (perchero con abrigo, `bag`), `plant`. Sueltos: `dFrame, dShelf, dClock, dCalendar, dPoster, dSconce, dRadiator, dSwitch, dSocket, dHooks, dPlant`, `dWallpaper`, `dBaseboard(y)`, `dCorner(op)` (sombra de esquinas). Coloca los objetos donde no tapen caras ni rótulos (y 80–200 es del HUD, y 200–330 a la izquierda de la lista de pasos).
 
 ### Partículas y sudor
 
