@@ -16,6 +16,10 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
 
 ## Composición
 
+- «Se mueven como Legos»: piernas rectas, brazos tiesos. El motor v4 ya anda con zancada, rodillas, codos y rebote; no lo anules con `walk` lento ni con `aL/aR` fijos al andar.
+- «Solo le has puesto contorno»: una mejora tiene que verse a la primera. Personajes grandes en el plano, decorado con perspectiva y luz, y enfoques en los momentos clave.
+- Caras con ojos de blanco grande y pupila «daban repelús» en estilos nuevos: se mantiene el estilo original del canal.
+
 - Nada de escenas con «solo Marco y un fondo marrón»: cada decorado lleva 3–4 capas (pared con detalles, objetos, suelo con textura, luz).
 - Objetos al tamaño real: una nota de mano no puede ocupar media pantalla; un mapa tiene que parecer un mapa (costa, ciudad, ruta, monte con nombre).
 - Rótulos (`tag`) que no tapen caras, ni la lista de pasos, ni el HUD; nada de texto encima de otro texto (la flecha, la hora y la frase de una pintada iban montadas una encima de otra). Si algo cruza una estantería, mueve la estantería.

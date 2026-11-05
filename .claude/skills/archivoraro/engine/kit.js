@@ -192,3 +192,15 @@ function idCard(t,D,o){ // o: {who, header, col, name, age, ageAt, rows:[[label,
   s+=`<g opacity="${ca}" transform="translate(${470+(1-ca)*50},300) rotate(${lerp(6,-3,ca)})">${c}</g>`;
   return cam(s,1+.03*t/D);
 }
+
+// ---- focus shot: the camera pushes in on a character at an important moment ----
+// focusCam(bg, fg, k, fx, fy, o): bg = background svg, fg = characters svg, k = push progress 0..1 (use eIO(prog(t,a,b))),
+// (fx,fy) = the point to push into (usually the face: x, y - s*640 for A() at scale s). o.z0 start zoom (1.05), o.z1 end zoom (2.5),
+// o.ty where the face ends on screen (560), o.blur max background blur (7), o.bars cinema bars (true), o.dx camera shake.
+function focusCam(bg,fg,k,fx,fy,o={}){
+  const z=lerp(o.z0??1.05,o.z1??2.5,k), cx=lerp(o.cx??540,fx,k), cy=lerp(o.cy??560,fy,k), ty=lerp(560,o.ty??560,k);
+  const id=uid('dof'), b=(o.blur??7)*k, T=c=>`<g transform="translate(${(540+(o.dx||0)).toFixed(1)},${ty.toFixed(1)}) scale(${z.toFixed(4)}) translate(${(-cx).toFixed(1)},${(-cy).toFixed(1)})">${c}</g>`;
+  let s=`<defs><filter id="${id}" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="${b.toFixed(2)}"/></filter></defs>`;
+  s+=T(`<g filter="url(#${id})">${bg}</g><rect x="-900" y="-900" width="2900" height="2900" fill="#000" opacity="${(.28*k).toFixed(2)}"/>`)+T(fg);
+  if(o.bars!==false&&k>.02) s+=`<rect x="0" y="0" width="1080" height="${(70*k).toFixed(1)}" fill="#000"/><rect x="0" y="${(1100-70*k).toFixed(1)}" width="1080" height="${(70*k).toFixed(1)}" fill="#000"/>`;
+  return s}

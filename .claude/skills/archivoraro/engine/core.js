@@ -56,11 +56,19 @@ window.render=function(T){
     <radialGradient id="glowB"><stop offset="0" stop-color="#9fd0ff" stop-opacity=".35"/><stop offset="1" stop-color="#9fd0ff" stop-opacity="0"/></radialGradient>
     <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff6c8" stop-opacity=".55"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></linearGradient>
     <pattern id="grain" width="240" height="240" patternUnits="userSpaceOnUse" patternTransform="translate(${Math.floor(T*30*37)%240},${Math.floor(T*30*53)%240})">${GRAIN}</pattern>
-    <radialGradient id="vig" cx=".5" cy=".45" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".34"/></radialGradient></defs>`;
+    <radialGradient id="vig" cx=".5" cy=".45" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".42"/></radialGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe2b0" stop-opacity=".22"/><stop offset=".6" stop-color="#ffe2b0" stop-opacity="0"/></linearGradient>
+    <filter id="chFX" x="-20%" y="-12%" width="140%" height="124%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="4.8" result="dil"/><feFlood flood-color="#1d1b2a"/><feComposite in2="dil" operator="in" result="outline"/>
+      <feOffset in="SourceAlpha" dx="-18" dy="-6" result="o1"/><feComposite in="SourceAlpha" in2="o1" operator="out" result="e1"/><feGaussianBlur in="e1" stdDeviation="6" result="e1b"/>
+      <feFlood flood-color="#1a1430" flood-opacity=".26"/><feComposite in2="e1b" operator="in"/><feComposite in2="SourceAlpha" operator="in" result="shade"/>
+      <feOffset in="SourceAlpha" dx="12" dy="8" result="o2"/><feComposite in="SourceAlpha" in2="o2" operator="out" result="e2"/><feGaussianBlur in="e2" stdDeviation="5" result="e2b"/>
+      <feFlood flood-color="#fff6e0" flood-opacity=".12"/><feComposite in2="e2b" operator="in"/><feComposite in2="SourceAlpha" operator="in" result="rim"/>
+      <feMerge><feMergeNode in="outline"/><feMergeNode in="SourceGraphic"/><feMergeNode in="shade"/><feMergeNode in="rim"/></feMerge></filter></defs>`;
   // cut punch: every new scene lands with a quick zoom-in that settles
   const cutIn=b.start===b.sStart&&bi>0, pk=cutIn?1-eOut(prog(bt,0,.32)):0;
   const dx=Math.sin(T*.7)*3+Math.sin(T*1.9)*1.2, dy=Math.sin(T*.9+1)*2.5;
-  svg+=`<g clip-path="url(#sc)"><g transform="translate(540,550) scale(${(1+.075*pk).toFixed(4)}) translate(${(-540+dx).toFixed(2)},${(-550+dy).toFixed(2)})">${S[b.sc](st,b.sDur,b.B)}</g><rect width="1080" height="1100" fill="url(#vig)"/><rect width="1080" height="1100" fill="url(#grain)" opacity=".05"/></g>`;
+  svg+=`<g clip-path="url(#sc)"><g transform="translate(540,550) scale(${(1+.075*pk).toFixed(4)}) translate(${(-540+dx).toFixed(2)},${(-550+dy).toFixed(2)})">${S[b.sc](st,b.sDur,b.B)}</g><rect width="1080" height="1100" fill="url(#warm)" style="mix-blend-mode:screen"/><rect width="1080" height="1100" fill="url(#vig)"/><rect width="1080" height="1100" fill="url(#grain)" opacity=".07"/></g>`;
   svg+=`<rect y="900" width="1080" height="202" fill="url(#fadeB)"/>`;
   if(cutIn) svg+=`<rect width="1080" height="1100" fill="#fff" opacity="${(.12*(1-prog(bt,0,.08))).toFixed(3)}"/>`;
   scEl.innerHTML=svg;

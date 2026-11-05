@@ -159,7 +159,7 @@ function doberman(x,y,s,t,o={}){ // side view facing right (o.dir -1 faces left)
     const off=run?[0,.6,Math.PI,Math.PI+.6][i]:[0,Math.PI,Math.PI,0][i], amp=run?40:18;
     const sw=ph==null?0:Math.sin(ph+off), lift=ph==null?0:Math.max(0,Math.cos(ph+off));
     return front?leg(i===0?92:112,-150,sw*amp,sw*amp-lift*(run?60:34),78,80,22,col):leg(i===2?-118:-98,-158,26+sw*amp,-32+sw*amp*.7-lift*(run?30:16),82,96,24,col)};
-  let g=`<ellipse cx="0" cy="6" rx="${run?190:170}" ry="16" fill="#000" opacity=".2"/>`;
+  const shd=`<ellipse cx="0" cy="6" rx="${run?190:170}" ry="16" fill="#000" opacity=".2"/>`;let g='';
   let b=g4(1,true,far)+g4(3,false,far);
   // tail: medium, carried up a little, wagging
   b+=`<path d="M-150,-206 Q-190,-214 -212,-246" stroke="${B}" stroke-width="13" fill="none" stroke-linecap="round" transform="rotate(${(Math.sin(t*(o.wag?14:4))*(o.wag?18:6)).toFixed(1)} -150 -206)"/>`;
@@ -183,7 +183,7 @@ function doberman(x,y,s,t,o={}){ // side view facing right (o.dir -1 faces left)
   h+=`<ellipse cx="124" cy="4" rx="11" ry="9" fill="#0c0b0e"/><circle cx="121" cy="1" r="3" fill="#fff" opacity=".35"/>`;
   b=`<g transform="scale(.86,1)">${b}</g><g transform="translate(144,-326) rotate(${(-ha).toFixed(1)})">${h}</g>`;
   g+=`<g transform="translate(0,${bob.toFixed(1)}) rotate(${pitch.toFixed(2)} 0 -170)">${b}</g>`;
-  return `<g transform="translate(${x},${y}) scale(${dir*s},${s})">${g}</g>`}
+  return `<g transform="translate(${x},${y}) scale(${dir*s},${s})">${shd}<g filter="url(#chFX)">${g}</g></g>`}
 const dobCollar=(x,y,s,dir=1)=>[x+dir*138*s,y-246*s];
 function leash(a,b,slack=40,col='#7a3a2a'){const mx=(a[0]+b[0])/2, my=Math.max(a[1],b[1])+slack;return `<path d="M${a[0].toFixed(1)},${a[1].toFixed(1)} Q${mx.toFixed(1)},${my.toFixed(1)} ${b[0].toFixed(1)},${b[1].toFixed(1)}" stroke="${col}" stroke-width="5" fill="none" stroke-linecap="round"/>`}
 const handAt=(x,y,s,loc)=>[x+loc[0]*s,y+loc[1]*s];

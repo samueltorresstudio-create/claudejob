@@ -31,10 +31,11 @@ function eyesSvg(type,look){
     return s;
   }
   for(const ex of [-36,36]){
-    s+=`<circle cx="${ex}" cy="6" r="25" fill="#fff" stroke="${INK}" stroke-width="7"/>`;
-    const pr=type==='wide'?7.5:11;
-    s+=`<circle cx="${ex+look[0]}" cy="${6+look[1]}" r="${pr}" fill="${INK}"/>`;
-    s+=`<circle cx="${ex+look[0]+3.5}" cy="${6+look[1]-4}" r="3.2" fill="#fff"/>`;
+    s+=`<circle cx="${ex}" cy="6" r="24" fill="#fbfaf7" stroke="${INK}" stroke-width="5.5"/>`;
+    s+=`<path d="M${ex-21},2 Q${ex},-26 ${ex+21},2 Q${ex},-9 ${ex-21},2Z" fill="#dcd6ce"/>`;
+    const pr=type==='wide'?7.5:10.5;
+    s+=`<circle cx="${ex+look[0]}" cy="${6+look[1]}" r="${pr+2.5}" fill="#4a3428"/><circle cx="${ex+look[0]}" cy="${6+look[1]}" r="${pr-2}" fill="${INK}"/>`;
+    s+=`<circle cx="${ex+look[0]+4}" cy="${6+look[1]-5}" r="3.6" fill="#fff"/><circle cx="${ex+look[0]-4}" cy="${6+look[1]+5}" r="1.6" fill="#fff" opacity=".85"/>`;
   }
   return s;
 }
@@ -88,12 +89,12 @@ function person(o){
   if(d.build==='heavy'){TB.SW*=1.18;TB.WW*=1.4;TB.HW*=1.16;TB.tw*=1.2;} else if(d.build==='slim'){TB.SW*=.88;TB.WW*=.84;TB.HW*=.88;TB.tw*=.88;}
   const Sy=TB.S, Hy=TB.H, HIP=Hy-14, ARM=TB.UA+TB.FA, SHy=Sy+30;
   const ph=d.walk, sw=ph==null?0:Math.sin(ph);
-  const bob=ph==null?0:-Math.abs(Math.cos(ph))*7;
+  const bob=ph==null?0:-Math.abs(Math.cos(ph))*13;
   const outer=d.jacket||d.top, outerD=d.jacket?mix(d.jacket,'#000000',.25):d.topD;
   const armC=mix(outer,outerD,.3);
   const pants=d.overalls||d.pants;
   let legs='';
-  const legDx=[22*sw,-22*sw], lift=ph==null?[0,0]:[Math.max(0,Math.cos(ph))*12,Math.max(0,-Math.cos(ph))*12];
+  const st=d.stride??1, legDx=[48*sw*st,-48*sw*st], lift=ph==null?[0,0]:[Math.max(0,Math.cos(ph))*26*st,Math.max(0,-Math.cos(ph))*26*st];
   const shoe=(ax,ay,side)=>`<path d="M${ax-20},${ay-6} L${ax+20},${ay-6} Q${ax+26+side*6},${ay+4} ${ax+28+side*12},${ay+22} Q${ax+28+side*12},${ay+36} ${ax+12+side*8},${ay+36} L${ax-18-side*2},${ay+36} Q${ax-28},${ay+36} ${ax-26},${ay+18}Z" fill="${d.shoes}"/><rect x="${ax-26}" y="${ay+30}" width="${54+side*10}" height="6" rx="3" fill="#fff" opacity=".18"/>`;
   // seated: hips drop to seat height, thighs point at the viewer, shins go straight down
   const SEAT=-200, so=d.sit?SEAT-HIP:0;
@@ -106,7 +107,7 @@ function person(o){
     legs+=shoe(x0,-40,side);
   });
   else [-1,1].forEach((side,i)=>{
-    const c=side>0?mix(pants,'#000000',.12):pants, hx=side*34, ax=side*36+legDx[i], ay=-40-lift[i], kx=(hx+ax)/2+side*2, ky=(HIP+ay)/2;
+    const c=side>0?mix(pants,'#000000',.12):pants, hx=side*34, ax=side*36+legDx[i], ay=-40-lift[i], kx=(hx+ax)/2+side*2+lift[i]*.9, ky=(HIP+ay)/2;
     legs+=`<path d="M${hx-TB.tw},${HIP-24} L${hx+TB.tw},${HIP-24} Q${kx+TB.kw+4},${ky} ${ax+TB.aw},${ay} L${ax-TB.aw},${ay} Q${kx-TB.kw-4},${ky} ${hx-TB.tw},${HIP-24}Z" fill="${c}"/>`;
     legs+=shoe(ax,ay,side);
   });
@@ -155,7 +156,9 @@ function person(o){
     // hands raised above the shoulders (e.g. covering the mouth) must be drawn over the face
     if(hy<SHy-40) front+=hs_; else arms+=hs_;
   } else if(d.aL!=null||d.arms==='down'||d.reachL||d.reachR){
-    const aL=d.aL!=null?d.aL:10+(ph==null?0:sw*10), aR=d.aR!=null?d.aR:10-(ph==null?0:sw*10);
+    const idleA=ph==null&&!d.still?Math.sin(T_*1.3+seed%7)*2:0;
+    const aL=d.aL!=null?d.aL:10+idleA+(ph==null?0:sw*26), aR=d.aR!=null?d.aR:10-idleA-(ph==null?0:sw*26);
+    if(ph!=null){if(d.bendL==null) d.bendL=-8-Math.max(0,sw)*22; if(d.bendR==null) d.bendR=-8-Math.max(0,-sw)*22;}
     for(const [side,a] of [[-1,aL],[1,aR]]){
       const tgt=d['reach'+(side<0?'L':'R')];
       const {P0,E,H}=tgt?armTo(side,tgt):armByAngle(side,a), ex=H[0], ey=H[1];
@@ -210,9 +213,10 @@ function person(o){
   h+=d.mopen!=null?`<ellipse cx="0" cy="${58+d.mopen*6}" rx="${(10+d.mopen*6).toFixed(1)}" ry="${(2.5+d.mopen*15).toFixed(1)}" fill="#5a2430"/>`:(M[d.mouth]||'');
   if(d.lip&&d.mopen==null&&(d.mouth==='smile'||d.mouth==='line')) h+=d.mouth==='smile'?`<path d="M-16,52 Q0,66 16,52" stroke="${d.lip}" stroke-width="8" fill="none" stroke-linecap="round"/>`:`<path d="M-13,58 L13,58" stroke="${d.lip}" stroke-width="9" stroke-linecap="round"/>`;
   if(d.mask) h+=`<path d="M-76,12 Q0,2 76,12 L68,72 Q0,100 -68,72Z" fill="#d5e6f0"/><path d="M-60,32 Q0,24 60,32 M-62,52 Q0,46 62,52" stroke="#b4cad8" stroke-width="4" fill="none"/><path d="M-76,16 L-94,6 M76,16 L94,6" stroke="#d5e6f0" stroke-width="5"/>`;
-  return `<g transform="translate(${d.x.toFixed(1)},${d.y.toFixed(1)}) rotate(${d.rot}) scale(${d.s})" opacity="${d.op}">
-    ${d.noShadow?'':`<ellipse cx="0" cy="4" rx="${d.sit?135:118}" ry="20" fill="#000" opacity=".17"/>`}<g transform="translate(0,${bob})">${legs}<g transform="translate(0,${(so+br).toFixed(2)})">${back}${torso}${d.sit?`<g transform="translate(0,${(-(so+br)).toFixed(2)})"><rect x="${-TB.HW+4}" y="${SEAT-58}" width="${2*TB.HW-8}" height="80" rx="22" fill="${pants}"/>${lap}</g>`:''}${arms}
-    <g transform="translate(0,${Sy-90}) rotate(${d.tilt})">${h}</g>${front}</g></g></g>`;
+  const lean=(d.lean??0)+(ph!=null?(d.dirW??1)*3:0), sq=ph!=null?1-Math.abs(Math.sin(ph))*.015:(1+br*.002);
+  return `<g transform="translate(${d.x.toFixed(1)},${d.y.toFixed(1)}) rotate(${(d.rot+lean).toFixed(2)}) scale(${d.s},${(d.s*sq).toFixed(4)})" opacity="${d.op}">
+    ${d.noShadow?'':`<ellipse cx="0" cy="4" rx="${d.sit?135:118}" ry="20" fill="#000" opacity=".17"/>`}<g filter="url(#chFX)"><g transform="translate(0,${bob})">${legs}<g transform="translate(0,${(so+br).toFixed(2)})">${back}${torso}${d.sit?`<g transform="translate(0,${(-(so+br)).toFixed(2)})"><rect x="${-TB.HW+4}" y="${SEAT-58}" width="${2*TB.HW-8}" height="80" rx="22" fill="${pants}"/>${lap}</g>`:''}${arms}
+    <g transform="translate(0,${Sy-90}) rotate(${(d.tilt+(ph!=null?Math.sin(ph*2+.7)*2.6:(!d.still?Math.sin(T_*.8+seed%5)*1.6:0))).toFixed(2)})">${h}</g>${front}</g></g></g></g>`;
 }
 const FARMER={skin:'#f3c7a1',top:'#d8574a',topD:'#a63d33',hs:'short',hair:'#5a3a24',hat:'straw',beard:'#6b4428',overalls:'#3f6fb5'};
 const ZOMBIE={skin:'#a8c48f',top:'#6b7a5a',topD:'#4b563f',pants:'#3f4636',hs:'messy',hair:'#3b3f2a',eyes:'zombie',mouth:'jag',aL:100,aR:95};

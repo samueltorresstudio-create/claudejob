@@ -96,6 +96,14 @@ Para que dos personajes se distingan, cambia **silueta** (pelo, sombrero, comple
 - Cielos: `skyTod('day'|'afternoon'|'dusk'|'night'|'dawn')`, `skyT(k)` tormenta 0..1, `skyNight(t)`, `stars(seed,n,h,t,op)`, `moonK(x,y)`.
 - `uid('x')` para ids únicos de `clipPath`/gradientes dentro de una escena.
 
+### Cámara de enfoque (momentos clave)
+
+`focusCam(bg, fg, k, fx, fy, o)`: separa el decorado (`bg`) de los personajes (`fg`) y, con `k` de 0 a 1 (`eIO(prog(t,a,b))`, 1–1,3 s), acerca la cámara al punto `(fx,fy)` (la cara: `x, y - s*640` para `A()` a escala `s`), desenfoca y oscurece el fondo y mete franjas de cine. Opciones: `z0` (1.05), `z1` (2.5), `blur` (7), `ty`, `bars:false`, `dx` (temblor). Úsalo en 2–4 momentos fuertes por vídeo (se apaga la luz, la noticia, el giro, la última frase), nunca en todos los planos.
+
+### Movimiento natural (motor v4)
+
+`A()`/`person()` ya andan con zancada larga, rodilla que se dobla, brazos que balancean con codo, rebote del cuerpo, inclinación al andar y cabeza con retraso; quietos respiran y se mueven un poco. Opciones: `stride` (1 = normal, 1.4 = correr), `lean` (grados, para frenar, asustarse o empujar), `dirW` (1/−1, hacia dónde se inclina al andar). Al frenar, mete un pequeño asentamiento (`lean` que oscila y se apaga en 0,5 s). Todos los personajes y perros llevan contorno único y sombra de volumen (filtro `chFX`, ya incluido).
+
 ## 6. Atrezo disponible
 
 Interiores (`kit.js`): `livingK`, `bedroomK`, `classroomK`, `corridorK`, `bathroomK`, `wall`, `floorW`, `floorTiles`, `winK` (ventana con lo de fuera), `doorK` (puerta que se abre), `bedK`, `sofaK` + `sofaArmsK`, `wardrobeK`, `deskK`, `boardK`, `phoneK`, `handsPhone`, `chatK`, `idCard`, `notebookK`, `paperNote`.
