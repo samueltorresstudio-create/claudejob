@@ -103,6 +103,18 @@ Para que dos personajes se distingan, cambia **silueta** (pelo, sombrero, comple
 
 `focusCam(bg, fg, k, fx, fy, o)`: separa el decorado (`bg`) de los personajes (`fg`) y, con `k` de 0 a 1 (`eIO(prog(t,a,b))`, 1–1,3 s), acerca la cámara al punto `(fx,fy)` (la cara: `x, y - s*640` para `A()` a escala `s`), desenfoca y oscurece el fondo y mete franjas de cine. Opciones: `z0` (1.05), `z1` (2.5), `blur` (7), `ty`, `bars:false`, `dx` (temblor). Úsalo en 2–4 momentos fuertes por vídeo (se apaga la luz, la noticia, el giro, la última frase), nunca en todos los planos.
 
+### Grupos de personajes: `crowd(list, o)`
+
+Para 3 o más personajes juntos usa siempre `crowd([{c:'C12', mouth:'laugh', eyes:'happy', look:[4,0], phoneR:true}, …], {y:1000, s:.5, x0:110, x1:970})`. Todos los de una fila tienen la misma escala y los pies en la misma línea; los niños (`kid:true` en el reparto) usan cuerpo de niño a casi la misma escala (×.92), nunca a una escala mucho menor. Con más de 6 hace dos filas (la de atrás más pequeña y más alta). No mezcles escalas a ojo (.42/.54/.6) ni subas y bajes los pies de uno en uno: eso es lo que dejaba el grupo «descompensado».
+
+### Bocas y ojos
+
+- Bocas: `line`, `smile` (sonrisa suave), `happy` (sonrisa abierta pequeña), `laugh`/`grin` (carcajada: boca abierta con dientes arriba y lengua), `o` (sorpresa), `mopen` 0..1 (hablando), `jag` (miedo).
+- Ojos: `open`, `wide`, `closed` (dormido, ∪), **`happy`** (riendo, ∩: úsalo siempre con `laugh`), `zombie`, `blind`.
+- Para reír: `mouth:'laugh', eyes:'happy'`. Nunca `closed` + boca enorme (daba grima). Las pestañas se ocultan solas con los ojos cerrados o felices.
+- Mirada: `look:[0,0]` o hacia quien habla; evita `look:[0,-6]` en grupo (todos con los ojos en blanco hacia arriba).
+- Bocadillo: la cola (`tx,ty`) tiene que acabar en la cabeza de quien habla (para `A()` a escala `s` con los pies en `y`: `ty ≈ y - s*800`), y quien habla mueve la boca (`mouth:'o', mopen`).
+
 ### Partículas y sudor
 
 `particles(t, kind, o)`: `'dust'` (motas en un rayo de luz), `'rain'`, `'snow'`, `'sparks'`, `'embers'` (brasas que suben). Opciones: `n` (cantidad), `x0,x1,y0,y1` (zona), `op`, `col`. Dibújalas en el decorado (debajo de los personajes) o encima para lluvia o nieve en primer plano.

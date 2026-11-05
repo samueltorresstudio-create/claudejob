@@ -16,6 +16,8 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
 
 ## Composición
 
+- «Tamaños descompensados y sonrisas muy raras» (la calle de «Apagón 1»): cada vecino a una escala distinta y con los pies a distinta altura, y una sonrisa enorme con los ojos cerrados. Usa `crowd()` para grupos y `mouth:'laugh', eyes:'happy'` para reír.
+
 - «Se mueven como Legos»: piernas rectas, brazos tiesos. El motor v4 ya anda con zancada, rodillas, codos y rebote; no lo anules con `walk` lento ni con `aL/aR` fijos al andar.
 - «Solo le has puesto contorno»: una mejora tiene que verse a la primera. Personajes grandes en el plano, decorado con perspectiva y luz, y enfoques en los momentos clave.
 - Caras con ojos de blanco grande y pupila «daban repelús» en estilos nuevos: se mantiene el estilo original del canal.

@@ -222,3 +222,18 @@ function particles(t,kind,o={}){
 function sweat(x,y,s,t){let g='';for(const [dx,dy,ph] of [[96,-720,0],[-104,-690,.5]]){const p=(t*.9+ph)%1, yy=dy+p*50;
   g+=`<path d="M${dx},${yy-38} Q${dx+20},${yy} ${dx},${yy+16} Q${dx-20},${yy} ${dx},${yy-38}Z" fill="#bfe6ff" stroke="#1d1b2a" stroke-width="4" opacity="${(1-p*.6).toFixed(2)}"/>`;}
   return `<g transform="translate(${x},${y}) scale(${s})">${g}</g>`}
+
+// ---- crowd: a group with coherent sizes. Everyone in a row shares the same scale and the same floor line;
+// kids (cast kid:true or o.kid) use the child body at the SAME scale (same head, shorter body), never a smaller scale.
+// list: [{c:'C12'|{...look}, x?, mouth, eyes, look, phoneR, ...}], o: {y (front floor, 1010), s (.58), x0, x1, rows (1|2), gap}
+function crowd(list,o={}){
+  const rows=o.rows||(list.length>6?2:1), s=o.s??.58, y=o.y??1010, x0=o.x0??120, x1=o.x1??960;
+  const order=list.map((p,i)=>({...p,row:p.row??(rows===2?(i%2):0)}));
+  let out='';
+  for(const row of rows===2?[1,0]:[0]){
+    const ps=order.filter(p=>p.row===row), n=ps.length, rs=row===1?s*.86:s, ry=row===1?y-70:y;
+    ps.forEach((p,i)=>{const base=typeof p.c==='string'?{...CAST_BY_ID[p.c].o}:(p.c||{}), isKid=p.kid??(typeof p.c==='string'&&CAST_BY_ID[p.c].kid);
+      const x=p.x??(n===1?(x0+x1)/2:lerp(x0,x1,i/(n-1))+(row===1?(x1-x0)/(2*Math.max(1,n-1)):0));
+      const fn=isKid?kid:A, q={...base,...p};delete q.c;delete q.row;delete q.kid;
+      out+=fn({look:[0,0],...q,x,y:ry,s:isKid?rs*.92:rs});});}
+  return out}

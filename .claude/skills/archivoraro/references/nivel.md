@@ -15,6 +15,7 @@ Repásala al escribir el guion (bloques 1, 3 y 4) y al montar (bloques 2, 5 y 6)
   - cambio de enfoque entre dos personajes: dos `focusCam` seguidos, cambiando qué va en `fg`;
   - plano y contraplano en conversaciones tensas.
 - **Expresiones exageradas** en los momentos fuertes: `eyes:'wide'`, `mouth:'o'`/`'grin'`, `brows:'up'`/`'worried'`, gotas de sudor (`sweat()`), temblor (`shake`). Lo que no se lee en el móvil no existe.
+- **Grupos con `crowd()`**: misma escala y mismo suelo; caras naturales (`laugh` + ojos `happy` para reír).
 - **Personajes grandes en el plano** (escala .6–.9) y **decorados con perspectiva y luz propia** (rayo de sol, velas, atardecer, fondo que se pierde a lo lejos).
 - **Partículas y ambiente** en casi todas las escenas: `particles(t,'dust'|'rain'|'sparks'|'snow'|'embers',o)`. Dan vida sin distraer.
 

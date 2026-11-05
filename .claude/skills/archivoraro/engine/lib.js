@@ -19,6 +19,7 @@ const MONO='JetBrains Mono';
 // ---------- character ----------
 function eyesSvg(type,look){
   if(type==='closed') return [-36,36].map(ex=>`<path d="M${ex-20},6 Q${ex},20 ${ex+20},6" stroke="${INK}" stroke-width="7" fill="none" stroke-linecap="round"/>`).join('');
+  if(type==='happy') return [-36,36].map(ex=>`<path d="M${ex-19},12 Q${ex},-8 ${ex+19},12" stroke="${INK}" stroke-width="7" fill="none" stroke-linecap="round"/>`).join('');
   let s='';
   if(type==='zombie'){
     s+=`<ellipse cx="-36" cy="26" rx="24" ry="9" fill="#4b3a5a" opacity=".3"/><ellipse cx="36" cy="26" rx="24" ry="9" fill="#4b3a5a" opacity=".3"/>`;
@@ -196,7 +197,7 @@ function person(o){
   if(d.eyepatch) h+=`<path d="M-100,-40 L100,-10" stroke="#15161f" stroke-width="7"/><ellipse cx="-38" cy="-2" rx="32" ry="28" fill="#15161f"/>`;
   if(d.earrings) h+=`<circle cx="-92" cy="34" r="7" fill="${d.earrings}"/><circle cx="92" cy="34" r="7" fill="${d.earrings}"/>`;
   if(d.mustache) h+=`<path d="M-34,44 Q-16,32 0,42 Q16,32 34,44 Q18,54 0,48 Q-18,54 -34,44Z" fill="${d.mustache}"/>`;
-  if(d.lashes&&d.eyes!=='closed') h+=`<path d="M-58,-10 L-70,-20 M-50,-17 L-58,-29 M58,-10 L70,-20 M50,-17 L58,-29" stroke="${INK}" stroke-width="5" stroke-linecap="round"/>`;
+  if(d.lashes&&d.eyes!=='closed'&&d.eyes!=='happy') h+=`<path d="M-58,-10 L-70,-20 M-50,-17 L-58,-29 M58,-10 L70,-20 M50,-17 L58,-29" stroke="${INK}" stroke-width="5" stroke-linecap="round"/>`;
   if(d.glasses==='sun') h+=`<g opacity="${d.glassesOp??1}" transform="translate(0,${d.glassesY??0})"><rect x="-70" y="-22" width="64" height="50" rx="16" fill="#15161f"/><rect x="6" y="-22" width="64" height="50" rx="16" fill="#15161f"/><path d="M-8,-8 Q0,-14 8,-8" stroke="#15161f" stroke-width="7" fill="none"/><path d="M-70,-12 L-92,-6 M70,-12 L92,-6" stroke="#15161f" stroke-width="7"/><path d="M-58,-12 L-40,-12 M18,-12 L36,-12" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".35"/></g>`;
   if(d.glasses==='round') h+=`<circle cx="-38" cy="2" r="30" fill="#cfe6f0" fill-opacity=".18" stroke="#2a2233" stroke-width="6"/><circle cx="38" cy="2" r="30" fill="#cfe6f0" fill-opacity=".18" stroke="#2a2233" stroke-width="6"/><path d="M-8,0 Q0,-6 8,0 M-68,0 L-90,-6 M68,0 L90,-6" stroke="#2a2233" stroke-width="6" fill="none"/>`;
   if(d.glasses==='square') h+=`<rect x="-72" y="-22" width="64" height="48" rx="8" fill="#cfe6f0" fill-opacity=".18" stroke="#2a2233" stroke-width="6"/><rect x="8" y="-22" width="64" height="48" rx="8" fill="#cfe6f0" fill-opacity=".18" stroke="#2a2233" stroke-width="6"/><path d="M-8,-4 Q0,-10 8,-4 M-72,-6 L-90,-10 M72,-6 L90,-10" stroke="#2a2233" stroke-width="6" fill="none"/>`;
@@ -208,7 +209,9 @@ function person(o){
     o:`<ellipse cx="0" cy="60" rx="10" ry="13" fill="#6b2f35"/>`,
     smile:`<path d="M-16,52 Q0,66 16,52" stroke="#6b2f35" stroke-width="6" fill="none" stroke-linecap="round"/>`,
     jag:`<path d="M-22,48 L22,48 L17,70 L-17,70Z" fill="#3a1d22"/><path d="M-15,48 L-11,57 L-7,48Z M5,48 L9,57 L13,48Z" fill="#fff"/>`,
-    grin:`<path d="M-46,40 Q0,92 46,40 Q0,58 -46,40Z" fill="#5a2430"/><path d="M-38,46 Q0,60 38,46" stroke="#fff" stroke-width="7" fill="none"/>`,
+    grin:`<path d="M-27,47 Q0,44 27,47 Q25,82 0,84 Q-25,82 -27,47Z" fill="#5a2430"/><path d="M-23,49 Q0,46 23,49 L21,57 Q0,59 -21,57Z" fill="#fff"/><path d="M-13,78 Q0,67 13,78 Q0,85 -13,78Z" fill="#e0607a"/>`,
+    laugh:`<path d="M-27,47 Q0,44 27,47 Q25,82 0,84 Q-25,82 -27,47Z" fill="#5a2430"/><path d="M-23,49 Q0,46 23,49 L21,57 Q0,59 -21,57Z" fill="#fff"/><path d="M-13,78 Q0,67 13,78 Q0,85 -13,78Z" fill="#e0607a"/>`,
+    happy:`<path d="M-20,50 Q0,72 20,50 Q0,58 -20,50Z" fill="#5a2430"/><path d="M-14,53 Q0,57 14,53" stroke="#fff" stroke-width="4" fill="none"/>`,
     none:''};
   h+=d.mopen!=null?`<ellipse cx="0" cy="${58+d.mopen*6}" rx="${(10+d.mopen*6).toFixed(1)}" ry="${(2.5+d.mopen*15).toFixed(1)}" fill="#5a2430"/>`:(M[d.mouth]||'');
   if(d.lip&&d.mopen==null&&(d.mouth==='smile'||d.mouth==='line')) h+=d.mouth==='smile'?`<path d="M-16,52 Q0,66 16,52" stroke="${d.lip}" stroke-width="8" fill="none" stroke-linecap="round"/>`:`<path d="M-13,58 L13,58" stroke="${d.lip}" stroke-width="9" stroke-linecap="round"/>`;
