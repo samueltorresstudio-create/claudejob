@@ -8,6 +8,53 @@ import soundfile as sf
 
 PROJ, AUDIO = sys.argv[1], sys.argv[2]
 SR = 44100
+
+import re as _re
+def word_times(cap, chunks):
+    """Start time of every caption word (s from the beat start): pauses in the voice are anchored to the
+    punctuation they belong to, and words are spread over the voiced time between anchors."""
+    ws = [w.split('|')[0] for w in cap.split(' ')]
+    # numbers are read out in words (12:33 = «doce y treinta y tres»), so each digit weighs like ~4 letters
+    wt = [len(_re.sub(r'[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ]', '', w)) + 4 * len(_re.sub(r'[^0-9]', '', w)) + 1.5 for w in ws]
+    cum = [0.0]
+    for x in wt: cum.append(cum[-1] + x)
+    tot = cum[-1]
+    lens = [c[1] - c[0] for c in chunks]
+    V = sum(lens)
+    vb = [sum(lens[:j + 1]) for j in range(len(chunks) - 1)]          # voiced time at each pause
+    brk = [i for i in range(1, len(ws)) if _re.search(r'[,.…:;?!»]$', ws[i - 1]) or ws[i].startswith('«')]
+    # DP: each pause either takes a later punctuation break or stays unmatched
+    PEN = 0.36
+    best = {(-1, -1): (0.0, None)}
+    for j in range(len(vb)):
+        nb = {}
+        for (pj, pb), (c, path) in best.items():
+            # unmatched
+            k = (j, pb); v = (c + PEN, (path, None))
+            if k not in nb or v[0] < nb[k][0]: nb[k] = v
+            for bi, b in enumerate(brk):
+                if bi <= pb: continue
+                d = V * cum[b] / tot - vb[j]
+                k = (j, bi); v = (c + d * d, (path, (b, vb[j])))
+                if k not in nb or v[0] < nb[k][0]: nb[k] = v
+        best = nb
+    _, path = min(best.values(), key=lambda x: x[0])
+    anchors = []
+    while path:
+        path, a = path
+        if a: anchors.append(a)
+    anchors = [(0, 0.0)] + anchors[::-1] + [(len(ws), V * .985)]
+    def real(v):
+        for c0, c1 in chunks:
+            if v < c1 - c0 - 1e-6: return c0 + v   # a pause boundary maps to the start of the next stretch
+            v -= c1 - c0
+        return chunks[-1][1]
+    out = []
+    for (i0, v0), (i1, v1) in zip(anchors, anchors[1:]):
+        span = cum[i1] - cum[i0] or 1
+        for i in range(i0, i1):
+            out.append(round(real(v0 + (v1 - v0) * (cum[i] - cum[i0]) / span), 3))
+    return out
 TAIL_BLACK = 0.35
 LEAD0 = 0.3
 
@@ -79,6 +126,13 @@ ends = [arg]
 for k in range(n_lines - 2, 0, -1):
     ends.append(back[k][ends[-1]])
 ends = ends[::-1]
+# the pause search can slip by one stretch when a line has many internal pauses: line starts can be fixed by hand,
+# in seconds of the source, for lines 2..N (LINE_STARTS="7.81,15.74,...")
+if os.environ.get('LINE_STARTS'):
+    ts = [float(x) for x in os.environ['LINE_STARTS'].split(',')]
+    if len(ts) != n_lines - 1:
+        sys.exit(f'LINE_STARTS needs {n_lines - 1} times, got {len(ts)}')
+    ends = [min(range(G), key=lambda g: abs(gaps[g][1] * hop / SR - x)) for x in ts]
 starts = [v0] + [gaps[g][1] for g in ends]
 stops = [gaps[g][0] for g in ends] + [v1]
 
@@ -90,7 +144,11 @@ for k in range(n_lines):
     lead = LEAD0 if k == 0 else 0.08
     st = s - lead
     nxt = starts[k + 1] * hop / SR + offset - 0.08 if k < n_lines - 1 else e + script[-1].get('pause', 0.7)
-    beats.append({'start': round(max(0, st), 4), 'd': round(nxt - max(0, st), 4), 'lead': lead, 'vdur': round(e - s, 4)})
+    # voiced stretches inside the line (seconds from the beat start), so word timing can skip the pauses
+    inner = [gp for gp in gaps if starts[k] < gp[0] and gp[1] < stops[k]]
+    pts = [starts[k]] + [x for gp in inner for x in gp] + [stops[k] + 5]
+    ch = [[round(pts[i] * hop / SR + offset - max(0, st), 3), round(pts[i + 1] * hop / SR + offset - max(0, st), 3)] for i in range(0, len(pts), 2)]
+    beats.append({'start': round(max(0, st), 4), 'd': round(nxt - max(0, st), 4), 'lead': lead, 'vdur': round(e - s, 4), 'chunks': ch, 'words': word_times(script[k]['cap'], ch)})
 total_t = beats[-1]['start'] + beats[-1]['d'] + TAIL_BLACK
 
 nar = np.zeros(int(total_t * SR) + SR)

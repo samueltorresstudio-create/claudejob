@@ -4,9 +4,14 @@ const eIn=t=>t*t*t;
 const CFG=window.CFG||{};
 // ---------- timeline from the narration ----------
 function wordTimes(b){
+  if(b.words&&b.words.length) return b.words.slice();
   const ws=b.cap.split(' ').map(w=>w.split('|')[0]);
   const wt=ws.map(w=>w.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9]/g,'').length+1.5);
   const tot=wt.reduce((a,c)=>a+c,0);let acc=0;
+  if(b.chunks&&b.chunks.length){ // spread the words over the voiced time only, skipping the pauses
+    const V=b.chunks.reduce((a,c)=>a+(c[1]-c[0]),0);
+    const at=v=>{for(const [c0,c1] of b.chunks){if(v<=c1-c0) return c0+v;v-=c1-c0;}return b.chunks[b.chunks.length-1][1];};
+    return ws.map((w,i)=>{const s=at(V*.97*acc/tot);acc+=wt[i];return s});}
   return ws.map((w,i)=>{const s=b.lead+b.vdur*.97*acc/tot;acc+=wt[i];return s});
 }
 const P=(t,a,d=.3)=>eOut(prog(t,a,a+d));

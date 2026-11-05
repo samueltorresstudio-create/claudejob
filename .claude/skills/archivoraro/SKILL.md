@@ -69,9 +69,12 @@ cd "$WS/45_nombre_corto"
 cat props.js props2.js cast.js scenes_p.js > scenes.js
 python3 -I ../tools/sync_voice.py . /ruta/al/audio.mp3      # debe decir "N lines matched"
 python3 -I ../tools/check_lines.py .
+python3 -I ../tools/check_sync.py .                        # 0 líneas dudosas; si sale «REVISAR», ver abajo
 python3 -I ../tools/whisper_boost.py . 1.3                  # si hay líneas whisper:true
 python3 -I ../tools/extend_total.py . 62                    # solo si hace falta llegar a una duración (YouTube > 60 s)
 ```
+
+**Sincronización (obligatorio comprobarla).** Si `check_sync.py` marca una línea, la búsqueda de pausas se ha comido un trozo de la frase vecina y desde ahí los subtítulos van adelantados (le pasó a «Apagón 1»: hasta 3 s). Lista los tramos de voz, decide a mano dónde empieza cada frase y vuelve a sincronizar con `LINE_STARTS="7.81,15.74,…"` (segundos del MP3 original, de la 2.ª frase a la última). `sync_voice.py` guarda además los tramos de voz de cada frase y la hora de cada palabra anclada a sus pausas, así que el resaltado palabra a palabra sigue a la voz (error < 0,1 s).
 
 ### 3. Revisión visual (obligatoria)
 
