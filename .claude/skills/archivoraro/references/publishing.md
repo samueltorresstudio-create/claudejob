@@ -14,7 +14,7 @@ Guárdalos en `<WS>/entregas/titulos_y_descripciones.txt` y dalos también en el
 
 - **Título de YouTube**: gancho + emoji + «(Parte N)» en series. **Nunca hashtags en el título.**
 - **Descripción de YouTube**: 2–3 frases que vendan el giro sin destriparlo, luego hashtags (`#shorts` + temáticos).
-- **TikTok**: la primera línea es el gancho (lo único que se ve en pantalla). Si pide la descripción larga: gancho, 2 párrafos de historia, las reglas con 1️⃣ 2️⃣ 3️⃣, «🐾 PARTE N de M…», «👉 Sígueme…», «💬 pregunta», y 10–13 hashtags. Si pide una sencilla: pocos emojis.
+- **TikTok**: **corta, una línea y poco** (el usuario lo pide así): el gancho en una frase + 1 emoji como mucho, y debajo 5–8 hashtags. Nada de párrafos ni listas de reglas.
 
 ## Comentario fijado y constancia
 

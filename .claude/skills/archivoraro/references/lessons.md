@@ -41,6 +41,8 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
 
 ## Proceso
 
+- Descripciones de TikTok cortas: «vuelve a hacerlos cortos, de una línea y poco».
+
 - «El audio está descoordinado con los subtítulos»: la sincronización por pausas se desfasó una frase en el gancho de «Apagón 1». Ejecuta siempre `check_sync.py` después de `sync_voice.py` y, si marca algo, fija los inicios con `LINE_STARTS`.
 
 - Si el usuario te pasa el audio, haz el vídeo con ese audio; si pide primero el guion, revísalo por lógica antes, para que no gaste créditos de ElevenLabs en frases que habrá que regrabar.
