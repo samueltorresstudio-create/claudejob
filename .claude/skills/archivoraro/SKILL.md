@@ -110,6 +110,6 @@ Espera en segundo plano con `until grep -q "^DONE" finish.log …` (el render de
 - Hashtags solo en la descripción, nunca en el título; en TikTok la primera línea es el gancho.
 - YouTube: vídeos sueltos de más de 60 s (60–70 s). TikTok: series, con la duración que pida.
 - Portada con el protagonista visible y sin rótulos encima.
-- Personajes distinguibles por silueta, no solo por color (reparto en `cast.js`, códigos C01–C27), y por **edad**: pon `age` a cada personaje (un chaval de 14 no puede parecer uno de 22).
+- Personajes distinguibles por silueta, no solo por color (reparto en `cast.js`, códigos C01–C27).
 - Con cada descripción, da también un comentario para fijar con una pregunta.
 - Si algo ya está publicado y tiene un fallo, no propongas resubirlo: corrígelo en la parte siguiente o con un comentario fijado.

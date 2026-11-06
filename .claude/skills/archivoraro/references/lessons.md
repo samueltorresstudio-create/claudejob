@@ -4,8 +4,6 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
 
 ## Personajes
 
-- «Quiero que se diferencie un personaje de 14 años de uno de 22»: pon `age` a todos los personajes; el motor cambia cuerpo, cabeza, ojos y mejillas, y refuérzalo con la ropa.
-
 - Un personaje nuevo hecho con el cuerpo de otro y otros colores **parece el mismo**: «Lucía era el ladrón pero más bajito». Niños con cuerpo de niño (`kid`/`person`, o `A` a escala .5 con coletas), mujeres con `fem`, peinado distinto, ropa distinta. La madre llevaba moño: respétalo en todas las escenas.
 - Si el guion dice cómo es alguien (moño, chaqueta roja, coletas), dibújalo así siempre, en todas las partes.
 - Usa el reparto (`cast.js`) y combina rasgos del catálogo en lugar de recolorear al protagonista.
