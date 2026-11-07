@@ -17,6 +17,7 @@ El motor ya está hecho: personajes con decenas de rasgos, decorados, cámara, s
 | elige una idea o pide el guion | Guion para ElevenLabs (ver `references/ideas.md` y `references/nivel.md`) + resumen de 5 líneas. Revisa la lógica antes de darlo. Espera el audio. |
 | pasa un MP3 | Monta el vídeo completo (sección «Montar un vídeo») y entrégalo. |
 | pide portada / descripción / título | `references/publishing.md`. |
+| pide un **suceso real de una sola parte** (rescates, supervivencia real, «al estilo de los mineros / Sabelotodo») | Usa el **estilo SUCESOS** (`references/sucesos.md`): siluetas sin rostro, fondos pintados con textura, objetos en primer plano, comparaciones de escala, subtítulos arriba. **No** los personajes redondos con cara del canal. |
 | señala un fallo de un vídeo | Arréglalo, re-renderiza solo el tramo afectado y vuelve a entregar. |
 
 No puedes generar la voz: si quiere el vídeo, necesitas su MP3. Al darle el guion, recuérdale la voz: Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural».
@@ -28,6 +29,7 @@ No puedes generar la voz: si quiere el vídeo, necesitas su MP3. Al darle el gui
 - `references/sound.md` — `audio.py`: API del mezclador, estructura de la banda sonora y recetas de efectos.
 - `references/nivel.md` — **lista para subir el nivel**: retención (primer fotograma con acción, nada quieto más de 3 s), enfoques, acting, partículas, historia sin desviarse, voz, sonido y publicación. Repásala con cada guion y cada montaje.
 - `references/lessons.md` — **lista de errores que el usuario ya detectó**. Repásala siempre antes de entregar.
+- `references/sucesos.md` — **estilo SUCESOS** para historias reales de una parte: motor en canvas (`engine_sucesos/`), personajes sin rostro, texturas pintadas, física en las caídas. Úsalo siempre para ese tipo de vídeo.
 - `references/publishing.md` — portada, títulos y descripciones, nombres de archivo.
 - `example/tsunami6/` (82 s, serie) y `example/camara/` (66 s, YouTube) — `script.json`, `scenes_p.js` y `audio.py` de dos vídeos aprobados.
 
