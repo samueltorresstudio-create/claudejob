@@ -30,6 +30,10 @@ const GRAIN=(()=>{const c=document.createElement('canvas');c.width=c.height=256;
 
 // ---------- captions (top) ----------
 const ACC={y:'#ffd34a',p:'#ff5a7a',b:'#6cc6ff',g:'#5ae08a'};
+// archive-film look: dust specks, a scratch now and then, slight gate weave
+function filmFX(T){const f=Math.floor(T*30),r=rng(f*7+3);X.save();X.globalAlpha=.5;X.fillStyle='#000';for(let i=0;i<5;i++){X.beginPath();X.arc(r()*W,r()*H,1+r()*2.5,0,7);X.fill();}
+  X.fillStyle='rgba(255,255,255,.5)';for(let i=0;i<3;i++){X.fillRect(r()*W,r()*H,2,2);}
+  if(hsh(Math.floor(T*2),5)<.35){const sx=hsh(Math.floor(T*2),6)*W;X.globalAlpha=.18;X.fillStyle='#fff';X.fillRect(sx+Math.sin(T*40)*2,0,1.5,H);}X.restore();}
 function chunks(words){const out=[];let cur=[],len=0;
   words.forEach((w,i)=>{cur.push(i);len+=w.tx.length+1;const end=/[.,…?!:»]$/.test(w.tx);
     if(len>20||(end&&cur.length>=2)||(end&&len>12)){out.push(cur);cur=[];len=0;}});
@@ -46,11 +50,12 @@ function captions(b,bt){
   const y0=220-(lines.length-1)*40;
   lines.forEach((ln,li)=>{const tw=ln.reduce((a,i)=>a+X.measureText(words[i].tx).width,0)+sp*(ln.length-1);let x=540-tw/2;const y=y0+li*84;
     ln.forEach(i=>{const w=words[i], ww=X.measureText(w.tx).width, on=bt>=b.wt[i]-.02, k=prog(bt,b.wt[i]-.02,b.wt[i]+.12);
-      if(w.c&&on){ // selection box with handles
-        const a=eOut(k);X.strokeStyle='#4a9cff';X.lineWidth=4;X.globalAlpha=a;X.strokeRect(x-10,y-FS*.86,ww+20,FS*1.12);
-        X.fillStyle='#4a9cff';X.beginPath();X.arc(x-10,y-FS*.86,7,0,7);X.fill();X.beginPath();X.arc(x+ww+10,y+FS*.26,7,0,7);X.fill();X.globalAlpha=1;}
+      const mark=w.c&&on, mk=eOut(k);
+      if(mark){ // yellow marker stroke behind the key word (Archivo Raro seal)
+        const col=ACC[w.c]||ACC.y;X.save();X.translate(x-12,y-FS*.62);X.rotate(-1.5*D2R);X.fillStyle=col;X.globalAlpha=.95;
+        X.beginPath();X.moveTo(0,6);X.lineTo((ww+24)*mk,0);X.lineTo((ww+24)*mk+6,FS*.82);X.lineTo(-4,FS*.88);X.closePath();X.fill();X.restore();}
       X.shadowColor='rgba(0,0,0,.55)';X.shadowBlur=14;X.shadowOffsetY=3;
-      X.fillStyle=on?'#ffffff':'rgba(255,255,255,.42)';X.fillText(w.tx,x,y);
+      if(mark){X.shadowColor='transparent';X.fillStyle='#11131f';}else X.fillStyle=on?'#ffffff':'rgba(255,255,255,.42)';X.fillText(w.tx,x,y);
       X.shadowColor='transparent';x+=ww+sp;});});
   X.restore();
 }
@@ -62,7 +67,7 @@ function frame(T){
   let bi=0;for(let i=0;i<BEATS.length;i++) if(T>=BEATS[i].start) bi=i;
   const b=BEATS[bi], t=T-b.sStart;
   X.fillStyle='#000';X.fillRect(0,0,W,H);
-  X.save();S[b.sc](X,t,b.sDur,b.B,T);X.restore();
+  GW=[noise1(T*3,9)*1.4,noise1(T*3,10)*1.4];X.save();S[b.sc](X,t,b.sDur,b.B,T);X.restore();GW=[0,0];
   X.setTransform(1,0,0,1,0,0);X.globalAlpha=1;X.globalCompositeOperation='source-over';X.filter='none';X.shadowColor='transparent';
   // top shade for the captions + vignette + grain
   let g=X.createLinearGradient(0,0,0,420);g.addColorStop(0,'rgba(0,0,0,.55)');g.addColorStop(1,'rgba(0,0,0,0)');X.fillStyle=g;X.fillRect(0,0,W,420);
@@ -70,6 +75,7 @@ function frame(T){
   const r=rng(Math.floor(T*30)+1),ox=Math.floor(r()*256),oy=Math.floor(r()*256);X.globalAlpha=1;for(let y=-oy;y<H;y+=256) for(let x=-ox;x<W;x+=256) X.drawImage(GRAIN,x,y);
   // little flash on scene cuts
   if(t<.07&&bi>0){X.fillStyle=`rgba(255,255,255,${(.12*(1-t/.07)).toFixed(3)})`;X.fillRect(0,0,W,H);}
+  filmFX(T);
   captions(b,T-b.start);
 }
 window.render=async T=>{await READY;frame(T);};

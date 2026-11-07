@@ -110,14 +110,17 @@ S.mountain=(X_,t,D,B)=>{const E=EVS.mountain(B);
   // clouds drifting over the lower slopes
   X.save();for(let i=0;i<7;i++){const x=((i*260+t*30)%1800)-400,y=1250+(i%3)*90;X.globalAlpha=.55;const g=X.createRadialGradient(x,y,10,x,y,260);g.addColorStop(0,'rgba(255,230,230,.9)');g.addColorStop(1,'rgba(255,230,230,0)');X.fillStyle=g;X.fillRect(x-260,y-120,520,240);}X.restore();
   snow(t,{n:40,sp:60,a:.5,r:2});
-  // the Eiffel ladder
-  if(t>E.mount){const kk=prog(t,E.mount,E.six+.3);X.save();X.strokeStyle='#ffd36a';X.shadowColor='#ffb84a';X.shadowBlur=12;X.lineWidth=2.4;
-    for(let i=0;i<19;i++){if(kk*19<i) break;const y=1560-i*50,x=930,h=48,w=26;X.globalAlpha=clamp(kk*19-i);
-      X.beginPath();X.moveTo(x-w/2,y);X.quadraticCurveTo(x-w*.12,y-h*.4,x,y-h);X.quadraticCurveTo(x+w*.12,y-h*.4,x+w/2,y);X.moveTo(x-w*.32,y-h*.3);X.lineTo(x+w*.32,y-h*.3);X.stroke();}X.restore();}
+  // scale: Siula Grande ≈ almost two Teides (3.715 m) stacked
+  if(t>E.mount){const kk=prog(t,E.mount,E.six+.3), base=1560, th=(base-600)*3715/6344, tx=890;
+    X.save();X.strokeStyle='#ffd36a';X.shadowColor='#ffb84a';X.shadowBlur=14;X.lineWidth=4;X.lineJoin='round';
+    for(let i=0;i<2;i++){const a=clamp(kk*2-i);if(a<=0) continue;const y0=base-i*th, h=th*eOut(a);X.globalAlpha=.9;
+      X.beginPath();X.moveTo(tx-120,y0);X.quadraticCurveTo(tx-56,y0-h*.45,tx-22,y0-h);X.lineTo(tx-8,y0-h*.97);X.lineTo(tx+8,y0-h*.97);X.lineTo(tx+22,y0-h);X.quadraticCurveTo(tx+56,y0-h*.45,tx+120,y0);X.stroke();
+      X.setLineDash([8,10]);X.beginPath();X.moveTo(tx-140,y0-h);X.lineTo(tx-30,y0-h);X.stroke();X.setLineDash([]);}
+    X.restore();}
   if(kin>.6){const [jx,jy]=w2s(sj.x,sj.y-20,z,cx,cy),[sx,sy]=w2s(ss.x,ss.y-20,z,cx,cy);label(sx-80,sy-190,'Simon',P(t,E.simon,.25),{col:'#8cc0ff'});label(jx+90,jy-150,'Joe',P(t,E.joe,.25),{col:'#ff9a7a'});}
   if(t<E.joe-.3) pill(540,1560,'Perú','1985',P(t,.1,.4),{fs:84});
-  if(t>E.six) pill(390,1500,'6.344','metros',P(t,E.six,.35));
-  if(t>E.six+.4) label(800,560,'≈ 19 Torres Eiffel',P(t,E.six+.4,.3),{col:'#ffd36a'});
+  if(t>E.six) pill(400,1500,'6.344','metros',P(t,E.six,.35));
+  if(t>E.six+.4) label(800,1720,'Casi 2 Teides',P(t,E.six+.4,.3),{col:'#ffd36a'});
 };
 
 function slopeY(x){return 760+(x+100)*.6;}

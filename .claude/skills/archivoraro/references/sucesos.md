@@ -2,15 +2,16 @@
 
 **Cuándo:** siempre que el usuario pida un vídeo de **un suceso real impresionante en una sola parte** (rescates, supervivencia real, accidentes, hazañas: los 33 mineros, la cueva de Tailandia, Joe Simpson…), o diga «al estilo del vídeo de los mineros / Sabelotodo». **No uses aquí los personajes redondos con cara ni el HUD del canal**: el usuario lo pidió expresamente.
 
-Referencia que mandó el usuario: cuenta «Sabelotodo», los 33 mineros de Chile (426 mil «me gusta»). Se usa **de base**, no se calca.
+Referencia que mandó el usuario: cuenta «Sabelotodo», los 33 mineros de Chile (426 mil «me gusta»). **Solo de base para el estilo y el formato; nunca copiar sus diseños** (el usuario lo repitió tres veces). Nada de su recuadro azul de selección en los subtítulos, su tele de «probabilidades», sus Torres Eiffel ni sus texturas tal cual: todo con el **sello de Archivo Raro**.
 
 ## Qué lo define
 - **Personajes sin rostro**: siluetas articuladas (`figure()` en `sx_kit.js`) con chaqueta de plumas, cabeza lisa, gorro o pelo como única seña, manoplas, luz de contorno (`rim`). Se distinguen por el color de la chaqueta y el gorro. Nunca ojos ni boca.
 - **Fondos pintados**: texturas de «mármol agrietado» (celdas de Worley + bandas onduladas, `tex_gen.py`) que se mueven en ondas lentas (`tex()`), luz y niebla encima, viñeta y grano.
 - **Objetos en primer plano que cuentan la historia**: la cuerda que roza el borde, la navaja que brilla, el reloj digital, la radiografía. Los objetos importan más que las caras.
-- **Comparaciones de escala**: «6.344 m ≈ 19 Torres Eiffel» apiladas, «700 m = 2 Torres Eiffel».
-- **Cajas de datos** (`pill()`): número grande amarillo + unidad pequeña. **Monitor** (`monitor()`) con barra que baja de amarillo a rojo («La nieve aguanta», «Probabilidades de hallarlos con vida»).
-- **Subtítulos arriba**, en minúsculas normales (no mayúsculas), 2 líneas como mucho: lo dicho en blanco, lo que viene en gris; la palabra clave marcada con `|y`/`|p`/`|b`/`|g` sale en un **recuadro azul de selección con dos tiradores**. Una o dos palabras marcadas por frase.
+- **Comparaciones de escala propias y cercanas al público español**: «6.344 m = casi 2 Teides» (siluetas del Teide apiladas), campos de fútbol, la Torre Picasso, la Giralda… Nunca la Torre Eiffel de la referencia.
+- **Sello Archivo Raro en los datos**: `pill()` = caja cuadrada oscura con bloque de color a la izquierda y esquinas (el diseño de etiqueta del canal), número grande + unidad. `label()` = etiqueta pequeña en mono mayúsculas. `monitor()` = **ficha de expediente** «ARCHIVO RARO · CASO 0NN» con punto rojo REC, imagen dentro y medidor por segmentos que baja de amarillo a rojo.
+- **Subtítulos arriba**, en minúsculas normales (no mayúsculas), 2 líneas como mucho: lo dicho en blanco, lo que viene en gris; la palabra clave marcada con `|y`/`|p`/`|b`/`|g` lleva **un trazo de rotulador de ese color detrás y el texto en oscuro** (sello del canal). Una o dos palabras marcadas por frase.
+- **Aspecto de película de archivo**: motas, alguna raya vertical, ligero temblor del fotograma (`filmFX`, `GW`), grano. Texturas con trazos de pincel horizontales encima de las celdas.
 - **Cámara viva**: planos verticales que bajan por la cuerda o la grieta, acercamientos lentos, temblor en golpes, destello en el corte.
 - **Animación con física**: caídas con rotación, extremidades que se agitan (`POSE.tumble`), estelas de movimiento (copias con alfa), impacto con polvo (`burst`, `puffAt`) y temblor. Nada de muñecos rígidos.
 - **Partículas en casi todos los planos**: nieve, ráfagas (`streaks`), chispas, brasas, polvo en rayos de luz (`rays`, `beam`).
