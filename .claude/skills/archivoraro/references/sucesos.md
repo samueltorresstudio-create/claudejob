@@ -22,7 +22,7 @@ Referencia que mandó el usuario: cuenta «Sabelotodo», los 33 mineros de Chile
 - `script.json` igual que siempre (`sc`, `say`, `cap`, `pause`, `cut`), pero `cap` en minúsculas normales y sin `hud`.
 - `scenes.js`: `EVS` + `S.escena=(X,t,D,B)=>{…}` dibujando en canvas a pantalla completa (1080×1920, coordenadas de pantalla con `cam(z,cx,cy,shake)`), y al final `window.CFG={tex:['storm','ice','snow','rock','strata','moraine','dawn','night']}`.
 - Sin MP3 todavía: `python3 <skill>/scripts/fake_voice.py <proyecto>` calcula los tiempos con un modelo ajustado a las voces anteriores del usuario. Cuando llegue el MP3, `sync_voice.py` y volver a renderizar: las escenas se adaptan solas porque todo cuelga de `EVS`.
-- Render, sonido y entrega: igual que el estilo normal (`render.js`, `audio.py` con `audio_core`, `finish.py`).
+- Render, sonido y entrega: igual que el estilo normal (`render.js`, `audio.py` con `audio_core`, `finish.py`), pero **lanza `finish.py` con `GRAIN=1`** (el grano y las motas animadas hacen que a crf 18 pese ~800 MB y llene el disco; con `GRAIN=1` queda en ~55 MB). Unos 6 GB de fotogramas por vídeo: borra los `frames/` de proyectos viejos ya entregados antes de renderizar.
 - Ejemplo completo: `example/la_cuerda_sucesos/` (Joe Simpson, Siula Grande 1985).
 
 ## Piezas de `sx_kit.js`

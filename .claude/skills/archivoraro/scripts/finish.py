@@ -6,8 +6,10 @@ proj, name, header = sys.argv[1], sys.argv[2], sys.argv[3]
 S = os.path.dirname(os.path.abspath(proj.rstrip('/')))
 out = os.path.join(proj, 'video.mp4')
 ev = json.load(open(os.path.join(proj, 'events.json')))
+# SUCESOS style (animated grain/film specks): GRAIN=1 denoises a little and caps the bitrate, or the file is ~800 MB
+venc = ['-vf', 'hqdn3d=3:2:8:6', '-c:v', 'libx264', '-preset', 'slow', '-crf', '23', '-maxrate', '6M', '-bufsize', '12M'] if os.environ.get('GRAIN') else ['-c:v', 'libx264', '-preset', 'slow', '-crf', '18']
 subprocess.run(['ffmpeg', '-v', 'error', '-y', '-framerate', '30', '-i', os.path.join(proj, 'frames/f%05d.png'), '-i', os.path.join(proj, 'audio.wav'),
-                '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-movflags', '+faststart',
+                *venc, '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-movflags', '+faststart',
                 '-af', 'loudnorm=I=-14:TP=-1.5:LRA=11', '-c:a', 'aac', '-b:a', '192k', '-ar', '44100', '-shortest', out], check=True)
 dur = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', out], capture_output=True, text=True).stdout)
 
