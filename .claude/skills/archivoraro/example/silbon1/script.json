@@ -1,0 +1,23 @@
+[
+ {"sc":"door0","hud":"03:00 · LA PUERTA","alert":true,"say":"Si a las tres de la mañana alguien cuenta huesos en la puerta de tu casa... escucha bien.","cap":"SI A LAS 3 DE LA MAÑANA|y ALGUIEN CUENTA HUESOS|p EN LA PUERTA DE TU CASA... ESCUCHA BIEN.|y","pause":0.25},
+ {"sc":"door0","hud":"03:00 · LA PUERTA","alert":true,"say":"Porque si no lo oyes... alguien de tu familia no verá el amanecer.","cap":"PORQUE SI NO LO OYES... ALGUIEN DE TU FAMILIA|p NO VERÁ EL AMANECER.|y","pause":0.3},
+ {"sc":"road","hud":"LOS LLANOS · 01:14","say":"Los Llanos de Venezuela. Mateo, diecisiete años, vuelve de una fiesta por un camino de tierra. Solo. Con Canelo, el perro de su abuela.","cap":"LOS LLANOS DE VENEZUELA.|y MATEO,|b 17 AÑOS, VUELVE DE UNA FIESTA POR UN CAMINO DE TIERRA. SOLO. CON CANELO,|y EL PERRO DE SU ABUELA.","pause":0.25},
+ {"sc":"warn","hud":"LOS LLANOS · 01:14","say":"Antes de salir, ella le advirtió: «Si oyes silbar, no mires atrás».","cap":"ANTES DE SALIR, ELLA LE ADVIRTIÓ: «SI OYES SILBAR,|y NO MIRES ATRÁS».|p","pause":0.3},
+ {"sc":"whistle","hud":"LOS LLANOS · 01:31","alert":true,"say":"A mitad del camino... alguien silba.","cap":"A MITAD DEL CAMINO... ALGUIEN SILBA.|p","pause":0.2},
+ {"sc":"whistle","hud":"LOS LLANOS · 01:31","alert":true,"say":"Muy cerca.","cap":"MUY CERCA.|p","pause":0.25},
+ {"sc":"rule1","hud":"LOS LLANOS · 01:31","step":0,"say":"Regla uno: si el silbido suena cerca... es que está lejos. Sigue caminando.","cap":"REGLA|y UNO: SI EL SILBIDO SUENA CERCA...|b ES QUE ESTÁ LEJOS.|y SIGUE CAMINANDO.","pause":0.2},
+ {"sc":"rule1","hud":"LOS LLANOS · 01:32","say":"Mateo acelera. El silbido se apaga.","cap":"MATEO ACELERA. EL SILBIDO SE APAGA.|b","pause":0.25},
+ {"sc":"far","hud":"LOS LLANOS · 01:33","alert":true,"say":"Y entonces vuelve. Flojito. Lejísimos.","cap":"Y ENTONCES VUELVE. FLOJITO.|b LEJÍSIMOS.|p","pause":0.25},
+ {"sc":"growl","hud":"LOS LLANOS · 01:34","say":"Canelo se para en seco y le gruñe a la oscuridad, justo al lado del camino.","cap":"CANELO SE PARA EN SECO Y LE GRUÑE|p A LA OSCURIDAD, JUSTO AL LADO DEL CAMINO.","pause":0.2},
+ {"sc":"growl","hud":"LOS LLANOS · 01:34","step":1,"say":"Regla dos: si tu perro le gruñe a la nada, no te muevas. Él lo ve antes que tú.","cap":"REGLA|y DOS: SI TU PERRO LE GRUÑE A LA NADA, NO TE MUEVAS.|p ÉL LO VE ANTES QUE TÚ.","pause":0.25},
+ {"sc":"reveal","hud":"LOS LLANOS · 01:35","alert":true,"say":"Entre los árboles hay algo más alto que los árboles. Flaco como un palo. Con un saco al hombro... que suena a huesos.","cap":"ENTRE LOS ÁRBOLES HAY ALGO MÁS ALTO QUE LOS ÁRBOLES.|p FLACO COMO UN PALO. CON UN SACO AL HOMBRO...|y QUE SUENA A HUESOS.|p","pause":0.25},
+ {"sc":"bark","hud":"LOS LLANOS · 01:36","say":"Canelo ladra... y la sombra se aleja.","cap":"CANELO LADRA...|y Y LA SOMBRA SE ALEJA.","pause":0.25},
+ {"sc":"rule3","hud":"LOS LLANOS · 01:36","step":2,"say":"Regla tres: al Silbón solo le asustan los perros... y el látigo.","cap":"REGLA|y TRES: AL SILBÓN SOLO LE ASUSTAN LOS PERROS...|y Y EL LÁTIGO.|p","pause":0.25},
+ {"sc":"home","hud":"CASA · 01:52","say":"Mateo llega a casa y cierra con llave. En la pared, el látigo de su abuelo.","cap":"MATEO LLEGA A CASA Y CIERRA CON LLAVE. EN LA PARED, EL LÁTIGO|y DE SU ABUELO.","pause":0.3},
+ {"sc":"wake","hud":"CASA · 03:00","alert":true,"say":"A las tres en punto, se despierta.","cap":"A LAS 3 EN PUNTO,|y SE DESPIERTA.","pause":0.25},
+ {"sc":"count","hud":"CASA · 03:00","alert":true,"say":"Junto a la puerta, alguien está contando huesos. Uno... dos... tres...","cap":"JUNTO A LA PUERTA, ALGUIEN ESTÁ CONTANDO HUESOS.|p UNO... DOS... TRES...","pause":0.25},
+ {"sc":"count","hud":"CASA · 03:00","alert":true,"say":"Mateo lo oye.","cap":"MATEO LO OYE.|g","pause":0.3},
+ {"sc":"grandma","hud":"CASA · 03:00","alert":true,"say":"Su abuela, en la cama de al lado... no.","cap":"SU ABUELA, EN LA CAMA DE AL LADO... NO.|p","pause":0.3},
+ {"sc":"grandma","hud":"#dawn","alert":true,"say":"Faltan dos horas para el amanecer.","cap":"FALTAN 2 HORAS|y PARA EL AMANECER.","pause":0.25},
+ {"sc":"whip","hud":"#dawn","alert":true,"cut":true,"say":"Y solo hay una forma de salvarla.","cap":"Y SOLO HAY UNA FORMA DE SALVARLA.|y","pause":0.3}
+]
