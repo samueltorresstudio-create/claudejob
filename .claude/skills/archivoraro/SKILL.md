@@ -16,7 +16,8 @@ El motor ya está hecho: personajes con decenas de rasgos, decorados, cámara, s
 | escribe solo `/archivoraro` o pide ideas | 3 ideas (gancho, giro, final; 2–3 líneas cada una). Pregunta si es serie para TikTok o vídeo suelto para YouTube si no lo dice. Espera su elección. |
 | elige una idea o pide el guion | Guion para ElevenLabs (ver `references/ideas.md` y `references/nivel.md`) + resumen de 5 líneas. Revisa la lógica antes de darlo. Espera el audio. |
 | pasa un MP3 | Monta el vídeo completo (sección «Montar un vídeo») y entrégalo. |
-| pide portada / descripción / título | `references/publishing.md`. |
+| pide portada / descripción / título | `references/publishing.md`. Si pide «una buena portada» o es la de un monstruo o personaje → **póster dedicado** con `references/portadas.md`. |
+| la historia gira en torno a un monstruo o personaje especial | Diséñalo con `references/personajes.md`: 3 bocetos, el usuario elige, versión HD con volumen, texturas y detalles. |
 | pide un **suceso real de una sola parte** (rescates, supervivencia real, «al estilo de los mineros / Sabelotodo») | Usa el **estilo SUCESOS** (`references/sucesos.md`): siluetas sin rostro, fondos pintados con textura, objetos en primer plano, comparaciones de escala, subtítulos arriba. **No** los personajes redondos con cara del canal. |
 | señala un fallo de un vídeo | Arréglalo, re-renderiza solo el tramo afectado y vuelve a entregar. |
 
@@ -30,7 +31,9 @@ No puedes generar la voz: si quiere el vídeo, necesitas su MP3. Al darle el gui
 - `references/nivel.md` — **lista para subir el nivel**: retención (primer fotograma con acción, nada quieto más de 3 s), enfoques, acting, partículas, historia sin desviarse, voz, sonido y publicación. Repásala con cada guion y cada montaje.
 - `references/lessons.md` — **lista de errores que el usuario ya detectó**. Repásala siempre antes de entregar.
 - `references/sucesos.md` — **estilo SUCESOS** para historias reales de una parte: motor en canvas (`engine_sucesos/`), personajes sin rostro, texturas pintadas, física en las caídas. Úsalo siempre para ese tipo de vídeo.
-- `references/publishing.md` — portada, títulos y descripciones, nombres de archivo.
+- `references/publishing.md` — portada rápida, títulos y descripciones, nombres de archivo.
+- `references/portadas.md` — **portada buena tipo póster**: amenaza enorme en contrapicado contra la luna, ojos que brillan, protagonista pequeño en una esquina, título grande. Plantilla `covers/poster.html`.
+- `references/personajes.md` — **personajes detallados** (monstruos y criaturas): proceso de bocetos → HD, volumen, texturas, ropa con historia y errores ya vistos. Ejemplo `example/silbon1/silbon.js`.
 - `example/tsunami6/` (82 s, serie) y `example/camara/` (66 s, YouTube) — `script.json`, `scenes_p.js` y `audio.py` de dos vídeos aprobados.
 
 ## Preparación (una vez por sesión)

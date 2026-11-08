@@ -1,0 +1,56 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#000}svg{display:block}</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<!-- Dedicated poster cover (1080×1920). Copy it into the project folder (it uses the project's lib/kit/props/cast)
+     and edit only the POSTER block. Extra character files go in ?x=a.js,b.js. Shot: node shot_poster.js <html> <out.png> [x=…] -->
+<script src="lib.js"></script><script src="kit.js"></script><script src="props.js"></script><script src="props2.js"></script><script src="cast.js"></script>
+<script>
+const t=1.2;
+// ======================= POSTER (edit this) =======================
+// Example = El Silbón part 1 (silbon.js in ?x=). Layers back to front: sky → moon → silhouettes → glow → THREAT → eyes → effect → HERO + beam → vignette → text.
+const P={
+  sky:['#03040e','#14183e','#2a1830'],                 // top, middle, bottom
+  moon:{cx:600,cy:560,r:340,col:'#f4ecd4'},             // behind the threat's head (null = none)
+  glow:{cx:620,cy:900,r:520,col:'#ff2a4a'},             // coloured halo behind the threat
+  threat:()=>silbonHD(450,2440,1.9,t,{glow:1,grin:1,lean:-2}),   // HUGE, low angle, head at y≈500–650, feet off screen
+  eyes:[[556,586],[648,593]], eyeCol:'#ff3020',         // screen coords of the eyes → red glow + hot core
+  effect:()=>[0,1,2,3].map(i=>`<g transform="translate(${820+i*62},${560-i*70}) rotate(${-14+i*8})" opacity="${.95-i*.15}" filter="url(#glow)"><path d="M0,0 L0,-48 L24,-58" stroke="#e8f4ff" stroke-width="7" fill="none"/><ellipse cx="-9" cy="2" rx="14" ry="10" fill="#e8f4ff"/></g>`).join(''),
+  hero:{x:190,y:1960,s:.85,o:{skin:'#c98c64',hs:'short',hair:'#1d1514',top:'#3a6a8a',topD:'#2a5070',hood:true,strings:true,pants:'#2a2e3a',shoes:'#e9e4d8',seed:211,look:[12,-16],brows:'up',eyes:'wide',mouth:'o',reachR:[90,-700]}},
+  beam:[480,520,760,600],                               // torch beam from the raised hand towards the threat's face (null = none)
+  part:'PARTE 1',                                       // '' = no tag
+  hook:'¿LO OYES?', hookCol:'#ffd34a',
+  title:['EL ','SILBÓN'], titleCol:['#ffffff','#ff3e6c'], titleSize:196,
+};
+// ==================================================================
+function palm(x,y,h,col){let s=`<path d="M${x},${y} Q${x+6},${y-h*.5} ${x+3},${y-h}" stroke="${col}" stroke-width="${h*.05}" fill="none"/>`;for(let i=0;i<11;i++){const a=(-170+i*16)*Math.PI/180;s+=`<path d="M${x+3},${y-h} q${Math.cos(a)*h*.28},${Math.sin(a)*h*.28-h*.06} ${Math.cos(a)*h*.5},${Math.sin(a)*h*.4+h*.14}" stroke="${col}" stroke-width="${h*.03}" fill="none" stroke-linecap="round"/>`;}return s}
+function draw(){
+  let s=`<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${P.sky[0]}"/><stop offset=".55" stop-color="${P.sky[1]}"/><stop offset="1" stop-color="${P.sky[2]}"/></linearGradient>
+   <radialGradient id="mn"><stop offset="0" stop-color="#fff4d8" stop-opacity=".75"/><stop offset=".35" stop-color="#ffd8a8" stop-opacity=".25"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+   <radialGradient id="hal"><stop offset="0" stop-color="${P.glow?P.glow.col:'#000'}" stop-opacity=".45"/><stop offset="1" stop-color="${P.glow?P.glow.col:'#000'}" stop-opacity="0"/></radialGradient>
+   <linearGradient id="fog" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9aa8e0" stop-opacity="0"/><stop offset=".5" stop-color="#9aa8e0" stop-opacity=".3"/><stop offset="1" stop-color="#9aa8e0" stop-opacity="0"/></linearGradient>
+   <linearGradient id="bot" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#05050c" stop-opacity="0"/><stop offset="1" stop-color="#05050c" stop-opacity=".97"/></linearGradient>
+   <radialGradient id="vg" cx=".5" cy=".42" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".7"/></radialGradient>
+   <filter id="glow2" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="16"/></filter>
+   <filter id="glow"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>`;
+  s+=`<rect width="1080" height="1920" fill="url(#sk)"/>`+stars(4,220,1100,t,.95);
+  if(P.moon){const m=P.moon;s+=`<circle cx="${m.cx}" cy="${m.cy}" r="${m.r*2}" fill="url(#mn)"/><circle cx="${m.cx}" cy="${m.cy}" r="${m.r}" fill="${m.col}"/><circle cx="${m.cx-130}" cy="${m.cy-90}" r="${m.r*.13}" fill="#e2d8bc"/><circle cx="${m.cx+160}" cy="${m.cy+140}" r="${m.r*.09}" fill="#e2d8bc"/>`;}
+  s+=palm(70,1320,520,'#06081a')+palm(1010,1340,600,'#06081a')+palm(180,1280,330,'#0a0c22');
+  s+=`<path d="M0,1250 Q540,1210 1080,1250 L1080,1920 L0,1920Z" fill="#0e1124"/><rect x="0" y="1150" width="1080" height="240" fill="url(#fog)"/>`;
+  if(P.glow)s+=`<circle cx="${P.glow.cx}" cy="${P.glow.cy}" r="${P.glow.r}" fill="url(#hal)"/>`;
+  s+=P.threat();
+  if(P.eyes)s+=`<g filter="url(#glow2)">${P.eyes.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="34" fill="${P.eyeCol}" opacity=".55"/>`).join('')}</g>`+P.eyes.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="12" fill="#ffe9a0"/>`).join('');
+  if(P.effect)s+=P.effect();
+  const H=P.hero;
+  if(H){const hx=H.x+H.s*H.o.reachR[0],hy=H.y+H.s*H.o.reachR[1];
+    if(P.beam){const b=P.beam;s+=`<path d="M${hx},${hy} L${b[0]},${b[1]} L${b[2]},${b[3]}Z" fill="#fff6c0" opacity=".16"/><path d="M${hx},${hy} L${(b[0]+b[2])/2-40},${(b[1]+b[3])/2} L${(b[0]+b[2])/2+80},${(b[1]+b[3])/2+10}Z" fill="#fff6c0" opacity=".12"/>`;}
+    s+=A({...H.o,x:H.x,y:H.y,s:H.s})+`<g transform="translate(${H.x},${H.y}) scale(${H.s})">${sweat(0,0,1,t).replace(/^<g transform="translate\(0,0\) scale\(1\)">/,'<g>')}</g>`;
+    if(P.beam)s+=`<circle cx="${hx}" cy="${hy}" r="16" fill="#fff6c0"/>`;}
+  s+=`<rect width="1080" height="1920" fill="url(#vg)"/><rect x="0" y="1380" width="1080" height="540" fill="url(#bot)"/>`;
+  if(P.part){const w=P.part.length*44+50;s+=`<g transform="translate(540,170)"><rect x="${-w/2}" y="-58" width="${w}" height="104" fill="#ffd34a"/><rect x="${-w/2}" y="40" width="${w}" height="12" fill="#000" opacity=".35"/><text x="0" y="22" text-anchor="middle" font-family="JetBrains Mono" font-weight="800" font-size="62" letter-spacing="6" fill="#11131f">${P.part}</text></g>`;}
+  if(P.hook)s+=`<text x="540" y="1600" text-anchor="middle" font-family="Inter" font-weight="900" font-size="78" letter-spacing="2" fill="${P.hookCol}" stroke="#05050c" stroke-width="10" paint-order="stroke" filter="url(#glow)">${P.hook}</text>`;
+  s+=`<text x="540" y="1790" text-anchor="middle" font-family="Inter" font-weight="900" font-size="${P.titleSize}" letter-spacing="-6" stroke="#05050c" stroke-width="16" paint-order="stroke"><tspan fill="${P.titleCol[0]}">${P.title[0]}</tspan><tspan fill="${P.titleCol[1]}" filter="url(#glow)">${P.title[1]}</tspan></text>`;
+  document.getElementById('s').innerHTML=s;document.title='done';
+}
+// load extra character files (?x=silbon.js,otro.js) and draw
+const X=(new URLSearchParams(location.search).get('x')||'').split(',').filter(Boolean);
+(function next(i){if(i>=X.length)return draw();const e=document.createElement('script');e.src=X[i];e.onload=()=>next(i+1);e.onerror=()=>{console.log('missing '+X[i]);next(i+1)};document.body.appendChild(e)})(0);
+</script></body></html>
