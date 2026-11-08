@@ -28,6 +28,8 @@ Repásala al escribir el guion (bloques 1, 3 y 4) y al montar (bloques 2, 5 y 6)
 ## 4. Historia (lección del tsunami: 1,3 M → 1.000 visitas)
 - **Un solo tema por serie, sin desviarse.** Si el tema es el apagón, cada parte es una fase del apagón con sus reglas; la amenaza la causa el propio apagón, sin tramas de villanos ni traiciones.
 - **Cada parte se entiende sola**: los primeros 3 s sitúan («Día 3 sin luz…») porque la mayoría no ha visto la anterior.
+- **Cada parte necesita su propio gancho universal «Si…»**, no un «Día 3 sin luz…» que pide contexto (datos de Metricool, nov. 2026: Apagón 1 «Si mañana España se queda sin luz…» = 915 mil; Apagón 2 «Día 3 sin luz…» = 49 mil; Apagón 3 ≈ 800 «me gusta» en 9 h). Ejemplo: «Si mañana abres el grifo y no sale agua… tienes tres días». El «Día N» va en la segunda frase o en el HUD, no en el gancho.
+- **El final de la parte 1 decide la serie**: el Tsunami 1 acabó en un cliffhanger con los personajes (la segunda ola) y retuvo un 31 % en la parte 2; el Apagón 1 acabó con un cierre suave y retuvo un 5 %. Cierra la parte 1 con una amenaza concreta y una pregunta.
 - **Series cortas (4–5 partes)**, planificadas enteras antes de la primera, con «PARTE N» en la portada.
 - **Avance en el gancho** de la parte 1 («El día 1… el día 3… el día 7…»): promete lo que viene.
 
