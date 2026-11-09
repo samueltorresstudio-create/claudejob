@@ -36,5 +36,9 @@ function hairParts(style, col) {
   // pelo asomando bajo la gorra (Iker)
   S.capHair = { back: `<path d="M-104,10 C-110,-50 -96,-90 -60,-104 L60,-104 C96,-90 110,-50 104,10 Z" fill="${col}" stroke="${K}" stroke-width="8"/>`,
     front: [[-1], [1]].map(([sd]) => `<path d="M${sd * 98},-30 L${sd * 104},-6 L${sd * 94},-12 L${sd * 98},6 L${sd * 84},-10 C${sd * 86},-22 ${sd * 90},-28 ${sd * 98},-30Z" fill="${col}" stroke="${K}" stroke-width="6" stroke-linejoin="round"/>`).join('') };
+  // calvo con pelo blanco a los lados (abuelo)
+  S.bald = { back: '', front: [-1, 1].map(sd => `<path d="M${sd * 96},-34 C${sd * 112},-34 ${sd * 114},-6 ${sd * 104},12 L${sd * 96},4 L${sd * 100},18 L${sd * 86},10 C${sd * 90},-6 ${sd * 90},-22 ${sd * 96},-34Z" fill="${col}" stroke="${K}" stroke-width="6" stroke-linejoin="round"/>`).join('') + `<path d="M-40,-86 Q-10,-98 22,-92" stroke="#ffffff" stroke-width="10" fill="none" stroke-linecap="round" opacity=".7"/>` };
+  // rapado militar (sombra de pelo)
+  S.buzz = { back: '', front: `<path d="M-96,-22 C-100,-80 -56,-104 0,-104 C56,-104 100,-80 96,-22 C70,-48 30,-58 0,-58 C-30,-58 -70,-48 -96,-22Z" fill="${col}" opacity=".85"/>` };
   return S[style] || { back: '', front: '' };
 }

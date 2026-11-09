@@ -84,6 +84,11 @@ Por eso:
 - **Ropa: solo 2–3 detalles gruesos que se lean al instante**, nunca costuras ni bolsillos pequeños:
   - `outfit:'tee'`: cuello, `number`, y `strap` (correa cruzada con hebilla).
   - `outfit:'hood'`: capucha al cuello, cordones, bolsillo y bajo de canalé.
+  - `outfit:'military'`: camuflaje, bolsillos con tapa, cinturón, cinta con el nombre (`nameTape`), pasadores (`medals`). Se combina con `hat:'helmet'` y `hair2:'buzz'`.
+  - `outfit:'chef'`: chaquetilla cruzada con botones, pañuelo rojo y delantal (`apron`). Se combina con `hat:'toque'` y `prop:'pan'|'spoon'`.
+  - `outfit:'cardigan'`: chaqueta de punto abierta con botones y bolsillos, camisa con cuello (`shirt`). Se combina con `hair2:'bald'`, `glasses`, `mustache`, `browCol` (cejas blancas), `wrinkles`, `cane`, `lean:4`.
+  - Otros complementos: `hat:'beret'`.
+  - Ejemplo de los tres en `example/gravedad_3d/oficios.jpg`.
   - **Nuevas prendas, con el mismo criterio:**
     - cuello en V con camisa y corbata para oficinistas y jefes;
     - chaleco con pajarita;
