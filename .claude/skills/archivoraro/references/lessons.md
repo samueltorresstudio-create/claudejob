@@ -51,3 +51,13 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
 - No uses `pkill -f` con un patrón que aparezca en tu propio comando (mata tu propio shell). Usa el truco `"[r]ender.js full"` y no metas «audio.py» en el patrón si el comando contiene ese texto.
 - Antes de enviar, mira `final_sheet.png` (24 fotogramas del vídeo final). Si ves un fallo, arréglalo antes de entregar, no después.
 - Responde en español de España, directo y breve; el usuario sube a TikTok y YouTube desde el móvil.
+
+## Estilo 3D (noviembre de 2026)
+
+- Personajes 3D hechos con piezas: «no me gustan nada». Cabezones 3D: «muy infantil, no lo hagas tan bebé». Los personajes se quedan en **2D** dentro del mundo 3D.
+- Cabeza deforme u orgánica: «quiero que sea redonda». Caras: «cópialas de la captura» (párpado pesado, ojos redondos de susto, dientes en rejilla, gota de sudor).
+- Ropa con costuras, bolsillos y parches pequeños: «están fatal». **El cuerpo es la prenda** con volumen, y 2–3 detalles gruesos (cuello, número, correa cruzada, corbata, pajarita, fajín, rayas).
+- Pelo de casco liso: mejorable. Usa los peinados de `hair.js` (mechones, volumen detrás, brillo, sombra del flequillo).
+- Coche que aparecía dentro de la cancha: «no quiero que cometas ningún error así». Cada objeto vive solo en su sitio; revisa la hoja entera antes de renderizar.
+- Si pide **fotos**, no hagas vídeo.
+- «Nunca tardas tanto»: el 3D con oclusión ambiental es lento. Por defecto va sin GTAO; da tiempos realistas (2–3 h con un sitio nuevo).
