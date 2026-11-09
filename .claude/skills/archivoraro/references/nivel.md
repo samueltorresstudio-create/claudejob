@@ -4,6 +4,7 @@ Repásala al escribir el guion (bloques 1, 3 y 4) y al montar (bloques 2, 5 y 6)
 
 ## 1. Retención (lo que más pesa en el algoritmo)
 - **Primer fotograma con acción**: algo cae, se apaga, alguien grita o una cara asustada en primer plano. Nunca un plano quieto ni un decorado vacío en el segundo 0.
+- **Los 2 primeros segundos, el personaje o lo más interesante en cámara** (lo pidió el usuario): el monstruo, la amenaza o el protagonista en peligro, grande y en plano cerrado desde el fotograma 0. Nada de presentar el lugar primero; el contexto va después.
 - **Nada quieto más de 2–3 s**: cada 2–3 s cambia el plano, entra un enfoque, aparece un objeto o un rótulo. En la lista de planos, marca qué pasa en cada tramo de 3 s.
 - **Final en bucle** cuando se pueda: la última imagen o frase enlaza con la primera (misma imagen, misma pregunta), para que el vídeo se repita sin salto visible.
 
