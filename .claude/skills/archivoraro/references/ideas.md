@@ -66,3 +66,24 @@ Voz del usuario: **Eleven v3, «Edoardo – Dark Measured Natural», estabilidad
 - Longitud: ≈2,4 palabras por segundo con las pausas de esta voz. 60–70 s ≈ 150–170 palabras; 80–90 s ≈ 200–215 palabras.
 
 Cuando el usuario pida ideas, da 3 opciones de 2–3 líneas cada una (gancho, giro, final). Cuando elija, escribe el guion. Si pide el resumen, da 5 líneas.
+
+## Fórmula de guion viral (cuenta de referencia del estilo 3D, analizada en nov. 2026)
+
+Son **vídeos sueltos de una parte, de 40–60 s**, cada uno sobre **una curiosidad real**: historia, ciencia, trucos legales o psicología. Encaja con los datos de Metricool: las series pierden apoyo en cada parte. Ejemplos transcritos: la cárcel pintada de rosa, los huecos en las vías del tren, el aceite en el mar para escapar de un pirata, el caballo más lento, el pachinko de Japón, la lanza y el escudo, el sismógrafo de los dragones, el hombre que movía los muebles un centímetro, la sala de destierro de Japón, los ataúdes con campana, el pistolero que nunca desenfundaba primero.
+
+1. **Línea 1 = gancho: un hecho raro contado como acción concreta**, que obliga a preguntarse «¿por qué?». No hay presentación.
+   - Acción absurda: «Pintaron una cárcel de rosa.» / «Apostó los ahorros de su vida al caballo más lento.»
+   - Contradicción: «El juego es ilegal en Japón. Aun así, hay un salón de juego en casi cada calle.»
+   - Pregunta de cada día: «¿Cómo sabe una pastilla dónde te duele?»
+   - Paradoja: la lanza que lo atraviesa todo y el escudo que nada atraviesa.
+2. **Línea 2: la reacción de los demás.** «Los guardias están encantados.» / «Toda la sala se ríe de él.» / «Toda la corte se echó a reír.» Así nace la tensión del «loco contra todos».
+3. **Un número exacto y visual:** 15 minutos, cada 12 metros, un centímetro, 8 dragones, 100 años.
+4. **La bisagra «Verás,…» / «Y es que…»**: la explicación real, en una o dos frases.
+5. **Meter al espectador:** «Imagina que…», «Ganas un cubo… intentas cambiarlo… el mostrador no te da ni un yen». En segunda persona.
+6. **Escalada por pasos:** «La primera noche nadie lo nota… al final de la semana la nevera tapa la puerta…».
+7. **Pago final que da la razón al «loco»** y corte justo ahí. Ejemplo: la bola cae, nadie siente nada, se ríen… y días después llega un mensajero: terremoto a 600 km.
+
+**Ritmo**
+- 110–150 palabras.
+- Frases de 4–10 palabras, una idea por frase. **Cada frase es un plano** (cambio cada 1–2 s) y lo que se dice se ve de forma literal.
+- Tono de anécdota contada a un amigo, no de documental. Sin «hoy te voy a contar» y sin despedida.
