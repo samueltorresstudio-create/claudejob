@@ -132,7 +132,7 @@ function hippoAt(o, F, Top, W, opt = {}) {
   let out = '';
   if (opt.water != null) { const wp = W.proj(new W.T.Vector3(F.x, opt.water, F.z)), wy = wp.y, wr = 300 * s;
     out += `<defs><clipPath id="${id}a"><rect x="0" y="0" width="1080" height="${wy.toFixed(1)}"/></clipPath><clipPath id="${id}b"><rect x="0" y="${wy.toFixed(1)}" width="1080" height="2000"/></clipPath></defs>`;
-    out += `<g clip-path="url(#${id}b)" opacity=".14">${body}</g><g clip-path="url(#${id}a)">${body}</g><path d="M${(pf.x - wr * 1.15).toFixed(1)},${wy.toFixed(1)} Q${pf.x.toFixed(1)},${(wy + wr * .12).toFixed(1)} ${(pf.x + wr * 1.15).toFixed(1)},${wy.toFixed(1)}" stroke="#1b1720" stroke-width="${(7 * s / .4).toFixed(1)}" fill="none" opacity=".35" stroke-linecap="round"/>`;
+    out += `<g clip-path="url(#${id}a)">${body}</g><path d="M${(pf.x - wr * 1.15).toFixed(1)},${wy.toFixed(1)} Q${pf.x.toFixed(1)},${(wy + wr * .12).toFixed(1)} ${(pf.x + wr * 1.15).toFixed(1)},${wy.toFixed(1)}" stroke="#1b1720" stroke-width="${(7 * s / .4).toFixed(1)}" fill="none" opacity=".35" stroke-linecap="round"/>`;
     const t = (window.__T || 0); for (let k = 0; k < 3; k++) { const ph = ((t * .6 + k / 3) % 1); out += `<ellipse cx="${pf.x.toFixed(1)}" cy="${wy.toFixed(1)}" rx="${(wr * (.9 + ph * .7)).toFixed(1)}" ry="${(wr * (.13 + ph * .09)).toFixed(1)}" fill="none" stroke="#e9f4f0" stroke-width="${(6 * (1 - ph)).toFixed(1)}" opacity="${(.8 * (1 - ph)).toFixed(2)}"/>`; }
   } else { const g = W.proj(new W.T.Vector3(F.x, F.y + .01, F.z)); out += `<ellipse cx="${g.x.toFixed(1)}" cy="${g.y.toFixed(1)}" rx="${(260 * s).toFixed(1)}" ry="${(48 * s).toFixed(1)}" fill="#141826" opacity=".3" style="filter:blur(6px)"/>` + body; }
   return out;

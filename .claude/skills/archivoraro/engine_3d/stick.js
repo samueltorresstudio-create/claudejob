@@ -161,11 +161,12 @@ function stick(o) {
   // round head (perfect circle), soft shading on the shadow side
   const R0 = 100, rx = R0, ry = R0, fx = 1.04, fy = 1.04;
   const HP2 = (typeof hairParts === 'function' && d.hair2) ? hairParts(d.hair2, d.hairCol || '#2a1a12') : { back: '', front: '' };
-  let h = HP2.back + `<circle cx="0" cy="0" r="${R0}" fill="url(#${id}h)" stroke="${INKC}" stroke-width="${LW + 1}"/>`;
+  let hatBack = '';
+  let h = '@@HATBACK@@' + HP2.back + `<circle cx="0" cy="0" r="${R0}" fill="url(#${id}h)" stroke="${INKC}" stroke-width="${LW + 1}"/>`;
   const TN = d.turn || 0, [lx, ly] = d.look, E = [[-36 + TN * 26, -2], [36 + TN * 26, -2]];
   // brows: short, thick, rounded
   const hBase = h;
-  const by = -44 - d.brows * 7;
+  const by = (d.hat === 'vueltiao' ? -30 : -44) - d.brows * 7;
   E.forEach(([ex], i) => { const s2 = i ? 1 : -1, t = d.browTilt * 10 * s2; h += `<path d="M${ex - 17},${by + t} Q${ex},${by - 6} ${ex + 17},${by - t}" stroke="${INKC}" stroke-width="${d.browCol ? 13 : 10}" fill="none" stroke-linecap="round"/>` + (d.browCol ? `<path d="M${ex - 17},${by + t} Q${ex},${by - 6} ${ex + 17},${by - t}" stroke="${d.browCol}" stroke-width="5" fill="none" stroke-linecap="round"/>` : ''); });
   // eyes (same family as the reference: heavy-lidded black half-discs, black ovals, round shocked eyes)
   E.forEach(([ex, ey], i) => { const s2 = i ? 1 : -1, px = ex + lx, py = ey + ly;
@@ -188,11 +189,13 @@ function stick(o) {
   if (d.glasses) h += E.map(([ex, ey]) => `<circle cx="${ex}" cy="${ey}" r="25" fill="#cfe6ff" fill-opacity=".18" stroke="${INKC}" stroke-width="6"/>`).join('') + `<path d="M-11,-4 Q0,-12 11,-4" stroke="${INKC}" stroke-width="5" fill="none"/><path d="M-61,-6 L-94,-14 M61,-6 L94,-14" stroke="${INKC}" stroke-width="5"/>`;
   if (d.view === 'back') h = hBase + (d.hair2 && d.hair2 !== 'bald' && !d.hat ? `<path d="M-100,6 C-104,-70 -56,-108 0,-108 C56,-108 104,-70 100,6 C70,30 -70,30 -100,6Z" fill="${d.hairCol || '#2a1a12'}" stroke="${INKC}" stroke-width="8"/><path d="M-40,-80 Q-10,-96 30,-92" stroke="#fff" stroke-opacity=".2" stroke-width="8" fill="none" stroke-linecap="round"/>` : '');
   else h += HP2.front;
-  if (d.hat === 'vueltiao') { const cr = '#f3ead2', bk = '#1b1720', z = (y, w, n) => { let p = `M${-w},${y}`; for (let k = 0; k <= n; k++) p += ` L${(-w + k * 2 * w / n).toFixed(1)},${y + (k % 2 ? -7 : 7)}`; return p; };
-    h += `<g transform="translate(${TN * 14},-92)"><ellipse cx="0" cy="0" rx="166" ry="36" fill="${cr}" stroke="${INKC}" stroke-width="8"/><ellipse cx="0" cy="0" rx="138" ry="28" fill="none" stroke="${bk}" stroke-width="9"/><ellipse cx="0" cy="0" rx="110" ry="21" fill="none" stroke="${bk}" stroke-width="5" stroke-dasharray="10 8"/>` +
-      `<path d="M-78,2 C-84,-60 -70,-112 0,-116 C70,-112 84,-60 78,2 Q0,18 -78,2Z" fill="${cr}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/>` +
-      `<path d="${z(-24, 79, 14)}" stroke="${bk}" stroke-width="6" fill="none" stroke-linejoin="round"/><path d="${z(-58, 76, 14)}" stroke="${bk}" stroke-width="6" fill="none" stroke-linejoin="round"/><path d="M-70,-88 Q0,-104 70,-88" stroke="${bk}" stroke-width="7" fill="none"/>` +
-      `<path d="M-50,-100 Q-20,-110 10,-108" stroke="#fff" stroke-width="7" fill="none" opacity=".55" stroke-linecap="round"/></g>`; }
+  if (d.hat === 'vueltiao') { // sits ON the head: crown wraps the skull, brim at forehead height; back half of the brim is drawn behind the head
+    const cr = '#f3ead2', bk = '#1b1720', hx = TN * 10, BY = -62, z = (y, w, n) => { let p = `M${-w},${y}`; for (let k = 0; k <= n; k++) p += ` L${(-w + k * 2 * w / n).toFixed(1)},${y + (k % 2 ? -7 : 7)}`; return p; };
+    hatBack = `<g transform="translate(${hx},${BY})"><path d="M-170,0 A170 34 0 0 1 170,0Z" fill="${mixC(cr, '#000000', .12)}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/></g>`;
+    h += `<g transform="translate(${hx},${BY})"><path d="M-170,0 A170 34 0 0 0 170,0 L140,0 A140 26 0 0 1 -140,0Z" fill="${cr}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/><path d="M-152,4 A152 30 0 0 0 152,4" stroke="${bk}" stroke-width="9" fill="none"/><path d="M-120,6 A120 22 0 0 0 120,6" stroke="${bk}" stroke-width="5" stroke-dasharray="10 8" fill="none"/>` +
+      `<path d="M-96,4 C-104,-50 -86,-104 0,-110 C86,-104 104,-50 96,4 Q0,24 -96,4Z" fill="${cr}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/>` +
+      `<path d="${z(-18, 97, 16)}" stroke="${bk}" stroke-width="6" fill="none" stroke-linejoin="round"/><path d="${z(-52, 92, 16)}" stroke="${bk}" stroke-width="6" fill="none" stroke-linejoin="round"/><path d="M-82,-84 Q0,-100 82,-84" stroke="${bk}" stroke-width="7" fill="none"/>` +
+      `<path d="M-60,-96 Q-28,-106 6,-104" stroke="#fff" stroke-width="7" fill="none" opacity=".55" stroke-linecap="round"/><path d="M-96,4 Q0,24 96,4" stroke="#000" stroke-opacity=".18" stroke-width="10" fill="none"/></g>`; }
   if (d.hat === 'helmet') h += `<g transform="translate(0,-38)"><path d="M-112,-18 C-118,-118 118,-118 112,-18 Q0,-36 -112,-18Z" fill="url(#${id}cm)" stroke="${INKC}" stroke-width="9" stroke-linejoin="round"/><path d="M-120,-16 Q0,-40 120,-16 L116,-2 Q0,-24 -116,-2Z" fill="#4a5232" stroke="${INKC}" stroke-width="6" stroke-linejoin="round"/><path d="M-60,-98 Q0,-118 60,-98" stroke="#fff" stroke-opacity=".18" stroke-width="8" fill="none"/><path d="M-96,-8 Q-96,70 -60,100 M96,-8 Q96,70 60,100" stroke="#3a3324" stroke-width="6" fill="none"/></g>`;
   if (d.hat === 'toque') h += `<g><path d="M-78,-58 C-120,-90 -110,-170 -60,-168 C-50,-214 50,-214 60,-168 C110,-170 120,-90 78,-58Z" fill="#fbfaf6" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/><path d="M-30,-160 Q-34,-110 -36,-72 M8,-178 Q6,-120 4,-72 M44,-160 Q42,-110 40,-72" stroke="${INKC}" stroke-width="4" fill="none" opacity=".35"/><path d="M-82,-74 Q0,-92 82,-74 L84,-48 Q0,-66 -84,-48Z" fill="#f0eee6" stroke="${INKC}" stroke-width="7" stroke-linejoin="round"/></g>`;
   if (d.hat === 'beret') h += `<path d="M-96,-36 C-110,-100 40,-130 104,-70 Q110,-50 96,-42 Q0,-58 -96,-36Z" fill="${d.hatCol || '#7a1f2a'}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/><circle cx="-50" cy="-58" r="12" fill="#f2c94c" stroke="${INKC}" stroke-width="4"/>`;
@@ -200,6 +203,7 @@ function stick(o) {
   if (d.hair === 'quiff') { const hc = d.hairCol || '#2a1a12'; h += `<g ${hs}><path d="M-93,-14 C-102,-74 -62,-108 -14,-106 C2,-132 44,-150 84,-128 C70,-122 64,-116 68,-108 C92,-88 100,-50 93,-14 C80,-46 56,-64 22,-68 C-20,-74 -66,-60 -93,-14Z" fill="${hc}" stroke="${INKC}" stroke-width="${LW - 2}" stroke-linejoin="round"/><path d="M-6,-104 C14,-124 46,-132 70,-124" stroke="#fff" stroke-opacity=".25" stroke-width="7" fill="none" stroke-linecap="round"/></g>`; }
   if (d.cap) h += `<g ${hs}><path d="M-96,-26 C-100,-118 100,-118 96,-26 Q0,-44 -96,-26Z" fill="${d.cap}" stroke="${INKC}" stroke-width="${LW - 2}" stroke-linejoin="round"/><path d="M0,-108 Q-6,-70 -4,-36 M-52,-96 Q-60,-62 -58,-32 M52,-96 Q60,-62 58,-32" stroke="${INKC}" stroke-width="3" fill="none" opacity=".35"/><path d="M-95,-28 Q-150,-26 -162,-8 Q-120,-6 -92,-20Z" fill="${d.capD || d.cap}" stroke="${INKC}" stroke-width="7" stroke-linejoin="round"/><path d="M-100,-24 Q-140,-22 -152,-10" stroke="#fff" stroke-opacity=".35" stroke-width="2.5" stroke-dasharray="5 5" fill="none"/><path d="M-60,-96 Q0,-118 60,-96" stroke="#fff" stroke-opacity=".18" stroke-width="7" fill="none"/><ellipse cx="0" cy="-110" rx="12" ry="6" fill="${d.capD || d.cap}" stroke="${INKC}" stroke-width="4"/><circle cx="26" cy="-72" r="17" fill="${d.capLogo || '#ffd34a'}" stroke="${INKC}" stroke-width="4"/><text x="26" y="-66" text-anchor="middle" font-family="Inter" font-weight="900" font-size="16" fill="${INKC}">AR</text></g>`;
   if (d.sweat) h += `<path d="M${rx - 2},-62 q15,23 0,31 q-15,-8 0,-31Z" fill="#8fd0ff" stroke="${INKC}" stroke-width="4"/>`;
+  h = h.replace('@@HATBACK@@', hatBack);
   s += `<g transform="rotate(${d.lean})">${legs}${arms}${body}<g transform="translate(${sx2},${HC + 8}) rotate(${d.headTilt})">${h}</g></g>`;
   return s;
 }

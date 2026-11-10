@@ -61,3 +61,23 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
 - Coche que aparecía dentro de la cancha: «no quiero que cometas ningún error así». Cada objeto vive solo en su sitio; revisa la hoja entera antes de renderizar.
 - Si pide **fotos**, no hagas vídeo.
 - «Nunca tardas tanto»: el 3D con oclusión ambiental es lento. Por defecto va sin GTAO; da tiempos realistas (2–3 h con un sitio nuevo).
+
+## Fallos de dibujo que el usuario detectó (no repetir)
+
+- **Sombrero que «levita»** (pescador, nov. 2026):
+  - El sombrero tiene que **asentarse en la cabeza**: el ala, a la altura de la frente (y ≈ −62 en la cabeza de r 100); la copa, igual de ancha que el cráneo y envolviéndolo.
+  - La mitad de atrás del ala va **detrás de la cabeza** (`hatBack`).
+  - Las cejas bajan para que queden bajo el ala.
+  - Cualquier gorro o casco nuevo sigue esta regla. Compruébalo siempre de frente, de tres cuartos y de espaldas.
+- **Fondos en 2D en un boceto** del estilo 3D: «no sé si te acuerdas que todo lo de detrás es 3D». **Los bocetos y las fotos se hacen siempre dentro del mundo 3D**, nunca sobre fondos planos.
+- **Primer hipopótamo, de perfil y en bloque: «muy feo».** Los animales se diseñan como personajes:
+  - de frente o de tres cuartos;
+  - formas redondas;
+  - cara expresiva con ojos grandes o de párpado pesado;
+  - morro con mofletes, colmillos, orejas y brillo.
+  - Haz dos versiones para que elija (`hippo2`, estilos A y B).
+- Personaje que flota **sobre** la canoa en vez de ir dentro: los pies van al fondo del casco y el lado cercano del casco se dibuja encima de los pies.
+- Animal en el agua:
+  - **lo que queda bajo el agua no se dibuja** (nada de piernas fantasma transparentes);
+  - el bostezo tiene que quedar **por encima** de la línea del agua.
+- Personaje «normalito»: añade un objeto que le dé identidad cultural (carriel, sombrero vueltiao, canalete).

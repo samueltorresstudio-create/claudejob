@@ -142,3 +142,15 @@ Si el usuario pregunta cuánto tarda:
   - que no haya objetos fuera de sitio (el error del coche dentro de la cancha);
   - personajes cortados, cámaras dentro de objetos;
   - rótulos o subtítulos tapando caras.
+
+## Sitios y animales ya hechos
+
+- `world_rio.js`: el **río Magdalena** con la misma API que `W2`.
+  - Incluye: agua animada con brillos y espuma en la orilla, orillas de barro y hierba, selva, palmeras, ceibas, palafitos de colores, muelle, canoas (`W2.HERO`, `W2.canoe()`), jacintos de agua, garzas y montañas.
+  - Más funciones: `setTime(t)` anima el agua, `mid(z)` da el centro del río, `RW` es su semianchura y `hgt(x,z)` la altura del terreno.
+- `hippo.js`:
+  - `hippo2(o)`: hipopótamo de frente. Estilos `'A'` (simpático) y `'B'` (salvaje); opciones `open`, `turn`, `look`, `ear`, `wet`, `blink`.
+  - `hippoAt(o, pies, cabeza, W2, {water: y})`: lo ancla en el 3D y lo recorta por la línea del agua, con ondas.
+- `stick.js`:
+  - Nuevas opciones: `hat:'vueltiao'`, `outfit:'shirt'` (camisa con pañuelo `scarf`), `bag` (carriel cruzado), `prop:'paddle'`.
+  - Ciclo de paso fluido: `walkPose(fase)` con `lift`, `bob` y `lean`. Opciones `turn` (−1..1, tres cuartos) y `view:'back'`.
