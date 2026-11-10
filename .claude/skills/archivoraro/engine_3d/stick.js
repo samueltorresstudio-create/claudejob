@@ -153,6 +153,11 @@ function stick(o) {
     body += [-1, 1].map(sd => `<path d="M${sd * 4 + sx2},${SH - 30} L${sd * 34 + sx2},${SH - 30} L${sd * 22 + sx2},${SH - 4}Z" fill="${sh2}" stroke="${INKC}" stroke-width="4" stroke-linejoin="round"/>`).join('');
   } else body += IN(`<rect x="-90" y="${SH - 60}" width="180" height="300" fill="url(#${id}b)"/>`);
   body += `<path d="${B}" fill="none" stroke="${INKC}" stroke-width="${LW}" stroke-linejoin="round"/>`;
+  if (d.bag && d.view !== 'back') { // carriel: leather bag on a strap across the chest (right shoulder → left hip)
+    const bx = -70, by = HIP - 30;
+    body += `<path d="M${44 + sx2},${SH - 24} Q${-10},${(SH + HIP) / 2} ${bx + 14},${by - 30}" stroke="${INKC}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="M${44 + sx2},${SH - 24} Q${-10},${(SH + HIP) / 2} ${bx + 14},${by - 30}" stroke="${d.bag}" stroke-width="11" fill="none" stroke-linecap="round"/>` +
+      `<path d="M${bx - 40},${by - 34} L${bx + 40},${by - 34} L${bx + 44},${by + 26} Q${bx},${by + 40} ${bx - 44},${by + 26}Z" fill="${d.bag}" stroke="${INKC}" stroke-width="7" stroke-linejoin="round"/>` +
+      `<path d="M${bx - 42},${by - 34} L${bx + 42},${by - 34} L${bx + 34},${by - 4} Q${bx},${by + 6} ${bx - 34},${by - 4}Z" fill="${mixC(d.bag, '#000000', .25)}" stroke="${INKC}" stroke-width="6" stroke-linejoin="round"/><rect x="${bx - 7}" y="${by - 12}" width="14" height="14" rx="3" fill="#d9b25a" stroke="${INKC}" stroke-width="3"/>`; }
   // round head (perfect circle), soft shading on the shadow side
   const R0 = 100, rx = R0, ry = R0, fx = 1.04, fy = 1.04;
   const HP2 = (typeof hairParts === 'function' && d.hair2) ? hairParts(d.hair2, d.hairCol || '#2a1a12') : { back: '', front: '' };

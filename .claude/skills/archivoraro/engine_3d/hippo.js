@@ -64,3 +64,76 @@ function hippo(o = {}) {
   s += `</g></g>`;
   return s;
 }
+
+// ======================= hipopótamo v2 (de frente / 3-4, con carácter) =======================
+// hippo2(o): front view, feet at y=0, ear tips ≈ -470. o.style 'A' (simpático: ojos grandes) | 'B' (salvaje: párpado pesado, ceño, colmillos grandes)
+// o.open 0..1 bostezo, o.turn -1..1 (gira hocico), o.look [dx,dy], o.ear 0..1, o.wet, o.blink
+function hippo2(o = {}) {
+  const A = (o.style || 'A') === 'A';
+  const d = Object.assign({ skin: A ? '#a294bf' : '#7d7486', skinD: A ? '#6f6296' : '#4f4858', muzzle: A ? '#d8b4cf' : '#b39aa6', belly: A ? '#d7c4e3' : '#a99ca8', pink: '#ee8fa3', open: 0, turn: 0, look: [0, 0], ear: 0, wet: false, blink: false }, o);
+  const K = '#1b1720', id = 'h2' + (++_sid), tn = d.turn * 22, op = d.open;
+  const P = pts => smoothPath(pts.map(([x, y]) => [x, y]));
+  let s = `<defs><linearGradient id="${id}g" x1=".2" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="${mixC(d.skin, '#ffffff', .22)}"/><stop offset=".55" stop-color="${d.skin}"/><stop offset="1" stop-color="${d.skinD}"/></linearGradient>
+    <linearGradient id="${id}m" x1=".2" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="${mixC(d.muzzle, '#ffffff', .25)}"/><stop offset="1" stop-color="${mixC(d.muzzle, '#000000', .12)}"/></linearGradient>
+    <radialGradient id="${id}i" cx=".5" cy=".3" r=".8"><stop offset="0" stop-color="#e5717f"/><stop offset="1" stop-color="#7a1f30"/></radialGradient></defs>`;
+  const shade = (path, cid) => `<clipPath id="${cid}"><path d="${path}"/></clipPath><g clip-path="url(#${cid})"><ellipse cx="160" cy="40" rx="260" ry="600" fill="#2a1f3a" opacity=".18"/></g>`;
+  // ---- body ----
+  const BODY = P([[-262, -150], [-250, -310], [-168, -408], [0, -432], [168, -408], [252, -310], [266, -150], [210, -64], [0, -44], [-210, -64]]);
+  s += `<path d="${BODY}" fill="url(#${id}g)" stroke="${K}" stroke-width="11" stroke-linejoin="round"/>` + shade(BODY, id + 'c1');
+  s += `<clipPath id="${id}cb"><path d="${BODY}"/></clipPath><g clip-path="url(#${id}cb)"><ellipse cx="0" cy="-96" rx="170" ry="70" fill="${d.belly}" opacity=".7"/></g>`;
+  s += `<path d="M-220,-330 Q-150,-400 -40,-416" stroke="#ffffff" stroke-width="12" fill="none" opacity="${d.wet ? .5 : .3}" stroke-linecap="round"/>`;
+  // ---- stubby front legs with toes ----
+  [-1, 1].forEach(sd => { const x = sd * 120; const L = P([[x - 62, -150], [x - 60, -40], [x - 48, -4], [x + 48, -4], [x + 60, -40], [x + 62, -150], [x, -170]]);
+    s += `<path d="${L}" fill="url(#${id}g)" stroke="${K}" stroke-width="10" stroke-linejoin="round"/>` + shade(L, id + 'l' + sd) + [-1, 0, 1].map(k => `<ellipse cx="${x + k * 28}" cy="-14" rx="13" ry="11" fill="${mixC(d.belly, '#ffffff', .4)}" stroke="${K}" stroke-width="4"/>`).join('') +
+      `<path d="M${x - 50},-70 Q${x},-58 ${x + 50},-70" stroke="${K}" stroke-width="4" fill="none" opacity=".25"/>`; });
+  // ---- ears (behind head) ----
+  [-1, 1].forEach(sd => { const ex = sd * 128 + tn * .5; s += `<g transform="rotate(${sd * (24 + d.ear * 18)} ${ex} -436)"><ellipse cx="${ex}" cy="-458" rx="24" ry="32" fill="url(#${id}g)" stroke="${K}" stroke-width="8"/><ellipse cx="${ex}" cy="-454" rx="11" ry="18" fill="${d.pink}"/></g>`; });
+  // ---- head (cranium) ----
+  const HEAD = P([[-148 + tn * .3, -268], [-158 + tn * .4, -372], [-96 + tn * .5, -446], [0 + tn * .5, -462], [96 + tn * .5, -446], [158 + tn * .4, -372], [148 + tn * .3, -268], [0 + tn * .3, -250]]);
+  s += `<path d="${HEAD}" fill="url(#${id}g)" stroke="${K}" stroke-width="11" stroke-linejoin="round"/>` + shade(HEAD, id + 'c2');
+  // ---- eyes on bumps ----
+  const ey = -398, ex = [-62 + tn, 62 + tn], [lx, ly] = d.look;
+  ex.forEach((x, i) => { const sd = i ? 1 : -1; s += `<path d="M${x - 50},${ey + 14} Q${x - 48},${ey - 48} ${x},${ey - 52} Q${x + 48},${ey - 48} ${x + 50},${ey + 14}" fill="url(#${id}g)" stroke="${K}" stroke-width="9" stroke-linejoin="round"/>`;
+    if (d.blink) { s += `<path d="M${x - 24},${ey - 2} Q${x},${ey + 12} ${x + 24},${ey - 2}" stroke="${K}" stroke-width="8" fill="none" stroke-linecap="round"/>`; return; }
+    if (A) s += `<ellipse cx="${x}" cy="${ey - 6}" rx="30" ry="34" fill="#fff" stroke="${K}" stroke-width="7"/><ellipse cx="${x + lx + sd * 2}" cy="${ey - 2 + ly}" rx="16" ry="19" fill="${K}"/><circle cx="${x + lx + 6}" cy="${ey - 10 + ly}" r="6" fill="#fff"/><circle cx="${x + lx - 6}" cy="${ey + 6 + ly}" r="2.6" fill="#fff"/>` +
+      `<path d="M${x - 22},${ey - 58} Q${x},${ey - 66} ${x + 22},${ey - 58 - sd * 2}" stroke="${K}" stroke-width="8" fill="none" stroke-linecap="round"/>`;
+    else s += `<ellipse cx="${x}" cy="${ey - 4}" rx="27" ry="24" fill="#fff" stroke="${K}" stroke-width="7"/><ellipse cx="${x + lx}" cy="${ey + 2 + ly}" rx="10" ry="12" fill="${K}"/><circle cx="${x + lx + 4}" cy="${ey - 2 + ly}" r="3" fill="#fff"/>` +
+      `<path d="M${x - 30},${ey - 10 + sd * 4} Q${x},${ey - 30} ${x + 30},${ey - 10 - sd * 4} L${x + 30},${ey - 30} L${x - 30},${ey - 30}Z" fill="${d.skin}"/><path d="M${x - 30},${ey - 10 + sd * 4} Q${x},${ey - 24} ${x + 30},${ey - 10 - sd * 4}" stroke="${K}" stroke-width="8" fill="none" stroke-linecap="round"/>` +
+      `<path d="M${x - 34},${ey - 40 - sd * 12} L${x + 30},${ey - 40 + sd * 12}" stroke="${K}" stroke-width="12" stroke-linecap="round"/>`; });
+  // ---- muzzle: closed, or split into upper lip + dropped jaw ----
+  const mz = tn * 1.1, up = op * 72, dn = op * 46;
+  const UP = P([[-176 + mz, -262 - up], [-180 + mz, -206 - up], [-128 + mz, -178 - up * .9], [0 + mz, -170 - up * .8], [128 + mz, -178 - up * .9], [180 + mz, -206 - up], [176 + mz, -262 - up], [120 + mz, -312 - up], [0 + mz, -322 - up], [-120 + mz, -312 - up]]);
+  const JAW = P([[-150 + mz, -196 + dn], [-160 + mz, -140 + dn], [-104 + mz, -96 + dn], [0 + mz, -82 + dn], [104 + mz, -96 + dn], [160 + mz, -140 + dn], [150 + mz, -196 + dn], [0 + mz, -190 + dn]]);
+  if (op > .02) {
+    s += `<path d="${JAW}" fill="url(#${id}m)" stroke="${K}" stroke-width="10" stroke-linejoin="round"/>`;
+    s += `<ellipse cx="${mz}" cy="${-190 - up * .35 + dn * .3}" rx="${146}" ry="${18 + op * 62}" fill="url(#${id}i)" stroke="${K}" stroke-width="9"/><ellipse cx="${mz}" cy="${-150 + dn * .5}" rx="88" ry="${10 + op * 18}" fill="#ef8a98" stroke="${K}" stroke-width="5"/>`;
+    const tk = A ? 1 : 1.5; [-1, 1].forEach(sd => { const x = mz + sd * 96, y = -186 + dn * .7; s += `<path d="M${x - 14 * tk},${y} Q${x - 12 * tk},${y - 56 * tk} ${x + sd * 6},${y - 66 * tk} Q${x + 12 * tk},${y - 30 * tk} ${x + 14 * tk},${y}Z" fill="#fbf6e8" stroke="${K}" stroke-width="5" stroke-linejoin="round"/>`;
+      const ux = mz + sd * 70, uy = -178 - up * .82; s += `<path d="M${ux - 10},${uy} L${ux},${uy + 28 * tk} L${ux + 10},${uy}Z" fill="#fbf6e8" stroke="${K}" stroke-width="4" stroke-linejoin="round"/>`; });
+    s += `<path d="${UP}" fill="url(#${id}m)" stroke="${K}" stroke-width="10" stroke-linejoin="round"/>`;
+  } else {
+    const M = P([[-176 + mz, -262], [-182 + mz, -200], [-130 + mz, -136], [0 + mz, -118], [130 + mz, -136], [182 + mz, -200], [176 + mz, -262], [120 + mz, -312], [0 + mz, -322], [-120 + mz, -312]]);
+    s += `<path d="${M}" fill="url(#${id}m)" stroke="${K}" stroke-width="10" stroke-linejoin="round"/>`;
+    s += `<path d="M${-132 + mz},${-196} Q${mz},${A ? -150 : -176} ${132 + mz},${-196}" stroke="${K}" stroke-width="8" fill="none" stroke-linecap="round"/><path d="M${-132 + mz},-196 q-12,-6 -14,-18 M${132 + mz},-196 q12,-6 14,-18" stroke="${K}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
+    const tk = A ? .8 : 1.3; [-1, 1].forEach(sd => { const x = mz + sd * 78, y = A ? -170 : -180; s += `<path d="M${x - 10 * tk},${y + 6} Q${x - 8 * tk},${y - 26 * tk} ${x + sd * 4},${y - 32 * tk} Q${x + 9 * tk},${y - 14 * tk} ${x + 10 * tk},${y + 6}Z" fill="#fbf6e8" stroke="${K}" stroke-width="4.5" stroke-linejoin="round"/>`; });
+  }
+  // nostrils + freckle dots + cheeks (on the upper muzzle)
+  const ny = -282 - up; s += [-1, 1].map(sd => `<ellipse cx="${mz + sd * 50}" cy="${ny}" rx="15" ry="10" fill="${K}" transform="rotate(${sd * 24} ${mz + sd * 50} ${ny})"/><path d="M${mz + sd * 50 - 22},${ny - 12} Q${mz + sd * 50},${ny - 26} ${mz + sd * 50 + 22},${ny - 12}" stroke="${K}" stroke-width="5" fill="none" opacity=".45"/>`).join('');
+  s += [[-110, -232], [-92, -250], [-124, -252], [110, -232], [92, -250], [124, -252]].map(([x, y]) => `<circle cx="${x + mz}" cy="${y - up}" r="4.5" fill="${K}" opacity=".45"/>`).join('');
+  if (A) s += [-1, 1].map(sd => `<ellipse cx="${mz + sd * 150}" cy="${-226 - up * .5}" rx="26" ry="15" fill="${d.pink}" opacity=".55"/>`).join('');
+  else s += `<path d="M${mz - 150},-290 l26,10 M${mz - 140},-270 l22,6" stroke="${K}" stroke-width="4" opacity=".4"/>`;   // scar marks
+  if (d.wet) s += `<path d="M${-60 + tn},-448 Q${tn},-458 ${60 + tn},-448" stroke="#fff" stroke-width="8" fill="none" opacity=".55" stroke-linecap="round"/>`;
+  return s;
+}
+// Anchor hippo2 in 3D: F = ground point under the hippo, Top = point at the top of its head (≈ 1.6 m above F). opt.water: world y of the water surface (clips + tints what is under it)
+function hippoAt(o, F, Top, W, opt = {}) {
+  const pf = W.proj(F), pt = W.proj(Top); if (!pf.ok || !pt.ok) return '';
+  const dx = pt.x - pf.x, dy = pt.y - pf.y, L = Math.hypot(dx, dy), s = L / 462, rot = Math.atan2(dx, -dy) * 180 / Math.PI, id = 'ha' + (++_sid);
+  const body = `<g transform="translate(${pf.x.toFixed(1)},${pf.y.toFixed(1)}) rotate(${rot.toFixed(2)}) scale(${s.toFixed(4)})">${hippo2(o)}</g>`;
+  let out = '';
+  if (opt.water != null) { const wp = W.proj(new W.T.Vector3(F.x, opt.water, F.z)), wy = wp.y, wr = 300 * s;
+    out += `<defs><clipPath id="${id}a"><rect x="0" y="0" width="1080" height="${wy.toFixed(1)}"/></clipPath><clipPath id="${id}b"><rect x="0" y="${wy.toFixed(1)}" width="1080" height="2000"/></clipPath></defs>`;
+    out += `<g clip-path="url(#${id}b)" opacity=".14">${body}</g><g clip-path="url(#${id}a)">${body}</g><path d="M${(pf.x - wr * 1.15).toFixed(1)},${wy.toFixed(1)} Q${pf.x.toFixed(1)},${(wy + wr * .12).toFixed(1)} ${(pf.x + wr * 1.15).toFixed(1)},${wy.toFixed(1)}" stroke="#1b1720" stroke-width="${(7 * s / .4).toFixed(1)}" fill="none" opacity=".35" stroke-linecap="round"/>`;
+    const t = (window.__T || 0); for (let k = 0; k < 3; k++) { const ph = ((t * .6 + k / 3) % 1); out += `<ellipse cx="${pf.x.toFixed(1)}" cy="${wy.toFixed(1)}" rx="${(wr * (.9 + ph * .7)).toFixed(1)}" ry="${(wr * (.13 + ph * .09)).toFixed(1)}" fill="none" stroke="#e9f4f0" stroke-width="${(6 * (1 - ph)).toFixed(1)}" opacity="${(.8 * (1 - ph)).toFixed(2)}"/>`; }
+  } else { const g = W.proj(new W.T.Vector3(F.x, F.y + .01, F.z)); out += `<ellipse cx="${g.x.toFixed(1)}" cy="${g.y.toFixed(1)}" rx="${(260 * s).toFixed(1)}" ry="${(48 * s).toFixed(1)}" fill="#141826" opacity=".3" style="filter:blur(6px)"/>` + body; }
+  return out;
+}
