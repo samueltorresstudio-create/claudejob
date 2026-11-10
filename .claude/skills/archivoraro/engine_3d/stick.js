@@ -125,6 +125,22 @@ function stick(o) {
     body += IN(c);
     if (d.view !== 'back') body += [-1, 1].map(sd => `<path d="M${sd * 6 + sx2},${SH - 30} L${sd * 40 + sx2},${SH - 34} L${sd * 22 + sx2},${SH + 2}Z" fill="${d.top}" stroke="${INKC}" stroke-width="5" stroke-linejoin="round"/>`).join('');
     if (d.scarf && d.view !== 'back') body += `<path d="M${-30 + sx2},${SH - 30} Q${sx2},${SH - 6} ${30 + sx2},${SH - 30} L${26 + sx2},${SH - 14} Q${sx2},${SH + 8} ${-26 + sx2},${SH - 14}Z" fill="${d.scarf}" stroke="${INKC}" stroke-width="5" stroke-linejoin="round"/><path d="M${-8 + sx2},${SH - 4} l-14,34 l20,-6Z" fill="${d.scarf}" stroke="${INKC}" stroke-width="4" stroke-linejoin="round"/>`;
+  } else if (d.outfit === 'navy') { // naval officer: double-breasted dark jacket, gold buttons, white shirt + black tie in a V, shoulder boards, cuff stripes
+    let c = `<path d="M-30,${SH - 30} L0,${SH + 70} L30,${SH - 30}Z" fill="#f6f6f2"/><path d="M-9,${SH - 18} L9,${SH - 18} L5,${SH + 52} L0,${SH + 64} L-5,${SH + 52}Z" fill="#15161c"/>`;
+    c += `<path d="M-30,${SH - 30} L0,${SH + 70} M30,${SH - 30} L0,${SH + 70}" stroke="${INKC}" stroke-width="5"/>`;
+    [0, 1, 2].forEach(k => [-1, 1].forEach(sd => c += `<circle cx="${sd * 22}" cy="${SH + 92 + k * 34}" r="7" fill="#e7c24a" stroke="${INKC}" stroke-width="3"/>`));
+    c += `<path d="M58,${SH + 4} Q66,${SH + 70} 46,${HIP - 60}" stroke="#000" stroke-opacity=".14" stroke-width="16" fill="none" stroke-linecap="round"/><rect x="-95" y="${SH - 60}" width="190" height="320" fill="url(#${id}b)"/>`;
+    if (d.badge) c += `<rect x="30" y="${SH + 30}" width="30" height="16" rx="2" fill="#e7c24a" stroke="${INKC}" stroke-width="2.5"/><rect x="-62" y="${SH + 26}" width="34" height="10" fill="${d.ribbon || '#c60b1e'}" stroke="${INKC}" stroke-width="2.5"/><rect x="-62" y="${SH + 29}" width="34" height="4" fill="${d.ribbon2 || '#ffc400'}"/>`;
+    body += IN(c);
+    [-1, 1].forEach(sd => body += `<path d="M${sd * 22 + sx2},${SH - 30} L${sd * 54 + sx2},${SH - 24} L${sd * 52 + sx2},${SH - 12} L${sd * 24 + sx2},${SH - 18}Z" fill="${d.topD}" stroke="${INKC}" stroke-width="4" stroke-linejoin="round"/><path d="M${sd * 30 + sx2},${SH - 22} L${sd * 48 + sx2},${SH - 19}" stroke="#e7c24a" stroke-width="4"/>`);
+  } else if (d.outfit === 'marin') { // French sailor: striped marinière, square blue collar with white stripes, small neck scarf
+    let c = ''; for (let k = 0; k < 12; k++) c += `<rect x="-95" y="${SH - 20 + k * 22}" width="190" height="9" fill="${d.stripe || '#1f3a7a'}"/>`;
+    c += `<rect x="-95" y="${HIP - 26}" width="190" height="80" fill="${d.pants || '#1f2a4a'}"/><rect x="-95" y="${HIP - 30}" width="190" height="8" fill="#15161c"/>`;
+    c += `<rect x="-95" y="${SH - 60}" width="190" height="320" fill="url(#${id}b)"/>`;
+    body += IN(c);
+    body += `<path d="M${-54 + sx2},${SH - 26} L${54 + sx2},${SH - 26} L${46 + sx2},${SH + 30} L${sx2},${SH + 58} L${-46 + sx2},${SH + 30}Z" fill="${d.collar || '#1f3a7a'}" stroke="${INKC}" stroke-width="5" stroke-linejoin="round"/>` +
+      `<path d="M${-42 + sx2},${SH - 18} L${-36 + sx2},${SH + 26} L${sx2},${SH + 46} L${36 + sx2},${SH + 26} L${42 + sx2},${SH - 18}" stroke="#fff" stroke-width="4" fill="none"/>` +
+      `<path d="M${-20 + sx2},${SH - 26} L${sx2},${SH + 2} L${20 + sx2},${SH - 26}Z" fill="#f6f6f2" stroke="${INKC}" stroke-width="4"/><path d="M${-10 + sx2},${SH + 8} L${10 + sx2},${SH + 8} L${4 + sx2},${SH + 40} L${-4 + sx2},${SH + 40}Z" fill="#15161c"/>`;
   } else if (d.outfit === 'military') {
     s += `<defs><pattern id="${id}cm" width="90" height="90" patternUnits="userSpaceOnUse"><rect width="90" height="90" fill="#6b7448"/><path d="M5,10 q18,-10 30,4 q8,14 -10,18 q-22,2 -20,-22Z" fill="#4a5232"/><path d="M50,40 q20,-8 32,6 q4,16 -16,16 q-20,-2 -16,-22Z" fill="#8f875a"/><path d="M20,60 q14,-6 24,6 q2,12 -14,12 q-14,-2 -10,-18Z" fill="#3b3326"/><path d="M60,4 q12,-2 16,8 q-4,10 -14,6Z" fill="#3b3326"/><path d="M0,44 q10,-4 16,4 q-2,8 -12,8Z" fill="#8f875a"/></pattern></defs>`;
     let c = `<path d="${B}" fill="url(#${id}cm)"/><rect x="-95" y="${SH - 60}" width="190" height="320" fill="url(#${id}b)"/>`;
@@ -167,7 +183,7 @@ function stick(o) {
   const TN = d.turn || 0, [lx, ly] = d.look, E = [[-36 + TN * 26, -2], [36 + TN * 26, -2]];
   // brows: short, thick, rounded
   const hBase = h;
-  const by = (d.hat === 'vueltiao' ? -30 : -44) - d.brows * 7;
+  const by = (d.hat === 'vueltiao' || d.hat === 'peaked' ? -30 : -44) - d.brows * 7;
   E.forEach(([ex], i) => { const s2 = i ? 1 : -1, t = d.browTilt * 10 * s2; h += `<path d="M${ex - 17},${by + t} Q${ex},${by - 6} ${ex + 17},${by - t}" stroke="${INKC}" stroke-width="${d.browCol ? 13 : 10}" fill="none" stroke-linecap="round"/>` + (d.browCol ? `<path d="M${ex - 17},${by + t} Q${ex},${by - 6} ${ex + 17},${by - t}" stroke="${d.browCol}" stroke-width="5" fill="none" stroke-linecap="round"/>` : ''); });
   // eyes (same family as the reference: heavy-lidded black half-discs, black ovals, round shocked eyes)
   E.forEach(([ex, ey], i) => { const s2 = i ? 1 : -1, px = ex + lx, py = ey + ly;
@@ -197,6 +213,14 @@ function stick(o) {
       `<path d="M-96,4 C-104,-50 -86,-104 0,-110 C86,-104 104,-50 96,4 Q0,24 -96,4Z" fill="${cr}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/>` +
       `<path d="${z(-18, 97, 16)}" stroke="${bk}" stroke-width="6" fill="none" stroke-linejoin="round"/><path d="${z(-52, 92, 16)}" stroke="${bk}" stroke-width="6" fill="none" stroke-linejoin="round"/><path d="M-82,-84 Q0,-100 82,-84" stroke="${bk}" stroke-width="7" fill="none"/>` +
       `<path d="M-60,-96 Q-28,-106 6,-104" stroke="#fff" stroke-width="7" fill="none" opacity=".55" stroke-linecap="round"/><path d="M-96,4 Q0,24 96,4" stroke="#000" stroke-opacity=".18" stroke-width="10" fill="none"/></g>`; }
+  if (d.hat === 'peaked') { // officer's peaked cap: white top, black band, gold badge, visor over the brows (sits ON the head)
+    hatBack = `<g transform="translate(${TN * 10},-62)"><ellipse cx="0" cy="-30" rx="122" ry="30" fill="${d.capTop ? mixC(d.capTop, '#000000', .12) : '#dcdcd6'}" stroke="${INKC}" stroke-width="8"/></g>`;
+    h += `<g transform="translate(${TN * 10},-62)"><path d="M-104,6 L-122,-30 Q0,-58 122,-30 L104,6 Q0,-8 -104,6Z" fill="${d.capTop || '#f4f4f0'}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/><path d="M-102,-2 Q0,-16 102,-2 L104,10 Q0,-4 -104,10Z" fill="#15161c"/>` +
+      `<path d="M-96,8 Q0,40 96,8 Q0,24 -96,8Z" fill="#15161c" stroke="${INKC}" stroke-width="5" stroke-linejoin="round"/><path d="M-60,16 Q0,28 60,16" stroke="#fff" stroke-opacity=".25" stroke-width="4" fill="none"/>` +
+      `<g transform="translate(0,-18)"><ellipse rx="16" ry="12" fill="#e7c24a" stroke="${INKC}" stroke-width="3"/><path d="M-26,4 Q-14,-6 -8,2 M26,4 Q14,-6 8,2" stroke="#e7c24a" stroke-width="5" fill="none"/></g><path d="M-56,-36 Q-10,-48 30,-44" stroke="#fff" stroke-width="6" opacity=".6" fill="none" stroke-linecap="round"/></g>`; }
+  if (d.hat === 'bachi') { // French sailor cap: low white crown, navy band, red pompom (sits ON the head)
+    h += `<g transform="translate(${TN * 10},-70)"><ellipse cx="0" cy="-16" rx="104" ry="26" fill="#f6f6f2" stroke="${INKC}" stroke-width="8"/><path d="M-92,-8 L-92,12 Q0,32 92,12 L92,-8 Q0,12 -92,-8Z" fill="#1f3a7a" stroke="${INKC}" stroke-width="7" stroke-linejoin="round"/>` +
+      `<path d="M-40,14 Q0,22 40,14" stroke="#e7c24a" stroke-width="3" fill="none"/><circle cx="0" cy="-36" r="20" fill="#e2302f" stroke="${INKC}" stroke-width="6"/><circle cx="-6" cy="-42" r="6" fill="#ff8a7a"/></g>`; }
   if (d.hat === 'helmet') h += `<g transform="translate(0,-38)"><path d="M-112,-18 C-118,-118 118,-118 112,-18 Q0,-36 -112,-18Z" fill="url(#${id}cm)" stroke="${INKC}" stroke-width="9" stroke-linejoin="round"/><path d="M-120,-16 Q0,-40 120,-16 L116,-2 Q0,-24 -116,-2Z" fill="#4a5232" stroke="${INKC}" stroke-width="6" stroke-linejoin="round"/><path d="M-60,-98 Q0,-118 60,-98" stroke="#fff" stroke-opacity=".18" stroke-width="8" fill="none"/><path d="M-96,-8 Q-96,70 -60,100 M96,-8 Q96,70 60,100" stroke="#3a3324" stroke-width="6" fill="none"/></g>`;
   if (d.hat === 'toque') h += `<g><path d="M-78,-58 C-120,-90 -110,-170 -60,-168 C-50,-214 50,-214 60,-168 C110,-170 120,-90 78,-58Z" fill="#fbfaf6" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/><path d="M-30,-160 Q-34,-110 -36,-72 M8,-178 Q6,-120 4,-72 M44,-160 Q42,-110 40,-72" stroke="${INKC}" stroke-width="4" fill="none" opacity=".35"/><path d="M-82,-74 Q0,-92 82,-74 L84,-48 Q0,-66 -84,-48Z" fill="#f0eee6" stroke="${INKC}" stroke-width="7" stroke-linejoin="round"/></g>`;
   if (d.hat === 'beret') h += `<path d="M-96,-36 C-110,-100 40,-130 104,-70 Q110,-50 96,-42 Q0,-58 -96,-36Z" fill="${d.hatCol || '#7a1f2a'}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/><circle cx="-50" cy="-58" r="12" fill="#f2c94c" stroke="${INKC}" stroke-width="4"/>`;
