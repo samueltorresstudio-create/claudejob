@@ -1,0 +1,28 @@
+# Banco de ideas: curiosidades reales (formato viral del estilo 3D)
+
+Todas siguen la fórmula de `ideas.md`, apartado «Fórmula de guion viral»:
+- hecho raro en la frase 1 y reacción en la frase 2;
+- un número exacto, la bisagra «Verás,…», «Imagina…», escalada y final en bucle.
+
+Los datos están contrastados en noviembre de 2026. Antes de escribir el guion, **vuelve a comprobar las cifras**, porque hay fuentes que no coinciden.
+
+Estado:
+- ✅ hecha
+- ⭐ recomendada
+- · pendiente
+
+| # | idea | país | gancho (2 líneas) | datos comprobados / cuidado | estado |
+|---|---|---|---|---|---|
+| 1 | Los hipopótamos de Escobar | Colombia | «Un hombre compró cuatro hipopótamos. / Treinta años después hay más de 180… y nadie sabe cómo pararlos.» | 4 traídos en los 80 a la Hacienda Nápoles; 169 según el Gobierno (2023) y 181–215 según un censo científico; especie invasora desde 2022; podrían ser más de 1.000 en 2035 | ✅ `example/hipopotamos_3d` |
+| 2 | La cárcel donde se paga la celda (San Pedro, La Paz) | Bolivia | «Hay una cárcel donde los presos pagan por su celda. / Y algunos vivían ahí con su mujer y sus hijos.» | Construida para unas 400 personas y con unos 1.500 presos; celdas compradas o alquiladas; niños que salían al colegio. Contar en **pasado** (se anunció el cierre). Nada de drogas | · |
+| 3 | El pueblo que estuvo bajo el agua (Villa Epecuén) | Argentina | «Un pueblo entero desapareció bajo el agua en una sola noche. / Años después volvió a salir… y un hombre volvió a vivir en él. Solo.» | Inundación del 10-11-1985 por la rotura del terraplén; unos 1.500 habitantes; años bajo el agua (las fuentes difieren: no des la cifra exacta); Pablo Novak, último habitante, murió en enero de 2024 a los 93 años | ⭐ |
+| 4 | El pueblo que prohibió morir (Biritiba Mirim) | Brasil | «En 2005, el alcalde de un pueblo prohibió morir. / Y lo hizo por una razón muy seria.» | Alcalde Roberto Pereira da Silva; cementerio lleno; una ley ambiental impedía construir otro; **proyecto de ley como protesta** (no está claro que se aprobara: di «propuso») | ⭐ |
+| 5 | La piedra con «GI» (Piedra del Peñol) | Colombia | «Hay una roca de 200 metros con dos letras pintadas: G… I. / Es una pelea entre dos pueblos que nadie terminó.» | Guatapé y El Peñol se la disputan; Guatapé pintó la G y parte de la U y los vecinos de El Peñol lo pararon. No des año (las fuentes difieren) | ⭐ debate |
+| 6 | La isla de las muñecas (Xochimilco) | México | «Hay una isla con cientos de muñecas colgadas de los árboles. / Las colgó un solo hombre… durante 50 años.» | Julián Santana Barrera, murió en 2001. Lo de la niña ahogada es **leyenda local**: dilo así. Cifra de muñecas: «cientos» | · |
+| 7 | El museo bajo el mar (MUSA, Cancún) | México | «En Cancún hay 500 personas de pie en el fondo del mar. / Y las pusieron ahí para salvar algo.» | Unas 500 esculturas; alejar a los buceadores del arrecife natural; el coral crece encima | · |
+| 8 | La Mitad del Mundo mal puesta | Ecuador | «Miles de turistas se hacen la foto con un pie en cada hemisferio. / Y la línea está 240 metros más allá.» | El monumento se levantó con mediciones antiguas; el GPS (WGS84) sitúa el ecuador unos 240 m al norte | ⭐ debate |
+| 9 | El hombre que pintó una montaña de blanco | Perú | «Un hombre pintó de blanco una montaña de casi 5.000 metros. / Quería que volviera el hielo.» | Eduardo Gold, 2010; cal, agua y clara de huevo; efecto albedo; el Banco Mundial lo premió y lo financió. **Final honesto: no hay pruebas científicas de que funcionara** | · |
+| 10 | El relámpago que no se apaga (Catatumbo) | Venezuela | «Hay un lugar donde caen rayos casi todas las noches del año. / Y tiene un récord Guinness.» | Récord Guinness de 2014 (unos 250 rayos/km² al año). Noches al año y rayos por minuto varían según la fuente: di «la mayoría de las noches» y «decenas por minuto» | ⭐ visual |
+| 11 | La isla de las serpientes (Queimada Grande) | Brasil | «Hay una isla en Brasil donde está prohibido desembarcar. / La vigilan miles de serpientes venenosas.» | Solo pueden entrar investigadores autorizados; la *Bothrops insularis*, endémica; la cifra va de 2.000 a 4.000 según la fuente; «5 por m²» es exagerado | · |
+| 12 | Los moáis tienen cuerpo | Chile | «Las cabezas de la Isla de Pascua… no son cabezas. / Debajo de la tierra tienen cuerpo entero.» | Proyecto de Van Tilburg: excavaron y tienen torso enterrado por el sedimento | ⭐ |
+| 13 | El cráter de los dinosaurios (Chicxulub) | México | «El asteroide que mató a los dinosaurios cayó en México. / Y todavía se puede ver su huella… en el agua.» | Cráter de Chicxulub en Yucatán, hace ~66 millones de años; el anillo de cenotes sigue el borde del cráter | · |

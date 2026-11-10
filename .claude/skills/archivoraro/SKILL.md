@@ -25,6 +25,7 @@ No puedes generar la voz: si quiere el vídeo, necesitas su MP3. Al darle el gui
 
 ## Referencias (léelas cuando toque)
 
+- `references/banco_ideas.md` — **banco de ideas de curiosidades reales** con gancho y datos contrastados (y qué hay que decir con cuidado). Míralo cuando pida ideas; añade las nuevas y marca las hechas.
 - `references/estilo3d.md` — **ESTILO 3D (por defecto)**: motor `engine_3d/` (mundo three.js con contorno, noche con neones, personajes `stick.js` + `hair.js`, luz del sitio sobre los personajes, subtítulo de una palabra), reglas de personajes y ropa que pidió el usuario, cámara y montaje, velocidades. Ejemplo `example/gravedad_3d/`.
 
 - `references/ideas.md` — fórmulas de gancho, estructura de serie y de vídeo suelto, duraciones, revisión de lógica, formato del guion para ElevenLabs.
