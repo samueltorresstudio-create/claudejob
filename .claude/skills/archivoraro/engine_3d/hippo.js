@@ -71,7 +71,7 @@ function hippo(o = {}) {
 function hippo2(o = {}) {
   const A = (o.style || 'A') === 'A';
   const d = Object.assign({ skin: A ? '#a294bf' : '#7d7486', skinD: A ? '#6f6296' : '#4f4858', muzzle: A ? '#d8b4cf' : '#b39aa6', belly: A ? '#d7c4e3' : '#a99ca8', pink: '#ee8fa3', open: 0, turn: 0, look: [0, 0], ear: 0, wet: false, blink: false }, o);
-  const K = '#1b1720', id = 'h2' + (++_sid), tn = d.turn * 22, op = d.open;
+  const K = '#1b1720', id = 'h2' + (++_sid), tn = d.turn * 22, op = d.open, wk = d.walk, bobW = wk == null ? 0 : -Math.abs(Math.sin(wk)) * 12, swW = wk == null ? 0 : Math.sin(wk) * 2.2;
   const P = pts => smoothPath(pts.map(([x, y]) => [x, y]));
   let s = `<defs><linearGradient id="${id}g" x1=".2" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="${mixC(d.skin, '#ffffff', .22)}"/><stop offset=".55" stop-color="${d.skin}"/><stop offset="1" stop-color="${d.skinD}"/></linearGradient>
     <linearGradient id="${id}m" x1=".2" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="${mixC(d.muzzle, '#ffffff', .25)}"/><stop offset="1" stop-color="${mixC(d.muzzle, '#000000', .12)}"/></linearGradient>
@@ -83,9 +83,11 @@ function hippo2(o = {}) {
   s += `<clipPath id="${id}cb"><path d="${BODY}"/></clipPath><g clip-path="url(#${id}cb)"><ellipse cx="0" cy="-96" rx="170" ry="70" fill="${d.belly}" opacity=".7"/></g>`;
   s += `<path d="M-220,-330 Q-150,-400 -40,-416" stroke="#ffffff" stroke-width="12" fill="none" opacity="${d.wet ? .5 : .3}" stroke-linecap="round"/>`;
   // ---- stubby front legs with toes ----
-  [-1, 1].forEach(sd => { const x = sd * 120; const L = P([[x - 62, -150], [x - 60, -40], [x - 48, -4], [x + 48, -4], [x + 60, -40], [x + 62, -150], [x, -170]]);
-    s += `<path d="${L}" fill="url(#${id}g)" stroke="${K}" stroke-width="10" stroke-linejoin="round"/>` + shade(L, id + 'l' + sd) + [-1, 0, 1].map(k => `<ellipse cx="${x + k * 28}" cy="-14" rx="13" ry="11" fill="${mixC(d.belly, '#ffffff', .4)}" stroke="${K}" stroke-width="4"/>`).join('') +
-      `<path d="M${x - 50},-70 Q${x},-58 ${x + 50},-70" stroke="${K}" stroke-width="4" fill="none" opacity=".25"/>`; });
+  let legsS = '';
+  [-1, 1].forEach(sd => { const x = sd * 120, lf = wk == null ? 0 : Math.max(0, Math.sin(wk + (sd > 0 ? 0 : Math.PI))) * 30; const L = P([[x - 62, -150], [x - 60, -40], [x - 48, -4], [x + 48, -4], [x + 60, -40], [x + 62, -150], [x, -170]]);
+    legsS += `<g transform="translate(0,${(-lf - bobW).toFixed(1)})"><path d="${L}" fill="url(#${id}g)" stroke="${K}" stroke-width="10" stroke-linejoin="round"/>` + shade(L, id + 'l' + sd) + [-1, 0, 1].map(k => `<ellipse cx="${x + k * 28}" cy="-14" rx="13" ry="11" fill="${mixC(d.belly, '#ffffff', .4)}" stroke="${K}" stroke-width="4"/>`).join('') +
+      `<path d="M${x - 50},-70 Q${x},-58 ${x + 50},-70" stroke="${K}" stroke-width="4" fill="none" opacity=".25"/></g>`; });
+  s += legsS;
   // ---- ears (behind head) ----
   [-1, 1].forEach(sd => { const ex = sd * 128 + tn * .5; s += `<g transform="rotate(${sd * (24 + d.ear * 18)} ${ex} -436)"><ellipse cx="${ex}" cy="-458" rx="24" ry="32" fill="url(#${id}g)" stroke="${K}" stroke-width="8"/><ellipse cx="${ex}" cy="-454" rx="11" ry="18" fill="${d.pink}"/></g>`; });
   // ---- head (cranium) ----
@@ -122,7 +124,7 @@ function hippo2(o = {}) {
   if (A) s += [-1, 1].map(sd => `<ellipse cx="${mz + sd * 150}" cy="${-226 - up * .5}" rx="26" ry="15" fill="${d.pink}" opacity=".55"/>`).join('');
   else s += `<path d="M${mz - 150},-290 l26,10 M${mz - 140},-270 l22,6" stroke="${K}" stroke-width="4" opacity=".4"/>`;   // scar marks
   if (d.wet) s += `<path d="M${-60 + tn},-448 Q${tn},-458 ${60 + tn},-448" stroke="#fff" stroke-width="8" fill="none" opacity=".55" stroke-linecap="round"/>`;
-  return s;
+  return `<g transform="translate(0,${bobW.toFixed(1)}) rotate(${swW.toFixed(2)} 0 -40)">${s}</g>`;
 }
 // Anchor hippo2 in 3D: F = ground point under the hippo, Top = point at the top of its head (≈ 1.6 m above F). opt.water: world y of the water surface (clips + tints what is under it)
 function hippoAt(o, F, Top, W, opt = {}) {

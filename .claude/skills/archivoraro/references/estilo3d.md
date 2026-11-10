@@ -154,3 +154,26 @@ Si el usuario pregunta cuánto tarda:
 - `stick.js`:
   - Nuevas opciones: `hat:'vueltiao'`, `outfit:'shirt'` (camisa con pañuelo `scarf`), `bag` (carriel cruzado), `prop:'paddle'`.
   - Ciclo de paso fluido: `walkPose(fase)` con `lift`, `bob` y `lean`. Opciones `turn` (−1..1, tres cuartos) y `view:'back'`.
+
+## Ejemplo completo: `example/hipopotamos_3d/` (curiosidad real, nov. 2026)
+
+Primer vídeo con la **fórmula viral** de `ideas.md` y el río 3D. Sirve de plantilla para el resto de curiosidades:
+- un plano por frase;
+- los cuatro hipopótamos que andan;
+- multitud en el agua (`crowd`) y contador animado;
+- tarjeta 2D comparativa (ÁFRICA → COLOMBIA, con tachones);
+- canoa con `hullFront`;
+- bostezo con salpicadura;
+- sello «ESPECIE INVASORA»;
+- final en bucle con el «4».
+
+Música: cumbia ligera, no suspense (este formato es «curiosidad divertida»).
+
+### Encuadre en vertical (errores que hubo que corregir en la revisión)
+
+- En vertical, el ancho visible es pequeño: a 10 m con fov 40 solo caben unos 4 m. **Grupos de personajes: sepáralos en profundidad Y de lado**, o se apilan uno encima de otro.
+- Los objetos altos (portón de 6 m) piden la cámara a 17–18 m y mirando a mitad de altura.
+- Las vistas aéreas empinadas aplastan a los personajes 2D. Usa una cámara baja (2–4 m) y mirada casi horizontal.
+- **Quita la vegetación flotante, árboles o casas que queden delante de la cámara**: un jacinto gigante en primer plano estropea el plano.
+- Cámara en un primer plano sobre el agua: siempre por encima de la superficie (y ≥ 0,8), mirando hacia abajo.
+- Si un elemento 3D queda raro (la avioneta del portón), **quítalo antes que dejarlo mal**.

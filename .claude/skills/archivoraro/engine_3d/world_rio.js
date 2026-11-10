@@ -57,7 +57,7 @@ const W2 = (() => {
         vec3 c=mix(deep,shal,.25+.45*r); c=mix(c,skyc,fr*.3);
         float strk=smoothstep(.93,.95,n(wp.xz*vec2(2.6,.3)+vec2(0.,-time*.5)))*(1.-fr*.7); c=mix(c,vec3(.85,.93,.9),strk*.45);
         vec3 R=reflect(-V,vec3(0,1,0)); float g=pow(max(dot(R,sun),0.),90.)*(.5+.8*n(wp.xz*1.5+time)); c+=vec3(1.,.8,.5)*g*.9;
-        float sh=abs(wp.x-mid(wp.z))-${RW}.0; float foam=smoothstep(-2.4,-.6,sh)*(.55+.45*sin(wp.z*.8+time*2.+n(wp.xz)*6.)); c=mix(c,vec3(.95,.93,.86),clamp(foam,0.,1.)*.55);
+        float sh=abs(wp.x-mid(wp.z))-${RW}.0; float foam=smoothstep(-1.4,-.4,sh)*(.55+.45*sin(wp.z*.8+time*2.+n(wp.xz)*6.)); c=mix(c,vec3(.95,.93,.86),clamp(foam,0.,1.)*.32);
         float d=length(camPos-wp); float f=1.-exp(-fogD*fogD*d*d); c=mix(c,fogCol,f); gl_FragColor=vec4(c,1.);
         #include <tonemapping_fragment>
         #include <colorspace_fragment>
