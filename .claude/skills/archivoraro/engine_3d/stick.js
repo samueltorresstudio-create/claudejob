@@ -13,14 +13,18 @@ function stick(o) {
     armL: [20, 10], armR: [20, 10], legL: [4, 0], legR: [4, 0], hair: null, cap: null, hood: false, sweat: false, number: null, shoes: '#f4f2ec', wrist: null,
     head: [92, 100], headSeed: 1, belly: 1, boil: 0, nose: true, jaw: 0 }, o);
   const id = 'sk' + (++_sid), rad = a => a * Math.PI / 180, bj = (k, a = 1.6) => (hsh(d.boil + k, d.headSeed) - .5) * a;
-  const HIP = -205, SH = -360, HC = -470;
+  const BOB = d.bob || 0, HIP = -205 + BOB, SH = -360 + BOB, HC = -470 + BOB;
   let s = `<defs><radialGradient id="${id}h" cx="${.32 + (d.shade - .5) * .4}" cy=".3" r=".9"><stop offset=".42" stop-color="#ffffff"/><stop offset="1" stop-color="#cdd2df"/></radialGradient>
     <linearGradient id="${id}b" x1="0" y1="0" x2="1" y2="0"><stop offset=".4" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".24"/></linearGradient></defs>`;
   const joint = (x0, y0, a1, l1, a2, l2) => { const x1 = x0 + Math.sin(rad(a1)) * l1, y1 = y0 + Math.cos(rad(a1)) * l1; return [x1, y1, x1 + Math.sin(rad(a1 + a2)) * l2, y1 + Math.cos(rad(a1 + a2)) * l2]; };
   const noodle = (x0, y0, x1, y1, x2, y2, w) => { const cx = 2 * x1 - (x0 + x2) / 2, cy = 2 * y1 - (y0 + y2) / 2;
     return `<path d="M${x0},${y0} Q${cx.toFixed(1)},${cy.toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}" stroke="${INKC}" stroke-width="${w}" fill="none" stroke-linecap="round"/>`; };
   let legs = '', arms = '';
-  [[-1, d.legL], [1, d.legR]].forEach(([sd, [hip, knee]], i) => { const hx = sd * 22, [kx, ky, fx, fy] = joint(hx, HIP + 6, sd * hip, 102, -sd * knee, 104);
+  if (d.lift) { [[-1, d.lift[0]], [1, d.lift[1]]].forEach(([sd, lf], i) => { const hx = sd * 22 + (d.turn || 0) * 6, hy = HIP + 6, fx = sd * 26 + (d.turn || 0) * 14 * lf + (d.stepX ? d.stepX[i] : 0), fy = -2 - lf * 62;
+      const kx = (hx + fx) / 2 + sd * (4 + lf * 24) + (d.turn || 0) * lf * 18, ky = (hy + fy) / 2 - lf * 16;
+      legs += noodle(hx, hy, kx, ky, fx, fy, LW + 2);
+      legs += `<g transform="translate(${fx.toFixed(1)},${fy.toFixed(1)}) rotate(${(sd * lf * 14 - (d.turn || 0) * lf * 10).toFixed(1)})"><path d="M${-15},-5 Q${-17},13 ${8 + sd * 20},13 Q${26 + sd * 22},11 ${21 + sd * 18},-3 Q${10 + sd * 8},-15 ${-9},-12Z" fill="${d.shoes}" stroke="${INKC}" stroke-width="7" stroke-linejoin="round"/><path d="M${-15},9 L${23 + sd * 20},9" stroke="${d.sole || '#e94b3c'}" stroke-width="5" stroke-linecap="round"/></g>`; }); }
+  else [[-1, d.legL], [1, d.legR]].forEach(([sd, [hip, knee]], i) => { const hx = sd * 22, [kx, ky, fx, fy] = joint(hx, HIP + 6, sd * hip, 102, -sd * knee, 104);
     legs += noodle(hx, HIP + 6, kx + bj(10 + i), ky, fx, fy, LW + 2);
     if (d.socks) { const qx = kx + (fx - kx) * .66, qy = ky + (fy - ky) * .66; legs += `<path d="M${qx.toFixed(1)},${qy.toFixed(1)} L${fx.toFixed(1)},${(fy - 4).toFixed(1)}" stroke="${INKC}" stroke-width="21" stroke-linecap="round"/><path d="M${qx.toFixed(1)},${qy.toFixed(1)} L${fx.toFixed(1)},${(fy - 4).toFixed(1)}" stroke="#f6f3ec" stroke-width="13" stroke-linecap="round"/><path d="M${(qx + (fx - qx) * .2).toFixed(1)},${(qy + (fy - qy) * .2).toFixed(1)} L${(qx + (fx - qx) * .35).toFixed(1)},${(qy + (fy - qy) * .35).toFixed(1)}" stroke="${d.socks}" stroke-width="13"/>`; }
     const fa = sd * hip - sd * knee; legs += `<g transform="translate(${fx.toFixed(1)},${fy.toFixed(1)}) rotate(${(-fa * .6).toFixed(1)})"><path d="M${-15},-5 Q${-17},13 ${8 + sd * 20},13 Q${26 + sd * 22},11 ${21 + sd * 18},-3 Q${10 + sd * 8},-15 ${-9},-12Z" fill="${d.shoes}" stroke="${INKC}" stroke-width="7" stroke-linejoin="round"/><path d="M${-15},9 L${23 + sd * 20},9" stroke="${d.sole || '#e94b3c'}" stroke-width="5" stroke-linecap="round"/></g>`; });
@@ -29,6 +33,7 @@ function stick(o) {
     if (d.wrist && sd > 0) arms += `<circle cx="${(ex + (hx - ex) * .78).toFixed(1)}" cy="${(ey + (hy - ey) * .78).toFixed(1)}" r="9" fill="${d.wrist}" stroke="${INKC}" stroke-width="4"/>`;
     if (sd > 0 && d.cane) arms += `<path d="M${hx.toFixed(1)},${hy.toFixed(1)} L${(hx + 14).toFixed(1)},4" stroke="${INKC}" stroke-width="17" stroke-linecap="round"/><path d="M${hx.toFixed(1)},${hy.toFixed(1)} L${(hx + 14).toFixed(1)},4" stroke="${d.cane}" stroke-width="9" stroke-linecap="round"/><path d="M${(hx - 22).toFixed(1)},${(hy - 6).toFixed(1)} Q${(hx - 18).toFixed(1)},${(hy - 30).toFixed(1)} ${hx.toFixed(1)},${(hy - 22).toFixed(1)} L${hx.toFixed(1)},${hy.toFixed(1)}" stroke="${INKC}" stroke-width="17" fill="none" stroke-linecap="round"/><path d="M${(hx - 22).toFixed(1)},${(hy - 6).toFixed(1)} Q${(hx - 18).toFixed(1)},${(hy - 30).toFixed(1)} ${hx.toFixed(1)},${(hy - 22).toFixed(1)} L${hx.toFixed(1)},${hy.toFixed(1)}" stroke="${d.cane}" stroke-width="9" fill="none" stroke-linecap="round"/>`;
     if (sd > 0 && d.prop === 'pan') arms += `<g transform="translate(${hx.toFixed(1)},${hy.toFixed(1)}) rotate(-30)"><rect x="-6" y="-70" width="12" height="70" rx="5" fill="#3a2a22" stroke="${INKC}" stroke-width="5"/><ellipse cx="0" cy="-104" rx="52" ry="38" fill="#3b3f48" stroke="${INKC}" stroke-width="7"/><ellipse cx="0" cy="-108" rx="38" ry="25" fill="#22252c"/><ellipse cx="-6" cy="-110" rx="16" ry="11" fill="#fff6dc"/><circle cx="-4" cy="-110" r="7" fill="#ffc23a"/></g>`;
+    if (sd > 0 && d.prop === 'paddle') arms += `<g transform="translate(${hx.toFixed(1)},${hy.toFixed(1)}) rotate(-8)"><rect x="-7" y="-170" width="14" height="250" rx="6" fill="#9a6a3a" stroke="${INKC}" stroke-width="5"/><path d="M-7,80 Q-26,120 -20,190 Q0,210 20,190 Q26,120 7,80Z" fill="#b07a44" stroke="${INKC}" stroke-width="6" stroke-linejoin="round"/></g>`;
     if (sd > 0 && d.prop === 'spoon') arms += `<g transform="translate(${hx.toFixed(1)},${hy.toFixed(1)}) rotate(-20)"><rect x="-5" y="-86" width="10" height="92" rx="5" fill="#c99a5a" stroke="${INKC}" stroke-width="5"/><ellipse cx="0" cy="-102" rx="16" ry="22" fill="#c99a5a" stroke="${INKC}" stroke-width="5"/></g>`;
     arms += `<g transform="translate(${hx.toFixed(1)},${hy.toFixed(1)}) rotate(${(sd * sh + sd * el).toFixed(0)})"><ellipse cx="0" cy="3" rx="12" ry="15" fill="${INKC}"/><ellipse cx="${-sd * 11}" cy="-4" rx="5" ry="8" fill="${INKC}" transform="rotate(${sd * 30} ${-sd * 11} -4)"/></g>`; });
   const sx2 = d.lean * 1.4;
@@ -111,6 +116,14 @@ function stick(o) {
     // hood bunched around the neck (drawn on top of the body, under the head)
     body += `<path d="M${-74 + sx2},${SH - 8} Q${-86 + sx2},${SH - 66} ${sx2},${SH - 74} Q${86 + sx2},${SH - 66} ${74 + sx2},${SH - 8} Q${sx2},${SH + 28} ${-74 + sx2},${SH - 8}Z" fill="${d.topD}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/>`;
     [-1, 1].forEach(sd => { const x0 = sd * 16 + sx2; body += `<path d="M${x0},${SH + 2} Q${x0 + sd * 4},${SH + 40} ${x0 + sd * 2},${SH + 70}" stroke="${INKC}" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M${x0},${SH + 2} Q${x0 + sd * 4},${SH + 40} ${x0 + sd * 2},${SH + 70}" stroke="#f3ece2" stroke-width="5" fill="none" stroke-linecap="round"/>`; });
+  } else if (d.outfit === 'shirt') {
+    let c = `<rect x="-95" y="${HIP - 46}" width="190" height="120" fill="${d.pants || '#3b4a63'}"/><rect x="-95" y="${HIP - 50}" width="190" height="12" fill="${d.belt || '#5a3a22'}" stroke="${INKC}" stroke-width="3"/><rect x="-12" y="${HIP - 53}" width="24" height="18" rx="3" fill="#d9b25a" stroke="${INKC}" stroke-width="3"/>`;
+    if (d.view !== 'back') c += `<path d="M${sx2 * .6 + 2},${SH - 6} L${sx2 * .6 - 2},${HIP - 52}" stroke="${INKC}" stroke-width="3.5" opacity=".6"/>` + [0, 1, 2].map(k => `<circle cx="${sx2 * .6 + 9}" cy="${SH + 26 + k * 40}" r="5" fill="#f4f2ec" stroke="${INKC}" stroke-width="2.5"/>`).join('');
+    if (d.view !== 'back') c += `<rect x="-58" y="${SH + 22}" width="36" height="34" rx="4" fill="none" stroke="${INKC}" stroke-width="3.5"/><path d="M-58,${SH + 30} L-22,${SH + 30}" stroke="${INKC}" stroke-width="3"/>`;
+    c += `<path d="M58,${SH + 4} Q66,${SH + 70} 46,${HIP - 64}" stroke="#000" stroke-opacity=".1" stroke-width="16" fill="none" stroke-linecap="round"/><rect x="-95" y="${SH - 60}" width="190" height="320" fill="url(#${id}b)"/>`;
+    body += IN(c);
+    if (d.view !== 'back') body += [-1, 1].map(sd => `<path d="M${sd * 6 + sx2},${SH - 30} L${sd * 40 + sx2},${SH - 34} L${sd * 22 + sx2},${SH + 2}Z" fill="${d.top}" stroke="${INKC}" stroke-width="5" stroke-linejoin="round"/>`).join('');
+    if (d.scarf && d.view !== 'back') body += `<path d="M${-30 + sx2},${SH - 30} Q${sx2},${SH - 6} ${30 + sx2},${SH - 30} L${26 + sx2},${SH - 14} Q${sx2},${SH + 8} ${-26 + sx2},${SH - 14}Z" fill="${d.scarf}" stroke="${INKC}" stroke-width="5" stroke-linejoin="round"/><path d="M${-8 + sx2},${SH - 4} l-14,34 l20,-6Z" fill="${d.scarf}" stroke="${INKC}" stroke-width="4" stroke-linejoin="round"/>`;
   } else if (d.outfit === 'military') {
     s += `<defs><pattern id="${id}cm" width="90" height="90" patternUnits="userSpaceOnUse"><rect width="90" height="90" fill="#6b7448"/><path d="M5,10 q18,-10 30,4 q8,14 -10,18 q-22,2 -20,-22Z" fill="#4a5232"/><path d="M50,40 q20,-8 32,6 q4,16 -16,16 q-20,-2 -16,-22Z" fill="#8f875a"/><path d="M20,60 q14,-6 24,6 q2,12 -14,12 q-14,-2 -10,-18Z" fill="#3b3326"/><path d="M60,4 q12,-2 16,8 q-4,10 -14,6Z" fill="#3b3326"/><path d="M0,44 q10,-4 16,4 q-2,8 -12,8Z" fill="#8f875a"/></pattern></defs>`;
     let c = `<path d="${B}" fill="url(#${id}cm)"/><rect x="-95" y="${SH - 60}" width="190" height="320" fill="url(#${id}b)"/>`;
@@ -144,8 +157,9 @@ function stick(o) {
   const R0 = 100, rx = R0, ry = R0, fx = 1.04, fy = 1.04;
   const HP2 = (typeof hairParts === 'function' && d.hair2) ? hairParts(d.hair2, d.hairCol || '#2a1a12') : { back: '', front: '' };
   let h = HP2.back + `<circle cx="0" cy="0" r="${R0}" fill="url(#${id}h)" stroke="${INKC}" stroke-width="${LW + 1}"/>`;
-  const [lx, ly] = d.look, E = [[-36, -2], [36, -2]];
+  const TN = d.turn || 0, [lx, ly] = d.look, E = [[-36 + TN * 26, -2], [36 + TN * 26, -2]];
   // brows: short, thick, rounded
+  const hBase = h;
   const by = -44 - d.brows * 7;
   E.forEach(([ex], i) => { const s2 = i ? 1 : -1, t = d.browTilt * 10 * s2; h += `<path d="M${ex - 17},${by + t} Q${ex},${by - 6} ${ex + 17},${by - t}" stroke="${INKC}" stroke-width="${d.browCol ? 13 : 10}" fill="none" stroke-linecap="round"/>` + (d.browCol ? `<path d="M${ex - 17},${by + t} Q${ex},${by - 6} ${ex + 17},${by - t}" stroke="${d.browCol}" stroke-width="5" fill="none" stroke-linecap="round"/>` : ''); });
   // eyes (same family as the reference: heavy-lidded black half-discs, black ovals, round shocked eyes)
@@ -156,7 +170,7 @@ function stick(o) {
     else if (d.face === 'wide') h += `<circle cx="${ex}" cy="${ey}" r="19" fill="#fff" stroke="${INKC}" stroke-width="6"/><circle cx="${ex + lx * .5}" cy="${ey + ly * .5}" r="5.5" fill="${INKC}"/>`;
     else if (d.face === 'closed') h += `<path d="M${ex - 15},${ey} Q${ex},${ey + 10} ${ex + 15},${ey}" stroke="${INKC}" stroke-width="7" fill="none" stroke-linecap="round"/>`;
     else if (d.face === 'happy') h += `<path d="M${ex - 15},${ey + 6} Q${ex},${ey - 11} ${ex + 15},${ey + 6}" stroke="${INKC}" stroke-width="7" fill="none" stroke-linecap="round"/>`; });
-  const my = 42, mx = lx * .25;
+  const my = 42, mx = lx * .25 + TN * 26;
   if (d.mouth === 'smile') h += `<path d="M${mx - 18},${my - 4} Q${mx},${my + 12} ${mx + 18},${my - 4}" stroke="${INKC}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
   else if (d.mouth === 'smirk') h += `<path d="M${mx - 4},${my + 4} Q${mx + 14},${my + 8} ${mx + 26},${my - 6}" stroke="${INKC}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
   else if (d.mouth === 'line') h += `<path d="M${mx - 12},${my} L${mx + 12},${my}" stroke="${INKC}" stroke-width="6" stroke-linecap="round"/>`;
@@ -165,9 +179,15 @@ function stick(o) {
   else if (d.mouth === 'laugh') h += `<path d="M${mx - 26},${my - 8} Q${mx},${my - 12} ${mx + 26},${my - 8} Q${mx + 20},${my + 26} ${mx},${my + 28} Q${mx - 20},${my + 26} ${mx - 26},${my - 8}Z" fill="${INKC}"/><path d="M${mx - 20},${my - 8} L${mx + 20},${my - 8} L${mx + 18},${my - 1} L${mx - 18},${my - 1}Z" fill="#fff"/>`;
   else if (d.mouth === 'open') h += `<path d="M${mx - 26},${my - 8} Q${mx},${my - 14} ${mx + 26},${my - 8} Q${mx + 20},${my + 28} ${mx},${my + 30} Q${mx - 20},${my + 28} ${mx - 26},${my - 8}Z" fill="${INKC}"/><path d="M${mx - 16},${my + 17} Q${mx},${my + 6} ${mx + 16},${my + 17} Q${mx},${my + 28} ${mx - 16},${my + 17}Z" fill="#e0707a"/>`;
   if (d.wrinkles) h += `<path d="M-30,-70 Q0,-76 30,-70 M-24,-80 Q0,-86 24,-80" stroke="${INKC}" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".45"/><path d="M-62,6 q-6,6 -2,14 M62,6 q6,6 2,14" stroke="${INKC}" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".4"/>`;
-  if (d.mustache) h += `<path d="M${mx - 44},${my + 2} Q${mx - 40},${my - 28} ${mx},${my - 20} Q${mx + 40},${my - 28} ${mx + 44},${my + 2} Q${mx + 30},${my - 2} ${mx + 18},${my - 4} Q${mx + 8},${my + 2} ${mx},${my - 4} Q${mx - 8},${my + 2} ${mx - 18},${my - 4} Q${mx - 30},${my - 2} ${mx - 44},${my + 2}Z" fill="${d.mustache}" stroke="${INKC}" stroke-width="5" stroke-linejoin="round"/>`;
+  if (d.mustache) h += `<path transform="translate(0,-14) scale(.9) translate(${mx * .11},${my * .11})" d="M${mx - 44},${my + 2} Q${mx - 40},${my - 28} ${mx},${my - 20} Q${mx + 40},${my - 28} ${mx + 44},${my + 2} Q${mx + 30},${my - 2} ${mx + 18},${my - 4} Q${mx + 8},${my + 2} ${mx},${my - 4} Q${mx - 8},${my + 2} ${mx - 18},${my - 4} Q${mx - 30},${my - 2} ${mx - 44},${my + 2}Z" fill="${d.mustache}" stroke="${INKC}" stroke-width="5" stroke-linejoin="round"/>`;
   if (d.glasses) h += E.map(([ex, ey]) => `<circle cx="${ex}" cy="${ey}" r="25" fill="#cfe6ff" fill-opacity=".18" stroke="${INKC}" stroke-width="6"/>`).join('') + `<path d="M-11,-4 Q0,-12 11,-4" stroke="${INKC}" stroke-width="5" fill="none"/><path d="M-61,-6 L-94,-14 M61,-6 L94,-14" stroke="${INKC}" stroke-width="5"/>`;
-  h += HP2.front;
+  if (d.view === 'back') h = hBase + (d.hair2 && d.hair2 !== 'bald' && !d.hat ? `<path d="M-100,6 C-104,-70 -56,-108 0,-108 C56,-108 104,-70 100,6 C70,30 -70,30 -100,6Z" fill="${d.hairCol || '#2a1a12'}" stroke="${INKC}" stroke-width="8"/><path d="M-40,-80 Q-10,-96 30,-92" stroke="#fff" stroke-opacity=".2" stroke-width="8" fill="none" stroke-linecap="round"/>` : '');
+  else h += HP2.front;
+  if (d.hat === 'vueltiao') { const cr = '#f3ead2', bk = '#1b1720', z = (y, w, n) => { let p = `M${-w},${y}`; for (let k = 0; k <= n; k++) p += ` L${(-w + k * 2 * w / n).toFixed(1)},${y + (k % 2 ? -7 : 7)}`; return p; };
+    h += `<g transform="translate(${TN * 14},-92)"><ellipse cx="0" cy="0" rx="166" ry="36" fill="${cr}" stroke="${INKC}" stroke-width="8"/><ellipse cx="0" cy="0" rx="138" ry="28" fill="none" stroke="${bk}" stroke-width="9"/><ellipse cx="0" cy="0" rx="110" ry="21" fill="none" stroke="${bk}" stroke-width="5" stroke-dasharray="10 8"/>` +
+      `<path d="M-78,2 C-84,-60 -70,-112 0,-116 C70,-112 84,-60 78,2 Q0,18 -78,2Z" fill="${cr}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/>` +
+      `<path d="${z(-24, 79, 14)}" stroke="${bk}" stroke-width="6" fill="none" stroke-linejoin="round"/><path d="${z(-58, 76, 14)}" stroke="${bk}" stroke-width="6" fill="none" stroke-linejoin="round"/><path d="M-70,-88 Q0,-104 70,-88" stroke="${bk}" stroke-width="7" fill="none"/>` +
+      `<path d="M-50,-100 Q-20,-110 10,-108" stroke="#fff" stroke-width="7" fill="none" opacity=".55" stroke-linecap="round"/></g>`; }
   if (d.hat === 'helmet') h += `<g transform="translate(0,-38)"><path d="M-112,-18 C-118,-118 118,-118 112,-18 Q0,-36 -112,-18Z" fill="url(#${id}cm)" stroke="${INKC}" stroke-width="9" stroke-linejoin="round"/><path d="M-120,-16 Q0,-40 120,-16 L116,-2 Q0,-24 -116,-2Z" fill="#4a5232" stroke="${INKC}" stroke-width="6" stroke-linejoin="round"/><path d="M-60,-98 Q0,-118 60,-98" stroke="#fff" stroke-opacity=".18" stroke-width="8" fill="none"/><path d="M-96,-8 Q-96,70 -60,100 M96,-8 Q96,70 60,100" stroke="#3a3324" stroke-width="6" fill="none"/></g>`;
   if (d.hat === 'toque') h += `<g><path d="M-78,-58 C-120,-90 -110,-170 -60,-168 C-50,-214 50,-214 60,-168 C110,-170 120,-90 78,-58Z" fill="#fbfaf6" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/><path d="M-30,-160 Q-34,-110 -36,-72 M8,-178 Q6,-120 4,-72 M44,-160 Q42,-110 40,-72" stroke="${INKC}" stroke-width="4" fill="none" opacity=".35"/><path d="M-82,-74 Q0,-92 82,-74 L84,-48 Q0,-66 -84,-48Z" fill="#f0eee6" stroke="${INKC}" stroke-width="7" stroke-linejoin="round"/></g>`;
   if (d.hat === 'beret') h += `<path d="M-96,-36 C-110,-100 40,-130 104,-70 Q110,-50 96,-42 Q0,-58 -96,-36Z" fill="${d.hatCol || '#7a1f2a'}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/><circle cx="-50" cy="-58" r="12" fill="#f2c94c" stroke="${INKC}" stroke-width="4"/>`;
@@ -197,3 +217,10 @@ function stickAt(o, F, Hc, W, opt = {}) {
   out += `<g transform="translate(${pf.x.toFixed(1)},${pf.y.toFixed(1)}) rotate(${rot.toFixed(2)}) scale(${s.toFixed(4)})"${blur > .3 ? ` style="filter:blur(${blur.toFixed(1)}px)"` : ''}><g${fl}>${stick(o)}</g></g>`;
   return out;
 }
+
+// walkPose(phase, o): fluid walk cycle for front / 3-4 / back views (reference: soft knees, foot lifts high, body bobs and rocks, arms swing with bent elbows).
+// phase advances ~2π per two steps; at normal speed phase = t * 7. Returns props to merge into stick(o).
+function walkPose(ph, o = {}) { const k = o.amp ?? 1, s1 = Math.sin(ph), l0 = Math.max(0, s1), l1 = Math.max(0, -s1);
+  const ease = x => x * x * (3 - 2 * x);
+  return { lift: [ease(l0) * k, ease(l1) * k], bob: -Math.abs(Math.cos(ph)) * 0 + (Math.abs(s1) - .5) * -14 * k, lean: s1 * 3 * k + (o.lean || 0),
+    armL: [14 + 20 * Math.max(0, -s1) * k, 26 + 24 * Math.max(0, -s1) * k], armR: [14 + 20 * Math.max(0, s1) * k, 26 + 24 * Math.max(0, s1) * k], headTilt: -s1 * 2.5 * k }; }
