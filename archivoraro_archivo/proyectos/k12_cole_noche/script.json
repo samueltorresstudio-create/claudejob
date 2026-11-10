@@ -1,0 +1,229 @@
+[
+ {
+  "sc": "intro",
+  "hud": "COLEGIO · 21:40",
+  "say": "Si te quedas encerrado en el colegio... por la noche...",
+  "cap": "SI TE QUEDAS ENCERRADO EN EL COLEGIO... POR LA NOCHE...|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "COLEGIO · 21:40",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer para salir.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER PARA SALIR.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Óscar. Once años.",
+  "cap": "ÓSCAR.|y 11 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Se queda dormido en la biblioteca, detrás de la última estantería.",
+  "cap": "SE QUEDA DORMIDO EN LA BIBLIOTECA, DETRÁS DE LA ÚLTIMA ESTANTERÍA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Nadie le ve. Ni la bibliotecaria, ni el conserje.",
+  "cap": "NADIE LE VE. NI LA BIBLIOTECARIA, NI EL CONSERJE.",
+  "pause": 0.3
+ },
+ {
+  "sc": "wake",
+  "hud": "BIBLIOTECA · 21:40",
+  "say": "Cuando se despierta, son las diez menos veinte.",
+  "cap": "CUANDO SE DESPIERTA, SON LAS DIEZ MENOS VEINTE.|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "wake",
+  "hud": "BIBLIOTECA · 21:40",
+  "alert": true,
+  "say": "Todo está a oscuras. Y en el colegio no queda nadie.",
+  "cap": "TODO ESTÁ A OSCURAS. Y EN EL COLEGIO NO QUEDA NADIE.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "wake",
+  "hud": "PASILLO · 21:42",
+  "say": "Solo se oye el zumbido de la máquina de bebidas.",
+  "cap": "SOLO SE OYE EL ZUMBIDO DE LA MÁQUINA DE BEBIDAS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "wake",
+  "hud": "PASILLO · 21:42",
+  "alert": true,
+  "say": "Y, muy lejos, unos pasos. Que se paran cuando él se para.",
+  "cap": "Y, MUY LEJOS, UNOS PASOS. QUE SE PARAN CUANDO ÉL SE PARA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · UN TELÉFONO",
+  "step": 0,
+  "say": "Paso uno: busca un teléfono.",
+  "cap": "PASO|y UNO: BUSCA UN TELÉFONO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · UN TELÉFONO",
+  "say": "El único está en secretaría, en la planta de abajo.",
+  "cap": "EL ÚNICO ESTÁ EN SECRETARÍA, EN LA PLANTA DE ABAJO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "ESCALERA · 21:45",
+  "say": "Óscar baja las escaleras a oscuras, agarrado a la barandilla.",
+  "cap": "ÓSCAR BAJA LAS ESCALERAS A OSCURAS, AGARRADO A LA BARANDILLA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "SECRETARÍA · 21:47",
+  "alert": true,
+  "say": "Pero la secretaría está cerrada con llave.",
+  "cap": "PERO LA SECRETARÍA ESTÁ CERRADA CON LLAVE.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "SECRETARÍA · 21:47",
+  "say": "Dentro, el teléfono parpadea. Tiene un mensaje nuevo.",
+  "cap": "DENTRO, EL TELÉFONO PARPADEA. TIENE UN MENSAJE NUEVO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · SALIDA",
+  "step": 1,
+  "say": "Paso dos: sigue las luces verdes de salida.",
+  "cap": "PASO|y DOS: SIGUE LAS LUCES VERDES DE SALIDA.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · SALIDA",
+  "say": "Son lo único que brilla en todo el colegio.",
+  "cap": "SON LO ÚNICO QUE BRILLA EN TODO EL COLEGIO.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "PASILLO · 21:52",
+  "say": "Óscar prueba la puerta del patio. La del gimnasio. La principal.",
+  "cap": "ÓSCAR PRUEBA LA PUERTA DEL PATIO. LA DEL GIMNASIO. LA PRINCIPAL.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "PASILLO · 21:54",
+  "alert": true,
+  "say": "Todas tienen un candado nuevo. Por dentro.",
+  "cap": "TODAS TIENEN UN CANDADO NUEVO. POR DENTRO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "PASILLO · 21:54",
+  "alert": true,
+  "say": "Alguien no quiere que salga.",
+  "cap": "ALGUIEN NO QUIERE QUE SALGA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · LAS CLASES",
+  "step": 2,
+  "say": "Paso tres: no entres en ninguna clase que tenga la puerta abierta.",
+  "cap": "PASO|y TRES: NO ENTRES EN NINGUNA CLASE QUE TENGA LA PUERTA ABIERTA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "PASILLO · 21:56",
+  "say": "De noche, todas las puertas están cerradas. Todas menos una.",
+  "cap": "DE NOCHE, TODAS LAS PUERTAS ESTÁN CERRADAS. TODAS MENOS UNA.|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "6ºB · 21:57",
+  "alert": true,
+  "say": "La de su clase. Y en la pizarra, en letras enormes, pone su nombre.",
+  "cap": "LA DE SU CLASE. Y EN LA PIZARRA, EN LETRAS ENORMES, PONE SU NOMBRE.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "6ºB · 21:57",
+  "alert": true,
+  "say": "Escrito con tiza... todavía fresca.",
+  "cap": "ESCRITO CON TIZA... TODAVÍA FRESCA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · LA MEGAFONÍA",
+  "step": 3,
+  "say": "Paso cuatro: si suena la megafonía, no obedezcas.",
+  "cap": "PASO|y CUATRO: SI SUENA LA MEGAFONÍA, NO OBEDEZCAS.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · LA MEGAFONÍA",
+  "say": "Diga lo que diga. Diga quien lo diga.",
+  "cap": "DIGA LO QUE DIGA. DIGA QUIEN LO DIGA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "pa",
+  "hud": "PASILLO · 22:00",
+  "say": "A las diez en punto, los altavoces del pasillo se encienden.",
+  "cap": "A LAS DIEZ EN PUNTO, LOS ALTAVOCES DEL PASILLO SE ENCIENDEN.",
+  "pause": 0.15
+ },
+ {
+  "sc": "pa",
+  "hud": "PASILLO · 22:00",
+  "say": "Primero, un pitido. Luego, una voz que no ha oído nunca.",
+  "cap": "PRIMERO, UN PITIDO. LUEGO, UNA VOZ QUE NO HA OÍDO NUNCA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "pa",
+  "hud": "PASILLO · 22:00",
+  "alert": true,
+  "voice": "tv",
+  "say": "Óscar... que pase al despacho del director.",
+  "cap": "«ÓSCAR... QUE PASE AL DESPACHO DEL DIRECTOR.»|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "end",
+  "hud": "PASILLO · 22:00",
+  "alert": true,
+  "say": "Al fondo del pasillo, la luz del despacho se enciende.",
+  "cap": "AL FONDO DEL PASILLO, LA LUZ DEL DESPACHO SE ENCIENDE.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "PASILLO · 22:00",
+  "alert": true,
+  "cut": true,
+  "say": "Y la puerta... empieza a abrirse sola.",
+  "cap": "Y LA PUERTA... EMPIEZA A ABRIRSE SOLA.|p",
+  "pause": 0.2
+ }
+]

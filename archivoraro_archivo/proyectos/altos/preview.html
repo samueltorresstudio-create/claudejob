@@ -1,0 +1,17 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#1a1d2e}</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<script src="lib.js"></script>
+<script>
+const LUCIA={skin:'#f2c6a4',top:'#2f9c95',topD:'#22756f',pants:'#2e3350',hs:'long',hair:'#2b1d1a',hood:true,strings:true,pocket:true};
+const MAN={skin:'#8d5a3f',top:'#c77b3b',topD:'#8f5526',hs:'bald',hair:'#1d1514',pants:'#3b3f55'};
+const WOMAN={skin:'#f6cfae',top:'#b24e5a',topD:'#7d3540',hs:'long',hair:'#c79a5a'};
+const GIRL={skin:'#f6cfae',top:'#f2c230',topD:'#c99b1c',pants:'#3b4a7a',hs:'pigtails',hair:'#7a4528',hood:true};
+let s=`<rect width="1080" height="1920" fill="#1a1d2e"/><rect y="0" width="1080" height="905" fill="#232741"/>`;
+s+=`<text x="40" y="80" font-family="JetBrains Mono" font-weight="800" font-size="40" fill="#8a8fb0" letter-spacing="4">ANTES</text>`;
+s+=`<text x="40" y="985" font-family="JetBrains Mono" font-weight="800" font-size="40" fill="#e8c547" letter-spacing="4">AHORA</text>`;
+s+=`<line x1="0" y1="855" x2="1080" y2="855" stroke="#3a3f68" stroke-width="4"/><line x1="0" y1="1855" x2="1080" y2="1855" stroke="#3a3f68" stroke-width="4"/>`;
+const row=(y,tall)=>[[150,LUCIA],[360,FARMER],[570,WOMAN],[780,MAN]].map(([x,p])=>person({...p,x,y,s:.8,tall,look:[0,2]})).join('')+person({...GIRL,x:960,y,s:.8,look:[0,2]});
+s+=row(850,false)+row(1850,true);
+s+=`<text x="960" y="1890" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="22" fill="#8a8fb0">(niña)</text>`;
+document.getElementById('s').innerHTML=s;
+</script></body></html>

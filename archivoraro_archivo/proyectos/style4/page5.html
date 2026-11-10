@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#222}</style></head><body>
+<svg id="sv" xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080"></svg>
+<script src="../48_apagon1/lib.js"></script><script src="../48_apagon1/kit.js"></script><script src="../48_apagon1/props.js"></script><script src="../48_apagon1/props2.js"></script><script src="../48_apagon1/cast.js"></script><script src="lib5.js"></script>
+<script>
+window.__T=1.3;
+const CH4={
+ alex:{old:{skin:'#e2b08a',hs:'quiff',hair:'#3a2a20',stubble:true,top:'#3a5a7a',topD:'#2a4260',hood:true,strings:true,pants:'#2e3440',shoes:'#e9e4d8',seed:101,mouth:'line'},
+       neu:{skin:'#e2b08a',hs:'quiff',hair:'#3a2a20',stubble:true,top:'#3a5a7a',outfit:'hoodie',pants:'#2e3440',shoes:'#e9e4d8',expr:'neutral',look:[4,0]},name:'ÁLEX',bg:'#cbbba3'},
+ vec:{old:{skin:'#d9a07a',hs:'bald',hair:'#5a4a40',mustache:'#4a3a30',build:'heavy',top:'#f3f0e6',topD:'#d9d4c8',shortSleeves:true,pants:'#3a4a6a',shoes:'#2a2a2e',seed:102,mouth:'grin'},
+      neu:{skin:'#d9a07a',hs:'bald',hair:'#5a4a40',mustache:'#4a3a30',build:'heavy',top:'#f3f0e6',outfit:'tee',pants:'#3a4a6a',shoes:'#6a4a3a',expr:'happy',arms:'hips'},name:'EL VECINO DEL 5.º',bg:'#d8c8a8'},
+ nina:{old:{skin:'#c98c64',hs:'pigtails',hair:'#3a2418',top:'#8a6aa8',topD:'#6a4a88',pants:'#3a3a4a',shoes:'#3a332c',fem:true,seed:61,mouth:'smile'},
+       neu:{skin:'#c98c64',hs:'pigtails',hair:'#3a2418',top:'#8a6aa8',outfit:'tee',pants:'#3a4a6a',shoes:'#e0607a',kid:true,fem:true,lashes:true,expr:'smile',armR:'wave',tieCol:'#ffd34a'},name:'LA NIÑA',bg:'#bcd0d8',kid:1},
+ caj:{old:{fem:true,skin:'#c98c64',hs:'ponytail',hair:'#2a1a12',top:'#2f8a5a',topD:'#1f6a42',lashes:true,earrings:'#f1c84b',seed:103,mouth:'smile'},
+      neu:{fem:true,skin:'#c98c64',hs:'ponytail',hair:'#2a1a12',top:'#2f8a5a',outfit:'polo',badge:true,pants:'#2a2e38',shoes:'#2a2a2e',lashes:true,earrings:'#f1c84b',expr:'smile',look:[-4,0]},name:'LA CAJERA',bg:'#d9dde0'},
+ tani:{old:{skin:'#dcae86',hs:'sidepart',hair:'#d8d4cc',glasses:'round',mustache:'#d8d4cc',wrinkles:true,top:'#e9e4d8',topD:'#c9c2b0',jacket:'#6a5a48',tie:'#3a4a6a',pants:'#4a4038',shoes:'#2a221a',seed:92,brows:'worried',mouth:'line'},
+       neu:{skin:'#dcae86',hs:'sidepart',hair:'#d8d4cc',glasses:true,mustache:'#d8d4cc',wrinkles:true,top:'#e9e4d8',outfit:'shirt',jacket:'#6a5a48',tie:'#3a4a6a',pants:'#4a4038',shoes:'#2a221a',build:'slim',expr:'worried',arms:'front'},name:'EL COMANDANTE',bg:'#c8d0b8'},
+};
+window.draw=k=>{const c=CH4[k];let s='<rect width="1080" height="1080" fill="'+c.bg+'"/><rect y="860" width="1080" height="220" fill="#000" opacity=".12"/>';
+ s+='<line x1="540" y1="60" x2="540" y2="1020" stroke="#000" stroke-opacity=".15" stroke-width="3" stroke-dasharray="10 10"/>';
+ const old=c.kid?kid:A;
+ s+=old({...c.old,x:270,y:900,s:c.kid?.95:.98});
+ s+=P5({...c.neu,x:810,y:900,s:c.kid?1.1:1.0});
+ s+='<text x="270" y="60" text-anchor="middle" font-family="Inter" font-weight="900" font-size="34" fill="#11131f" opacity=".55">ANTES</text><text x="810" y="60" text-anchor="middle" font-family="Inter" font-weight="900" font-size="34" fill="#11131f">NUEVO</text>';
+ s+='<rect x="340" y="980" width="400" height="64" rx="12" fill="#11131f"/><text x="540" y="1024" text-anchor="middle" font-family="Inter" font-weight="900" font-size="32" fill="#ffd34a">'+c.name+'</text>';
+ document.getElementById('sv').innerHTML=s;};
+</script></body></html>

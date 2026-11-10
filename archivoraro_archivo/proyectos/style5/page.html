@@ -1,0 +1,138 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#222}</style></head><body>
+<svg id="sv" xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080"></svg>
+<script src="sprites.js"></script>
+<script>
+const K='#1d1b24', SKIN='#e2b08a', HAIR='#3a2a20', HOOD='#3a5a7a', HOODD='#2a4260', PANT='#2e3440', TAN='#b5803f', TAN2='#e0b070', BLK='#1d1a1c';
+const label=t=>`<rect x="290" y="975" width="500" height="70" rx="14" fill="#11131f"/><text x="540" y="1022" text-anchor="middle" font-family="Inter" font-weight="900" font-size="34" fill="#ffd34a">${t}</text>`;
+
+// ---------- 1 · STICKMAN ----------
+function stick(){
+  let s=`<rect width="1080" height="1080" fill="#f4f1ea"/><line x1="0" y1="880" x2="1080" y2="880" stroke="${K}" stroke-width="8" stroke-linecap="round"/>`;
+  const L=(x1,y1,x2,y2,w=13,c=K)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`;
+  // Álex: head, quiff, blue hoodie body, stick limbs
+  const x=400;
+  s+=L(x,700,x-60,875)+L(x,700,x+55,875);                      // legs
+  s+=L(x-5,505,x-90,610)+L(x-90,610,x-110,690);                   // left arm hanging
+  s+=L(x+5,505,x+90,470)+L(x+90,470,x+120,380);                   // right arm waving
+  s+=L(x,480,x,700,40,HOOD)+L(x,480,x,700,6,HOODD);               // hoodie body
+  s+=`<path d="M${x-16},500 l-4,60 M${x+16},500 l4,60" stroke="#f3eee6" stroke-width="5" stroke-linecap="round"/>`;
+  s+=`<circle cx="${x}" cy="400" r="72" fill="#fff" stroke="${K}" stroke-width="11"/>`;
+  s+=`<path d="M${x-60},380 C${x-62},320 ${x-10},300 ${x+20},310 C${x+50},300 ${x+80},330 ${x+64},372 C${x+40},350 ${x-10},346 ${x-60},380Z" fill="${K}"/>`;
+  s+=`<circle cx="${x-22}" cy="405" r="8" fill="${K}"/><circle cx="${x+24}" cy="405" r="8" fill="${K}"/><path d="M${x-20},440 Q${x},452 ${x+20},440" stroke="${K}" stroke-width="7" fill="none" stroke-linecap="round"/>`;
+  // Bruno
+  const bx=770, by=760;
+  s+=L(bx-90,by,bx+70,by-10,30,TAN)+L(bx-80,by-8,bx+50,by-16,16,BLK);
+  s+=L(bx-80,by+6,bx-95,875)+L(bx-55,by+6,bx-60,875)+L(bx+45,by,bx+40,875)+L(bx+70,by-4,bx+80,875);
+  s+=`<path d="M${bx-90},${by} Q${bx-140},${by-10} ${bx-150},${by-70}" stroke="${K}" stroke-width="13" fill="none" stroke-linecap="round"/>`;
+  s+=`<circle cx="${bx+105}" cy="${by-70}" r="44" fill="#fff" stroke="${K}" stroke-width="10"/><path d="M${bx+80},${by-104} L${bx+70},${by-160} L${bx+100},${by-112}Z M${bx+120},${by-110} L${bx+132},${by-164} L${bx+142},${by-106}Z" fill="${K}"/>`;
+  s+=`<circle cx="${bx+100}" cy="${by-76}" r="6" fill="${K}"/><circle cx="${bx+124}" cy="${by-76}" r="6" fill="${K}"/><ellipse cx="${bx+150}" cy="${by-60}" rx="10" ry="8" fill="${K}"/><path d="M${bx+120},${by-48} q10,8 22,0" stroke="${K}" stroke-width="5" fill="none"/><path d="M${bx+70},${by-40} l40,10" stroke="#c23a3a" stroke-width="8" stroke-linecap="round"/>`;
+  return s+label('1 · STICKMAN');}
+
+// ---------- 2 · CHIBI ----------
+function chibi(){
+  let s=`<defs><linearGradient id="cb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe3ec"/><stop offset="1" stop-color="#ffd6a8"/></linearGradient></defs><rect width="1080" height="1080" fill="url(#cb)"/><rect y="880" width="1080" height="200" fill="#f0b98a"/>`;
+  for(let i=0;i<12;i++) s+=`<circle cx="${(i*97)%1080}" cy="${80+(i*61)%500}" r="${6+i%3*3}" fill="#fff" opacity=".6"/>`;
+  const x=400, o=`stroke="${K}" stroke-width="8" stroke-linejoin="round"`;
+  // body
+  s+=`<ellipse cx="${x}" cy="878" rx="130" ry="14" fill="#000" opacity=".12"/>`;
+  s+=`<path d="M${x-58},790 L${x-60},860 Q${x-60},876 ${x-40},876 L${x-6},876 L${x-4},800Z M${x+58},790 L${x+60},860 Q${x+60},876 ${x+40},876 L${x+6},876 L${x+4},800Z" fill="${PANT}" ${o}/>`;
+  s+=`<path d="M${x-70},860 q-30,0 -26,22 l70,0 l0,-22Z M${x+70},860 q30,0 26,22 l-70,0 l0,-22Z" fill="#f3eee6" ${o}/>`;
+  s+=`<path d="M${x-95},640 Q${x-110},800 ${x-80},810 L${x+80},810 Q${x+110},800 ${x+95},640 Q${x},610 ${x-95},640Z" fill="${HOOD}" ${o}/>`;
+  s+=`<path d="M${x-96},660 Q${x-140},720 ${x-120},770" stroke="${K}" stroke-width="44" fill="none" stroke-linecap="round"/><path d="M${x-96},660 Q${x-140},720 ${x-120},770" stroke="${HOOD}" stroke-width="30" fill="none" stroke-linecap="round"/><circle cx="${x-120}" cy="778" r="20" fill="${SKIN}" ${o}/>`;
+  s+=`<path d="M${x+96},660 Q${x+150},640 ${x+160},570" stroke="${K}" stroke-width="44" fill="none" stroke-linecap="round"/><path d="M${x+96},660 Q${x+150},640 ${x+160},570" stroke="${HOOD}" stroke-width="30" fill="none" stroke-linecap="round"/><circle cx="${x+162}" cy="560" r="20" fill="${SKIN}" ${o}/>`;
+  s+=`<path d="M${x-14},660 l-3,50 M${x+14},660 l3,50" stroke="#f3eee6" stroke-width="6" stroke-linecap="round"/>`;
+  // big head
+  s+=`<ellipse cx="${x}" cy="470" rx="160" ry="150" fill="${SKIN}" ${o}/>`;
+  s+=`<path d="M${x-166},470 C${x-180},300 ${x+40},280 ${x+120},330 C${x+150},300 ${x+190},360 ${x+166},470 C${x+130},380 ${x+60},380 ${x+20},400 C${x-40},380 ${x-120},400 ${x-166},470Z" fill="${HAIR}" ${o}/>`;
+  for(const sx of [-1,1]){const cx=x+sx*62;s+=`<ellipse cx="${cx}" cy="500" rx="26" ry="36" fill="${K}"/><ellipse cx="${cx}" cy="510" rx="18" ry="22" fill="#5a3a24"/><circle cx="${cx-8}" cy="486" r="9" fill="#fff"/><circle cx="${cx+8}" cy="520" r="4" fill="#fff"/><ellipse cx="${x+sx*104}" cy="550" rx="20" ry="11" fill="#ff7f86" opacity=".45"/>`;}
+  s+=`<path d="M${x-14},560 Q${x},572 ${x+14},560" stroke="${K}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
+  // Bruno chibi
+  const bx=790, by=870;
+  s+=`<ellipse cx="${bx}" cy="${by+8}" rx="120" ry="12" fill="#000" opacity=".12"/>`;
+  s+=`<path d="M${bx-90},${by-20} Q${bx-100},${by-130} ${bx},${by-130} Q${bx+90},${by-130} ${bx+90},${by-20} Z" fill="${TAN}" ${o}/>`;
+  for(const lx of [-60,-20,30,66]) s+=`<rect x="${bx+lx-12}" y="${by-34}" width="26" height="40" rx="12" fill="${TAN2}" ${o}/>`;
+  s+=`<path d="M${bx-60},${by-122} Q${bx},${by-150} ${bx+60},${by-122} Q${bx},${by-100} ${bx-60},${by-122}Z" fill="${BLK}"/>`;
+  s+=`<path d="M${bx-90},${by-80} q-50,-20 -40,-70" stroke="${K}" stroke-width="30" fill="none" stroke-linecap="round"/><path d="M${bx-90},${by-80} q-50,-20 -40,-70" stroke="${TAN}" stroke-width="18" fill="none" stroke-linecap="round"/>`;
+  s+=`<ellipse cx="${bx+10}" cy="${by-230}" rx="110" ry="96" fill="${TAN}" ${o}/>`;
+  s+=`<path d="M${bx-70},${by-290} L${bx-90},${by-380} L${bx-20},${by-310}Z M${bx+50},${by-305} L${bx+100},${by-380} L${bx+100},${by-280}Z" fill="${BLK}" ${o}/>`;
+  s+=`<ellipse cx="${bx+30}" cy="${by-190}" rx="56" ry="40" fill="${TAN2}" ${o}/><ellipse cx="${bx+40}" cy="${by-210}" rx="18" ry="13" fill="${K}"/>`;
+  for(const sx of [-1,1]){const cx=bx+10+sx*44;s+=`<ellipse cx="${cx}" cy="${by-250}" rx="16" ry="22" fill="${K}"/><circle cx="${cx-5}" cy="${by-258}" r="6" fill="#fff"/>`;}
+  s+=`<path d="M${bx+40},${by-186} q-14,14 -28,0 M${bx+40},${by-186} q14,14 28,0" stroke="${K}" stroke-width="5" fill="none"/>`;
+  return s+label('2 · CHIBI');}
+
+// ---------- 3 · GOMINOLA ----------
+function bean(){
+  let s=`<rect width="1080" height="1080" fill="#cfe8f0"/><circle cx="860" cy="220" r="90" fill="#fff6c8"/><rect y="860" width="1080" height="220" fill="#9ed08a"/><path d="M0,860 Q270,830 540,860 T1080,860" fill="#9ed08a"/>`;
+  const x=400, top=380, bot=860, w=120, o=`stroke="${K}" stroke-width="8"`;
+  const cap=`M${x-w},${top+w} A${w},${w} 0 0,1 ${x+w},${top+w} L${x+w},${bot-60} Q${x+w},${bot} ${x+w-60},${bot} L${x-w+60},${bot} Q${x-w},${bot} ${x-w},${bot-60}Z`;
+  s+=`<ellipse cx="${x}" cy="${bot+12}" rx="140" ry="14" fill="#000" opacity=".14"/>`;
+  s+=`<rect x="${x-80}" y="${bot-20}" width="60" height="40" rx="18" fill="${PANT}" ${o}/><rect x="${x+20}" y="${bot-20}" width="60" height="40" rx="18" fill="${PANT}" ${o}/>`;
+  s+=`<path d="${cap}" fill="${HOOD}" ${o}/>`;
+  s+=`<clipPath id="bc"><path d="${cap}"/></clipPath><g clip-path="url(#bc)"><rect x="${x-w}" y="${top}" width="${2*w}" height="200" fill="${SKIN}"/><path d="M${x-w},${top+200} Q${x},${top+230} ${x+w},${top+200} L${x+w},${top+215} Q${x},${top+245} ${x-w},${top+215}Z" fill="${HOODD}"/><path d="M${x-w-10},${top+70} C${x-w},${top-30} ${x+60},${top-40} ${x+w+10},${top+60} C${x+60},${top+30} ${x-20},${top+40} ${x-w-10},${top+70}Z" fill="${HAIR}"/></g>`;
+  s+=`<path d="${cap}" fill="none" ${o}/>`;
+  s+=`<path d="M${x+20},${top-6} q30,-50 70,-30 q-30,0 -40,36Z" fill="${HAIR}" ${o}/>`;
+  s+=`<ellipse cx="${x-36}" cy="${top+130}" rx="10" ry="14" fill="${K}"/><ellipse cx="${x+36}" cy="${top+130}" rx="10" ry="14" fill="${K}"/><circle cx="${x-39}" cy="${top+124}" r="4" fill="#fff"/><circle cx="${x+33}" cy="${top+124}" r="4" fill="#fff"/><path d="M${x-16},${top+170} Q${x},${top+182} ${x+16},${top+170}" stroke="${K}" stroke-width="6" fill="none" stroke-linecap="round"/><ellipse cx="${x-70}" cy="${top+160}" rx="16" ry="9" fill="#ff7f86" opacity=".4"/><ellipse cx="${x+70}" cy="${top+160}" rx="16" ry="9" fill="#ff7f86" opacity=".4"/>`;
+  s+=`<path d="M${x-w+4},${top+300} q-50,30 -40,90" stroke="${K}" stroke-width="40" fill="none" stroke-linecap="round"/><path d="M${x-w+4},${top+300} q-50,30 -40,90" stroke="${HOOD}" stroke-width="26" fill="none" stroke-linecap="round"/><path d="M${x+w-4},${top+300} q60,-30 70,-110" stroke="${K}" stroke-width="40" fill="none" stroke-linecap="round"/><path d="M${x+w-4},${top+300} q60,-30 70,-110" stroke="${HOOD}" stroke-width="26" fill="none" stroke-linecap="round"/><circle cx="${x-w-36}" cy="${top+394}" r="17" fill="${SKIN}" ${o}/><circle cx="${x+w+66}" cy="${top+186}" r="17" fill="${SKIN}" ${o}/>`;
+  // Bruno bean
+  const bx=780, by=860;
+  s+=`<ellipse cx="${bx}" cy="${by+12}" rx="150" ry="14" fill="#000" opacity=".14"/>`;
+  for(const lx of [-90,-40,40,90]) s+=`<rect x="${bx+lx-18}" y="${by-40}" width="36" height="52" rx="16" fill="${TAN2}" ${o}/>`;
+  s+=`<rect x="${bx-150}" y="${by-210}" width="300" height="180" rx="90" fill="${TAN}" ${o}/>`;
+  s+=`<clipPath id="dc"><rect x="${bx-150}" y="${by-210}" width="300" height="180" rx="90"/></clipPath><path d="M${bx-160},${by-150} Q${bx-40},${by-240} ${bx+60},${by-150} Q${bx-40},${by-120} ${bx-160},${by-150}Z" fill="${BLK}" clip-path="url(#dc)"/><rect x="${bx-150}" y="${by-210}" width="300" height="180" rx="90" fill="none" ${o}/>`;
+  s+=`<path d="M${bx+60},${by-200} L${bx+70},${by-280} L${bx+110},${by-196}Z M${bx+110},${by-196} L${bx+140},${by-270} L${bx+150},${by-176}Z" fill="${BLK}" ${o}/>`;
+  s+=`<ellipse cx="${bx+100}" cy="${by-150}" rx="9" ry="12" fill="${K}"/><ellipse cx="${bx+150}" cy="${by-120}" rx="16" ry="12" fill="${K}"/><path d="M${bx+120},${by-96} q12,10 26,0" stroke="${K}" stroke-width="5" fill="none"/>`;
+  s+=`<path d="M${bx-150},${by-150} q-40,-20 -46,-60" stroke="${K}" stroke-width="28" fill="none" stroke-linecap="round"/><path d="M${bx-150},${by-150} q-40,-20 -46,-60" stroke="${TAN}" stroke-width="16" fill="none" stroke-linecap="round"/>`;
+  return s+label('3 · GOMINOLA');}
+
+// ---------- 4 · PIXEL ART ----------
+function pixel(){
+  const PAL={k:'#1d1b24',h:HAIR,s:SKIN,e:'#1d1b24',m:'#8a3038',b:HOOD,d:HOODD,w:'#f3eee6',p:PANT,G:TAN,g:TAN2,K:BLK,N:'#1d1b24'};
+  let s=`<g shape-rendering="crispEdges"><rect width="1080" height="1080" fill="#6ec3e8"/>`;
+  for(let i=0;i<6;i++) s+=`<rect x="${80+i*190}" y="${120+(i%2)*60}" width="${96+(i%3)*32}" height="32" fill="#fff"/><rect x="${96+i*190}" y="${104+(i%2)*60}" width="${64}" height="16" fill="#fff"/>`;
+  s+=`<rect x="0" y="560" width="1080" height="320" fill="#4f9a4a"/>`;
+  for(let i=0;i<34;i++) s+=`<rect x="${i*32}" y="${560-(i%3)*16}" width="32" height="${16+(i%3)*16}" fill="#4f9a4a"/>`;
+  for(let x=0;x<1080;x+=40) for(let y=880;y<1080;y+=40) s+=`<rect x="${x}" y="${y}" width="40" height="40" fill="${((x+y)/40)%2?'#b07a48':'#c08a58'}"/>`;
+  s+=`<rect x="0" y="872" width="1080" height="12" fill="#3f7a3a"/>`;
+  const spr=(rows,x0,y0,px)=>{let g='';rows.forEach((r,j)=>[...r].forEach((c,i)=>{if(c!=='.'&&PAL[c]) g+=`<rect x="${x0+i*px}" y="${y0+j*px}" width="${px}" height="${px}" fill="${PAL[c]}"/>`;}));return g};
+  s+=spr(SPR_ALEX,272,880-31*16,16);
+  s+=spr(SPR_DOG,620,880-14*16,16);
+  s+=`</g>`;
+  return s+label('4 · PIXEL ART');}
+
+// ---------- 5 · CLÁSICO AÑOS 30 ----------
+function hose(){
+  let s=`<defs><radialGradient id="vg" cx=".5" cy=".45" r=".7"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#2a1a08" stop-opacity=".6"/></radialGradient><filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .2 0 0 0 0 .15 0 0 0 0 .08 0 0 0 .18 0"/><feComposite in2="SourceGraphic" operator="in"/></filter></defs>`;
+  s+=`<rect width="1080" height="1080" fill="#ecdcb4"/><rect y="860" width="1080" height="220" fill="#c9a874"/><line x1="0" y1="860" x2="1080" y2="860" stroke="${K}" stroke-width="6"/>`;
+  for(let i=0;i<5;i++) s+=`<path d="M${80+i*220},860 q40,-70 80,0" fill="#b8955e" stroke="${K}" stroke-width="5"/>`;
+  const x=400, o=`stroke="${K}" stroke-width="8"`;
+  const noodle=(d,w=16)=>`<path d="${d}" stroke="${K}" stroke-width="${w}" fill="none" stroke-linecap="round"/>`;
+  // legs + big shoes
+  s+=noodle(`M${x-30},700 C${x-40},780 ${x-80},800 ${x-70},850`)+noodle(`M${x+30},700 C${x+50},780 ${x+70},800 ${x+60},850`);
+  s+=`<ellipse cx="${x-90}" cy="858" rx="52" ry="24" fill="#8a4a2a" ${o}/><ellipse cx="${x+80}" cy="858" rx="52" ry="24" fill="#8a4a2a" ${o}/><ellipse cx="${x-104}" cy="850" rx="16" ry="7" fill="#fff" opacity=".5"/>`;
+  // pear body
+  s+=`<path d="M${x-50},520 C${x-120},560 ${x-120},720 ${x},720 C${x+120},720 ${x+120},560 ${x+50},520Z" fill="${HOOD}" ${o}/><path d="M${x-30},740 L${x+30},740" stroke="none"/>`;
+  s+=`<rect x="${x-58}" y="690" width="116" height="36" rx="10" fill="${PANT}" ${o}/>`;
+  // noodle arms + gloves
+  s+=noodle(`M${x-70},560 C${x-150},590 ${x-150},660 ${x-120},700`)+noodle(`M${x+70},560 C${x+150},540 ${x+170},470 ${x+150},420`);
+  const glove=(cx,cy,r)=>`<g transform="translate(${cx},${cy}) rotate(${r})"><path d="M-26,-6 C-30,-36 -6,-44 0,-30 C4,-48 30,-44 26,-18 C40,-14 38,10 22,14 C10,30 -24,26 -26,-6Z" fill="#fff" ${o}/><path d="M-6,-20 L-6,4 M10,-20 L10,4" stroke="${K}" stroke-width="4"/><rect x="-18" y="18" width="36" height="14" rx="5" fill="#fff" ${o}/></g>`;
+  s+=glove(x-120,716,180)+glove(x+152,404,-10);
+  // head with pie eyes
+  s+=`<circle cx="${x}" cy="420" r="100" fill="${SKIN}" ${o}/>`;
+  s+=`<path d="M${x-96},400 C${x-100},300 ${x+30},290 ${x+70},330 C${x+100},300 ${x+130},340 ${x+96},400 C${x+60},360 ${x-20},350 ${x-96},400Z" fill="${HAIR}" ${o}/>`;
+  for(const sx of [-1,1]){const cx=x+sx*32;s+=`<ellipse cx="${cx}" cy="410" rx="22" ry="34" fill="#fff" ${o}/><path d="M${cx-12},404 a12,20 0 1,0 24,0 a12,20 0 1,0 -24,0" fill="${K}"/><path d="M${cx},404 L${cx+10},392 L${cx+12},404Z" fill="#fff"/>`;}
+  s+=`<ellipse cx="${x}" cy="452" rx="16" ry="11" fill="${K}"/><path d="M${x-54},466 Q${x},530 ${x+54},466" fill="#7a2a22" ${o}/><path d="M${x-20},494 Q${x},510 ${x+20},494 Q${x},482 ${x-20},494Z" fill="#e0607a"/>`;
+  // Bruno, classic cartoon dog
+  const bx=790, by=850;
+  s+=noodle(`M${bx-80},${by-90} C${bx-90},${by-40} ${bx-100},${by-20} ${bx-96},${by-6}`,14)+noodle(`M${bx+60},${by-90} C${bx+70},${by-40} ${bx+64},${by-20} ${bx+70},${by-6}`,14);
+  s+=`<ellipse cx="${bx-106}" cy="${by+2}" rx="30" ry="14" fill="#fff" ${o}/><ellipse cx="${bx+80}" cy="${by+2}" rx="30" ry="14" fill="#fff" ${o}/>`;
+  s+=`<path d="M${bx-110},${by-100} C${bx-120},${by-200} ${bx+90},${by-210} ${bx+100},${by-110} C${bx+90},${by-60} ${bx-110},${by-50} ${bx-110},${by-100}Z" fill="${TAN}" ${o}/><path d="M${bx-90},${by-160} C${bx-40},${by-200} ${bx+40},${by-200} ${bx+80},${by-150} C${bx+20},${by-130} ${bx-40},${by-130} ${bx-90},${by-160}Z" fill="${BLK}"/>`;
+  s+=noodle(`M${bx-110},${by-110} C${bx-160},${by-130} ${bx-150},${by-190} ${bx-130},${by-200}`,16);
+  s+=`<circle cx="${bx+110}" cy="${by-210}" r="70" fill="${TAN}" ${o}/><path d="M${bx+60},${by-260} L${bx+40},${by-350} L${bx+100},${by-276}Z M${bx+130},${by-276} L${bx+170},${by-350} L${bx+170},${by-250}Z" fill="${BLK}" ${o}/>`;
+  for(const sx of [-1,1]){const cx=bx+110+sx*22;s+=`<ellipse cx="${cx}" cy="${by-220}" rx="14" ry="22" fill="#fff" ${o}/><ellipse cx="${cx+2}" cy="${by-214}" rx="7" ry="13" fill="${K}"/>`;}
+  s+=`<ellipse cx="${bx+150}" cy="${by-184}" rx="36" ry="26" fill="${TAN2}" ${o}/><ellipse cx="${bx+176}" cy="${by-196}" rx="14" ry="10" fill="${K}"/><path d="M${bx+136},${by-168} Q${bx+156},${by-150} ${bx+176},${by-170}" stroke="${K}" stroke-width="5" fill="none"/>`;
+  s+=`<rect width="1080" height="1080" fill="url(#vg)"/><rect width="1080" height="1080" fill="#000" filter="url(#gr)"/>`;
+  for(let i=0;i<4;i++) s+=`<line x1="${120+i*260}" y1="0" x2="${124+i*260}" y2="1080" stroke="#3a2a10" stroke-width="1.5" opacity=".18"/>`;
+  return s+label('5 · CLÁSICO AÑOS 30');}
+
+window.draw=k=>{document.getElementById('sv').innerHTML={stick,chibi,bean,pixel,hose}[k]();};
+</script></body></html>

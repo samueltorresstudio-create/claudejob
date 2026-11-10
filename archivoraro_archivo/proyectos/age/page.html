@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0}</style></head><body>
+<svg id="sv" xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"></svg>
+<script src="lib.js"></script><script src="kit.js"></script>
+<script>
+window.__T=1.2;
+const FX=`<defs><filter id="chFX" x="-20%" y="-12%" width="140%" height="124%" color-interpolation-filters="sRGB"><feMorphology in="SourceAlpha" operator="dilate" radius="4.5" result="dil"/><feFlood flood-color="#1d1b2a"/><feComposite in2="dil" operator="in" result="outline"/><feOffset in="SourceAlpha" dx="-26" dy="-8" result="o1"/><feComposite in="SourceAlpha" in2="o1" operator="out" result="e1"/><feGaussianBlur in="e1" stdDeviation="2.5" result="e1b"/><feFlood flood-color="#1a1430" flood-opacity=".34"/><feComposite in2="e1b" operator="in"/><feComposite in2="SourceAlpha" operator="in" result="shade"/><feMerge><feMergeNode in="outline"/><feMergeNode in="SourceGraphic"/><feMergeNode in="shade"/></feMerge></filter></defs>`;
+const boy={skin:'#e2b08a',hs:'quiff',hair:'#3a2a20',top:'#3a5a7a',topD:'#2a4260',hood:true,strings:true,pants:'#2e3440',shoes:'#e9e4d8',seed:5};
+const girl={fem:true,skin:'#c98c64',hs:'ponytail',hair:'#2a1a12',top:'#c23a5a',topD:'#9a2a42',pants:'#2a2e38',shoes:'#e9e4d8',lashes:true,seed:6};
+let s=FX+`<rect width="1600" height="900" fill="#e9dcc4"/><rect y="760" width="1600" height="140" fill="#b89a72"/>`;
+const ages=[[8,'8 AÑOS'],[14,'14 AÑOS'],[22,'22 AÑOS'],[45,'45 AÑOS'],[72,'72 AÑOS']];
+ages.forEach(([a,l],i)=>{const x=170+i*300;
+  s+=person({...boy,age:a,x,y:760,s:.62,mouth:'smile',stubble:a>=22&&a<60,cane:a>=70,look:[2,0]});
+  s+=`<text x="${x}" y="840" text-anchor="middle" font-family="Inter" font-weight="900" font-size="38" fill="#2a2233">${l}</text>`;});
+for(let x=50;x<1600;x+=300) s+=`<line x1="${x+270}" y1="80" x2="${x+270}" y2="760" stroke="#000" opacity=".08" stroke-width="3"/>`;
+document.getElementById('sv').innerHTML=s;
+window.girls=()=>{let g=FX+`<rect width="1600" height="900" fill="#d8e2e8"/><rect y="760" width="1600" height="140" fill="#9aa8b0"/>`;
+  [[14,'14 AÑOS'],[22,'22 AÑOS']].forEach(([a,l],i)=>{const x=560+i*480;g+=person({...girl,age:a,x,y:760,s:.62,mouth:'smile',look:[i?-3:3,0]});g+=`<text x="${x}" y="840" text-anchor="middle" font-family="Inter" font-weight="900" font-size="38" fill="#2a2233">${l}</text>`;});
+  [[14,'14'],[22,'22']].forEach(([a,l],i)=>{const x=180+i*1240;g+=person({...boy,age:a,x,y:760,s:.62,mouth:'smile',stubble:a>=22,look:[i?-3:3,0]});g+=`<text x="${x}" y="840" text-anchor="middle" font-family="Inter" font-weight="900" font-size="38" fill="#2a2233">${l} AÑOS</text>`;});
+  document.getElementById('sv').innerHTML=g;};
+</script></body></html>

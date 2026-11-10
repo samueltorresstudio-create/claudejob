@@ -1,0 +1,240 @@
+[
+ {
+  "sc": "intro",
+  "hud": "BAÑO · 07:45",
+  "say": "Si un día te miras al espejo... y tu reflejo va un segundo tarde...",
+  "cap": "SI UN DÍA TE MIRAS AL ESPEJO... Y TU REFLEJO VA UN SEGUNDO TARDE...|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "BAÑO · 07:45",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Bruno. Doce años.",
+  "cap": "BRUNO.|y 12 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Cada mañana se lava los dientes delante del mismo espejo.",
+  "cap": "CADA MAÑANA SE LAVA LOS DIENTES DELANTE DEL MISMO ESPEJO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Nunca se había fijado en su reflejo. Hasta hoy.",
+  "cap": "NUNCA SE HABÍA FIJADO EN SU REFLEJO. HASTA HOY.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "mirror",
+  "hud": "BAÑO · 07:46",
+  "say": "Esa mañana, Bruno levanta el cepillo...",
+  "cap": "ESA MAÑANA, BRUNO LEVANTA EL CEPILLO...",
+  "pause": 0.1
+ },
+ {
+  "sc": "mirror",
+  "hud": "BAÑO · 07:46",
+  "alert": true,
+  "say": "y su reflejo lo levanta... un segundo después.",
+  "cap": "Y SU REFLEJO LO LEVANTA... UN SEGUNDO DESPUÉS.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "mirror",
+  "hud": "BAÑO · 07:46",
+  "say": "Como si tuviera que pensar qué hacer.",
+  "cap": "COMO SI TUVIERA QUE PENSAR QUÉ HACER.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · COMPRUÉBALO",
+  "step": 0,
+  "say": "Paso uno: compruébalo.",
+  "cap": "PASO|y UNO: COMPRUÉBALO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "BAÑO · 07:47",
+  "say": "Bruno parpadea tres veces. Uno. Dos. Tres.",
+  "cap": "BRUNO PARPADEA TRES VECES. UNO. DOS. TRES.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "BAÑO · 07:47",
+  "alert": true,
+  "say": "Y el reflejo parpadea tres veces... cuando él ya ha terminado.",
+  "cap": "Y EL REFLEJO PARPADEA TRES VECES... CUANDO ÉL YA HA TERMINADO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "BAÑO · 07:47",
+  "alert": true,
+  "say": "No es un fallo. Es otra cosa.",
+  "cap": "NO ES UN FALLO. ES OTRA COSA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · TÁPALOS",
+  "step": 1,
+  "say": "Paso dos: tapa todos los espejos de la casa.",
+  "cap": "PASO|y DOS: TAPA TODOS LOS ESPEJOS DE LA CASA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CASA · 08:00",
+  "say": "El del baño. El del pasillo. El del armario de mamá.",
+  "cap": "EL DEL BAÑO. EL DEL PASILLO. EL DEL ARMARIO DE MAMÁ.|b",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CASA · 08:05",
+  "say": "Con toallas, con sábanas... y con mucha cinta adhesiva.",
+  "cap": "CON TOALLAS, CON SÁBANAS... Y CON MUCHA CINTA ADHESIVA.|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CASA · 08:06",
+  "say": "Su madre cree que es un juego. Bruno no se ríe.",
+  "cap": "SU MADRE CREE QUE ES UN JUEGO. BRUNO NO SE RÍE.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · LO QUE BRILLA",
+  "step": 2,
+  "say": "Paso tres: cuidado con todo lo que brilla.",
+  "cap": "PASO|y TRES: CUIDADO CON TODO LO QUE BRILLA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "CASA · 21:00",
+  "say": "La tele apagada. La ventana de noche. Hasta la cuchara de la sopa.",
+  "cap": "LA TELE APAGADA. LA VENTANA DE NOCHE. HASTA LA CUCHARA DE LA SOPA.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "CASA · 21:05",
+  "alert": true,
+  "say": "En todas, su reflejo llega tarde. Cada vez más tarde.",
+  "cap": "EN TODAS, SU REFLEJO LLEGA TARDE. CADA VEZ MÁS TARDE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "CASA · 21:06",
+  "alert": true,
+  "say": "En la cuchara, se queda mirándole... cuando Bruno ya ha bajado la vista.",
+  "cap": "EN LA CUCHARA, SE QUEDA MIRÁNDOLE... CUANDO BRUNO YA HA BAJADO LA VISTA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · A OSCURAS",
+  "step": 3,
+  "say": "Paso cuatro: nunca mires un espejo a oscuras.",
+  "cap": "PASO|y CUATRO: NUNCA MIRES UN ESPEJO A OSCURAS.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "step4",
+  "hud": "CUARTO · 23:00",
+  "say": "Bruno no sabe qué pasaría. Y no quiere saberlo.",
+  "cap": "BRUNO NO SABE QUÉ PASARÍA. Y NO QUIERE SABERLO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step4",
+  "hud": "CUARTO · 23:00",
+  "say": "Por eso duerme con la luz del pasillo encendida.",
+  "cap": "POR ESO DUERME CON LA LUZ DEL PASILLO ENCENDIDA.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "CUARTO · 23:00",
+  "say": "Y con la puerta del armario bien cerrada.",
+  "cap": "Y CON LA PUERTA DEL ARMARIO BIEN CERRADA.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "morning",
+  "hud": "DÍA 3 · 07:45",
+  "say": "Al tercer día, Bruno entra al baño medio dormido.",
+  "cap": "AL TERCER DÍA, BRUNO ENTRA AL BAÑO MEDIO DORMIDO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "morning",
+  "hud": "DÍA 3 · 07:45",
+  "alert": true,
+  "say": "La toalla del espejo... está en el suelo.",
+  "cap": "LA TOALLA DEL ESPEJO... ESTÁ EN EL SUELO.|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "morning",
+  "hud": "DÍA 3 · 07:46",
+  "say": "Bruno levanta la mano, despacio. Y el reflejo la levanta... a la vez.",
+  "cap": "BRUNO LEVANTA LA MANO, DESPACIO. Y EL REFLEJO LA LEVANTA... A LA VEZ.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "morning",
+  "hud": "DÍA 3 · 07:46",
+  "say": "Ni un segundo tarde. Todo ha vuelto a la normalidad.",
+  "cap": "NI UN SEGUNDO TARDE. TODO HA VUELTO A LA NORMALIDAD.|g",
+  "pause": 0.15
+ },
+ {
+  "sc": "morning",
+  "hud": "DÍA 3 · 07:46",
+  "say": "Bruno respira, por fin.",
+  "cap": "BRUNO RESPIRA, POR FIN.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "end",
+  "hud": "DÍA 3 · 07:46",
+  "say": "Bruno se queda muy serio, mirándose.",
+  "cap": "BRUNO SE QUEDA MUY SERIO, MIRÁNDOSE.",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "DÍA 3 · 07:46",
+  "alert": true,
+  "say": "Y entonces, su reflejo... empieza a sonreír.",
+  "cap": "Y ENTONCES, SU REFLEJO... EMPIEZA A SONREÍR.|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "end",
+  "hud": "DÍA 3 · 07:46",
+  "alert": true,
+  "cut": true,
+  "say": "Pero Bruno no está sonriendo.",
+  "cap": "PERO BRUNO NO ESTÁ SONRIENDO.|p",
+  "pause": 0.2
+ }
+]

@@ -1,0 +1,303 @@
+[
+ {
+  "sc": "intro",
+  "hud": "LUNES · 07:30",
+  "say": "Si una mañana te despiertas...",
+  "cap": "SI UNA MAÑANA TE DESPIERTAS...",
+  "pause": 0.1
+ },
+ {
+  "sc": "intro",
+  "hud": "LUNES · 07:30",
+  "say": "y todo el mundo se ha quedado sin voz...",
+  "cap": "Y TODO EL MUNDO SE HA QUEDADO SIN VOZ...|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "LUNES · 07:30",
+  "alert": true,
+  "say": "menos tú...",
+  "cap": "MENOS TÚ...|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "LUNES · 07:30",
+  "say": "hay tres normas que te mantienen con vida.",
+  "cap": "HAY TRES NORMAS QUE TE MANTIENEN CON VIDA.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Pablo. Dieciséis años.",
+  "cap": "PABLO.|y 16 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "mom",
+  "hud": "CASA · 07:31",
+  "say": "Su madre le despierta moviendo los labios.",
+  "cap": "SU MADRE LE DESPIERTA MOVIENDO LOS LABIOS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "mom",
+  "hud": "CASA · 07:31",
+  "alert": true,
+  "say": "Pero no sale ningún sonido.",
+  "cap": "PERO NO SALE NINGÚN SONIDO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "street",
+  "hud": "CALLE · 08:02",
+  "say": "Pablo sale a la calle y pregunta en voz alta: ¿Hola?",
+  "cap": "PABLO SALE A LA CALLE Y PREGUNTA EN VOZ ALTA: «¿HOLA?»|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "street",
+  "hud": "CALLE · 08:02",
+  "alert": true,
+  "say": "Y toda la calle se gira hacia él.",
+  "cap": "Y TODA LA CALLE SE GIRA HACIA ÉL.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "street",
+  "hud": "CALLE · 08:02",
+  "say": "Nadie dice nada. Solo le miran la boca.",
+  "cap": "NADIE DICE NADA. SOLO LE MIRAN LA BOCA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "tv",
+  "hud": "AVISO OFICIAL",
+  "say": "En la tele, solo aparece un mensaje:",
+  "cap": "EN LA TELE, SOLO APARECE UN MENSAJE:",
+  "pause": 0.1
+ },
+ {
+  "sc": "tv",
+  "hud": "AVISO OFICIAL",
+  "alert": true,
+  "voice": "tv",
+  "say": "Si todavía puede hablar... no diga nada.",
+  "cap": "«SI TODAVÍA PUEDE HABLAR... NO DIGA NADA.|p»",
+  "pause": 0.35
+ },
+ {
+  "sc": "rule1",
+  "hud": "NORMA 1 · SILENCIO",
+  "step": 0,
+  "say": "Norma uno: no hables. Nunca.",
+  "cap": "NORMA|y UNO: NO HABLES. NUNCA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule1",
+  "hud": "NORMA 1 · SILENCIO",
+  "say": "Ni siquiera para pedir ayuda.",
+  "cap": "NI SIQUIERA PARA PEDIR AYUDA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule1",
+  "hud": "NORMA 1 · SILENCIO",
+  "alert": true,
+  "say": "Porque desde esta mañana, algo está buscando voces.",
+  "cap": "PORQUE DESDE ESTA MAÑANA, ALGO ESTÁ BUSCANDO VOCES.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule1",
+  "hud": "NORMA 1 · SILENCIO",
+  "say": "La vecina del tercero gritó al despertarse. Ya no está.",
+  "cap": "LA VECINA DEL TERCERO GRITÓ AL DESPERTARSE. YA NO ESTÁ.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "rule2",
+  "hud": "NORMA 2 · ESCRIBIR",
+  "step": 1,
+  "say": "Norma dos: si necesitas decir algo, escríbelo.",
+  "cap": "NORMA|y DOS: SI NECESITAS DECIR ALGO, ESCRÍBELO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule2",
+  "hud": "NORMA 2 · ESCRIBIR",
+  "say": "Pablo lleva una libreta a todas partes.",
+  "cap": "PABLO LLEVA UNA LIBRETA A TODAS PARTES.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule2",
+  "hud": "NORMA 2 · ESCRIBIR",
+  "say": "Su hermana pequeña le escribe: ¿Por qué tú puedes?",
+  "cap": "SU HERMANA PEQUEÑA LE ESCRIBE: «¿POR QUÉ TÚ PUEDES?»|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule2",
+  "hud": "NORMA 2 · ESCRIBIR",
+  "say": "Pablo no sabe qué contestar.",
+  "cap": "PABLO NO SABE QUÉ CONTESTAR.",
+  "pause": 0.3
+ },
+ {
+  "sc": "rule3",
+  "hud": "NORMA 3 · LAS VOCES",
+  "step": 2,
+  "say": "Norma tres: si oyes una voz, no la busques.",
+  "cap": "NORMA|y TRES: SI OYES UNA VOZ, NO LA BUSQUES.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule3",
+  "hud": "LUNES · 23:10",
+  "say": "Esa noche, desde el edificio de enfrente... alguien canta una nana.",
+  "cap": "ESA NOCHE, DESDE EL EDIFICIO DE ENFRENTE... ALGUIEN CANTA UNA NANA.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule3",
+  "hud": "LUNES · 23:10",
+  "alert": true,
+  "say": "Pero nadie en el mundo puede cantar.",
+  "cap": "PERO NADIE EN EL MUNDO PUEDE CANTAR.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "windows",
+  "hud": "LUNES · 23:12",
+  "say": "Todos los vecinos se asoman a las ventanas.",
+  "cap": "TODOS LOS VECINOS SE ASOMAN A LAS VENTANAS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "windows",
+  "hud": "LUNES · 23:12",
+  "say": "Y miran hacia la voz... como hipnotizados.",
+  "cap": "Y MIRAN HACIA LA VOZ... COMO HIPNOTIZADOS.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "walkers",
+  "hud": "LUNES · 23:14",
+  "alert": true,
+  "say": "Uno a uno, salen de sus casas... y van hacia ella.",
+  "cap": "UNO A UNO, SALEN DE SUS CASAS... Y VAN HACIA ELLA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "walkers",
+  "hud": "LUNES · 23:14",
+  "alert": true,
+  "say": "Y ninguno vuelve.",
+  "cap": "Y NINGUNO VUELVE.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "close",
+  "hud": "LUNES · 23:15",
+  "say": "Pablo cierra la ventana.",
+  "cap": "PABLO CIERRA LA VENTANA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "close",
+  "hud": "LUNES · 23:15",
+  "say": "Pero la nana no se aleja.",
+  "cap": "PERO LA NANA NO SE ALEJA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "close",
+  "hud": "LUNES · 23:15",
+  "alert": true,
+  "say": "Se acerca.",
+  "cap": "SE ACERCA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "stairs",
+  "hud": "LA CALLE",
+  "say": "Primero, en la calle.",
+  "cap": "PRIMERO, EN LA CALLE.",
+  "pause": 0.1
+ },
+ {
+  "sc": "stairs",
+  "hud": "LA ESCALERA",
+  "say": "Después, en la escalera.",
+  "cap": "DESPUÉS, EN LA ESCALERA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "stairs",
+  "hud": "SU PUERTA",
+  "alert": true,
+  "say": "Y después... justo detrás de su puerta.",
+  "cap": "Y DESPUÉS... JUSTO DETRÁS DE SU PUERTA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "note",
+  "hud": "LUNES · 23:20",
+  "say": "Su hermana le pasa la libreta, temblando.",
+  "cap": "SU HERMANA LE PASA LA LIBRETA, TEMBLANDO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "note",
+  "hud": "LUNES · 23:20",
+  "alert": true,
+  "say": "Pone: es la voz de mamá.",
+  "cap": "PONE: «ES LA VOZ DE MAMÁ.»|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "note",
+  "hud": "LUNES · 23:20",
+  "alert": true,
+  "say": "Pero mamá está aquí, a su lado. Sin voz.",
+  "cap": "PERO MAMÁ ESTÁ AQUÍ, A SU LADO. SIN VOZ.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "wardrobe",
+  "hud": "LUNES · 23:21",
+  "say": "De repente, la nana se para.",
+  "cap": "DE REPENTE, LA NANA SE PARA.",
+  "pause": 0.4
+ },
+ {
+  "sc": "wardrobe",
+  "hud": "LUNES · 23:21",
+  "alert": true,
+  "say": "Y desde dentro de su armario, se oye:",
+  "cap": "Y DESDE DENTRO DE SU ARMARIO, SE OYE:|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "wardrobe",
+  "hud": "LUNES · 23:21",
+  "alert": true,
+  "voice": "tv",
+  "say": "Pablo... ¿por qué no me contestas?",
+  "cap": "«PABLO... ¿POR QUÉ NO ME CONTESTAS?|p»",
+  "pause": 0.2
+ },
+ {
+  "sc": "mouth",
+  "hud": "LUNES · 23:21",
+  "alert": true,
+  "say": "Y Pablo, sin querer... abre la boca.",
+  "cap": "Y PABLO, SIN QUERER... ABRE LA BOCA.|p",
+  "pause": 0.9,
+  "cut": true
+ }
+]

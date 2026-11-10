@@ -1,0 +1,143 @@
+[
+ {
+  "sc": "open",
+  "hud": "SUPERMERCADO · 13:43",
+  "say": "Cuando la persiana baja y la luz se apaga... alguien ya sabe que estás dentro.",
+  "cap": "CUANDO LA PERSIANA BAJA Y LA LUZ SE APAGA...|p ALGUIEN YA SABE QUE ESTÁS DENTRO.|p",
+  "pause": 0.2,
+  "whisper": true
+ },
+ {
+  "sc": "open",
+  "hud": "SUPERMERCADO · 13:43",
+  "say": "Solo queda encendida la luz de emergencia de la puerta. Poca, amarilla, lo justo para no caerte.",
+  "cap": "SOLO QUEDA ENCENDIDA LA LUZ DE EMERGENCIA.|p POCA, AMARILLA,|b LO JUSTO PARA NO CAERTE.|p",
+  "pause": 0.25
+ },
+ {
+  "sc": "hide",
+  "hud": "PASO 1 · ALÉJATE DE LA LUZ",
+  "step": 0,
+  "say": "Paso uno: aléjate de la luz en cuanto oigas pasos.",
+  "cap": "PASO|y UNO: ALÉJATE DE LA LUZ EN CUANTO OIGAS PASOS.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "hide",
+  "hud": "PASILLO DE LATAS · 13:44",
+  "say": "Marco se pega a la pared. Dos pasos, lentos, se paran junto a la estantería.",
+  "cap": "MARCO SE PEGA A LA PARED.|p DOS PASOS, LENTOS, SE PARAN JUNTO A LA ESTANTERÍA.|p",
+  "pause": 0.25
+ },
+ {
+  "sc": "lucia",
+  "hud": "CONGELADORES · 13:44",
+  "say": "Desde detrás de los congeladores, alguien susurra: «Marco...»",
+  "cap": "DESDE DETRÁS DE LOS CONGELADORES, ALGUIEN SUSURRA:|p «MARCO...»|p",
+  "pause": 0.2,
+  "whisper": true
+ },
+ {
+  "sc": "lucia",
+  "hud": "CONGELADORES · 13:44",
+  "say": "Es Lucía. Tiene la cara sucia y las manos temblando.",
+  "cap": "ES LUCÍA.|p TIENE LA CARA SUCIA Y LAS MANOS TEMBLANDO.|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "lucia",
+  "hud": "CONGELADORES · 13:45",
+  "alert": true,
+  "say": "«Perdón. Nos obligaron. Tienen a mi madre en el almacén... y quieren tu mapa.»",
+  "cap": "«PERDÓN. NOS OBLIGARON.|p TIENEN A MI MADRE EN EL ALMACÉN...|p Y QUIEREN TU MAPA.»|b",
+  "pause": 0.3
+ },
+ {
+  "sc": "map",
+  "hud": "MAPA · 13:45",
+  "say": "El mapa está doblado en el bolsillo de su chaqueta. Lo único que no le robaron.",
+  "cap": "EL MAPA ESTÁ DOBLADO EN EL BOLSILLO DE SU CHAQUETA.|p LO ÚNICO QUE NO LE ROBARON.|p",
+  "pause": 0.25
+ },
+ {
+  "sc": "whistle",
+  "hud": "PASO 2 · LLAMA AL PERRO",
+  "step": 1,
+  "say": "Paso dos: llama al perro donde ellos no te vean.",
+  "cap": "PASO|y DOS: LLAMA AL PERRO DONDE ELLOS NO TE VEAN.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "whistle",
+  "hud": "PERSIANA · 13:46",
+  "say": "Silba una vez. Dos. Y afuera, Duque responde: ladra contra la persiana.",
+  "cap": "SILBA UNA VEZ. DOS.|p Y AFUERA, DUQUE RESPONDE: LADRA CONTRA LA PERSIANA.|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "run",
+  "hud": "PERSIANA · 13:46",
+  "alert": true,
+  "say": "Los dos hombres corren hacia el ruido.",
+  "cap": "LOS DOS HOMBRES CORREN HACIA EL RUIDO.|p",
+  "pause": 0.25
+ },
+ {
+  "sc": "follow",
+  "hud": "PASO 3 · NO SIGAS A NADIE",
+  "step": 2,
+  "say": "Paso tres: no sigas a nadie que te pida que lo sigas.",
+  "cap": "PASO|y TRES: NO SIGAS A NADIE QUE TE PIDA QUE LO SIGAS.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "follow",
+  "hud": "ALMACÉN · 13:46",
+  "alert": true,
+  "say": "Lucía le agarra la muñeca. Y sonríe, demasiado tranquila.",
+  "cap": "LUCÍA LE AGARRA LA MUÑECA.|p Y SONRÍE DEMASIADO TRANQUILA.|p",
+  "pause": 0.25
+ },
+ {
+  "sc": "enter",
+  "hud": "ALMACÉN · 13:47",
+  "alert": true,
+  "say": "Marco se suelta y entra solo en el almacén. La puerta se cierra tras él.",
+  "cap": "MARCO SE SUELTA Y ENTRA SOLO EN EL ALMACÉN.|p LA PUERTA SE CIERRA TRAS ÉL.|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "enter",
+  "hud": "ALMACÉN · 13:47",
+  "say": "Su madre está atada a una silla. Cuando le quitan el trapo de la boca, susurra: «Lucía les dijo dónde estaba tu mochila. Tiene miedo. Por eso la usan.»",
+  "cap": "SU MADRE ESTÁ ATADA A UNA SILLA.|p «LUCÍA LES DIJO DÓNDE ESTABA TU MOCHILA. TIENE MIEDO. POR ESO LA USAN.»|p",
+  "pause": 0.25,
+  "whisper": true
+ },
+ {
+  "sc": "confess",
+  "hud": "PUERTA · 13:48",
+  "say": "Y desde la puerta, una voz pequeña: «Fui yo quien escribió la nota».",
+  "cap": "Y DESDE LA PUERTA, UNA VOZ PEQUEÑA:|p «FUI YO QUIEN ESCRIBIÓ LA NOTA».|p",
+  "pause": 0.3,
+  "whisper": true
+ },
+ {
+  "sc": "arrow",
+  "hud": "ALMACÉN · 13:48",
+  "alert": true,
+  "say": "En la pared, junto a la silla, hay una flecha pintada en spray. Con una hora: 13:43. Marco no la ha pintado.",
+  "cap": "EN LA PARED, JUNTO A LA SILLA, HAY UNA FLECHA PINTADA EN SPRAY.|p CON UNA HORA: 13:43.|p MARCO NO LA HA PINTADO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "arrow",
+  "hud": "ALMACÉN · 13:48",
+  "alert": true,
+  "cut": true,
+  "say": "Debajo, una frase: «San Telmo. Te esperamos».",
+  "cap": "DEBAJO, UNA FRASE:|p «SAN TELMO. TE ESPERAMOS».|p",
+  "pause": 0.2,
+  "whisper": true
+ }
+]

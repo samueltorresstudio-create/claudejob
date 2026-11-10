@@ -1,0 +1,380 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#12131f}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#12131f}
+svg{position:absolute;left:0;top:0}
+#cap{position:absolute;left:46px;right:46px;top:1185px;text-align:center;font-family:'Inter';font-weight:900;
+  line-height:1.0;letter-spacing:-2px;color:#fff;text-transform:uppercase}
+.w{display:inline-block;margin:0 .02em;transform-origin:50% 75%;text-shadow:0 6px 0 rgba(0,0,0,.28)}
+</style></head>
+<body><div id="stage">
+<svg id="scene" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div id="cap"></div>
+<svg id="hud" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+</div>
+<script src="lib.js"></script>
+<script src="voice.js"></script>
+<script>
+// ---------- cast (adults use the tall build) ----------
+const A=o=>person(Object.assign({tall:true},o));
+const HUGO={skin:'#e9b48e',top:'#f08a24',topD:'#c06a12',pants:'#2f3b5c',hs:'messy',hair:'#3b2a20'};
+const MAN={skin:'#e8d2c0',top:'#8e2a3a',topD:'#5e1a26',pants:'#262a35',hs:'short',hair:'#8a8f99'};
+const ADULTS=[{skin:'#f1c7a5',top:'#7a6aa8',hs:'short',hair:'#3a2a26',pants:'#3b3f55'},{skin:'#8d5a3f',top:'#3f8f7a',hs:'bald',hair:'#1d1514',pants:'#2e3350'},
+  {skin:'#d9a57f',top:'#c94f5d',hs:'long',hair:'#6b4428',pants:'#3a4060'},{skin:'#f6cfae',top:'#4f6fa0',hs:'long',hair:'#c79a5a',pants:'#5a4a3a'},
+  {skin:'#b9825e',top:'#e0b13a',hs:'messy',hair:'#1f1714',pants:'#2e3350'},{skin:'#f3d2b8',top:'#5b8a6e',hs:'short',hair:'#9a8f86',pants:'#3b3f55'}];
+const SH=-524, ARM=205; // tall shoulder height / arm length (see lib.js)
+function handPos(x,y,s,a,side=1){return[x+side*(84+ARM*Math.sin(rad(a)))*s,y+(SH+ARM*Math.cos(rad(a)))*s]}
+function adult(i,x,y,s,tw,o={}){
+  const p=ADULTS[i%ADULTS.length], pose=o.pose??(i%4);
+  const ex=pose===0?{walk:tw*3+i}:pose===1?{walk:tw*3+i,aR:62}:pose===2?{handle:[0,-400],look:[0,10]}:pose===3?{walk:tw*2.5+i,aL:150}:{};
+  let g=A(Object.assign({x,y,s,skin:p.skin,top:p.top,topD:mix(p.top,'#000000',.28),hs:p.hs,hair:p.hair,pants:p.pants,mouth:'line'},ex,o));
+  if(pose===1&&!o.handle){const [hx,hy]=handPos(x,y,s,62);g+=`<rect x="${(hx-13*s).toFixed(1)}" y="${(hy-44*s).toFixed(1)}" width="${26*s}" height="${36*s}" rx="${5*s}" fill="#f4f1ea"/><rect x="${(hx-13*s).toFixed(1)}" y="${(hy-30*s).toFixed(1)}" width="${26*s}" height="${9*s}" fill="#a8754f"/>`}
+  if(pose===2&&!o.handle) g+=`<rect x="${(x-20*s).toFixed(1)}" y="${(y-448*s).toFixed(1)}" width="${40*s}" height="${66*s}" rx="${7*s}" fill="#22242c"/>`;
+  return g;
+}
+const kid=(x,y,s,o={})=>person(Object.assign({x,y,s,skin:'#f6cfae',top:'#45a86b',topD:'#2f7a4c',pants:'#3b4a7a',hs:'messy',hair:'#7a4528',mouth:'smile'},o));
+
+// ---------- frozen-world grading ----------
+function frzDef(id,k){const sat=1-.85*k;return `<filter id="${id}" filterUnits="userSpaceOnUse" x="-2000" y="-2000" width="6000" height="6000" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="${sat.toFixed(3)}"/><feColorMatrix type="matrix" values="${(1-.1*k).toFixed(3)} 0 0 0 0 0 ${(1-.03*k).toFixed(3)} 0 0 ${(.02*k).toFixed(3)} 0 0 ${(1+.05*k).toFixed(3)} 0 ${(.07*k).toFixed(3)} 0 0 0 1 0"/></filter>`}
+function FZ(k,c,id='frz'){return k>0?`<defs>${frzDef(id,k)}</defs><g filter="url(#${id})">${c}</g>`:c}
+
+// ---------- props ----------
+function bird(x,y,s,f){const w=Math.sin(f)*30;
+  return `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${s})"><path d="M-6,0 L-38,${(-12-w).toFixed(1)} L-14,6Z" fill="#7d8799"/><path d="M-24,0 L-44,4 L-26,9Z" fill="#7d8799"/><ellipse cx="0" cy="0" rx="26" ry="14" fill="#9aa3b5"/><circle cx="22" cy="-8" r="10" fill="#9aa3b5"/><polygon points="31,-9 41,-6 31,-3" fill="#e3a23a"/><circle cx="24" cy="-10" r="2.3" fill="${INK}"/><path d="M6,0 L38,${(-12-w).toFixed(1)} L16,6Z" fill="#b4bccb"/></g>`}
+function clockFace(cx,cy,r,hh,mm,ss,frame='#3a3f4e'){
+  let s=`<circle cx="${cx}" cy="${cy}" r="${r*1.13}" fill="${frame}"/><circle cx="${cx}" cy="${cy}" r="${r}" fill="#fbf8f0"/>`;
+  for(let k=0;k<12;k++){const a=rad(k*30);s+=`<line x1="${(cx+Math.sin(a)*r*.8).toFixed(1)}" y1="${(cy-Math.cos(a)*r*.8).toFixed(1)}" x2="${(cx+Math.sin(a)*r*.93).toFixed(1)}" y2="${(cy-Math.cos(a)*r*.93).toFixed(1)}" stroke="${INK}" stroke-width="${r*.055}" stroke-linecap="round"/>`}
+  const hand=(a,l,w,c)=>`<line x1="${cx}" y1="${cy}" x2="${(cx+Math.sin(rad(a))*r*l).toFixed(1)}" y2="${(cy-Math.cos(rad(a))*r*l).toFixed(1)}" stroke="${c}" stroke-width="${r*w}" stroke-linecap="round"/>`;
+  s+=hand(((hh%12)+mm/60)*30,.5,.075,INK)+hand((mm+ss/60)*6,.74,.05,INK)+hand(ss*6,.84,.022,'#e2453b');
+  return s+`<circle cx="${cx}" cy="${cy}" r="${r*.07}" fill="#e2453b"/>`;
+}
+function fountain(x,y,s,tw){
+  let g=`<ellipse cx="0" cy="0" rx="190" ry="44" fill="#aab2be"/><rect x="-190" y="-60" width="380" height="60" fill="#c9cfd8"/><ellipse cx="0" cy="-60" rx="190" ry="40" fill="#dde2e8"/><ellipse cx="0" cy="-60" rx="164" ry="29" fill="#7cc3e8"/>`;
+  g+=`<rect x="-22" y="-212" width="44" height="152" fill="#c9cfd8"/><ellipse cx="0" cy="-212" rx="72" ry="16" fill="#dde2e8"/>`;
+  for(const dir of [-1,1])for(let i=0;i<16;i++){const p=(tw*.9+i/16)%1;g+=`<circle cx="${(dir*p*140).toFixed(1)}" cy="${(-222-Math.sin(p*Math.PI)*90+p*152).toFixed(1)}" r="7" fill="#a6daf4"/>`}
+  return `<g transform="translate(${x},${y}) scale(${s})">${g}</g>`;
+}
+function car(x,y,s,col='#d9493f'){
+  return `<g transform="translate(${x},${y}) scale(${s})"><path d="M-150,-40 L-150,-80 Q-140,-100 -100,-104 L-60,-150 L70,-150 L120,-104 Q160,-100 165,-70 L165,-40Z" fill="${col}"/>
+    <path d="M-48,-140 L-10,-140 L-10,-106 L-84,-106Z M2,-140 L62,-140 L104,-106 L2,-106Z" fill="#cfe6f5"/>${wheel(-88,-36,32,0)}${wheel(104,-36,32,0)}</g>`;
+}
+function iceCart(x,y,s){
+  let g=`<rect x="-150" y="-150" width="300" height="130" rx="16" fill="#f7f3ea"/><rect x="-150" y="-104" width="300" height="22" fill="#f29ab5"/>`;
+  g+=`<line x1="0" y1="-150" x2="0" y2="-380" stroke="#8a8f99" stroke-width="8"/><path d="M-170,-370 Q0,-450 170,-370Z" fill="#f29ab5"/><path d="M-110,-385 Q-60,-440 -40,-400 M40,-400 Q60,-440 110,-385" stroke="#fff" stroke-width="14" fill="none"/>`;
+  g+=wheel(-100,-18,26,0)+wheel(100,-18,26,0);
+  g+=`<circle cx="-70" cy="-160" r="20" fill="#f6d7a7"/><circle cx="-30" cy="-160" r="20" fill="#bfe8d0"/><circle cx="10" cy="-160" r="20" fill="#f2a1c0"/>`;
+  return `<g transform="translate(${x},${y}) scale(${s})">${g}</g>`;
+}
+function cone(x,y,s){return `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${s})"><polygon points="-20,-6 20,-6 0,52" fill="#e3b35d"/><path d="M-14,4 L10,40 M14,4 L-6,34" stroke="#c99a45" stroke-width="3"/><circle cx="0" cy="-20" r="22" fill="#f2a1c0"/><circle cx="-6" cy="-40" r="17" fill="#bfe8d0"/></g>`}
+const FACADES=[['#f2c48d','#e2453b'],['#e98a6b','#2f7fc1'],['#9cc9d9','#45a86b'],['#f4e1b5','#e2453b'],['#b7d7a8','#f2c230'],['#e8b4c4','#2f7fc1']];
+function plazaWorld(tw,o={}){
+  let s=sky('noon')+sun(880,170,50)+clouds(tw,4,.9);
+  FACADES.forEach(([c,aw],i)=>{const x=i*180,h=440+(i%2)*60;s+=`<rect x="${x}" y="${720-h}" width="180" height="${h}" fill="${c}"/>`;
+    for(let r=0;r<Math.floor((h-150)/80);r++)for(let cc=0;cc<3;cc++) s+=`<rect x="${x+24+cc*50}" y="${720-h+36+r*80}" width="32" height="46" rx="3" fill="#7fa6c9"/>`;
+    s+=`<rect x="${x+10}" y="640" width="160" height="80" fill="#5d6b7a"/>`;for(let k=0;k<8;k++) s+=`<rect x="${x+10+k*20}" y="616" width="20" height="30" fill="${k%2?aw:'#fff'}"/>`;});
+  s+=`<rect x="468" y="120" width="144" height="600" fill="#d9c7a8"/><polygon points="456,124 540,40 624,124" fill="#a8574a"/><rect x="468" y="120" width="144" height="14" fill="#b9a585"/>`;
+  s+=clockFace(540,236,50,15,7,o.ss??41,'#5a4a3a');
+  s+=`<rect y="720" width="1080" height="380" fill="#e8dcc8"/>`;
+  for(let k=-6;k<=6;k++) s+=`<line x1="540" y1="660" x2="${540+k*190}" y2="1100" stroke="#d6c8b0" stroke-width="3"/>`;
+  for(const y of [760,830,930,1060]) s+=`<line x1="0" y1="${y}" x2="1080" y2="${y}" stroke="#d6c8b0" stroke-width="3"/>`;
+  s+=fountain(300,880,.8,tw);
+  for(let i=0;i<7;i++){const x=((i*170+tw*130*(.8+i*.05))%1250)-80,y=330+(i%3)*90+Math.sin(tw*2+i)*12;s+=bird(x,y,.9-(i%3)*.15,tw*14+i)}
+  if(!o.noPeople){
+    const ppl=[[0,150,800,.5],[3,470,790,.46],[1,680,805,.48],[2,940,830,.54],[4,600,1015,.74],[5,110,1060,.8]];
+    for(const [i,x,y,sc] of ppl) s+=adult(i,x,y,sc,tw);
+    s+=kid(410,1000,.62,{aR:150,look:[0,-10],tilt:-6});
+    s+=`<circle cx="440" cy="${(690-Math.abs(Math.sin(tw*3))*110).toFixed(1)}" r="24" fill="#e2453b"/><path d="M420,${(690-Math.abs(Math.sin(tw*3))*110).toFixed(1)} h40" stroke="#fff" stroke-width="5"/>`;
+  }
+  return s;
+}
+// avenue: perspective street full of frozen people
+const AVE=(()=>{const r=rng(91),a=[];for(let i=0;i<34;i++){const u=Math.pow(r(),.8),y=lerp(585,1080,u),half=lerp(90,560,u);let x=540+(r()*2-1)*half;
+  if(Math.abs(x-540)<lerp(18,120,u)&&y>640) x+=x<540?-lerp(30,150,u):lerp(30,150,u);
+  a.push({i:Math.floor(r()*6),x,y,s:lerp(.12,.8,(y-560)/520),pose:Math.floor(r()*4)})}return a.sort((p,q)=>p.y-q.y)})();
+function avenueWorld(tw,o={}){
+  let s=sky('noon')+clouds(tw,9,.8);
+  s+=`<rect x="420" y="250" width="240" height="320" fill="#e8d5b5"/><rect x="470" y="300" width="140" height="270" fill="#d4bf9b"/>`;
+  s+=`<polygon points="0,90 440,420 440,570 0,1010" fill="#d9a07a"/><polygon points="1080,90 640,420 640,570 1080,1010" fill="#9cc0cf"/>`;
+  for(let j=0;j<6;j++){const ny=lerp(150,900,j/6),fy=lerp(430,560,j/6);
+    for(let k=0;k<7;k++){const u=k/7,u2=u+.07,x1=lerp(0,440,u),x2=lerp(0,440,u2),y1=lerp(ny,fy,u),y2=lerp(ny,fy,u2),h=(1-u)*36+6;
+      s+=`<polygon points="${x1.toFixed(1)},${y1.toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)} ${x2.toFixed(1)},${(y2+h*.8).toFixed(1)} ${x1.toFixed(1)},${(y1+h).toFixed(1)}" fill="#8a5a4a" opacity=".55"/>`;
+      s+=`<polygon points="${1080-x1},${y1.toFixed(1)} ${1080-x2},${y2.toFixed(1)} ${1080-x2},${(y2+h*.8).toFixed(1)} ${1080-x1},${(y1+h).toFixed(1)}" fill="#4f6f86" opacity=".55"/>`;}}
+  s+=`<polygon points="0,1010 440,570 640,570 1080,1010 1080,1100 0,1100" fill="#cfc8bf"/><polygon points="470,570 610,570 900,1100 180,1100" fill="#6a6f7d"/>`;
+  for(let i=0;i<9;i++){const u=Math.pow(i/9,1.6),y=lerp(575,1100,u),h=lerp(4,40,u);s+=`<rect x="${540-lerp(1.5,9,u)}" y="${y.toFixed(1)}" width="${lerp(3,18,u)}" height="${h.toFixed(1)}" fill="#f1efe8"/>`}
+  s+=car(360,960,.62,'#2f7fc1')+car(700,700,.25,'#e2453b')+car(500,640,.13,'#f2c230');
+  for(const p of AVE){ if(o.skip&&Math.abs(p.x-o.skip[0])<30&&Math.abs(p.y-o.skip[1])<30) continue; s+=adult(p.i,p.x,p.y,p.s,tw,{pose:p.pose}) }
+  for(let i=0;i<5;i++){const x=((i*230+tw*130)%1250)-80,y=250+(i%3)*70;s+=bird(x,y,.6,tw*14+i)}
+  return s;
+}
+const MANPOS=[575,640];
+
+const EVS={
+  plaza:B=>({freeze:B[1].w[4],moving:B[2].w[4],walk:B[2].s}),
+  id:B=>({beeps:[.15,B[0].w[1],B[0].lead+B[0].vdur]}),
+  fun:B=>({snap:B[0].w[4]}),
+  watch:B=>({}),
+  note:B=>({pull:.35,open:B[1].s,mine:B[1].w[3],read:B[2].s,rules:B[3].s}),
+  touch:B=>({no:B[0].w[3]}),
+  glass:B=>({away:B[0].w[2],show:B[1].w[4],move:B[1].w[7]}),
+  run:B=>({corre:B[0].w[6]}),
+  avenue:B=>({}),
+  faces:B=>({blink:B[0].w[1],breath:B[0].w[3]}),
+  avenue2:B=>({}),
+  man:B=>({turn:B[0].w[2],him:B[0].w[6],walk:B[1].s+.25}),
+};
+
+// ---------- scenes ----------
+const S={};
+const FROZ=3.3; // world time at which everything stopped (poses after the freeze)
+S.plaza=(t,D,B)=>{
+  const E=EVS.plaza(B), k=prog(t,E.freeze,E.freeze+.25), tw=Math.min(t,E.freeze);
+  let s=FZ(k,plazaWorld(tw,{ss:38+Math.floor(tw)}));
+  // Hugo (never frozen)
+  const before=t<E.freeze, wp=prog(t,E.walk,D), hx=lerp(790,620,eIO(wp));
+  const look=before?[0,10]:t<E.freeze+.5?[0,-4]:t<E.freeze+.9?[-12,0]:t<E.freeze+1.3?[12,0]:[-10,2];
+  s+=A({...HUGO,x:hx,y:1030,s:.8,handle:before?[0,-400]:null,walk:t>E.walk?t*4:null,look,brows:before?null:'up',mouth:before?'line':'o'});
+  if(before) s+=`<rect x="${(hx-16).toFixed(1)}" y="${(1030-358).toFixed(1)}" width="32" height="54" rx="6" fill="#22242c"/>`;
+  const ma=P(t,E.moving,.25);
+  s+=tag(hx,520,'EN MOVIMIENTO',GREEN,ma);
+  // freeze shock: ring + flash
+  const u=t-E.freeze;
+  if(u>0&&u<.9){s+=`<circle cx="540" cy="600" r="${(u*1400).toFixed(0)}" fill="none" stroke="#cfe9ff" stroke-width="${(30*(1-u/.9)).toFixed(1)}" opacity="${(1-u/.9).toFixed(2)}"/>`;
+    s+=`<rect width="1080" height="1100" fill="#dff1ff" opacity="${(.55*Math.exp(-u*6)).toFixed(3)}"/>`;}
+  const punch=u>0?.05*Math.exp(-u*5):0;
+  return cam(s,1.02+punch+.03*t/D,lerp(540,600,eIO(wp)),640,540,640);
+};
+S.id=(t,D,B)=>{
+  const E=EVS.id(B);
+  let s=`<rect width="1080" height="1100" fill="#181b34"/>`;
+  for(let x=0;x<=1080;x+=60) s+=`<line x1="${x}" y1="0" x2="${x}" y2="1100" stroke="#2a2f55" stroke-width="1.5" opacity=".45"/>`;
+  for(let y=0;y<=1100;y+=60) s+=`<line x1="0" y1="${y}" x2="1080" y2="${y}" stroke="#2a2f55" stroke-width="1.5" opacity=".45"/>`;
+  s+=A({...HUGO,x:320,y:1050,s:.93,look:t<1?[11,0]:[0,2],brows:'worried'});
+  s+=brackets(320,660,400,780,BLUE,34,6);
+  const sy=270+((t*.9)%1)*780;
+  s+=`<rect x="120" y="${sy-30}" width="400" height="30" fill="${BLUE}" opacity=".12"/><line x1="120" y1="${sy}" x2="520" y2="${sy}" stroke="${BLUE}" stroke-width="4" opacity=".8"/>`;
+  const ca=eOut(prog(t,.1,.35));
+  let c=`<rect x="0" y="0" width="430" height="360" fill="#15172b" stroke="${YEL}" stroke-width="3.5"/><text x="28" y="52" font-family="${MONO}" font-weight="700" font-size="22" fill="#8a8fb0" letter-spacing="2">ID · 000001</text>`;
+  c+=`<text x="26" y="156" font-family="Inter" font-weight="900" font-size="100" fill="#f7d23e">${'HUGO'.slice(0,Math.ceil(prog(t,.2,.5)*4))}</text>`;
+  c+=`<text x="28" y="232" font-family="Inter" font-weight="900" font-size="62" fill="#fff" opacity="${prog(t,E.beeps[1],E.beeps[1]+.15)}">22 AÑOS</text>`;
+  c+=`<g opacity="${prog(t,E.beeps[2]-.2,E.beeps[2])}"><text x="28" y="300" font-family="${MONO}" font-weight="700" font-size="22" fill="#8a8fb0" letter-spacing="2">ESTADO:</text><circle cx="148" cy="322" r="8" fill="${GREEN}"/><text x="166" y="331" font-family="${MONO}" font-weight="800" font-size="26" fill="${GREEN}" letter-spacing="1">EN MOVIMIENTO</text></g>`;
+  s+=`<g opacity="${ca}" transform="translate(${600+(1-ca)*40},420)">${c}</g>`;
+  return cam(s,1+.03*t/D);
+};
+S.fun=(t,D,B)=>{
+  const E=EVS.fun(B);
+  let w=plazaWorld(FROZ,{noPeople:true});
+  w+=iceCart(230,1040,.9)+adult(0,230,900,.62,FROZ,{aR:120,pose:9,mouth:'smile'});
+  w+=adult(2,450,980,.66,FROZ,{pose:3,mouth:'o'})+adult(5,820,985,.66,FROZ,{pose:1,mouth:'smile'});
+  let s=FZ(1,`<g transform="translate(540,640) scale(1.25) translate(-540,-640)">${w}</g>`);
+  const hx=640,hy=1060,hs=.82, lick=Math.max(0,Math.sin(t*5));
+  s+=A({...HUGO,x:hx,y:hy,s:hs,aL:155,aR:118,look:[-10,-7],mouth:'smile',brows:'up'});
+  const [lx,ly]=handPos(hx,hy,hs,155,-1),[rx,ry]=handPos(hx,hy,hs,118,1);
+  s+=`<g transform="translate(${lx.toFixed(1)},${(ly-30).toFixed(1)}) rotate(-12)"><rect x="-26" y="-48" width="52" height="92" rx="9" fill="#22242c"/><rect x="-21" y="-41" width="42" height="74" rx="5" fill="#9fd0ff"/></g>`;
+  s+=cone(rx,ry-50-lick*4,1.15);
+  const u=t-E.snap;
+  if(u>0){s+=`<rect width="1080" height="1100" fill="#fff" opacity="${(.75*Math.exp(-u*7)).toFixed(3)}"/>`;
+    s+=`<text x="${lx+40}" y="${ly-120}" font-family="Inter" font-weight="900" font-size="46" fill="#fff" opacity="${(1-prog(u,.4,.7)).toFixed(2)}" transform="rotate(-10 ${lx+40} ${ly-120})">¡CLIC!</text>`;}
+  return cam(s,1+.04*t/D,560,640,540,640);
+};
+S.watch=(t,D,B)=>{
+  let s=`<rect width="540" height="1100" fill="#1c2234"/><rect x="540" width="540" height="1100" fill="#2b1f1a"/>`;
+  s+=FZ(1,clockFace(270,560,180,15,7,41,'#5a4a3a'));
+  for(let i=0;i<14;i++){const r=rng(i+3);s+=`<path d="M${(60+r()*420).toFixed(0)},${(260+r()*620).toFixed(0)} l10,0 m-5,-5 l0,10" stroke="#cfe9ff" stroke-width="3" opacity=".35"/>`}
+  s+=`<text x="270" y="850" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="56" fill="#cfe9ff">15:07:41</text>`+tag(270,920,'MUNDO',BLUE);
+  // Hugo's wrist + ticking watch
+  s+=`<line x1="1120" y1="1000" x2="760" y2="620" stroke="${HUGO.top}" stroke-width="190" stroke-linecap="round"/><line x1="1120" y1="1000" x2="780" y2="640" stroke="${HUGO.topD}" stroke-width="20" opacity=".4"/>`;
+  s+=`<circle cx="690" cy="560" r="86" fill="${HUGO.skin}"/><rect x="640" y="470" width="40" height="70" rx="20" fill="${HUGO.skin}"/>`;
+  s+=`<g transform="rotate(-46 810 560)"><rect x="770" y="420" width="80" height="280" rx="20" fill="#2a2d36"/></g>`;
+  const sec=12+Math.floor(t)+eOut(prog(t%1,0,.12)), min=31+(12+t)/60;
+  s+=`<g transform="translate(810,560)">${clockFace(0,0,108,15,min,sec,'#9aa3ad')}</g>`;
+  s+=`<text x="810" y="850" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="56" fill="#ffd8a8">15:31:${pad2(Math.floor(12+t)%60)}</text>`+tag(810,920,'HUGO',YEL);
+  s+=`<line x1="540" y1="0" x2="540" y2="1100" stroke="#000" stroke-width="6" opacity=".5"/>`;
+  return cam(s,1+.03*t/D);
+};
+function noteText(rv){ // rv: per-line reveal 0..1
+  const L=[['Si lees esto,',58,120],['ya ha pasado otra vez.',58,190],['Sigue las reglas:',52,290],['1. No toques a nadie.',44,360],['2. No mires los reflejos.',44,420],['3. Si alguien te mira...',44,480],['    CORRE.',50,540]];
+  let s='';
+  L.forEach(([tx,fs,y],i)=>{const r=rv[i]??0,rot=((i*37)%5-2)*.8;
+    s+=`<g transform="rotate(${rot} 380 ${y})"><text x="70" y="${y}" font-family="Inter" font-style="italic" font-weight="600" font-size="${fs}" fill="#23307a" opacity=".16">${tx}</text>`;
+    if(r>0) s+=`<defs><clipPath id="nl${i}"><rect x="60" y="${y-fs}" width="${(680*r).toFixed(0)}" height="${fs*1.4}"/></clipPath></defs><text x="70" y="${y}" font-family="Inter" font-style="italic" font-weight="600" font-size="${fs}" fill="${i===6?'#c4163f':'#23307a'}" clip-path="url(#nl${i})">${tx}</text>`;
+    s+=`</g>`;});
+  return s;
+}
+S.note=(t,D,B)=>{
+  const E=EVS.note(B);
+  let bg=FZ(1,`<g transform="translate(540,600) scale(1.5) translate(-540,-600)">${plazaWorld(FROZ)}</g>`);
+  if(t<E.open){
+    const r=eIO(prog(t,E.pull,E.pull+.7)), aR=lerp(12,72,r), hx=540,hy=1330,hs=1.12;
+    let s=bg+A({...HUGO,x:hx,y:hy,s:hs,aR,aL:12,look:r>.6?[12,9]:[0,2],brows:r>.6?'up':null});
+    const [px,py]=handPos(hx,hy,hs,aR,1);
+    s+=`<g transform="translate(${px.toFixed(1)},${(py-20).toFixed(1)}) rotate(${lerp(40,-10,r).toFixed(1)})"><rect x="-34" y="-46" width="68" height="84" rx="4" fill="#fbf6e9"/><path d="M-34,-4 L34,-4" stroke="#d9cfb8" stroke-width="3"/></g>`;
+    return cam(s,1+.05*t/E.open,540,640,540,640);
+  }
+  const u=t-E.open, un=eOut(prog(u,0,.45));
+  let s=bg+`<rect width="1080" height="1100" fill="#0e1018" opacity=".5"/>`;
+  let paper=`<rect x="0" y="0" width="760" height="640" rx="6" fill="#fbf6e9"/>`;
+  for(let y=140;y<640;y+=62) paper+=`<line x1="30" y1="${y}" x2="730" y2="${y}" stroke="#bcd3ea" stroke-width="2"/>`;
+  paper+=`<line x1="70" y1="0" x2="70" y2="640" stroke="#f2a1a1" stroke-width="2"/><line x1="0" y1="320" x2="760" y2="320" stroke="#e3dac4" stroke-width="3"/><line x1="380" y1="0" x2="380" y2="640" stroke="#e3dac4" stroke-width="2"/>`;
+  const rd=B[2], ru=B[3];
+  const lineR=(i)=>{
+    if(i<2){const ws=rd.w, a=i===0?ws[0]:ws[3], b=i===0?ws[3]:rd.lead+rd.vdur+rd.s;return prog(t,a,b)}
+    if(i===2) return prog(t,ru.s+ru.lead,ru.s+ru.lead+ru.vdur*.9);
+    return prog(t,ru.s+ru.lead+ru.vdur*.6+(i-3)*.22,ru.s+ru.lead+ru.vdur*.6+(i-3)*.22+.35);
+  };
+  paper+=noteText([0,1,2,3,4,5,6].map(lineR));
+  paper+=`<text x="560" y="610" font-family="Inter" font-style="italic" font-weight="700" font-size="46" fill="#23307a">— Hugo</text><path d="M560,622 Q640,634 720,618" stroke="#23307a" stroke-width="4" fill="none"/>`;
+  s+=`<g transform="translate(540,600) rotate(-3) scale(1,${un.toFixed(3)}) translate(-380,-320)">${paper}</g>`;
+  s+=`<circle cx="150" cy="920" r="70" fill="${HUGO.skin}"/><circle cx="930" cy="900" r="70" fill="${HUGO.skin}"/><rect x="-60" y="930" width="200" height="200" rx="60" fill="${HUGO.top}"/><rect x="940" y="910" width="200" height="200" rx="60" fill="${HUGO.top}"/>`;
+  s+=tag(760,250,'LETRA: HUGO ✓',YEL,P(t,E.mine,.25));
+  return cam(s,1+.06*prog(u,0,D-E.open),540,600,540,600);
+};
+S.touch=(t,D,B)=>{
+  const E=EVS.touch(B);
+  let w=`<g transform="translate(540,640) scale(1.35) translate(-540,-640)">${plazaWorld(FROZ,{noPeople:true})}</g>`;
+  w+=adult(2,720,1070,.86,FROZ,{pose:0});
+  let s=FZ(1,w);
+  const reach=eOut(prog(t,.2,.95)), back=eIO(prog(t,E.no+.55,E.no+1.0)), aR=lerp(14,86,reach*(1-back));
+  const hit=t>E.no;
+  s+=A({...HUGO,x:300,y:1070,s:.86,aR,look:[12,2],brows:hit?'up':'worried',eyes:hit?'wide':'open',mouth:hit?'o':'line'});
+  const a=P(t,E.no,.2), [hx,hy]=handPos(300,1070,.86,aR,1);
+  s+=`<g opacity="${a}"><circle cx="590" cy="${hy.toFixed(0)}" r="52" fill="none" stroke="${PINK}" stroke-width="8"/><path d="M556,${(hy-34).toFixed(0)} L624,${(hy+34).toFixed(0)} M624,${(hy-34).toFixed(0)} L556,${(hy+34).toFixed(0)}" stroke="${PINK}" stroke-width="9" stroke-linecap="round"/></g>`;
+  s+=`<g opacity="${a}">${brackets(720,700,280,760,PINK,30,6)}</g>`+tag(720,300,'NO TOCAR',PINK,a);
+  return cam(s,1+.05*t/D,540,660,540,660);
+};
+S.glass=(t,D,B)=>{
+  const E=EVS.glass(B);
+  let s=`<rect width="1080" height="1100" fill="#4d5868"/><rect x="0" y="0" width="1080" height="150" fill="#3b4452"/><rect x="330" y="40" width="420" height="80" rx="8" fill="#232833"/><text x="540" y="96" text-anchor="middle" font-family="Inter" font-weight="900" font-size="52" fill="#f2d7a8" letter-spacing="8">MODA</text>`;
+  s+=`<rect x="90" y="200" width="900" height="700" rx="10" fill="#2e3440"/><defs><clipPath id="gl"><rect x="110" y="220" width="860" height="660"/></clipPath></defs>`;
+  let refl=`<rect x="110" y="220" width="860" height="660" fill="#9fb7c8"/>`;
+  refl+=`<g transform="translate(1080,0) scale(-1,1)" opacity=".55">${FZ(1,`<g transform="translate(540,560) scale(.95) translate(-540,-560)">${plazaWorld(FROZ)}</g>`,'frzR')}</g>`;
+  // the one thing that moves in the reflection
+  const sh=P(t,E.show,.4), mv=eIO(prog(t,E.move,D));
+  if(sh>0){const sx=lerp(420,470,mv),sy=lerp(860,900,mv),ss=lerp(.5,.66,mv);
+    refl+=`<g opacity="${sh}"><g filter="url(#fsil)">${A({...MAN,x:sx,y:sy,s:ss,tilt:lerp(10,0,mv),aL:lerp(12,40,mv)})}</g><circle cx="${(sx-36*ss).toFixed(1)}" cy="${(sy-632*ss).toFixed(1)}" r="${(9*ss*1.6).toFixed(1)}" fill="#fff"/><circle cx="${(sx+36*ss).toFixed(1)}" cy="${(sy-632*ss).toFixed(1)}" r="${(9*ss*1.6).toFixed(1)}" fill="#fff"/></g>`;}
+  refl+=`<polygon points="160,220 280,220 110,520 110,330" fill="#fff" opacity=".28"/><polygon points="700,220 760,220 420,880 360,880" fill="#fff" opacity=".14"/>`;
+  s+=`<g clip-path="url(#gl)">${refl}</g><rect x="0" y="900" width="1080" height="200" fill="#3b4452"/>`;
+  const away=t>E.away;
+  s+=A({...HUGO,x:860,y:1110,s:.82,look:away?[14,0]:[-12,-2],brows:'worried',tilt:away?8:-4,mouth:t>E.show?'o':'line'});
+  if(sh>0) s+=tag(470,330,'REFLEJO',PINK,sh)+`<g opacity="${sh}">${brackets(lerp(420,470,mv),lerp(860,900,mv)-300,220,560,PINK,26,5)}</g>`;
+  return cam(s,1+.05*t/D+.08*eIO(prog(t,E.show,D)),lerp(540,480,eIO(prog(t,E.show,D))),620,540,620);
+};
+S.run=(t,D,B)=>{
+  const E=EVS.run(B);
+  let s=FZ(1,`<g transform="translate(540,640) scale(1.9) translate(-540,-640)">${plazaWorld(FROZ)}</g>`)+`<rect width="1080" height="1100" fill="#0e1018" opacity=".35"/>`;
+  const hit=t>E.corre, dart=Math.floor(t*3)%2?[-12,0]:[12,0];
+  s+=A({...HUGO,x:540,y:600+638*1.75,s:1.75,look:hit?[0,2]:dart,eyes:hit?'wide':'open',brows:'up',mouth:hit?'o':'line'});
+  const dp=(t*.6)%1;
+  s+=`<path d="M690,${(380+dp*90).toFixed(0)} q-14,26 0,36 q14,-10 0,-36Z" fill="#9fd6f2" opacity="${(1-dp).toFixed(2)}"/>`;
+  const u=t-E.corre;
+  if(hit) s+=`<rect width="1080" height="1100" fill="${PINK}" opacity="${(.35*Math.exp(-u*5)).toFixed(3)}"/>`;
+  s+=`<rect width="1080" height="1100" fill="url(#redvig)" opacity="${(.5+.3*Math.sin(t*6)).toFixed(2)}"/>`;
+  const sh=hit?Math.exp(-u*6)*14:0,r=rng(Math.floor(t*30));
+  return cam(s,1+.06*t/D,540,600,540,600,(r()-.5)*sh*2,(r()-.5)*sh*2);
+};
+S.avenue=(t,D,B)=>{
+  let s=FZ(1,avenueWorld(FROZ));
+  const p=prog(t,0,D), y=lerp(720,1050,p), sc=lerp(.3,.78,p);
+  s+=A({...HUGO,x:540,y,s:sc,walk:t*4.5,look:[Math.sin(t*2)*10,0],brows:'worried'});
+  return cam(s,1.05+.04*t/D,540,700,540,700);
+};
+S.faces=(t,D,B)=>{
+  const E=EVS.faces(B);
+  let w=`<g transform="translate(540,600) scale(2) translate(-540,-600)">${avenueWorld(FROZ)}</g><rect width="1080" height="1100" fill="#0e1018" opacity=".3"/>`;
+  [[0,190,'o'],[2,540,'line'],[5,890,'smile']].forEach(([i,x,m])=>{const p=ADULTS[i];w+=A({x,y:560+638*1.3,s:1.3,skin:p.skin,top:p.top,topD:mix(p.top,'#000000',.28),hs:p.hs,hair:p.hair,mouth:m,look:[(i-2)*2,0]})});
+  let s=FZ(1,w);
+  s+=tag(300,300,'PARPADEO: 0',BLUE,P(t,E.blink,.2))+tag(780,300,'RESPIRACIÓN: 0',BLUE,P(t,E.breath,.2));
+  return cam(s,1+.05*t/D,540,600,540,600);
+};
+S.avenue2=(t,D,B)=>{
+  const s=FZ(1,avenueWorld(FROZ,{skip:MANPOS})+A({...MAN,x:MANPOS[0],y:MANPOS[1],s:.17,look:[14,0],tilt:10,walk:FROZ*3}));
+  const zp=eIO(prog(t,0,D));
+  return cam(s,lerp(1.05,2.3,zp),lerp(540,MANPOS[0],zp),lerp(700,560,zp),540,lerp(700,600,zp));
+};
+S.man=(t,D,B)=>{
+  const E=EVS.man(B);
+  let s=FZ(1,avenueWorld(FROZ,{skip:MANPOS}));
+  const tr=eOut(prog(t,E.turn,E.turn+.3)), wk=t>E.walk, wp=prog(t,E.walk,D);
+  const my=lerp(MANPOS[1],MANPOS[1]+60,wp), ms=lerp(.17,.24,wp);
+  const man=A({...MAN,x:MANPOS[0],y:my,s:ms,look:[lerp(14,0,tr),lerp(0,2,tr)],tilt:lerp(10,0,tr),walk:wk?(t-E.walk)*4+FROZ*3:FROZ*3,mouth:'line'});
+  s+=FZ(1-tr,man,'frzM');
+  const a=P(t,E.him,.2);
+  s+=`<g opacity="${a}">${brackets(MANPOS[0],my-80*ms/.17,110*ms/.17,190*ms/.17,PINK,12,3)}</g>`;
+  const u=t-E.him, punch=u>0?.25*Math.exp(-u*4):0;
+  return cam(s,2.5+punch+.6*eIO(wp),MANPOS[0],my-70,540,600);
+};
+
+// ---------- timeline from the narration ----------
+function wordTimes(b){
+  const ws=b.cap.split(' ').map(w=>w.split('|')[0]);
+  const wt=ws.map(w=>w.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9]/g,'').length+1.5);
+  const tot=wt.reduce((a,c)=>a+c,0);let acc=0;
+  return ws.map((w,i)=>{const s=b.lead+b.vdur*.97*acc/tot;acc+=wt[i];return s});
+}
+const P=(t,a,d=.3)=>eOut(prog(t,a,a+d));
+const BEATS=SCRIPT.map((l,i)=>Object.assign({},l,VOICE.beats[i]));
+let sceneStart=0;
+BEATS.forEach((b,i)=>{if(i===0||BEATS[i-1].sc!==b.sc)sceneStart=b.start;b.sStart=sceneStart;b.wt=wordTimes(b);});
+BEATS.forEach(b=>{b.sDur=BEATS.filter(x=>x.sStart===b.sStart).reduce((a,x)=>a+x.d,0);b.B=BEATS.filter(x=>x.sStart===b.sStart).map(x=>({s:x.start-b.sStart,d:x.d,lead:x.lead,vdur:x.vdur,w:x.wt.map(w=>w+x.start-b.sStart)}))});
+const TOTAL=VOICE.total, CUT=TOTAL-VOICE.tail; window.TOTAL=TOTAL;
+const evAbs={};
+BEATS.filter(b=>b.start===b.sStart).forEach(b=>{const E=EVS[b.sc](b.B);for(const k in E){const v=E[k];evAbs[b.sc+'.'+k]=Array.isArray(v)?v.map(x=>x+b.sStart):v+b.sStart}});
+const FREEZE_ABS=evAbs['plaza.freeze'], MAN_ABS=BEATS.find(b=>b.sc==='man').start;
+window.EVENTS={total:TOTAL,cut:CUT,ev:evAbs,beats:BEATS.map(b=>({start:b.start,d:b.d,sc:b.sc,cut:b.start===b.sStart,words:b.wt.map(w=>w+b.start),step:b.step??null}))};
+const STEPS=['1. NO TOCAR','2. NO MIRAR REFLEJOS','3. SI TE MIRAN: CORRE'];
+const stepStart=STEPS.map((_,i)=>BEATS.find(b=>b.step===i).start), listEnd=BEATS.find(b=>b.sc==='avenue2').start;
+
+function hudSvg(text,alert,reveal,T){
+  const col=alert?PINK:YEL;
+  const w=Math.max(500,text.length*24+140),x=540-w/2,y=92;
+  const blink=(T<FREEZE_ABS||T>=MAN_ABS)?((Math.floor(T*2)%2)?.25:1):1; // the dot freezes with the world
+  let s=`<rect x="${x}" y="${y}" width="${w}" height="76" fill="#11131f" fill-opacity=".9" stroke="${col}" stroke-width="3"/>`;
+  s+=`<circle cx="${x+32}" cy="${y+38}" r="8" fill="${PINK}" opacity="${blink}"/>`;
+  s+=`<text x="540" y="${y+50}" text-anchor="middle" font-family="${MONO}" font-weight="700" font-size="34" letter-spacing="4" fill="${col}">${text.slice(0,Math.ceil(text.length*reveal))}</text>`;
+  if(T>=stepStart[0]&&T<listEnd){
+    const n=stepStart.filter(st=>T>=st).length;
+    s+=`<rect x="22" y="186" width="420" height="${22+n*40}" rx="10" fill="#11131f" fill-opacity=".82"/>`;
+    for(let i=0;i<n;i++){const a=prog(T,stepStart[i]+.15,stepStart[i]+.4),done=i<n-1;
+      s+=`<text x="40" y="${222+i*40}" font-family="${MONO}" font-weight="700" font-size="26" letter-spacing="2" fill="${done?GREEN:YEL}">${STEPS[i].slice(0,Math.ceil(STEPS[i].length*a))}${done?' ✓':''}</text>`;}
+  }
+  return s;
+}
+const BAND={plaza:'#161a26',id:'#14162b',fun:'#161a26',watch:'#141722',note:'#141722',touch:'#161a26',glass:'#151820',run:'#170f16',avenue:'#161a26',faces:'#141722',avenue2:'#161a26',man:'#120d14'};
+const scEl=document.getElementById('scene'),hudEl=document.getElementById('hud'),capEl=document.getElementById('cap'),stEl=document.getElementById('stage');
+window.render=function(T){
+  if(T>=CUT){stEl.style.background='#000';scEl.innerHTML='';hudEl.innerHTML='';capEl.innerHTML='';return;}
+  let bi=BEATS.findIndex(b=>T>=b.start&&T<b.start+b.d); if(bi<0) bi=BEATS.length-1;
+  const b=BEATS[bi], bt=T-b.start, st=T-b.sStart, band=BAND[b.sc];
+  stEl.style.background=band;
+  let svg=`<defs>${tintDefs()}<clipPath id="sc"><rect width="1080" height="1100"/></clipPath>
+    <linearGradient id="fadeB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${band}" stop-opacity="0"/><stop offset="1" stop-color="${band}"/></linearGradient>
+    <radialGradient id="redvig" cx=".5" cy=".5" r=".7"><stop offset=".5" stop-color="#ff2d55" stop-opacity="0"/><stop offset="1" stop-color="#ff2d55" stop-opacity=".55"/></radialGradient>
+    <radialGradient id="glowY"><stop offset="0" stop-color="#ffd76a" stop-opacity=".45"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></radialGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff6c8" stop-opacity=".55"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></linearGradient>
+    <radialGradient id="vig" cx=".5" cy=".45" r=".75"><stop offset=".62" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></radialGradient></defs>`;
+  svg+=`<g clip-path="url(#sc)">${S[b.sc](st,b.sDur,b.B)}<rect width="1080" height="1100" fill="url(#vig)"/></g>`;
+  svg+=`<rect y="900" width="1080" height="202" fill="url(#fadeB)"/>`;
+  if(b.start===b.sStart&&bi>0) svg+=`<rect width="1080" height="1920" fill="#0b0c16" opacity="${(1-prog(bt,0,.1)).toFixed(3)}"/>`;
+  scEl.innerHTML=svg;
+  let htxt=b.hud;
+  if(htxt==='#clock') htxt='SÁBADO · 15:07:'+pad2(38+Math.floor(Math.min(T,FREEZE_ABS)));
+  if(htxt==='#watch') htxt='MUNDO 15:07 · HUGO 15:31';
+  hudEl.innerHTML=hudSvg(htxt,!!b.alert,(bi>0&&BEATS[bi-1].hud===b.hud)||b.hud==='#clock'&&bi>0?1:prog(bt,0,.28),T);
+  const words=b.cap.split(' ').map(w=>{const [tx,c]=w.split('|');return{tx,c}});
+  const len=b.cap.replace(/\|[a-z]/g,'').length;
+  capEl.style.fontSize=(len>42?84:len>30?92:len>22?100:108)+'px';
+  let html='';
+  words.forEach((w,i)=>{
+    const wt=b.wt[i], on=bt>=wt, k=prog(bt,wt,wt+.14);
+    const col=on?(w.c?ACC[w.c]:'#ffffff'):'rgba(255,255,255,.28)';
+    const sc=on?lerp(1.16,1,eOut(k)):1;
+    const glow=on&&w.c?`;text-shadow:0 0 28px ${ACC[w.c]}88,0 6px 0 rgba(0,0,0,.28)`:'';
+    html+=`<span class="w" style="color:${col};transform:scale(${sc.toFixed(3)})${glow}">${w.tx}</span> `;
+  });
+  capEl.innerHTML=html;
+  const cp=eOut(prog(bt,0,.12));
+  capEl.style.transform=`translateY(${(1-cp)*20}px)`;
+  capEl.style.opacity=cp.toFixed(3);
+};
+window.render(0);
+</script></body></html>

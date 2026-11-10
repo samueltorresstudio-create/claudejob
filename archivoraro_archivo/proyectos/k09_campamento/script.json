@@ -1,0 +1,232 @@
+[
+ {
+  "sc": "intro",
+  "hud": "CAMPAMENTO · DÍA 1",
+  "say": "Si te vas de campamento... y el monitor os da cuatro normas muy raras...",
+  "cap": "SI TE VAS DE CAMPAMENTO... Y EL MONITOR OS DA CUATRO NORMAS MUY RARAS...|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "CAMPAMENTO · DÍA 1",
+  "alert": true,
+  "say": "cúmplelas. Todas.",
+  "cap": "CÚMPLELAS.|p TODAS.|p",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Mateo. Diez años.",
+  "cap": "MATEO.|y 10 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Su primer campamento, en mitad del bosque.",
+  "cap": "SU PRIMER CAMPAMENTO, EN MITAD DEL BOSQUE.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "cabin",
+  "hud": "CABAÑA 7 · 18:00",
+  "say": "Le toca la cabaña siete.",
+  "cap": "LE TOCA LA CABAÑA 7.|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "cabin",
+  "hud": "CABAÑA 7 · 18:00",
+  "say": "Seis camas. Seis niños. Ni uno más.",
+  "cap": "SEIS CAMAS. SEIS NIÑOS. NI UNO MÁS.|b",
+  "pause": 0.2
+ },
+ {
+  "sc": "cabin",
+  "hud": "CABAÑA 7 · 18:05",
+  "say": "Pablo, Leo, Iván, Marcos, Dani... y él.",
+  "cap": "PABLO, LEO, IVÁN, MARCOS, DANI... Y ÉL.|y",
+  "pause": 0.25
+ },
+ {
+  "sc": "fire",
+  "hud": "HOGUERA · 21:00",
+  "say": "Esa noche, el monitor los reúne junto al fuego... y saca un papel arrugado.",
+  "cap": "ESA NOCHE, EL MONITOR LOS REÚNE JUNTO AL FUEGO... Y SACA UN PAPEL ARRUGADO.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "NORMA 1 · LUCES",
+  "step": 0,
+  "say": "Norma uno: a las diez, linternas apagadas. Pase lo que pase.",
+  "cap": "NORMA|y UNO: A LAS DIEZ, LINTERNAS APAGADAS. PASE LO QUE PASE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "CABAÑA 7 · 22:00",
+  "say": "A las diez en punto, se apaga el generador. Y el bosque se queda negro.",
+  "cap": "A LAS DIEZ EN PUNTO, SE APAGA EL GENERADOR. Y EL BOSQUE SE QUEDA NEGRO.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "CABAÑA 7 · 22:00",
+  "say": "Mateo guarda la linterna debajo de la almohada. Por si acaso.",
+  "cap": "MATEO GUARDA LA LINTERNA DEBAJO DE LA ALMOHADA. POR SI ACASO.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "NORMA 2 · VOCES",
+  "step": 1,
+  "say": "Norma dos: si alguien te llama desde el bosque... no contestes.",
+  "cap": "NORMA|y DOS: SI ALGUIEN TE LLAMA DESDE EL BOSQUE... NO CONTESTES.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "NOCHE 2 · 01:20",
+  "say": "La segunda noche, Mateo oye su nombre entre los árboles.",
+  "cap": "LA SEGUNDA NOCHE, MATEO OYE SU NOMBRE ENTRE LOS ÁRBOLES.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "NOCHE 2 · 01:20",
+  "voice": "tv",
+  "say": "Mateo... Mateo, ven...",
+  "cap": "«MATEO... MATEO, VEN...»|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "NOCHE 2 · 01:21",
+  "alert": true,
+  "say": "Es la voz de Pablo. Pero Pablo está dormido en la cama de al lado.",
+  "cap": "ES LA VOZ DE PABLO. PERO PABLO ESTÁ DORMIDO EN LA CAMA DE AL LADO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "NOCHE 2 · 01:21",
+  "say": "Mateo se tapa hasta la cabeza. Y no contesta.",
+  "cap": "MATEO SE TAPA HASTA LA CABEZA. Y NO CONTESTA.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "NORMA 3 · LA CAMPANA",
+  "step": 2,
+  "say": "Norma tres: no salgas de la cabaña hasta que suene la campana.",
+  "cap": "NORMA|y TRES: NO SALGAS DE LA CABAÑA HASTA QUE SUENE LA CAMPANA.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "DÍA 3 · 08:10",
+  "say": "La tercera mañana, la campana tarda en sonar.",
+  "cap": "LA TERCERA MAÑANA, LA CAMPANA TARDA EN SONAR.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "DÍA 3 · 08:14",
+  "alert": true,
+  "say": "Y fuera se oyen pasos... dando vueltas a la cabaña.",
+  "cap": "Y FUERA SE OYEN PASOS... DANDO VUELTAS A LA CABAÑA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "DÍA 3 · 08:20",
+  "say": "Cuando por fin suena, no hay nadie. Solo huellas en el barro.",
+  "cap": "CUANDO POR FIN SUENA, NO HAY NADIE. SOLO HUELLAS EN EL BARRO.|b",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "NORMA 4 · LA ÚLTIMA",
+  "step": 3,
+  "say": "Norma cuatro. La más importante.",
+  "cap": "NORMA|y CUATRO. LA MÁS IMPORTANTE.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "NORMA 4 · LA ÚLTIMA",
+  "alert": true,
+  "say": "Nunca. Nunca cuentes a los de tu cabaña.",
+  "cap": "NUNCA. NUNCA CUENTES A LOS DE TU CABAÑA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "NORMA 4 · LA ÚLTIMA",
+  "say": "El monitor lo dice muy serio... y no explica nada más.",
+  "cap": "EL MONITOR LO DICE MUY SERIO... Y NO EXPLICA NADA MÁS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "NORMA 4 · LA ÚLTIMA",
+  "say": "Mateo no entiende por qué. Hasta la última noche.",
+  "cap": "MATEO NO ENTIENDE POR QUÉ. HASTA LA ÚLTIMA NOCHE.",
+  "pause": 0.3
+ },
+ {
+  "sc": "night",
+  "hud": "ÚLTIMA NOCHE · 03:00",
+  "say": "Son las tres de la mañana. Todos duermen.",
+  "cap": "SON LAS TRES DE LA MAÑANA. TODOS DUERMEN.",
+  "pause": 0.1
+ },
+ {
+  "sc": "night",
+  "hud": "ÚLTIMA NOCHE · 03:00",
+  "say": "Mateo enciende la linterna un segundo... y sin pensarlo, empieza a contar.",
+  "cap": "MATEO ENCIENDE LA LINTERNA UN SEGUNDO... Y SIN PENSARLO, EMPIEZA A CONTAR.|y",
+  "pause": 0.2
+ },
+ {
+  "sc": "count",
+  "hud": "ÚLTIMA NOCHE · 03:01",
+  "say": "Uno. Dos. Tres.",
+  "cap": "UNO. DOS. TRES.",
+  "pause": 0.1
+ },
+ {
+  "sc": "count",
+  "hud": "ÚLTIMA NOCHE · 03:01",
+  "say": "Cuatro. Cinco. Seis.",
+  "cap": "CUATRO. CINCO. SEIS.",
+  "pause": 0.25
+ },
+ {
+  "sc": "count",
+  "hud": "ÚLTIMA NOCHE · 03:01",
+  "alert": true,
+  "say": "Y siete.",
+  "cap": "Y SIETE.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "end",
+  "hud": "ÚLTIMA NOCHE · 03:01",
+  "alert": true,
+  "say": "Pero en la cabaña siete solo hay seis camas.",
+  "cap": "PERO EN LA CABAÑA 7 SOLO HAY SEIS CAMAS.|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "end",
+  "hud": "ÚLTIMA NOCHE · 03:01",
+  "alert": true,
+  "cut": true,
+  "say": "Y la séptima cabeza... se está girando hacia él.",
+  "cap": "Y LA SÉPTIMA CABEZA... SE ESTÁ GIRANDO HACIA ÉL.|p",
+  "pause": 0.2
+ }
+]

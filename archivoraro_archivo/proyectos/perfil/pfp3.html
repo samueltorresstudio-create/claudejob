@@ -1,0 +1,54 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;width:800px;height:800px;overflow:hidden}</style></head>
+<body><svg id="s" width="800" height="800" viewBox="0 0 800 800"></svg>
+<script src="lib.js"></script>
+<script>
+// Same character style as the videos (lib3 person: round head, ringed eyes, flat fills), styled as an older, cooler teen.
+const Q=new URLSearchParams(location.search), V=Q.get('v')||'navy';
+const BG={navy:['#2a3270','#0d1026'],yellow:['#ffe066','#f2b51e'],red:['#e8574a','#7a1d22']}[V];
+const SKIN='#e2b08e', HAIR='#2a1d1a', CAP=Q.get('cap')||'#1b1e2b', LOGO='#ffd34a';
+const KID={tall:true,broad:1.28,skin:SKIN,hs:'none',hat:'cap',hair:HAIR,top:Q.get('top')||'#2a2e3d',topD:'#1d2030',
+  jacket:Q.get('jk')||'#d9493f',pants:'#2a2a38',hood:true,strings:true,eyes:'open',look:[3,3],mouth:'none',blush:false,still:true,blink:false};
+const s=+(Q.get('s')||2.0), X=400, HY=372, Y=HY+638*s;
+
+let g=`<defs><radialGradient id="bg" cx="50%" cy="45%" r="70%"><stop offset="0" stop-color="${BG[0]}"/><stop offset="1" stop-color="${BG[1]}"/></radialGradient>
+  <radialGradient id="glow"><stop offset="0" stop-color="#ffd34a" stop-opacity=".28"/><stop offset="1" stop-color="#ffd34a" stop-opacity="0"/></radialGradient></defs>
+  <rect width="800" height="800" fill="url(#bg)"/>`;
+if(V==='navy'){
+  g+=`<circle cx="400" cy="370" r="340" fill="url(#glow)"/>`;
+  const R=rng(7); for(let i=0;i<40;i++) g+=`<circle cx="${R()*800}" cy="${R()*800}" r="${1+R()*2}" fill="#fff" opacity="${.25+R()*.5}"/>`;
+}else for(let i=0;i<12;i++){const a=i*Math.PI/6;g+=`<path d="M400,400 L${400+900*Math.cos(a-.1)},${400+900*Math.sin(a-.1)} L${400+900*Math.cos(a+.1)},${400+900*Math.sin(a+.1)}Z" fill="#fff" opacity=".14"/>`;}
+
+g+=person({...KID,x:X,y:Y,s});
+
+// everything below is drawn in the head's own coordinates (head circle r 92, eyes at (±36,6) r 25), like lib3
+let h='';
+// headphones resting round the neck
+h+=`<path d="M-60,104 Q0,144 60,104" stroke="#15161f" stroke-width="10" fill="none" stroke-linecap="round"/>`;
+for(const sd of [-1,1]) h+=`<circle cx="${sd*60}" cy="106" r="19" fill="#15161f"/><circle cx="${sd*60}" cy="106" r="10" fill="${LOGO}"/><circle cx="${sd*60}" cy="106" r="4" fill="#15161f"/>`;
+// half-closed lids: the relaxed, confident look (same ink line as the eye rings)
+for(const ex of [-36,36]){
+  h+=`<clipPath id="lid${ex}"><circle cx="${ex}" cy="6" r="29"/></clipPath>
+    <g clip-path="url(#lid${ex})"><rect x="${ex-30}" y="-26" width="60" height="21" fill="${SKIN}"/></g>
+    <path d="M${ex-23},-5 L${ex+23},-5" stroke="${INK}" stroke-width="7" stroke-linecap="round"/>`;
+}
+// hair: faded sides and a fringe swept out from under the cap
+h+=`<path d="M-93,-46 Q-98,-16 -90,4 L-80,-26 Q-80,-44 -70,-56Z M93,-46 Q98,-16 90,4 L80,-26 Q80,-44 70,-56Z" fill="${HAIR}"/>`;
+h+=`<path d="M40,-66 Q0,-60 -28,-46 Q-44,-38 -64,-38 Q-52,-46 -50,-54 Q-66,-47 -86,-46 Q-72,-60 -70,-74Z" fill="${HAIR}"/>`;
+// brows: thick, one raised a touch
+h+=`<path d="M-58,-23 Q-40,-35 -18,-28 M18,-26 Q38,-30 58,-22" stroke="${HAIR}" stroke-width="9" fill="none" stroke-linecap="round"/>`;
+// smirk
+h+=`<path d="M-18,54 Q4,62 22,46" stroke="#6b2f35" stroke-width="6" fill="none" stroke-linecap="round"/>`;
+// cap: low crown, flat brim, tilted a touch, yellow «?» patch in the HUD monospace
+h+=`<g transform="translate(0,-4) rotate(4 0 -60) translate(0,-60) scale(.93) translate(0,60)">
+  <path d="M-98,-58 C-102,-126 -58,-150 0,-150 C58,-150 102,-126 98,-58Z" fill="${CAP}"/>
+  <path d="M58,-142 C92,-122 102,-96 98,-58 L70,-58 C74,-96 68,-124 58,-142Z" fill="#fff" opacity=".07"/>
+  <path d="M0,-150 L0,-60 M-48,-142 Q-64,-104 -64,-60 M48,-142 Q64,-104 64,-60" stroke="#000" stroke-opacity=".28" stroke-width="4" fill="none"/>
+  <circle cx="0" cy="-150" r="8" fill="#0e0f16"/>
+  <rect x="-27" y="-128" width="54" height="50" rx="9" fill="${LOGO}"/>
+  <text x="0" y="-87" text-anchor="middle" font-family="DejaVu Sans Mono,monospace" font-weight="900" font-size="46" fill="${INK}">?</text>
+  <path d="M-118,-62 Q0,-76 118,-62 Q128,-52 114,-45 Q0,-58 -114,-45 Q-128,-52 -118,-62Z" fill="${mix(CAP,'#000000',.3)}"/>
+  <path d="M-110,-60 Q0,-72 110,-60" stroke="#fff" stroke-opacity=".1" stroke-width="4" fill="none"/>
+</g>`;
+g+=`<g transform="translate(${X},${HY}) scale(${s})">${h}</g>`;
+document.getElementById('s').innerHTML=tintDefs()+g;
+</script></body></html>

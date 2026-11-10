@@ -1,0 +1,95 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;width:800px;height:800px;overflow:hidden}</style></head>
+<body><svg id="s" width="800" height="800" viewBox="0 0 800 800"></svg>
+<script src="lib.js"></script>
+<script>{
+// Second batch of profile-picture concepts, same style rules as ideas.html.
+const CC=+(new URLSearchParams(location.search).get('c')||7);
+const Y2='#ffd34a';
+const defs=`<defs>
+  <radialGradient id="navy" cx="50%" cy="45%" r="72%"><stop offset="0" stop-color="#232a5e"/><stop offset="1" stop-color="#0a0c1c"/></radialGradient>
+  <radialGradient id="dark" cx="50%" cy="50%" r="70%"><stop offset="0" stop-color="#1a1d33"/><stop offset="1" stop-color="#050609"/></radialGradient>
+  <radialGradient id="glowY"><stop offset="0" stop-color="${Y2}" stop-opacity=".6"/><stop offset="1" stop-color="${Y2}" stop-opacity="0"/></radialGradient>
+  <radialGradient id="glowP"><stop offset="0" stop-color="${PINK}" stop-opacity=".55"/><stop offset="1" stop-color="${PINK}" stop-opacity="0"/></radialGradient>
+  <linearGradient id="beamL" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="${Y2}" stop-opacity=".95"/><stop offset="1" stop-color="${Y2}" stop-opacity=".35"/></linearGradient>
+  <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#0d1030"/><stop offset="1" stop-color="#2b2f6e"/></linearGradient>
+</defs>`;
+const starsB=(n,seed)=>{const R=rng(seed);let g='';for(let i=0;i<n;i++)g+=`<circle cx="${R()*800}" cy="${R()*800}" r="${1+R()*2}" fill="#fff" opacity="${.2+R()*.5}"/>`;return g};
+const eyeB=(cx,cy,r,lx=0,ly=0,lid=0,id='e')=>{
+  let e=`<g transform="translate(${cx},${cy}) scale(${r/25})"><circle r="25" fill="#fff" stroke="${INK}" stroke-width="7"/>
+    <circle cx="${lx}" cy="${ly}" r="11" fill="${INK}"/><circle cx="${lx+3.5}" cy="${ly-4}" r="3.2" fill="#fff"/>`;
+  if(lid) e+=`<clipPath id="${id}"><circle r="28.5"/></clipPath><rect x="-30" y="-30" width="60" height="${lid}" fill="${INK}" clip-path="url(#${id})"/><path d="M-24,${lid-30} L24,${lid-30}" stroke="${INK}" stroke-width="7" stroke-linecap="round"/>`;
+  return e+'</g>';
+};
+let g='';
+
+if(CC===7){ // warning sign with an eye
+  g+=`<rect width="800" height="800" fill="url(#navy)"/>`+starsB(36,21);
+  g+=`<path d="M400,150 L690,630 L110,630Z" fill="${Y2}" stroke="${Y2}" stroke-width="70" stroke-linejoin="round"/>`;
+  g+=`<path d="M400,214 L628,596 L172,596Z" fill="none" stroke="${INK}" stroke-width="22" stroke-linejoin="round"/>`;
+  g+=eyeB(400,470,96,-8,3,8,'w7');
+}
+if(CC===8){ // something under the bed
+  g+=`<rect width="800" height="800" fill="#161a30"/><rect y="600" width="800" height="200" fill="#241f36"/>`;
+  g+=`<rect x="40" y="430" width="720" height="190" fill="#06070b"/>`; // the dark under the bed
+  g+=`<ellipse cx="400" cy="520" rx="260" ry="80" fill="url(#glowY)" opacity=".25"/>`;
+  g+=eyeB(346,512,46,6,2,9,'b1')+eyeB(454,512,46,6,2,9,'b2');
+  g+=`<rect x="20" y="200" width="760" height="70" rx="16" fill="#e9e1d2"/><rect x="60" y="150" width="210" height="70" rx="30" fill="#f4efe6"/>`; // mattress + pillow
+  g+=`<path d="M20,240 L780,240 L780,440 Q600,460 400,436 Q200,460 20,440Z" fill="#3a6ab0"/><path d="M20,410 Q200,430 400,406 Q600,430 780,410 L780,440 Q600,460 400,436 Q200,460 20,440Z" fill="#2a4f88"/>`; // blanket hanging down
+  g+=`<rect x="30" y="430" width="34" height="200" fill="#5a3f2e"/><rect x="736" y="430" width="34" height="200" fill="#5a3f2e"/>`;
+}
+if(CC===9){ // 3 a.m. clock
+  g+=`<rect width="800" height="800" fill="url(#dark)"/>`;
+  g+=`<ellipse cx="400" cy="420" rx="320" ry="200" fill="url(#glowP)" opacity=".45"/>`;
+  g+=`<rect x="110" y="260" width="580" height="320" rx="56" fill="#20233a"/><rect x="110" y="540" width="580" height="40" rx="20" fill="#000" opacity=".2"/>`;
+  g+=`<rect x="150" y="300" width="500" height="220" rx="24" fill="#08090f"/>`;
+  g+=`<text x="400" y="472" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="168" fill="${PINK}">03:00</text>`;
+  g+=`<text x="400" y="472" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="168" fill="#fff" opacity=".18">03:00</text>`;
+  g+=`<rect x="160" y="590" width="60" height="22" rx="6" fill="#15172a"/><rect x="580" y="590" width="60" height="22" rx="6" fill="#15172a"/>`;
+  g+=`<rect x="330" y="236" width="140" height="28" rx="10" fill="#2c3050"/>`;
+}
+if(CC===10){ // a torch finds two eyes
+  g+=`<rect width="800" height="800" fill="url(#dark)"/>`;
+  g+=`<path d="M330,560 L410,190 A170,170 0 0 1 720,400 Z" fill="url(#beamL)" opacity=".5"/>`;
+  g+=`<circle cx="560" cy="300" r="170" fill="${Y2}" opacity=".32"/>`;
+  g+=eyeB(512,300,50,-10,6,0,'t1')+eyeB(612,300,50,-10,6,0,'t2');
+  g+=`<g transform="translate(150,700) rotate(-48)"><rect x="-38" y="-30" width="210" height="60" rx="14" fill="#3a3f52"/><path d="M172,-30 L232,-56 L232,56 L172,30Z" fill="#4a5068"/><rect x="226" y="-56" width="14" height="112" rx="6" fill="${Y2}"/><rect x="40" y="-30" width="40" height="60" fill="#2c3040"/></g>`;
+}
+if(CC===11){ // a giant eye at the window
+  g+=`<rect width="800" height="800" fill="#2a2440"/>`;
+  g+=`<rect x="130" y="120" width="540" height="560" rx="10" fill="#0e1130"/>`;
+  g+=`<clipPath id="win"><rect x="150" y="140" width="500" height="520"/></clipPath><g clip-path="url(#win)"><rect x="150" y="140" width="500" height="520" fill="url(#sky)"/>${starsB(30,5)}
+     ${eyeB(400,410,200,-6,8,0,'g1')}</g>`;
+  g+=`<path d="M400,140 L400,660 M150,400 L650,400" stroke="#f2ede4" stroke-width="22"/>`;
+  g+=`<rect x="130" y="120" width="540" height="560" rx="10" fill="none" stroke="#f2ede4" stroke-width="28"/>`;
+  g+=`<rect x="100" y="672" width="600" height="38" rx="8" fill="#e2dccf"/>`;
+}
+if(CC===12){ // a phone: «Soy tú.»
+  g+=`<rect width="800" height="800" fill="url(#navy)"/>`+starsB(30,12);
+  g+=`<circle cx="400" cy="400" r="300" fill="url(#glowY)" opacity=".3"/>`;
+  g+=`<g transform="rotate(-8 400 400)"><rect x="210" y="70" width="380" height="680" rx="56" fill="#15161f"/><rect x="232" y="100" width="336" height="620" rx="38" fill="#1e2233"/>
+    <rect x="232" y="100" width="336" height="110" rx="38" fill="#262b40"/><rect x="232" y="170" width="336" height="40" fill="#262b40"/>
+    <circle cx="290" cy="158" r="28" fill="#e2b08e"/><text x="334" y="170" font-family="Inter" font-weight="800" font-size="38" fill="#fff">YO</text>
+    <rect x="256" y="300" width="290" height="120" rx="26" fill="#3a3f58"/><text x="282" y="380" font-family="Inter" font-weight="900" font-size="64" fill="#fff">Soy tú.</text>
+    <rect x="256" y="450" width="130" height="64" rx="26" fill="#3a3f58"/><circle cx="292" cy="482" r="9" fill="#9aa0b8"/><circle cx="321" cy="482" r="9" fill="#9aa0b8"/><circle cx="350" cy="482" r="9" fill="#9aa0b8"/></g>`;
+}
+if(CC===13){ // CONTINUARÁ… — the cut to black
+  g+=`<rect width="800" height="800" fill="#000"/>`;
+  g+=`<clipPath id="top"><rect width="800" height="430"/></clipPath><g clip-path="url(#top)"><rect width="800" height="430" fill="#f2c45a"/>
+     <rect x="250" y="80" width="300" height="420" fill="#5a3f6e"/><rect x="270" y="100" width="260" height="400" fill="#0a0b12"/>
+     <path d="M270,100 L270,500 L410,470 L410,130Z" fill="#7a5a8e"/>
+     ${eyeB(450,300,30,-8,3,6,'c1')}${eyeB(504,300,30,-8,3,6,'c2')}</g>`;
+  g+=`<rect y="430" width="800" height="12" fill="#fff" opacity=".9"/>`;
+  g+=`<rect x="96" y="520" width="608" height="110" fill="#11131f" stroke="${YEL}" stroke-width="6"/><circle cx="136" cy="575" r="12" fill="${PINK}"/>`;
+  g+=`<text x="416" y="597" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="62" letter-spacing="3" fill="${YEL}">CONTINUARÁ…</text>`;
+}
+if(CC===14){ // a crescent moon with one eye and a fang
+  g+=`<rect width="800" height="800" fill="url(#sky)"/>`+starsB(60,31);
+  g+=`<circle cx="380" cy="400" r="300" fill="url(#glowY)" opacity=".3"/>`;
+  g+=`<mask id="cm"><circle cx="420" cy="400" r="270" fill="#fff"/><circle cx="572" cy="326" r="222" fill="#000"/></mask>`;
+  g+=`<g mask="url(#cm)"><circle cx="420" cy="400" r="270" fill="${Y2}"/><circle cx="436" cy="400" r="270" fill="none" stroke="#000" stroke-opacity=".07" stroke-width="40"/></g>`;
+  g+=eyeB(250,372,54,10,2,10,'m1');
+  g+=`<path d="M214,474 Q262,520 336,494" stroke="${INK}" stroke-width="15" fill="none" stroke-linecap="round"/><path d="M290,508 L302,546 L316,502Z" fill="#fff" stroke="${INK}" stroke-width="5" stroke-linejoin="round"/>`;
+  g+=`<ellipse cx="620" cy="650" rx="150" ry="42" fill="#3b4185"/><ellipse cx="570" cy="628" rx="80" ry="40" fill="#3b4185"/>`;
+}
+document.getElementById('s').innerHTML=defs+tintDefs()+g;
+}</script></body></html>

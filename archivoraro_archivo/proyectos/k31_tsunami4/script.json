@@ -1,0 +1,14 @@
+[
+ {"sc":"hook","hud":"SUPERMERCADO · 13:33","say":"Si los ladrones tienen tu mochila... tienes que ir a buscarla.","cap":"SI LOS LADRONES TIENEN TU MOCHILA...|p TIENES QUE IR A BUSCARLA.|p","pause":0.15},
+ {"sc":"hook","hud":"SUPERMERCADO · 13:33","say":"Esa noche, Duque se fue tras uno de ellos. Y ha vuelto con una prueba.","cap":"ESA NOCHE, DUQUE SE FUE TRAS UNO DE ELLOS.|p Y HA VUELTO CON UNA PRUEBA.|p","pause":0.2},
+ {"sc":"alley","hud":"CALLE TRASERA · 13:35","say":"Marco no entra por la puerta principal. Rodea el supermercado.","cap":"MARCO NO ENTRA POR LA PUERTA PRINCIPAL.|p RODEA EL SUPERMERCADO.|p","pause":0.25},
+ {"sc":"alley","hud":"PASO 1 · NO TE VEAN","step":0,"say":"Paso uno: no entres por donde esperan.","cap":"PASO|y UNO: NO ENTRES POR DONDE ESPERAN.|p","pause":0.2},
+ {"sc":"back","hud":"ALMACÉN · 13:37","say":"Entra por el almacén de atrás, entre cajas de conservas caídas.","cap":"ENTRA POR EL ALMACÉN DE ATRÁS,|p ENTRE CAJAS DE CONSERVAS CAÍDAS.|p","pause":0.2},
+ {"sc":"front","hud":"PUERTA PRINCIPAL · 13:39","say":"Duque se queda fuera, en la persiana. Cojea, pero ladra como si no tuviera miedo a nada.","cap":"DUQUE SE QUEDA FUERA, EN LA PERSIANA.|p COJEA, PERO LADRA COMO SI NO TUVIERA MIEDO A NADA.|p","pause":0.2},
+ {"sc":"front","hud":"PUERTA PRINCIPAL · 13:39","alert":true,"say":"Los dos ladrones salen corriendo hacia el perro. Y Marco aprovecha.","cap":"LOS DOS LADRONES SALEN CORRIENDO HACIA EL PERRO.|p Y MARCO APROVECHA.|p","pause":0.25},
+ {"sc":"aisle","hud":"PASO 2 · NO PELEES","step":1,"say":"Paso dos: nunca pelees con dos a la vez.","cap":"PASO|y DOS: NUNCA PELEES CON DOS A LA VEZ.|b","pause":0.2},
+ {"sc":"aisle","hud":"PASILLO DE LATAS · 13:41","say":"En el pasillo de las latas, la mochila está en el suelo.","cap":"EN EL PASILLO DE LAS LATAS,|p LA MOCHILA ESTÁ EN EL SUELO.|p","pause":0.2},
+ {"sc":"aisle","hud":"MOCHILA · 13:42","say":"Marco la abre. Falta el agua. Faltan las latas.","cap":"MARCO LA ABRE.|p FALTA EL AGUA.|b FALTAN LAS LATAS.|g","pause":0.2},
+ {"sc":"note","hud":"NOTA · 13:42","say":"Y en el fondo, una nota escrita a mano: «Perdón. Nos obligaron.»","cap":"Y EN EL FONDO, UNA NOTA ESCRITA A MANO:|p «PERDÓN. NOS OBLIGARON.»|p","pause":0.2},
+ {"sc":"trap","hud":"ALMACÉN · 13:43","alert":true,"cut":true,"say":"Detrás de él, alguien baja la persiana. Y la luz se apaga.","cap":"DETRÁS DE ÉL, ALGUIEN BAJA LA PERSIANA.|p Y LA LUZ SE APAGA.|p","pause":0.2}
+]

@@ -1,0 +1,249 @@
+[
+ {
+  "sc": "intro",
+  "hud": "LUNES · 07:00",
+  "say": "Si una mañana aparece un monstruo de cien metros en tu ciudad...",
+  "cap": "SI UNA MAÑANA APARECE UN MONSTRUO DE 100 METROS|p EN TU CIUDAD...",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "LUNES · 07:00",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer para sobrevivir.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER PARA SOBREVIVIR.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Carla. Doce años.",
+  "cap": "CARLA.|y 12 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Vive en un sexto piso, con su abuela, en pleno centro.",
+  "cap": "VIVE EN UN SEXTO PISO, CON SU ABUELA, EN PLENO CENTRO.",
+  "pause": 0.3
+ },
+ {
+  "sc": "news",
+  "hud": "SALÓN · 07:02",
+  "say": "A las siete, la tele corta los dibujos.",
+  "cap": "A LAS SIETE, LA TELE CORTA LOS DIBUJOS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "news",
+  "hud": "SALÓN · 07:02",
+  "say": "En el puerto, algo enorme ha salido del mar.",
+  "cap": "EN EL PUERTO, ALGO ENORME HA SALIDO DEL MAR.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "news",
+  "hud": "SALÓN · 07:02",
+  "alert": true,
+  "say": "Es más alto que la catedral. Y camina hacia el centro.",
+  "cap": "ES MÁS ALTO QUE LA CATEDRAL. Y CAMINA HACIA EL CENTRO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "news",
+  "hud": "SALÓN · 07:03",
+  "say": "Los adultos dicen que el ejército ya va de camino.",
+  "cap": "LOS ADULTOS DICEN QUE EL EJÉRCITO YA VA DE CAMINO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "news",
+  "hud": "SALÓN · 07:03",
+  "say": "Pero nadie sabe qué es. Ni de dónde ha salido.",
+  "cap": "PERO NADIE SABE QUÉ ES. NI DE DÓNDE HA SALIDO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · EL BALCÓN",
+  "step": 0,
+  "say": "Paso uno: no salgas al balcón a mirar.",
+  "cap": "PASO|y UNO: NO SALGAS AL BALCÓN A MIRAR.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · EL BALCÓN",
+  "say": "Todo el barrio lo está grabando con el móvil.",
+  "cap": "TODO EL BARRIO LO ESTÁ GRABANDO CON EL MÓVIL.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · EL BALCÓN",
+  "alert": true,
+  "say": "Y el monstruo gira la cabeza... hacia los flashes.",
+  "cap": "Y EL MONSTRUO GIRA LA CABEZA... HACIA LOS FLASHES.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · EL BALCÓN",
+  "say": "Carla corre la cortina justo a tiempo.",
+  "cap": "CARLA CORRE LA CORTINA JUSTO A TIEMPO.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · EL GARAJE",
+  "step": 1,
+  "say": "Paso dos: baja al garaje.",
+  "cap": "PASO|y DOS: BAJA AL GARAJE.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · EL GARAJE",
+  "say": "Cuanto más abajo, más lejos de sus pasos.",
+  "cap": "CUANTO MÁS ABAJO, MÁS LEJOS DE SUS PASOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "ESCALERA · 07:09",
+  "say": "Carla baja seis pisos con su abuela de la mano.",
+  "cap": "CARLA BAJA SEIS PISOS CON SU ABUELA DE LA MANO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "ESCALERA · 07:09",
+  "alert": true,
+  "say": "Y la escalera tiembla con cada paso que da el monstruo.",
+  "cap": "Y LA ESCALERA TIEMBLA CON CADA PASO QUE DA EL MONSTRUO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "GARAJE · 07:12",
+  "say": "En el garaje ya hay veinte vecinos, todavía en pijama.",
+  "cap": "EN EL GARAJE YA HAY VEINTE VECINOS, TODAVÍA EN PIJAMA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · OSCURIDAD",
+  "step": 2,
+  "say": "Paso tres: apaga todas las luces. Y las pantallas.",
+  "cap": "PASO|y TRES: APAGA TODAS LAS LUCES. Y LAS PANTALLAS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · OSCURIDAD",
+  "say": "Lo que atrae al monstruo... es la luz.",
+  "cap": "LO QUE ATRAE AL MONSTRUO... ES LA LUZ.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "GARAJE · 07:20",
+  "alert": true,
+  "say": "Pero un vecino enciende la linterna del móvil.",
+  "cap": "PERO UN VECINO ENCIENDE LA LINTERNA DEL MÓVIL.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "GARAJE · 07:20",
+  "say": "La abuela se la tapa con la mano... pero ya es tarde.",
+  "cap": "LA ABUELA SE LA TAPA CON LA MANO... PERO YA ES TARDE.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · SILENCIO",
+  "step": 3,
+  "say": "Paso cuatro: cuando pase por encima, no hagas ni un ruido.",
+  "cap": "PASO|y CUATRO: CUANDO PASE POR ENCIMA, NO HAGAS NI UN RUIDO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "GARAJE · 07:21",
+  "say": "Cada paso hace caer polvo del techo.",
+  "cap": "CADA PASO HACE CAER POLVO DEL TECHO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "GARAJE · 07:21",
+  "say": "Las alarmas de los coches saltan con cada pisada.",
+  "cap": "LAS ALARMAS DE LOS COCHES SALTAN CON CADA PISADA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step4",
+  "hud": "GARAJE · 07:21",
+  "alert": true,
+  "say": "Bum. Bum. Bum.",
+  "cap": "BUM.|p BUM.|p BUM.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "GARAJE · 07:21",
+  "alert": true,
+  "say": "Y entonces... los pasos se paran.",
+  "cap": "Y ENTONCES... LOS PASOS SE PARAN.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "GARAJE · 07:22",
+  "alert": true,
+  "say": "Justo encima del edificio.",
+  "cap": "JUSTO ENCIMA DEL EDIFICIO.|p",
+  "pause": 0.35
+ },
+ {
+  "sc": "silence",
+  "hud": "GARAJE · 07:22",
+  "say": "Todos contienen la respiración.",
+  "cap": "TODOS CONTIENEN LA RESPIRACIÓN.",
+  "pause": 0.15
+ },
+ {
+  "sc": "silence",
+  "hud": "GARAJE · 07:22",
+  "alert": true,
+  "say": "Solo se oye un ruido... como si algo estuviera olfateando.",
+  "cap": "SOLO SE OYE UN RUIDO... COMO SI ALGO ESTUVIERA OLFATEANDO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "silence",
+  "hud": "GARAJE · 07:22",
+  "say": "Carla mira la ventanita del garaje, a ras de la calle.",
+  "cap": "CARLA MIRA LA VENTANITA DEL GARAJE, A RAS DE LA CALLE.",
+  "pause": 0.15
+ },
+ {
+  "sc": "eye",
+  "hud": "GARAJE · 07:22",
+  "alert": true,
+  "say": "Y al otro lado del cristal...",
+  "cap": "Y AL OTRO LADO DEL CRISTAL...",
+  "pause": 0.15
+ },
+ {
+  "sc": "eye",
+  "hud": "GARAJE · 07:22",
+  "alert": true,
+  "say": "se abre un ojo enorme.",
+  "cap": "SE ABRE UN OJO ENORME.|p",
+  "pause": 0.9,
+  "cut": true
+ }
+]

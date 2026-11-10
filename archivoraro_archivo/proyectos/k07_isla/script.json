@@ -1,0 +1,261 @@
+[
+ {
+  "sc": "intro",
+  "hud": "EXCURSIÓN · DÍA 1",
+  "say": "Si el barco de tu excursión se hunde...",
+  "cap": "SI EL BARCO DE TU EXCURSIÓN SE HUNDE...|b",
+  "pause": 0.1
+ },
+ {
+  "sc": "intro",
+  "hud": "EXCURSIÓN · DÍA 1",
+  "say": "y acabas en una isla desierta con toda tu clase...",
+  "cap": "Y ACABAS EN UNA ISLA DESIERTA CON TODA TU CLASE...|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "EXCURSIÓN · DÍA 1",
+  "alert": true,
+  "say": "esto es lo que tenéis que hacer para que os encuentren.",
+  "cap": "ESTO ES LO QUE TENÉIS QUE HACER PARA QUE OS ENCUENTREN.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Valeria. Doce años.",
+  "cap": "VALERIA.|y 12 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Delegada de la clase. Y ahora, la que manda.",
+  "cap": "DELEGADA DE LA CLASE. Y AHORA, LA QUE MANDA.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "shore",
+  "hud": "ISLA · 09:10",
+  "say": "Son veintidós niños en la orilla.",
+  "cap": "SON 22 NIÑOS EN LA ORILLA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "shore",
+  "hud": "ISLA · 09:10",
+  "alert": true,
+  "say": "Ni un solo adulto.",
+  "cap": "NI UN SOLO ADULTO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "shore",
+  "hud": "ISLA · 09:10",
+  "alert": true,
+  "say": "Y el barco... ya no se ve.",
+  "cap": "Y EL BARCO... YA NO SE VE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "shore",
+  "hud": "ISLA · 09:12",
+  "say": "Algunos lloran. Valeria se sube a una roca y grita: ¡escuchadme todos!",
+  "cap": "ALGUNOS LLORAN. VALERIA SE SUBE A UNA ROCA Y GRITA: «¡ESCUCHADME TODOS!»|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · AGUA",
+  "step": 0,
+  "say": "Paso uno: agua.",
+  "cap": "PASO|y UNO: AGUA.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · AGUA",
+  "say": "El agua del mar no se bebe. Nunca.",
+  "cap": "EL AGUA DEL MAR NO SE BEBE. NUNCA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · AGUA",
+  "say": "Te seca por dentro. Cuanto más bebes, más sed tienes.",
+  "cap": "TE SECA POR DENTRO. CUANTO MÁS BEBES, MÁS SED TIENES.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · AGUA",
+  "say": "Recogen cocos, y ponen hojas grandes para guardar la lluvia.",
+  "cap": "RECOGEN COCOS, Y PONEN HOJAS GRANDES PARA GUARDAR LA LLUVIA.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · REFUGIO",
+  "step": 1,
+  "say": "Paso dos: un refugio.",
+  "cap": "PASO|y DOS: UN REFUGIO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · REFUGIO",
+  "say": "Lejos de la orilla. Por la noche, la marea sube.",
+  "cap": "LEJOS DE LA ORILLA. POR LA NOCHE, LA MAREA SUBE.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · REFUGIO",
+  "say": "Con ramas y hojas de palmera, construyen tres cabañas.",
+  "cap": "CON RAMAS Y HOJAS DE PALMERA, CONSTRUYEN TRES CABAÑAS.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · FUEGO",
+  "step": 2,
+  "say": "Paso tres: fuego.",
+  "cap": "PASO|y TRES: FUEGO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · FUEGO",
+  "say": "Valeria usa las gafas de Marcos como si fueran una lupa.",
+  "cap": "VALERIA USA LAS GAFAS DE MARCOS COMO SI FUERAN UNA LUPA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · FUEGO",
+  "say": "Al tercer intento... sale humo.",
+  "cap": "AL TERCER INTENTO... SALE HUMO.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · FUEGO",
+  "say": "El fuego da calor, da luz... y aleja a los animales.",
+  "cap": "EL FUEGO DA CALOR, DA LUZ... Y ALEJA A LOS ANIMALES.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · SOS",
+  "step": 3,
+  "say": "Paso cuatro: un SOS enorme en la arena.",
+  "cap": "PASO|y CUATRO: UN SOS|y ENORME EN LA ARENA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · SOS",
+  "say": "Con piedras oscuras, para que se vea desde un avión.",
+  "cap": "CON PIEDRAS OSCURAS, PARA QUE SE VEA DESDE UN AVIÓN.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · SOS",
+  "say": "Cada letra mide diez pasos.",
+  "cap": "CADA LETRA MIDE DIEZ PASOS.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "night",
+  "hud": "NOCHE 1 · 03:00",
+  "say": "La primera noche, se turnan para vigilar el fuego.",
+  "cap": "LA PRIMERA NOCHE, SE TURNAN PARA VIGILAR EL FUEGO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "night",
+  "hud": "NOCHE 1 · 03:00",
+  "say": "A Valeria le toca a las tres.",
+  "cap": "A VALERIA LE TOCA A LAS TRES.",
+  "pause": 0.15
+ },
+ {
+  "sc": "night",
+  "hud": "NOCHE 1 · 03:04",
+  "alert": true,
+  "say": "Y desde la selva, oye ramas que se rompen.",
+  "cap": "Y DESDE LA SELVA, OYE RAMAS QUE SE ROMPEN.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "night",
+  "hud": "NOCHE 1 · 03:05",
+  "say": "Pero cuando ilumina con una antorcha... no hay nada.",
+  "cap": "PERO CUANDO ILUMINA CON UNA ANTORCHA... NO HAY NADA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "night",
+  "hud": "NOCHE 1 · 03:05",
+  "alert": true,
+  "say": "Solo las olas. Y la sensación de que algo la está mirando.",
+  "cap": "SOLO LAS OLAS. Y LA SENSACIÓN DE QUE ALGO LA ESTÁ MIRANDO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "morning",
+  "hud": "DÍA 2 · 06:40",
+  "say": "Al amanecer, Valeria se despierta la primera.",
+  "cap": "AL AMANECER, VALERIA SE DESPIERTA LA PRIMERA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "morning",
+  "hud": "DÍA 2 · 06:40",
+  "alert": true,
+  "say": "Y en la arena, hay huellas.",
+  "cap": "Y EN LA ARENA, HAY HUELLAS.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "morning",
+  "hud": "DÍA 2 · 06:40",
+  "alert": true,
+  "say": "Huellas de pies descalzos.",
+  "cap": "HUELLAS DE PIES DESCALZOS.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "morning",
+  "hud": "DÍA 2 · 06:41",
+  "alert": true,
+  "say": "Pero los veintidós llevan zapatillas.",
+  "cap": "PERO LOS 22 LLEVAN ZAPATILLAS.|p",
+  "pause": 0.35
+ },
+ {
+  "sc": "prints",
+  "hud": "DÍA 2 · 06:41",
+  "say": "Las huellas salen de la selva...",
+  "cap": "LAS HUELLAS SALEN DE LA SELVA...",
+  "pause": 0.15
+ },
+ {
+  "sc": "prints",
+  "hud": "DÍA 2 · 06:41",
+  "say": "rodean las tres cabañas...",
+  "cap": "RODEAN LAS TRES CABAÑAS...",
+  "pause": 0.15
+ },
+ {
+  "sc": "prints",
+  "hud": "DÍA 2 · 06:41",
+  "alert": true,
+  "say": "y terminan justo detrás de ella.",
+  "cap": "Y TERMINAN JUSTO DETRÁS DE ELLA.|p",
+  "pause": 0.9,
+  "cut": true
+ }
+]

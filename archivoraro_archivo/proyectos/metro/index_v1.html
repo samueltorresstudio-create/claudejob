@@ -1,0 +1,350 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#12131f}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#12131f}
+svg{position:absolute;left:0;top:0}
+#cap{position:absolute;left:46px;right:46px;top:1185px;text-align:center;font-family:'Inter';font-weight:900;
+  line-height:1.0;letter-spacing:-2px;color:#fff;text-transform:uppercase}
+.w{display:inline-block;margin:0 .02em;transform-origin:50% 75%;text-shadow:0 6px 0 rgba(0,0,0,.28)}
+</style></head>
+<body><div id="stage">
+<svg id="scene" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<div id="cap"></div>
+<svg id="hud" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+</div>
+<script src="lib.js"></script>
+<script src="voice.js"></script>
+<script>
+// ---------- cast ----------
+const A=o=>person(Object.assign({tall:true},o));
+const ALEX={skin:'#e8b894',top:'#6b8f4e',topD:'#4d6a37',pants:'#2b2f3d',hs:'short',hair:'#2b2220'};
+const GRANNY={skin:'#f1d3bd',top:'#8a6a9a',topD:'#644a72',pants:'#5a4a5e',hs:'bun',hair:'#d6d6d6',lashes:true};
+const RIDERS=[{skin:'#f1c7a5',top:'#7a6aa8',hs:'short',hair:'#3a2a26'},{skin:'#8d5a3f',top:'#c77b3b',hs:'bald',hair:'#1d1514'},
+  {skin:'#d9a57f',top:'#3f8f7a',hs:'long',hair:'#6b4428',lashes:true},{skin:'#f6cfae',top:'#b24e5a',hs:'bun',hair:'#c79a5a',lashes:true},{skin:'#b9825e',top:'#4f6fa0',hs:'messy',hair:'#1f1714'}];
+const rider=(i,x,y,s,o={})=>{const p=RIDERS[i%RIDERS.length];return A(Object.assign({x,y,s,sit:true,skin:p.skin,top:p.top,topD:mix(p.top,'#000000',.28),hs:p.hs,hair:p.hair,lashes:p.lashes,pants:'#2e3350',mouth:'line'},o))};
+
+// ---------- the carriage ----------
+const WINS=[[60,250,280,300],[400,250,280,300],[740,250,280,300]];
+function tunnelLayer(t,o={}){ // what is seen through the windows
+  const speed=o.speed??1, tt=o.tt??t;
+  let s=`<rect width="1080" height="1100" fill="#0b0d14"/>`;
+  for(let i=0;i<14;i++){const x=((i*173-tt*1100*speed)%1300+1300)%1300-110, y=300+(i*37)%220;s+=`<rect x="${x.toFixed(0)}" y="${y}" width="${(60+speed*220).toFixed(0)}" height="5" rx="2" fill="#ffd27a" opacity=".55"/>`}
+  for(let i=0;i<5;i++){const x=((i*260-tt*1400*speed)%1300+1300)%1300-110;s+=`<rect x="${x.toFixed(0)}" y="250" width="14" height="300" fill="#1a1e2a"/>`}
+  if(o.station!=null){ // a lit platform sliding past (or stopped)
+    const x=o.station; s+=`<rect x="${x.toFixed(0)}" y="250" width="1500" height="300" fill="#e8e2d0"/>`;
+    for(let i=0;i<30;i++) s+=`<rect x="${(x+i*50).toFixed(0)}" y="250" width="2" height="300" fill="#cfc8b6"/>`;
+    for(let j=0;j<6;j++) s+=`<rect x="${x.toFixed(0)}" y="${250+j*50}" width="1500" height="2" fill="#cfc8b6"/>`;
+    s+=`<rect x="${(x+420).toFixed(0)}" y="330" width="420" height="96" rx="8" fill="#f7f7f2" stroke="#2f6fb5" stroke-width="8"/>`;
+    if(o.sign) s+=`<text x="${(x+630).toFixed(0)}" y="398" text-anchor="middle" font-family="Inter" font-weight="900" font-size="66" fill="#1f3f7a">${o.sign}</text>`;
+  }
+  return s;
+}
+function carInterior(t,o={}){
+  const lights=o.lights??1;
+  let s=`<defs><clipPath id="wins">${WINS.map(([x,y,w,h])=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="34"/>`).join('')}</clipPath></defs>`;
+  s+=`<rect width="1080" height="1100" fill="#cfd6dc"/><rect width="1080" height="150" fill="#e4e8ec"/>`;
+  for(let i=0;i<3;i++) s+=`<rect x="${80+i*340}" y="106" width="240" height="18" rx="9" fill="${mix('#6a7080','#fffbe8',lights)}"/>`;
+  for(let i=0;i<6;i++) s+=`<rect x="${30+i*175}" y="170" width="150" height="56" rx="6" fill="${['#f2c230','#e2453b','#6fa8dc','#45a86b','#f08a24','#8a5ab8'][i]}" opacity=".8"/>`;
+  WINS.forEach(([x,y,w,h])=>s+=`<rect x="${x-14}" y="${y-14}" width="${w+28}" height="${h+28}" rx="44" fill="#9aa3ad"/>`);
+  s+=`<g clip-path="url(#wins)">${tunnelLayer(t,o)}${o.reflect||''}<rect width="1080" height="1100" fill="#9fc3e8" opacity=".06"/></g>`;
+  s+=`<rect y="600" width="1080" height="200" fill="#35508f"/><rect y="600" width="1080" height="14" fill="#2c4479"/>`;
+  for(let i=1;i<6;i++) s+=`<rect x="${i*180-4}" y="600" width="8" height="250" fill="#2c4479"/>`;
+  s+=`<rect y="800" width="1080" height="60" rx="10" fill="#3f5fa8"/><rect y="860" width="1080" height="60" fill="#5a6270"/>`;
+  s+=`<rect y="920" width="1080" height="180" fill="#8a8f99"/>`;for(let x=0;x<1080;x+=40) s+=`<circle cx="${x+20}" cy="${960+(x/40%2)*30}" r="4" fill="#7a7f89"/>`;
+  for(const px of [370,710]) s+=`<rect x="${px-9}" y="150" width="18" height="950" fill="#c9cfd8"/><rect x="${px-9}" y="150" width="6" height="950" fill="#fff" opacity=".5"/>`;
+  s+=`<rect y="150" width="1080" height="10" fill="#b4bcc6"/>`;
+  return s;
+}
+const sway=t=>Math.sin(t*1.7)*1.2+Math.sin(t*4.3)*.4;
+function carCam(s,t,z=1,fx=540,fy=620){return cam(s,z,fx,fy+sway(t)*2,540,620)}
+function ledPanel(x,y,w,txt,col='#ffb347',blink=1){
+  let s=`<rect x="${x}" y="${y}" width="${w}" height="110" rx="12" fill="#121212" stroke="#3a3a3a" stroke-width="8"/>`;
+  s+=`<text x="${x+w/2}" y="${y+76}" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="56" letter-spacing="4" fill="${col}" opacity="${blink}">${txt}</text>`;
+  s+=`<rect x="${x}" y="${y}" width="${w}" height="110" rx="12" fill="url(#dots)"/>`;
+  return s;
+}
+function footprint(x,y,s,a,side){return `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${s.toFixed(3)},${(s*.45).toFixed(3)})" opacity="${a.toFixed(2)}"><ellipse cx="${side*12}" cy="0" rx="22" ry="40" fill="#7fb6e8"/><ellipse cx="${side*12}" cy="-58" rx="18" ry="16" fill="#7fb6e8"/><ellipse cx="${side*12-6}" cy="-6" rx="8" ry="16" fill="#e6f4ff" opacity=".6"/></g>`}
+
+// ---------- scene key times ----------
+const EVS={
+  platform:B=>({board:B[0].d*.55}),
+  empty:B=>({flash:B[1].w[4],push:B[2].s}),
+  id:B=>({beeps:[.15,B[0].w[1],B[0].lead+B[0].vdur]}),
+  sleep:B=>({gone:B[1].s,open:B[1].w[2]}),
+  window:B=>({blank:B[1].w[2]}),
+  screen:B=>({none:B[1].w[2]}),
+  door:B=>({approach:B[4].s,up:B[4].w[7]}),
+  dark:B=>({flick:B[1].s,off:B[1].w[6],close:B[2].w[2],steps:B[3].s,stop:B[4].w[3]}),
+  prints:B=>({on:.1}),
+  old:B=>({appear:B[1].w[3],ask:B[3].s,away:B[4].w[2]}),
+  brake:B=>({slow:B[1].w[6],sign:B[2].w[5]}),
+  doors:B=>({open:B[0].w[3],fig:B[1].w[4]}),
+  twin:B=>({face:B[1].s,step:B[1].w[3]}),
+};
+
+// ---------- scenes ----------
+const S={};
+S.platform=(t,D,B)=>{
+  const E=EVS.platform(B);
+  let s=`<rect width="1080" height="1100" fill="#e8e2d0"/>`;
+  for(let i=0;i<22;i++) s+=`<rect x="${i*50}" y="0" width="2" height="760" fill="#d2cbb8"/>`;
+  for(let j=0;j<16;j++) s+=`<rect x="0" y="${j*50}" width="1080" height="2" fill="#d2cbb8"/>`;
+  s+=`<rect x="300" y="120" width="480" height="100" rx="8" fill="#f7f7f2" stroke="#2f6fb5" stroke-width="10"/><text x="540" y="194" text-anchor="middle" font-family="Inter" font-weight="900" font-size="68" fill="#1f3f7a">PRADERA</text>`;
+  s+=`<circle cx="190" cy="170" r="54" fill="#2f6fb5"/><text x="190" y="196" text-anchor="middle" font-family="Inter" font-weight="900" font-size="72" fill="#fff">5</text>`;
+  s+=ledPanel(700,250,330,'00:14','#ffb347');
+  // train at the platform, doors open
+  const tx=lerp(1400,0,eOut(prog(t,0,1.4)));
+  let tr=`<rect x="-40" y="420" width="1160" height="400" rx="40" fill="#b9c3cf"/><rect x="-40" y="420" width="1160" height="40" rx="20" fill="#2f6fb5"/>`;
+  for(let i=0;i<4;i++) tr+=`<rect x="${20+i*280}" y="490" width="180" height="140" rx="20" fill="#fff6d8"/>`;
+  tr+=`<rect x="440" y="480" width="200" height="340" fill="#fff6d8"/><rect x="430" y="470" width="10" height="350" fill="#8a93a3"/><rect x="640" y="470" width="10" height="350" fill="#8a93a3"/>`;
+  s+=`<g transform="translate(${tx.toFixed(1)},0)">${tr}</g>`;
+  s+=`<rect y="820" width="1080" height="280" fill="#9aa0a8"/><rect y="820" width="1080" height="26" fill="#f2c230"/>`;
+  const bp=eIO(prog(t,E.board,D)), yawn=t<E.board;
+  s+=A({...ALEX,x:lerp(300,540,bp),y:lerp(1060,860,bp),s:lerp(.78,.55,bp),walk:t*3.4,eyes:yawn&&Math.sin(t*2)>0?'closed':'open',mouth:yawn?'o':'line',op:1-prog(t,D-.4,D)});
+  return cam(s,1+.04*t/D,540,600,540,600);
+};
+S.empty=(t,D,B)=>{
+  const E=EVS.empty(B), fl=t>E.flash&&t<E.flash+.9;
+  let s=carInterior(t,{station:fl?lerp(1200,-1700,(t-E.flash)/.9):null});
+  const look=t<B[1].s?[Math.sin(t*2)*10,0]:fl?[-12,-2]:[8,-2];
+  s+=A({...ALEX,x:540,y:1010,s:.82,sit:true,look,brows:t>E.flash?'worried':null,eyes:t>E.flash?'wide':'open'});
+  if(fl) s+=`<rect width="1080" height="1100" fill="#fff6d8" opacity="${(.18*Math.sin((t-E.flash)/.9*Math.PI)).toFixed(2)}"/>`;
+  const zp=eIO(prog(t,E.push,D));
+  return carCam(s,t,1+.25*zp,540,lerp(620,560,zp));
+};
+S.id=(t,D,B)=>{
+  const E=EVS.id(B);
+  let s=`<rect width="1080" height="1100" fill="#181b34"/>`;
+  for(let x=0;x<=1080;x+=60) s+=`<line x1="${x}" y1="0" x2="${x}" y2="1100" stroke="#2a2f55" stroke-width="1.5" opacity=".45"/>`;
+  for(let y=0;y<=1100;y+=60) s+=`<line x1="0" y1="${y}" x2="1080" y2="${y}" stroke="#2a2f55" stroke-width="1.5" opacity=".45"/>`;
+  s+=A({...ALEX,x:320,y:1050,s:.93,look:t<1?[11,0]:[0,2],brows:'worried'});
+  s+=brackets(320,660,400,780,BLUE,34,6);
+  const sy=270+((t*.9)%1)*780;
+  s+=`<rect x="120" y="${sy-30}" width="400" height="30" fill="${BLUE}" opacity=".12"/><line x1="120" y1="${sy}" x2="520" y2="${sy}" stroke="${BLUE}" stroke-width="4" opacity=".8"/>`;
+  const ca=eOut(prog(t,.1,.35));
+  let c=`<rect x="0" y="0" width="430" height="360" fill="#15172b" stroke="${YEL}" stroke-width="3.5"/><text x="28" y="52" font-family="${MONO}" font-weight="700" font-size="22" fill="#8a8fb0" letter-spacing="2">VIAJERO · L5</text>`;
+  c+=`<text x="26" y="156" font-family="Inter" font-weight="900" font-size="100" fill="#f7d23e">${'ÁLEX'.slice(0,Math.ceil(prog(t,.2,.5)*4))}</text>`;
+  c+=`<text x="28" y="232" font-family="Inter" font-weight="900" font-size="62" fill="#fff" opacity="${prog(t,E.beeps[1],E.beeps[1]+.15)}">24 AÑOS</text>`;
+  c+=`<g opacity="${prog(t,E.beeps[2]-.2,E.beeps[2])}"><text x="28" y="300" font-family="${MONO}" font-weight="700" font-size="22" fill="#8a8fb0" letter-spacing="2">DESTINO:</text><circle cx="160" cy="322" r="8" fill="${PINK}"/><text x="178" y="331" font-family="${MONO}" font-weight="800" font-size="27" fill="${PINK}" letter-spacing="2">NINGUNO</text></g>`;
+  s+=`<g opacity="${ca}" transform="translate(${600+(1-ca)*40},420)">${c}</g>`;
+  return cam(s,1+.03*t/D);
+};
+S.sleep=(t,D,B)=>{
+  const E=EVS.sleep(B), gone=prog(t,E.gone,E.gone+.2), open=t>E.open;
+  let s=carInterior(t,{});
+  if(gone<1){let r='';[[0,140],[2,320],[3,760],[1,930]].forEach(([i,x],k)=>r+=rider(i,x,1010,.74,{eyes:k%2?'closed':'open',look:[0,8],tilt:k%2?8:0}));s+=`<g opacity="${(1-gone).toFixed(2)}">${r}</g>`}
+  s+=A({...ALEX,x:540,y:1010,s:.82,sit:true,eyes:open?'wide':'closed',tilt:open?0:14,look:open?[-10,-2]:[0,0],brows:open?'up':null,mouth:open?'o':'line'});
+  if(!open) for(let i=0;i<3;i++){const p=(t*.5+i/3)%1;s+=`<text x="${620+p*50}" y="${400-p*90}" font-family="${MONO}" font-weight="800" font-size="${30+p*16}" fill="#6a7080" opacity="${Math.sin(p*Math.PI).toFixed(2)}">z</text>`}
+  if(t>E.gone&&t<E.gone+.25) s+=`<rect width="1080" height="1100" fill="#000" opacity="${(1-Math.abs(t-E.gone-.12)/.13).toFixed(2)}"/>`;
+  s+=ledPanel(375,165,330,open||gone>0?'03:33':'00:15',open?'#ff5a5a':'#ffb347');
+  return carCam(s,t,1+.04*t/D);
+};
+S.window=(t,D,B)=>{
+  const E=EVS.window(B), per=1.6, k=Math.floor(t/per), u=(t%per)/per;
+  let s=`<defs><clipPath id="bigwin"><rect x="80" y="180" width="920" height="700" rx="70"/></clipPath></defs><rect width="1080" height="1100" fill="#cfd6dc"/><rect x="60" y="160" width="960" height="740" rx="86" fill="#9aa3ad"/>`;
+  let inner=tunnelLayer(t,{});
+  if(u<.6){const x=lerp(1100,-1600,u/.6);inner+=`<g transform="translate(0,-60) scale(1,2.6) translate(0,-150)">${tunnelLayer(t,{station:x}).replace('<rect width="1080" height="1100" fill="#0b0d14"/>','')}</g>`}
+  inner+=`<g opacity=".14">${A({...ALEX,x:700,y:1330,s:1.15,look:[-6,0]})}</g>`;
+  s+=`<g clip-path="url(#bigwin)">${inner}<rect width="1080" height="1100" fill="#9fc3e8" opacity=".05"/></g>`;
+  const ba=P(t,E.blank,.25);
+  if(ba>0&&u<.6){const sx=lerp(1100,-1600,u/.6)+630;s+=tag(Math.max(220,Math.min(860,sx)),250,'ESTACIÓN: ???',PINK,ba)}
+  return carCam(s,t,1+.03*t/D);
+};
+S.screen=(t,D,B)=>{
+  const E=EVS.screen(B);
+  let s=carInterior(t,{})+`<rect width="1080" height="1100" fill="#000" opacity=".25"/>`;
+  const none=t>E.none, bl=none?(Math.floor(t*3)%2?1:.35):1;
+  const scroll='LÍNEA 5 · DIRECCIÓN: ---- · ';
+  let p=`<rect x="90" y="300" width="900" height="300" rx="20" fill="#121212" stroke="#3a3a3a" stroke-width="12"/>`;
+  p+=`<defs><clipPath id="led"><rect x="110" y="320" width="860" height="260"/></clipPath></defs><g clip-path="url(#led)">`;
+  p+=`<text x="${(960-(t*180)%900).toFixed(0)}" y="400" font-family="${MONO}" font-weight="800" font-size="50" fill="#ffb347">${scroll+scroll}</text>`;
+  p+=`<text x="540" y="520" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="62" fill="${none?'#ff4a4a':'#ffb347'}" opacity="${bl}">${none?'PRÓX: NINGUNA':'PRÓXIMA PARADA:'}</text></g>`;
+  p+=`<rect x="110" y="320" width="860" height="260" fill="url(#dots)"/>`;
+  s+=p;
+  return carCam(s,t,1+.06*t/D,540,450);
+};
+S.door=(t,D,B)=>{
+  const E=EVS.door(B), up=t>E.up, ap=eIO(prog(t,E.approach,E.up));
+  // looking down our carriage towards the connecting door
+  let s=`<rect width="1080" height="1100" fill="#cfd6dc"/><polygon points="0,0 1080,0 700,330 380,330" fill="#e4e8ec"/>`;
+  s+=`<polygon points="0,1100 1080,1100 700,780 380,780" fill="#8a8f99"/>`;
+  s+=`<polygon points="0,600 380,700 380,780 0,1000" fill="#3f5fa8"/><polygon points="1080,600 700,700 700,780 1080,1000" fill="#3f5fa8"/>`;
+  s+=`<polygon points="0,180 380,400 380,600 0,560" fill="#0b0d14"/><polygon points="1080,180 700,400 700,600 1080,560" fill="#0b0d14"/>`;
+  for(let i=0;i<4;i++){const u=i/4;s+=`<line x1="${lerp(0,380,u)}" y1="${lerp(0,330,u)+40}" x2="${lerp(0,380,u)}" y2="${lerp(1100,780,u)}" stroke="#c9cfd8" stroke-width="${lerp(16,4,u)}"/><line x1="${1080-lerp(0,380,u)}" y1="${lerp(0,330,u)+40}" x2="${1080-lerp(0,380,u)}" y2="${lerp(1100,780,u)}" stroke="#c9cfd8" stroke-width="${lerp(16,4,u)}"/>`}
+  s+=`<rect x="380" y="330" width="320" height="450" fill="#9aa3ad"/><rect x="430" y="380" width="220" height="240" rx="16" fill="#1a1f2a"/>`;
+  // the next carriage, seen through the door window
+  let nx=`<rect x="430" y="380" width="220" height="240" fill="#4a5060"/>`;
+  for(let r=0;r<3;r++)for(let c=0;c<4;c++){const sc=.11+r*.03, x=460+c*54+(r%2)*8, y=520+r*34;
+    nx+=rider(r*4+c,x,y,sc,{eyes:up?'wide':'closed',look:up?[0,0]:[0,10],tilt:up?0:16,op:1})}
+  s+=`<defs><clipPath id="dw"><rect x="430" y="380" width="220" height="240" rx="16"/></clipPath></defs><g clip-path="url(#dw)">${FZ(.8,nx)}<rect x="430" y="380" width="220" height="240" fill="#9fc3e8" opacity=".12"/></g>`;
+  s+=`<rect x="520" y="660" width="40" height="70" rx="10" fill="#6a7080"/>`;
+  if(up){const u=t-E.up;s+=`<rect width="1080" height="1100" fill="${PINK}" opacity="${(.25*Math.exp(-u*5)).toFixed(3)}"/>`}
+  const sh=up&&t<E.up+.4?Math.exp(-(t-E.up)*8)*10:0,r=rng(Math.floor(t*30));
+  return cam(s,lerp(1.05,2.6,ap)+.02*t/D,540,lerp(600,500,ap),540+(r()-.5)*sh*2,600+(r()-.5)*sh*2);
+};
+function FZ(k,c){return `<defs><filter id="fzz" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1100"><feColorMatrix type="saturate" values="${(1-k).toFixed(2)}"/></filter></defs><g filter="url(#fzz)">${c}</g>`}
+S.dark=(t,D,B)=>{
+  const E=EVS.dark(B), off=prog(t,E.off,E.off+.05);
+  const flick=t>E.flick&&t<E.off?(rng(Math.floor(t*14))()<.4?.6:0):0;
+  let s='';
+  if(t<E.close){
+    s=carInterior(t,{lights:1-off});
+    s+=A({...ALEX,x:540,y:1010,s:.82,sit:true,look:[0,-8],eyes:off>0?'wide':'open',brows:'worried'});
+    s+=`<rect width="1080" height="1100" fill="#03040a" opacity="${Math.max(flick,.93*off).toFixed(2)}"/>`;
+    if(off>0) s+=`<rect width="1080" height="1100" fill="#3a5a9a" opacity="${(rng(Math.floor(t*10))()*.06).toFixed(3)}"/>`;
+    return carCam(s,t,1+.04*t/D);
+  }
+  if(t<E.steps){ // close-up, eyes shut
+    s=`<rect width="1080" height="1100" fill="#05060c"/>`+`<g opacity=".55">${A({...ALEX,x:540,y:600+638*1.7,s:1.7,eyes:'closed',brows:'worried',tilt:-3})}</g>`;
+    const dp=((t-E.close)*.5)%1;s+=`<path d="M700,${(330+dp*80).toFixed(0)} q-14,26 0,36 q14,-10 0,-36Z" fill="#9fd6f2" opacity="${(1-dp)*.6}"/>`;
+    return cam(s,1+.05*(t-E.close));
+  }
+  // footsteps you can't see: wet prints appearing in the dark, closer each time
+  s=`<rect width="1080" height="1100" fill="#04050a"/><polygon points="0,1100 1080,1100 640,520 440,520" fill="#0b0e18"/>`;
+  const n=Math.min(9,Math.floor((t-E.steps)/.42)+1), stopAt=E.stop;
+  for(let i=0;i<n;i++){const u=Math.min(1,i/8), side=i%2?1:-1, y=lerp(560,1000,Math.pow(u,1.4)), sc=lerp(.25,1.5,Math.pow(u,1.4));
+    s+=footprint(540+side*sc*30,y,sc,Math.min(1,(t-E.steps-i*.42)/.15)*.9,side)}
+  return cam(s,1+.04*t/D,540,700,540,700);
+};
+S.prints=(t,D,B)=>{
+  let s=carInterior(t,{});
+  for(let i=0;i<7;i++){const side=i%2?1:-1;s+=footprint(150+i*60,1060-i*4,1.05,.9,side)}
+  s+=A({...ALEX,x:540,y:1010,s:.82,sit:true,look:[-6,12],eyes:'wide',brows:'up',mouth:'o'});
+  s+=`<ellipse cx="520" cy="1068" rx="90" ry="16" fill="#7fb6e8" opacity=".5"/>`;
+  const a=P(t,B[1].w[1],.25);
+  s+=`<g opacity="${a}">${brackets(380,1040,560,90,BLUE,20,5)}</g>`+tag(380,940,'HUELLAS: MOJADAS',BLUE,a);
+  if(t<.25) s+=`<rect width="1080" height="1100" fill="#000" opacity="${(1-t/.25).toFixed(2)}"/>`;
+  return carCam(s,t,1.08+.05*t/D,540,820);
+};
+S.old=(t,D,B)=>{
+  const E=EVS.old(B), ap=prog(t,E.appear,E.appear+.5), away=t>E.away;
+  let s=carInterior(t,{});
+  if(ap>0) s+=`<g opacity="${ap.toFixed(2)}">${A({...GRANNY,x:330,y:1010,s:.76,sit:true,look:[10,0],mouth:t>E.ask?'grin':'smile',tilt:6})}</g>`;
+  s+=A({...ALEX,x:560,y:1010,s:.82,sit:true,look:away?[12,-2]:ap>0?[-10,0]:[0,0],brows:ap>0?'worried':null,tilt:away?6:0});
+  if(away){const dp=((t-E.away)*.6)%1;s+=`<path d="M630,${(380+dp*70).toFixed(0)} q-12,22 0,30 q12,-8 0,-30Z" fill="#9fd6f2" opacity="${(1-dp).toFixed(2)}"/>`}
+  const ba=P(t,E.ask,.25);
+  if(ba>0) s+=`<g opacity="${ba}" transform="translate(300,300) scale(${eBack(ba).toFixed(3)})"><rect x="-200" y="-50" width="400" height="96" rx="24" fill="#fff"/><polygon points="-20,44 20,44 0,80" fill="#fff"/><text x="0" y="12" text-anchor="middle" font-family="Inter" font-weight="900" font-size="34" fill="#2a2233">¿VAS MUY LEJOS?</text></g>`;
+  s+=tag(330,190,'NO CONTESTES',PINK,P(t,E.away,.25));
+  return carCam(s,t,1+.08*eIO(prog(t,E.appear,D)),lerp(540,450,eIO(prog(t,E.appear,D))),640);
+};
+S.brake=(t,D,B)=>{
+  const E=EVS.brake(B), sp=lerp(1,0,eOut(prog(t,E.slow,E.slow+2.2)));
+  // integrate distance so the platform slides in and stops
+  const tt=t<E.slow?t:E.slow+(1-Math.pow(1-prog(t,E.slow,E.slow+2.2),2))*1.1;
+  const stX=t<E.slow?null:lerp(1200,-420,eOut(prog(t,E.slow,E.slow+2.2)));
+  let s=`<defs><clipPath id="bigwin2"><rect x="80" y="180" width="920" height="700" rx="70"/></clipPath></defs><rect width="1080" height="1100" fill="#cfd6dc"/><rect x="60" y="160" width="960" height="740" rx="86" fill="#9aa3ad"/>`;
+  let inner=tunnelLayer(t,{speed:Math.max(.05,sp),tt});
+  if(stX!=null) inner+=`<g transform="translate(0,-60) scale(1,2.6) translate(0,-150)">${tunnelLayer(t,{station:stX,sign:t>E.sign-.3?'ÁLEX':''}).replace('<rect width="1080" height="1100" fill="#0b0d14"/>','')}</g>`;
+  s+=`<g clip-path="url(#bigwin2)">${inner}</g>`;
+  const a=P(t,E.sign,.25);
+  s+=`<g opacity="${a}">${brackets(540,540,560,300,YEL,30,6)}</g>`;
+  return carCam(s,t,1+.04*t/D);
+};
+S.doors=(t,D,B)=>{
+  const E=EVS.doors(B), op=eIO(prog(t,E.open,E.open+1.0));
+  let s=`<rect width="1080" height="1100" fill="#cfd6dc"/><rect y="900" width="1080" height="200" fill="#8a8f99"/>`;
+  // the platform behind the doors
+  let pl=`<rect x="260" y="140" width="560" height="760" fill="#e8e2d0"/>`;
+  for(let i=0;i<12;i++) pl+=`<rect x="${260+i*50}" y="140" width="2" height="760" fill="#d2cbb8"/>`;
+  pl+=`<rect x="260" y="760" width="560" height="140" fill="#9aa0a8"/><rect x="260" y="740" width="560" height="22" fill="#f2c230"/>`;
+  pl+=`<rect x="330" y="200" width="420" height="96" rx="8" fill="#f7f7f2" stroke="#2f6fb5" stroke-width="8"/><text x="540" y="270" text-anchor="middle" font-family="Inter" font-weight="900" font-size="66" fill="#1f3f7a">ÁLEX</text>`;
+  const fa=prog(t,E.fig,E.fig+.5);
+  if(fa>0) pl+=`<g opacity="${fa.toFixed(2)}"><g filter="url(#fsil)">${A({...ALEX,x:560,y:900,s:.62})}</g></g>`;
+  s+=`<defs><clipPath id="dr"><rect x="260" y="140" width="560" height="760"/></clipPath></defs><g clip-path="url(#dr)">${pl}<rect x="260" y="140" width="560" height="760" fill="#fff" opacity="${(.15*(1-op)).toFixed(2)}"/></g>`;
+  const w=280*(1-op);
+  s+=`<rect x="${260-280*op}" y="140" width="280" height="760" fill="#b9c3cf" stroke="#8a93a3" stroke-width="8"/><rect x="${300-280*op}" y="200" width="200" height="340" rx="14" fill="#1a1f2a" opacity=".85"/>`;
+  s+=`<rect x="${540+280*op}" y="140" width="280" height="760" fill="#b9c3cf" stroke="#8a93a3" stroke-width="8"/><rect x="${580+280*op}" y="200" width="200" height="340" rx="14" fill="#1a1f2a" opacity=".85"/>`;
+  s+=`<rect x="200" y="100" width="60" height="820" fill="#9aa3ad"/><rect x="820" y="100" width="60" height="820" fill="#9aa3ad"/><rect x="200" y="100" width="680" height="50" fill="#9aa3ad"/>`;
+  return cam(s,1+.06*t/D+.1*eIO(prog(t,E.fig,D)),540,lerp(560,620,eIO(prog(t,E.fig,D))),540,600);
+};
+S.twin=(t,D,B)=>{
+  const E=EVS.twin(B), st=eOut(prog(t,E.step,D-.1));
+  let s=`<rect width="1080" height="1100" fill="#e8e2d0"/>`;
+  for(let i=0;i<22;i++) s+=`<rect x="${i*50}" y="0" width="2" height="760" fill="#d2cbb8"/>`;
+  s+=`<rect y="780" width="1080" height="320" fill="#9aa0a8"/><rect y="760" width="1080" height="22" fill="#f2c230"/>`;
+  s+=`<rect x="300" y="80" width="480" height="100" rx="8" fill="#f7f7f2" stroke="#2f6fb5" stroke-width="10"/><text x="540" y="154" text-anchor="middle" font-family="Inter" font-weight="900" font-size="68" fill="#1f3f7a">ÁLEX</text>`;
+  const sc=lerp(.92,1.05,st);
+  s+=A({...ALEX,x:540,y:lerp(1060,1140,st),s:sc,look:[0,2],mouth:t>E.face+.6?'smile':'line',walk:t>E.step?(t-E.step)*3.2:null});
+  const a1=P(t,.15,.25), a2=P(t,E.face,.25);
+  s+=`<g opacity="${(a1*(1-a2)).toFixed(2)}">${brackets(540,760,330,420,PINK,26,5)}</g>`+tag(820,560,'ROPA: 100%',PINK,a1);
+  s+=`<g opacity="${a2}">${brackets(540,500,260,250,PINK,26,6)}</g>`+tag(820,420,'CARA: 100%',PINK,a2);
+  const zp=eIO(prog(t,E.face,D));
+  return cam(s,lerp(1,1.9,zp),540,lerp(640,520,zp),540,lerp(640,560,zp));
+};
+
+// ---------- timeline from the narration ----------
+function wordTimes(b){
+  const ws=b.cap.split(' ').map(w=>w.split('|')[0]);
+  const wt=ws.map(w=>w.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9]/g,'').length+1.5);
+  const tot=wt.reduce((a,c)=>a+c,0);let acc=0;
+  return ws.map((w,i)=>{const s=b.lead+b.vdur*.97*acc/tot;acc+=wt[i];return s});
+}
+const P=(t,a,d=.3)=>eOut(prog(t,a,a+d));
+const BEATS=SCRIPT.map((l,i)=>Object.assign({},l,VOICE.beats[i]));
+let sceneStart=0;
+BEATS.forEach((b,i)=>{if(i===0||BEATS[i-1].sc!==b.sc)sceneStart=b.start;b.sStart=sceneStart;b.wt=wordTimes(b);});
+BEATS.forEach(b=>{b.sDur=BEATS.filter(x=>x.sStart===b.sStart).reduce((a,x)=>a+x.d,0);b.B=BEATS.filter(x=>x.sStart===b.sStart).map(x=>({s:x.start-b.sStart,d:x.d,lead:x.lead,vdur:x.vdur,w:x.wt.map(w=>w+x.start-b.sStart)}))});
+const TOTAL=VOICE.total, CUT=TOTAL-VOICE.tail; window.TOTAL=TOTAL;
+const evAbs={};
+BEATS.filter(b=>b.start===b.sStart).forEach(b=>{const E=EVS[b.sc](b.B);for(const k in E){const v=E[k];evAbs[b.sc+'.'+k]=Array.isArray(v)?v.map(x=>x+b.sStart):v+b.sStart}});
+window.EVENTS={total:TOTAL,cut:CUT,ev:evAbs,beats:BEATS.map(b=>({start:b.start,d:b.d,sc:b.sc,cut:b.start===b.sStart,words:b.wt.map(w=>w+b.start),step:b.step??null,voice:b.voice||null,lead:b.lead,vdur:b.vdur}))};
+const STEPS=['1. NO CAMBIAR DE VAGÓN','2. LUZ FUERA: OJOS CERRADOS','3. NO HABLAR','4. BAJAR EN TU NOMBRE'];
+const stepStart=STEPS.map((_,i)=>BEATS.find(b=>b.step===i).start), listEnd=BEATS.find(b=>b.sc==='doors').start;
+
+function hudSvg(text,alert,reveal,T){
+  const col=alert?PINK:YEL;
+  const w=Math.max(500,text.length*24+140),x=540-w/2,y=92;
+  let s=`<rect x="${x}" y="${y}" width="${w}" height="76" fill="#11131f" fill-opacity=".9" stroke="${col}" stroke-width="3"/>`;
+  s+=`<circle cx="${x+32}" cy="${y+38}" r="8" fill="${PINK}" opacity="${(Math.floor(T*2)%2)?.25:1}"/>`;
+  s+=`<text x="540" y="${y+50}" text-anchor="middle" font-family="${MONO}" font-weight="700" font-size="34" letter-spacing="4" fill="${col}">${text.slice(0,Math.ceil(text.length*reveal))}</text>`;
+  if(T>=stepStart[0]&&T<listEnd){
+    const n=stepStart.filter(st=>T>=st).length;
+    s+=`<rect x="22" y="186" width="480" height="${22+n*40}" rx="10" fill="#11131f" fill-opacity=".82"/>`;
+    for(let i=0;i<n;i++){const a=prog(T,stepStart[i]+.15,stepStart[i]+.4),done=i<n-1;
+      s+=`<text x="40" y="${222+i*40}" font-family="${MONO}" font-weight="700" font-size="25" letter-spacing="1" fill="${done?GREEN:YEL}">${STEPS[i].slice(0,Math.ceil(STEPS[i].length*a))}${done?' ✓':''}</text>`;}
+  }
+  return s;
+}
+const BAND={platform:'#161a26',empty:'#161a26',id:'#14162b',sleep:'#161a26',window:'#10131c',screen:'#10131c',door:'#161a26',dark:'#05060c',prints:'#161a26',old:'#161a26',brake:'#10131c',doors:'#161a26',twin:'#161a26'};
+const scEl=document.getElementById('scene'),hudEl=document.getElementById('hud'),capEl=document.getElementById('cap'),stEl=document.getElementById('stage');
+window.render=function(T){
+  if(T>=CUT){stEl.style.background='#000';scEl.innerHTML='';hudEl.innerHTML='';capEl.innerHTML='';return;}
+  let bi=BEATS.findIndex(b=>T>=b.start&&T<b.start+b.d); if(bi<0) bi=BEATS.length-1;
+  const b=BEATS[bi], bt=T-b.start, st=T-b.sStart, band=BAND[b.sc];
+  stEl.style.background=band;
+  let svg=`<defs>${tintDefs()}<clipPath id="sc"><rect width="1080" height="1100"/></clipPath>
+    <linearGradient id="fadeB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${band}" stop-opacity="0"/><stop offset="1" stop-color="${band}"/></linearGradient>
+    <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#121212" opacity=".55"/><circle cx="4" cy="4" r="2.6" fill="#000" opacity="0"/></pattern>
+    <radialGradient id="glowY"><stop offset="0" stop-color="#ffd76a" stop-opacity=".45"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></radialGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff6c8" stop-opacity=".55"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></linearGradient>
+    <radialGradient id="vig" cx=".5" cy=".45" r=".75"><stop offset=".62" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></radialGradient></defs>`;
+  svg+=`<g clip-path="url(#sc)">${S[b.sc](st,b.sDur,b.B)}<rect width="1080" height="1100" fill="url(#vig)"/></g>`;
+  svg+=`<rect y="900" width="1080" height="202" fill="url(#fadeB)"/>`;
+  if(b.start===b.sStart&&bi>0) svg+=`<rect width="1080" height="1920" fill="#0b0c16" opacity="${(1-prog(bt,0,.1)).toFixed(3)}"/>`;
+  scEl.innerHTML=svg;
+  hudEl.innerHTML=hudSvg(b.hud,!!b.alert,(bi>0&&BEATS[bi-1].hud===b.hud)?1:prog(bt,0,.28),T);
+  const words=b.cap.split(' ').map(w=>{const [tx,c]=w.split('|');return{tx,c}});
+  let len=b.cap.replace(/\|[a-z]/g,'').length, from=0, to=words.length;
+  if(len>34&&words.length>5){
+    let best=1,bs=1e9,acc=0;
+    for(let i=1;i<words.length;i++){acc+=words[i-1].tx.length+1;const sc=Math.abs(acc/len-.5)-(/[.,:…]$/.test(words[i-1].tx)?.22:0);if(sc<bs){bs=sc;best=i}}
+    if(bt<b.wt[best]-.04) to=best; else from=best;
+    len=words.slice(from,to).reduce((a,w)=>a+w.tx.length+1,0);
+  }
+  capEl.style.fontSize=(len>30?92:len>22?100:108)+'px';
+  let html='';
+  words.forEach((w,i)=>{ if(i<from||i>=to) return;
+    const wt=b.wt[i], on=bt>=wt, k=prog(bt,wt,wt+.14);
+    const col=on?(w.c?ACC[w.c]:'#ffffff'):'rgba(255,255,255,.28)';
+    const sc=on?lerp(1.16,1,eOut(k)):1;
+    const glow=on&&w.c?`;text-shadow:0 0 28px ${ACC[w.c]}88,0 6px 0 rgba(0,0,0,.28)`:'';
+    html+=`<span class="w" style="color:${col};transform:scale(${sc.toFixed(3)})${glow}">${w.tx}</span> `;
+  });
+  capEl.innerHTML=html;
+  const cp=eOut(prog(bt,0,.12));
+  capEl.style.transform=`translateY(${(1-cp)*20}px)`;
+  capEl.style.opacity=cp.toFixed(3);
+};
+window.render(0);
+</script></body></html>

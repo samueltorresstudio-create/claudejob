@@ -1,0 +1,242 @@
+[
+ {
+  "sc": "intro",
+  "hud": "CALLE · 18:00",
+  "say": "Si un día... tu sombra deja de copiarte...",
+  "cap": "SI UN DÍA... TU SOMBRA|p DEJA DE COPIARTE...",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "CALLE · 18:00",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Lucía. Once años.",
+  "cap": "LUCÍA.|y 11 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Vuelve andando del cole, como todos los días.",
+  "cap": "VUELVE ANDANDO DEL COLE, COMO TODOS LOS DÍAS.",
+  "pause": 0.3
+ },
+ {
+  "sc": "notice",
+  "hud": "CALLE · 18:05",
+  "say": "Hace sol, y su sombra camina a su lado por la pared.",
+  "cap": "HACE SOL, Y SU SOMBRA CAMINA A SU LADO POR LA PARED.",
+  "pause": 0.1
+ },
+ {
+  "sc": "notice",
+  "hud": "CALLE · 18:05",
+  "say": "Lucía se para a atarse los cordones...",
+  "cap": "LUCÍA SE PARA A ATARSE LOS CORDONES...",
+  "pause": 0.1
+ },
+ {
+  "sc": "notice",
+  "hud": "CALLE · 18:05",
+  "alert": true,
+  "say": "pero su sombra sigue andando.",
+  "cap": "PERO SU SOMBRA SIGUE ANDANDO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "notice",
+  "hud": "CALLE · 18:06",
+  "alert": true,
+  "say": "Da tres pasos más. Se para. Y se gira hacia ella.",
+  "cap": "DA TRES PASOS MÁS. SE PARA. Y SE GIRA HACIA ELLA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "notice",
+  "hud": "CALLE · 18:06",
+  "say": "Una sombra no tiene cara. Pero Lucía sabe que la está mirando.",
+  "cap": "UNA SOMBRA NO TIENE CARA. PERO LUCÍA SABE QUE LA ESTÁ MIRANDO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · DISIMULA",
+  "step": 0,
+  "say": "Paso uno: haz como si no te hubieras dado cuenta.",
+  "cap": "PASO|y UNO: HAZ COMO SI NO TE HUBIERAS DADO CUENTA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "CALLE · 18:06",
+  "say": "Lucía levanta la mano, despacio. Y la sombra la imita... un segundo tarde.",
+  "cap": "LUCÍA LEVANTA LA MANO, DESPACIO. Y LA SOMBRA LA IMITA... UN SEGUNDO TARDE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "CALLE · 18:07",
+  "say": "Está disimulando. Igual que ella.",
+  "cap": "ESTÁ DISIMULANDO. IGUAL QUE ELLA.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "CALLE · 18:08",
+  "say": "Lucía sigue andando hacia casa. Sin correr.",
+  "cap": "LUCÍA SIGUE ANDANDO HACIA CASA. SIN CORRER.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · LUZ",
+  "step": 1,
+  "say": "Paso dos: quédate siempre en la luz.",
+  "cap": "PASO|y DOS: QUÉDATE SIEMPRE EN LA LUZ.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · LUZ",
+  "say": "Con luz, una sombra tiene que quedarse pegada a ti.",
+  "cap": "CON LUZ, UNA SOMBRA TIENE QUE QUEDARSE PEGADA A TI.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · LUZ",
+  "alert": true,
+  "say": "Pero a oscuras... puede ir a donde quiera.",
+  "cap": "PERO A OSCURAS... PUEDE IR A DONDE QUIERA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "CASA · 19:30",
+  "say": "Al llegar a casa, Lucía enciende todas las luces. Todas.",
+  "cap": "AL LLEGAR A CASA, LUCÍA ENCIENDE TODAS LAS LUCES. TODAS.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "CASA · 19:31",
+  "say": "Su madre protesta por la factura. Lucía ni la escucha.",
+  "cap": "SU MADRE PROTESTA POR LA FACTURA. LUCÍA NI LA ESCUCHA.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · NO LE DES LA ESPALDA",
+  "step": 2,
+  "say": "Paso tres: nunca le des la espalda.",
+  "cap": "PASO|y TRES: NUNCA LE DES LA ESPALDA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "COCINA · 21:00",
+  "say": "Mientras cena, Lucía la vigila con el rabillo del ojo.",
+  "cap": "MIENTRAS CENA, LUCÍA LA VIGILA CON EL RABILLO DEL OJO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "COCINA · 21:02",
+  "alert": true,
+  "say": "Cada vez que deja de mirarla... la sombra está un poco más cerca.",
+  "cap": "CADA VEZ QUE DEJA DE MIRARLA... LA SOMBRA ESTÁ UN POCO MÁS CERCA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "COCINA · 21:04",
+  "alert": true,
+  "say": "Ya no está en la pared. Está en la mesa, junto a su plato.",
+  "cap": "YA NO ESTÁ EN LA PARED. ESTÁ EN LA MESA, JUNTO A SU PLATO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · LA LINTERNA",
+  "step": 3,
+  "say": "Paso cuatro: ten siempre una linterna a mano.",
+  "cap": "PASO|y CUATRO: TEN SIEMPRE UNA LINTERNA A MANO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "CUARTO · 23:30",
+  "say": "Lucía se acuesta con la lámpara encendida, y la linterna en la mesilla.",
+  "cap": "LUCÍA SE ACUESTA CON LA LÁMPARA ENCENDIDA, Y LA LINTERNA EN LA MESILLA.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "CUARTO · 23:31",
+  "say": "Ha comprobado las pilas tres veces.",
+  "cap": "HA COMPROBADO LAS PILAS TRES VECES.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "night",
+  "hud": "CUARTO · 00:00",
+  "say": "A medianoche, la sombra está en la pared. Quieta. Mirándola.",
+  "cap": "A MEDIANOCHE, LA SOMBRA ESTÁ EN LA PARED. QUIETA. MIRÁNDOLA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "night",
+  "hud": "CUARTO · 00:00",
+  "say": "Lucía no se mueve. Ni la sombra tampoco.",
+  "cap": "LUCÍA NO SE MUEVE. NI LA SOMBRA TAMPOCO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "night",
+  "hud": "CUARTO · 00:01",
+  "alert": true,
+  "say": "Y entonces... la lámpara parpadea.",
+  "cap": "Y ENTONCES... LA LÁMPARA PARPADEA.|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "dark",
+  "hud": "CUARTO · 00:01",
+  "alert": true,
+  "say": "Se va la luz. En todo el barrio.",
+  "cap": "SE VA LA LUZ. EN TODO EL BARRIO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "dark",
+  "hud": "CUARTO · 00:01",
+  "say": "Lucía busca la linterna... pero no está en la mesilla.",
+  "cap": "LUCÍA BUSCA LA LINTERNA... PERO NO ESTÁ EN LA MESILLA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "dark",
+  "hud": "CUARTO · 00:01",
+  "alert": true,
+  "say": "Y en la oscuridad, justo a su lado, algo susurra:",
+  "cap": "Y EN LA OSCURIDAD, JUSTO A SU LADO, ALGO SUSURRA:",
+  "pause": 0.2
+ },
+ {
+  "sc": "dark",
+  "hud": "CUARTO · 00:01",
+  "alert": true,
+  "cut": true,
+  "voice": "tv",
+  "say": "Ahora me toca a mí.",
+  "cap": "«AHORA ME TOCA A MÍ.»|p",
+  "pause": 0.2
+ }
+]

@@ -1,0 +1,270 @@
+[
+ {
+  "sc": "intro",
+  "hud": "SÁBADO · 18:00",
+  "say": "Si juegas al escondite en un cumpleaños...",
+  "cap": "SI JUEGAS AL ESCONDITE EN UN CUMPLEAÑOS...",
+  "pause": 0.1
+ },
+ {
+  "sc": "intro",
+  "hud": "SÁBADO · 18:00",
+  "say": "y cuando sales de tu escondite... todos han desaparecido...",
+  "cap": "Y CUANDO SALES DE TU ESCONDITE... TODOS HAN DESAPARECIDO...|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "SÁBADO · 18:00",
+  "alert": true,
+  "say": "hay tres normas que te mantienen a salvo.",
+  "cap": "HAY TRES NORMAS QUE TE MANTIENEN A SALVO.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Lucas. Doce años.",
+  "cap": "LUCAS.|y 12 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Nadie de su clase le ha encontrado nunca.",
+  "cap": "NADIE DE SU CLASE LE HA ENCONTRADO NUNCA.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "hide",
+  "hud": "DESVÁN · 18:02",
+  "say": "Se esconde en el armario del desván.",
+  "cap": "SE ESCONDE EN EL ARMARIO DEL DESVÁN.",
+  "pause": 0.1
+ },
+ {
+  "sc": "hide",
+  "hud": "DESVÁN · 18:02",
+  "say": "Abajo, su amiga Martina empieza a contar hasta cien.",
+  "cap": "ABAJO, SU AMIGA MARTINA EMPIEZA A CONTAR HASTA 100.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "hide",
+  "hud": "DESVÁN · 18:04",
+  "say": "Pero la cuenta termina... y nadie sube a buscarle.",
+  "cap": "PERO LA CUENTA TERMINA... Y NADIE SUBE A BUSCARLE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "hide",
+  "hud": "DESVÁN · 18:09",
+  "alert": true,
+  "say": "Ni un paso. Ni una risa.",
+  "cap": "NI UN PASO. NI UNA RISA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "empty",
+  "hud": "SALÓN · 18:15",
+  "say": "Diez minutos después, Lucas sale.",
+  "cap": "DIEZ MINUTOS DESPUÉS, LUCAS SALE.",
+  "pause": 0.1
+ },
+ {
+  "sc": "empty",
+  "hud": "SALÓN · 18:15",
+  "alert": true,
+  "say": "La casa está vacía.",
+  "cap": "LA CASA ESTÁ VACÍA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "empty",
+  "hud": "SALÓN · 18:15",
+  "say": "La tarta sigue en la mesa. Las velas, todavía encendidas.",
+  "cap": "LA TARTA SIGUE EN LA MESA. LAS VELAS, TODAVÍA ENCENDIDAS.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "empty",
+  "hud": "SALÓN · 18:16",
+  "alert": true,
+  "say": "Y los móviles de todos... están en el suelo.",
+  "cap": "Y LOS MÓVILES DE TODOS... ESTÁN EN EL SUELO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "empty",
+  "hud": "SALÓN · 18:16",
+  "alert": true,
+  "say": "Lucas llama a su madre... y el móvil suena a sus pies.",
+  "cap": "LUCAS LLAMA A SU MADRE... Y EL MÓVIL SUENA A SUS PIES.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "note",
+  "hud": "COCINA · 18:17",
+  "say": "En la nevera hay una nota, con letra de niño:",
+  "cap": "EN LA NEVERA HAY UNA NOTA, CON LETRA DE NIÑO:",
+  "pause": 0.1
+ },
+ {
+  "sc": "note",
+  "hud": "COCINA · 18:17",
+  "alert": true,
+  "voice": "tv",
+  "say": "Si lees esto, el juego no ha terminado.",
+  "cap": "«SI LEES ESTO, EL JUEGO NO HA TERMINADO.|p»",
+  "pause": 0.35
+ },
+ {
+  "sc": "rule1",
+  "hud": "NORMA 1 · LA CASA",
+  "step": 0,
+  "say": "Norma uno: no salgas de la casa.",
+  "cap": "NORMA|y UNO: NO SALGAS DE LA CASA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule1",
+  "hud": "NORMA 1 · LA CASA",
+  "say": "Por la ventana, la calle está vacía.",
+  "cap": "POR LA VENTANA, LA CALLE ESTÁ VACÍA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "rule1",
+  "hud": "NORMA 1 · LA CASA",
+  "alert": true,
+  "say": "Ni pájaros. Ni coches. Nada se mueve.",
+  "cap": "NI PÁJAROS. NI COCHES. NADA SE MUEVE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule1",
+  "hud": "NORMA 1 · LA CASA",
+  "say": "Lucas grita el nombre de Martina. Nadie contesta.",
+  "cap": "LUCAS GRITA EL NOMBRE DE MARTINA. NADIE CONTESTA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "rule2",
+  "hud": "NORMA 2 · LA CUENTA",
+  "step": 1,
+  "say": "Norma dos: si alguien cuenta... vuelve a esconderte.",
+  "cap": "NORMA|y DOS: SI ALGUIEN CUENTA... VUELVE A ESCONDERTE.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule2",
+  "hud": "NORMA 2 · LA CUENTA",
+  "say": "Desde el pasillo, una voz empieza a contar.",
+  "cap": "DESDE EL PASILLO, UNA VOZ EMPIEZA A CONTAR.",
+  "pause": 0.1
+ },
+ {
+  "sc": "rule2",
+  "hud": "NORMA 2 · LA CUENTA",
+  "alert": true,
+  "voice": "tv",
+  "say": "Uno... dos... tres...",
+  "cap": "«UNO... DOS... TRES...|p»",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule2",
+  "hud": "NORMA 2 · LA CUENTA",
+  "alert": true,
+  "say": "Pero no es la voz de Martina.",
+  "cap": "PERO NO ES LA VOZ DE MARTINA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule2",
+  "hud": "NORMA 2 · LA CUENTA",
+  "alert": true,
+  "say": "Es la voz de un adulto... intentando sonar como una niña.",
+  "cap": "ES LA VOZ DE UN ADULTO... INTENTANDO SONAR COMO UNA NIÑA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "rule3",
+  "hud": "NORMA 3 · ESPERAR",
+  "step": 2,
+  "say": "Norma tres: no salgas hasta que la cuenta termine.",
+  "cap": "NORMA|y TRES: NO SALGAS HASTA QUE LA CUENTA TERMINE.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule3",
+  "hud": "DESVÁN · 18:20",
+  "say": "Lucas sube corriendo y se mete en el armario.",
+  "cap": "LUCAS SUBE CORRIENDO Y SE METE EN EL ARMARIO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "rule3",
+  "hud": "DESVÁN · 18:20",
+  "say": "La voz sigue contando. Cincuenta. Sesenta.",
+  "cap": "LA VOZ SIGUE CONTANDO. 50.|y 60.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "steps",
+  "hud": "DESVÁN · 18:21",
+  "say": "Y entre número y número... se oyen pasos en la escalera.",
+  "cap": "Y ENTRE NÚMERO Y NÚMERO... SE OYEN PASOS EN LA ESCALERA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "steps",
+  "hud": "DESVÁN · 18:21",
+  "alert": true,
+  "say": "Los pasos entran en el desván.",
+  "cap": "LOS PASOS ENTRAN EN EL DESVÁN.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "steps",
+  "hud": "DESVÁN · 18:21",
+  "alert": true,
+  "say": "Y se paran justo delante del armario.",
+  "cap": "Y SE PARAN JUSTO DELANTE DEL ARMARIO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "steps",
+  "hud": "DESVÁN · 18:22",
+  "say": "La voz ya no cuenta desde el pasillo.",
+  "cap": "LA VOZ YA NO CUENTA DESDE EL PASILLO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "steps",
+  "hud": "DESVÁN · 18:22",
+  "alert": true,
+  "say": "Ahora cuenta desde el otro lado de la puerta.",
+  "cap": "AHORA CUENTA DESDE EL OTRO LADO DE LA PUERTA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "final",
+  "hud": "DESVÁN · 18:22",
+  "alert": true,
+  "voice": "tv",
+  "say": "Noventa y ocho...",
+  "cap": "«98...|p»",
+  "pause": 0.35
+ },
+ {
+  "sc": "final",
+  "hud": "DESVÁN · 18:22",
+  "alert": true,
+  "voice": "tv",
+  "say": "noventa y nueve...",
+  "cap": "«99...|p»",
+  "pause": 0.9,
+  "cut": true
+ }
+]

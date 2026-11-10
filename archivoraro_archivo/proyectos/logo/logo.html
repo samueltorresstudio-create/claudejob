@@ -1,0 +1,46 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+html,body{margin:0;width:1080px;height:1080px;overflow:hidden;background:#0b0c12}
+svg{display:block}
+</style></head><body><svg id="s" width="1080" height="1080" viewBox="0 0 1080 1080"></svg>
+<script>
+const v=new URLSearchParams(location.search).get('v');
+const Y='#f2c94c', INK='#0b0c12', PAPER='#e9e4d6';
+const MONO="'JetBrains Mono',monospace", SANS="'Inter',sans-serif";
+const grain=(()=>{let g='';let x=7;const r=()=>{x=(x*16807)%2147483647;return x/2147483647};for(let i=0;i<1800;i++)g+=`<rect x="${(r()*1080).toFixed(0)}" y="${(r()*1080).toFixed(0)}" width="2" height="2" fill="${r()<.5?'#fff':'#000'}" opacity=".05"/>`;return g})();
+const bg=`<rect width="1080" height="1080" fill="${INK}"/><defs><radialGradient id="vg" cx=".5" cy=".45" r=".7"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient></defs>`;
+const L={
+// 1 · folder with a redacted eye
+carpeta:()=>{let s=bg;
+  s+=`<g transform="translate(540,430)"><path d="M-250,-150 L-90,-150 L-50,-110 L250,-110 L250,170 L-250,170Z" fill="${Y}"/><path d="M-250,-80 L250,-80 L250,170 L-250,170Z" fill="#d9ad2f"/>`;
+  s+=`<path d="M-150,40 Q0,-70 150,40 Q0,150 -150,40Z" fill="${INK}"/><circle cx="0" cy="40" r="46" fill="${Y}"/><circle cx="0" cy="40" r="20" fill="${INK}"/><circle cx="12" cy="28" r="7" fill="${Y}"/></g>`;
+  s+=`<text x="540" y="780" text-anchor="middle" font-family="${SANS}" font-weight="900" font-size="128" letter-spacing="-3" fill="${PAPER}">ARCHIVO</text>`;
+  s+=`<text x="540" y="900" text-anchor="middle" font-family="${SANS}" font-weight="900" font-size="128" letter-spacing="18" fill="${Y}">RARO</text>`;
+  return s+`<rect width="1080" height="1080" fill="url(#vg)"/>`+grain},
+// 2 · rubber stamp
+sello:()=>{let s=bg;
+  const txt='ARCHIVO RARO · CASOS SIN EXPLICACIÓN · ';
+  s+=`<defs><path id="cp" d="M540,540 m-330,0 a330,330 0 1,1 660,0 a330,330 0 1,1 -660,0"/></defs>`;
+  s+=`<g transform="rotate(-8 540 540)"><circle cx="540" cy="540" r="400" fill="none" stroke="${Y}" stroke-width="18"/><circle cx="540" cy="540" r="270" fill="none" stroke="${Y}" stroke-width="8"/>`;
+  s+=`<text font-family="${MONO}" font-weight="800" font-size="50" letter-spacing="7" fill="${Y}"><textPath href="#cp" textLength="2040" lengthAdjust="spacing">${txt}</textPath></text>`;
+  s+=`<rect x="250" y="470" width="580" height="140" fill="${Y}"/><text x="540" y="572" text-anchor="middle" font-family="${SANS}" font-weight="900" font-size="104" letter-spacing="-2" fill="${INK}">A·R</text>`;
+  s+=`<text x="540" y="420" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="40" letter-spacing="10" fill="${PAPER}">EXPEDIENTE</text><text x="540" y="690" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="40" letter-spacing="10" fill="${PAPER}">Nº 000</text></g>`;
+  return s+`<rect width="1080" height="1080" fill="url(#vg)"/>`+grain},
+// 3 · case-file label with redaction bars
+expediente:()=>{let s=bg;
+  s+=`<rect x="150" y="250" width="780" height="580" fill="${PAPER}"/><rect x="150" y="250" width="780" height="70" fill="${Y}"/>`;
+  s+=`<text x="190" y="298" font-family="${MONO}" font-weight="800" font-size="34" letter-spacing="6" fill="${INK}">EXPEDIENTE · CLASIFICADO</text>`;
+  s+=`<text x="540" y="500" text-anchor="middle" font-family="${SANS}" font-weight="900" font-size="150" letter-spacing="-5" fill="${INK}">ARCHIVO</text>`;
+  s+=`<rect x="300" y="545" width="480" height="140" fill="${INK}"/><text x="540" y="650" text-anchor="middle" font-family="${SANS}" font-weight="900" font-size="118" letter-spacing="22" fill="${Y}">RARO</text>`;
+  s+=`<rect x="200" y="730" width="260" height="24" fill="${INK}"/><rect x="480" y="730" width="140" height="24" fill="${INK}"/><rect x="640" y="730" width="240" height="24" fill="${INK}"/><rect x="200" y="776" width="380" height="24" fill="${INK}"/>`;
+  return s+`<rect width="1080" height="1080" fill="url(#vg)"/>`+grain},
+// 4 · monogram in a frame, minimal
+monograma:()=>{let s=bg;
+  s+=`<rect x="290" y="210" width="500" height="500" fill="none" stroke="${Y}" stroke-width="16"/>`;
+  s+=`<text x="540" y="560" text-anchor="middle" font-family="${SANS}" font-weight="900" font-size="300" letter-spacing="-16" fill="${PAPER}">AR</text>`;
+  s+=`<rect x="330" y="600" width="420" height="34" fill="${Y}"/>`;
+  s+=`<text x="540" y="840" text-anchor="middle" font-family="${MONO}" font-weight="800" font-size="72" letter-spacing="14" fill="${PAPER}">ARCHIVO <tspan fill="${Y}">RARO</tspan></text>`;
+  s+=`<text x="540" y="905" text-anchor="middle" font-family="${MONO}" font-weight="700" font-size="30" letter-spacing="8" fill="#8a8a96">CASOS SIN EXPLICACIÓN</text>`;
+  return s+`<rect width="1080" height="1080" fill="url(#vg)"/>`+grain},
+};
+document.getElementById('s').innerHTML=L[v]();
+</script></body></html>

@@ -1,0 +1,253 @@
+[
+ {
+  "sc": "outside",
+  "hud": "NORDHEM · 22:04",
+  "say": "Si te quedas encerrado, de noche...",
+  "cap": "SI TE QUEDAS ENCERRADO, DE NOCHE...",
+  "pause": 0.15
+ },
+ {
+  "sc": "outside",
+  "hud": "NORDHEM · 22:04",
+  "say": "en una tienda de muebles gigante...",
+  "cap": "EN UNA TIENDA DE MUEBLES GIGANTE...",
+  "pause": 0.15
+ },
+ {
+  "sc": "outside",
+  "hud": "NORDHEM · 22:04",
+  "say": "hay cuatro normas que te mantienen con vida.",
+  "cap": "HAY CUATRO NORMAS|y QUE TE MANTIENEN CON VIDA.",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Clara. Veinte años.",
+  "cap": "CLARA.|y 20 AÑOS.",
+  "pause": 0.25
+ },
+ {
+  "sc": "wardrobe",
+  "hud": "21:40 · ARMARIOS",
+  "say": "Se escondió en un armario para gastar una broma.",
+  "cap": "SE ESCONDIÓ EN UN ARMARIO PARA GASTAR UNA BROMA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "wardrobe",
+  "hud": "22:04 · CERRADO",
+  "alert": true,
+  "say": "Y cuando salió... la tienda ya estaba cerrada.",
+  "cap": "Y CUANDO SALIÓ... LA TIENDA YA ESTABA CERRADA.|p",
+  "pause": 0.35
+ },
+ {
+  "sc": "pa",
+  "hud": "MEGAFONÍA",
+  "say": "Entonces, suena la megafonía:",
+  "cap": "ENTONCES, SUENA LA MEGAFONÍA:",
+  "pause": 0.15
+ },
+ {
+  "sc": "pa",
+  "hud": "MEGAFONÍA",
+  "say": "Bienvenida. Por favor, cumpla las normas de la tienda.",
+  "cap": "«BIENVENIDA. POR FAVOR, CUMPLA LAS NORMAS|y DE LA TIENDA.»",
+  "voice": "tv",
+  "pause": 0.3
+ },
+ {
+  "sc": "pa",
+  "hud": "EMPLEADOS: 0",
+  "alert": true,
+  "say": "Pero todos los empleados se fueron hace una hora.",
+  "cap": "PERO TODOS LOS EMPLEADOS SE FUERON HACE UNA HORA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "sign",
+  "hud": "CAJAS · 22:09",
+  "say": "Junto a las cajas, hay un cartel que antes no estaba.",
+  "cap": "JUNTO A LAS CAJAS, HAY UN CARTEL QUE ANTES NO ESTABA.",
+  "pause": 0.35
+ },
+ {
+  "sc": "beds",
+  "hud": "NORMA 1 · CAMAS",
+  "step": 0,
+  "say": "Norma uno: no te tumbes en las camas de exposición.",
+  "cap": "NORMA|y UNO: NO TE TUMBES EN LAS CAMAS|p DE EXPOSICIÓN.",
+  "pause": 0.15
+ },
+ {
+  "sc": "beds",
+  "hud": "NORMA 1 · CAMAS",
+  "say": "Aunque estés agotada.",
+  "cap": "AUNQUE ESTÉS AGOTADA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "beds",
+  "hud": "NORMA 1 · CAMAS",
+  "alert": true,
+  "say": "Porque algunas... ya están ocupadas.",
+  "cap": "PORQUE ALGUNAS... YA ESTÁN OCUPADAS.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "beds",
+  "hud": "NORMA 1 · CAMAS",
+  "alert": true,
+  "say": "Clara pasa junto a una. Y el edredón... respira.",
+  "cap": "CLARA PASA JUNTO A UNA. Y EL EDREDÓN... RESPIRA.|p",
+  "pause": 0.45
+ },
+ {
+  "sc": "arrows",
+  "hud": "NORMA 2 · FLECHAS",
+  "step": 1,
+  "say": "Norma dos: sigue siempre las flechas del suelo.",
+  "cap": "NORMA|y DOS: SIGUE SIEMPRE LAS FLECHAS|y DEL SUELO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "arrows",
+  "hud": "NORMA 2 · FLECHAS",
+  "say": "Si te sales del camino... los pasillos cambian.",
+  "cap": "SI TE SALES DEL CAMINO... LOS PASILLOS CAMBIAN.|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "kitchen",
+  "hud": "#kitchen",
+  "say": "Clara lo comprueba. Pasa tres veces por la misma cocina.",
+  "cap": "CLARA LO COMPRUEBA. PASA TRES VECES|p POR LA MISMA COCINA.",
+  "pause": 0.35
+ },
+ {
+  "sc": "name",
+  "hud": "NORMA 3 · SILENCIO",
+  "step": 2,
+  "say": "Norma tres: si oyes tu nombre por megafonía... no contestes.",
+  "cap": "NORMA|y TRES: SI OYES TU NOMBRE POR MEGAFONÍA... NO CONTESTES.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "name",
+  "hud": "MEGAFONÍA",
+  "alert": true,
+  "say": "Clara... ven a la sección de dormitorios.",
+  "cap": "«CLARA... VEN A LA SECCIÓN DE DORMITORIOS.|p»",
+  "voice": "tv",
+  "pause": 0.3
+ },
+ {
+  "sc": "name",
+  "hud": "NORMA 3 · SILENCIO",
+  "say": "Ella se tapa la boca.",
+  "cap": "ELLA SE TAPA LA BOCA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "staff",
+  "hud": "NORMA 4 · EMPLEADOS",
+  "step": 3,
+  "say": "Norma cuatro: los empleados se van a las nueve.",
+  "cap": "NORMA|y CUATRO: LOS EMPLEADOS SE VAN A LAS NUEVE.",
+  "pause": 0.15
+ },
+ {
+  "sc": "staff",
+  "hud": "NORMA 4 · EMPLEADOS",
+  "say": "Si ves a uno después de esa hora... no es un empleado.",
+  "cap": "SI VES A UNO DESPUÉS DE ESA HORA... NO ES UN EMPLEADO.|p",
+  "pause": 0.35
+ },
+ {
+  "sc": "lamps",
+  "hud": "LÁMPARAS · 03:00",
+  "say": "A las tres de la mañana, al fondo de la sección de lámparas...",
+  "cap": "A LAS 3 DE LA MAÑANA, AL FONDO DE LA SECCIÓN DE LÁMPARAS...",
+  "pause": 0.15
+ },
+ {
+  "sc": "lamps",
+  "hud": "LÁMPARAS · 03:00",
+  "alert": true,
+  "say": "hay alguien con el polo verde de la tienda.",
+  "cap": "HAY ALGUIEN CON EL POLO VERDE|g DE LA TIENDA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "smile",
+  "hud": "LÁMPARAS · 03:01",
+  "alert": true,
+  "say": "No se mueve. Solo sonríe.",
+  "cap": "NO SE MUEVE. SOLO SONRÍE.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "smile",
+  "hud": "LÁMPARAS · 03:02",
+  "alert": true,
+  "say": "Y cada vez que Clara parpadea... está un poco más cerca.",
+  "cap": "Y CADA VEZ QUE CLARA PARPADEA... ESTÁ UN POCO MÁS CERCA.|p",
+  "pause": 0.5
+ },
+ {
+  "sc": "follow",
+  "hud": "NORMA 2 · FLECHAS",
+  "say": "Clara no corre. Sigue las flechas.",
+  "cap": "CLARA NO CORRE. SIGUE LAS FLECHAS.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "follow",
+  "hud": "NORMA 2 · FLECHAS",
+  "say": "Una a una.",
+  "cap": "UNA A UNA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "follow",
+  "hud": "NORMA 2 · FLECHAS",
+  "alert": true,
+  "say": "Pero esta noche, las flechas no llevan a la salida.",
+  "cap": "PERO ESTA NOCHE, LAS FLECHAS NO LLEVAN A LA SALIDA.|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "follow",
+  "hud": "DORMITORIOS",
+  "alert": true,
+  "say": "Llevan a los dormitorios.",
+  "cap": "LLEVAN A LOS DORMITORIOS.|p",
+  "pause": 0.45
+ },
+ {
+  "sc": "bed2",
+  "hud": "DORMITORIOS · 03:33",
+  "alert": true,
+  "say": "Hay una cama con el edredón levantado...",
+  "cap": "HAY UNA CAMA CON EL EDREDÓN LEVANTADO...",
+  "pause": 0.2
+ },
+ {
+  "sc": "bed2",
+  "hud": "DORMITORIOS · 03:33",
+  "alert": true,
+  "say": "y debajo, algo se mueve.",
+  "cap": "Y DEBAJO, ALGO SE MUEVE.|p",
+  "pause": 0.4
+ },
+ {
+  "sc": "bed2",
+  "hud": "DORMITORIOS · 03:33",
+  "alert": true,
+  "say": "Una mano sale despacio... hacia ella.",
+  "cap": "UNA MANO SALE DESPACIO... HACIA ELLA.|p",
+  "pause": 0.9,
+  "cut": true
+ }
+]

@@ -1,0 +1,23 @@
+[
+ {"sc":"hook","hud":"DÍA 7 · 08:10","alert":true,"say":"El grifo escupe aire... y se queda seco.","cap":"EL GRIFO ESCUPE AIRE...|b Y SE QUEDA SECO.|p","pause":0.2},
+ {"sc":"pumps","hud":"DÍA 7 · SIN LUZ","alert":true,"say":"Día siete sin luz. Las bombas del agua se han quedado sin gasoil.","cap":"DÍA 7|p SIN LUZ. LAS BOMBAS DEL AGUA|b SE HAN QUEDADO SIN GASOIL.|p","pause":0.2},
+ {"sc":"three","hud":"DÍA 7 · 08:12","say":"Y sin agua, una persona aguanta tres días.","cap":"Y SIN AGUA,|b UNA PERSONA AGUANTA 3 DÍAS.|p","pause":0.25},
+ {"sc":"door","hud":"DÍA 7 · 09:30","say":"Alguien aporrea la puerta de Álex. Es el vecino del quinto, el que se reía de la bañera.","cap":"ALGUIEN APORREA LA PUERTA|y DE ÁLEX. ES EL VECINO DEL 5.º,|y EL QUE SE REÍA DE LA BAÑERA.|b","pause":0.2},
+ {"sc":"kids","hud":"DÍA 7 · 09:31","say":"«Tengo dos críos. No nos queda ni una gota.»","cap":"«TENGO DOS CRÍOS.|y NO NOS QUEDA NI UNA GOTA.»|b","pause":0.2},
+ {"sc":"better","hud":"DÍA 7 · 09:31","say":"Álex no le da sus botellas. Le enseña algo mejor.","cap":"ÁLEX NO LE DA SUS BOTELLAS.|b LE ENSEÑA ALGO MEJOR.|g","pause":0.2},
+ {"sc":"termo","hud":"DÍA 7 · 09:35","step":0,"say":"Paso uno: busca el agua que ya tienes en casa.","cap":"PASO|y UNO: BUSCA EL AGUA QUE YA TIENES EN CASA.|g","pause":0.2},
+ {"sc":"termo","hud":"DÍA 7 · 09:35","say":"El termo guarda hasta ochenta litros. La cisterna del váter, seis más.","cap":"EL TERMO|y GUARDA HASTA 80 LITROS.|b LA CISTERNA DEL VÁTER,|y 6 MÁS.|b","pause":0.2},
+ {"sc":"valve","hud":"5.º · 09:40","say":"El vecino abre la llave de su termo... y el agua sale.","cap":"EL VECINO ABRE LA LLAVE|y DE SU TERMO... Y EL AGUA SALE.|g","pause":0.25},
+ {"sc":"boil","hud":"DÍA 7 · 11:00","step":1,"say":"Paso dos: si no sabes de dónde viene, desinféctala.","cap":"PASO|y DOS: SI NO SABES DE DÓNDE VIENE, DESINFÉCTALA.|g","pause":0.2},
+ {"sc":"boil","hud":"DÍA 7 · 11:00","say":"Hiérvela un minuto. O dos gotas de lejía sin perfume por litro, y espera media hora.","cap":"HIÉRVELA UN MINUTO.|y O 2 GOTAS|b DE LEJÍA SIN PERFUME POR LITRO,|b Y ESPERA MEDIA HORA.|y","pause":0.25},
+ {"sc":"storm","hud":"DÍA 7 · 17:20","alert":true,"say":"Por la tarde, truena.","cap":"POR LA TARDE, TRUENA.|p","pause":0.2},
+ {"sc":"rain","hud":"DÍA 7 · 17:25","step":2,"say":"Paso tres: cuando llueva, recoge todo lo que puedas.","cap":"PASO|y TRES: CUANDO LLUEVA,|b RECOGE TODO LO QUE PUEDAS.|g","pause":0.2},
+ {"sc":"rain","hud":"DÍA 7 · 17:25","say":"Ollas, cubos y un plástico en el balcón que lo lleva todo a un barreño.","cap":"OLLAS,|y CUBOS|y Y UN PLÁSTICO EN EL BALCÓN QUE LO LLEVA TODO A UN BARREÑO.|b","pause":0.2},
+ {"sc":"bruno","hud":"DÍA 7 · 17:40","say":"Bruno bebe antes que nadie.","cap":"BRUNO|y BEBE ANTES QUE NADIE.","pause":0.25},
+ {"sc":"grey","hud":"DÍA 7 · 18:30","step":3,"say":"Paso cuatro: el agua que bebes nunca va al váter.","cap":"PASO|y CUATRO: EL AGUA QUE BEBES NUNCA|p VA AL VÁTER.","pause":0.2},
+ {"sc":"grey","hud":"DÍA 7 · 18:30","say":"Para la cadena, usa la de fregar.","cap":"PARA LA CADENA, USA LA DE FREGAR.|g","pause":0.25},
+ {"sc":"gift","hud":"DÍA 7 · 22:10","say":"Esa noche, el vecino vuelve con dos botellas llenas. Una es para Bruno.","cap":"ESA NOCHE, EL VECINO VUELVE CON DOS BOTELLAS LLENAS.|b UNA ES PARA BRUNO.|y","pause":0.25},
+ {"sc":"portal","hud":"PORTAL · 22:30","say":"Pero en el portal ya huele raro.","cap":"PERO EN EL PORTAL YA HUELE RARO.|g","pause":0.2},
+ {"sc":"end","hud":"DÍA 7 · 22:31","alert":true,"say":"Sin agua, nadie puede tirar de la cadena...","cap":"SIN AGUA,|b NADIE PUEDE TIRAR DE LA CADENA...","pause":0.15},
+ {"sc":"end","hud":"DÍA 7 · 22:31","alert":true,"cut":true,"say":"y en pocos días, eso será más peligroso que el hambre.","cap":"Y EN POCOS DÍAS, ESO SERÁ MÁS PELIGROSO|p QUE EL HAMBRE.|p","pause":0.2}
+]

@@ -1,0 +1,217 @@
+[
+ {
+  "sc": "intro",
+  "hud": "FERIA · 23:55",
+  "say": "Si te quedas atrapado en lo más alto de una noria... de noche...",
+  "cap": "SI TE QUEDAS ATRAPADO EN LO MÁS ALTO DE UNA NORIA... DE NOCHE...|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "FERIA · 23:55",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Martina. Diez años.",
+  "cap": "MARTINA.|y 10 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Sube a la noria con su amiga Noa. La última vuelta de la noche.",
+  "cap": "SUBE A LA NORIA CON SU AMIGA NOA. LA ÚLTIMA VUELTA DE LA NOCHE.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "A Noa le dan miedo las alturas. A Martina, no.",
+  "cap": "A NOA LE DAN MIEDO LAS ALTURAS. A MARTINA, NO.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "stuck",
+  "hud": "NORIA · 23:58",
+  "say": "Justo cuando están arriba del todo... la noria se para.",
+  "cap": "JUSTO CUANDO ESTÁN ARRIBA DEL TODO... LA NORIA SE PARA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "stuck",
+  "hud": "NORIA · 23:58",
+  "say": "Cuarenta metros. Y un clac metálico debajo de la cabina.",
+  "cap": "CUARENTA METROS. Y UN CLAC METÁLICO DEBAJO DE LA CABINA.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "stuck",
+  "hud": "NORIA · 23:59",
+  "alert": true,
+  "say": "Abajo, las luces de la feria se apagan una a una.",
+  "cap": "ABAJO, LAS LUCES DE LA FERIA SE APAGAN UNA A UNA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "stuck",
+  "hud": "NORIA · 23:59",
+  "alert": true,
+  "say": "La música se corta. Y la feria se queda en silencio.",
+  "cap": "LA MÚSICA SE CORTA. Y LA FERIA SE QUEDA EN SILENCIO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · QUIETAS",
+  "step": 0,
+  "say": "Paso uno: no os mováis.",
+  "cap": "PASO|y UNO: NO OS MOVÁIS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "CABINA 7 · 00:01",
+  "say": "Cada vez que Noa se gira, la cabina se balancea... y cruje.",
+  "cap": "CADA VEZ QUE NOA SE GIRA, LA CABINA SE BALANCEA... Y CRUJE.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "CABINA 7 · 00:01",
+  "say": "Martina le agarra la mano. Quietas. Muy quietas.",
+  "cap": "MARTINA LE AGARRA LA MANO. QUIETAS. MUY QUIETAS.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "CABINA 7 · 00:02",
+  "say": "El viento empuja la cabina. Adelante. Atrás.",
+  "cap": "EL VIENTO EMPUJA LA CABINA. ADELANTE. ATRÁS.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · EL OPERADOR",
+  "step": 1,
+  "say": "Paso dos: busca al operador.",
+  "cap": "PASO|y DOS: BUSCA AL OPERADOR.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CABINA 7 · 00:03",
+  "say": "La caseta de los mandos sigue encendida.",
+  "cap": "LA CASETA DE LOS MANDOS SIGUE ENCENDIDA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CABINA 7 · 00:03",
+  "alert": true,
+  "say": "Pero dentro no hay nadie. Solo una gorra, tirada en el suelo.",
+  "cap": "PERO DENTRO NO HAY NADIE. SOLO UNA GORRA, TIRADA EN EL SUELO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "CABINA 7 · 00:04",
+  "say": "Martina grita: ¡Estamos aquí arriba! Pero nadie contesta.",
+  "cap": "MARTINA GRITA: «¡ESTAMOS AQUÍ ARRIBA!» PERO NADIE CONTESTA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · SEÑALES",
+  "step": 2,
+  "say": "Paso tres: haz señales de luz.",
+  "cap": "PASO|y TRES: HAZ SEÑALES DE LUZ.|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "CABINA 7 · 00:06",
+  "say": "Martina enciende la linterna del móvil. Tres cortas. Tres largas. Tres cortas.",
+  "cap": "MARTINA ENCIENDE LA LINTERNA DEL MÓVIL. TRES CORTAS. TRES LARGAS. TRES CORTAS.|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "CABINA 7 · 00:06",
+  "say": "Es un SOS. Lo aprendió en los scouts.",
+  "cap": "ES UN SOS.|y LO APRENDIÓ EN LOS SCOUTS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "CABINA 7 · 00:07",
+  "say": "Y alguien, abajo, le contesta con otra luz.",
+  "cap": "Y ALGUIEN, ABAJO, LE CONTESTA CON OTRA LUZ.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · MIRA BIEN",
+  "step": 3,
+  "say": "Paso cuatro: si alguien sube a buscarte... mira bien quién es.",
+  "cap": "PASO|y CUATRO: SI ALGUIEN SUBE A BUSCARTE... MIRA BIEN QUIÉN ES.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · MIRA BIEN",
+  "say": "Aunque sea alguien que ya has visto antes.",
+  "cap": "AUNQUE SEA ALGUIEN QUE YA HAS VISTO ANTES.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "climb",
+  "hud": "NORIA · 00:09",
+  "say": "La luz se acerca a la noria. Es Pipo, el conejo gigante de la feria.",
+  "cap": "LA LUZ SE ACERCA A LA NORIA. ES PIPO, EL CONEJO GIGANTE DE LA FERIA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "climb",
+  "hud": "NORIA · 00:09",
+  "say": "La mascota que por la tarde repartía globos.",
+  "cap": "LA MASCOTA QUE POR LA TARDE REPARTÍA GLOBOS.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "climb",
+  "hud": "NORIA · 00:09",
+  "say": "Todavía lleva un globo rojo atado a la muñeca.",
+  "cap": "TODAVÍA LLEVA UN GLOBO ROJO ATADO A LA MUÑECA.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "climb",
+  "hud": "NORIA · 00:10",
+  "alert": true,
+  "say": "Y empieza a trepar por los radios de la noria. Muy deprisa.",
+  "cap": "Y EMPIEZA A TREPAR POR LOS RADIOS DE LA NORIA. MUY DEPRISA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "NORIA · 00:10",
+  "alert": true,
+  "say": "Demasiado deprisa para alguien con un disfraz.",
+  "cap": "DEMASIADO DEPRISA PARA ALGUIEN CON UN DISFRAZ.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "NORIA · 00:10",
+  "alert": true,
+  "cut": true,
+  "say": "Y cuando llega a su cabina... ven que su sonrisa no es de tela.",
+  "cap": "Y CUANDO LLEGA A SU CABINA... VEN QUE SU SONRISA NO ES DE TELA.|p",
+  "pause": 0.2
+ }
+]

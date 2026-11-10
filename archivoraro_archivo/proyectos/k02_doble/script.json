@@ -1,0 +1,237 @@
+[
+ {
+  "sc": "intro",
+  "hud": "LUNES · 08:10",
+  "say": "Si un lunes llegas tarde al cole...",
+  "cap": "SI UN LUNES LLEGAS TARDE AL COLE...",
+  "pause": 0.1
+ },
+ {
+  "sc": "intro",
+  "hud": "LUNES · 08:10",
+  "say": "y cuando abres la puerta de clase... ya estás sentada en tu sitio...",
+  "cap": "Y CUANDO ABRES LA PUERTA DE CLASE... YA ESTÁS SENTADA EN TU SITIO...|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "LUNES · 08:10",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Sara. Trece años.",
+  "cap": "SARA.|y 13 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Hoy se ha dormido. Por primera vez en su vida.",
+  "cap": "HOY SE HA DORMIDO. POR PRIMERA VEZ EN SU VIDA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "door",
+  "hud": "CLASE 2ºB · 08:10",
+  "alert": true,
+  "say": "En su pupitre, junto a la ventana... está ella.",
+  "cap": "EN SU PUPITRE, JUNTO A LA VENTANA... ESTÁ ELLA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "door",
+  "hud": "CLASE 2ºB · 08:10",
+  "say": "Su misma cara. Su misma mochila. Su misma sudadera.",
+  "cap": "SU MISMA CARA. SU MISMA MOCHILA. SU MISMA SUDADERA.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "door",
+  "hud": "CLASE 2ºB · 08:10",
+  "say": "Y nadie se ha dado cuenta. Ni siquiera su mejor amiga.",
+  "cap": "Y NADIE SE HA DADO CUENTA. NI SIQUIERA SU MEJOR AMIGA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "door",
+  "hud": "CLASE 2ºB · 08:11",
+  "alert": true,
+  "say": "Sara la mira por el cristal de la puerta... y la otra sonríe. Sin girarse.",
+  "cap": "SARA LA MIRA POR EL CRISTAL DE LA PUERTA... Y LA OTRA SONRÍE. SIN GIRARSE.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "rule1",
+  "hud": "NORMA 1 · SEPARADAS",
+  "step": 0,
+  "say": "Norma uno: que nunca os vean juntas.",
+  "cap": "NORMA|y UNO: QUE NUNCA OS VEAN JUNTAS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule1",
+  "hud": "NORMA 1 · SEPARADAS",
+  "say": "Porque si alguien os ve a las dos... solo recordará a una.",
+  "cap": "PORQUE SI ALGUIEN OS VE A LAS DOS... SOLO RECORDARÁ A UNA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule1",
+  "hud": "NORMA 1 · SEPARADAS",
+  "alert": true,
+  "say": "Y no serás tú.",
+  "cap": "Y NO SERÁS TÚ.|p",
+  "pause": 0.35
+ },
+ {
+  "sc": "rule2",
+  "hud": "NORMA 2 · LA PREGUNTA",
+  "step": 1,
+  "say": "Norma dos: si llamas a casa, pregunta algo que solo sepáis vosotros.",
+  "cap": "NORMA|y DOS: SI LLAMAS A CASA, PREGUNTA ALGO QUE SOLO SEPÁIS VOSOTROS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule2",
+  "hud": "BAÑO · 08:16",
+  "say": "Desde el baño, Sara llama a su madre.",
+  "cap": "DESDE EL BAÑO, SARA LLAMA A SU MADRE.",
+  "pause": 0.1
+ },
+ {
+  "sc": "rule2",
+  "hud": "BAÑO · 08:16",
+  "say": "Mamá, ¿cómo se llamaba mi peluche de pequeña?",
+  "cap": "«MAMÁ, ¿CÓMO SE LLAMABA MI PELUCHE DE PEQUEÑA?»|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule2",
+  "hud": "BAÑO · 08:16",
+  "voice": "tv",
+  "say": "Bombón, cariño. Me lo has preguntado hace cinco minutos.",
+  "cap": "«BOMBÓN, CARIÑO. ME LO HAS PREGUNTADO HACE CINCO MINUTOS.|p»",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule2",
+  "hud": "BAÑO · 08:17",
+  "alert": true,
+  "say": "La otra ya ha llamado antes. Y está aprendiendo.",
+  "cap": "LA OTRA YA HA LLAMADO ANTES. Y ESTÁ APRENDIENDO.|p",
+  "pause": 0.35
+ },
+ {
+  "sc": "rule3",
+  "hud": "NORMA 3 · NO TOCAR",
+  "step": 2,
+  "say": "Norma tres: no dejes que te toque.",
+  "cap": "NORMA|y TRES: NO DEJES QUE TE TOQUE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule3",
+  "hud": "NORMA 3 · NO TOCAR",
+  "say": "Nadie sabe qué pasa si te toca. Y Sara no quiere averiguarlo.",
+  "cap": "NADIE SABE QUÉ PASA SI TE TOCA. Y SARA NO QUIERE AVERIGUARLO.",
+  "pause": 0.3
+ },
+ {
+  "sc": "recreo",
+  "hud": "RECREO · 11:00",
+  "say": "En el recreo, Sara la vigila desde lejos.",
+  "cap": "EN EL RECREO, SARA LA VIGILA DESDE LEJOS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "recreo",
+  "hud": "RECREO · 11:00",
+  "say": "Juega con sus amigas. Se ríe como ella. Habla como ella.",
+  "cap": "JUEGA CON SUS AMIGAS. SE RÍE COMO ELLA. HABLA COMO ELLA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "recreo",
+  "hud": "RECREO · 11:01",
+  "say": "Pero hay una cosa que no copia bien.",
+  "cap": "PERO HAY UNA COSA QUE NO COPIA BIEN.",
+  "pause": 0.15
+ },
+ {
+  "sc": "recreo",
+  "hud": "RECREO · 11:01",
+  "alert": true,
+  "say": "No parpadea.",
+  "cap": "NO PARPADEA.|p",
+  "pause": 0.4
+ },
+ {
+  "sc": "stare",
+  "hud": "RECREO · 11:02",
+  "alert": true,
+  "say": "De repente, se gira... y mira directamente hacia Sara.",
+  "cap": "DE REPENTE, SE GIRA... Y MIRA DIRECTAMENTE HACIA SARA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "stare",
+  "hud": "RECREO · 11:02",
+  "alert": true,
+  "say": "Y empieza a caminar hacia ella, con la mano estirada.",
+  "cap": "Y EMPIEZA A CAMINAR HACIA ELLA, CON LA MANO ESTIRADA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "run",
+  "hud": "PASILLO · 11:03",
+  "say": "Sara corre al único sitio donde nadie la buscaría: su clase.",
+  "cap": "SARA CORRE AL ÚNICO SITIO DONDE NADIE LA BUSCARÍA: SU CLASE.",
+  "pause": 0.15
+ },
+ {
+  "sc": "class",
+  "hud": "CLASE 2ºB · 11:04",
+  "alert": true,
+  "say": "Pero al abrir la puerta... la otra ya está sentada en su pupitre.",
+  "cap": "PERO AL ABRIR LA PUERTA... LA OTRA YA ESTÁ SENTADA EN SU PUPITRE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "class",
+  "hud": "CLASE 2ºB · 11:04",
+  "alert": true,
+  "say": "Toda la clase se gira hacia la puerta.",
+  "cap": "TODA LA CLASE SE GIRA HACIA LA PUERTA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "class",
+  "hud": "CLASE 2ºB · 11:04",
+  "say": "La otra Sara levanta la mano, muy tranquila.",
+  "cap": "LA OTRA SARA LEVANTA LA MANO, MUY TRANQUILA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "class",
+  "hud": "CLASE 2ºB · 11:04",
+  "alert": true,
+  "voice": "tv",
+  "say": "Profe... esa de la puerta no soy yo.",
+  "cap": "«PROFE... ESA DE LA PUERTA NO SOY YO.|p»",
+  "pause": 0.2
+ },
+ {
+  "sc": "teacher",
+  "hud": "CLASE 2ºB · 11:04",
+  "alert": true,
+  "say": "Y la profesora se levanta... y camina hacia ella.",
+  "cap": "Y LA PROFESORA SE LEVANTA... Y CAMINA HACIA ELLA.|p",
+  "pause": 0.9,
+  "cut": true
+ }
+]

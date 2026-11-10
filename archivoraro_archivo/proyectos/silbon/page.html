@@ -1,0 +1,77 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#000}svg{display:block}</style></head><body>
+<svg id="s" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+<script src="lib.js"></script><script src="kit.js"></script><script src="props.js"></script><script src="props2.js"></script><script src="cast.js"></script>
+<script>
+const V=new URLSearchParams(location.search).get('v')||'A', t=1.3;
+const MATEO={skin:'#c98c64',hs:'short',hair:'#1d1514',top:'#3a6a8a',topD:'#2a5070',hood:true,strings:true,pants:'#2a2e3a',shoes:'#e9e4d8',seed:211};
+function llanos(){let s=`<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#050818"/><stop offset=".6" stop-color="#16204a"/><stop offset="1" stop-color="#2a2a52"/></linearGradient>
+  <radialGradient id="mn"><stop offset="0" stop-color="#fff8e0" stop-opacity=".55"/><stop offset="1" stop-color="#fff8e0" stop-opacity="0"/></radialGradient>
+  <radialGradient id="fog"><stop offset="0" stop-color="#9fb0d8" stop-opacity=".35"/><stop offset="1" stop-color="#9fb0d8" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1080" height="1350" fill="url(#sk)"/>`+stars(9,140,820,t,.9);
+  s+=`<circle cx="300" cy="300" r="300" fill="url(#mn)"/><circle cx="300" cy="300" r="96" fill="#f6f0dc"/><circle cx="270" cy="280" r="18" fill="#e2dcc4"/><circle cx="330" cy="330" r="12" fill="#e2dcc4"/>`;
+  // far savanna + moriche palms
+  s+=`<path d="M0,880 Q300,860 600,872 T1080,866 L1080,1350 L0,1350Z" fill="#141a2e"/>`;
+  for(const [x,h] of [[120,170],[180,130],[880,190],[960,150],[1030,120]]) s+=`<path d="M${x},880 L${x+4},${880-h}" stroke="#0a0e1a" stroke-width="7"/>`+[...Array(9)].map((_,i)=>{const a=-160+i*18;return `<path d="M${x+4},${880-h} q${Math.cos(a*Math.PI/180)*40},${Math.sin(a*Math.PI/180)*40-10} ${Math.cos(a*Math.PI/180)*70},${Math.sin(a*Math.PI/180)*60+20}" stroke="#0a0e1a" stroke-width="6" fill="none"/>`}).join('');
+  // ground, road with perspective, grass tufts
+  s+=`<path d="M0,900 Q540,880 1080,900 L1080,1350 L0,1350Z" fill="#1c2236"/><path d="M500,890 L580,890 L900,1350 L180,1350Z" fill="#3a3448"/><path d="M520,890 L560,890 L640,1350 L440,1350Z" fill="#463e52" opacity=".6"/>`;
+  const r=rng(5);for(let i=0;i<70;i++){const x=r()*1080,y=920+r()*420,h=12+r()*30*(y-880)/400;if(x>180+(y-890)*.7-40&&x<900-(y-890)*.7+40&&Math.abs(x-540)<(y-880)*.75) continue;s+=`<path d="M${x},${y} l-6,-${h} M${x},${y} l2,-${h*1.2} M${x},${y} l8,-${h*.9}" stroke="#2c3a2a" stroke-width="3"/>`;}
+  for(let i=0;i<14;i++){const x=r()*1080,y=700+r()*500,a=Math.abs(Math.sin(t*2+i));s+=`<circle cx="${x}" cy="${y}" r="4" fill="#d8ff6a" opacity="${(.3+.6*a).toFixed(2)}"/><circle cx="${x}" cy="${y}" r="14" fill="#d8ff6a" opacity="${(.12*a).toFixed(2)}"/>`;}
+  return s}
+function heroes(){ // Mateo with a torch + Canelo, small next to the giant
+  let s=`<path d="M330,1050 L80,980 L60,1120Z" fill="#fff6c0" opacity=".14"/>`;
+  s+=doberman(470,1250,.36,t,{dir:1,alert:1,bark:true,head:20});
+  s+=A({...MATEO,x:330,y:1250,s:.5,look:[12,-14],brows:'worried',eyes:'wide',mouth:'o',reachL:[-160,-440]});
+  return s}
+const sack=(x,y,s,bones=true)=>`<g transform="translate(${x},${y}) scale(${s})"><path d="M-60,-10 Q-90,90 -40,150 Q20,190 70,140 Q110,70 60,-20 Q0,-40 -60,-10Z" fill="#8a6a40"/><path d="M-60,-10 Q-90,90 -40,150 Q20,190 70,140" fill="none" stroke="#5a4428" stroke-width="6"/>${[...Array(6)].map((_,i)=>`<path d="M${-40+i*18},${20+i*16} q12,-6 24,0" stroke="#5a4428" stroke-width="3" fill="none"/>`).join('')}${bones?`<path d="M-20,-14 L-40,-70 M10,-18 L24,-80 M30,-12 L64,-56" stroke="#e9e2cc" stroke-width="12" stroke-linecap="round"/><circle cx="-42" cy="-74" r="10" fill="#e9e2cc"/><circle cx="26" cy="-84" r="10" fill="#e9e2cc"/><circle cx="66" cy="-60" r="9" fill="#e9e2cc"/>`:''}<path d="M-60,-10 Q0,-30 60,-20" stroke="#5a4428" stroke-width="10" fill="none"/></g>`;
+const hat=(x,y,w,col,rot=0)=>`<g transform="translate(${x},${y}) rotate(${rot})"><ellipse cx="0" cy="0" rx="${w}" ry="${w*.16}" fill="${col}"/><path d="M${-w*.45},0 Q${-w*.42},${-w*.62} 0,${-w*.6} Q${w*.42},${-w*.62} ${w*.45},0Z" fill="${col}"/><rect x="${-w*.45}" y="${-w*.16}" width="${w*.9}" height="${w*.09}" fill="#000" opacity=".35"/></g>`;
+// ---------- A: la sombra del llano ----------
+function silbonA(){const X=760,F=1230,K='#04050c';let s=`<ellipse cx="${X}" cy="${F+10}" rx="220" ry="40" fill="url(#fog)"/>`;
+  s+=`<g filter="url(#rimA)"><defs><filter id="rimA"><feDropShadow dx="-3" dy="-2" stdDeviation="2" flood-color="#8fb0ff" flood-opacity=".7"/></filter></defs>`;
+  s+=`<path d="M${X-30},${F} L${X-40},${F-430} M${X+30},${F} L${X+46},${F-430}" stroke="${K}" stroke-width="30" stroke-linecap="round"/>`;
+  // ragged poncho
+  s+=`<path d="M${X-60},${F-440} L${X-90},${F-900} Q${X},${F-980} ${X+90},${F-900} L${X+70},${F-440} L${X+50},${F-470} L${X+30},${F-430} L${X+10},${F-470} L${X-10},${F-430} L${X-30},${F-470}Z" fill="${K}"/>`;
+  s+=`<path d="M${X-80},${F-880} Q${X-150},${F-700} ${X-170},${F-480}" stroke="${K}" stroke-width="22" fill="none" stroke-linecap="round"/>`;
+  for(let i=0;i<5;i++) s+=`<path d="M${X-170},${F-480} l${-14+i*7},${60+i*6}" stroke="${K}" stroke-width="7" stroke-linecap="round"/>`;
+  s+=`<path d="M${X+80},${F-880} Q${X+160},${F-940} ${X+150},${F-1000}" stroke="${K}" stroke-width="22" fill="none" stroke-linecap="round"/>`;
+  s+=sack(X+130,F-1040,.9,true).replace(/#8a6a40/g,'#0c0d16').replace(/#5a4428/g,'#000');
+  s+=`<path d="M${X-14},${F-960} L${X-12},${F-1000} L${X+14},${F-1000} L${X+16},${F-960}Z" fill="${K}"/><ellipse cx="${X}" cy="${F-1030}" rx="42" ry="50" fill="${K}"/>`+hat(X,F-1062,120,K,-6);
+  s+=`</g>`;return s}
+// ---------- B: huesos y sombrero ----------
+function silbonB(){const X=760,F=1230,SK='#9aa58a',SKd='#6a7660',CL='#3a3428';let s=`<ellipse cx="${X}" cy="${F+10}" rx="220" ry="40" fill="url(#fog)"/>`;
+  s+=`<path d="M${X-30},${F} L${X-26},${F-200} L${X-40},${F-440} M${X+30},${F} L${X+40},${F-210} L${X+40},${F-440}" stroke="${CL}" stroke-width="34" stroke-linecap="round" fill="none"/>`;
+  s+=`<path d="M${X-46},${F} l-60,8 M${X+46},${F} l60,8" stroke="${SKd}" stroke-width="14" stroke-linecap="round"/>`;
+  s+=`<path d="M${X-50},${F-200} l-14,40 l20,-10 l6,30 l12,-36 M${X+50},${F-210} l12,40 l-16,-8 l-8,28" stroke="${CL}" stroke-width="6" fill="none"/>`;
+  // torso: torn shirt, ribs
+  s+=`<path d="M${X-70},${F-440} Q${X-90},${F-700} ${X-80},${F-900} Q${X},${F-930} ${X+80},${F-900} Q${X+90},${F-700} ${X+70},${F-440}Z" fill="#5a5040"/>`;
+  s+=`<path d="M${X-40},${F-860} Q${X},${F-700} ${X-10},${F-560} L${X+30},${F-600} Q${X+40},${F-740} ${X+40},${F-860}Z" fill="${SK}"/>`;
+  for(let i=0;i<6;i++) s+=`<path d="M${X-30},${F-820+i*40} q30,-14 60,0" stroke="${SKd}" stroke-width="7" fill="none"/>`;
+  for(let i=0;i<5;i++) s+=`<path d="M${X-70+i*30},${F-440} l${8-i*3},${-40-i*6} l${10+i*2},${36+i*4}" fill="#5a5040"/>`;
+  // arms: long, bony fingers
+  s+=`<path d="M${X-76},${F-880} Q${X-170},${F-700} ${X-190},${F-500}" stroke="#5a5040" stroke-width="30" fill="none" stroke-linecap="round"/>`;
+  s+=[...Array(5)].map((_,i)=>`<path d="M${X-190},${F-500} q${-20+i*8},${50} ${-14+i*10},${110+i*6}" stroke="${SK}" stroke-width="7" fill="none" stroke-linecap="round"/>`).join('');
+  s+=`<path d="M${X+76},${F-880} Q${X+150},${F-930} ${X+140},${F-1000}" stroke="#5a5040" stroke-width="30" fill="none" stroke-linecap="round"/>`+sack(X+120,F-1040,.9,true);
+  // head: gaunt, face in shadow, two pinpoint eyes, hat
+  s+=`<path d="M${X-16},${F-920} L${X-12},${F-970} L${X+16},${F-970} L${X+18},${F-920}Z" fill="${SKd}"/><ellipse cx="${X}" cy="${F-1010}" rx="44" ry="58" fill="${SK}"/>`;
+  s+=`<path d="M${X-44},${F-1030} Q${X},${F-1000} ${X+44},${F-1030} L${X+44},${F-1010} Q${X},${F-985} ${X-44},${F-1010}Z" fill="#000" opacity=".55"/><ellipse cx="${X}" cy="${F-1028}" rx="46" ry="34" fill="#000" opacity=".6"/>`;
+  s+=`<circle cx="${X-16}" cy="${F-1026}" r="8" fill="#fffbe0"/><circle cx="${X+16}" cy="${F-1026}" r="8" fill="#fffbe0"/><circle cx="${X-16}" cy="${F-1026}" r="26" fill="#fffbe0" opacity=".25"/><circle cx="${X+16}" cy="${F-1026}" r="26" fill="#fffbe0" opacity=".25"/>`;
+  s+=`<path d="M${X-20},${F-972} q20,8 40,0" stroke="#2a2a20" stroke-width="5" fill="none"/>`+hat(X,F-1056,130,'#3a2e20',-8);
+  return s}
+// ---------- C: el que silba ----------
+function silbonC(){const X=760,F=1230,PL='#e8e6dc',PLd='#b8b6ac',SU='#f3f0e6';let s=`<ellipse cx="${X}" cy="${F+10}" rx="220" ry="40" fill="url(#fog)"/>`;
+  s+=`<path d="M${X-26},${F} L${X-30},${F-460} M${X+26},${F} L${X+34},${F-460}" stroke="${SU}" stroke-width="40" stroke-linecap="round"/>`;
+  s+=`<path d="M${X-36},${F} l-70,6 M${X+36},${F} l70,6" stroke="${PLd}" stroke-width="16" stroke-linecap="round"/>`;
+  // liqui liqui jacket (white, buttoned) on a far too long body
+  s+=`<path d="M${X-66},${F-450} L${X-76},${F-930} Q${X},${F-960} ${X+76},${F-930} L${X+66},${F-450}Z" fill="${SU}"/><path d="M${X},${F-930} L${X},${F-460}" stroke="${PLd}" stroke-width="4"/>${[...Array(6)].map((_,i)=>`<circle cx="${X}" cy="${F-900+i*70}" r="6" fill="#c9a050"/>`).join('')}`;
+  s+=`<path d="M${X-74},${F-910} Q${X-140},${F-720} ${X-150},${F-470}" stroke="${SU}" stroke-width="30" fill="none" stroke-linecap="round"/><ellipse cx="${X-150}" cy="${F-450}" rx="18" ry="34" fill="${PL}"/>`;
+  s+=`<path d="M${X+74},${F-910} Q${X+150},${F-940} ${X+140},${F-1000}" stroke="${SU}" stroke-width="30" fill="none" stroke-linecap="round"/>`+sack(X+120,F-1040,.9,true);
+  // the neck: far too long, head tilted
+  s+=`<path d="M${X},${F-940} Q${X-6},${F-1000} ${X+16},${F-1050}" stroke="${PL}" stroke-width="26" fill="none" stroke-linecap="round"/>`;
+  s+=`<g transform="translate(${X+26},${F-1100}) rotate(18)"><ellipse cx="0" cy="0" rx="40" ry="64" fill="${PL}"/><path d="M-30,-10 Q0,-4 30,-10" stroke="${PLd}" stroke-width="4" fill="none" opacity=".6"/>`;
+  s+=`<ellipse cx="0" cy="30" rx="12" ry="9" fill="#2a1a1a"/><ellipse cx="0" cy="30" rx="18" ry="14" fill="none" stroke="#b07a7a" stroke-width="5"/></g>`+hat(X+42,F-1160,110,'#d9c9a0',18);
+  // floating notes rising: do re mi
+  ['do','re','mi','fa'].forEach((n,i)=>{const nx=X+90+i*44,ny=F-1110-i*56;s+=`<g transform="translate(${nx},${ny}) rotate(${-10+i*6})" opacity="${(.9-i*.15).toFixed(2)}"><path d="M0,0 L0,-46 L22,-56" stroke="#e8f0ff" stroke-width="5" fill="none"/><ellipse cx="-8" cy="2" rx="12" ry="9" fill="#e8f0ff"/><text x="26" y="10" font-family="Inter" font-weight="800" font-size="22" fill="#e8f0ff">${n}</text></g>`;});
+  return s}
+let s=llanos();s+=V==='A'?silbonA():V==='B'?silbonB():silbonC();s+=heroes();
+s+=`<rect x="30" y="1260" width="${V==='A'?560:V==='B'?600:520}" height="64" fill="#11131f" opacity=".85"/><rect x="30" y="1260" width="12" height="64" fill="#ffd34a"/><text x="60" y="1304" font-family="JetBrains Mono" font-weight="800" font-size="32" fill="#ffd34a">${V==='A'?'A · LA SOMBRA DEL LLANO':V==='B'?'B · HUESOS Y SOMBRERO':'C · EL QUE SILBA'}</text>`;
+document.getElementById('s').innerHTML=s;document.title='done';
+</script></body></html>

@@ -1,0 +1,221 @@
+[
+ {
+  "sc": "intro",
+  "hud": "CUARTO · 17:10",
+  "say": "Si un día abres tu mochila... y dentro hay un millón de euros...",
+  "cap": "SI UN DÍA ABRES TU MOCHILA... Y DENTRO HAY UN MILLÓN DE EUROS...|g",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "CUARTO · 17:10",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Vega. Doce años.",
+  "cap": "VEGA.|y 12 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Va al cole en autobús. Siempre con su mochila verde, la del llavero de fresa.",
+  "cap": "VA AL COLE EN AUTOBÚS. SIEMPRE CON SU MOCHILA VERDE, LA DEL LLAVERO DE FRESA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "open",
+  "hud": "CUARTO · 17:10",
+  "say": "Esa tarde, al abrir la mochila, no encuentra sus libros.",
+  "cap": "ESA TARDE, AL ABRIR LA MOCHILA, NO ENCUENTRA SUS LIBROS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "open",
+  "hud": "CUARTO · 17:10",
+  "alert": true,
+  "say": "Encuentra billetes. Fajos y fajos de billetes de quinientos.",
+  "cap": "ENCUENTRA BILLETES. FAJOS Y FAJOS DE BILLETES DE QUINIENTOS.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "open",
+  "hud": "CUARTO · 17:11",
+  "say": "Los cuenta tres veces. Un millón exacto.",
+  "cap": "LOS CUENTA TRES VECES. UN MILLÓN EXACTO.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "open",
+  "hud": "CUARTO · 17:11",
+  "say": "Es una mochila igualita a la suya. Pero sin el llavero de fresa.",
+  "cap": "ES UNA MOCHILA IGUALITA A LA SUYA. PERO SIN EL LLAVERO DE FRESA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · NI UNA PALABRA",
+  "step": 0,
+  "say": "Paso uno: no se lo cuentes a nadie. Ni a tu mejor amiga.",
+  "cap": "PASO|y UNO: NO SE LO CUENTES A NADIE. NI A TU MEJOR AMIGA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · NI UNA PALABRA",
+  "say": "Un millón de euros no se pierde sin más. Alguien lo está buscando.",
+  "cap": "UN MILLÓN DE EUROS NO SE PIERDE SIN MÁS. ALGUIEN LO ESTÁ BUSCANDO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · NI UNA PALABRA",
+  "alert": true,
+  "say": "Y no va a dejar de buscarlo.",
+  "cap": "Y NO VA A DEJAR DE BUSCARLO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · NO LO TOQUES",
+  "step": 1,
+  "say": "Paso dos: no te gastes ni un billete.",
+  "cap": "PASO|y DOS: NO TE GASTES NI UN BILLETE.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CUARTO · 17:20",
+  "say": "Vega se fija mejor: todos tienen una marca roja en la esquina.",
+  "cap": "VEGA SE FIJA MEJOR: TODOS TIENEN UNA MARCA ROJA EN LA ESQUINA.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CUARTO · 17:20",
+  "alert": true,
+  "say": "Como si alguien los hubiera contado. Uno a uno.",
+  "cap": "COMO SI ALGUIEN LOS HUBIERA CONTADO. UNO A UNO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "CUARTO · 17:25",
+  "say": "Vega esconde la mochila debajo de la cama.",
+  "cap": "VEGA ESCONDE LA MOCHILA DEBAJO DE LA CAMA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · ¿DÓNDE?",
+  "step": 2,
+  "say": "Paso tres: piensa dónde se cambiaron las mochilas.",
+  "cap": "PASO|y TRES: PIENSA DÓNDE SE CAMBIARON LAS MOCHILAS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "AUTOBÚS · 16:40",
+  "say": "En el autobús. Un hombre de traje se sentó a su lado, con una mochila verde en las rodillas.",
+  "cap": "EN EL AUTOBÚS. UN HOMBRE DE TRAJE SE SENTÓ A SU LADO, CON UNA MOCHILA VERDE EN LAS RODILLAS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "AUTOBÚS · 16:52",
+  "say": "Vega se bajó con la suya... o eso creía.",
+  "cap": "VEGA SE BAJÓ CON LA SUYA... O ESO CREÍA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "AUTOBÚS · 16:52",
+  "alert": true,
+  "say": "Ahora él tiene la de Vega. Con sus libros, su nombre... y las llaves de su casa.",
+  "cap": "AHORA ÉL TIENE LA DE VEGA. CON SUS LIBROS, SU NOMBRE... Y LAS LLAVES DE SU CASA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · NO ABRAS",
+  "step": 3,
+  "say": "Paso cuatro: si alguien viene a por ella... no abras la puerta.",
+  "cap": "PASO|y CUATRO: SI ALGUIEN VIENE A POR ELLA... NO ABRAS LA PUERTA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · NO ABRAS",
+  "say": "Aunque sepa tu nombre. Aunque diga que es amigo de tus padres.",
+  "cap": "AUNQUE SEPA TU NOMBRE. AUNQUE DIGA QUE ES AMIGO DE TUS PADRES.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "night",
+  "hud": "CASA · 22:30",
+  "say": "Esa noche, sus padres han salido a cenar. Vega está sola.",
+  "cap": "ESA NOCHE, SUS PADRES HAN SALIDO A CENAR. VEGA ESTÁ SOLA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "night",
+  "hud": "CASA · 22:35",
+  "say": "Ve la tele con el volumen muy bajito.",
+  "cap": "VE LA TELE CON EL VOLUMEN MUY BAJITO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "night",
+  "hud": "CASA · 22:40",
+  "alert": true,
+  "say": "A las once menos veinte, suena el timbre.",
+  "cap": "A LAS ONCE MENOS VEINTE, SUENA EL TIMBRE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "peep",
+  "hud": "MIRILLA · 22:40",
+  "say": "Por la mirilla ve a un hombre de traje. Con una mochila verde...",
+  "cap": "POR LA MIRILLA VE A UN HOMBRE DE TRAJE. CON UNA MOCHILA VERDE...",
+  "pause": 0.1
+ },
+ {
+  "sc": "peep",
+  "hud": "MIRILLA · 22:40",
+  "alert": true,
+  "say": "con un llavero de fresa.",
+  "cap": "CON UN LLAVERO DE FRESA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "peep",
+  "hud": "MIRILLA · 22:41",
+  "alert": true,
+  "voice": "tv",
+  "say": "Hola, Vega. Vengo a por mi mochila.",
+  "cap": "«HOLA, VEGA. VENGO A POR MI MOCHILA.»|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "end",
+  "hud": "CASA · 22:41",
+  "alert": true,
+  "say": "Vega no abre. Pero entonces oye unas llaves...",
+  "cap": "VEGA NO ABRE. PERO ENTONCES OYE UNAS LLAVES...|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "end",
+  "hud": "CASA · 22:41",
+  "alert": true,
+  "cut": true,
+  "say": "entrando en su cerradura.",
+  "cap": "ENTRANDO EN SU CERRADURA.|p",
+  "pause": 0.2
+ }
+]

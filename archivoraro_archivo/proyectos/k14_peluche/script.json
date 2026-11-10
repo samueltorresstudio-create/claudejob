@@ -1,0 +1,217 @@
+[
+ {
+  "sc": "intro",
+  "hud": "CUARTO · 21:30",
+  "say": "Si un día tu peluche te deja una nota... que dice: no duermas en tu cama...",
+  "cap": "SI UN DÍA TU PELUCHE TE DEJA UNA NOTA... QUE DICE: «NO DUERMAS EN TU CAMA»...|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "CUARTO · 21:30",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Carmen. Nueve años.",
+  "cap": "CARMEN.|y 9 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Duerme cada noche con Bolita, su oso de peluche. Desde que era un bebé.",
+  "cap": "DUERME CADA NOCHE CON BOLITA, SU OSO DE PELUCHE. DESDE QUE ERA UN BEBÉ.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Bolita tiene un ojo de botón un poco suelto. Y nunca, nunca se mueve.",
+  "cap": "BOLITA TIENE UN OJO DE BOTÓN UN POCO SUELTO. Y NUNCA, NUNCA SE MUEVE.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "note",
+  "hud": "CUARTO · 21:30",
+  "say": "Esa noche, encuentra una nota debajo de la almohada.",
+  "cap": "ESA NOCHE, ENCUENTRA UNA NOTA DEBAJO DE LA ALMOHADA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "note",
+  "hud": "CUARTO · 21:31",
+  "say": "Las letras están torcidas, como escritas con una pata.",
+  "cap": "LAS LETRAS ESTÁN TORCIDAS, COMO ESCRITAS CON UNA PATA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "note",
+  "hud": "CUARTO · 21:31",
+  "alert": true,
+  "say": "Pone: no duermas en tu cama. Y la firma... es una huella de oso.",
+  "cap": "PONE: «NO DUERMAS EN TU CAMA». Y LA FIRMA... ES UNA HUELLA DE OSO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · HAZLE CASO",
+  "step": 0,
+  "say": "Paso uno: hazle caso a tu peluche.",
+  "cap": "PASO|y UNO: HAZLE CASO A TU PELUCHE.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · HAZLE CASO",
+  "say": "Los peluches no hablan. Pero lo ven todo.",
+  "cap": "LOS PELUCHES NO HABLAN. PERO LO VEN TODO.|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "SALÓN · 21:45",
+  "say": "Carmen coge su manta y se va a dormir al sofá del salón.",
+  "cap": "CARMEN COGE SU MANTA Y SE VA A DORMIR AL SOFÁ DEL SALÓN.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "SALÓN · 21:45",
+  "say": "Sus padres duermen al fondo del pasillo. No se enteran de nada.",
+  "cap": "SUS PADRES DUERMEN AL FONDO DEL PASILLO. NO SE ENTERAN DE NADA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · EL TRUCO",
+  "step": 1,
+  "say": "Paso dos: que parezca que sigues ahí.",
+  "cap": "PASO|y DOS: QUE PAREZCA QUE SIGUES AHÍ.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CUARTO · 21:40",
+  "say": "Mete dos cojines debajo de la sábana. Con la forma de una niña dormida.",
+  "cap": "METE DOS COJINES DEBAJO DE LA SÁBANA. CON LA FORMA DE UNA NIÑA DORMIDA.|b",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CUARTO · 21:40",
+  "say": "Tarda diez minutos en que quede perfecto.",
+  "cap": "TARDA DIEZ MINUTOS EN QUE QUEDE PERFECTO.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CUARTO · 21:41",
+  "say": "Y deja a Bolita sentado en la estantería, vigilando la cama.",
+  "cap": "Y DEJA A BOLITA SENTADO EN LA ESTANTERÍA, VIGILANDO LA CAMA.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · SIN RUIDO",
+  "step": 2,
+  "say": "Paso tres: apaga la luz y cierra la puerta. Sin hacer ruido.",
+  "cap": "PASO|y TRES: APAGA LA LUZ Y CIERRA LA PUERTA. SIN HACER RUIDO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "CUARTO · 21:42",
+  "say": "Antes de cerrar, le parece que Bolita le dice adiós con la pata.",
+  "cap": "ANTES DE CERRAR, LE PARECE QUE BOLITA LE DICE ADIÓS CON LA PATA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · HASTA EL SOL",
+  "step": 3,
+  "say": "Paso cuatro: pase lo que pase, no vuelvas a tu cuarto antes de que salga el sol.",
+  "cap": "PASO|y CUATRO: PASE LO QUE PASE, NO VUELVAS A TU CUARTO ANTES DE QUE SALGA EL SOL.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · HASTA EL SOL",
+  "say": "Oigas lo que oigas.",
+  "cap": "OIGAS LO QUE OIGAS.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "night",
+  "hud": "SALÓN · 03:00",
+  "say": "A las tres de la mañana, Carmen se despierta con sed.",
+  "cap": "A LAS TRES DE LA MAÑANA, CARMEN SE DESPIERTA CON SED.",
+  "pause": 0.1
+ },
+ {
+  "sc": "night",
+  "hud": "PASILLO · 03:01",
+  "say": "Para ir a la cocina, tiene que pasar por delante de su cuarto.",
+  "cap": "PARA IR A LA COCINA, TIENE QUE PASAR POR DELANTE DE SU CUARTO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "night",
+  "hud": "PASILLO · 03:01",
+  "alert": true,
+  "say": "La puerta, que había cerrado... está entreabierta.",
+  "cap": "LA PUERTA, QUE HABÍA CERRADO... ESTÁ ENTREABIERTA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "peek",
+  "hud": "CUARTO · 03:02",
+  "say": "Bolita ya no está en la estantería. Está en el suelo, junto a la cama.",
+  "cap": "BOLITA YA NO ESTÁ EN LA ESTANTERÍA. ESTÁ EN EL SUELO, JUNTO A LA CAMA.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "peek",
+  "hud": "CUARTO · 03:02",
+  "say": "Como si hubiera intentado defenderla.",
+  "cap": "COMO SI HUBIERA INTENTADO DEFENDERLA.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "peek",
+  "hud": "CUARTO · 03:02",
+  "alert": true,
+  "say": "Y en la cama, el bulto de los cojines... respira.",
+  "cap": "Y EN LA CAMA, EL BULTO DE LOS COJINES... RESPIRA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "peek",
+  "hud": "CUARTO · 03:02",
+  "alert": true,
+  "say": "Pero los cojines no respiran.",
+  "cap": "PERO LOS COJINES NO RESPIRAN.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "CUARTO · 03:02",
+  "alert": true,
+  "say": "Sube. Y baja. Sube. Y baja.",
+  "cap": "SUBE. Y BAJA. SUBE. Y BAJA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "CUARTO · 03:02",
+  "alert": true,
+  "cut": true,
+  "say": "Y entonces, muy despacio... empieza a darse la vuelta.",
+  "cap": "Y ENTONCES, MUY DESPACIO... EMPIEZA A DARSE LA VUELTA.|p",
+  "pause": 0.2
+ }
+]

@@ -1,0 +1,21 @@
+[
+ {"sc":"plaza","hud":"#clock","say":"Si un día, a las tres y siete de la tarde...","cap":"SI UN DÍA, A LAS 15:07...","pause":0.15},
+ {"sc":"plaza","hud":"#clock","say":"el mundo entero se congela...","cap":"EL MUNDO ENTERO SE CONGELA...|b","pause":0.55},
+ {"sc":"plaza","hud":"TIEMPO: DETENIDO","alert":true,"say":"y tú eres el único que se sigue moviendo.","cap":"Y TÚ ERES EL ÚNICO|y QUE SE SIGUE MOVIENDO.","pause":0.25},
+ {"sc":"id","hud":"IDENTIFICACIÓN","say":"Hugo. Veintidós años.","cap":"HUGO.|y 22 AÑOS.","pause":0.3},
+ {"sc":"fun","hud":"TIEMPO: DETENIDO","alert":true,"say":"Al principio, parece un regalo.","cap":"AL PRINCIPIO, PARECE UN REGALO.|g","pause":0.25},
+ {"sc":"watch","hud":"#watch","say":"Pero su reloj es el único que sigue avanzando.","cap":"PERO SU RELOJ ES EL ÚNICO QUE SIGUE AVANZANDO.|p","pause":0.3},
+ {"sc":"note","hud":"15:07 · BOLSILLO","say":"Entonces, encuentra una nota en su bolsillo...","cap":"ENTONCES, ENCUENTRA UNA NOTA|y EN SU BOLSILLO...","pause":0.15},
+ {"sc":"note","hud":"15:07 · BOLSILLO","say":"escrita con su propia letra.","cap":"ESCRITA CON SU PROPIA LETRA.|p","pause":0.35},
+ {"sc":"note","hud":"15:07 · NOTA","say":"Si lees esto, ya ha pasado otra vez.","cap":"«SI LEES ESTO, YA HA PASADO OTRA VEZ.|p»","pause":0.2},
+ {"sc":"note","hud":"15:07 · NOTA","say":"Sigue las reglas.","cap":"«SIGUE LAS REGLAS.|y»","pause":0.3},
+ {"sc":"touch","hud":"REGLA 1 · NO TOCAR","step":0,"say":"Regla uno: no toques a nadie.","cap":"REGLA|y UNO: NO TOQUES|p A NADIE.","pause":0.3},
+ {"sc":"glass","hud":"REGLA 2 · REFLEJOS","step":1,"say":"Regla dos: no mires los reflejos.","cap":"REGLA|y DOS: NO MIRES LOS REFLEJOS.|p","pause":0.15},
+ {"sc":"glass","hud":"REGLA 2 · REFLEJOS","say":"Porque en los reflejos... no todo está quieto.","cap":"PORQUE EN LOS REFLEJOS... NO TODO ESTÁ QUIETO.|p","pause":0.4},
+ {"sc":"run","hud":"REGLA 3 · CORRE","step":2,"alert":true,"say":"Regla tres: si alguien te mira... corre.","cap":"REGLA|y TRES: SI ALGUIEN TE MIRA... CORRE.|p","pause":0.45},
+ {"sc":"avenue","hud":"AVENIDA · 15:07","say":"Hugo camina entre miles de personas inmóviles.","cap":"HUGO CAMINA ENTRE MILES DE PERSONAS INMÓVILES.","pause":0.2},
+ {"sc":"faces","hud":"PULSO: 0","say":"Ninguna parpadea. Ninguna respira.","cap":"NINGUNA PARPADEA. NINGUNA RESPIRA.","pause":0.3},
+ {"sc":"avenue2","hud":"AVENIDA · 15:07","say":"Hasta que, al final de la calle...","cap":"HASTA QUE, AL FINAL DE LA CALLE...","pause":0.2},
+ {"sc":"man","hud":"MOVIMIENTO DETECTADO","alert":true,"say":"un hombre gira la cabeza... hacia él.","cap":"UN HOMBRE GIRA LA CABEZA...|p HACIA ÉL.|p","pause":0.35},
+ {"sc":"man","hud":"MOVIMIENTO DETECTADO","alert":true,"say":"Y empieza a caminar.","cap":"Y EMPIEZA A CAMINAR.|p","pause":0.9,"cut":true}
+]

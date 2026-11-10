@@ -1,0 +1,213 @@
+[
+ {
+  "sc": "intro",
+  "hud": "PUEBLO · 08:00",
+  "say": "Si un día todos los animales empiezan a hablar... y solo dicen una palabra: escondeos...",
+  "cap": "SI UN DÍA TODOS LOS ANIMALES EMPIEZAN A HABLAR... Y SOLO DICEN UNA PALABRA: «ESCONDEOS»...|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "PUEBLO · 08:00",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Alma. Diez años.",
+  "cap": "ALMA.|y 10 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Vive en un pueblo pequeño, con sus padres y con Toby, su perro.",
+  "cap": "VIVE EN UN PUEBLO PEQUEÑO, CON SUS PADRES Y CON TOBY, SU PERRO.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Toby es viejo, perezoso... y casi nunca ladra.",
+  "cap": "TOBY ES VIEJO, PEREZOSO... Y CASI NUNCA LADRA.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "talk",
+  "hud": "COCINA · 08:05",
+  "say": "Esa mañana, mientras desayuna, Toby se sienta delante de ella. Y la mira fijamente.",
+  "cap": "ESA MAÑANA, MIENTRAS DESAYUNA, TOBY SE SIENTA DELANTE DE ELLA. Y LA MIRA FIJAMENTE.",
+  "pause": 0.15
+ },
+ {
+  "sc": "talk",
+  "hud": "COCINA · 08:05",
+  "say": "Entonces abre la boca... y habla.",
+  "cap": "ENTONCES ABRE LA BOCA... Y HABLA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "talk",
+  "hud": "COCINA · 08:05",
+  "alert": true,
+  "voice": "tv",
+  "say": "Escondeos.",
+  "cap": "«ESCONDEOS.»|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "talk",
+  "hud": "COCINA · 08:05",
+  "say": "El vaso de leche se le cae de la mano.",
+  "cap": "EL VASO DE LECHE SE LE CAE DE LA MANO.",
+  "pause": 0.3
+ },
+ {
+  "sc": "street",
+  "hud": "CALLE · 08:10",
+  "say": "En la calle pasa lo mismo. Los gatos. Las palomas. Las vacas del prado.",
+  "cap": "EN LA CALLE PASA LO MISMO. LOS GATOS. LAS PALOMAS. LAS VACAS DEL PRADO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "street",
+  "hud": "CALLE · 08:10",
+  "alert": true,
+  "say": "Todos repiten lo mismo, una y otra vez: escondeos.",
+  "cap": "TODOS REPITEN LO MISMO, UNA Y OTRA VEZ: «ESCONDEOS».|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "street",
+  "hud": "CALLE · 08:11",
+  "say": "La gente se ríe. Creen que es una broma de la tele.",
+  "cap": "LA GENTE SE RÍE. CREEN QUE ES UNA BROMA DE LA TELE.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · HAZLES CASO",
+  "step": 0,
+  "say": "Paso uno: hazles caso. Los animales siempre lo notan antes.",
+  "cap": "PASO|y UNO: HAZLES CASO. LOS ANIMALES SIEMPRE LO NOTAN ANTES.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · HAZLES CASO",
+  "say": "Notan las tormentas. Los terremotos. Y las cosas que todavía no se ven.",
+  "cap": "NOTAN LAS TORMENTAS. LOS TERREMOTOS. Y LAS COSAS QUE TODAVÍA NO SE VEN.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · PREGUNTA",
+  "step": 1,
+  "say": "Paso dos: pregunta de qué hay que esconderse.",
+  "cap": "PASO|y DOS: PREGUNTA DE QUÉ HAY QUE ESCONDERSE.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CALLE · 08:12",
+  "say": "Alma se lo pregunta a Toby. Toby mira al cielo...",
+  "cap": "ALMA SE LO PREGUNTA A TOBY. TOBY MIRA AL CIELO...",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CALLE · 08:12",
+  "alert": true,
+  "say": "y empieza a temblar.",
+  "cap": "Y EMPIEZA A TEMBLAR.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "CALLE · 08:13",
+  "alert": true,
+  "say": "Todos los animales del pueblo están mirando al mismo sitio. Arriba.",
+  "cap": "TODOS LOS ANIMALES DEL PUEBLO ESTÁN MIRANDO AL MISMO SITIO. ARRIBA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · BAJO TIERRA",
+  "step": 2,
+  "say": "Paso tres: baja al sótano. Cuanto más abajo, mejor.",
+  "cap": "PASO|y TRES: BAJA AL SÓTANO. CUANTO MÁS ABAJO, MEJOR.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "SÓTANO · 08:30",
+  "say": "Alma convence a sus padres. Bajan con linternas, agua y mantas.",
+  "cap": "ALMA CONVENCE A SUS PADRES. BAJAN CON LINTERNAS, AGUA Y MANTAS.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "SÓTANO · 08:40",
+  "alert": true,
+  "say": "Por la ventanita del sótano se ve el cielo. Se ha puesto de un color muy raro.",
+  "cap": "POR LA VENTANITA DEL SÓTANO SE VE EL CIELO. SE HA PUESTO DE UN COLOR MUY RARO.|g",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "SÓTANO · 08:41",
+  "say": "Toby se acurruca a sus pies. No deja de temblar.",
+  "cap": "TOBY SE ACURRUCA A SUS PIES. NO DEJA DE TEMBLAR.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · SILENCIO",
+  "step": 3,
+  "say": "Paso cuatro: silencio absoluto. Y nada de luces.",
+  "cap": "PASO|y CUATRO: SILENCIO ABSOLUTO. Y NADA DE LUCES.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "step4",
+  "hud": "SÓTANO · 08:45",
+  "say": "Apagan las linternas. Nadie dice nada. Fuera, ya no se oye ni un pájaro.",
+  "cap": "APAGAN LAS LINTERNAS. NADIE DICE NADA. FUERA, YA NO SE OYE NI UN PÁJARO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "SÓTANO · 08:46",
+  "say": "Solo se oye la respiración de Toby.",
+  "cap": "SOLO SE OYE LA RESPIRACIÓN DE TOBY.",
+  "pause": 0.3
+ },
+ {
+  "sc": "end",
+  "hud": "SÓTANO · 08:51",
+  "say": "De repente, Toby levanta las orejas.",
+  "cap": "DE REPENTE, TOBY LEVANTA LAS OREJAS.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "SÓTANO · 08:51",
+  "alert": true,
+  "say": "Se acerca a Alma... y le susurra al oído:",
+  "cap": "SE ACERCA A ALMA... Y LE SUSURRA AL OÍDO:",
+  "pause": 0.2
+ },
+ {
+  "sc": "end",
+  "hud": "SÓTANO · 08:51",
+  "alert": true,
+  "cut": true,
+  "voice": "tv",
+  "say": "Ya están aquí.",
+  "cap": "«YA ESTÁN AQUÍ.»|p",
+  "pause": 0.2
+ }
+]

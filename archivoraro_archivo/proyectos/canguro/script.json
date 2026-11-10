@@ -1,0 +1,254 @@
+[
+ {
+  "sc": "house",
+  "hud": "SÁBADO · 21:00",
+  "say": "Si te contratan de canguro un sábado por la noche...",
+  "cap": "SI TE CONTRATAN DE CANGURO UN SÁBADO POR LA NOCHE...",
+  "pause": 0.15
+ },
+ {
+  "sc": "house",
+  "hud": "SÁBADO · 21:00",
+  "say": "y los padres te dejan una lista de normas... muy raras...",
+  "cap": "Y LOS PADRES TE DEJAN UNA LISTA DE NORMAS... MUY RARAS...|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "house",
+  "hud": "SÁBADO · 21:00",
+  "alert": true,
+  "say": "no te saltes ninguna.",
+  "cap": "NO TE SALTES NINGUNA.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Marta. Diecisiete años.",
+  "cap": "MARTA.|y 17 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Cuarenta euros la hora, por cuidar a un bebé.",
+  "cap": "40 € LA HORA,|g POR CUIDAR A UN BEBÉ.",
+  "pause": 0.2
+ },
+ {
+  "sc": "hall",
+  "hud": "SÁBADO · 21:04",
+  "say": "Los padres se van con prisa.",
+  "cap": "LOS PADRES SE VAN CON PRISA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "hall",
+  "hud": "SÁBADO · 21:04",
+  "alert": true,
+  "say": "Ni siquiera se despiden del niño.",
+  "cap": "NI SIQUIERA SE DESPIDEN DEL NIÑO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "hall",
+  "hud": "SÁBADO · 21:05",
+  "say": "El bebé ya está dormido arriba. Marta ni siquiera llega a verle la cara.",
+  "cap": "EL BEBÉ YA ESTÁ DORMIDO ARRIBA. MARTA NI SIQUIERA LLEGA A VERLE LA CARA.|p",
+  "pause": 0.35
+ },
+ {
+  "sc": "note",
+  "hud": "COCINA · 21:06",
+  "say": "En la nevera, hay una nota.",
+  "cap": "EN LA NEVERA, HAY UNA NOTA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "monitor",
+  "hud": "NORMA 1 · EL BEBÉ",
+  "step": 0,
+  "say": "Norma uno: si el bebé habla, no le contestes.",
+  "cap": "NORMA|y UNO: SI EL BEBÉ HABLA, NO LE CONTESTES.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "monitor",
+  "hud": "NORMA 1 · EL BEBÉ",
+  "say": "Los bebés no hablan, piensa Marta.",
+  "cap": "LOS BEBÉS NO HABLAN, PIENSA MARTA.",
+  "pause": 0.2
+ },
+ {
+  "sc": "monitor",
+  "hud": "SALÓN · 23:00",
+  "say": "A las once, por el vigilabebés, se oye una voz:",
+  "cap": "A LAS 23:00, POR EL VIGILABEBÉS, SE OYE UNA VOZ:",
+  "pause": 0.15
+ },
+ {
+  "sc": "speaker",
+  "hud": "VIGILABEBÉS",
+  "alert": true,
+  "say": "Marta... tengo sed.",
+  "cap": "«MARTA... TENGO SED.|p»",
+  "voice": "tv",
+  "pause": 0.3
+ },
+ {
+  "sc": "speaker",
+  "hud": "VIGILABEBÉS",
+  "alert": true,
+  "say": "Es la voz de un adulto.",
+  "cap": "ES LA VOZ DE UN ADULTO.|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "speaker",
+  "hud": "NORMA 1 · EL BEBÉ",
+  "say": "Marta no contesta.",
+  "cap": "MARTA NO CONTESTA.",
+  "pause": 0.4
+ },
+ {
+  "sc": "basement",
+  "hud": "NORMA 2 · SÓTANO",
+  "step": 1,
+  "say": "Norma dos: no abras la puerta del sótano. Aunque llamen desde dentro.",
+  "cap": "NORMA|y DOS: NO ABRAS LA PUERTA DEL SÓTANO. AUNQUE LLAMEN DESDE DENTRO.|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "basement",
+  "hud": "PASILLO · 00:00",
+  "alert": true,
+  "say": "A medianoche, alguien llama desde el sótano.",
+  "cap": "A MEDIANOCHE, ALGUIEN LLAMA DESDE EL SÓTANO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "basement",
+  "hud": "PASILLO · 00:00",
+  "alert": true,
+  "say": "Marta, ábreme. Soy la madre. Me he quedado encerrada.",
+  "cap": "«MARTA, ÁBREME. SOY LA MADRE. ME HE QUEDADO ENCERRADA.|p»",
+  "voice": "tv",
+  "pause": 0.3
+ },
+ {
+  "sc": "drive",
+  "hud": "ENTRADA · 00:01",
+  "say": "Marta mira por la ventana.",
+  "cap": "MARTA MIRA POR LA VENTANA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "drive",
+  "hud": "ENTRADA · 00:01",
+  "alert": true,
+  "say": "El coche de los padres... no ha vuelto.",
+  "cap": "EL COCHE DE LOS PADRES... NO HA VUELTO.|p",
+  "pause": 0.4
+ },
+ {
+  "sc": "tv",
+  "hud": "NORMA 3 · TELE",
+  "step": 2,
+  "say": "Norma tres: a las tres en punto, apaga la tele.",
+  "cap": "NORMA|y TRES: A LAS TRES EN PUNTO, APAGA LA TELE.",
+  "pause": 0.15
+ },
+ {
+  "sc": "tv",
+  "hud": "SALÓN · 02:59",
+  "alert": true,
+  "say": "A las tres menos un minuto, la tele se enciende sola.",
+  "cap": "A LAS 02:59, LA TELE SE ENCIENDE SOLA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "tv",
+  "hud": "SALÓN · 02:59",
+  "say": "Sale el salón de la casa... grabado desde una esquina.",
+  "cap": "SALE EL SALÓN DE LA CASA... GRABADO DESDE UNA ESQUINA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "tv",
+  "hud": "SALÓN · 02:59",
+  "alert": true,
+  "say": "Y en la imagen, detrás del sofá... hay alguien de pie.",
+  "cap": "Y EN LA IMAGEN, DETRÁS DEL SOFÁ... HAY ALGUIEN DE PIE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "tv",
+  "hud": "SALÓN · 02:59",
+  "alert": true,
+  "say": "Mirando directamente a la cámara.",
+  "cap": "MIRANDO DIRECTAMENTE A LA CÁMARA.|p",
+  "pause": 0.45
+ },
+ {
+  "sc": "turn",
+  "hud": "SALÓN · 03:00",
+  "say": "Marta se gira. Detrás del sofá no hay nadie.",
+  "cap": "MARTA SE GIRA. DETRÁS DEL SOFÁ NO HAY NADIE.",
+  "pause": 0.15
+ },
+ {
+  "sc": "turn",
+  "hud": "SALÓN · 03:00",
+  "say": "Apaga la tele.",
+  "cap": "APAGA LA TELE.",
+  "pause": 0.4
+ },
+ {
+  "sc": "call",
+  "hud": "LLAMADA · PAPÁ",
+  "say": "Entonces suena su móvil. Son los padres.",
+  "cap": "ENTONCES SUENA SU MÓVIL. SON LOS PADRES.",
+  "pause": 0.15
+ },
+ {
+  "sc": "call",
+  "hud": "LLAMADA · PAPÁ",
+  "say": "Ya volvemos, Marta. ¿Todo bien?",
+  "cap": "«YA VOLVEMOS, MARTA. ¿TODO BIEN?»",
+  "voice": "tv",
+  "pause": 0.15
+ },
+ {
+  "sc": "call",
+  "hud": "LLAMADA · PAPÁ",
+  "say": "Marta les dice que el bebé duerme tranquilo.",
+  "cap": "MARTA LES DICE QUE EL BEBÉ DUERME TRANQUILO.",
+  "pause": 0.2
+ },
+ {
+  "sc": "call",
+  "hud": "LLAMADA · PAPÁ",
+  "alert": true,
+  "say": "Silencio, al otro lado.",
+  "cap": "SILENCIO, AL OTRO LADO.",
+  "pause": 0.45
+ },
+ {
+  "sc": "call2",
+  "hud": "LLAMADA · PAPÁ",
+  "alert": true,
+  "say": "¿Qué bebé? Nosotros no tenemos ningún bebé.",
+  "cap": "«¿QUÉ BEBÉ? NOSOTROS NO TENEMOS NINGÚN BEBÉ.|p»",
+  "voice": "tv",
+  "pause": 0.45
+ },
+ {
+  "sc": "nursery",
+  "hud": "CUARTO DEL BEBÉ",
+  "alert": true,
+  "say": "Y la puerta del cuarto del bebé... empieza a abrirse.",
+  "cap": "Y LA PUERTA DEL CUARTO DEL BEBÉ... EMPIEZA A ABRIRSE.|p",
+  "pause": 0.9,
+  "cut": true
+ }
+]

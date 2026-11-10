@@ -1,0 +1,28 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;width:800px;height:800px;overflow:hidden}</style></head>
+<body><svg id="s" width="800" height="800" viewBox="0 0 800 800"></svg>
+<script src="lib.js"></script>
+<script>
+const V=new URLSearchParams(location.search).get('v')||'navy';
+const BG=V==='navy'?['#2a3270','#0d1026']:['#ffe066','#f2b51e'];
+const KID={tall:true,skin:'#e2b08e',hs:'short',hair:'#3a2a26',top:'#3a6ab0',topD:'#2a4f88',pants:'#2a2a38',hood:true,strings:true,
+  eyes:'open',look:[7,-3],mouth:'smile',still:true,blink:false};
+const s=2.05, X=400, Y=400+638*s; // head centre at (400,400)
+function cap(x,y,k){ // baseball cap, front view, in head coordinates (head circle r=92, eyes at y≈6)
+  return `<g transform="translate(${x},${y}) scale(${k})">
+   <path d="M-97,-46 C-100,-112 -54,-134 0,-134 C54,-134 100,-112 97,-46 Z" fill="#e2453b"/>
+   <path d="M0,-134 L0,-50 M-48,-126 Q-60,-90 -60,-48 M48,-126 Q60,-90 60,-48" stroke="#b8302a" stroke-width="5" fill="none"/>
+   <circle cx="0" cy="-134" r="9" fill="#b8302a"/>
+   <circle cx="0" cy="-90" r="25" fill="#fff"/><text x="0" y="-76" text-anchor="middle" font-family="Inter,Arial" font-weight="900" font-size="38" fill="#1e2654">?</text>
+   <path d="M-114,-54 Q0,-36 114,-54 Q122,-40 104,-29 Q0,-12 -104,-29 Q-122,-40 -114,-54 Z" fill="#b8302a"/>
+   <path d="M-104,-29 Q0,-12 104,-29" stroke="#8a2420" stroke-width="5" fill="none"/>
+  </g>`}
+let g=`<defs><radialGradient id="bg" cx="50%" cy="42%" r="70%"><stop offset="0" stop-color="${BG[0]}"/><stop offset="1" stop-color="${BG[1]}"/></radialGradient>
+  <radialGradient id="glow"><stop offset="0" stop-color="#ffd34a" stop-opacity=".45"/><stop offset="1" stop-color="#ffd34a" stop-opacity="0"/></radialGradient></defs>
+  <rect width="800" height="800" fill="url(#bg)"/>`;
+if(V==='navy'){g+=`<circle cx="400" cy="380" r="340" fill="url(#glow)"/>`;const r=rng(7);for(let i=0;i<40;i++)g+=`<circle cx="${(r()*800).toFixed(0)}" cy="${(r()*800).toFixed(0)}" r="${(1+r()*2.5).toFixed(1)}" fill="#fff" opacity="${(.2+r()*.5).toFixed(2)}"/>`}
+else{for(let i=0;i<12;i++){const a=i/12*Math.PI*2;g+=`<path d="M400,400 L${400+Math.cos(a)*700},${400+Math.sin(a)*700} L${400+Math.cos(a+.18)*700},${400+Math.sin(a+.18)*700}Z" fill="#fff" opacity=".13"/>`}}
+g+=person({...KID,x:X,y:Y,s});
+g+=`<ellipse cx="400" cy="${400-16*s}" rx="${80*s}" ry="${9*s}" fill="#000" opacity=".12"/>`; // brim shadow on the forehead
+g+=cap(400,400,s);
+document.getElementById('s').innerHTML=tintDefs()+g;
+</script></body></html>

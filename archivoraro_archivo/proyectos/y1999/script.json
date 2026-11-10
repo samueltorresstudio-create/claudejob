@@ -1,0 +1,278 @@
+[
+ {
+  "sc": "wake",
+  "hud": "31 DIC 1999 · 09:12",
+  "say": "Si una mañana te despiertas... en el año 1999...",
+  "cap": "SI UNA MAÑANA TE DESPIERTAS... EN EL AÑO 1999...|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "wake",
+  "hud": "31 DIC 1999 · 09:12",
+  "say": "con tu móvil de 2026 en el bolsillo...",
+  "cap": "CON TU MÓVIL DE 2026|b EN EL BOLSILLO...",
+  "pause": 0.15
+ },
+ {
+  "sc": "wake",
+  "hud": "31 DIC 1999 · 09:12",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer para volver.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER PARA VOLVER.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Dani. Diecinueve años.",
+  "cap": "DANI.|y 19 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Nació en 2007. En este año, todavía no existe.",
+  "cap": "NACIÓ EN 2007.|y EN ESTE AÑO, TODAVÍA NO EXISTE.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "tvnews",
+  "hud": "31 DIC 1999 · 10:00",
+  "say": "En la tele solo hablan del efecto 2000.",
+  "cap": "EN LA TELE SOLO HABLAN DEL EFECTO 2000.|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "tvnews",
+  "hud": "31 DIC 1999 · 10:00",
+  "say": "Esta noche, a las doce, cambia el siglo.",
+  "cap": "ESTA NOCHE, A LAS DOCE, CAMBIA EL SIGLO.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "phone",
+  "hud": "REGLA 1 · EL MÓVIL",
+  "step": 0,
+  "say": "Regla uno: que nadie vea tu móvil.",
+  "cap": "REGLA|y UNO: QUE NADIE VEA TU MÓVIL.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "phone",
+  "hud": "REGLA 1 · EL MÓVIL",
+  "say": "No tiene cobertura. Pero sigue encendido.",
+  "cap": "NO TIENE COBERTURA. PERO SIGUE ENCENDIDO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "phone",
+  "hud": "REGLA 1 · EL MÓVIL",
+  "say": "Y en 1999... una pantalla así no existe.",
+  "cap": "Y EN 1999... UNA PANTALLA ASÍ NO EXISTE.|p",
+  "pause": 0.25
+ },
+ {
+  "sc": "street",
+  "hud": "MADRID · 1999",
+  "alert": true,
+  "say": "En la calle, un hombre se queda mirando su mano.",
+  "cap": "EN LA CALLE, UN HOMBRE SE QUEDA MIRANDO SU MANO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "street",
+  "hud": "MADRID · 1999",
+  "say": "Dani lo guarda. Demasiado tarde.",
+  "cap": "DANI LO GUARDA. DEMASIADO TARDE.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "kiosk",
+  "hud": "REGLA 2 · EL DINERO",
+  "step": 1,
+  "say": "Regla dos: no uses tu dinero.",
+  "cap": "REGLA|y DOS: NO USES TU DINERO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "kiosk",
+  "hud": "QUIOSCO · 12:40",
+  "say": "En España todavía se paga en pesetas.",
+  "cap": "EN ESPAÑA TODAVÍA SE PAGA EN PESETAS.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "kiosk",
+  "hud": "QUIOSCO · 12:40",
+  "say": "Dani da un billete de veinte euros...",
+  "cap": "DANI DA UN BILLETE DE 20 EUROS...|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "kiosk",
+  "hud": "QUIOSCO · 12:40",
+  "alert": true,
+  "say": "y el quiosquero lo mira como si fuera falso.",
+  "cap": "Y EL QUIOSQUERO LO MIRA COMO SI FUERA FALSO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "kiosk",
+  "hud": "QUIOSCO · 12:40",
+  "say": "Porque para él... lo es.",
+  "cap": "PORQUE PARA ÉL... LO ES.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "family",
+  "hud": "REGLA 3 · LA FAMILIA",
+  "step": 2,
+  "say": "Regla tres: no busques a tu familia.",
+  "cap": "REGLA|y TRES: NO BUSQUES A TU FAMILIA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "family",
+  "hud": "SU BARRIO · 17:00",
+  "say": "Pero Dani va igualmente a su barrio.",
+  "cap": "PERO DANI VA IGUALMENTE A SU BARRIO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "family",
+  "hud": "SU BARRIO · 17:00",
+  "say": "Y en el portal... ve a su madre.",
+  "cap": "Y EN EL PORTAL... VE A SU MADRE.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "family",
+  "hud": "SU BARRIO · 17:00",
+  "say": "Con diecinueve años. Como él.",
+  "cap": "CON 19 AÑOS.|y COMO ÉL.",
+  "pause": 0.15
+ },
+ {
+  "sc": "family",
+  "hud": "SU BARRIO · 17:00",
+  "alert": true,
+  "say": "Ella le sonríe... sin saber quién es.",
+  "cap": "ELLA LE SONRÍE... SIN SABER QUIÉN ES.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "bump",
+  "hud": "REGLA 4 · NADA",
+  "step": 3,
+  "say": "Regla cuatro: no cambies nada. Ni un detalle.",
+  "cap": "REGLA|y CUATRO: NO CAMBIES NADA. NI UN DETALLE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "bump",
+  "hud": "PORTAL · 17:20",
+  "say": "Al irse, Dani choca con un chico... y se le caen los apuntes.",
+  "cap": "AL IRSE, DANI CHOCA CON UN CHICO... Y SE LE CAEN LOS APUNTES.",
+  "pause": 0.15
+ },
+ {
+  "sc": "bump",
+  "hud": "PORTAL · 17:20",
+  "alert": true,
+  "say": "En la carpeta pone un nombre: es su padre.",
+  "cap": "EN LA CARPETA PONE UN NOMBRE: ES SU PADRE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "bump",
+  "hud": "PORTAL · 17:20",
+  "say": "Iba a conocer a su madre esa tarde... en ese portal.",
+  "cap": "IBA A CONOCER A SU MADRE ESA TARDE... EN ESE PORTAL.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "bump",
+  "hud": "PORTAL · 17:24",
+  "alert": true,
+  "say": "Pero por culpa del choque... llega tarde.",
+  "cap": "PERO POR CULPA DEL CHOQUE... LLEGA TARDE.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "photo",
+  "hud": "FONDO DE PANTALLA",
+  "say": "Dani mira su móvil.",
+  "cap": "DANI MIRA SU MÓVIL.",
+  "pause": 0.1
+ },
+ {
+  "sc": "photo",
+  "hud": "FONDO DE PANTALLA",
+  "say": "En la foto de familia del fondo de pantalla...",
+  "cap": "EN LA FOTO DE FAMILIA DEL FONDO DE PANTALLA...",
+  "pause": 0.1
+ },
+ {
+  "sc": "photo",
+  "hud": "FONDO DE PANTALLA",
+  "alert": true,
+  "say": "él está empezando a borrarse.",
+  "cap": "ÉL ESTÁ EMPEZANDO A BORRARSE.|p",
+  "pause": 0.35
+ },
+ {
+  "sc": "midnight",
+  "hud": "PLAZA · 23:59:50",
+  "say": "A las doce, toda la plaza cuenta los segundos.",
+  "cap": "A LAS DOCE, TODA LA PLAZA CUENTA LOS SEGUNDOS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "midnight",
+  "hud": "#clock",
+  "say": "Diez... nueve... ocho...",
+  "cap": "10... 9... 8...|y",
+  "pause": 0.2
+ },
+ {
+  "sc": "ring",
+  "hud": "#clock",
+  "alert": true,
+  "say": "Y el móvil, sin cobertura... empieza a sonar.",
+  "cap": "Y EL MÓVIL, SIN COBERTURA... EMPIEZA A SONAR.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "ring",
+  "hud": "#clock",
+  "alert": true,
+  "say": "Llamada entrante: desde su propio número.",
+  "cap": "LLAMADA ENTRANTE: DESDE SU PROPIO NÚMERO.|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "answer",
+  "hud": "#clock",
+  "say": "Dani contesta. Y al otro lado, oye su propia voz:",
+  "cap": "DANI CONTESTA. Y AL OTRO LADO, OYE SU PROPIA VOZ:|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "answer",
+  "hud": "#clock",
+  "alert": true,
+  "voice": "tv",
+  "say": "No cuelgues. Y no te des la vuelta.",
+  "cap": "«NO CUELGUES. Y NO TE DES LA VUELTA.|p»",
+  "pause": 0.2
+ },
+ {
+  "sc": "shoulder",
+  "hud": "#clock",
+  "alert": true,
+  "say": "Y alguien... le toca el hombro.",
+  "cap": "Y ALGUIEN... LE TOCA EL HOMBRO.|p",
+  "pause": 0.9,
+  "cut": true
+ }
+]

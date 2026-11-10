@@ -1,0 +1,25 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0}svg{display:block}</style></head><body>
+<svg id="sv" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<script src="stick.js"></script><script src="hair.js"></script><script src="hippo.js"></script>
+<script>
+const K = '#1b1720';
+const lab = (x, y, t, c = '#ffd34a', sz = 34, a = 'start') => `<text x="${x}" y="${y}" text-anchor="${a}" font-family="Inter" font-weight="900" font-size="${sz}" letter-spacing="1" fill="${c}" stroke="${K}" stroke-width="8" paint-order="stroke">${t}</text>`;
+const P = { outfit: 'shirt', top: '#f3efe2', topD: '#cfc7b3', pants: '#3b4a63', belt: '#5a3a22', scarf: '#d63c2f', hat: 'vueltiao', mustache: '#2a1a12', shoes: '#5a3a22', sole: '#2a2a2a', belly: 1.08 };
+const fig = (x, y, sc, o) => `<g transform="translate(${x},${y}) scale(${sc})">${stick(Object.assign({}, P, o))}</g>`;
+const shadow = (x, y, w) => `<ellipse cx="${x}" cy="${y}" rx="${w}" ry="${w * .18}" fill="#000" opacity=".18"/>`;
+let s = `<rect width="1080" height="1920" fill="#11131f"/>` + lab(40, 70, 'PROTAGONISTA · BOCETO', '#ffd34a', 46) + lab(40, 112, 'Pescador del río Magdalena · sombrero vueltiao', '#ffffff', 26);
+// turnaround on a riverside backdrop
+s += `<defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd3f0"/><stop offset="1" stop-color="#e9f3e6"/></linearGradient></defs><rect x="0" y="140" width="1080" height="700" fill="url(#g1)"/>`;
+for (let i = 0; i < 14; i++) s += `<circle cx="${i * 84 - 20}" cy="${430 - (i % 3) * 18}" r="${60 + (i * 37) % 40}" fill="${i % 2 ? '#4f9a52' : '#3f8445'}" stroke="${K}" stroke-width="5"/>`;
+s += `<rect x="0" y="440" width="1080" height="70" fill="#3f8445"/><rect x="0" y="500" width="1080" height="340" fill="#d6b77c"/><path d="M0,500 L1080,500" stroke="${K}" stroke-width="6"/>`;
+[[180, 'FRENTE', { face: 'smug', mouth: 'smile', armL: [14, 20], armR: [18, 30] }], [540, '3/4', { face: 'open', mouth: 'smile', turn: .6, look: [8, 0], armL: [16, 24], armR: [30, 60], prop: 'paddle' }], [900, 'ESPALDA', { view: 'back', armL: [14, 20], armR: [14, 20] }]].forEach(([x, t, o]) => { s += shadow(x, 780, 110) + fig(x, 780, .78, o) + lab(x, 828, t, '#ffffff', 28, 'middle'); });
+// expressions
+s += `<rect x="0" y="840" width="1080" height="420" fill="#20283a"/>` + lab(40, 890, 'EXPRESIONES');
+[['NORMAL', { face: 'smug', mouth: 'smile' }], ['SORPRESA', { face: 'open', mouth: 'o', brows: .8 }], ['MIEDO', { face: 'wide', mouth: 'grin', brows: 1, sweat: true }], ['RISA', { face: 'happy', mouth: 'laugh' }]].forEach(([t, o], i) => {
+  const x = 140 + i * 268; s += `<defs><clipPath id="ce${i}"><rect x="${x - 132}" y="905" width="264" height="300" rx="16"/></clipPath></defs><rect x="${x - 132}" y="905" width="264" height="300" rx="16" fill="#e9f3e6"/><g clip-path="url(#ce${i})"><g transform="translate(${x},${1085 + 462 * .82}) scale(.82)">${stick(Object.assign({}, P, o, { armL: [14, 20], armR: [14, 20] }))}</g></g>` + lab(x, 1240, t, '#ffffff', 26, 'middle'); });
+// walk cycle strip
+s += lab(40, 1310, 'ANDAR · CICLO (rodilla arriba, rebote, balanceo)');
+s += `<rect x="0" y="1330" width="1080" height="560" fill="#e9f3e6"/><rect x="0" y="1760" width="1080" height="130" fill="#d6b77c"/><path d="M0,1760 L1080,1760" stroke="${K}" stroke-width="6"/>`;
+for (let i = 0; i < 8; i++) { const ph = i / 8 * Math.PI * 2, x = 80 + i * 132; s += shadow(x, 1830, 60) + fig(x, 1830, .44, Object.assign({ face: 'smug', mouth: 'smile', turn: .55, look: [8, 0] }, walkPose(ph))); }
+document.getElementById('sv').innerHTML = s; document.title = 'ready';
+</script></body></html>

@@ -1,0 +1,19 @@
+[
+ {"sc":"hook","hud":"¿Y SI…?","alert":true,"say":"Si mañana España se queda sin luz... y no vuelve en un mes, esto es lo que pasaría. Día a día.","cap":"SI MAÑANA ESPAÑA SE QUEDA SIN LUZ...|y Y NO VUELVE EN UN MES,|p ESTO ES LO QUE PASARÍA. DÍA A DÍA.","pause":0.25},
+ {"sc":"teaser","hud":"¿Y SI…?","alert":true,"say":"El día uno, todo el mundo se ríe. El día tres, se acaba la comida. Y el día siete... deja de salir agua.","cap":"EL DÍA 1,|y TODO EL MUNDO SE RÍE. EL DÍA 3,|y SE ACABA LA COMIDA. Y EL DÍA 7...|p DEJA DE SALIR AGUA.|b","pause":0.25},
+ {"sc":"off","hud":"LUNES · 12:33","say":"Lunes. Doce y treinta y tres. Se apaga todo.","cap":"LUNES. 12:33.|y SE APAGA TODO.|p","pause":0.2},
+ {"sc":"chaos","hud":"LUNES · 12:34","alert":true,"say":"Los semáforos se apagan. Los coches pitan. Alguien se queda encerrado en el ascensor.","cap":"LOS SEMÁFOROS SE APAGAN.|p LOS COCHES PITAN.|y ALGUIEN SE QUEDA ENCERRADO EN EL ASCENSOR.|p","pause":0.2},
+ {"sc":"laugh","hud":"LUNES · 12:40","say":"Y la gente sale a la calle... a reírse. «Esto en dos horas vuelve».","cap":"Y LA GENTE SALE A LA CALLE... A REÍRSE.|y «ESTO EN 2 HORAS VUELVE».|g","pause":0.2},
+ {"sc":"alex","hud":"LUNES · 12:41","say":"Pero Álex, treinta y un años, piensa otra cosa: ¿y si no vuelve?","cap":"PERO ÁLEX,|g 31 AÑOS, PIENSA OTRA COSA: ¿Y SI NO VUELVE?|p","pause":0.25},
+ {"sc":"go","hud":"#cd","say":"Coge a Bruno, su pastor alemán, y se pone en marcha. Tiene una hora antes de que el resto se dé cuenta.","cap":"COGE A BRUNO,|y SU PASTOR ALEMÁN, Y SE PONE EN MARCHA. TIENE 1 HORA|p ANTES DE QUE EL RESTO SE DÉ CUENTA.","pause":0.2},
+ {"sc":"bath","hud":"#cd","step":0,"say":"Paso uno: llena la bañera y todas las ollas. Sin luz, las bombas del edificio dejan de subir el agua.","cap":"PASO|y UNO: LLENA LA BAÑERA Y TODAS LAS OLLAS.|b SIN LUZ, LAS BOMBAS DEL EDIFICIO DEJAN DE SUBIR EL AGUA.","pause":0.2},
+ {"sc":"bath","hud":"#cd","say":"El chorro sale cada vez más flojo. Le da para media bañera.","cap":"EL CHORRO SALE CADA VEZ MÁS FLOJO.|y LE DA PARA MEDIA BAÑERA.|p","pause":0.2},
+ {"sc":"patio","hud":"#cd","say":"El vecino del quinto se ríe: «¿Qué pasa, te vas a dar un baño?».","cap":"EL VECINO DEL 5.º|y SE RÍE: «¿QUÉ PASA, TE VAS A DAR UN BAÑO?».|p","pause":0.2},
+ {"sc":"fridge","hud":"#cd","step":1,"say":"Paso dos: no abras la nevera. Cerrada, aguanta fría unas cuatro horas.","cap":"PASO|y DOS: NO ABRAS LA NEVERA.|p CERRADA, AGUANTA FRÍA UNAS 4 HORAS.|b","pause":0.2},
+ {"sc":"shop","hud":"#cd","step":2,"say":"Paso tres: compra antes que nadie. Latas, agua, pilas... y pienso para Bruno.","cap":"PASO|y TRES: COMPRA ANTES QUE NADIE.|g LATAS, AGUA, PILAS... Y PIENSO PARA BRUNO.|y","pause":0.2},
+ {"sc":"till","hud":"#cd","say":"En el súper, la cajera cobra con una calculadora. Solo efectivo. En la cola, tres personas.","cap":"EN EL SÚPER, LA CAJERA COBRA CON UNA CALCULADORA.|y SOLO EFECTIVO.|g EN LA COLA, 3 PERSONAS.","pause":0.25},
+ {"sc":"party","hud":"LUNES · 22:10","say":"Por la noche, el barrio es una fiesta. Velas, guitarras, gente cantando en los balcones.","cap":"POR LA NOCHE, EL BARRIO ES UNA FIESTA.|y VELAS, GUITARRAS, GENTE CANTANDO EN LOS BALCONES.","pause":0.25},
+ {"sc":"radio","hud":"LUNES · 23:04","say":"Álex enciende su radio de pilas.","cap":"ÁLEX ENCIENDE SU RADIO DE PILAS.|y","pause":0.2},
+ {"sc":"radio","hud":"LUNES · 23:04","alert":true,"voice":"tv","say":"«La avería es más grave de lo previsto. No hay fecha para que vuelva la luz».","cap":"«LA AVERÍA ES MÁS GRAVE DE LO PREVISTO.|p NO HAY FECHA|p PARA QUE VUELVA LA LUZ».","pause":0.25},
+ {"sc":"end","hud":"DÍA 1 SIN LUZ","cut":true,"say":"En el balcón de abajo, el vecino del quinto sigue cantando. Todavía no lo sabe.","cap":"EN EL BALCÓN DE ABAJO, EL VECINO DEL 5.º SIGUE CANTANDO.|y TODAVÍA NO LO SABE.|p","pause":0.2}
+]

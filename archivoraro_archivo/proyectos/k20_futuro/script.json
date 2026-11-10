@@ -1,0 +1,207 @@
+[
+ {
+  "sc": "intro",
+  "hud": "MARTES · 17:00",
+  "say": "Si un día empiezas a recibir mensajes... de ti mismo... desde el futuro...",
+  "cap": "SI UN DÍA EMPIEZAS A RECIBIR MENSAJES... DE TI MISMO... DESDE EL FUTURO...|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "MARTES · 17:00",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Gael. Doce años.",
+  "cap": "GAEL.|y 12 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Un martes, le escribe un número que no conoce. En la foto de perfil sale él. Pero mayor.",
+  "cap": "UN MARTES, LE ESCRIBE UN NÚMERO QUE NO CONOCE. EN LA FOTO DE PERFIL SALE ÉL. PERO MAYOR.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Al principio, cree que es una broma de sus amigos.",
+  "cap": "AL PRINCIPIO, CREE QUE ES UNA BROMA DE SUS AMIGOS.",
+  "pause": 0.3
+ },
+ {
+  "sc": "msg",
+  "hud": "CUARTO · 17:02",
+  "say": "El mensaje dice: soy tú, dentro de veinte años. No te asustes.",
+  "cap": "EL MENSAJE DICE: «SOY TÚ, DENTRO DE VEINTE AÑOS. NO TE ASUSTES».|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "msg",
+  "hud": "CUARTO · 17:03",
+  "alert": true,
+  "say": "Y después, una foto de su cuarto. Tal y como está ahora mismo.",
+  "cap": "Y DESPUÉS, UNA FOTO DE SU CUARTO. TAL Y COMO ESTÁ AHORA MISMO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · COMPRUÉBALO",
+  "step": 0,
+  "say": "Paso uno: comprueba que es verdad.",
+  "cap": "PASO|y UNO: COMPRUEBA QUE ES VERDAD.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "COCINA · 17:10",
+  "say": "El siguiente mensaje dice: en tres segundos, el gato tira el vaso.",
+  "cap": "EL SIGUIENTE MENSAJE DICE: «EN TRES SEGUNDOS, EL GATO TIRA EL VASO».",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "COCINA · 17:10",
+  "alert": true,
+  "say": "Uno. Dos. Tres. El vaso se hace añicos en el suelo.",
+  "cap": "UNO. DOS. TRES. EL VASO SE HACE AÑICOS EN EL SUELO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "COCINA · 17:11",
+  "say": "Gael lee el mensaje otra vez. Le tiemblan las manos.",
+  "cap": "GAEL LEE EL MENSAJE OTRA VEZ. LE TIEMBLAN LAS MANOS.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · LOS AVISOS",
+  "step": 1,
+  "say": "Paso dos: hazle caso a los avisos.",
+  "cap": "PASO|y DOS: HAZLE CASO A LOS AVISOS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "MIÉRCOLES · 07:55",
+  "say": "Mañana, no cojas el autobús de las ocho.",
+  "cap": "«MAÑANA, NO COJAS EL AUTOBÚS DE LAS OCHO».|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "MIÉRCOLES · 08:10",
+  "alert": true,
+  "say": "Gael va andando. Y el autobús de las ocho se queda atascado en mitad del puente. Durante tres horas.",
+  "cap": "GAEL VA ANDANDO. Y EL AUTOBÚS DE LAS OCHO SE QUEDA ATASCADO EN MITAD DEL PUENTE. DURANTE TRES HORAS.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "MIÉRCOLES · 08:15",
+  "say": "Su yo del futuro le ha salvado. O eso parece.",
+  "cap": "SU YO DEL FUTURO LE HA SALVADO. O ESO PARECE.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · NO PREGUNTES",
+  "step": 2,
+  "say": "Paso tres: no preguntes por el futuro.",
+  "cap": "PASO|y TRES: NO PREGUNTES POR EL FUTURO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "CUARTO · 21:00",
+  "say": "Gael lo pregunta igual: ¿qué pasa dentro de veinte años?",
+  "cap": "GAEL LO PREGUNTA IGUAL: «¿QUÉ PASA DENTRO DE VEINTE AÑOS?»",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "CUARTO · 22:00",
+  "alert": true,
+  "say": "La respuesta tarda una hora: no puedo contártelo. Ellos también leen los mensajes.",
+  "cap": "LA RESPUESTA TARDA UNA HORA: «NO PUEDO CONTÁRTELO. ELLOS TAMBIÉN LEEN LOS MENSAJES».|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "CUARTO · 22:01",
+  "alert": true,
+  "say": "¿Ellos? ¿Quiénes son ellos? No hay más respuesta.",
+  "cap": "¿ELLOS? ¿QUIÉNES SON ELLOS? NO HAY MÁS RESPUESTA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · PIÉNSALO",
+  "step": 3,
+  "say": "Paso cuatro: si te pide algo... piénsalo muy bien.",
+  "cap": "PASO|y CUATRO: SI TE PIDE ALGO... PIÉNSALO MUY BIEN.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "step4",
+  "hud": "CUARTO · 03:00",
+  "say": "El último mensaje llega a las tres de la mañana.",
+  "cap": "EL ÚLTIMO MENSAJE LLEGA A LAS TRES DE LA MAÑANA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step4",
+  "hud": "CUARTO · 03:00",
+  "alert": true,
+  "say": "Necesito esconderme. Déjame entrar.",
+  "cap": "«NECESITO ESCONDERME. DÉJAME ENTRAR».|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "CUARTO · 03:00",
+  "say": "Gael mira a su alrededor. Está solo en su cuarto.",
+  "cap": "GAEL MIRA A SU ALREDEDOR. ESTÁ SOLO EN SU CUARTO.",
+  "pause": 0.3
+ },
+ {
+  "sc": "end",
+  "hud": "CUARTO · 03:01",
+  "say": "Gael no contesta. Se queda mirando la pantalla.",
+  "cap": "GAEL NO CONTESTA. SE QUEDA MIRANDO LA PANTALLA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "end",
+  "hud": "CUARTO · 03:01",
+  "alert": true,
+  "say": "Entonces, el móvil vibra otra vez.",
+  "cap": "ENTONCES, EL MÓVIL VIBRA OTRA VEZ.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "CUARTO · 03:01",
+  "alert": true,
+  "voice": "tv",
+  "say": "Ya estoy aquí. Ábreme.",
+  "cap": "«YA ESTOY AQUÍ. ÁBREME».|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "end",
+  "hud": "CUARTO · 03:01",
+  "alert": true,
+  "cut": true,
+  "say": "Y alguien llama a su ventana. En un tercer piso.",
+  "cap": "Y ALGUIEN LLAMA A SU VENTANA. EN UN TERCER PISO.|p",
+  "pause": 0.2
+ }
+]

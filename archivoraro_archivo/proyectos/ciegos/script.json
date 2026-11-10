@@ -1,0 +1,22 @@
+[
+ {"sc":"bedroom","hud":"DÍA 1 · 07:00","say":"Si mañana despiertas...","cap":"SI MAÑANA DESPIERTAS...","pause":0.15},
+ {"sc":"city","hud":"DÍA 1 · 07:04","say":"y todo el mundo se ha quedado ciego...","cap":"Y TODO EL MUNDO SE HA QUEDADO CIEGO...|p","pause":0.2},
+ {"sc":"eyes","hud":"VISIÓN: 1 PERSONA","say":"menos tú.","cap":"MENOS TÚ.|y","pause":0.55},
+ {"sc":"id","hud":"IDENTIFICACIÓN","say":"Lucía. Veintiún años.","cap":"LUCÍA.|y 21 AÑOS.","pause":0.3},
+ {"sc":"tv","hud":"NOTICIAS · 09:00","say":"En la tele solo repiten un mensaje:","cap":"EN LA TELE SOLO REPITEN UN MENSAJE:","pause":0.15},
+ {"sc":"tv","hud":"NOTICIAS · 09:00","say":"Si alguien todavía puede ver... que se presente.","cap":"«SI ALGUIEN TODAVÍA PUEDE VER|y... QUE SE PRESENTE.»","voice":"tv","pause":0.35},
+ {"sc":"crowd","hud":"#count","say":"Ocho mil millones de personas la necesitan.","cap":"8.000|y MILLONES|y DE PERSONAS LA NECESITAN.","pause":0.15},
+ {"sc":"crowd","hud":"OBJETIVO: 1","alert":true,"say":"Y eso la convierte en una presa.","cap":"Y ESO LA CONVIERTE EN UNA PRESA.|p","pause":0.45},
+ {"sc":"mirror","hud":"REGLA 1 · ACTUAR","step":0,"say":"Regla uno: actúa como ellos.","cap":"REGLA|y UNO: ACTÚA COMO ELLOS.","pause":0.15},
+ {"sc":"mirror","hud":"REGLA 1 · ACTUAR","say":"Gafas oscuras. Manos delante. Pasos lentos.","cap":"GAFAS OSCURAS. MANOS DELANTE. PASOS LENTOS.","pause":0.3},
+ {"sc":"street","hud":"REGLA 2 · NO ESQUIVAR","step":1,"say":"Regla dos: nunca esquives nada.","cap":"REGLA|y DOS: NUNCA ESQUIVES|p NADA.|p","pause":0.15},
+ {"sc":"street","hud":"REGLA 2 · NO ESQUIVAR","say":"Porque hay gente que pone trampas.","cap":"PORQUE HAY GENTE QUE PONE TRAMPAS.|p","pause":0.15},
+ {"sc":"street","hud":"REGLA 2 · NO ESQUIVAR","say":"Lucía ve la cuerda. Y aun así... tropieza.","cap":"LUCÍA VE LA CUERDA. Y AUN ASÍ... TROPIEZA.|y","pause":0.6},
+ {"sc":"market","hud":"REGLA 3 · NADIE","step":2,"say":"Regla tres: no confíes en nadie.","cap":"REGLA|y TRES: NO CONFÍES EN NADIE.|p","pause":0.15},
+ {"sc":"market","hud":"SUPERMERCADO · 11:40","say":"En el súper, todos buscan comida a tientas.","cap":"EN EL SÚPER, TODOS BUSCAN COMIDA A TIENTAS.","pause":0.15},
+ {"sc":"market","hud":"SUPERMERCADO · 11:41","say":"Lucía coge una lata. Sin hacer ruido.","cap":"LUCÍA COGE UNA LATA. SIN HACER RUIDO.","pause":0.3},
+ {"sc":"aisle","hud":"PASILLO 7 · 11:42","say":"Pero al final del pasillo, hay una niña.","cap":"PERO AL FINAL DEL PASILLO, HAY UNA NIÑA.|p","pause":0.2},
+ {"sc":"aisle","hud":"PASILLO 7 · 11:42","say":"Y no tiene las manos delante.","cap":"Y NO TIENE LAS MANOS DELANTE.","pause":0.3},
+ {"sc":"girl","hud":"PASILLO 7 · 11:43","alert":true,"say":"Está mirando a Lucía.","cap":"ESTÁ MIRANDO|p A LUCÍA.","pause":0.5},
+ {"sc":"girl","hud":"PASILLO 7 · 11:43","alert":true,"say":"Y entonces, la niña abre la boca, y dice...","cap":"Y ENTONCES, LA NIÑA ABRE LA BOCA Y DICE...","pause":0.75,"cut":true}
+]

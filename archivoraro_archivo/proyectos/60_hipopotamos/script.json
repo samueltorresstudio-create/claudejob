@@ -1,0 +1,17 @@
+[
+ {"sc":"hook","say":"Un hombre compró cuatro hipopótamos.","cap":"UN HOMBRE COMPRÓ CUATRO|y HIPOPÓTAMOS.|p","pause":0.2},
+ {"sc":"many","say":"Treinta años después, en Colombia hay más de ciento ochenta… y nadie sabe cómo pararlos.","cap":"TREINTA AÑOS DESPUÉS, EN COLOMBIA|y HAY MÁS DE 180…|p Y NADIE SABE CÓMO PARARLOS.","pause":0.25},
+ {"sc":"zoo","say":"Los trajo Pablo Escobar a su zoológico privado.","cap":"LOS TRAJO PABLO ESCOBAR|y A SU ZOOLÓGICO PRIVADO.","pause":0.2},
+ {"sc":"gate","say":"Cuando él murió, nadie se los llevó.","cap":"CUANDO ÉL MURIÓ, NADIE|p SE LOS LLEVÓ.","pause":0.2},
+ {"sc":"river","say":"Así que se fueron al río.","cap":"ASÍ QUE SE FUERON AL RÍO.|b","pause":0.2},
+ {"sc":"africa","say":"Verás, en África las sequías y los leones controlan cuántos hay.","cap":"VERÁS, EN ÁFRICA LAS SEQUÍAS|y Y LOS LEONES|y CONTROLAN CUÁNTOS HAY.","pause":0.2},
+ {"sc":"africa","say":"Pero en Colombia no hay sequías… ni leones.","cap":"PERO EN COLOMBIA NO HAY SEQUÍAS… NI LEONES.|p","pause":0.2},
+ {"sc":"paradise","say":"Solo un río enorme, comida todo el año y nadie que los moleste.","cap":"SOLO UN RÍO ENORME,|b COMIDA TODO EL AÑO|g Y NADIE QUE LOS MOLESTE.","pause":0.2},
+ {"sc":"log","say":"Imagina que sales a pescar al amanecer… y el tronco que flota a tu lado abre los ojos.","cap":"IMAGINA QUE SALES A PESCAR AL AMANECER… Y EL TRONCO QUE FLOTA A TU LADO ABRE LOS OJOS.|p","pause":0.2},
+ {"sc":"yawn","say":"Pesan tres toneladas y son de los animales más peligrosos del mundo.","cap":"PESAN TRES TONELADAS|y Y SON DE LOS ANIMALES MÁS PELIGROSOS|p DEL MUNDO.","pause":0.2},
+ {"sc":"vet","say":"El gobierno intentó esterilizarlos. Cada operación cuesta miles de dólares…","cap":"EL GOBIERNO INTENTÓ ESTERILIZARLOS.|y CADA OPERACIÓN CUESTA MILES DE DÓLARES…|g","pause":0.2},
+ {"sc":"vet","say":"y ellos tienen crías más rápido.","cap":"Y ELLOS TIENEN CRÍAS MÁS RÁPIDO.|p","pause":0.2},
+ {"sc":"stamp","say":"Hoy son especie invasora.","cap":"HOY SON ESPECIE INVASORA.|p","pause":0.2},
+ {"sc":"future","say":"Y si nadie hace nada, en 2035 podrían ser más de mil.","cap":"Y SI NADIE HACE NADA, EN 2035|y PODRÍAN SER MÁS DE MIL.|p","pause":0.2},
+ {"sc":"end","say":"Todo por cuatro hipopótamos.","cap":"TODO POR CUATRO|y HIPOPÓTAMOS.","pause":0.3,"cut":true}
+]

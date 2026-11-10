@@ -1,0 +1,47 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#000}</style></head><body>
+<svg id="sv" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<script>const LIB=new URLSearchParams(location.search).get('lib')||'lib.js';document.write('<script src="'+LIB+'"><\/script>');</script>
+<script src="kit.js"></script><script src="scenes.js"></script>
+<script>
+const DEFS=`<defs><radialGradient id="glowY"><stop offset="0" stop-color="#ffd76a" stop-opacity=".45"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></radialGradient>
+<linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff6c8" stop-opacity=".55"/><stop offset="1" stop-color="#fff6c8" stop-opacity="0"/></linearGradient>
+<radialGradient id="vg8" cx=".5" cy=".42" r=".72"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
+<filter id="chFX" x="-20%" y="-12%" width="140%" height="124%" color-interpolation-filters="sRGB">
+  <feMorphology in="SourceAlpha" operator="dilate" radius="4.5" result="dil"/><feFlood flood-color="#1d1b2a"/><feComposite in2="dil" operator="in" result="outline"/>
+  <feOffset in="SourceAlpha" dx="-26" dy="-8" result="o1"/><feComposite in="SourceAlpha" in2="o1" operator="out" result="e1"/><feGaussianBlur in="e1" stdDeviation="2.5" result="e1b"/>
+  <feFlood flood-color="#1a1430" flood-opacity=".34"/><feComposite in2="e1b" operator="in"/><feComposite in2="SourceAlpha" operator="in" result="shade"/>
+  <feMerge><feMergeNode in="outline"/><feMergeNode in="SourceGraphic"/><feMergeNode in="shade"/></feMerge></filter></defs>`;
+const ez=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+// A · walk cycle (1080x960)
+window.walk=t=>{window.__T=t;
+  let s=`<rect width="1080" height="960" fill="#d8c8b0"/>`;for(let x=0;x<1080;x+=48) s+=`<rect x="${x}" y="0" width="16" height="760" fill="#000" opacity=".03"/>`;
+  s+=`<rect y="760" width="1080" height="200" fill="#8a6448"/>`;for(let i=0;i<14;i++) s+=`<line x1="${i*90-40}" y1="760" x2="${i*120-200}" y2="960" stroke="#000" opacity=".12" stroke-width="3"/>`;
+  const x=((t*170)%1500)-200;
+  s+=A({...ALEX,x,y:930,s:.62,walk:t*7.5,look:[12,-2],dirW:1});
+  s+=shepherd(x-200,930,.4,t,{walk:t*9,alert:.8,seed:9});
+  document.getElementById('sv').innerHTML=DEFS+`<g filter="none">${s}</g>`;};
+// B · focus scene (full 1080x1920, scene drawn at 1.75x)
+window.focus=t=>{window.__T=t;
+  const tStop=2.3, tOff=3.0, push=ez(Math.min(1,Math.max(0,(t-3.15)/1.25))), drift=Math.max(0,t-4.4)*.03;
+  const on=t<tOff?1:0;
+  let bg=flat(t,{on})+sofaK(700,1010,460,'#5a6a7a')+sofaArmsK(700,1010,460,'#5a6a7a');
+  if(!on) bg+=`<rect x="-600" y="-900" width="2280" height="2400" fill="#1a1a2a" opacity="${Math.min(.32,(t-tOff)*1.2)}"/>`;
+  const wk=t<tStop, ax=wk?120+ez(t/tStop)*330:450, dx=wk?ax-170:330+Math.min(1,(t-tStop)/.8)*60;
+  const scared=t>tOff+.15;
+  const settle=t>tStop&&t<tStop+.5?Math.sin((t-tStop)*14)*(1-(t-tStop)/.5)*3:0;
+  const look=t<tStop?[12,-2]:t<tOff?[-12,0]:t<4.8?[-12,-4]:[10,-6];
+  let fg=shepherd(dx,1010,.42,t,{walk:t<tStop+.8?t*9:null,alert:scared?1:.7,head:scared?18:4,seed:9});
+  fg+=A({...ALEX,x:ax,y:1010,s:.62,walk:wk?t*7.5:null,dirW:1,lean:settle,look,brows:scared?'up':null,eyes:scared?'wide':'open',mouth:scared?'o':'line'});
+  // camera: wide → push in to the face; background goes soft and darker
+  const fx=ax, fy=1010-.62*640;
+  const z=1.75*(1+push*1.55+drift), cx=540-(fx-540*0)*0, shk=t>tOff&&t<tOff+.35?Math.sin(t*90)*10*(1-(t-tOff)/.35):0;
+  const camT=(content)=>`<g transform="translate(${540+shk},${lerp(1100,880,push)}) scale(${z}) translate(${-lerp(540,fx,push)},${-lerp(640,fy,push)})">${content}</g>`;
+  const blur=push*7;
+  let o=DEFS+`<rect width="1080" height="1920" fill="#14121c"/>`;
+  o+=`<defs><filter id="dof" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="${blur.toFixed(2)}"/></filter></defs>`;
+  o+=camT(`<g filter="url(#dof)">${bg}</g><rect x="-600" y="-900" width="2280" height="2400" fill="#000" opacity="${(push*.28).toFixed(2)}"/>`)+camT(fg);
+  o+=`<rect width="1080" height="1920" fill="url(#vg8)" opacity="${(.5+push*.5).toFixed(2)}"/>`;
+  if(t>tOff&&t<tOff+.9) o+=`<text x="760" y="520" text-anchor="middle" font-family="Inter" font-weight="900" font-size="110" fill="#ff4a6a" stroke="#000" stroke-width="12" paint-order="stroke" opacity="${Math.min(1,(tOff+.9-t)*3)}">¡CLAC!</text>`;
+  if(push>.05) o+=`<g opacity="${push.toFixed(2)}"><rect x="0" y="0" width="1080" height="${(110*push).toFixed(0)}" fill="#000"/><rect x="0" y="${(1920-110*push).toFixed(0)}" width="1080" height="${(110*push).toFixed(0)}" fill="#000"/></g>`;
+  document.getElementById('sv').innerHTML=o;};
+</script></body></html>

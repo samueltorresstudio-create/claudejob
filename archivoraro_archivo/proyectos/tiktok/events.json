@@ -1,0 +1,91 @@
+{
+ "total": 27.699999999999996,
+ "beats": [
+  {
+   "start": 0,
+   "d": 3.2,
+   "sc": "bedroom",
+   "cut": true,
+   "words": 8
+  },
+  {
+   "start": 3.2,
+   "d": 2.2,
+   "sc": "city",
+   "cut": true,
+   "words": 3
+  },
+  {
+   "start": 5.4,
+   "d": 2.6,
+   "sc": "globe",
+   "cut": true,
+   "words": 2
+  },
+  {
+   "start": 8,
+   "d": 2.4,
+   "sc": "id",
+   "cut": true,
+   "words": 3
+  },
+  {
+   "start": 10.4,
+   "d": 2.6,
+   "sc": "street",
+   "cut": true,
+   "words": 6
+  },
+  {
+   "start": 13,
+   "d": 2.2,
+   "sc": "street",
+   "cut": false,
+   "words": 3
+  },
+  {
+   "start": 15.2,
+   "d": 1.6,
+   "sc": "rule",
+   "cut": true,
+   "words": 2
+  },
+  {
+   "start": 16.8,
+   "d": 2,
+   "sc": "rule",
+   "cut": false,
+   "words": 5
+  },
+  {
+   "start": 18.8,
+   "d": 2.4,
+   "sc": "glass",
+   "cut": true,
+   "words": 5
+  },
+  {
+   "start": 21.2,
+   "d": 2.2,
+   "sc": "eyes",
+   "cut": true,
+   "words": 5
+  },
+  {
+   "start": 23.4,
+   "d": 1.4,
+   "sc": "eyes",
+   "cut": false,
+   "words": 3
+  },
+  {
+   "start": 24.799999999999997,
+   "d": 2.9,
+   "sc": "end",
+   "cut": true,
+   "words": 3
+  }
+ ],
+ "impact": 19.95,
+ "snap": 21.65
+}

@@ -1,0 +1,23 @@
+[
+ {"sc":"intro","hud":"ANDÉN · 06:57","say":"Si encuentras a todos los adultos del mundo... dormidos bajo tierra...","cap":"SI ENCUENTRAS A TODOS LOS ADULTOS DEL MUNDO...|y DORMIDOS BAJO TIERRA...|p","pause":0.1},
+ {"sc":"intro","hud":"ANDÉN · 06:57","alert":true,"say":"tienes hasta el atardecer para despertarlos.","cap":"TIENES HASTA EL ATARDECER PARA DESPERTARLOS.|y","pause":0.25},
+ {"sc":"part","hud":"PARTE 5 · FINAL","say":"Parte cinco. El final.","cap":"PARTE|y CINCO.|y EL FINAL.|p","pause":0.25},
+ {"sc":"guard","hud":"ANDÉN · 06:57","alert":true,"say":"Esa no era mamá. Era una copia que vigilaba la entrada.","cap":"ESA NO ERA MAMÁ.|p ERA UNA COPIA QUE VIGILABA LA ENTRADA.","pause":0.1},
+ {"sc":"guard","hud":"ANDÉN · 06:58","alert":true,"say":"Y hay más. Escondidas entre las filas.","cap":"Y HAY MÁS.|p ESCONDIDAS ENTRE LAS FILAS.","pause":0.25},
+ {"sc":"step1","hud":"PASO 1 · NO LES MIRES","step":0,"say":"Paso uno: no les mires a los ojos.","cap":"PASO|y UNO: NO LES MIRES A LOS OJOS.|p","pause":0.1},
+ {"sc":"sneak","hud":"ANDÉN · 07:05","say":"Los niños avanzan despacio. Mirando al suelo.","cap":"LOS NIÑOS AVANZAN DESPACIO. MIRANDO AL SUELO.|b","pause":0.1},
+ {"sc":"sneak","hud":"ANDÉN · 07:06","alert":true,"say":"Un vigilante pasa a su lado... y sigue de largo.","cap":"UN VIGILANTE PASA A SU LADO... Y SIGUE DE LARGO.|g","pause":0.25},
+ {"sc":"step2","hud":"PASO 2 · LOS TUYOS","step":1,"say":"Paso dos: busca a los tuyos por algo que solo tú sepas.","cap":"PASO|y DOS: BUSCA A LOS TUYOS POR ALGO QUE SOLO TÚ SEPAS.|y","pause":0.1},
+ {"sc":"moms","hud":"ANDÉN · 07:20","alert":true,"say":"Hay tres mamás iguales. Con el mismo pijama de flores.","cap":"HAY TRES MAMÁS IGUALES.|p CON EL MISMO PIJAMA DE FLORES.","pause":0.1},
+ {"sc":"moms","hud":"ANDÉN · 07:20","say":"Pero solo una lleva la pulsera que le hizo Alba.","cap":"PERO SOLO UNA LLEVA LA PULSERA|y QUE LE HIZO ALBA.","pause":0.1},
+ {"sc":"moms","hud":"ANDÉN · 07:21","say":"Y a su lado, dormida... está la Alba de verdad.","cap":"Y A SU LADO, DORMIDA... ESTÁ LA ALBA DE VERDAD.|g","pause":0.25},
+ {"sc":"step3","hud":"PASO 3 · LA PALABRA","step":2,"say":"Paso tres: despiértalos con la palabra secreta.","cap":"PASO|y TRES: DESPIÉRTALOS CON LA PALABRA SECRETA.|y","pause":0.1},
+ {"sc":"wake","hud":"ANDÉN · 07:22","say":"Hugo le susurra al oído: Burbuja.","cap":"HUGO LE SUSURRA AL OÍDO: «BURBUJA».|y","pause":0.15},
+ {"sc":"wake","hud":"ANDÉN · 07:22","say":"Alba abre los ojos. Y después, mamá.","cap":"ALBA ABRE LOS OJOS.|g Y DESPUÉS, MAMÁ.|g","pause":0.2},
+ {"sc":"run","hud":"ESCALERAS · 07:24","alert":true,"say":"Los vigilantes despiertan. Y todos corren hacia la luz.","cap":"LOS VIGILANTES DESPIERTAN.|p Y TODOS CORREN HACIA LA LUZ.|y","pause":0.1},
+ {"sc":"sun","hud":"CALLE · 07:25","say":"Al salir al sol, las copias se deshacen como polvo.","cap":"AL SALIR AL SOL, LAS COPIAS SE DESHACEN COMO POLVO.|y","pause":0.3},
+ {"sc":"home","hud":"COCINA · DÍAS DESPUÉS","say":"Unos días después, todo ha vuelto a la normalidad.","cap":"UNOS DÍAS DESPUÉS, TODO HA VUELTO A LA NORMALIDAD.|g","pause":0.1},
+ {"sc":"home","hud":"COCINA · 08:10","say":"Hugo cuenta a su familia. Están todos.","cap":"HUGO CUENTA A SU FAMILIA. ESTÁN TODOS.|g","pause":0.2},
+ {"sc":"fish","hud":"COCINA · 08:11","say":"Entonces mira la pecera.","cap":"ENTONCES MIRA LA PECERA.","pause":0.2},
+ {"sc":"fish","hud":"COCINA · 08:11","alert":true,"cut":true,"say":"Y hay dos peces iguales.","cap":"Y HAY DOS PECES IGUALES.|p","pause":0.2}
+]

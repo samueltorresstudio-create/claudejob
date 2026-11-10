@@ -1,0 +1,18 @@
+[
+ {"sc":"hook","hud":"¿SABÍAS QUE…?","alert":true,"say":"¿Sabías que un soldado siguió luchando en la jungla veintinueve años... en una guerra que ya había terminado?","cap":"¿SABÍAS QUE UN SOLDADO SIGUIÓ LUCHANDO EN LA JUNGLA 29 AÑOS...|y EN UNA GUERRA QUE YA HABÍA TERMINADO?|p","pause":0.25},
+ {"sc":"arrive","hud":"LUBANG · DIC 1944","say":"Mil novecientos cuarenta y cuatro. El teniente japonés Hiroo Onoda llega a la isla de Lubang, en Filipinas.","cap":"1944.|y EL TENIENTE JAPONÉS HIROO ONODA|g LLEGA A LA ISLA DE LUBANG, EN FILIPINAS.|b","pause":0.2},
+ {"sc":"order","hud":"LUBANG · DIC 1944","say":"Su orden: no rendirse jamás.","cap":"SU ORDEN: NO RENDIRSE JAMÁS.|p","pause":0.25},
+ {"sc":"leaflets","hud":"LUBANG · 1945","say":"Un año después, la guerra acaba. Desde el aire caen folletos: «La guerra ha terminado».","cap":"UN AÑO DESPUÉS, LA GUERRA ACABA.|g DESDE EL AIRE CAEN FOLLETOS: «LA GUERRA HA TERMINADO».|y","pause":0.2},
+ {"sc":"trap","hud":"LUBANG · 1945","say":"Onoda los lee... y cree que es una trampa del enemigo.","cap":"ONODA LOS LEE... Y CREE QUE ES UNA TRAMPA|p DEL ENEMIGO.","pause":0.2},
+ {"sc":"camp","hud":"LUBANG · 1946","say":"Y sigue sus reglas.","cap":"Y SIGUE SUS REGLAS.|y","pause":0.2},
+ {"sc":"rule1","hud":"REGLA 1","step":0,"say":"Regla uno: no te rindas sin una orden de tu jefe.","cap":"REGLA|y UNO: NO TE RINDAS SIN UNA ORDEN|p DE TU JEFE.","pause":0.2},
+ {"sc":"rule2","hud":"REGLA 2","step":1,"say":"Regla dos: todo lo que diga el enemigo es mentira. Hasta las cartas de su propia familia.","cap":"REGLA|y DOS: TODO LO QUE DIGA EL ENEMIGO ES MENTIRA.|p HASTA LAS CARTAS DE SU PROPIA FAMILIA.|y","pause":0.2},
+ {"sc":"rule3","hud":"REGLA 3","step":2,"say":"Regla tres: el rifle, siempre limpio.","cap":"REGLA|y TRES: EL RIFLE, SIEMPRE LIMPIO.|g","pause":0.2},
+ {"sc":"years","hud":"#yr","say":"Pasan los años. Sus compañeros se rinden o mueren. Al final, se queda solo.","cap":"PASAN LOS AÑOS.|y SUS COMPAÑEROS SE RINDEN O MUEREN. AL FINAL, SE QUEDA SOLO.|p","pause":0.25},
+ {"sc":"meet","hud":"LUBANG · FEB 1974","alert":true,"say":"Mil novecientos setenta y cuatro. Un joven japonés acampa en la jungla... y aparece Onoda. Con su uniforme. Y su rifle.","cap":"1974.|y UN JOVEN JAPONÉS ACAMPA EN LA JUNGLA... Y APARECE ONODA.|p CON SU UNIFORME. Y SU RIFLE.|y","pause":0.2},
+ {"sc":"meet","hud":"LUBANG · FEB 1974","say":"«Solo me rendiré si me lo ordena mi comandante».","cap":"«SOLO ME RENDIRÉ SI ME LO ORDENA MI COMANDANTE».|y","pause":0.25},
+ {"sc":"shop","hud":"JAPÓN · 1974","say":"Japón busca a su antiguo comandante. Ahora vende libros.","cap":"JAPÓN BUSCA A SU ANTIGUO COMANDANTE.|y AHORA VENDE LIBROS.|g","pause":0.2},
+ {"sc":"read","hud":"LUBANG · 9 MAR 1974","say":"Viaja a la isla... y le lee la orden.","cap":"VIAJA A LA ISLA... Y LE LEE LA ORDEN.|y","pause":0.2},
+ {"sc":"salute","hud":"LUBANG · 9 MAR 1974","say":"Onoda saluda. Y entrega el rifle. Todavía funcionaba.","cap":"ONODA SALUDA.|g Y ENTREGA EL RIFLE. TODAVÍA FUNCIONABA.|y","pause":0.3},
+ {"sc":"end","hud":"29 AÑOS","cut":true,"say":"Veintinueve años luchando... en una guerra que solo seguía existiendo para él.","cap":"29 AÑOS LUCHANDO...|y EN UNA GUERRA QUE SOLO SEGUÍA EXISTIENDO PARA ÉL.|p","pause":0.2}
+]

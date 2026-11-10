@@ -1,0 +1,251 @@
+[
+ {
+  "sc": "intro",
+  "hud": "DOMINGO · 09:00",
+  "say": "Si mañana te despiertas... midiendo dos centímetros...",
+  "cap": "SI MAÑANA TE DESPIERTAS... MIDIENDO 2 CENTÍMETROS...|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "DOMINGO · 09:00",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer para sobrevivir en tu propia casa.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER PARA SOBREVIVIR EN TU PROPIA CASA.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Nora. Once años.",
+  "cap": "NORA.|y 11 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Ayer medía un metro cincuenta. Hoy, lo mismo que una hormiga.",
+  "cap": "AYER MEDÍA 1,50 M. HOY, LO MISMO QUE UNA HORMIGA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "wake",
+  "hud": "SU CUARTO · 09:01",
+  "say": "Se despierta en su cama, que ahora parece un desierto blanco.",
+  "cap": "SE DESPIERTA EN SU CAMA, QUE AHORA PARECE UN DESIERTO BLANCO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "wake",
+  "hud": "SU CUARTO · 09:01",
+  "say": "Su almohada es una montaña.",
+  "cap": "SU ALMOHADA ES UNA MONTAÑA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "wake",
+  "hud": "SU CUARTO · 09:01",
+  "alert": true,
+  "say": "Todo es gigante. Y todo es peligroso.",
+  "cap": "TODO ES GIGANTE. Y TODO ES PELIGROSO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "wake",
+  "hud": "SU CUARTO · 09:02",
+  "say": "Nora grita para que la oigan... pero su voz suena como un mosquito.",
+  "cap": "NORA GRITA PARA QUE LA OIGAN... PERO SU VOZ SUENA COMO UN MOSQUITO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · LA CAMA",
+  "step": 0,
+  "say": "Paso uno: sal de la cama antes de que tu madre la haga.",
+  "cap": "PASO|y UNO: SAL DE LA CAMA ANTES DE QUE TU MADRE LA HAGA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · LA CAMA",
+  "alert": true,
+  "say": "Nora corre por la sábana... y el edredón cae justo detrás de ella.",
+  "cap": "NORA CORRE POR LA SÁBANA... Y EL EDREDÓN CAE JUSTO DETRÁS DE ELLA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · LA CAMA",
+  "say": "Salta por el borde... y aterriza en una zapatilla.",
+  "cap": "SALTA POR EL BORDE... Y ATERRIZA EN UNA ZAPATILLA.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · EL GATO",
+  "step": 1,
+  "say": "Paso dos: no te acerques al gato.",
+  "cap": "PASO|y DOS: NO TE ACERQUES AL GATO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · EL GATO",
+  "say": "Para Bigotes, ahora eres un juguete.",
+  "cap": "PARA BIGOTES, AHORA ERES UN JUGUETE.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · EL GATO",
+  "alert": true,
+  "say": "Y te acaba de ver.",
+  "cap": "Y TE ACABA DE VER.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · EL GATO",
+  "alert": true,
+  "say": "Nora se mete debajo del sofá. Y una garra enorme entra a buscarla.",
+  "cap": "NORA SE METE DEBAJO DEL SOFÁ. Y UNA GARRA ENORME ENTRA A BUSCARLA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · EL GATO",
+  "say": "Se queda quieta, sin respirar... hasta que Bigotes se aburre.",
+  "cap": "SE QUEDA QUIETA, SIN RESPIRAR... HASTA QUE BIGOTES SE ABURRE.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · COMIDA",
+  "step": 2,
+  "say": "Paso tres: comida y agua.",
+  "cap": "PASO|y TRES: COMIDA Y AGUA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "COCINA · 11:20",
+  "say": "Una miga de pan es un bocadillo entero.",
+  "cap": "UNA MIGA DE PAN ES UN BOCADILLO ENTERO.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "COCINA · 11:20",
+  "say": "Y una gota de agua... una botella.",
+  "cap": "Y UNA GOTA DE AGUA... UNA BOTELLA.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "COCINA · 11:20",
+  "say": "Pero para llegar a la encimera, tiene que trepar por el cable de la tostadora.",
+  "cap": "PERO PARA LLEGAR A LA ENCIMERA, TIENE QUE TREPAR POR EL CABLE DE LA TOSTADORA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · AYUDA",
+  "step": 3,
+  "say": "Paso cuatro: pide ayuda.",
+  "cap": "PASO|y CUATRO: PIDE AYUDA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · AYUDA",
+  "say": "Nora se sube al móvil de su madre... y salta sobre las letras, una a una.",
+  "cap": "NORA SE SUBE AL MÓVIL DE SU MADRE... Y SALTA SOBRE LAS LETRAS, UNA A UNA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · AYUDA",
+  "say": "Soy Nora. Estoy en el suelo.",
+  "cap": "«SOY NORA. ESTOY EN EL SUELO.»|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · AYUDA",
+  "alert": true,
+  "say": "Pero el móvil se bloquea antes de enviarlo.",
+  "cap": "PERO EL MÓVIL SE BLOQUEA ANTES DE ENVIARLO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step5",
+  "hud": "PASO 5 · EL SUELO",
+  "step": 4,
+  "say": "Paso cinco: nunca te quedes en medio del suelo.",
+  "cap": "PASO|y CINCO: NUNCA TE QUEDES EN MEDIO DEL SUELO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step5",
+  "hud": "PASO 5 · EL SUELO",
+  "say": "Ahí es donde pisa la gente.",
+  "cap": "AHÍ ES DONDE PISA LA GENTE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step5",
+  "hud": "PASO 5 · EL SUELO",
+  "alert": true,
+  "say": "La zapatilla de su padre cae a un centímetro de ella.",
+  "cap": "LA ZAPATILLA DE SU PADRE CAE A UN CENTÍMETRO DE ELLA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step5",
+  "hud": "SALÓN · 13:05",
+  "alert": true,
+  "say": "Y en ese momento, algo enorme hace temblar todo el salón.",
+  "cap": "Y EN ESE MOMENTO, ALGO ENORME HACE TEMBLAR TODO EL SALÓN.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "leo",
+  "hud": "SALÓN · 13:05",
+  "say": "Es su hermano pequeño, Leo. Tres años.",
+  "cap": "ES SU HERMANO PEQUEÑO, LEO. 3 AÑOS.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "leo",
+  "hud": "SALÓN · 13:05",
+  "alert": true,
+  "say": "Y Leo lo coge todo... y se lo mete en la boca.",
+  "cap": "Y LEO LO COGE TODO... Y SE LO METE EN LA BOCA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "leo",
+  "hud": "SALÓN · 13:06",
+  "alert": true,
+  "say": "La ha visto.",
+  "cap": "LA HA VISTO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "hand",
+  "hud": "SALÓN · 13:06",
+  "alert": true,
+  "say": "Se agacha despacio, con los ojos muy abiertos...",
+  "cap": "SE AGACHA DESPACIO, CON LOS OJOS MUY ABIERTOS...",
+  "pause": 0.15
+ },
+ {
+  "sc": "hand",
+  "hud": "SALÓN · 13:06",
+  "alert": true,
+  "say": "y estira la mano hacia ella.",
+  "cap": "Y ESTIRA LA MANO HACIA ELLA.|p",
+  "pause": 0.9,
+  "cut": true
+ }
+]

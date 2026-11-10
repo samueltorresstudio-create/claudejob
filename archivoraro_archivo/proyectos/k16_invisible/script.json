@@ -1,0 +1,212 @@
+[
+ {
+  "sc": "intro",
+  "hud": "CUARTO · 07:50",
+  "say": "Si un día te despiertas... y eres invisible...",
+  "cap": "SI UN DÍA TE DESPIERTAS... Y ERES INVISIBLE...|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "CUARTO · 07:50",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Nico. Once años.",
+  "cap": "NICO.|y 11 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Lo primero que piensa es que es un sueño. No lo es.",
+  "cap": "LO PRIMERO QUE PIENSA ES QUE ES UN SUEÑO. NO LO ES.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Esta mañana se ha mirado al espejo... y en el espejo no había nadie.",
+  "cap": "ESTA MAÑANA SE HA MIRADO AL ESPEJO... Y EN EL ESPEJO NO HABÍA NADIE.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "wake",
+  "hud": "CUARTO · 07:51",
+  "say": "Ni su cara. Ni sus manos. Ni el pijama.",
+  "cap": "NI SU CARA. NI SUS MANOS. NI EL PIJAMA.|b",
+  "pause": 0.1
+ },
+ {
+  "sc": "wake",
+  "hud": "CUARTO · 07:51",
+  "say": "Solo la cama deshecha, con la forma de su cuerpo.",
+  "cap": "SOLO LA CAMA DESHECHA, CON LA FORMA DE SU CUERPO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "wake",
+  "hud": "CUARTO · 07:52",
+  "say": "Se pellizca el brazo. Le duele. Pero no ve el brazo.",
+  "cap": "SE PELLIZCA EL BRAZO. LE DUELE. PERO NO VE EL BRAZO.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · COMPRUÉBALO",
+  "step": 0,
+  "say": "Paso uno: comprueba que nadie puede verte.",
+  "cap": "PASO|y UNO: COMPRUEBA QUE NADIE PUEDE VERTE.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "COCINA · 08:00",
+  "say": "Nico baja a la cocina. Su madre pasa por su lado... y grita hacia la escalera:",
+  "cap": "NICO BAJA A LA COCINA. SU MADRE PASA POR SU LADO... Y GRITA HACIA LA ESCALERA:",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "COCINA · 08:00",
+  "say": "¡Nico, que llegas tarde!",
+  "cap": "«¡NICO, QUE LLEGAS TARDE!»|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "COCINA · 08:00",
+  "alert": true,
+  "say": "Está a medio metro. Y no le ve.",
+  "cap": "ESTÁ A MEDIO METRO. Y NO LE VE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "COCINA · 08:01",
+  "say": "Le pasa la mano por delante de los ojos. Nada.",
+  "cap": "LE PASA LA MANO POR DELANTE DE LOS OJOS. NADA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · NO TOQUES NADA",
+  "step": 1,
+  "say": "Paso dos: no toques nada delante de nadie.",
+  "cap": "PASO|y DOS: NO TOQUES NADA DELANTE DE NADIE.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "COCINA · 08:02",
+  "say": "Nico coge una galleta... y su hermana pequeña ve una galleta flotando en el aire.",
+  "cap": "NICO COGE UNA GALLETA... Y SU HERMANA PEQUEÑA VE UNA GALLETA FLOTANDO EN EL AIRE.|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "COCINA · 08:02",
+  "alert": true,
+  "say": "Todavía está gritando.",
+  "cap": "TODAVÍA ESTÁ GRITANDO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "COCINA · 08:03",
+  "say": "Nico suelta la galleta y sale de casa sin hacer ruido.",
+  "cap": "NICO SUELTA LA GALLETA Y SALE DE CASA SIN HACER RUIDO.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · COSAS RARAS",
+  "step": 2,
+  "say": "Paso tres: fíjate en las cosas raras. Puede que no seas el único.",
+  "cap": "PASO|y TRES: FÍJATE EN LAS COSAS RARAS. PUEDE QUE NO SEAS EL ÚNICO.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "CALLE · 08:20",
+  "say": "En la calle, un columpio se mueve solo. Una puerta se abre... y no entra nadie.",
+  "cap": "EN LA CALLE, UN COLUMPIO SE MUEVE SOLO. UNA PUERTA SE ABRE... Y NO ENTRA NADIE.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "CALLE · 08:21",
+  "alert": true,
+  "say": "Y en los charcos aparecen pisadas. Pisadas de alguien que no está.",
+  "cap": "Y EN LOS CHARCOS APARECEN PISADAS. PISADAS DE ALGUIEN QUE NO ESTÁ.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "CALLE · 08:22",
+  "alert": true,
+  "say": "Pisadas grandes. Que van en la misma dirección que él.",
+  "cap": "PISADAS GRANDES. QUE VAN EN LA MISMA DIRECCIÓN QUE ÉL.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · QUE NO TE ENCUENTRE",
+  "step": 3,
+  "say": "Paso cuatro: si hay otro... no dejes que te encuentre.",
+  "cap": "PASO|y CUATRO: SI HAY OTRO... NO DEJES QUE TE ENCUENTRE.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "step4",
+  "hud": "PARQUE · 08:30",
+  "say": "Nico se esconde en el parque, en el banco más alejado. Sin moverse. Sin respirar.",
+  "cap": "NICO SE ESCONDE EN EL PARQUE, EN EL BANCO MÁS ALEJADO. SIN MOVERSE. SIN RESPIRAR.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "PARQUE · 08:31",
+  "say": "Desde ahí ve todo el parque. Si algo se acerca, lo verá en los charcos.",
+  "cap": "DESDE AHÍ VE TODO EL PARQUE. SI ALGO SE ACERCA, LO VERÁ EN LOS CHARCOS.|b",
+  "pause": 0.3
+ },
+ {
+  "sc": "end",
+  "hud": "PARQUE · 08:34",
+  "alert": true,
+  "say": "Las pisadas del charco se acercan. Una. Otra. Otra.",
+  "cap": "LAS PISADAS DEL CHARCO SE ACERCAN. UNA. OTRA. OTRA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "PARQUE · 08:34",
+  "alert": true,
+  "say": "Y se paran justo delante del banco.",
+  "cap": "Y SE PARAN JUSTO DELANTE DEL BANCO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "PARQUE · 08:34",
+  "alert": true,
+  "say": "Nico aprieta los labios para no hacer ni un ruido.",
+  "cap": "NICO APRIETA LOS LABIOS PARA NO HACER NI UN RUIDO.",
+  "pause": 0.2
+ },
+ {
+  "sc": "end",
+  "hud": "PARQUE · 08:35",
+  "alert": true,
+  "cut": true,
+  "say": "Entonces, algo le agarra la mano. Algo frío... y mucho más grande que la suya.",
+  "cap": "ENTONCES, ALGO LE AGARRA LA MANO. ALGO FRÍO... Y MUCHO MÁS GRANDE QUE LA SUYA.|p",
+  "pause": 0.2
+ }
+]

@@ -1,0 +1,180 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#000}</style></head><body>
+<svg id="sv" xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<script src="../48b_mejora/lib.js"></script><script src="../48b_mejora/kit.js"></script><script src="../48b_mejora/scenes.js"></script>
+<script>
+window.__T=1.7;
+const SMK='#1b1a22';
+const smMix=(a,b,k)=>mix(a,b,k);
+// the ORIGINAL characters, placed where the test scenes put theirs
+const FX=`<defs><radialGradient id="glowY"><stop offset="0" stop-color="#ffd76a" stop-opacity=".45"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></radialGradient>
+ <filter id="chFX" x="-20%" y="-12%" width="140%" height="124%" color-interpolation-filters="sRGB">
+  <feMorphology in="SourceAlpha" operator="dilate" radius="4.5" result="dil"/><feFlood flood-color="#1d1b2a"/><feComposite in2="dil" operator="in" result="outline"/>
+  <feOffset in="SourceAlpha" dx="-26" dy="-8" result="o1"/><feComposite in="SourceAlpha" in2="o1" operator="out" result="e1"/><feGaussianBlur in="e1" stdDeviation="2.5" result="e1b"/>
+  <feFlood flood-color="#1a1430" flood-opacity=".34"/><feComposite in2="e1b" operator="in"/><feComposite in2="SourceAlpha" operator="in" result="shade"/>
+  <feOffset in="SourceAlpha" dx="10" dy="10" result="o2"/><feComposite in="SourceAlpha" in2="o2" operator="out" result="e2"/><feGaussianBlur in="e2" stdDeviation="3" result="e2b"/>
+  <feFlood flood-color="#fff3d8" flood-opacity=".22"/><feComposite in2="e2b" operator="in"/><feComposite in2="SourceAlpha" operator="in" result="rim"/>
+  <feMerge><feMergeNode in="outline"/><feMergeNode in="SourceGraphic"/><feMergeNode in="shade"/><feMergeNode in="rim"/></feMerge></filter></defs>`;
+const EXPR={neutral:{brows:null,mouth:'line'},worried:{brows:'worried',mouth:'line'},tired:{brows:null,mouth:'line'},angry:{brows:'angry',mouth:'line'},sing:{eyes:'closed',mouth:'o',mopen:.7},happy:{eyes:'closed',mouth:'grin'}};
+const LOOK=SMlook=>[Math.max(-12,Math.min(12,SMlook[0])),Math.max(-10,Math.min(10,SMlook[1]))];
+function SM(o){
+  const k=o.s*.8, base=o.hs==='bald'?VEC5:o.hs==='ponytail'?CAJERA:o.hs==='police'?{skin:'#d9a07a',hs:'short',hair:'#2a1d18',mustache:'#2a1d18',hat:'police',hatCol:'#2a3a6a',top:'#2a3a6a',topD:'#1d2a50',pants:'#1d2440',shoes:'#1d1d22',badge:true,seed:111}:ALEX;
+  const e=EXPR[o.expr]||EXPR.neutral;
+  const rc=a=>a==='hold'?null:Array.isArray(a)?[a[0]*1.26,a[1]*1.26]:a==='point'?[260,-560]:a==='wave'?[150,-700]:null;
+  let r=A({...base,x:o.x,y:o.y,s:k,look:LOOK(o.look||[0,0]),...e,sit:o.legs==='sit',reachL:o.armL==='hold'?[-50,o.legs==='sit'?-240:-430]:rc(o.armL),reachR:o.armR==='hold'?[50,o.legs==='sit'?-240:-430]:rc(o.armR)});
+  if(o.prop) r+=`<g transform="translate(${o.x},${o.y+(o.legs==='sit'?110:-40)*o.s}) scale(${o.s})">${o.prop}</g>`;
+  return r;}
+function SMdog(o){return shepherd(o.x,o.y,o.s*.62,1.7,{dir:o.dir||1,alert:.8,head:6,seed:9});}
+const K4=SMK;
+const pgRnd=(s=>()=>((s=Math.imul(s^s>>>15,1|s)+0x6D2B79F5)>>>0)/4294967296)(7);
+const pgR=a=>{let s=a;return()=>((s=(s*9301+49297)%233280)/233280)};
+const pgGrain=(op=.10)=>`<filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="9"/><feColorMatrix values="0 0 0 0 .1 0 0 0 0 .08 0 0 0 0 .06 0 0 0 ${op} 0"/><feComposite in2="SourceGraphic" operator="in"/></filter><rect width="1080" height="1920" fill="#000" filter="url(#gr)"/>`;
+const pgVign=(op=.55)=>`<radialGradient id="vg" cx=".5" cy=".45" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#05040a" stop-opacity="${op}"/></radialGradient><rect width="1080" height="1920" fill="url(#vg)"/>`;
+const pgCap=w=>`<text x="540" y="1290" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" fill="#fff" stroke="#000" stroke-width="16" paint-order="stroke" letter-spacing="-2">${w}</text>`;
+const pgLineK=(p,w=6,c=K)=>`<path d="${p}" stroke="${c}" stroke-width="${w}" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`;
+
+// ---------- 1 · living room at noon, the moment it all goes off ----------
+function pg_room(){
+  let s=`<defs><linearGradient id="wl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9b89a"/><stop offset="1" stop-color="#e6d6b8"/></linearGradient>
+   <linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a3a"/><stop offset="1" stop-color="#5a3a24"/></linearGradient>
+   <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c8" stop-opacity=".55"/><stop offset="1" stop-color="#fff2c8" stop-opacity="0"/></linearGradient>
+   <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7ec2ea"/><stop offset="1" stop-color="#d8eef8"/></linearGradient></defs>`;
+  // ceiling, side walls, back wall, floor
+  s+=`<rect width="1080" height="1920" fill="#b8a688"/><path d="M0,0 L1080,0 L900,330 L180,330Z" fill="#d8ccb4"/><path d="M0,0 L180,330 L180,1240 L0,1580Z" fill="#a8946f"/><path d="M1080,0 L900,330 L900,1240 L1080,1580Z" fill="#b29e7a"/>`;
+  s+=`<rect x="180" y="330" width="720" height="910" fill="url(#wl)"/>`;
+  for(let x=200;x<900;x+=44) s+=`<rect x="${x}" y="330" width="14" height="910" fill="#000" opacity=".03"/>`;
+  s+=`<path d="M180,1240 L900,1240 L1080,1580 L1080,1920 L0,1920 L0,1580Z" fill="url(#fl)"/>`;
+  for(let i=0;i<=12;i++){const bx=180+i*60, fx=-300+i*140;s+=`<line x1="${bx}" y1="1240" x2="${fx}" y2="1920" stroke="#3a2416" stroke-width="3" opacity=".45"/>`;}
+  for(const y of [1300,1390,1510,1680]) s+=`<line x1="0" y1="${y}" x2="1080" y2="${y}" stroke="#3a2416" stroke-width="2" opacity=".18"/>`;
+  s+=`<rect x="180" y="1222" width="720" height="18" fill="#7a6248"/>`;
+  // window on the back wall with the city outside, and the sun beam crossing the room
+  s+=`<rect x="230" y="430" width="300" height="420" fill="url(#sky1)"/><rect x="260" y="620" width="80" height="230" fill="#c98a6a"/><rect x="350" y="580" width="90" height="270" fill="#e0c8a0"/><rect x="450" y="650" width="70" height="200" fill="#a8b8c8"/>`;
+  for(let i=0;i<5;i++) s+=`<rect x="${270+(i%2)*90}" y="${640+i*36}" width="16" height="20" fill="#8ab0c8"/>`;
+  s+=`<rect x="222" y="422" width="316" height="436" fill="none" stroke="#f3eee6" stroke-width="16"/><line x1="380" y1="430" x2="380" y2="850" stroke="#f3eee6" stroke-width="12"/><line x1="230" y1="640" x2="530" y2="640" stroke="#f3eee6" stroke-width="12"/>`;
+  s+=`<path d="M190,420 Q220,600 200,870 L240,870 Q250,620 230,420Z M570,420 Q540,600 560,870 L520,870 Q510,620 530,420Z" fill="#c2585a" stroke="${K4}" stroke-width="5"/>`;
+  s+=`<path d="M230,430 L530,430 L900,1600 L120,1700Z" fill="url(#beam)" opacity=".75"/>`;
+  for(let i=0;i<18;i++){const r=pgRnd();s+=`<circle cx="${(300+r*500).toFixed(0)}" cy="${(600+pgRnd()*700).toFixed(0)}" r="${(2+pgRnd()*3).toFixed(1)}" fill="#fff8e0" opacity=".6"/>`;}
+  // frame, shelf, TV (off), lamp (off), plant
+  s+=`<rect x="640" y="470" width="190" height="140" fill="#f3eee6" stroke="${K4}" stroke-width="7"/><rect x="660" y="490" width="150" height="100" fill="#8aa8c0"/><path d="M660,590 L720,530 L760,570 L790,540 L810,590Z" fill="#5a7a5a"/>`;
+  s+=`<rect x="600" y="860" width="280" height="200" fill="#5a3e2a" stroke="${K4}" stroke-width="7"/><rect x="620" y="700" width="240" height="150" rx="8" fill="#14161c" stroke="${K4}" stroke-width="7"/><path d="M640,716 L700,716 L650,800Z" fill="#fff" opacity=".08"/><rect x="725" y="850" width="30" height="12" fill="#14161c"/>`;
+  s+=`<rect x="620" y="880" width="80" height="26" rx="6" fill="#1d1f26"/><text x="660" y="900" text-anchor="middle" font-family="monospace" font-weight="900" font-size="18" fill="#3a2a2a">--:--</text>`;
+  s+=`<path d="M120,1300 L120,700" stroke="${K4}" stroke-width="8"/><path d="M70,700 L170,700 L150,620 L90,620Z" fill="#e9e2d2" stroke="${K4}" stroke-width="7"/>`;
+  s+=`<path d="M940,1300 l-30,-90 l90,0 l-30,90Z" fill="#a85a3a" stroke="${K4}" stroke-width="6"/>`+[0,1,2,3,4].map(i=>`<path d="M955,1210 Q${900+i*30},${1080-i*10} ${920+i*28},${1040+i*12}" stroke="#3a7a4a" stroke-width="14" fill="none" stroke-linecap="round"/>`).join('');
+  // characters
+  s+=SMdog({x:780,y:1560,s:1.1,dir:-1,look:[-6,-4],expr:'worried'});
+  s+=SM({x:430,y:1640,s:1.55,top:'#3a5a7a',outfit:'hoodie',pants:'#2e3440',hs:'quiff',hair:'#3a2a20',expr:'worried',look:[10,-4],armL:'down',armR:'down',stubble:true});
+  s+=`<defs>${''}</defs>`+pgGrain()+pgVign(.45)+pgCap('TODO.');
+  return s;}
+
+// ---------- 2 · the 5th-floor neighbour sings on his balcony ----------
+function pg_balcony(){
+  let s=`<defs><linearGradient id="ns" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c1030"/><stop offset=".6" stop-color="#2a2458"/><stop offset="1" stop-color="#5a3a6a"/></linearGradient><radialGradient id="cg"><stop offset="0" stop-color="#ffcf7a" stop-opacity=".8"/><stop offset="1" stop-color="#ffcf7a" stop-opacity="0"/></radialGradient><radialGradient id="mg"><stop offset="0" stop-color="#dfe8ff" stop-opacity=".5"/><stop offset="1" stop-color="#dfe8ff" stop-opacity="0"/></radialGradient></defs>`;
+  s+=`<rect width="1080" height="1920" fill="url(#ns)"/>`;
+  const r=pgR(3);for(let i=0;i<140;i++) s+=`<circle cx="${(r()*1080).toFixed(0)}" cy="${(r()*900).toFixed(0)}" r="${(r()*2.4+.6).toFixed(1)}" fill="#fff" opacity="${(.3+r()*.7).toFixed(2)}"/>`;
+  s+=`<path d="M0,620 Q300,560 700,600 T1080,560" stroke="#a8b8ff" stroke-width="40" fill="none" opacity=".05"/>`;
+  s+=`<circle cx="800" cy="300" r="220" fill="url(#mg)"/><circle cx="800" cy="300" r="70" fill="#f1f3ff"/><circle cx="780" cy="290" r="12" fill="#d8dcef"/><circle cx="820" cy="320" r="8" fill="#d8dcef"/>`;
+  // far skyline, all dark except candles
+  const sk=pgR(11);let x=-40;while(x<1100){const w=80+sk()*120, h=200+sk()*360;s+=`<rect x="${x.toFixed(0)}" y="${(1100-h).toFixed(0)}" width="${w.toFixed(0)}" height="${h+900}" fill="#141634"/>`;
+    for(let wy=1100-h+30;wy<1100;wy+=46) for(let wx=x+14;wx<x+w-20;wx+=34) if(sk()<.08) s+=`<rect x="${wx.toFixed(0)}" y="${wy.toFixed(0)}" width="16" height="22" fill="#ffb860" opacity=".9"/><circle cx="${(wx+8).toFixed(0)}" cy="${(wy+11).toFixed(0)}" r="26" fill="url(#cg)" opacity=".6"/>`;
+    x+=w+8;}
+  // the building wall and balcony (foreground)
+  s+=`<rect x="0" y="1100" width="1080" height="820" fill="#3a2e3a"/>`;for(let y=1100;y<1920;y+=40) s+=`<line x1="0" y1="${y}" x2="1080" y2="${y}" stroke="#2a2030" stroke-width="3"/>`;
+  s+=`<rect x="80" y="1120" width="420" height="520" fill="#1a1420" stroke="${K4}" stroke-width="8"/><rect x="100" y="1140" width="380" height="480" fill="#2a1e1a"/><circle cx="290" cy="1400" r="300" fill="url(#cg)" opacity=".5"/>`;
+  s+=`<rect x="0" y="1640" width="1080" height="280" fill="#2a2030"/><rect x="0" y="1630" width="1080" height="20" fill="#5a4a5a" stroke="${K4}" stroke-width="5"/>`;
+  // neighbour with guitar
+  const gtr=`<g transform="translate(10,-262) rotate(-18)"><rect x="40" y="-10" width="190" height="20" fill="#5a3a22" stroke="${K4}" stroke-width="5"/><rect x="220" y="-16" width="44" height="32" rx="6" fill="#3a2414" stroke="${K4}" stroke-width="5"/><path d="M-80,0 C-80,-60 -30,-62 0,-40 C30,-62 70,-50 70,0 C70,50 30,62 0,40 C-30,62 -80,60 -80,0Z" fill="#d48a3a" stroke="${K4}" stroke-width="6"/><circle cx="0" cy="0" r="16" fill="#3a2414"/>${[-5,-1,3].map(o=>`<line x1="-60" y1="${o}" x2="260" y2="${o}" stroke="#f3eee6" stroke-width="1.5"/>`).join('')}</g>`;
+  s+=SM({x:560,y:1660,s:1.5,top:'#f3eee6',outfit:'tank',pants:'#3a4a6a',hs:'bald',hair:'#5a4a40',mustache:'#4a3a30',expr:'sing',armL:'hold',armR:[60,-300],tw:72,prop:gtr});
+  // candles on the railing + railing in front
+  const cdl=(cx,cy)=>`<circle cx="${cx}" cy="${cy-50}" r="130" fill="url(#cg)"/><rect x="${cx-12}" y="${cy-56}" width="24" height="56" rx="4" fill="#f3eee6" stroke="${K4}" stroke-width="4"/><path d="M${cx},${cy-96} Q${cx+14},${cy-70} ${cx},${cy-60} Q${cx-14},${cy-70} ${cx},${cy-96}Z" fill="#ffd76a" stroke="#ff9a3a" stroke-width="3"/>`;
+  s+=`<rect x="0" y="1460" width="1080" height="18" fill="#1d1f2a" stroke="${K4}" stroke-width="4"/>`+Array.from({length:22},(_,i)=>`<rect x="${10+i*50}" y="1478" width="8" height="160" fill="#1d1f2a"/>`).join('');
+  s+=cdl(900,1460)+cdl(150,1460);
+  for(let i=0;i<4;i++) s+=`<text x="${760+i*50}" y="${1020-i*60}" font-family="Inter" font-weight="900" font-size="${54-i*6}" fill="#ffd34a" opacity="${(.9-i*.18).toFixed(2)}" stroke="${K4}" stroke-width="4" paint-order="stroke">♪</text>`;
+  s+=pgGrain(.12)+pgVign(.6)+pgCap('FIESTA.');
+  return s;}
+
+// ---------- 3 · the supermarket: calculator and cash ----------
+function pg_shop(){
+  const VX=540, VY=760;
+  let s=`<defs><linearGradient id="sf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d6dadc"/><stop offset="1" stop-color="#9aa0a6"/></linearGradient><radialGradient id="dl" cx=".5" cy=".38" r=".5"><stop offset="0" stop-color="#fff8e0" stop-opacity=".9"/><stop offset="1" stop-color="#fff8e0" stop-opacity="0"/></radialGradient><radialGradient id="ex"><stop offset="0" stop-color="#3aff8a" stop-opacity=".6"/><stop offset="1" stop-color="#3aff8a" stop-opacity="0"/></radialGradient></defs>`;
+  s+=`<rect width="1080" height="1920" fill="#4a4e56"/>`;
+  s+=`<path d="M0,0 L1080,0 L${VX+90},${VY-60} L${VX-90},${VY-60}Z" fill="#5a5e66"/>`;
+  for(let i=0;i<6;i++){const t=i/6;s+=`<rect x="${(VX-260*(1-t*.8)).toFixed(0)}" y="${(60+t*600).toFixed(0)}" width="${(520*(1-t*.8)).toFixed(0)}" height="${(26*(1-t*.7)).toFixed(0)}" fill="#3a3e46"/>`;}
+  // far entrance with daylight
+  s+=`<rect x="${VX-90}" y="${VY-60}" width="180" height="200" fill="#fff4d8"/><circle cx="${VX}" cy="${VY+40}" r="420" fill="url(#dl)"/>`;
+  // shelves on both sides in perspective
+  for(const side of [-1,1]){const xo=side<0?0:1080, xi=VX+side*90;
+    s+=`<path d="M${xo},120 L${xi},${VY-60} L${xi},${VY+140} L${xo},1540Z" fill="#e3e6e8" stroke="${K4}" stroke-width="5"/>`;
+    for(let r=0;r<6;r++){const ty=VY-60+(r/6)*200, oy=120+(r/6)*1420, ny=VY-60+((r+1)/6)*200, noy=120+((r+1)/6)*1420;
+      s+=`<path d="M${xo},${noy} L${xi},${ny}" stroke="#7a8088" stroke-width="10"/>`;
+      const rr=pgR(r*7+side+20);for(let k=0;k<14;k++){const t=k/14, t2=(k+.8)/14, x1=xo+(xi-xo)*t, x2=xo+(xi-xo)*t2, yb=noy+(ny-noy)*t, yb2=noy+(ny-noy)*t2, h=(noy-oy)*(1-t)*.7+8;
+        const col=['#c23a3a','#3a6aa8','#e0b04a','#3a8a5a','#e9e4d8','#d4782a','#7a4a8a'][Math.floor(rr()*7)];
+        if(rr()<.85) s+=`<path d="M${x1.toFixed(1)},${(yb-4).toFixed(1)} L${x2.toFixed(1)},${(yb2-4).toFixed(1)} L${x2.toFixed(1)},${(yb2-4-h*(1-t2)/(1-t+.001)).toFixed(1)} L${x1.toFixed(1)},${(yb-4-h).toFixed(1)}Z" fill="${col}"/>`;}}}
+  // floor with reflections
+  s+=`<path d="M0,1540 L${VX-90},${VY+140} L${VX+90},${VY+140} L1080,1540 L1080,1920 L0,1920Z" fill="url(#sf)"/>`;
+  s+=`<path d="M${VX-60},${VY+150} L${VX+60},${VY+150} L700,1920 L380,1920Z" fill="#fff" opacity=".18"/>`;
+  for(let i=0;i<8;i++) s+=`<line x1="${VX-90+i*25}" y1="${VY+140}" x2="${-200+i*200}" y2="1920" stroke="#7a8088" stroke-width="2" opacity=".4"/>`;
+  // exit sign
+  s+=`<circle cx="${VX}" cy="${VY-110}" r="70" fill="url(#ex)"/><rect x="${VX-60}" y="${VY-130}" width="120" height="40" fill="#1f8a4a" stroke="${K4}" stroke-width="4"/><text x="${VX}" y="${VY-101}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="24" fill="#e8fff0">SALIDA</text>`;
+  // checkout counter + cardboard sign
+  s+=`<path d="M0,1300 L520,1300 L560,1360 L560,1700 L0,1700Z" fill="#5a6068" stroke="${K4}" stroke-width="7"/><rect x="0" y="1290" width="540" height="22" fill="#3a3e46" stroke="${K4}" stroke-width="5"/>`;
+  s+=SM({x:260,y:1520,s:1.25,top:'#2f8a5a',outfit:'polo',badge:true,hs:'ponytail',hair:'#2a1a12',expr:'tired',look:[10,8],armL:'hold',armR:'hold',blush:true,
+    prop:`<g transform="translate(0,-300)"><rect x="-44" y="-56" width="88" height="116" rx="10" fill="#2a2e3a" stroke="${K4}" stroke-width="6"/><rect x="-34" y="-46" width="68" height="26" fill="#cfe6a8"/><text x="28" y="-27" text-anchor="end" font-family="monospace" font-weight="900" font-size="18" fill="#2a3a1a">47,80</text>${[0,1,2].map(r=>[0,1,2].map(c=>`<rect x="${-30+c*22}" y="${-12+r*22}" width="16" height="16" rx="3" fill="#9aa3ad"/>`).join('')).join('')}</g>`});
+  s+=`<path d="M0,1312 L540,1312 L540,1340 L0,1340Z" fill="#3a3e46"/>`;
+  s+=`<g transform="translate(150,1420) rotate(-6)"><rect x="-120" y="-56" width="240" height="112" fill="#c9a87a" stroke="${K4}" stroke-width="5"/><text x="0" y="-8" text-anchor="middle" font-family="Inter" font-weight="900" font-style="italic" font-size="40" fill="#2a2620">SOLO</text><text x="0" y="38" text-anchor="middle" font-family="Inter" font-weight="900" font-style="italic" font-size="40" fill="#2a2620">EFECTIVO</text></g>`;
+  s+=SM({x:780,y:1820,s:1.5,top:'#3a5a7a',outfit:'hoodie',pants:'#2e3440',hs:'quiff',hair:'#3a2a20',expr:'neutral',look:[-12,0],armL:[-180,-340],stubble:true,
+    prop:''})+`<g transform="translate(${780-1.5*180},${1820-1.5*340})"><rect x="-44" y="-22" width="88" height="44" rx="4" fill="#7ab86a" stroke="${K4}" stroke-width="4"/><rect x="-36" y="-14" width="88" height="44" rx="4" fill="#8ac87a" stroke="${K4}" stroke-width="4"/><text x="8" y="16" text-anchor="middle" font-family="Inter" font-weight="900" font-size="24" fill="#2a4a2a">50 €</text></g>`;
+  s+=pgGrain(.1)+pgVign(.5)+pgCap('EFECTIVO.');
+  return s;}
+
+// ---------- 4 · the street at sunset: no traffic lights ----------
+function pg_street(){
+  const VX=560, VY=860;
+  let s=`<defs><linearGradient id="ss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3a8a"/><stop offset=".45" stop-color="#e86a6a"/><stop offset=".75" stop-color="#ffb46a"/><stop offset="1" stop-color="#ffe0a0"/></linearGradient><radialGradient id="sn"><stop offset="0" stop-color="#fff2c0"/><stop offset=".3" stop-color="#ffd27a" stop-opacity=".8"/><stop offset="1" stop-color="#ff9a5a" stop-opacity="0"/></radialGradient></defs>`;
+  s+=`<rect width="1080" height="1920" fill="url(#ss)"/><circle cx="${VX}" cy="${VY-40}" r="260" fill="url(#sn)"/><circle cx="${VX}" cy="${VY-30}" r="60" fill="#fff4d0"/>`;
+  // buildings on both sides, converging
+  for(const side of [-1,1]){const xo=side<0?-40:1120;
+    for(let b=0;b<5;b++){const t0=b/5, t1=(b+1)/5, x0=xo+(VX-xo)*t0*.86, x1=xo+(VX-xo)*t1*.86, top0=pgLerpS(80,VY-200,t0), top1=pgLerpS(80,VY-200,t1), bot0=pgLerpS(1500,VY+60,t0), bot1=pgLerpS(1500,VY+60,t1);
+      const col=['#c98a6a','#d8b48a','#b87a5a','#e2c8a0','#a86a52'][b];
+      s+=`<path d="M${x0},${top0} L${x1},${top1} L${x1},${bot1} L${x0},${bot0}Z" fill="${smMix(col,'#3a2a4a',.15+t0*.35)}" stroke="${K4}" stroke-width="${(5*(1-t0*.7)).toFixed(1)}"/>`;
+      for(let r=0;r<5;r++){const fy=.12+r*.17, wy0=top0+(bot0-top0)*fy, wy1=top1+(bot1-top1)*fy, hh=(bot0-top0)*.08;
+        const xa=x0+(x1-x0)*.2, xb=x0+(x1-x0)*.55, ya=wy0+(wy1-wy0)*.2, yb=wy0+(wy1-wy0)*.55;
+        s+=`<path d="M${xa.toFixed(1)},${ya.toFixed(1)} L${xb.toFixed(1)},${yb.toFixed(1)} L${xb.toFixed(1)},${(yb+hh*(1-t0*.3)).toFixed(1)} L${xa.toFixed(1)},${(ya+hh).toFixed(1)}Z" fill="#2a2a44" opacity=".85"/>`;}}}
+  // road + pavement
+  s+=`<path d="M${VX-40},${VY+60} L${VX+40},${VY+60} L1080,1700 L1080,1920 L0,1920 L0,1700Z" fill="#3a3a48"/>`;
+  s+=`<path d="M${VX-40},${VY+60} L0,1500 L0,1700Z M${VX+40},${VY+60} L1080,1500 L1080,1700Z" fill="#8a7a7a"/>`;
+  for(let i=0;i<8;i++){const t=i/8, y=VY+80+t*t*1000;s+=`<rect x="${(VX-4-t*14).toFixed(0)}" y="${y.toFixed(0)}" width="${(8+t*28).toFixed(0)}" height="${(10+t*60).toFixed(0)}" fill="#f3eee6" opacity=".85"/>`;}
+  // cars jammed, glowing tail lights
+  const car=(x,y,sc,col,rot=0)=>`<g transform="translate(${x},${y}) rotate(${rot}) scale(${sc})"><ellipse cx="0" cy="0" rx="180" ry="18" fill="#000" opacity=".3"/><path d="M-170,-30 L-170,-80 Q-160,-96 -126,-100 L-84,-146 Q-72,-154 -48,-154 L64,-154 Q88,-154 104,-136 L138,-100 Q166,-96 172,-72 L172,-30Z" fill="${col}" stroke="${K4}" stroke-width="7"/><path d="M-70,-140 L-40,-140 L-40,-104 L-106,-104Z M-28,-140 L60,-140 Q76,-140 88,-124 L106,-104 L-28,-104Z" fill="#26304a"/><circle cx="-100" cy="-28" r="34" fill="#1d1d22" stroke="${K4}" stroke-width="5"/><circle cx="104" cy="-28" r="34" fill="#1d1d22" stroke="${K4}" stroke-width="5"/><rect x="160" y="-90" width="14" height="22" fill="#ff3a3a"/></g>`;
+  s+=car(VX-60,VY+150,.35,'#3a6aa8')+car(VX+90,VY+210,.45,'#e9e4d8',4)+car(330,1340,.95,'#c23a3a',-8)+car(840,1300,.8,'#e0b04a',10);
+  s+=`<text x="300" y="1150" font-family="Inter" font-weight="900" font-size="64" fill="#fff" stroke="${K4}" stroke-width="10" paint-order="stroke" transform="rotate(-8 300 1150)">¡PIII!</text><text x="640" y="1010" font-family="Inter" font-weight="900" font-size="54" fill="#ffd34a" stroke="${K4}" stroke-width="9" paint-order="stroke" transform="rotate(6 640 1010)">¡PI-PI!</text>`;
+  // dead traffic light in the foreground
+  s+=`<rect x="900" y="560" width="18" height="1100" fill="#2a2e3a" stroke="${K4}" stroke-width="5"/><rect x="852" y="380" width="114" height="290" rx="16" fill="#1d2026" stroke="${K4}" stroke-width="7"/>`+[0,1,2].map(i=>`<circle cx="909" cy="${430+i*90}" r="34" fill="#2e2a2a" stroke="${K4}" stroke-width="5"/>`).join('');
+  // police officer directing traffic
+  const whistle=`<g transform="translate(40,-440) rotate(-10)"><rect x="0" y="-10" width="40" height="20" rx="8" fill="#c9c2b0" stroke="${K4}" stroke-width="4"/></g>`;
+  s+=SM({x:420,y:1760,s:1.55,top:'#2a3a6a',outfit:'uniform',pants:'#1d2440',hs:'police',expr:'angry',look:[8,0],armL:'down',armR:'point',prop:whistle,mustache:'#2a1d18'});
+  s+=pgGrain(.1)+pgVign(.45)+pgCap('SEMÁFOROS.');
+  return s;}
+function pgLerpS(a,b,t){return a+(b-a)*t}
+
+// ---------- 5 · night, candle and radio ----------
+function pg_radioNight(){
+  let s=`<defs><radialGradient id="cl" cx=".5" cy=".55" r=".55"><stop offset="0" stop-color="#ffb860" stop-opacity=".75"/><stop offset=".5" stop-color="#7a3a1a" stop-opacity=".25"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>`;
+  s+=`<rect width="1080" height="1920" fill="#14121c"/><rect x="0" y="1340" width="1080" height="580" fill="#1e1610"/>`;
+  s+=`<rect x="640" y="380" width="320" height="460" fill="#0a0e24" stroke="#2a2630" stroke-width="16"/>`;
+  const r=pgR(5);for(let i=0;i<40;i++) s+=`<circle cx="${(650+r()*300).toFixed(0)}" cy="${(390+r()*440).toFixed(0)}" r="${(r()*2+.6).toFixed(1)}" fill="#fff" opacity="${(.4+r()*.6).toFixed(2)}"/>`;
+  s+=`<line x1="800" y1="380" x2="800" y2="840" stroke="#2a2630" stroke-width="12"/><path d="M620,370 Q650,620 630,860 L680,860 Q690,620 670,370Z M980,370 Q950,620 970,860 L920,860 Q910,620 930,370Z" fill="#2a3a5a"/>`;
+  // sofa
+  s+=`<path d="M80,1080 Q80,1000 160,1000 L920,1000 Q1000,1000 1000,1080 L1000,1400 L80,1400Z" fill="#3a4456" stroke="${K4}" stroke-width="8"/><rect x="40" y="1180" width="140" height="260" rx="40" fill="#343e50" stroke="${K4}" stroke-width="8"/><rect x="900" y="1180" width="140" height="260" rx="40" fill="#343e50" stroke="${K4}" stroke-width="8"/><rect x="160" y="1240" width="760" height="140" rx="30" fill="#404c60" stroke="${K4}" stroke-width="7"/>`;
+  // Álex sitting holding the radio
+  const radio=`<g transform="translate(0,-292)"><rect x="-90" y="-60" width="180" height="120" rx="18" fill="#5a6040" stroke="${K4}" stroke-width="6"/><circle cx="-36" cy="4" r="36" fill="#2a2e22" stroke="${K4}" stroke-width="4"/><rect x="16" y="-40" width="58" height="30" rx="5" fill="#cfe6a8"/><text x="45" y="-18" text-anchor="middle" font-family="monospace" font-weight="900" font-size="18" fill="#2a3a1a">98.4</text><circle cx="45" cy="28" r="14" fill="#3a3e2a"/><path d="M60,-60 L110,-170" stroke="${K4}" stroke-width="7" stroke-linecap="round"/></g>`;
+  s+=SM({x:430,y:1420,s:1.45,top:'#3a5a7a',outfit:'hoodie',pants:'#2e3440',hs:'quiff',hair:'#3a2a20',expr:'worried',look:[6,8],armL:'hold',armR:'hold',legs:'sit',stubble:true,prop:radio});
+  for(let i=0;i<3;i++){const p=i/3;s+=`<path d="M${430+1.45*120+i*30},${1420-1.45*300-30} q${20+i*10},${30} 0,${60+i*20}" stroke="#cfe6a8" stroke-width="6" fill="none" opacity="${(.8-p*.5).toFixed(2)}" stroke-linecap="round"/>`;}
+  // table + candle (the only light)
+  s+=`<rect x="700" y="1440" width="300" height="24" fill="#4a3220" stroke="${K4}" stroke-width="6"/><rect x="730" y="1464" width="20" height="200" fill="#4a3220"/><rect x="950" y="1464" width="20" height="200" fill="#4a3220"/>`;
+  s+=`<rect x="830" y="1360" width="34" height="80" rx="5" fill="#f3eee6" stroke="${K4}" stroke-width="5"/><path d="M847,1304 Q866,1340 847,1352 Q828,1340 847,1304Z" fill="#ffd76a" stroke="#ff9a3a" stroke-width="3"/>`;
+  s+=SMdog({x:880,y:1760,s:1.0,dir:-1,look:[-8,-6],expr:'worried'});
+  s+=`<rect width="1080" height="1920" fill="url(#cl)" style="mix-blend-mode:screen"/>`;
+  s+=`<rect width="1080" height="1920" fill="#05040a" opacity=".18"/>`+pgGrain(.14)+pgVign(.75)+pgCap('SEMANAS.');
+  return s;}
+
+window.draw=k=>{document.getElementById('sv').innerHTML=FX+{room:pg_room,balcony:pg_balcony,shop:pg_shop,street:pg_street,radioNight:pg_radioNight}[k]();};
+</script></body></html>

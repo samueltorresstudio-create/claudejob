@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#888}</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<script src="lib.js"></script><script src="kit.js"></script><script src="props.js"></script>
+<script>
+window.__T=1.3;const t=1.3;
+let s=`<defs><radialGradient id="glowY"><stop offset="0" stop-color="#ffd76a" stop-opacity=".45"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></radialGradient></defs><rect width="1080" height="1920" fill="#e9e4d8"/>`;
+s+=doberman(250,350,1,t,{});
+s+=doberman(750,350,1,t,{walk:t*8,alert:1,bark:true});
+s+=doberman(250,750,1,t,{run:t*12});
+s+=doberman(750,750,1,t,{run:t*12+1.5,alert:0,dir:-1});
+const mo={...MARCO,x:300,y:1350,s:.9,reachR:[150,-330]};
+s+=A(mo)+doberman(560,1350,.9,t,{walk:0});
+s+=leash(handAt(300,1350,.9,[150,-330]),dobCollar(560,1350,.9),50);
+s+=A({...MARCO,x:850,y:1350,s:.9,walk:t*12,backpack:PACK,aL:40,aR:-20});
+
+
+document.getElementById('s').innerHTML=s;
+</script></body></html>

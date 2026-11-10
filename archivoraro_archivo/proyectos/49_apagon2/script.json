@@ -1,0 +1,16 @@
+[
+ {"sc":"hook","hud":"DÍA 3 · SIN LUZ","alert":true,"say":"Día tres sin luz. En el súper ya no queda nada... y en la nevera de Álex, todo empieza a oler.","cap":"DÍA 3 SIN LUZ.|p EN EL SÚPER YA NO QUEDA NADA...|y Y EN LA NEVERA DE ÁLEX, TODO EMPIEZA A OLER.|p","pause":0.25},
+ {"sc":"hunger","hud":"DÍA 3 · 09:40","say":"Si la luz no vuelve, el tercer día es cuando la gente empieza a pasar hambre. Y esto es lo que tienes que hacer.","cap":"SI LA LUZ NO VUELVE, EL TERCER DÍA ES CUANDO LA GENTE EMPIEZA A PASAR HAMBRE.|p Y ESTO ES LO QUE TIENES QUE HACER.|y","pause":0.25},
+ {"sc":"order","hud":"DÍA 3 · 10:05","step":0,"say":"Paso uno: come primero lo que se estropea. La nevera, luego el congelador. Las latas, para el final.","cap":"PASO|y UNO: COME PRIMERO LO QUE SE ESTROPEA.|p LA NEVERA,|b LUEGO EL CONGELADOR.|b LAS LATAS, PARA EL FINAL.|g","pause":0.2},
+ {"sc":"cook","hud":"DÍA 3 · 10:07","say":"Álex tira la leche. El pollo del congelador todavía está frío. Hoy, se come.","cap":"ÁLEX TIRA LA LECHE.|p EL POLLO DEL CONGELADOR TODAVÍA ESTÁ FRÍO.|b HOY, SE COME.|g","pause":0.2},
+ {"sc":"gas","hud":"DÍA 3 · 13:20","step":1,"say":"Paso dos: nunca cocines con gas dentro de casa. El monóxido no huele... y puede matarte mientras duermes.","cap":"PASO|y DOS: NUNCA COCINES CON GAS DENTRO DE CASA.|p EL MONÓXIDO NO HUELE...|y Y PUEDE MATARTE MIENTRAS DUERMES.|p","pause":0.2},
+ {"sc":"balcony","hud":"DÍA 3 · 13:25","say":"Álex saca el camping gas al balcón. Bruno no le quita ojo a la sartén.","cap":"ÁLEX SACA EL CAMPING GAS AL BALCÓN.|g BRUNO NO LE QUITA OJO A LA SARTÉN.|y","pause":0.25},
+ {"sc":"ambulance","hud":"DÍA 3 · 21:40","alert":true,"say":"Esa noche, una ambulancia se lleva a la familia del tercero. Tenían una estufa de gas encendida... con las ventanas cerradas.","cap":"ESA NOCHE, UNA AMBULANCIA SE LLEVA A LA FAMILIA DEL 3.º|p TENÍAN UNA ESTUFA DE GAS ENCENDIDA...|y CON LAS VENTANAS CERRADAS.|p","pause":0.25},
+ {"sc":"water","hud":"DÍA 3 · 22:15","step":2,"say":"Paso tres: raciona el agua. Dos litros por persona al día, solo para beber. Y para Bruno, litro y medio.","cap":"PASO|y TRES: RACIONA EL AGUA.|b 2 LITROS POR PERSONA AL DÍA, SOLO PARA BEBER.|b Y PARA BRUNO, LITRO Y MEDIO.|y","pause":0.2},
+ {"sc":"count","hud":"DÍA 3 · 22:20","say":"Álex cuenta las botellas. Le quedan para nueve días.","cap":"ÁLEX CUENTA LAS BOTELLAS.|y LE QUEDAN PARA 9 DÍAS.|g","pause":0.25},
+ {"sc":"radio","hud":"DÍA 3 · 23:00","say":"Entonces, la radio vuelve a sonar.","cap":"ENTONCES, LA RADIO VUELVE A SONAR.|y","pause":0.2},
+ {"sc":"radio","hud":"DÍA 3 · 23:00","alert":true,"voice":"tv","say":"«Las estaciones de bombeo funcionan con gasoil. Les queda combustible para cuatro días».","cap":"«LAS ESTACIONES DE BOMBEO FUNCIONAN CON GASOIL.|y LES QUEDA COMBUSTIBLE PARA 4 DÍAS».|p","pause":0.25},
+ {"sc":"tap","hud":"AGUA · 4 DÍAS","alert":true,"say":"Cuatro días... y después, no saldrá agua de ningún grifo.","cap":"4 DÍAS...|p Y DESPUÉS, NO SALDRÁ AGUA DE NINGÚN GRIFO.|b","pause":0.25},
+ {"sc":"door","hud":"DÍA 3 · 23:04","say":"Alguien llama a la puerta.","cap":"ALGUIEN LLAMA A LA PUERTA.|p","pause":0.2},
+ {"sc":"door","hud":"DÍA 3 · 23:04","cut":true,"say":"Es el vecino del quinto. Con una botella vacía en la mano.","cap":"ES EL VECINO DEL 5.º|y CON UNA BOTELLA VACÍA|p EN LA MANO.","pause":0.2}
+]

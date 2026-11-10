@@ -1,0 +1,120 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;width:800px;height:800px;overflow:hidden}</style></head>
+<body><svg id="s" width="800" height="800" viewBox="0 0 800 800"></svg>
+<script src="lib.js"></script>
+<script>
+// Teen bust in the channel's flat-vector style: no outlines, flat fills, soft shade shapes, yellow rim light.
+const Q=new URLSearchParams(location.search), V=Q.get('v')||'navy';
+const BG={navy:['#2b3474','#0c0f24'],yellow:['#ffe066','#f0ae16'],red:['#e8574a','#7a1d22']}[V];
+const RIM=V==='yellow'?'#ffffff':'#ffd34a';
+const SK='#dfa47c', SKD='#c4865f', SKL='#efbe98', HR='#211715', HRL='#3b2a24';
+const CAP=Q.get('cap')||'#171a24', LOGO='#ffd34a';
+const JK=Q.get('jk')||'#2c3550', JKD=mix(JK,'#000000',.3), HD='#e9e6df', HDD='#c9c5bc';
+
+// shapes
+const FACE='M272,236 C268,320 278,396 306,446 C332,488 366,508 400,510 C434,508 468,488 494,446 C522,396 532,320 528,236 Z';
+const NECK='M344,430 L456,430 L462,568 Q400,592 338,568 Z';
+const BODY='M80,840 C88,700 120,640 210,612 C262,596 320,588 400,588 C480,588 538,596 590,612 C680,640 712,700 720,840 Z';
+
+function rim(shape,fill,dx=-8,dy=3,id){ // lit edge on the right: rim colour underneath, the shape shifted left on top, clipped
+  return `<clipPath id="${id}"><path d="${shape}"/></clipPath><path d="${shape}" fill="${RIM}"/>
+    <g clip-path="url(#${id})"><path d="${shape}" fill="${fill}" transform="translate(${dx},${dy})"/></g>`;
+}
+
+let g=`<defs>
+  <radialGradient id="bg" cx="50%" cy="40%" r="75%"><stop offset="0" stop-color="${BG[0]}"/><stop offset="1" stop-color="${BG[1]}"/></radialGradient>
+  <radialGradient id="glow"><stop offset="0" stop-color="${RIM}" stop-opacity=".35"/><stop offset="1" stop-color="${RIM}" stop-opacity="0"/></radialGradient>
+  <linearGradient id="shade" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".1"/><stop offset=".45" stop-color="#000" stop-opacity="0"/></linearGradient>
+</defs><rect width="800" height="800" fill="url(#bg)"/>`;
+if(V==='navy'){
+  g+=`<circle cx="470" cy="330" r="360" fill="url(#glow)"/>`;
+  const R=rng(11); for(let i=0;i<46;i++){const x=R()*800,y=R()*800,r=.8+R()*2;g+=`<circle cx="${x}" cy="${y}" r="${r}" fill="#fff" opacity="${.2+R()*.5}"/>`;}
+}else{
+  for(let i=0;i<14;i++){const a=i*Math.PI*2/14;g+=`<path d="M400,360 L${400+900*Math.cos(a-.09)},${360+900*Math.sin(a-.09)} L${400+900*Math.cos(a+.09)},${360+900*Math.sin(a+.09)}Z" fill="#fff" opacity=".13"/>`;}
+}
+
+const Z=+(Q.get('z')||1.16);
+g+=`<g transform="translate(400,384) scale(${Z}) translate(-400,-360)">`;
+// ---- body: hoodie, open jacket, headphones round the neck ----
+g+=`<g transform="translate(0,-42)">`;
+g+=rim(BODY,JK,-10,4,'cB');
+g+=`<path d="M210,612 C250,660 262,730 258,840 L80,840 C88,700 120,640 210,612Z" fill="${JKD}" opacity=".45"/>`; // shaded far side
+// hoodie front between the lapels
+g+=`<path d="M300,598 Q400,580 500,598 L470,840 L330,840 Z" fill="${HD}"/>`;
+g+=`<path d="M300,598 Q330,700 330,840 L352,840 Q350,690 318,600Z" fill="${HDD}"/>`;
+// bunched hood round the neck
+g+=`</g>`;
+// neck
+g+=rim(NECK,SK,-7,0,'cN');
+g+=`<path d="M348,430 L452,430 L455,494 Q400,532 345,494Z" fill="${SKD}"/>`; // shadow under the jaw
+g+=`<path d="M330,560 Q400,588 470,560 L480,578 Q400,610 320,578Z" fill="${HDD}"/>`; // hoodie neckline
+g+=`<g transform="translate(0,-42)">`;
+// jacket lapels / collar
+g+=`<path d="M300,598 C330,640 340,720 336,840 L250,840 C256,720 250,650 222,612 Q260,596 300,598Z" fill="${JK}"/>`;
+g+=`<path d="M500,598 C470,640 460,720 464,840 L550,840 C544,720 550,650 578,612 Q540,596 500,598Z" fill="${JK}"/>`;
+g+=`<path d="M336,840 C340,720 330,640 300,598 L292,600 C320,644 328,720 324,840Z" fill="${JKD}"/>`;
+g+=`<path d="M464,840 C460,720 470,640 500,598 L510,600 C480,644 472,720 476,840Z" fill="${RIM}" opacity=".7"/>`;
+// strings
+g+=`<path d="M378,650 L372,740 M422,650 L428,740" stroke="${HDD}" stroke-width="7" stroke-linecap="round"/>`;
+g+=`<circle cx="372" cy="744" r="7" fill="${LOGO}"/><circle cx="428" cy="744" r="7" fill="${LOGO}"/>`;
+// headphones resting on the collar
+g+=`<path d="M318,600 C334,664 466,664 482,600" stroke="#14161e" stroke-width="15" fill="none" stroke-linecap="round"/><path d="M330,624 C350,652 450,652 470,624" stroke="#3a3f52" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+for(const [x,a] of [[306,-22],[494,22]]) g+=`<g transform="translate(${x},606) rotate(${a})"><ellipse rx="30" ry="38" fill="#1b1e29"/><ellipse rx="19" ry="25" fill="#2b2f3e"/><path d="M-17,-14 A19,25 0 0 1 13,-18" stroke="${LOGO}" stroke-width="5" fill="none" stroke-linecap="round"/></g>`;
+g+=`</g>`;
+
+// ---- head ----
+// ears
+g+=`<ellipse cx="270" cy="338" rx="24" ry="44" fill="${SKD}"/><ellipse cx="530" cy="338" rx="24" ry="44" fill="${SK}"/>
+    <path d="M548,314 Q558,338 548,364" stroke="${RIM}" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>
+    <path d="M262,318 Q274,338 266,360 M538,318 Q526,338 534,360" stroke="#000" stroke-opacity=".14" stroke-width="7" fill="none" stroke-linecap="round"/>`;
+g+=rim(FACE,SK,-8,0,'cF');
+g+=`<path d="${FACE}" fill="url(#shade)"/>`;
+// cheekbone / jaw shading
+// hair at the sides (faded) and sideburns
+g+=`<path d="M262,236 L294,236 Q286,268 286,304 L276,312 Q262,290 262,236Z" fill="${HR}"/><path d="M538,236 L506,236 Q514,268 514,304 L524,312 Q538,290 538,236Z" fill="${HR}"/>`;
+g+=`<path d="M276,312 L286,304 L286,326 Q280,330 276,312Z M524,312 L514,304 L514,326 Q520,330 524,312Z" fill="${mix(HR,SK,.45)}"/>`;
+// fringe sweeping out from under the cap
+// brows: thick, the left one raised a touch (confident)
+g+=`<path d="M310,292 Q340,274 378,284 L378,296 Q342,290 312,302Z" fill="${HR}"/>`;
+g+=`<path d="M422,290 Q458,282 490,294 L488,304 Q458,296 422,302Z" fill="${HR}"/>`;
+// eyes: almond, slightly hooded, looking at you
+function eye(cx,cy,side){
+  const w=36,h=17;
+  return `<g transform="translate(${cx},${cy})">
+    <path d="M${-w},2 Q0,${-h-4} ${w},0 Q0,${h+4} ${-w},2Z" fill="#fbf7f2"/>
+    <clipPath id="e${side}"><path d="M${-w},2 Q0,${-h-4} ${w},0 Q0,${h+4} ${-w},2Z"/></clipPath>
+    <g clip-path="url(#e${side})"><circle cx="2" cy="1" r="16.5" fill="#5a3a20"/><circle cx="2" cy="1" r="11.5" fill="#86592f"/><circle cx="2" cy="1" r="7" fill="#120c0a"/>
+      <circle cx="7" cy="-4" r="3.6" fill="#fff"/><rect x="${-w}" y="${-h-8}" width="${2*w}" height="9" fill="#000" opacity=".14"/></g>
+    <path d="M${-w-3},3 Q0,${-h-6} ${w+4},-1" stroke="${HR}" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M${-w+8},${-h-2} Q0,${-h-14} ${w-6},${-h-4}" stroke="${SKD}" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M${-w+10},${h-2} Q0,${h+6} ${w-10},${h-4}" stroke="${SKD}" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"/>
+  </g>`;
+}
+g+=eye(345,334,'L')+eye(455,334,'R');
+// nose
+g+=`<path d="M408,352 Q414,376 420,390 Q414,400 400,399" stroke="${SKD}" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+g+=`<path d="M380,398 Q388,406 396,402 M410,402 Q418,406 424,398" stroke="${SKD}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+g+=`<path d="M404,350 Q408,368 410,382" stroke="${SKL}" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>`;
+// smirk
+g+=`<path d="M366,444 Q392,454 420,445 Q432,441 440,431" stroke="#7a3e32" stroke-width="7" fill="none" stroke-linecap="round"/>`;
+g+=`<path d="M440,425 Q448,433 442,443" stroke="${SKD}" stroke-width="4" fill="none" stroke-linecap="round"/>`; // dimple
+g+=`<path d="M380,462 Q400,470 420,460" stroke="${SKD}" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>`; // lower lip
+g+=`<path d="M390,490 Q400,495 410,490" stroke="${SKD}" stroke-width="4" fill="none" stroke-linecap="round" opacity=".6"/>`; // chin
+
+// ---- cap: tilted a touch, flat-ish brim, shadow on the forehead ----
+g+=`<g transform="rotate(-5 400 200)">
+  <path d="M272,250 Q400,236 528,250 L528,276 Q400,262 272,284Z" fill="#000" opacity=".16"/>
+  <path d="M446,244 Q400,252 364,280 Q344,290 316,290 Q330,280 332,270 Q312,280 290,280 Q306,272 306,246Z" fill="${HR}"/>
+  <path d="M426,256 Q388,266 356,286 M384,258 Q352,270 328,280" stroke="${HRL}" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M258,236 C252,150 318,98 400,98 C482,98 548,150 542,236 Z" fill="${CAP}"/>
+  <path d="M542,236 C548,150 482,98 400,98 C470,104 528,150 530,236Z" fill="${RIM}" opacity=".85"/>
+  <path d="M400,100 L400,232 M332,118 Q312,170 312,234 M468,118 Q488,170 488,234" stroke="#000" stroke-opacity=".3" stroke-width="4" fill="none"/>
+  <circle cx="400" cy="100" r="9" fill="#0d0f16"/>
+  <g transform="translate(400,176)"><rect x="-38" y="-34" width="76" height="66" rx="10" fill="${LOGO}"/>
+    <text x="0" y="22" text-anchor="middle" font-family="DejaVu Sans Mono,monospace" font-weight="900" font-size="62" fill="${CAP}">?</text></g>
+  <path d="M236,234 Q400,212 564,234 Q578,250 556,262 Q400,244 244,262 Q222,250 236,234Z" fill="${mix(CAP,'#000000',.25)}"/>
+  <path d="M244,262 Q400,244 556,262" stroke="${RIM}" stroke-width="4" fill="none" opacity=".55"/>
+  <path d="M256,238 Q400,220 544,238" stroke="#fff" stroke-opacity=".12" stroke-width="4" fill="none"/>
+</g>`;
+g+=`</g>`;
+document.getElementById('s').innerHTML=g;
+</script></body></html>

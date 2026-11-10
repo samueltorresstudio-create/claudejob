@@ -1,0 +1,220 @@
+[
+ {
+  "sc": "intro",
+  "hud": "VIERNES 21 JUNIO",
+  "say": "Si el último día de cole... se repite una y otra vez...",
+  "cap": "SI EL ÚLTIMO DÍA DE COLE... SE REPITE UNA Y OTRA VEZ...|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "VIERNES 21 JUNIO",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Daniela. Once años.",
+  "cap": "DANIELA.|y 11 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Lleva todo el curso esperando este día.",
+  "cap": "LLEVA TODO EL CURSO ESPERANDO ESTE DÍA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Hoy empiezan las vacaciones de verano. O deberían.",
+  "cap": "HOY EMPIEZAN LAS VACACIONES DE VERANO. O DEBERÍAN.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "loop",
+  "hud": "CLASE · 14:00",
+  "say": "A las dos, suena el timbre. Todos salen corriendo...",
+  "cap": "A LAS DOS, SUENA EL TIMBRE. TODOS SALEN CORRIENDO...|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "loop",
+  "hud": "CUARTO · 07:00",
+  "alert": true,
+  "say": "y Daniela se despierta en su cama. A las siete de la mañana. Del mismo viernes.",
+  "cap": "Y DANIELA SE DESPIERTA EN SU CAMA. A LAS SIETE DE LA MAÑANA. DEL MISMO VIERNES.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "loop",
+  "hud": "COCINA · 07:15",
+  "say": "Su madre le dice lo mismo que ayer: ¡último día, campeona!",
+  "cap": "SU MADRE LE DICE LO MISMO QUE AYER: «¡ÚLTIMO DÍA, CAMPEONA!»|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "loop",
+  "hud": "COCINA · 07:15",
+  "say": "Al principio, Daniela cree que lo ha soñado.",
+  "cap": "AL PRINCIPIO, DANIELA CREE QUE LO HA SOÑADO.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · APÚNTALO",
+  "step": 0,
+  "say": "Paso uno: apúntalo todo.",
+  "cap": "PASO|y UNO: APÚNTALO TODO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · APÚNTALO",
+  "say": "Cada vez que el día vuelve a empezar, Daniela hace una raya en su libreta.",
+  "cap": "CADA VEZ QUE EL DÍA VUELVE A EMPEZAR, DANIELA HACE UNA RAYA EN SU LIBRETA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · APÚNTALO",
+  "say": "Primero, una raya. Luego diez. Luego cincuenta.",
+  "cap": "PRIMERO, UNA RAYA. LUEGO DIEZ. LUEGO CINCUENTA.|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · APÚNTALO",
+  "alert": true,
+  "say": "Ya lleva noventa y nueve.",
+  "cap": "YA LLEVA NOVENTA Y NUEVE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · APÚNTALO",
+  "alert": true,
+  "say": "Noventa y nueve veces el mismo viernes.",
+  "cap": "NOVENTA Y NUEVE VECES EL MISMO VIERNES.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · LO QUE SE REPITE",
+  "step": 1,
+  "say": "Paso dos: fíjate en lo que se repite.",
+  "cap": "PASO|y DOS: FÍJATE EN LO QUE SE REPITE.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CLASE · 10:15",
+  "say": "Carlos cuenta el mismo chiste. A Lucía se le cae el zumo. Una paloma entra por la misma ventana.",
+  "cap": "CARLOS CUENTA EL MISMO CHISTE. A LUCÍA SE LE CAE EL ZUMO. UNA PALOMA ENTRA POR LA MISMA VENTANA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "CLASE · 10:15",
+  "say": "Todo igual. Exacto. Al segundo.",
+  "cap": "TODO IGUAL. EXACTO. AL SEGUNDO.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "CLASE · 10:16",
+  "say": "Daniela ya se sabe hasta el chiste. Y no tiene ninguna gracia.",
+  "cap": "DANIELA YA SE SABE HASTA EL CHISTE. Y NO TIENE NINGUNA GRACIA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · LO QUE CAMBIA",
+  "step": 2,
+  "say": "Paso tres: busca lo único que cambia.",
+  "cap": "PASO|y TRES: BUSCA LO ÚNICO QUE CAMBIA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "CLASE · 12:30",
+  "alert": true,
+  "say": "La profesora. Cada día mira a Daniela un poquito más... y sonríe un poquito más.",
+  "cap": "LA PROFESORA. CADA DÍA MIRA A DANIELA UN POQUITO MÁS... Y SONRÍE UN POQUITO MÁS.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "CLASE · 12:31",
+  "alert": true,
+  "say": "Hoy ya no deja de mirarla. Como si la estuviera esperando.",
+  "cap": "HOY YA NO DEJA DE MIRARLA. COMO SI LA ESTUVIERA ESPERANDO.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · ALGO DISTINTO",
+  "step": 3,
+  "say": "Paso cuatro: haz algo diferente.",
+  "cap": "PASO|y CUATRO: HAZ ALGO DIFERENTE.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step4",
+  "hud": "DÍA 100 · 14:00",
+  "say": "El día cien, cuando suena el timbre... Daniela no se levanta.",
+  "cap": "EL DÍA CIEN, CUANDO SUENA EL TIMBRE... DANIELA NO SE LEVANTA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "DÍA 100 · 14:00",
+  "say": "Se agarra fuerte a la mesa. Y espera.",
+  "cap": "SE AGARRA FUERTE A LA MESA. Y ESPERA.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "end",
+  "hud": "DÍA 100 · 14:01",
+  "say": "Todos salen. La clase se queda vacía.",
+  "cap": "TODOS SALEN. LA CLASE SE QUEDA VACÍA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "DÍA 100 · 14:01",
+  "say": "Nadie se da cuenta de que ella sigue ahí. Nadie... menos una.",
+  "cap": "NADIE SE DA CUENTA DE QUE ELLA SIGUE AHÍ. NADIE... MENOS UNA.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "end",
+  "hud": "DÍA 100 · 14:01",
+  "alert": true,
+  "say": "La profesora cierra la puerta. Despacio. Con llave.",
+  "cap": "LA PROFESORA CIERRA LA PUERTA. DESPACIO. CON LLAVE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "DÍA 100 · 14:02",
+  "alert": true,
+  "say": "Se gira hacia ella. Sonríe. Y dice:",
+  "cap": "SE GIRA HACIA ELLA. SONRÍE. Y DICE:",
+  "pause": 0.2
+ },
+ {
+  "sc": "end",
+  "hud": "DÍA 100 · 14:02",
+  "alert": true,
+  "cut": true,
+  "voice": "tv",
+  "say": "Por fin te has dado cuenta.",
+  "cap": "«POR FIN TE HAS DADO CUENTA.»|p",
+  "pause": 0.2
+ }
+]

@@ -1,0 +1,233 @@
+[
+ {
+  "sc": "intro",
+  "hud": "SÁBADO · 08:00",
+  "say": "Si un sábado te despiertas... y todos los adultos del mundo han desaparecido...",
+  "cap": "SI UN SÁBADO TE DESPIERTAS... Y TODOS LOS ADULTOS|y DEL MUNDO HAN DESAPARECIDO...|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "SÁBADO · 08:00",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Hugo. Once años.",
+  "cap": "HUGO.|y 11 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Y su hermana Alba, de seis, que no se separa de él.",
+  "cap": "Y SU HERMANA ALBA, DE SEIS, QUE NO SE SEPARA DE ÉL.|b",
+  "pause": 0.3
+ },
+ {
+  "sc": "home",
+  "hud": "COCINA · 08:10",
+  "say": "La cafetera está encendida. El desayuno, a medio hacer.",
+  "cap": "LA CAFETERA ESTÁ ENCENDIDA. EL DESAYUNO, A MEDIO HACER.",
+  "pause": 0.15
+ },
+ {
+  "sc": "home",
+  "hud": "COCINA · 08:10",
+  "alert": true,
+  "say": "Pero sus padres no están. Ni en casa... ni en ningún sitio.",
+  "cap": "PERO SUS PADRES NO ESTÁN. NI EN CASA... NI EN NINGÚN SITIO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "home",
+  "hud": "COCINA · 08:11",
+  "say": "Sus móviles siguen ahí, en la mesa. Sonando.",
+  "cap": "SUS MÓVILES SIGUEN AHÍ, EN LA MESA. SONANDO.|y",
+  "pause": 0.2
+ },
+ {
+  "sc": "street",
+  "hud": "CALLE · 08:30",
+  "alert": true,
+  "say": "En la calle, los coches están parados en mitad de la carretera. Vacíos.",
+  "cap": "EN LA CALLE, LOS COCHES ESTÁN PARADOS EN MITAD DE LA CARRETERA. VACÍOS.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "street",
+  "hud": "CALLE · 08:31",
+  "say": "Con las puertas abiertas... y el motor todavía encendido.",
+  "cap": "CON LAS PUERTAS ABIERTAS... Y EL MOTOR TODAVÍA ENCENDIDO.",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · JUNTOS",
+  "step": 0,
+  "say": "Paso uno: buscad a los otros niños.",
+  "cap": "PASO|y UNO: BUSCAD A LOS OTROS NIÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "PARQUE · 09:15",
+  "say": "En el parque ya hay quince, de todo el barrio.",
+  "cap": "EN EL PARQUE YA HAY QUINCE, DE TODO EL BARRIO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "PARQUE · 09:15",
+  "say": "Solos, tenéis miedo. Juntos, tenéis un plan.",
+  "cap": "SOLOS, TENÉIS MIEDO. JUNTOS, TENÉIS UN PLAN.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · COMIDA",
+  "step": 1,
+  "say": "Paso dos: comida y agua.",
+  "cap": "PASO|y DOS: COMIDA Y AGUA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "SÚPER · 10:00",
+  "say": "El súper está abierto. Y no hay nadie en las cajas.",
+  "cap": "EL SÚPER ESTÁ ABIERTO. Y NO HAY NADIE EN LAS CAJAS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "SÚPER · 10:05",
+  "say": "Hugo apunta en una libreta todo lo que se llevan. Por si vuelven.",
+  "cap": "HUGO APUNTA EN UNA LIBRETA TODO LO QUE SE LLEVAN. POR SI VUELVEN.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · UNA BASE",
+  "step": 2,
+  "say": "Paso tres: una base segura.",
+  "cap": "PASO|y TRES: UNA BASE SEGURA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "COLEGIO · 19:00",
+  "say": "Eligen el colegio. Tiene cocina, colchonetas... y una valla muy alta.",
+  "cap": "ELIGEN EL COLEGIO. TIENE COCINA, COLCHONETAS... Y UNA VALLA MUY ALTA.|b",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "COLEGIO · 21:00",
+  "say": "Cada noche, cierran la puerta con candado.",
+  "cap": "CADA NOCHE, CIERRAN LA PUERTA CON CANDADO.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · LA PREGUNTA",
+  "step": 3,
+  "say": "Paso cuatro: no le abráis a nadie... sin hacerle la pregunta secreta.",
+  "cap": "PASO|y CUATRO: NO LE ABRÁIS A NADIE... SIN HACERLE LA PREGUNTA SECRETA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · LA PREGUNTA",
+  "say": "Cada familia tiene la suya. La de Hugo y Alba es: ¿cómo se llama nuestro pez?",
+  "cap": "CADA FAMILIA TIENE LA SUYA. LA DE HUGO Y ALBA ES: «¿CÓMO SE LLAMA NUESTRO PEZ?»|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · LA PREGUNTA",
+  "say": "Y la respuesta es: Burbuja.",
+  "cap": "Y LA RESPUESTA ES: BURBUJA.|b",
+  "pause": 0.1
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · LA PREGUNTA",
+  "say": "Solo tres personas la saben: Hugo, Alba... y mamá.",
+  "cap": "SOLO TRES PERSONAS LA SABEN: HUGO, ALBA... Y MAMÁ.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "night",
+  "hud": "DÍA 3 · 23:40",
+  "say": "La tercera noche, alguien llama a la valla del colegio.",
+  "cap": "LA TERCERA NOCHE, ALGUIEN LLAMA A LA VALLA DEL COLEGIO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "night",
+  "hud": "DÍA 3 · 23:40",
+  "alert": true,
+  "say": "Es una mujer. Con el pijama de flores... de mamá.",
+  "cap": "ES UNA MUJER. CON EL PIJAMA DE FLORES... DE MAMÁ.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "night",
+  "hud": "DÍA 3 · 23:41",
+  "voice": "tv",
+  "say": "Hugo, cariño. Soy yo. Ábreme.",
+  "cap": "«HUGO, CARIÑO. SOY YO. ÁBREME.»|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "night",
+  "hud": "DÍA 3 · 23:41",
+  "say": "Hugo corre hacia la valla. Pero Alba le agarra de la mano.",
+  "cap": "HUGO CORRE HACIA LA VALLA. PERO ALBA LE AGARRA DE LA MANO.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "ask",
+  "hud": "DÍA 3 · 23:42",
+  "say": "Mamá... ¿cómo se llama nuestro pez?",
+  "cap": "«MAMÁ... ¿CÓMO SE LLAMA NUESTRO PEZ?»|y",
+  "pause": 0.2
+ },
+ {
+  "sc": "ask",
+  "hud": "DÍA 3 · 23:42",
+  "alert": true,
+  "say": "La mujer sonríe. Pero no contesta.",
+  "cap": "LA MUJER SONRÍE. PERO NO CONTESTA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "ask",
+  "hud": "DÍA 3 · 23:42",
+  "alert": true,
+  "say": "Solo agarra el candado... y empieza a girarlo.",
+  "cap": "SOLO AGARRA EL CANDADO... Y EMPIEZA A GIRARLO.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "DÍA 3 · 23:42",
+  "alert": true,
+  "say": "Alba tira de su hermano hacia atrás, y susurra:",
+  "cap": "ALBA TIRA DE SU HERMANO HACIA ATRÁS, Y SUSURRA:",
+  "pause": 0.2
+ },
+ {
+  "sc": "end",
+  "hud": "DÍA 3 · 23:42",
+  "alert": true,
+  "cut": true,
+  "say": "Esa no es mamá.",
+  "cap": "«ESA NO ES MAMÁ.»|p",
+  "pause": 0.2
+ }
+]

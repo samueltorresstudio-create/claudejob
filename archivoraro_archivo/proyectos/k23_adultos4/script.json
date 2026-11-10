@@ -1,0 +1,22 @@
+[
+ {"sc":"intro","hud":"DÍA 4 · 21:01","say":"Si para salvar a tu hermana... tienes que dejarla atrás...","cap":"SI PARA SALVAR A TU HERMANA...|y TIENES QUE DEJARLA ATRÁS...|p","pause":0.1},
+ {"sc":"intro","hud":"DÍA 4 · 21:01","alert":true,"say":"esto es lo que tienes que hacer.","cap":"ESTO ES LO QUE TIENES QUE HACER.|y","pause":0.25},
+ {"sc":"part","hud":"PARTE 4","say":"Parte cuatro.","cap":"PARTE|y CUATRO.|y","pause":0.25},
+ {"sc":"dani","hud":"CLASE 2.ºB · 21:01","say":"Dani no es una copia. A él también le cambiaron a su hermano.","cap":"DANI NO ES UNA COPIA.|g A ÉL TAMBIÉN LE CAMBIARON A SU HERMANO.","pause":0.1},
+ {"sc":"dani","hud":"CLASE 2.ºB · 21:02","say":"Escapó del sitio donde se los llevan. Y entró por un hueco de la valla.","cap":"ESCAPÓ DEL SITIO DONDE SE LOS LLEVAN. Y ENTRÓ POR UN HUECO|y DE LA VALLA.","pause":0.25},
+ {"sc":"step1","hud":"PASO 1 · HUYE","step":0,"say":"Paso uno: sal antes de que entren.","cap":"PASO|y UNO: SAL ANTES DE QUE ENTREN.|p","pause":0.1},
+ {"sc":"escape","hud":"LA VALLA · 21:03","alert":true,"say":"El candado cae al suelo. Los niños escapan por el hueco, uno a uno.","cap":"EL CANDADO CAE AL SUELO.|p LOS NIÑOS ESCAPAN POR EL HUECO, UNO A UNO.","pause":0.1},
+ {"sc":"escape","hud":"LA VALLA · 21:03","say":"Hugo mira atrás.","cap":"HUGO MIRA ATRÁS.","pause":0.1},
+ {"sc":"window","hud":"COLEGIO · 21:04","alert":true,"say":"En la ventana, Alba le dice adiós con la mano. Sonriendo.","cap":"EN LA VENTANA, ALBA LE DICE ADIÓS CON LA MANO. SONRIENDO.|p","pause":0.25},
+ {"sc":"step2","hud":"PASO 2 · ESCÓNDETE","step":1,"say":"Paso dos: escóndete hasta el amanecer.","cap":"PASO|y DOS: ESCÓNDETE HASTA EL AMANECER.|y","pause":0.1},
+ {"sc":"shop","hud":"SÚPER · 02:00","say":"Pasan la noche en el súper. Sin luces. Sin hablar.","cap":"PASAN LA NOCHE EN EL SÚPER. SIN LUCES. SIN HABLAR.|b","pause":0.1},
+ {"sc":"shop","hud":"SÚPER · 02:10","say":"En la libreta de Hugo todavía pone: lo devolveremos.","cap":"EN LA LIBRETA DE HUGO TODAVÍA PONE: «LO DEVOLVEREMOS».|y","pause":0.25},
+ {"sc":"step3","hud":"PASO 3 · SÍGUELOS","step":2,"say":"Paso tres: síguelos sin que te vean.","cap":"PASO|y TRES: SÍGUELOS SIN QUE TE VEAN.|y","pause":0.1},
+ {"sc":"follow","hud":"CALLE · 06:40","say":"Al salir el sol, las copias se van. En fila. Por mitad de la calle.","cap":"AL SALIR EL SOL, LAS COPIAS SE VAN.|p EN FILA. POR MITAD DE LA CALLE.","pause":0.1},
+ {"sc":"metro","hud":"METRO · 06:52","say":"Bajan por las escaleras de una estación de metro abandonada.","cap":"BAJAN POR LAS ESCALERAS DE UNA ESTACIÓN DE METRO ABANDONADA.|y","pause":0.15},
+ {"sc":"down","hud":"METRO · 06:55","say":"Hugo baja detrás, con la linterna.","cap":"HUGO BAJA DETRÁS, CON LA LINTERNA.","pause":0.1},
+ {"sc":"rows","hud":"ANDÉN · 06:56","alert":true,"say":"Abajo hay cientos de adultos. Dormidos. De pie.","cap":"ABAJO HAY CIENTOS DE ADULTOS.|p DORMIDOS. DE PIE.","pause":0.15},
+ {"sc":"rows","hud":"ANDÉN · 06:56","alert":true,"say":"Y delante del todo... está mamá.","cap":"Y DELANTE DEL TODO... ESTÁ MAMÁ.|y","pause":0.2},
+ {"sc":"end","hud":"ANDÉN · 06:57","alert":true,"say":"Hugo se acerca.","cap":"HUGO SE ACERCA.","pause":0.15},
+ {"sc":"end","hud":"ANDÉN · 06:57","alert":true,"cut":true,"say":"Y mamá abre los ojos.","cap":"Y MAMÁ ABRE LOS OJOS.|p","pause":0.2}
+]

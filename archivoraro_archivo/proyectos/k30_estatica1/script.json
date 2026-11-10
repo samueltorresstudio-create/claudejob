@@ -1,0 +1,23 @@
+[
+ {"sc":"intro","hud":"SALÓN · 03:07","say":"Si a las tres y siete de la madrugada tu tele se enciende sola...","cap":"SI A LAS 3:07|p DE LA MADRUGADA TU TELE SE ENCIENDE SOLA...","pause":0.15},
+ {"sc":"intro","hud":"SALÓN · 03:07","alert":true,"say":"no la apagues. Todavía no.","cap":"NO LA APAGUES.|p TODAVÍA NO.","pause":0.3},
+ {"sc":"id","hud":"IDENTIFICACIÓN","say":"Víctor. Veintidós años. Hace tres semanas que no duerme.","cap":"VÍCTOR.|y 22 AÑOS. HACE 3 SEMANAS|p QUE NO DUERME.","pause":0.25},
+ {"sc":"sofa","hud":"SALÓN · 03:07","say":"Esa noche, la tele cambia sola a un canal que no existe. El canal cero.","cap":"ESA NOCHE, LA TELE CAMBIA SOLA A UN CANAL QUE NO EXISTE. EL CANAL 0.|p","pause":0.25},
+ {"sc":"channel","hud":"CANAL 0 · 03:08","say":"Solo hay estática... un bosque... y un contador. Diez minutos.","cap":"SOLO HAY ESTÁTICA... UN BOSQUE...|g Y UN CONTADOR.|y DIEZ MINUTOS.|p","pause":0.2},
+ {"sc":"channel","hud":"CANAL 0 · 03:08","alert":true,"say":"Al fondo del bosque hay alguien. Muy alto. Muy quieto.","cap":"AL FONDO DEL BOSQUE HAY ALGUIEN.|p MUY ALTO. MUY QUIETO.","pause":0.3},
+ {"sc":"step1","hud":"REGLA 1 · 3 SEGUNDOS","step":0,"say":"Regla uno: no le mires más de tres segundos.","cap":"REGLA|y UNO: NO LE MIRES MÁS DE 3 SEGUNDOS.|p","pause":0.15},
+ {"sc":"step1","hud":"CANAL 0 · 03:09","alert":true,"say":"Víctor parpadea... y la figura está más cerca.","cap":"VÍCTOR PARPADEA... Y LA FIGURA ESTÁ MÁS CERCA.|p","pause":0.3},
+ {"sc":"zap","hud":"MANDO · 03:10","say":"Cambia de canal. Otra vez. Y otra. Todos los canales son el bosque.","cap":"CAMBIA DE CANAL. OTRA VEZ. Y OTRA. TODOS LOS CANALES SON EL BOSQUE.|g","pause":0.3},
+ {"sc":"door","hud":"PASILLO · 03:12","alert":true,"say":"Entonces, alguien llama a la puerta.","cap":"ENTONCES, ALGUIEN LLAMA A LA PUERTA.|p","pause":0.2},
+ {"sc":"door","hud":"PASILLO · 03:13","say":"Es la vecina. Dice que la estática se oye desde su casa. Pero la tele está en silencio.","cap":"ES LA VECINA. DICE QUE LA ESTÁTICA|y SE OYE DESDE SU CASA. PERO LA TELE ESTÁ EN SILENCIO.|p","pause":0.3},
+ {"sc":"back","hud":"SALÓN · 03:14","alert":true,"say":"Cuando Víctor vuelve al sofá... el hombre ocupa media pantalla.","cap":"CUANDO VÍCTOR VUELVE AL SOFÁ... EL HOMBRE OCUPA MEDIA PANTALLA.|p","pause":0.3},
+ {"sc":"step2","hud":"REGLA 2 · NO TE MUEVAS","step":1,"say":"Regla dos: si oyes estática, no te muevas.","cap":"REGLA|y DOS: SI OYES ESTÁTICA,|b NO TE MUEVAS.|p","pause":0.15},
+ {"sc":"step2","hud":"SALÓN · 03:15","say":"Víctor no respira. La estática sube... y baja... y sube.","cap":"VÍCTOR NO RESPIRA. LA ESTÁTICA SUBE...|b Y BAJA...|b Y SUBE.|p","pause":0.3},
+ {"sc":"step3","hud":"REGLA 3 · DESENCHUFA","step":2,"say":"Regla tres: desenchufa todas las pantallas.","cap":"REGLA|y TRES: DESENCHUFA TODAS LAS PANTALLAS.|g","pause":0.15},
+ {"sc":"step3","hud":"SALÓN · 03:16","alert":true,"say":"Víctor tira del cable. Y entonces lo ve: la tele nunca estuvo enchufada.","cap":"VÍCTOR TIRA DEL CABLE. Y ENTONCES LO VE: LA TELE NUNCA ESTUVO ENCHUFADA.|p","pause":0.3},
+ {"sc":"zero","hud":"CANAL 0 · 03:17","alert":true,"say":"El contador llega a cero.","cap":"EL CONTADOR LLEGA A 0.|p","pause":0.15},
+ {"sc":"zero","hud":"SALÓN · 03:17","say":"La pantalla se apaga. Silencio.","cap":"LA PANTALLA SE APAGA.|b SILENCIO.","pause":0.35},
+ {"sc":"end","hud":"SALÓN · 03:17","say":"En el reflejo negro de la pantalla, Víctor se ve a sí mismo.","cap":"EN EL REFLEJO NEGRO DE LA PANTALLA, VÍCTOR SE VE A SÍ MISMO.","pause":0.2},
+ {"sc":"end","hud":"SALÓN · 03:17","alert":true,"say":"Y detrás, una mano larguísima apoyada en su hombro.","cap":"Y DETRÁS, UNA MANO LARGUÍSIMA|p APOYADA EN SU HOMBRO.|p","pause":0.25},
+ {"sc":"end","hud":"REGLA 4 · LA ESPALDA","alert":true,"step":3,"cut":true,"say":"Regla cuatro: nunca le des la espalda. Y Víctor... se la está dando.","cap":"REGLA|y CUATRO: NUNCA LE DES LA ESPALDA.|p Y VÍCTOR... SE LA ESTÁ DANDO.|p","pause":0.2}
+]

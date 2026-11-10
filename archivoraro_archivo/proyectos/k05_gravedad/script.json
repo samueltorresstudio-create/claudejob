@@ -1,0 +1,251 @@
+[
+ {
+  "sc": "intro",
+  "hud": "SÁBADO · 11:59:57",
+  "say": "Si un día, a las doce en punto... la gravedad se apaga durante un minuto...",
+  "cap": "SI UN DÍA, A LAS 12 EN PUNTO... LA GRAVEDAD SE APAGA DURANTE UN MINUTO...|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "SÁBADO · 11:59:58",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer para sobrevivir cuando vuelva.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER PARA SOBREVIVIR CUANDO VUELVA.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Iker. Trece años.",
+  "cap": "IKER.|y 13 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Está en el parque, paseando a su perra, Lola.",
+  "cap": "ESTÁ EN EL PARQUE, PASEANDO A SU PERRA, LOLA.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "off",
+  "hud": "#g",
+  "say": "A las doce en punto... sus pies se despegan del suelo.",
+  "cap": "A LAS 12 EN PUNTO... SUS PIES SE DESPEGAN DEL SUELO.|b",
+  "pause": 0.1
+ },
+ {
+  "sc": "off",
+  "hud": "#g",
+  "say": "Los columpios flotan. El agua de la fuente sube hacia el cielo.",
+  "cap": "LOS COLUMPIOS FLOTAN. EL AGUA DE LA FUENTE SUBE HACIA EL CIELO.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "off",
+  "hud": "#g",
+  "say": "Un coche se levanta del suelo, dando vueltas muy despacio.",
+  "cap": "UN COCHE SE LEVANTA DEL SUELO, DANDO VUELTAS MUY DESPACIO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "off",
+  "hud": "#g",
+  "alert": true,
+  "say": "Y la gente empieza a subir... sin poder pararse.",
+  "cap": "Y LA GENTE EMPIEZA A SUBIR... SIN PODER PARARSE.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "rule1",
+  "hud": "#g",
+  "step": 0,
+  "say": "Paso uno: agárrate a algo que esté clavado al suelo.",
+  "cap": "PASO|y UNO: AGÁRRATE A ALGO QUE ESTÉ CLAVADO AL SUELO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule1",
+  "hud": "#g",
+  "say": "Una farola. Un banco. Un árbol.",
+  "cap": "UNA FAROLA. UN BANCO. UN ÁRBOL.",
+  "pause": 0.1
+ },
+ {
+  "sc": "rule1",
+  "hud": "#g",
+  "say": "Iker se agarra a la farola con una mano... y a la correa de Lola con la otra.",
+  "cap": "IKER SE AGARRA A LA FAROLA CON UNA MANO... Y A LA CORREA DE LOLA CON LA OTRA.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "rule2",
+  "hud": "#g",
+  "step": 1,
+  "say": "Paso dos: no saltes. Ni empujes nada.",
+  "cap": "PASO|y DOS: NO SALTES. NI EMPUJES NADA.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule2",
+  "hud": "#g",
+  "say": "Sin gravedad, un salto pequeño te manda a cien metros.",
+  "cap": "SIN GRAVEDAD, UN SALTO PEQUEÑO TE MANDA A 100 METROS.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule2",
+  "hud": "#g",
+  "alert": true,
+  "say": "Un señor salta a por su gorra... y ya no deja de subir.",
+  "cap": "UN SEÑOR SALTA A POR SU GORRA... Y YA NO DEJA DE SUBIR.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule2",
+  "hud": "#g",
+  "alert": true,
+  "say": "Nadie puede bajarle.",
+  "cap": "NADIE PUEDE BAJARLE.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "rule3",
+  "hud": "#g",
+  "step": 2,
+  "say": "Paso tres: suelta lo que pese mucho.",
+  "cap": "PASO|y TRES: SUELTA LO QUE PESE MUCHO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule3",
+  "hud": "#g",
+  "say": "Cuando la gravedad vuelva, todo lo que esté arriba... caerá.",
+  "cap": "CUANDO LA GRAVEDAD VUELVA, TODO LO QUE ESTÉ ARRIBA... CAERÁ.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule3",
+  "hud": "#g",
+  "say": "Iker suelta la mochila. Y se va flotando, despacio, hacia arriba.",
+  "cap": "IKER SUELTA LA MOCHILA. Y SE VA FLOTANDO, DESPACIO, HACIA ARRIBA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "rule4",
+  "hud": "#g",
+  "step": 3,
+  "say": "Paso cuatro: quédate lo más cerca del suelo que puedas.",
+  "cap": "PASO|y CUATRO: QUÉDATE LO MÁS CERCA DEL SUELO QUE PUEDAS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule4",
+  "hud": "#g",
+  "alert": true,
+  "say": "Cada metro de altura... será un metro de caída.",
+  "cap": "CADA METRO DE ALTURA... SERÁ UN METRO DE CAÍDA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "rule4",
+  "hud": "#g",
+  "say": "Iker se pega al suelo, abrazado a la farola.",
+  "cap": "IKER SE PEGA AL SUELO, ABRAZADO A LA FAROLA.",
+  "pause": 0.3
+ },
+ {
+  "sc": "leash",
+  "hud": "#g",
+  "say": "Quedan treinta segundos.",
+  "cap": "QUEDAN 30 SEGUNDOS.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "leash",
+  "hud": "#g",
+  "alert": true,
+  "say": "Y entonces, la correa de Lola se suelta.",
+  "cap": "Y ENTONCES, LA CORREA DE LOLA SE SUELTA.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "leash",
+  "hud": "#g",
+  "say": "Lola empieza a flotar, ladrando, cada vez más alto.",
+  "cap": "LOLA EMPIEZA A FLOTAR, LADRANDO, CADA VEZ MÁS ALTO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "leash",
+  "hud": "#g",
+  "say": "Iker no lo piensa.",
+  "cap": "IKER NO LO PIENSA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "leash",
+  "hud": "#g",
+  "alert": true,
+  "say": "Se suelta de la farola... y se impulsa hacia ella.",
+  "cap": "SE SUELTA DE LA FAROLA... Y SE IMPULSA HACIA ELLA.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "up",
+  "hud": "#g",
+  "say": "La alcanza. La abraza.",
+  "cap": "LA ALCANZA. LA ABRAZA.|g",
+  "pause": 0.15
+ },
+ {
+  "sc": "up",
+  "hud": "#g",
+  "alert": true,
+  "say": "Pero ya no hay nada a lo que agarrarse.",
+  "cap": "PERO YA NO HAY NADA A LO QUE AGARRARSE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "up",
+  "hud": "#g",
+  "alert": true,
+  "say": "Mira hacia abajo. La farola es un punto diminuto.",
+  "cap": "MIRA HACIA ABAJO. LA FAROLA ES UN PUNTO DIMINUTO.",
+  "pause": 0.15
+ },
+ {
+  "sc": "up",
+  "hud": "#g",
+  "alert": true,
+  "say": "Están a cuarenta metros.",
+  "cap": "ESTÁN A 40 METROS.|p",
+  "pause": 0.35
+ },
+ {
+  "sc": "final",
+  "hud": "#g",
+  "alert": true,
+  "say": "Tres...",
+  "cap": "3...|y",
+  "pause": 0.45
+ },
+ {
+  "sc": "final",
+  "hud": "#g",
+  "alert": true,
+  "say": "Dos...",
+  "cap": "2...|y",
+  "pause": 0.45
+ },
+ {
+  "sc": "final",
+  "hud": "#g",
+  "alert": true,
+  "say": "Uno...",
+  "cap": "1...|p",
+  "pause": 0.9,
+  "cut": true
+ }
+]

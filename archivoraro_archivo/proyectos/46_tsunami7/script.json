@@ -1,0 +1,22 @@
+[
+ {"sc":"hook","hud":"#cd","alert":true,"say":"Si después de un tsunami el mar vuelve a retirarse... tienes veinte minutos. Otra vez.","cap":"SI DESPUÉS DE UN TSUNAMI EL MAR VUELVE A RETIRARSE...|b TIENES 20 MINUTOS. OTRA VEZ.|p","pause":0.25},
+ {"sc":"wake","hud":"#cd","say":"Cinco y doce. Marco despierta a Duque.","cap":"5:12. MARCO DESPIERTA A DUQUE.|y","pause":0.2},
+ {"sc":"climb","hud":"#cd","step":0,"say":"Paso uno: si el mar se retira, sube sin mirar atrás.","cap":"PASO|y UNO: SI EL MAR SE RETIRA, SUBE SIN MIRAR ATRÁS.|b","pause":0.2},
+ {"sc":"climb","hud":"#cd","say":"Suben a oscuras. Abajo, el mar empieza a rugir.","cap":"SUBEN A OSCURAS.|p ABAJO, EL MAR EMPIEZA A RUGIR.|b","pause":0.25},
+ {"sc":"wave","hud":"#cd","alert":true,"say":"La segunda ola es más alta que la primera. Golpea el hotel Mirador, donde pasaron la noche.","cap":"LA SEGUNDA OLA ES MÁS ALTA QUE LA PRIMERA.|p GOLPEA EL HOTEL MIRADOR, DONDE PASARON LA NOCHE.|y","pause":0.25},
+ {"sc":"collapse","hud":"#cd","alert":true,"say":"El edificio cruje. Se inclina. Y se derrumba entero dentro del agua.","cap":"EL EDIFICIO CRUJE. SE INCLINA.|p Y SE DERRUMBA ENTERO DENTRO DEL AGUA.|p","pause":0.3},
+ {"sc":"ridge","hud":"#cd","say":"Si no los hubieran traicionado, seguirían allí arriba.","cap":"SI NO LOS HUBIERAN TRAICIONADO,|p SEGUIRÍAN ALLÍ ARRIBA.|y","pause":0.3},
+ {"sc":"quake","hud":"#cd","alert":true,"say":"A media subida, el suelo vuelve a temblar.","cap":"A MEDIA SUBIDA, EL SUELO VUELVE A TEMBLAR.|p","pause":0.2},
+ {"sc":"quake","hud":"#cd","step":1,"say":"Paso dos: después de un terremoto vienen réplicas. Aléjate de laderas y rocas sueltas.","cap":"PASO|y DOS: DESPUÉS DE UN TERREMOTO VIENEN RÉPLICAS.|p ALÉJATE DE LADERAS Y ROCAS SUELTAS.|b","pause":0.2},
+ {"sc":"slide","hud":"#cd","alert":true,"say":"La ladera se desprende. El camino a San Telmo queda enterrado.","cap":"LA LADERA SE DESPRENDE.|p EL CAMINO A SAN TELMO QUEDA ENTERRADO.|p","pause":0.25},
+ {"sc":"ravine","hud":"#cd","say":"Única salida: un barranco. Tres kilómetros más.","cap":"ÚNICA SALIDA: UN BARRANCO.|y 3 KILÓMETROS MÁS.|p","pause":0.25},
+ {"sc":"carry","hud":"#cd","step":2,"say":"Paso tres: carga solo lo imprescindible.","cap":"PASO|y TRES: CARGA SOLO LO IMPRESCINDIBLE.|g","pause":0.2},
+ {"sc":"carry","hud":"#cd","say":"Duque ya no puede andar. Marco lo lleva a hombros. Se les acaba el agua.","cap":"DUQUE YA NO PUEDE ANDAR.|p MARCO LO LLEVA A HOMBROS.|y SE LES ACABA EL AGUA.|b","pause":0.25},
+ {"sc":"summit","hud":"#cd","say":"San Telmo. Las once y cincuenta y seis. El helicóptero ya tiene el rotor en marcha.","cap":"SAN TELMO. 11:56.|y EL HELICÓPTERO YA TIENE EL ROTOR EN MARCHA.|g","pause":0.2},
+ {"sc":"summit","hud":"#cd","alert":true,"say":"Un rescatista grita: «Solo personas. El perro se queda».","cap":"UN RESCATISTA GRITA:|y «SOLO PERSONAS. EL PERRO SE QUEDA».|p","pause":0.25},
+ {"sc":"choice","hud":"#cd","alert":true,"say":"Marco deja a Duque en el suelo... y da un paso atrás. Sin él, no sube.","cap":"MARCO DEJA A DUQUE EN EL SUELO...|y Y DA UN PASO ATRÁS.|p SIN ÉL, NO SUBE.|p","pause":0.25},
+ {"sc":"choice","hud":"#cd","say":"El rescatista mira el reloj. «Sube. Los dos».","cap":"EL RESCATISTA MIRA EL RELOJ.|y «SUBE. LOS DOS».|g","pause":0.3},
+ {"sc":"takeoff","hud":"SAN TELMO · 12:00","say":"Mientras despegan, llegan cuatro figuras a la cima: la madre, Lucía y los ladrones. Sin mapa... tarde.","cap":"MIENTRAS DESPEGAN, LLEGAN 4 FIGURAS A LA CIMA:|p LA MADRE, LUCÍA Y LOS LADRONES.|p SIN MAPA... TARDE.|y","pause":0.3},
+ {"sc":"cabin","hud":"EVACUADOS · 12:01","say":"Duque apoya la cabeza en la pierna de Marco.","cap":"DUQUE APOYA LA CABEZA EN LA PIERNA DE MARCO.|g","pause":0.3},
+ {"sc":"horizon","hud":"TERCERA OLA","alert":true,"cut":true,"say":"Y en el horizonte, el mar vuelve a levantarse.","cap":"Y EN EL HORIZONTE,|p EL MAR VUELVE A LEVANTARSE.|p","pause":0.2}
+]

@@ -1,0 +1,206 @@
+[
+ {
+  "sc": "intro",
+  "hud": "NIVEL 1-1",
+  "say": "Si un día te despiertas dentro de tu videojuego favorito... con una sola vida...",
+  "cap": "SI UN DÍA TE DESPIERTAS DENTRO DE TU VIDEOJUEGO FAVORITO... CON UNA SOLA VIDA...|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "intro",
+  "hud": "NIVEL 1-1",
+  "alert": true,
+  "say": "esto es lo que tienes que hacer.",
+  "cap": "ESTO ES LO QUE TIENES QUE HACER.|y",
+  "pause": 0.35
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Izan. Once años.",
+  "cap": "IZAN.|y 11 AÑOS.",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Anoche se quedó dormido jugando. Con el mando en la mano.",
+  "cap": "ANOCHE SE QUEDÓ DORMIDO JUGANDO. CON EL MANDO EN LA MANO.|b",
+  "pause": 0.15
+ },
+ {
+  "sc": "id",
+  "hud": "IDENTIFICACIÓN",
+  "say": "Se lo ha pasado veinte veces. Pero nunca desde dentro.",
+  "cap": "SE LO HA PASADO VEINTE VECES. PERO NUNCA DESDE DENTRO.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "wake",
+  "hud": "NIVEL 1-1",
+  "say": "Al abrir los ojos, todo es de píxeles. El cielo, las nubes... y sus propias manos.",
+  "cap": "AL ABRIR LOS OJOS, TODO ES DE PÍXELES. EL CIELO, LAS NUBES... Y SUS PROPIAS MANOS.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "wake",
+  "hud": "NIVEL 1-1",
+  "alert": true,
+  "say": "Y arriba, en una esquina, un número: una vida.",
+  "cap": "Y ARRIBA, EN UNA ESQUINA, UN NÚMERO: UNA VIDA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "wake",
+  "hud": "NIVEL 1-1",
+  "alert": true,
+  "say": "Debajo, en letras pequeñas, pone: sin continuar.",
+  "cap": "DEBAJO, EN LETRAS PEQUEÑAS, PONE: «SIN CONTINUAR».|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step1",
+  "hud": "PASO 1 · CUIDADO",
+  "step": 0,
+  "say": "Paso uno: nada de tonterías. Aquí no hay segunda oportunidad.",
+  "cap": "PASO|y UNO: NADA DE TONTERÍAS. AQUÍ NO HAY SEGUNDA OPORTUNIDAD.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "step1",
+  "hud": "NIVEL 1-1",
+  "say": "Un salto mal calculado... y se acabó la partida. Para siempre.",
+  "cap": "UN SALTO MAL CALCULADO... Y SE ACABÓ LA PARTIDA. PARA SIEMPRE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step1",
+  "hud": "NIVEL 1-1",
+  "say": "Izan tira una piedra al hueco. Cae... y desaparece.",
+  "cap": "IZAN TIRA UNA PIEDRA AL HUECO. CAE... Y DESAPARECE.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step2",
+  "hud": "PASO 2 · LAS REGLAS",
+  "step": 1,
+  "say": "Paso dos: aprende cómo funciona el juego.",
+  "cap": "PASO|y DOS: APRENDE CÓMO FUNCIONA EL JUEGO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "NIVEL 1-2",
+  "say": "Las monedas suman puntos. Las setas con ojos... no se tocan.",
+  "cap": "LAS MONEDAS SUMAN PUNTOS. LAS SETAS CON OJOS... NO SE TOCAN.|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "step2",
+  "hud": "NIVEL 1-2",
+  "alert": true,
+  "say": "Y si el reloj llega a cero, pierdes la vida.",
+  "cap": "Y SI EL RELOJ LLEGA A CERO, PIERDES LA VIDA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step2",
+  "hud": "NIVEL 1-2",
+  "say": "Noventa segundos por nivel. Ni uno más.",
+  "cap": "NOVENTA SEGUNDOS POR NIVEL. NI UNO MÁS.|y",
+  "pause": 0.3
+ },
+ {
+  "sc": "step3",
+  "hud": "PASO 3 · EL CAMINO",
+  "step": 2,
+  "say": "Paso tres: no te salgas nunca del camino.",
+  "cap": "PASO|y TRES: NO TE SALGAS NUNCA DEL CAMINO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "step3",
+  "hud": "NIVEL 2-1",
+  "say": "Detrás de los decorados no hay nada. Solo negro... y un ruido de estática.",
+  "cap": "DETRÁS DE LOS DECORADOS NO HAY NADA. SOLO NEGRO... Y UN RUIDO DE ESTÁTICA.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "step3",
+  "hud": "NIVEL 2-1",
+  "alert": true,
+  "say": "Y a veces, desde ese negro, algo le observa. Algo que se le parece.",
+  "cap": "Y A VECES, DESDE ESE NEGRO, ALGO LE OBSERVA. ALGO QUE SE LE PARECE.|p",
+  "pause": 0.3
+ },
+ {
+  "sc": "step4",
+  "hud": "PASO 4 · LA SALIDA",
+  "step": 3,
+  "say": "Paso cuatro: llega a la bandera del último nivel.",
+  "cap": "PASO|y CUATRO: LLEGA A LA BANDERA DEL ÚLTIMO NIVEL.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "step4",
+  "hud": "NIVEL 3-3",
+  "say": "Izan corre, salta, esquiva. Nivel uno. Nivel dos. Nivel tres.",
+  "cap": "IZAN CORRE, SALTA, ESQUIVA. NIVEL UNO. NIVEL DOS. NIVEL TRES.|y",
+  "pause": 0.15
+ },
+ {
+  "sc": "step4",
+  "hud": "NIVEL 3-3",
+  "say": "Le quedan cuatro segundos. Y sigue teniendo una vida.",
+  "cap": "LE QUEDAN CUATRO SEGUNDOS. Y SIGUE TENIENDO UNA VIDA.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "step4",
+  "hud": "NIVEL 3-3",
+  "say": "Hasta que, por fin, ve la bandera.",
+  "cap": "HASTA QUE, POR FIN, VE LA BANDERA.|g",
+  "pause": 0.3
+ },
+ {
+  "sc": "end",
+  "hud": "NIVEL 3-3",
+  "alert": true,
+  "say": "Entonces, la música se para. Y en el cielo aparece un mensaje.",
+  "cap": "ENTONCES, LA MÚSICA SE PARA. Y EN EL CIELO APARECE UN MENSAJE.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "NIVEL 3-3",
+  "alert": true,
+  "voice": "tv",
+  "say": "¡Jugador dos se ha unido a la partida!",
+  "cap": "«¡JUGADOR 2 SE HA UNIDO A LA PARTIDA!»|p",
+  "pause": 0.2
+ },
+ {
+  "sc": "end",
+  "hud": "NIVEL 3-3",
+  "say": "Delante de la bandera aparece otro niño. Con la misma ropa que Izan.",
+  "cap": "DELANTE DE LA BANDERA APARECE OTRO NIÑO. CON LA MISMA ROPA QUE IZAN.",
+  "pause": 0.1
+ },
+ {
+  "sc": "end",
+  "hud": "NIVEL 3-3",
+  "alert": true,
+  "say": "Con su misma cara. Y encima de la cabeza pone: vidas infinitas.",
+  "cap": "CON SU MISMA CARA. Y ENCIMA DE LA CABEZA PONE: VIDAS INFINITAS.|p",
+  "pause": 0.15
+ },
+ {
+  "sc": "end",
+  "hud": "NIVEL 3-3",
+  "alert": true,
+  "cut": true,
+  "say": "Y viene corriendo hacia él.",
+  "cap": "Y VIENE CORRIENDO HACIA ÉL.|p",
+  "pause": 0.2
+ }
+]

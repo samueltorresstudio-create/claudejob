@@ -1,0 +1,23 @@
+[
+ {"sc":"intro","hud":"HOTEL MIRADOR · 07:44","say":"Si sobrevives a la primera ola de un tsunami...","cap":"SI SOBREVIVES A LA PRIMERA OLA|b DE UN TSUNAMI...","pause":0.15},
+ {"sc":"intro","hud":"HOTEL MIRADOR · 07:44","alert":true,"say":"lo peor todavía no ha llegado.","cap":"LO PEOR|p TODAVÍA NO HA LLEGADO.","pause":0.3},
+ {"sc":"recap","hud":"AZOTEA · 07:45","say":"Marco y Duque siguen en la azotea del hotel. El mar se está retirando otra vez.","cap":"MARCO|y Y DUQUE|y SIGUEN EN LA AZOTEA DEL HOTEL. EL MAR SE ESTÁ RETIRANDO OTRA VEZ.|b","pause":0.25},
+ {"sc":"door","hud":"AZOTEA · 07:46","alert":true,"say":"Entonces, la puerta de la azotea se abre.","cap":"ENTONCES, LA PUERTA|p DE LA AZOTEA SE ABRE.","pause":0.15},
+ {"sc":"door","hud":"AZOTEA · 07:46","say":"Una madre con su hija, Lucía. Y detrás, dos hombres empapados.","cap":"UNA MADRE CON SU HIJA, LUCÍA.|y Y DETRÁS, DOS HOMBRES|p EMPAPADOS.","pause":0.15},
+ {"sc":"door","hud":"AZOTEA · 07:47","say":"Uno de ellos no deja de mirar la mochila de Marco.","cap":"UNO DE ELLOS NO DEJA DE MIRAR LA MOCHILA|p DE MARCO.","pause":0.3},
+ {"sc":"step1","hud":"PASO 1 · NO BAJES","step":0,"say":"Paso uno: no bajes. Pase lo que pase.","cap":"PASO|y UNO: NO BAJES.|p PASE LO QUE PASE.","pause":0.1},
+ {"sc":"step1","hud":"AZOTEA · 07:58","say":"El más joven quiere bajar a buscar su coche. Marco le cierra el paso.","cap":"EL MÁS JOVEN QUIERE BAJAR A BUSCAR SU COCHE.|y MARCO LE CIERRA EL PASO.","pause":0.3},
+ {"sc":"wave2","hud":"AZOTEA · 08:03","alert":true,"say":"Y la segunda ola llega. Más grande. Hasta la planta ocho.","cap":"Y LA SEGUNDA OLA|p LLEGA. MÁS GRANDE. HASTA LA PLANTA 8.|p","pause":0.15},
+ {"sc":"wave2","hud":"AZOTEA · 08:04","alert":true,"say":"El hotel cruje. Lucía grita. Y Duque se pone delante de ella.","cap":"EL HOTEL CRUJE. LUCÍA GRITA.|p Y DUQUE SE PONE DELANTE DE ELLA.|y","pause":0.3},
+ {"sc":"step2","hud":"PASO 2 · NO LO ENSEÑES","step":1,"say":"Paso dos: no enseñes lo que tienes.","cap":"PASO|y DOS: NO ENSEÑES LO QUE TIENES.|p","pause":0.1},
+ {"sc":"step2","hud":"AZOTEA · 14:20","say":"Lucía tiene sed. Marco le da agua. Pero los dos hombres lo ven todo.","cap":"LUCÍA TIENE SED. MARCO LE DA AGUA.|b PERO LOS DOS HOMBRES LO VEN TODO.|p","pause":0.3},
+ {"sc":"step3","hud":"PASO 3 · TURNOS","step":2,"say":"Paso tres: duerme por turnos.","cap":"PASO|y TRES: DUERME POR TURNOS.|b","pause":0.1},
+ {"sc":"night","hud":"AZOTEA · 22:10","say":"Cae la noche. No hay ni una luz en toda la ciudad. Solo agua... y silencio.","cap":"CAE LA NOCHE. NO HAY NI UNA LUZ EN TODA LA CIUDAD.|y SOLO AGUA... Y SILENCIO.|b","pause":0.2},
+ {"sc":"night","hud":"AZOTEA · 03:00","say":"Marco hace la primera guardia. A las tres, le toca a la madre de Lucía.","cap":"MARCO HACE LA PRIMERA GUARDIA. A LAS TRES,|y LE TOCA A LA MADRE DE LUCÍA.","pause":0.15},
+ {"sc":"night","hud":"AZOTEA · 03:40","say":"Pero ella también está agotada. Y se duerme.","cap":"PERO ELLA TAMBIÉN ESTÁ AGOTADA. Y SE DUERME.|p","pause":0.3},
+ {"sc":"step4","hud":"PASO 4 · ÁTALA","step":3,"say":"Paso cuatro: duerme con la mochila atada a la muñeca.","cap":"PASO|y CUATRO: DUERME CON LA MOCHILA ATADA|g A LA MUÑECA.","pause":0.1},
+ {"sc":"step4","hud":"AZOTEA · 03:41","say":"Marco no lo hace. Es su primer error.","cap":"MARCO NO LO HACE.|p ES SU PRIMER ERROR.|p","pause":0.3},
+ {"sc":"dawn","hud":"AZOTEA · 06:40","say":"Amanece. El agua ha bajado. La ciudad parece un vertedero.","cap":"AMANECE. EL AGUA HA BAJADO.|b LA CIUDAD PARECE UN VERTEDERO.","pause":0.2},
+ {"sc":"end","hud":"AZOTEA · 06:41","alert":true,"say":"Marco busca la mochila. No está. Los dos hombres tampoco.","cap":"MARCO BUSCA LA MOCHILA. NO ESTÁ.|p LOS DOS HOMBRES TAMPOCO.|p","pause":0.2},
+ {"sc":"end","hud":"AZOTEA · 06:41","alert":true,"cut":true,"say":"Y cuando llama a Duque... nadie responde.","cap":"Y CUANDO LLAMA A DUQUE...|y NADIE RESPONDE.|p","pause":0.2}
+]

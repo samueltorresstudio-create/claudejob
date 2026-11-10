@@ -1,0 +1,22 @@
+[
+ {"sc":"intro","hud":"PUERTO ARENA · 06:42","say":"Si después de un tsunami te lo roban todo...","cap":"SI DESPUÉS DE UN TSUNAMI|b TE LO ROBAN TODO...","pause":0.15},
+ {"sc":"intro","hud":"PUERTO ARENA · 06:42","alert":true,"say":"esto es lo que tienes que hacer para seguir vivo.","cap":"ESTO ES LO QUE TIENES QUE HACER PARA SEGUIR VIVO.|p","pause":0.3},
+ {"sc":"recap","hud":"AZOTEA · 06:42","say":"Marco se ha quedado sin agua, sin comida... y sin Duque.","cap":"MARCO SE HA QUEDADO SIN AGUA, SIN COMIDA...|y Y SIN DUQUE.|p","pause":0.2},
+ {"sc":"recap","hud":"AZOTEA · 06:43","say":"Silba una vez. Dos. Y desde la calle, un ladrido.","cap":"SILBA UNA VEZ. DOS.|y Y DESDE LA CALLE, UN LADRIDO.|p","pause":0.25},
+ {"sc":"back","hud":"AZOTEA · 06:50","say":"Duque vuelve cojeando. Entre los dientes trae un trozo de tela roja.","cap":"DUQUE VUELVE COJEANDO.|y ENTRE LOS DIENTES TRAE UN TROZO DE TELA ROJA.|p","pause":0.15},
+ {"sc":"back","hud":"AZOTEA · 06:51","say":"De la chaqueta de uno de los ladrones.","cap":"DE LA CHAQUETA|p DE UNO DE LOS LADRONES.","pause":0.3},
+ {"sc":"step1","hud":"PASO 1 · ESE AGUA NO","step":0,"say":"Paso uno: no bebas el agua de la inundación.","cap":"PASO|y UNO: NO BEBAS EL AGUA DE LA INUNDACIÓN.|p","pause":0.1},
+ {"sc":"step1","hud":"PLANTA BAJA · 07:05","say":"Lleva gasolina, aguas de cloaca y cristales. Un trago puede matarte.","cap":"LLEVA GASOLINA,|p AGUAS DE CLOACA|p Y CRISTALES.|p UN TRAGO PUEDE MATARTE.","pause":0.3},
+ {"sc":"step2","hud":"PASO 2 · AGUA ESCONDIDA","step":1,"say":"Paso dos: busca agua donde nadie mira.","cap":"PASO|y DOS: BUSCA AGUA DONDE NADIE MIRA.|b","pause":0.1},
+ {"sc":"step2","hud":"HABITACIÓN 904 · 07:20","say":"Marco abre la cisterna de un baño del hotel. Agua limpia. Diez litros.","cap":"MARCO ABRE LA CISTERNA|y DE UN BAÑO DEL HOTEL. AGUA LIMPIA.|b DIEZ LITROS.|g","pause":0.3},
+ {"sc":"step3","hud":"PASO 3 · MARCA EL CAMINO","step":2,"say":"Paso tres: marca tu camino.","cap":"PASO|y TRES: MARCA TU CAMINO.|g","pause":0.1},
+ {"sc":"street","hud":"CALLE DEL PUERTO · 08:10","say":"En cada esquina, Marco pinta una flecha y la hora.","cap":"EN CADA ESQUINA, MARCO PINTA UNA FLECHA|y Y LA HORA.|y","pause":0.15},
+ {"sc":"street","hud":"CALLE DEL PUERTO · 08:25","say":"La calle es un cementerio de coches. Hay un barco encima de un tejado.","cap":"LA CALLE ES UN CEMENTERIO DE COCHES.|p HAY UN BARCO|b ENCIMA DE UN TEJADO.","pause":0.3},
+ {"sc":"step4","hud":"PASO 4 · LA RADIO","step":3,"say":"Paso cuatro: escucha la radio cada hora.","cap":"PASO|y CUATRO: ESCUCHA LA RADIO|g CADA HORA.","pause":0.1},
+ {"sc":"radio","hud":"RADIO · 12:00","voice":"tv","say":"Punto seguro en el monte San Telmo. Evacuación en helicóptero en setenta y dos horas.","cap":"PUNTO SEGURO EN EL MONTE SAN TELMO.|g EVACUACIÓN EN HELICÓPTERO EN 72 HORAS.|y","pause":0.2},
+ {"sc":"radio","hud":"MAPA · 12:01","say":"Catorce kilómetros. Con un perro herido.","cap":"14 KILÓMETROS.|y CON UN PERRO HERIDO.|p","pause":0.3},
+ {"sc":"market","hud":"SUPERMERCADO · 13:30","say":"En el camino hay un supermercado. Comida para semanas.","cap":"EN EL CAMINO HAY UN SUPERMERCADO.|y COMIDA PARA SEMANAS.|g","pause":0.15},
+ {"sc":"market","hud":"SUPERMERCADO · 13:31","alert":true,"say":"Pero en la persiana alguien ha pintado tres palabras: esto es nuestro.","cap":"PERO EN LA PERSIANA ALGUIEN HA PINTADO TRES PALABRAS: «ESTO ES NUESTRO».|p","pause":0.2},
+ {"sc":"end","hud":"SUPERMERCADO · 13:32","alert":true,"say":"Duque huele la tela roja... y empieza a gruñir.","cap":"DUQUE HUELE LA TELA ROJA...|p Y EMPIEZA A GRUÑIR.","pause":0.2},
+ {"sc":"end","hud":"SUPERMERCADO · 13:32","alert":true,"cut":true,"say":"Porque los ladrones... están dentro.","cap":"PORQUE LOS LADRONES...|p ESTÁN DENTRO.|p","pause":0.2}
+]

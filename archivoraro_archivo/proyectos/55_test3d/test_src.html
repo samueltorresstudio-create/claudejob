@@ -1,0 +1,45 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#000}#st{position:relative;width:1080px;height:1920px;overflow:hidden}canvas,svg{position:absolute;left:0;top:0}</style></head>
+<body><div id="st"><canvas id="gl" width="1080" height="1920"></canvas><svg id="sv" width="1080" height="1920" viewBox="0 0 1080 1920"></svg><svg id="cp" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
+<script src="three_post.js"></script><script src="world2.js"></script><script src="stick.js"></script>
+<script>
+const WORDS = __WORDS__;
+const V = (x, y, z) => new THREE.Vector3(x, y, z), Lp = (a, b, k) => a.clone().lerp(b, k), cl = x => Math.max(0, Math.min(1, x)), ss = x => x * x * (3 - 2 * x), kk = (x, a, b) => cl((x - a) / (b - a));
+const T0 = 1.37;
+function G(T) { if (T < T0) { const r0 = T0 - .42, pre = .42 * 1.03 / 2; if (T < r0) return -pre - (r0 - T); const u = (T - r0) / .42; return -pre + .42 * (u - .97 * u * u / 2); } return (T - T0) * .03; }
+const DANI = { head: [88, 104], headSeed: 1.3, jaw: .4, top: '#f07a2a', topD: '#c45a18', trim: '#ffffff', number: '7', hair: 'quiff', hairCol: '#2a1a12', shoes: '#f4f2ec', sole: '#e94b3c', wrist: '#ffd34a' };
+const IKER = { head: [106, 94], headSeed: 4.1, jaw: .9, belly: 1.15, top: '#2f8f5b', topD: '#22704a', hood: true, cap: '#1f3c88', capD: '#16295e', capLogo: '#ffd34a', shoes: '#2a2c34', sole: '#f4f2ec' };
+function dani(g, T) { let F, H, o = {};
+  if (g < -.08) { const z = -11.2 + 5 * (-.08 - g), ph = g * 15; F = V(.25, 0, z); H = V(.25, 1.6, z - .15);
+    o = { face: 'smug', mouth: 'smirk', brows: -.3, browTilt: .4, legL: [Math.sin(ph) * 28, 18 + 22 * Math.max(0, Math.sin(ph))], legR: [-Math.sin(ph) * 28, 18 + 22 * Math.max(0, -Math.sin(ph))], armL: [25 - 28 * Math.sin(ph), 35], armR: [30, 50], lean: -4, look: [-3, 2], squash: .12 * Math.sin(ph * 2) };
+    o._ball = V(.62, .12 + Math.abs(Math.sin(Math.PI * ((g + 2) / .45))) * .78, z - .35); }
+  else { const tau = Math.min(g + .08, .08), gg = Math.max(0, g), y0 = 3.78 * tau - 4.9 * tau * tau + 3.0 * gg, z = -11.2 - 1.4 * (g + .08); F = V(.25, y0, z); const u = V(0, .97, -.24).normalize(); H = F.clone().addScaledVector(u, 1.62);
+    const f = Math.sin(T * 1.6) * 6, sh = T > T0 + .25; o = { face: sh ? 'wide' : 'smug', mouth: sh ? (T > 2.85 ? 'grin' : 'line') : 'smirk', brows: sh ? 1 : 0, browTilt: sh ? -.5 : .4, armL: [150 + f, 20], armR: [168 - f, -10], legL: [12 + f * .5, 55], legR: [26 - f * .5, 75], look: [0, -6], sweat: T > 2.85, lean: -3, squash: sh ? (T > 2.85 ? .25 + .05 * Math.sin(T * 9) : -.35) : 0 };
+    if (g < .07) o._ball = H.clone().add(V(.1, .74, -.2)); }
+  return { F, H, o }; }
+function render(T) { const g = G(T), d = dani(g, T), W = W2;
+  W.floaters(g < 0 ? 0 : (T - T0) * .9); W.setNet(T, g < 0 ? 0 : cl((T - T0) / 1.2));
+  W.BALL.position.copy(d.o._ball || d.H.clone().add(V(.12, .78 + (T - T0) * .05, -.2)));
+  const c = d.F.clone().lerp(d.H, .5); let pos, look, fov = 45, focus = null, ap = .0035;
+  if (T < T0) { pos = c.clone().add(V(2.7, .05, 3.3)); look = c.clone().add(V(-.5, .3, -1.6)); fov = 50; focus = pos.distanceTo(c); }
+  else if (T < 2.85) { const k = ss(kk(T, T0, 2.85)); pos = Lp(V(1.7, .45, -9.0), V(1.2, .35, -9.6), k); look = c.clone().add(V(0, .5, -.3)); fov = 55; focus = pos.distanceTo(c); }
+  else if (T < 4.06) { const k = ss(kk(T, 2.85, 4.06)); pos = d.H.clone().add(V(.8, -.25, 2.3 - .5 * k)); look = d.H.clone().add(V(0, -.2, 0)); fov = 40; focus = pos.distanceTo(d.H); ap = .006; }
+  else { const k = ss(kk(T, 4.06, 5.3)); pos = Lp(V(5.5, .6, -5.5), V(4.6, 1.4, -6.6), k); look = V(.1, 2.2, -12.6); fov = 48; focus = pos.distanceTo(c); ap = .0025; }
+  W.setCam(pos, look, fov, focus, ap); W.render();
+  let s = '';
+  const ikF = V(.55, 0, -14.35), ikH = V(.55, 1.66, -14.35), on = T > T0 + .4;
+  const io = Object.assign({}, IKER, { boil: Math.floor(T * 10), squash: on ? -.25 : 0, face: on ? 'wide' : 'open', mouth: on ? 'o' : 'smile', look: [-4, -6], brows: on ? 1 : 0, armL: T > T0 + .3 ? [-70, 40] : [18, 15], armR: T > T0 + .3 ? [-60, 50] : [18, 15] });
+  const dI = W.proj(ikH), dD = W.proj(d.H); const blurI = Math.min(10, Math.abs(dI.d - focus) * (ap * 400));
+  const items = [[dI.d, () => stickAt(io, ikF, ikH, W, { blur: blurI })], [dD.d, () => stickAt(Object.assign({}, DANI, d.o, { boil: Math.floor(T * 10) }), d.F, d.H, W, {})]];
+  items.sort((a, b) => b[0] - a[0]).forEach(it => s += it[1]());
+  const kx = (T - T0) / 1.1; if (kx > 0 && kx < 1) { const p = W.proj(V(0, 0, -11)); if (p.ok) s += `<ellipse cx="${p.x}" cy="${p.y}" rx="${1000 * kx}" ry="${300 * kx}" fill="none" stroke="#cdeeff" stroke-width="${16 * (1 - kx)}" opacity="${1 - kx}"/>`; }
+  if (T > T0 && T < T0 + .18) s += `<rect width="1080" height="1920" fill="#eaf6ff" opacity="${(.55 * (1 - (T - T0) / .18)).toFixed(2)}"/>`;
+  for (let i = 0; i < 30; i++) { const x = (i * 211 + T * (5 + i % 4)) % 1080, y = (i * 389 - T * (4 + i % 3) * (T > T0 ? 3 : 1)) % 1920; s += `<circle cx="${x.toFixed(1)}" cy="${((y + 1920) % 1920).toFixed(1)}" r="${2 + i % 3}" fill="#fff6dc" opacity="${(.25 + .3 * Math.abs(Math.sin(T + i))).toFixed(2)}"/>`; }
+  s += `<rect width="1080" height="1920" fill="url(#vg)"/>`;
+  document.getElementById('sv').innerHTML = `<defs><radialGradient id="vg" cx=".5" cy=".45" r=".8"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></radialGradient></defs>` + s;
+  let w = null; for (const x of WORDS) if (T >= x[1] - .02) w = x; let c2 = '';
+  if (w && T < w[1] + 1.2) { const k = cl((T - w[1]) / .12), sc = 1.25 - .25 * k, col = w[2] === 'y' ? '#ffd34a' : w[2] === 'p' ? '#ff4f7b' : w[2] === 'b' ? '#6cc6ff' : '#ffffff';
+    c2 = `<g transform="translate(540,860) scale(${sc.toFixed(3)})"><text x="0" y="0" text-anchor="middle" font-family="Inter" font-weight="900" font-size="104" letter-spacing="-2" fill="${col}" stroke="#14121c" stroke-width="18" stroke-linejoin="round" paint-order="stroke" style="filter:drop-shadow(0 8px 0 rgba(0,0,0,.35))">${w[0].replace(/[.,…]/g, '')}</text></g>`; }
+  document.getElementById('cp').innerHTML = c2;
+}
+window.render = render; render(0.5); document.title = 'ready';
+</script></body></html>
