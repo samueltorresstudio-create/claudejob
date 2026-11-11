@@ -106,6 +106,7 @@ Frases reales, tal cual: «Gambling is illegal in Japan. Yet there's a gambling 
 - **Prohibido:** tríos efectistas («Sin venenos. Solo pintura.»), moralejas finales («y ya nadie se ríe»), metáforas de redacción («viven en guerra»), «imagina» + adjetivos, puntos suspensivos en cada frase.
 - Bisagra natural: «Resulta que…» / «Y es que…» (equivale a su «You see,»). La segunda persona se usa para meter al espectador en la acción («ganas un cubo, vas a cambiarlo…»).
 - El dato remate va seco al final, sin explicarlo de más.
+- **Nunca empezar con una fecha** («En 1943, …»): la frase 1 empieza por el protagonista y su acción («Un científico metió tres palomas…»). La fecha, si hace falta, va en la frase 2 o más tarde (pedido del usuario, 12-11-2026).
 
 
 ### Dos guiones COMPLETOS de la referencia (transcritos palabra a palabra, 12-11-2026)
