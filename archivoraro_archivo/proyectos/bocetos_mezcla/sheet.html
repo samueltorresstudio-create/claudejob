@@ -1,0 +1,17 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}#stage{position:relative;width:1080px;height:1920px}canvas,svg{position:absolute;left:0;top:0}</style></head>
+<body><div id="stage"><canvas id="gl" width="1080" height="1920"></canvas><svg id="fx" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
+<script src="three_post.js"></script><script src="util3d.js"></script><script src="world3d.js"></script><script src="stick.js"></script><script src="hair.js"></script>
+<script>
+const MIL={rich:true,legLen:1.18,prop:'radio',armR:[28,120],outfit:'military',top:'#6b7448',topD:'#4a5232',hat:'helmet',hair2:'buzz',hairCol:'#3a2a20',nameTape:'ROJAS',medals:true,shoes:'#2a2620',sole:'#15161c',face:'smug',mouth:'line',brows:.6,browTilt:.5,belly:1.06};
+const LIM0={rich:true,legLen:1.18,bun:'#6a3a22',earrings:'#e7c24a',outfit:'cleaner',top:'#5fa8c8',topD:'#3a7a9a',apron:'#f4f1ea',apronTie:'#e46a8a',hat:'kerchief',hatCol:'#e46a8a',nameTape:'PILAR',gloves:'#ffd34a',prop:'mop',rag:'#ffd34a',shoes:'#f4f2ec',sole:'#5fa8c8',face:'smug',mouth:'smirk',belly:1.1,wrinkles:false};
+const LIM=Object.assign({},LIM0,{rag:'#ffd34a'});const REY={rich:true,legLen:1.18,outfit:'king',top:'#b5222e',topD:'#7a1420',vest:'#e7c24a',sash:'#2f5fbf',cape:'#9a1a26',hat:'crown',beard:'#f2efe8',mustache:'#f2efe8',browCol:'#f2efe8',prop:'scepter',shoes:'#7a1420',sole:'#e7c24a',face:'smug',mouth:'line',belly:1.18};
+function bucket(x,z){const W=W2,p=W.proj(V3(x-.55,0,z+.05));if(!p.ok)return '';const k=p.ppm*.0042;return `<g transform="translate(${p.x},${p.y}) scale(${k})"><path d="M-52,-110 L52,-110 L42,0 L-42,0Z" fill="#f2c53a" stroke="#1b1720" stroke-width="8" stroke-linejoin="round"/><path d="M-52,-110 L52,-110 L50,-94 L-50,-94Z" fill="#d9a82a" stroke="#1b1720" stroke-width="5"/><ellipse cx="0" cy="-110" rx="50" ry="10" fill="#7ac8e8" stroke="#1b1720" stroke-width="5"/><circle cx="-14" cy="-114" r="6" fill="#fff"/><path d="M-50,-104 Q0,-180 50,-104" stroke="#1b1720" stroke-width="6" fill="none"/><rect x="-24" y="-70" width="48" height="16" rx="3" fill="#fff" opacity=".6"/></g>`;}
+W2.charLight={tint:'#ffe2bd',k:.14,rim:'#fff6e6',rimA:.5,rimX:-1,rimY:-.6};
+const C=[[MIL,-1.15,-11.2],[LIM,.05,-12.9],[REY,1.25,-11.8]];
+window.shot=function(i){const W=W2;W.floaters(0);W.setNet(0,0);let pos,look,fov=46,list;
+ if(i<0){pos=V3(.2,1.5,-2.2);look=V3(0,1.0,-12);fov=44;list=[C[1],C[2],C[0]];}
+ else{const [o,x,z]=C[i];pos=V3(x+.45,1.45,z+3.8);look=V3(x,1.3,z);fov=40;list=[C[i]];}
+ W.setCam(pos,look,fov,pos.distanceTo(look),i<0?.0018:.006);W.render();
+ let s='';for(const [o,x,z] of list){const ex=i===1?{}:{};s+=(o===LIM?bucket(x,z):'')+stickAt(Object.assign({},o,o===LIM?{armR:[10,30],armL:[20,20]}:{},o===REY?{armR:[18,40]}:{}),V3(x,0,z),V3(x,1.84,z),W);}
+ document.getElementById('fx').innerHTML=s;};
+</script></body></html>

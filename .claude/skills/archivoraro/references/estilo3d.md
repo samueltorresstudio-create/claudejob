@@ -90,6 +90,7 @@ Por eso:
   - Otros complementos: `hat:'beret'`.
   - `outfit:'cleaner'` (limpiadora, nov. 2026): uniforme de color con cuello blanco redondo, botones, delantal blanco con cinta rosa y bolsillo, cinta con el nombre (`nameTape`), bayeta opcional (`rag`). Se combina con `hat:'kerchief'` (pañuelo de lunares con lazo, `hatCol`), `gloves:'#ffd34a'` (manos con guantes de color) y `prop:'mop'` (fregona).
   - `outfit:'king'` (rey): manto rojo abierto con borde de armiño, jubón dorado, banda cruzada (`sash`), medalla y cinturón de oro con gema. Se combina con `cape` (capa por detrás con armiño abajo), `hat:'crown'` (corona con gemas), `beard` + `mustache` + `browCol` blancos y `prop:'scepter'`.
+  - **Mezcla con el «estilo palo v1»** (prueba, 11-11-2026): `rich:true` añade el detalle extra de aquellos bocetos sin perder la cabeza redonda ni las caras: militar con cartucheras, tirantes, gafas en el casco y `prop:'radio'`; limpiadora con volante y spray en el delantal; rey con cuello de armiño y cruz en la corona. Más: `legLen:1.18` (piernas más largas, sube la cabeza a 1,84 m en `stickAt`), `bun` (moño detrás del pañuelo, color), `earrings` (pendientes). Hoja: `archivoraro_archivo/proyectos/bocetos_mezcla/mezcla.jpg`.
   - Ejemplo de los tres (militar, limpiadora, rey) en `archivoraro_archivo/proyectos/bocetos_militar_limpiadora_rey/sheet.jpg`.
   - Ejemplo de los tres en `example/gravedad_3d/oficios.jpg`.
   - **Nuevas prendas, con el mismo criterio:**
