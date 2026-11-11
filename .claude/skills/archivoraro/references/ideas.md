@@ -94,3 +94,15 @@ Son **vídeos sueltos de una parte, de 40–60 s**, cada uno sobre **una curiosi
 - 110–150 palabras.
 - Frases de 4–10 palabras, una idea por frase. **Cada frase es un plano** (cambio cada 1–2 s) y lo que se dice se ve de forma literal.
 - Tono de anécdota contada a un amigo, no de documental. Sin «hoy te voy a contar» y sin despedida.
+
+
+## Cómo suenan de verdad (transcripción palabra a palabra de la cuenta de referencia, 11-11-2026)
+
+Frases reales, tal cual: «Gambling is illegal in Japan. Yet there's a gambling hall on almost every street. Inside, thousands of machines flashing and screaming while people carry out buckets full of steel balls. Police stroll right past the door, but nobody ever gets arrested. So you win yourself a bucket, try to cash it in. But the counter won't give you a single yen…» · «How do painkillers know where the pain is? You swallow one for a headache, and then what? Does it pull out a little map?» · «A man snuck into a family's house every night and moved every single thing one inch to the left. The first night nobody notices, because who measures their couch? By the end of the week, the fridge is blocking the back door, and dad is pretty sure he's losing his mind.» · «He put a bronze ball in a dragon's mouth and told the emperor: if this ever falls out, run. The whole court burst out laughing.» · «If your ship got hit by a cannonball, you'd actually be one of the lucky ones.»
+
+**El usuario dijo de un guion mío: «es muy IA».** Reglas para que no lo parezca:
+- Frases **normales, enteras y con detalle físico concreto** (cubos de bolas de acero, la nevera tapando la puerta), no fragmentos sueltos tipo «Raya blanca. Raya negra.».
+- **Humor seco y sarcástico** dentro de la frase («¿y qué hace, saca un mapita?», «porque ¿quién mide su sofá?»). Nada de exclamaciones gritadas ni frases entre comillas tipo «¡Se ha vuelto loco!».
+- **Prohibido:** tríos efectistas («Sin venenos. Solo pintura.»), moralejas finales («y ya nadie se ríe»), metáforas de redacción («viven en guerra»), «imagina» + adjetivos, puntos suspensivos en cada frase.
+- Bisagra natural: «Resulta que…» / «Y es que…» (equivale a su «You see,»). La segunda persona se usa para meter al espectador en la acción («ganas un cubo, vas a cambiarlo…»).
+- El dato remate va seco al final, sin explicarlo de más.
