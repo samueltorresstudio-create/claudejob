@@ -227,7 +227,10 @@ function stick(o) {
   E.forEach(([ex], i) => { const s2 = i ? 1 : -1, t = d.browTilt * 10 * s2; h += `<path d="M${ex - 17},${by + t} Q${ex},${by - 6} ${ex + 17},${by - t}" stroke="${INKC}" stroke-width="${d.browCol ? 13 : 10}" fill="none" stroke-linecap="round"/>` + (d.browCol ? `<path d="M${ex - 17},${by + t} Q${ex},${by - 6} ${ex + 17},${by - t}" stroke="${d.browCol}" stroke-width="5" fill="none" stroke-linecap="round"/>` : ''); });
   // eyes (same family as the reference: heavy-lidded black half-discs, black ovals, round shocked eyes)
   E.forEach(([ex, ey], i) => { const s2 = i ? 1 : -1, px = ex + lx, py = ey + ly;
-    if (d.face === 'smug' || d.face === 'angry') { const tl = d.face === 'angry' ? s2 * 4 : -2;
+    if (d.eyeStyle === 'palo' && (d.face === 'smug' || d.face === 'angry')) { const r = d.face === 'angry' ? s2 * -14 : s2 * 2; // ojos del «estilo palo v1»: párpado largo y ojo en D pequeño
+      h += `<g transform="translate(${px},${py - 4}) rotate(${r})"><line x1="-21" y1="0" x2="21" y2="0" stroke="${INKC}" stroke-width="7" stroke-linecap="round"/><path d="M-9.5,0 Q-9.5,16 0,16 Q9.5,16 9.5,0Z" fill="${INKC}"/></g>`; }
+    else if (d.eyeStyle === 'palo' && d.face === 'wide') h += `<circle cx="${ex}" cy="${ey + 2}" r="22" fill="#fff" stroke="${INKC}" stroke-width="7"/><circle cx="${ex + lx * .5}" cy="${ey + 2 + ly * .5}" r="6.5" fill="${INKC}"/>`;
+    else if (d.face === 'smug' || d.face === 'angry') { const tl = d.face === 'angry' ? s2 * 4 : -2;
       h += `<path d="M${px - 15},${py - 3 - tl} L${px + 15},${py - 3 + tl} A15 14 0 0 1 ${px - 15},${py - 3 - tl}Z" fill="${INKC}"/><path d="M${px - 19},${py - 4 - tl * 1.2} L${px + 19},${py - 4 + tl * 1.2}" stroke="${INKC}" stroke-width="6" stroke-linecap="round"/>`; }
     else if (d.face === 'open') h += `<ellipse cx="${px}" cy="${py}" rx="10" ry="13" fill="${INKC}"/>`;
     else if (d.face === 'wide') h += `<circle cx="${ex}" cy="${ey}" r="19" fill="#fff" stroke="${INKC}" stroke-width="6"/><circle cx="${ex + lx * .5}" cy="${ey + ly * .5}" r="5.5" fill="${INKC}"/>`;
