@@ -61,6 +61,13 @@ Voz del usuario: **Eleven v3, «Edoardo – Dark Measured Natural», estabilidad
 - Una frase por línea, sin título, sin numeración, dentro de un bloque de código para copiar.
 - **Energía en el gancho**: si va una etiqueta, que sea en la 1.ª o 2.ª frase (`[urgent]`/`[tense]`).
 - Etiquetas de emoción **muy pocas** (2–4 en todo el guion), solo en los momentos especiales, al principio de la frase: `[serious] [tense] [urgent] [ominous] [sad] [hopeful]`. **Nada de `[whispers]`** (el usuario no quiere susurros).
+- **Curiosidades (voz alegre): catálogo de etiquetas v3** (pedido del usuario: variedad según la situación, no en cada frase):
+  - gancho: `[excited]`, `[curious]`;
+  - remate seco y alargado («Mala… idea»): `[deadpan] [slowly]` en una línea aparte, con puntos suspensivos dentro;
+  - humor: `[laughs]`, `[sarcastic]`, `[mischievously]`, `[playful]`;
+  - sorpresa: `[surprised]`, `[amazed]`;
+  - tensión: `[dramatic]`; giro serio: `[serious]`; resignación: `[sighs]`.
+  - Si una etiqueta exagera, quítala y regenera solo esa frase. No alargar letras («maaala»).
 - Diálogos entre «comillas españolas».
 - Números con letra si se leen («cinco y doce», «veintidós horas»); en los subtítulos van en cifras.
 - Longitud: ≈2,4 palabras por segundo con las pausas de esta voz. 60–70 s ≈ 150–170 palabras; 80–90 s ≈ 200–215 palabras.
