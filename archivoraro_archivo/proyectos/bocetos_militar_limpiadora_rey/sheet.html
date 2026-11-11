@@ -1,0 +1,16 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}#stage{position:relative;width:1080px;height:1920px}canvas,svg{position:absolute;left:0;top:0}</style></head>
+<body><div id="stage"><canvas id="gl" width="1080" height="1920"></canvas><svg id="fx" width="1080" height="1920" viewBox="0 0 1080 1920"></svg></div>
+<script src="three_post.js"></script><script src="util3d.js"></script><script src="world3d.js"></script><script src="stick.js"></script><script src="hair.js"></script>
+<script>
+const MIL={outfit:'military',top:'#6b7448',topD:'#4a5232',hat:'helmet',hair2:'buzz',hairCol:'#3a2a20',nameTape:'ROJAS',medals:true,shoes:'#2a2620',sole:'#15161c',face:'smug',mouth:'line',brows:.6,browTilt:.5,belly:1.06};
+const LIM0={outfit:'cleaner',top:'#5fa8c8',topD:'#3a7a9a',apron:'#f4f1ea',apronTie:'#e46a8a',hat:'kerchief',hatCol:'#e46a8a',nameTape:'PILAR',gloves:'#ffd34a',prop:'mop',rag:'#ffd34a',shoes:'#f4f2ec',sole:'#5fa8c8',face:'smug',mouth:'smirk',belly:1.1,wrinkles:false};
+const LIM=Object.assign({},LIM0,{rag:'#ffd34a'});const REY={outfit:'king',top:'#b5222e',topD:'#7a1420',vest:'#e7c24a',sash:'#2f5fbf',cape:'#9a1a26',hat:'crown',beard:'#f2efe8',mustache:'#f2efe8',browCol:'#f2efe8',prop:'scepter',shoes:'#7a1420',sole:'#e7c24a',face:'smug',mouth:'line',belly:1.18};
+W2.charLight={tint:'#ffe2bd',k:.14,rim:'#fff6e6',rimA:.5,rimX:-1,rimY:-.6};
+const C=[[MIL,-1.15,-11.2],[LIM,.05,-12.9],[REY,1.25,-11.8]];
+window.shot=function(i){const W=W2;W.floaters(0);W.setNet(0,0);let pos,look,fov=46,list;
+ if(i<0){pos=V3(.2,1.5,-2.2);look=V3(0,1.0,-12);fov=44;list=[C[1],C[2],C[0]];}
+ else{const [o,x,z]=C[i];pos=V3(x+.45,1.35,z+3.5);look=V3(x,1.2,z);fov=40;list=[C[i]];}
+ W.setCam(pos,look,fov,pos.distanceTo(look),i<0?.0018:.006);W.render();
+ let s='';for(const [o,x,z] of list){const ex=i===1?{}:{};s+=stickAt(Object.assign({},o,i===0?{armR:[20,10]}:{},o===LIM?{armR:[10,30],armL:[20,20]}:{},o===REY?{armR:[18,40]}:{}),V3(x,0,z),V3(x,1.66,z),W);}
+ document.getElementById('fx').innerHTML=s;};
+</script></body></html>
