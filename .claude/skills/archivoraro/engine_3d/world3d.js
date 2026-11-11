@@ -127,6 +127,79 @@ const W2 = (() => {
   const neon = []; const sign = (x, y, z, w, h, col, ry = 0) => { const m = add(new RoundedBoxGeometry(w, h, .12, 3, .05), STD({ color: '#2a2230', emissive: col, emissiveIntensity: 0 }), x, y, z, { ry, cast: false }); neon.push(m); return m; };
   sign(-4.5, 7.5, -28.6, 5, .9, '#ff3fb4'); sign(6.5, 10.5, -28.6, .9, 4.5, '#38e8ff'); sign(9.5, 6.2, -28.6, 3.4, .7, '#ffd34a'); sign(-27.2, 9, -12, .8, 4, '#a46bff', Math.PI / 2);
   const PL = [['#ff3fb4', -6, 5, -16, 0], ['#38e8ff', 7, 6, -14, 0], ['#ffc76a', -10.2, 6.8, -10, 0], ['#ffc76a', -10.2, 6.8, 10, 0], ['#ffc76a', 10.9, 6.8, -10, 0], ['#ffc76a', 10.9, 6.8, 10, 0]].map(([c, x, y, z]) => { const l = new T.PointLight(c, 0, 26, 1.6); l.position.set(x, y, z); scene.add(l); return l; });
+  // ---------- DETALLE v2 (nov. 2026): el sitio lleno de cosas ----------
+  const paint = (w, h, draw) => tex(w, h, draw);
+  const decal = (t, w, h, x, y, z, ry = 0, o = {}) => add(new T.PlaneGeometry(w, h), STD(Object.assign({ map: t, transparent: true, alphaTest: .1, roughness: .9 }, o)), x, y, z, { ry, cast: false });
+  // mural de grafiti en la fachada del fondo (con el sello AR)
+  const muralT = paint(1024, 384, (g, w, h) => { g.clearRect(0, 0, w, h);
+    const cols = ['#ff3fb4', '#38e8ff', '#ffd34a', '#7cff6a', '#ff7a3a'];
+    for (let i = 0; i < 9; i++) { g.fillStyle = cols[i % 5]; g.globalAlpha = .9; g.beginPath(); g.ellipse(80 + i * 110, 200 + Math.sin(i) * 60, 90, 70, i, 0, 7); g.fill(); }
+    g.globalAlpha = 1; g.font = '900 230px Inter'; g.textAlign = 'center'; g.lineJoin = 'round'; g.lineWidth = 26; g.strokeStyle = '#1b1720'; g.strokeText('ARCHIVO', w / 2, 250); g.fillStyle = '#fff'; g.fillText('ARCHIVO', w / 2, 250);
+    g.font = '900 120px Inter'; g.lineWidth = 18; g.strokeText('RARO', w / 2 + 250, 350); g.fillStyle = '#ffd34a'; g.fillText('RARO', w / 2 + 250, 350);
+    for (let i = 0; i < 40; i++) { g.fillStyle = cols[i % 5]; g.fillRect(rnd() * w, rnd() * h, 6, 18 + rnd() * 40); } });
+  decal(muralT, 16, 6, 2, 4.2, -28.94);
+  // carteles pegados en la valla y en las fachadas
+  const poster = (txt, bg, fg) => paint(256, 360, (g, w, h) => { g.fillStyle = bg; g.fillRect(0, 0, w, h); g.fillStyle = fg; g.font = '900 64px Inter'; g.textAlign = 'center'; txt.split('|').forEach((l, i) => g.fillText(l, w / 2, 90 + i * 70));
+    g.fillStyle = 'rgba(0,0,0,.15)'; g.fillRect(0, h - 70, w, 70); g.fillStyle = fg; g.font = '700 26px JetBrains Mono'; g.fillText('SÁB · 18:00', w / 2, h - 26); });
+  [['TORNEO|3X3', '#ffd34a', '#1b1720', -6, -17.95], ['FIESTA|DEL|BARRIO', '#ff3fb4', '#fff', -3.6, -17.95], ['SE BUSCA|PERRO', '#f4f1ea', '#1b1720', 5, -17.95], ['NO|BALÓN|DE NOCHE', '#2d6fbf', '#fff', 7.4, -17.95]].forEach(([t, b, f, x, z]) =>
+    decal(poster(t, b, f), .8, 1.1, x, 1.9, z + .02, 0, { side: T.DoubleSide }));
+  const signT = paint(512, 128, (g, w, h) => { g.fillStyle = '#1f4f9a'; g.fillRect(0, 0, w, h); g.strokeStyle = '#fff'; g.lineWidth = 8; g.strokeRect(10, 10, w - 20, h - 20); g.fillStyle = '#fff'; g.font = '900 54px Inter'; g.textAlign = 'center'; g.fillText('PISTA MUNICIPAL', w / 2, 84); });
+  add(new RoundedBoxGeometry(3.4, .85, .06, 3, .02), STD({ map: signT }), 0, 3.2, -17.9);
+  // marcador en un poste
+  const scoreT = paint(512, 256, (g, w, h) => { g.fillStyle = '#15161c'; g.fillRect(0, 0, w, h); g.fillStyle = '#ff4a3a'; g.font = '900 110px JetBrains Mono'; g.textAlign = 'center'; g.fillText('21', 130, 150); g.fillText('19', 382, 150); g.fillStyle = '#ffd34a'; g.font = '800 40px JetBrains Mono'; g.fillText('LOCAL   VISIT.', w / 2, 220); g.fillStyle = '#38e8ff'; g.fillText('2:47', w / 2, 60); });
+  add(new T.CylinderGeometry(.08, .1, 4.4, 12), dark, 9.2, 2.2, -16.4); add(new RoundedBoxGeometry(2.2, 1.1, .2, 3, .05), STD({ map: scoreT, emissive: '#ffffff', emissiveMap: scoreT, emissiveIntensity: .35 }), 9.2, 4.6, -16.3, { ry: -.35 });
+  // fuente de agua, papeleras con bolsa, conos, carro de balones, bici, monopatín, mochila y chaqueta en la valla
+  const fount = new T.Group(); fount.position.set(-9.3, 0, -1); scene.add(fount); add(new T.CylinderGeometry(.22, .26, 1, 16), STD({ color: '#8f98a3', metalness: .5, roughness: .4 }), 0, .5, 0, { parent: fount }); add(new T.CylinderGeometry(.3, .2, .14, 16), steel, 0, 1.05, 0, { parent: fount }); add(new T.CylinderGeometry(.03, .03, .12, 8), steel, .1, 1.16, 0, { parent: fount });
+  [[-9.2, 8.4], [9.3, -8.2], [9.3, 7]].forEach(([x, z], i) => { add(new T.CylinderGeometry(.34, .3, .9, 18), STD({ color: ['#2f7a4a', '#2d6fbf', '#c23b3b'][i], roughness: .6 }), x, .45, z); add(new T.CylinderGeometry(.36, .36, .08, 18), dark, x, .92, z);
+    add(new T.IcosahedronGeometry(.22, 1), STD({ color: '#1b1b1f', roughness: .4 }), x + .05, 1.02, z); });
+  [[5.6, -9], [6.4, -9.6], [-5.4, 9]].forEach(([x, z]) => { add(new T.ConeGeometry(.17, .5, 18), STD({ color: '#ff6a1a', roughness: .5 }), x, .29, z); add(new T.CylinderGeometry(.13, .14, .07, 18), STD({ color: '#ffffff' }), x, .3, z); add(new T.BoxGeometry(.4, .04, .4), STD({ color: '#ff6a1a' }), x, .02, z); });
+  const cart = new T.Group(); cart.position.set(8.4, 0, -12.5); cart.rotation.y = -.4; scene.add(cart);
+  add(new T.BoxGeometry(.9, .06, .6), dark, 0, .45, 0, { parent: cart }); [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, b]) => { add(new T.CylinderGeometry(.02, .02, .9, 6), steel, a * .43, .45, b * .28, { parent: cart }); add(new T.SphereGeometry(.05, 10, 8), dark, a * .43, .05, b * .28, { parent: cart }); });
+  for (let i = 0; i < 6; i++) add(new T.SphereGeometry(.12, 20, 14), STD({ map: ballT, roughness: .75 }), -.26 + (i % 3) * .26, .6 + Math.floor(i / 3) * .2, (i % 2 ? .1 : -.1), { parent: cart });
+  const bike = new T.Group(); bike.position.set(-9.75, 0, 12.5); bike.rotation.y = Math.PI / 2; scene.add(bike); const frameM = STD({ color: '#e94b3c', roughness: .4, metalness: .3 });
+  [-.55, .55].forEach(x => { add(new T.TorusGeometry(.34, .035, 10, 32), STD({ color: '#1b1b1f' }), x, .36, 0, { parent: bike }); add(new T.CylinderGeometry(.015, .015, .68, 6), steel, x, .36, 0, { parent: bike, rz: Math.PI / 2 }); });
+  [[0, .55, 0, 1.1, .03, .03, 0], [-.2, .45, 0, .55, .03, .03, .9], [.25, .5, 0, .6, .03, .03, -.9]].forEach(([x, y, z, w, h, d, r]) => add(new T.BoxGeometry(w, h, d), frameM, x, y, z, { parent: bike, rz: r }));
+  add(new T.BoxGeometry(.28, .06, .12), STD({ color: '#1b1b1f' }), -.3, .82, 0, { parent: bike }); add(new T.BoxGeometry(.05, .05, .5), steel, .45, .86, 0, { parent: bike }); bike.rotation.z = .12;
+  const skate = new T.Group(); skate.position.set(3.2, .07, 6.5); skate.rotation.y = .6; scene.add(skate); add(new RoundedBoxGeometry(.8, .03, .22, 2, .01), STD({ color: '#2d2d34' }), 0, 0, 0, { parent: skate });
+  [[-.28, -1], [-.28, 1], [.28, -1], [.28, 1]].forEach(([x, s]) => add(new T.CylinderGeometry(.03, .03, .04, 12), STD({ color: '#ffd34a' }), x, -.04, s * .08, { parent: skate, rx: Math.PI / 2 }));
+  add(new RoundedBoxGeometry(.36, .44, .2, 3, .06), STD({ color: '#7a3fbf' }), -8.6, .74, -5.6, { ry: .3 }); add(new RoundedBoxGeometry(.3, .16, .06, 2, .03), STD({ color: '#5a2a9a' }), -8.6, .64, -5.47, { ry: .3 });
+  const jacket = add(new T.PlaneGeometry(.8, .7), STD({ color: '#34a061', side: T.DoubleSide }), 10.02, 3.5, 4, { ry: Math.PI / 2, cast: false }); jacket.rotation.z = .15;
+  // charcos, alcantarilla, tiza y hojas en el suelo
+  const puddleM = STD({ color: '#5a6a80', roughness: .05, metalness: .6, transparent: true, opacity: .75 });
+  [[-6.8, 11, 1.6, .9], [8.2, 13.5, 1.2, .7], [-2, -16.4, 1.4, .6], [11.5, -2, 1.1, .8]].forEach(([x, z, a, b]) => { const m = add(new T.CircleGeometry(1, 32), puddleM, x, .017, z, { rx: -Math.PI / 2, cast: false }); m.scale.set(a, b, 1); });
+  const mhT = paint(256, 256, (g, w, h) => { g.fillStyle = '#3a3c42'; g.beginPath(); g.arc(128, 128, 126, 0, 7); g.fill(); g.strokeStyle = '#26282d'; g.lineWidth = 8; for (let i = 0; i < 9; i++) { g.beginPath(); g.moveTo(30, 40 + i * 22); g.lineTo(226, 40 + i * 22); g.stroke(); } g.lineWidth = 10; g.beginPath(); g.arc(128, 128, 118, 0, 7); g.stroke(); });
+  add(new T.CircleGeometry(.45, 32), STD({ map: mhT, metalness: .5, roughness: .5 }), 11.2, .016, 8, { rx: -Math.PI / 2, cast: false });
+  const chalkT = paint(512, 512, (g, w, h) => { g.clearRect(0, 0, w, h); g.strokeStyle = 'rgba(255,255,255,.85)'; g.lineWidth = 10; g.lineCap = 'round';
+    for (let i = 0; i < 8; i++) { const x = 60 + (i % 2) * 130, y = 40 + Math.floor(i / 2) * 110; g.strokeRect(x, y, 120, 100); g.fillStyle = 'rgba(255,255,255,.85)'; g.font = '900 60px Inter'; g.fillText(String(i + 1), x + 42, y + 72); }
+    g.strokeStyle = 'rgba(255,211,74,.9)'; g.beginPath(); g.arc(400, 120, 60, 0, 7); g.stroke(); for (let k = 0; k < 8; k++) { const a = k / 8 * 6.28; g.beginPath(); g.moveTo(400 + Math.cos(a) * 75, 120 + Math.sin(a) * 75); g.lineTo(400 + Math.cos(a) * 105, 120 + Math.sin(a) * 105); g.stroke(); } });
+  decal(chalkT, 3, 3, 9.6, .016, 3.6, 0, { side: T.DoubleSide }).rotation.set(-Math.PI / 2, 0, .3);
+  const leafM2 = [STD({ color: '#d99a3c', side: T.DoubleSide }), STD({ color: '#b5552a', side: T.DoubleSide }), STD({ color: '#8fb456', side: T.DoubleSide })];
+  for (let i = 0; i < 160; i++) { const a = rnd() * 6.28, r = rnd(); const cx = [-10, 10, -10, 10][i % 4], cz = [-17, -17, 17, 17][i % 4]; add(new T.PlaneGeometry(.12, .08), leafM2[i % 3], cx + Math.cos(a) * r * 2.4 * (cx > 0 ? -1 : 1) * .6, .02 + rnd() * .02, cz - Math.sign(cz) * r * 2, { rx: -Math.PI / 2, rz: rnd() * 6, cast: false }); }
+  // palomas
+  const pigeon = (x, z, ry) => { const g = new T.Group(); g.position.set(x, 0, z); g.rotation.y = ry; scene.add(g); add(new T.SphereGeometry(.12, 14, 10), STD({ color: '#8a8f9c' }), 0, .14, 0, { parent: g }).scale.set(1.3, .9, .9);
+    add(new T.SphereGeometry(.065, 12, 10), STD({ color: '#6a7080' }), .14, .25, 0, { parent: g }); add(new T.ConeGeometry(.02, .06, 8), STD({ color: '#e7a24a' }), .21, .24, 0, { parent: g, rz: -Math.PI / 2 }); add(new T.SphereGeometry(.05, 10, 8), STD({ color: '#5f8a7a', roughness: .3, metalness: .3 }), .09, .2, 0, { parent: g }); };
+  [[-4, 14.5, .3], [-3.6, 15, 2], [-4.4, 15.4, 4], [6, -15.5, 1]].forEach(([x, z, r]) => pigeon(x, z, r));
+  // fachadas: aires acondicionados, escalera de incendios, tendederos, antenas, toldos y tiendas en el bajo
+  const acM = STD({ color: '#e3e2dd', roughness: .6 }), grillM = STD({ color: '#9a9ca2', metalness: .4 });
+  [[-6, 7.4], [4, 10.6], [9, 4.2], [-2, 13.8], [-9, 17], [7, 20.2]].forEach(([x, y]) => { add(new RoundedBoxGeometry(.9, .6, .5, 2, .05), acM, x, y, -28.7); add(new T.CircleGeometry(.22, 20), grillM, x + .15, y, -28.44, { cast: false }); add(new T.BoxGeometry(.5, .05, .4), dark, x, y - .34, -28.75); });
+  const rope = (x0, x1, y, z) => { add(new T.CylinderGeometry(.01, .01, x1 - x0, 4), STD({ color: '#eee' }), (x0 + x1) / 2, y, z, { rz: Math.PI / 2, cast: false });
+    for (let i = 0; i < 6; i++) { const x = x0 + .4 + i * (x1 - x0 - .8) / 5; const c = ['#e94b3c', '#2d6fbf', '#ffd34a', '#f4f1ea', '#34a061', '#ff3fb4'][i]; const p = add(new T.PlaneGeometry(.45 + (i % 2) * .2, .55), STD({ color: c, side: T.DoubleSide }), x, y - .3, z, { cast: true }); p.rotation.y = (rnd() - .5) * .3; } };
+  rope(3, 9, 9.2, -28.2); rope(-14, -9, 6.1, -28.2);
+  [[-14, 32.4], [18, 32.6]].forEach(([x, y]) => { const d2 = add(new T.SphereGeometry(.7, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2.4), STD({ color: '#e8e8e4', side: T.DoubleSide, metalness: .2 }), x, y, -30, { rx: -1.1 }); });
+  const awn = (x, w, col, label) => { const t2 = paint(512, 96, (g, ww, hh) => { for (let k = 0; k < 8; k++) { g.fillStyle = k % 2 ? '#f4f1ea' : col; g.fillRect(k * ww / 8, 0, ww / 8, hh); } });
+    const a2 = add(new T.BoxGeometry(w, .08, 1.4), STD({ map: t2 }), x, 2.9, -28.25); a2.rotation.x = .35;
+    const lt = paint(512, 128, (g, ww, hh) => { g.fillStyle = '#1b1720'; g.fillRect(0, 0, ww, hh); g.fillStyle = '#fff3c8'; g.font = '900 72px Inter'; g.textAlign = 'center'; g.fillText(label, ww / 2, 92); });
+    add(new T.PlaneGeometry(w * .8, .55), STD({ map: lt, emissive: '#ffffff', emissiveMap: lt, emissiveIntensity: .3 }), x, 3.5, -28.92, { cast: false });
+    add(new T.PlaneGeometry(w * .7, 1.8), STD({ color: '#9ad0f0', roughness: .1, metalness: .4, emissive: '#ffc070', emissiveIntensity: .2 }), x, 1.2, -28.92, { cast: false }); };
+  awn(-6.5, 5, '#c23b3b', 'BAR PACO'); awn(10.5, 5, '#2f7a4a', 'FRUTERÍA'); awn(-16.5, 4.5, '#2d6fbf', 'KIOSCO');
+  // coche aparcado y máquina expendedora junto a la valla
+  const car = new T.Group(); car.position.set(-14.5, 0, -22); car.rotation.y = Math.PI / 2; scene.add(car);
+  add(new RoundedBoxGeometry(4.2, .9, 1.9, 4, .3), STD({ color: '#ffd34a', roughness: .3, metalness: .2 }), 0, .75, 0, { parent: car }); add(new RoundedBoxGeometry(2.3, .8, 1.75, 4, .3), STD({ color: '#ffd34a', roughness: .3, metalness: .2 }), -.2, 1.5, 0, { parent: car });
+  add(new RoundedBoxGeometry(2.32, .6, 1.77, 4, .2), STD({ color: '#6f9cc0', roughness: .05, metalness: .5 }), -.2, 1.55, 0, { parent: car });
+  [[-1.3, -.9], [1.3, -.9], [-1.3, .9], [1.3, .9]].forEach(([x, z]) => add(new T.CylinderGeometry(.38, .38, .3, 20), STD({ color: '#1b1b1f' }), x, .38, z, { parent: car, rx: Math.PI / 2 }));
+  const vmT = paint(256, 512, (g, w, h) => { g.fillStyle = '#c8243a'; g.fillRect(0, 0, w, h); g.fillStyle = '#1b1720'; g.fillRect(16, 70, 150, 330); for (let r = 0; r < 5; r++) for (let c = 0; c < 3; c++) { g.fillStyle = ['#38e8ff', '#ffd34a', '#7cff6a', '#ff7a3a'][(r + c) % 4]; g.fillRect(28 + c * 46, 84 + r * 64, 30, 48); }
+    g.fillStyle = '#fff'; g.font = '900 46px Inter'; g.fillText('BEBE', 30, 52); g.fillStyle = '#ddd'; g.fillRect(186, 120, 50, 90); g.fillStyle = '#1b1720'; g.fillRect(40, 430, 180, 50); });
+  add(new RoundedBoxGeometry(1, 1.9, .8, 3, .05), [STD({ color: '#a81d30' }), STD({ color: '#a81d30' }), STD({ color: '#a81d30' }), STD({ color: '#a81d30' }), STD({ map: vmT, emissive: '#ffffff', emissiveMap: vmT, emissiveIntensity: .25 }), STD({ color: '#a81d30' })], 11.2, .95, -14);
   // ---------- ink outlines on the 3D (inverted hull, constant screen width) ----------
   const inkM = new T.ShaderMaterial({ side: T.BackSide, uniforms: { k: { value: .0022 }, col: { value: new T.Color('#1b1720') } },
     vertexShader: 'uniform float k; void main(){ vec4 mv=modelViewMatrix*vec4(position,1.); vec3 n=normalize(normalMatrix*normal); mv.xyz+=n*(-mv.z)*k; gl_Position=projectionMatrix*mv; }',
