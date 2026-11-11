@@ -106,3 +106,20 @@ Frases reales, tal cual: «Gambling is illegal in Japan. Yet there's a gambling 
 - **Prohibido:** tríos efectistas («Sin venenos. Solo pintura.»), moralejas finales («y ya nadie se ríe»), metáforas de redacción («viven en guerra»), «imagina» + adjetivos, puntos suspensivos en cada frase.
 - Bisagra natural: «Resulta que…» / «Y es que…» (equivale a su «You see,»). La segunda persona se usa para meter al espectador en la acción («ganas un cubo, vas a cambiarlo…»).
 - El dato remate va seco al final, sin explicarlo de más.
+
+
+### Dos guiones COMPLETOS de la referencia (transcritos palabra a palabra, 12-11-2026)
+
+**El pistolero (57 s, curiosidad):** «The fastest gun in the West had one rule. Never draw first. Imagine you're standing in the street at noon, staring down a guy everyone calls Slow Eddie. His hands are at his sides. He hasn't even looked at his gun. He just nods at you and says, "After you." So you grab your gun faster than you've ever moved in your life, yet you're face down in the dirt before it clears the holster. How is that possible? Eddie isn't even fast. He'd lose a race to the saloon against a guy carrying two beers. But men ride in from three states away to duel him, and every one of them goes down the exact same way. The only weird thing anyone ever notices is that Eddie never looks at your face. He just stares at your hand. You see, think about the last time your phone slid off a table. You caught it before you even realized it was falling, because you never decided to catch it. Your body just did. But when you went for your gun, you had to decide the exact moment to draw. That tiny decision slowed your hand down. Eddie never decides anything. He just waits for your hand to twitch and lets his body react on its own.»
+
+**El botón (66 s, ficción):** «There's a button in the middle of town and nobody's allowed to press it. […] two guards who never take their eyes off it. […] At night, a glow comes from the other side. And every year it gets a little dimmer. But Gary's always noticed two weird things. Under the glass, there are 47 tiny scratches nobody can explain. […] So when his friends bet him five bucks he won't press it, he can't say no. At three in the morning, the guards swap shifts and he's got about 30 seconds. […] Around the button, there are 48 scratches. Then his mom steps out of the crowd and says, "Nobody touches this. We'll build a town right here."»
+
+**Lo que hay que copiar de ellos:**
+1. **El protagonista tiene nombre o mote** (Slow Eddie, Gary) y una manía visible (Eddie mastica una paja y nunca mira a la cara).
+2. **El espectador es el rival**: «Imagina que estás en la calle… frente a Eddie». Le pasa a él lo malo.
+3. **Detalle cómico concreto** para exagerar: «perdería una carrera hasta el saloon contra uno que lleva dos cervezas».
+4. **El héroe habla poco y tranquilo** («After you.»). Los diálogos son una frase corta, seca; nada de gritos.
+5. **Bisagra con pregunta**: «¿Cómo es posible?» y luego **«Verás, piensa en la última vez que…» + algo de la vida diaria del espectador** (el móvil que se cae de la mesa). La ciencia se explica con esa comparación, no con datos de documental.
+6. **Final**: o termina justo en la explicación, con frase rotunda, o con **una frase de diálogo que da la vuelta** (la madre). Sin moraleja ni epílogo.
+7. Números exactos y redondos para la imagen: 47 arañazos, 30 segundos, tres estados, cinco pavos.
+8. Visual: primer plano con acción (una bala volando a cámara lenta), caídas cómicas a cámara lenta en la tierra, primerísimos planos de manos y objetos, vista aérea que se abre para mostrar el sitio entero.
