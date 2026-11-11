@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#111}</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<script src="stick.js"></script><script src="chars.js"></script><script src="animals.js"></script><script>
+const q=new URLSearchParams(location.search), k=q.get('c');
+const DEF={
+ gallina:{fn:gallina,name:'LA GALLINA',id:'A01',traits:'CRESTA ROJA · PLUMAS · ALA DE TRES FILAS · PATAS DE PALITO · HUEVO',bg:['#3d3a22','#12110a'],acc:'#ffcf4a',sc:1.55,hx:22,hy:404,x:560,
+   ex:[['TRANQUILA',{}],['CACAREANDO',{eyes:'wide',brows:[-10,10],bL:10,bR:10,beak:'open'}],['ENFADADA',{eyes:'angry',brows:[18,-18],arcL:2,arcR:2}]]},
+ perro:{fn:perro,name:'EL PERRO',id:'A02',traits:'BEAGLE · OREJAS CAÍDAS · MANCHAS · COLLAR CON HUESO · COLA',bg:['#2c3b44','#0e1418'],acc:'#ff6a5a',sc:1.5,hx:0,hy:372,x:510,
+   ex:[['CONTENTO',{eyes:'happy'}],['LADRANDO',{eyes:'wide',brows:[-10,10],bL:10,bR:10,mouth:'bark'}],['GRUÑENDO',{eyes:'angry',brows:[20,-20],arcL:2,arcR:2,mouth:'growl'}]]},
+ leon:{fn:leon,name:'EL LEÓN',id:'A03',traits:'MELENA DE TRES CAPAS · OJOS ÁMBAR · BIGOTES · GARRAS · BORLA',bg:['#3e2a18','#140c06'],acc:'#ff9a3a',sc:1.4,hx:0,hy:384,x:510,
+   ex:[['CHULO',{}],['RUGIENDO',{eyes:'angry',brows:[20,-20],arcL:2,arcR:2,mouth:'roar'}],['SORPRENDIDO',{eyes:'wide',brows:[-10,10],bL:12,bR:12,mouth:'o'}]]}};
+const C=DEF[k], F="Inter, sans-serif", M="'JetBrains Mono', monospace";
+const T=(x,y,t,sz,c,w=800,f=M,ls=3)=>`<text x="${x}" y="${y}" text-anchor="middle" font-family="${f}" font-weight="${w}" font-size="${sz}" fill="${c}" letter-spacing="${ls}">${t}</text>`;
+let g=`<defs><radialGradient id="bg" cx=".5" cy=".38" r=".8"><stop offset="0" stop-color="${C.bg[0]}"/><stop offset="1" stop-color="${C.bg[1]}"/></radialGradient></defs><rect width="1080" height="1920" fill="url(#bg)"/>`;
+g+=T(540,88,'ARCHIVO RARO · REPARTO ANIMALES',30,C.acc);
+g+=T(540,160,C.id+' · '+C.name,62,'#fff',900,F,-1);
+g+=T(540,210,C.traits,19,'#c9c4bb',600);
+g+=`<ellipse cx="540" cy="1222" rx="320" ry="36" fill="#000" opacity=".35"/>`;
+g+=`<g transform="translate(${C.x},1220) scale(${C.sc})">${C.fn({})}</g>`;
+g+=`<line x1="80" y1="1330" x2="1000" y2="1330" stroke="#ffffff22" stroke-width="2"/>`+T(540,1380,'EXPRESIONES',24,C.acc);
+C.ex.forEach((e,i)=>{const cx=200+i*340;
+ g+=`<circle cx="${cx}" cy="1610" r="150" fill="#ffffff0d"/>`;
+ const es=.62;g+=`<g transform="translate(${cx-(C.hx+(k==='gallina'?14:0))*es},${1610+C.hy*es}) scale(${es})">${C.fn(e[1],true)}</g>`;
+ g+=T(cx,1830,e[0],22,'#fff',700);});
+document.getElementById('s').innerHTML=g;
+</script></body></html>

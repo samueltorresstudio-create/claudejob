@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#111}</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<script src="stick.js"></script><script src="chars.js"></script><script>
+const q=new URLSearchParams(location.search), k=q.get('c');
+const DEF={
+ millonario:{fn:millonario,name:'EL MILLONARIO',id:'S01',traits:'TRAJE DIPLOMÁTICO · CHALECO · CORBATA DE ORO · CHAMPÁN · BILLETES',bg:['#3a2f1c','#120e08'],acc:GOLD,
+   ex:[['CHULO',{}],['SORPRENDIDO',{eyes:'wide',brows:[-10,10],bL:14,bR:14,mouth:'o',mouthY:56}],['RIÉNDOSE',{eyes:'happy',brows:[-6,6],bL:6,bR:6,mouth:'grin',mouthY:54,overFace:`<ellipse cx="-58" cy="-560" rx="14" ry="8" fill="#f2a0a8" opacity=".75"/><ellipse cx="64" cy="-560" rx="14" ry="8" fill="#f2a0a8" opacity=".75"/>`}]]},
+ cocinero:{fn:cocinero,name:'EL COCINERO',id:'S02',traits:'CHAQUETA CRUZADA · DELANTAL DE RAYAS · BIGOTE · SARTÉN',bg:['#2c3b44','#0e1418'],acc:'#ff6a5a',
+   ex:[['FELIZ',{eyes:'happy',brows:[-6,6],bL:6,bR:6,mouth:'smile',mouthY:54}],['AGOBIADO',{eyes:'wide',brows:[-14,14],bL:12,bR:12,mouth:'teeth',mouthY:56,overFace:`<path d="M84,-660 Q70,-634 82,-624 Q96,-616 98,-636 Q96,-646 84,-660 Z" fill="#7fc8f0" stroke="#141214" stroke-width="3.5"/>`}],['ENFADADO',{eyes:'angry',brows:[22,-22],bTh:12,browY:22,mouth:'frown',mouthY:60}]]},
+ militar:{fn:militar,name:'EL MILITAR',id:'S04',traits:'CAMUFLAJE · CASCO CON GAFAS · CARTUCHERAS · BOTAS · RADIO',bg:['#2e3422','#0e100a'],acc:'#c9d48a',
+   ex:[['SERIO',{}],['GRITANDO',{eyes:'angry',brows:[22,-22],bTh:12,browY:22,mouth:'grin',mouthY:50}],['ASUSTADO',{eyes:'wide',brows:[-12,12],bL:10,bR:10,mouth:'o',mouthY:52}]]},
+ limpiadora:{fn:limpiadora,name:'LA LIMPIADORA',id:'S05',traits:'PAÑUELO DE LUNARES · UNIFORME · DELANTAL · GUANTES · FREGONA Y CUBO',bg:['#24384a','#0c1218'],acc:'#ff8ab0',
+   ex:[['CHULA',{}],['HARTA',{eyes:'lid',brows:[18,-18],bTh:11,browY:24,mouth:'frown',mouthY:52,overFace:`<path d="M84,-660 Q70,-634 82,-624 Q96,-616 98,-636 Q96,-646 84,-660 Z" fill="#7fc8f0" stroke="#141214" stroke-width="3.5"/>`}],['ALUCINANDO',{eyes:'wide',brows:[-12,12],bL:12,bR:12,mouth:'o',mouthY:52}]]},
+ rey:{fn:rey,name:'EL REY',id:'S06',traits:'CORONA · BARBA BLANCA · MANTO DE ARMIÑO · BANDA · CETRO',bg:['#3a1a24','#12080c'],acc:'#ffd34a',
+   ex:[['ALTIVO',{}],['FURIOSO',{eyes:'angry',brows:[22,-22],bTh:12,browY:24,mouth:'teeth',mouthY:42}],['SORPRENDIDO',{eyes:'wide',brows:[-12,12],bL:12,bR:12,mouth:'o',mouthY:46}]]},
+ guerrero:{fn:guerrero,name:'EL GUERRERO',id:'S03',traits:'CASCO CON PENACHO · COTA DE MALLA · SOBREVESTE · ESPADA',bg:['#3e2422','#140a0a'],acc:'#ff5a4e',
+   ex:[['FURIOSO',{}],['CHULO',{eyes:'lid',brows:[4,-12],bL:0,bR:8,bTh:10,browY:26,mouth:'smirk',mouthY:58}],['ASUSTADO',{eyes:'wide',brows:[-12,12],bL:10,bR:10,mouth:'o',mouthY:56}]]}};
+const C=DEF[k], F="Inter, sans-serif", M="'JetBrains Mono', monospace";
+const T=(x,y,t,sz,c,w=800,f=M,ls=3)=>`<text x="${x}" y="${y}" text-anchor="middle" font-family="${f}" font-weight="${w}" font-size="${sz}" fill="${c}" letter-spacing="${ls}">${t}</text>`;
+let g=`<defs><radialGradient id="bg" cx=".5" cy=".38" r=".8"><stop offset="0" stop-color="${C.bg[0]}"/><stop offset="1" stop-color="${C.bg[1]}"/></radialGradient></defs><rect width="1080" height="1920" fill="url(#bg)"/>`;
+g+=T(540,88,'ARCHIVO RARO · REPARTO STICKMAN',30,C.acc);
+g+=T(540,160,C.id+' · '+C.name,62,'#fff',900,F,-1);
+g+=T(540,210,C.traits,21,'#c9c4bb',600);
+// suelo
+g+=`<ellipse cx="540" cy="1222" rx="300" ry="36" fill="#000" opacity=".35"/>`;
+g+=figure(C.fn(),540,1250,k==='cocinero'?1.05:(k==='guerrero'||k==='rey')?1.08:k==='militar'?1.12:1.2);
+// expresiones
+g+=`<line x1="80" y1="1330" x2="1000" y2="1330" stroke="#ffffff22" stroke-width="2"/>`+T(540,1380,'EXPRESIONES',24,C.acc);
+C.ex.forEach((e,i)=>{const cx=200+i*340;
+ g+=`<circle cx="${cx}" cy="1640" r="135" fill="#ffffff0d"/>`;
+ const o=C.fn(e[1]); o.front='';o.arms='';o.back='';
+ g+=`<g transform="translate(${cx},${1660+598*0.66}) scale(.66)">${head(o)}</g>`;
+ g+=T(cx,1830,e[0],22,'#fff',700);});
+document.getElementById('s').innerHTML=g;
+</script></body></html>
