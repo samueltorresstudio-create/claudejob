@@ -77,7 +77,7 @@ Este documento resume TODO lo hablado y hecho con el usuario en la sesión larga
 
 | proyecto | estado | siguiente paso |
 |---|---|---|
-| **61 · Isla de los Faisanes** (España/Francia, cambia de país cada 6 meses) | Bocetos aprobados: mundo `world_bidasoa.js` (río, isla, monumento de 1659 «Paz de los Pirineos», casas vascas, banderas, puente) y personajes oficial español (`outfit:'navy'`, `hat:'peaked'`) y marinero francés (`outfit:'marin'`, `hat:'bachi'`). Bocetos en `proyectos/61_faisanes_bocetos/` | Escribir el guion con la fórmula viral (comprobar datos: tratado de Bayona de 1856; España del 1 de febrero al 31 de julio y Francia del 1 de agosto al 31 de enero; traspaso entre las armadas; Paz de los Pirineos de 1659 firmada allí; deshabitada y no visitable). Dárselo, esperar el «sí», hacer el vídeo **sin voz con transiciones de cámara** |
+| **61 · Isla de los Faisanes** (España/Francia, cambia de país cada 6 meses) | **Guion ya escrito y con datos comprobados, con 4 etiquetas v3: `textos/guion_61_faisanes.txt`. Se espera el MP3.** Bocetos aprobados: mundo `world_bidasoa.js` (río, isla, monumento de 1659 «Paz de los Pirineos», casas vascas, banderas, puente) y personajes oficial español (`outfit:'navy'`, `hat:'peaked'`) y marinero francés (`outfit:'marin'`, `hat:'bachi'`). Bocetos en `proyectos/61_faisanes_bocetos/` | Escribir el guion con la fórmula viral (comprobar datos: tratado de Bayona de 1856; España del 1 de febrero al 31 de julio y Francia del 1 de agosto al 31 de enero; traspaso entre las armadas; Paz de los Pirineos de 1659 firmada allí; deshabitada y no visitable). Dárselo, esperar el «sí», hacer el vídeo **sin voz con transiciones de cámara** |
 | **60 · Los hipopótamos de Colombia** | Entregado SIN VOZ (49 s): `proyectos/60_hipopotamos/`, ejemplo en la skill `example/hipopotamos_3d/` | Cuando mande el MP3 con la voz nueva: `sync_voice.py`, añadir las transiciones (`CFG.trans` ya está en `scenes_p.js`), render y audio con `--voice` |
 | **52 · La cuerda (Joe Simpson)** | Entregado sin voz (estilo SUCESOS, para YouTube) | Cuando mande el MP3: sync, render con `GRAIN=1` y entrega |
 | 54 · 10 segundos sin gravedad | Entregado con voz y subido (no le gustaron los personajes; de ahí salió el estilo 3D actual) | — |
@@ -122,3 +122,19 @@ Numeración de entregas:
 - three.js va empaquetado en `engine_3d/three_post.js` (incluye `EffectComposer`, `GTAO`, `Bloom`, `Bokeh`, `OutputPass`, `RoundedBoxGeometry`, `mergeVertices`).
 - No se puede acceder a TikTok, YouTube ni Instagram desde el entorno: el usuario sube los vídeos de referencia como archivo y se analizan fotograma a fotograma con ffmpeg.
 - Fuentes Inter y JetBrains Mono instaladas en `~/.fonts`. Si faltan en la cuenta nueva, instálalas antes.
+
+## 8. Lo último de la sesión anterior (11-11-2026)
+
+- **Guion de los Faisanes** escrito: `textos/guion_61_faisanes.txt`. Se le propuso meter `[deadpan] [slowly] Pero no puedes.` como remate, sin respuesta aún. Siguiente paso: que mande el MP3 y hacer el vídeo con las transiciones de cámara.
+- **Etiquetas de Eleven v3:** el usuario quiere variedad según la situación, sin ponerlas en cada frase. El catálogo está en `references/ideas.md`. Remate seco y alargado («Mala… idea»): `[deadpan] [slowly]` en su propia línea y con «…» dentro.
+- **Guion de prueba de etiquetas** (Guerra de los Pasteles): `textos/guion_prueba_etiquetas_pasteles.txt`. Corregido en el banco: fue México quien declaró la guerra (nov. 1838) y en 1839 pagó los 600.000 pesos.
+- **Prompt para ChatGPT** con las ideas al estilo de la cuenta de referencia (curiosidades de historia, ciencia, trucos y psicología, con el «loco contra todos»). Se basa en la «Fórmula de guion viral» de `ideas.md`.
+- **Voz:**
+  - Pidió clonar la voz del narrador de @KnoxClips7000 (la cuenta de referencia del estilo 3D) a partir de una grabación de pantalla. Dijo que era suya y se le dijo que no, porque no se puede comprobar. **No preparar audio para clonar voces de terceros.**
+  - Alternativas ofrecidas:
+    - Voice Design de ElevenLabs (narrador alegre en español latino neutro);
+    - recuperar su cuenta de ElevenLabs (soporte) o descargar sus vídeos desde YouTube Studio.
+- **Qwen3-TTS** (modelo de voz abierto de Alibaba): pidió instalarlo en la sesión, pero se interrumpió antes de hacerlo y está **sin instalar**.
+  - Sin GPU irá lento.
+  - Hay que comprobar si el entorno llega a huggingface.co.
+  - Para clonar voces se aplica la misma regla: solo la voz del propio usuario o una con permiso.
