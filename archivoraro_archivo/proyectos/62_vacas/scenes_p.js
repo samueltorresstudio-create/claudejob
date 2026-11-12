@@ -307,8 +307,8 @@ S.engana = (t, D, B) => { const E = EVS.engana(B); setup(window.__T || t);
 S.cuenta = (t, D, B) => { const E = EVS.cuenta(B); setup(window.__T || t);
   const z = k01(t, E.cincuenta - .4, E.cincuenta + .3) * (1 - k01(t, E.mitad - .25, E.mitad + .3));
   const KC = V3(-.55, 0, -6.1);
-  const cpA = V3(1.3, 1.55, -2.4), clA = V3(-2.0, .9, -10.5), cpB = V3(-.1, 1.2, -4.75), clB = V3(-.3, 1.08, -6.1);
-  const cp = L3(cpA, cpB, z).add(V3(-t * .04, 0, 0)), cl = L3(clA, clB, z); W.setCam(cp, cl, lerp(52, 38, z), cp.distanceTo(cl), .003); W.render();
+  const cpA = V3(1.3, 1.55, -2.4), clA = V3(-2.0, .9, -10.5), cpB = V3(-.14, 1.42, -3.95), clB = V3(-.38, 1.36, -6.1);
+  const cp = L3(cpA, cpB, z).add(V3(-t * .04, 0, 0)), cl = L3(clA, clB, z); W.setCam(cp, cl, lerp(52, 41, z), cp.distanceTo(cl), .003); W.render();
   const rate = 56 / Math.max(.5, E.cincuenta - E.cuenta - .1), cnt = t < E.cuenta ? 0 : Math.min(56, (t - E.cuenta) * rate), press = (Math.floor((t - E.cuenta) * rate) % 2) && t > E.cuenta && cnt < 56 ? 1 : 0, fr1 = frameOf(COW1, 1.45), fr3 = frameOf(COW3, 1.45), fr2 = frameOf(COW2, 1.45);
   const L = [{ p: COW3, f: () => cow(cowLife(t, 2, Object.assign({}, COW3O, { eyes: 'annoyed', tail: Math.sin(t * 6) * .8 })), COW3, 'right') + landing(fr3, 1, bodyPts(128, 31), t, -9, 1, fr3.s * 1.25) },
     { p: COW2, f: () => cow(cowLife(t, 1, Object.assign({}, COW2_DONE, { eyes: 'annoyed', tail: Math.sin(t * 5) * .8 })), COW2, 'right') + landing(fr2, 1, bodyPts(111, 17), t, -9, 1, fr2.s * 1.25) },

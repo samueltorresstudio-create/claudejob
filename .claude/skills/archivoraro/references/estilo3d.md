@@ -264,6 +264,9 @@ El usuario dijo que en las palomas «se mueven mal». En la referencia:
 - «Que la cámara nunca esté quieta, aunque se mueva un poco»: deriva tipo cámara en mano sobre `W2.setCam` (seno lento, ±5 cm de posición, 35 % en el punto de mira), además del movimiento de cada plano. Ver el bloque «cámara nunca quieta» de `proyectos/62_vacas/scenes_p.js`.
 - «Cuando hay un movimiento de cámara, que el texto no se vea borroso»: el desenfoque de las transiciones se aplica SOLO a `#gl` (3D) y `#fx` (personajes), nunca a `#cap`. El subtítulo siempre nítido (ya está así en `core3d.js`). Para corregir un vídeo ya renderizado sin repetirlo entero: `FRAMES=lista.json node render.js full 4` re-renderiza solo esos fotogramas (calcula la lista replicando la lógica de transición + anticipación de `core3d.js`, como en `proyectos/62_vacas/blurlist.js`).
 
+### Acercamiento a un objeto en la mano (contador, cartel…)
+- Si la cámara se acerca a algo que lleva un personaje, la CARA debe seguir dentro del plano: encuadra cara + objeto (vacas 62: el primer intento cortaba la cabeza de Kenji en el 0056). Revisa ese plano con los tiempos de la voz real, porque al cambiar la duración de la escena el zoom puede durar más.
+
 ### Plano final con acercamiento
 - En el último plano (push-in), el sujeto (trofeo, personaje) debe caber entero hasta el último fotograma: dolly corto (≤ 0,25 m) y desplaza el `look` a la vez para mantenerlo centrado. Comprueba el fotograma final antes del render.
 
