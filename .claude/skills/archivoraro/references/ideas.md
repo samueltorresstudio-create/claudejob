@@ -99,6 +99,28 @@ Son **vídeos sueltos de una parte, de 40–60 s**, cada uno sobre **una curiosi
 - Tono de anécdota contada a un amigo, no de documental. Sin «hoy te voy a contar» y sin despedida.
 
 
+## Qué TIPO de idea eligen (re-análisis de los vídeos de referencia, 12-11-2026)
+
+**Clave: no cuentan sucesos famosos; explican un MECANISMO** (un sistema oculto, una trampa legal, un truco antiguo, una ley física) usando una mini-historia con un personaje y «tú». Por eso nunca suenan a «ya lo he visto»: el dato puede ser conocido, pero el enfoque no.
+
+Catálogo completo visto en las grabaciones (cada uno en un mundo distinto):
+- Sistemas y trampas legales: el pachinko (ilegal pero en cada calle), los rascas/la lotería (premios que acaban en manos de un desconocido tras un mostrador), la «sala de destierro» de las empresas japonesas (no te echan: te aburren hasta que te vas), el cura que te perdona un crimen que aún no has cometido (bulas de la Edad Media).
+- Ciencia de cada día: cómo sabe una pastilla dónde te duele; por qué el pistolero que nunca desenfunda primero gana; por qué si te daba una bala de cañón tenías suerte (lo que mataba eran las astillas).
+- Inventos antiguos e ingeniosos: el sismógrafo de los dragones, los ataúdes con campana (miedo a que te entierren vivo), el aceite en el mar para escapar de un pirata.
+- Psicología: el hombre que entraba cada noche y movía todos los muebles un centímetro.
+- Lógica: la lanza que lo atraviesa todo contra el escudo que nada atraviesa.
+- Ficción con misterio: el botón que nadie puede pulsar.
+
+**Moldes de gancho que usan** (siempre sobre algo que el espectador cree entender, nunca «en 1990 un hombre…»):
+1. Contradicción: «El juego es ilegal en Japón. Aun así, hay un salón en cada calle.»
+2. Regla absurda: «El pistolero más rápido del Oeste tenía una regla: nunca desenfundar primero.» / «Hay un botón en mitad del pueblo y nadie puede pulsarlo.»
+3. Dato al revés: «Si a tu barco le daba una bala de cañón, eras de los afortunados.» / «Un cura te perdonaba un crimen que aún no habías cometido.»
+4. Pregunta de cada día: «¿Cómo sabe una pastilla dónde te duele?»
+
+**Visual:** cada vídeo en un mundo distinto y muy reconocible (Japón con neones, mercado medieval, barco pirata, corte china, casa de barrio, oficina japonesa, cementerio, Oeste). Los datos se explican con **carteles DENTRO del mundo** (marcador «AÑOS EN GUERRA 105», el documento «Perdón… por un crimen… la semana que viene», «CAREER DEVELOPMENT ROOM», «PRIZE COUNTER»), nunca con recuadros encima de la imagen.
+
+**Error mío detectado:** proponer sucesos («el cocinero que sobrevivió 3 días», «el hombre que vendió la Torre Eiffel») o ganchos que solo plantean. Lo que funciona es «hay un sistema/regla/hecho que parece absurdo → te meto dentro → te explico el mecanismo con algo de tu vida diaria → remate».
+
 ## Cómo suenan de verdad (transcripción palabra a palabra de la cuenta de referencia, 11-11-2026)
 
 Frases reales, tal cual: «Gambling is illegal in Japan. Yet there's a gambling hall on almost every street. Inside, thousands of machines flashing and screaming while people carry out buckets full of steel balls. Police stroll right past the door, but nobody ever gets arrested. So you win yourself a bucket, try to cash it in. But the counter won't give you a single yen…» · «How do painkillers know where the pain is? You swallow one for a headache, and then what? Does it pull out a little map?» · «A man snuck into a family's house every night and moved every single thing one inch to the left. The first night nobody notices, because who measures their couch? By the end of the week, the fridge is blocking the back door, and dad is pretty sure he's losing his mind.» · «He put a bronze ball in a dragon's mouth and told the emperor: if this ever falls out, run. The whole court burst out laughing.» · «If your ship got hit by a cannonball, you'd actually be one of the lucky ones.»
