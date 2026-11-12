@@ -36,9 +36,11 @@ async function openPage(browser) {
     fs.writeFileSync(path.join(dir, 'events.json'), JSON.stringify(await pages[0].evaluate(() => window.EVENTS), null, 1));
     const N = Math.round(total * FPS);
     let next = +(process.env.R0 || 0), done = 0; const R1 = Math.min(N, +(process.env.R1 || 1e9)); // optional frame range for re-renders
+    // FRAMES=fichero.json → re-renderiza solo esa lista de índices de fotograma
+    const LIST = process.env.FRAMES ? JSON.parse(fs.readFileSync(process.env.FRAMES, 'utf8')) : null; let li = 0;
     await Promise.all(pages.map(async page => {
       while (true) {
-        const i = next++; if (i >= R1) break;
+        let i; if (LIST) { if (li >= LIST.length) break; i = LIST[li++]; } else { i = next++; if (i >= R1) break; }
         await page.evaluate(t => window.render(t), i / FPS);
         await page.screenshot({ timeout: 300000, path: path.join(out, `f${String(i).padStart(5, '0')}.png`) });
         if (++done % 100 === 0) console.log(`${done}/${N}`);

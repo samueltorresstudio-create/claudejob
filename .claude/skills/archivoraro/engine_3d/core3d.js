@@ -26,12 +26,13 @@ const TR = (() => { if (typeof W2 === 'undefined' || !W2.setCam) return null; co
   W2.setCam = (p, l, f = 45, fo = null, ap = .003) => { if (st.probe) { st.last = { p: p.clone(), l: l.clone(), f, fo, ap }; return; } if (st.ov) { const o = st.ov(p, l, f); return orig(o.p, o.l, o.f, o.fo ?? fo, ap * (o.apK ?? 1)); } return orig(p, l, f, fo, ap); };
   W2.render = () => { if (!st.probe) origR(); };
   function probe(sc, t, D, B) { st.probe = true; st.last = null; try { S[sc](t, D, B); } catch (e) {} st.probe = false; return st.last; }
-  // directional motion-blur filters applied to the whole stage
+  // directional motion-blur filters (world layers only)
   const fsvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); fsvg.setAttribute('width', 0); fsvg.setAttribute('height', 0); fsvg.style.position = 'absolute';
   fsvg.innerHTML = '<defs><filter id="mbH" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur id="mbHs" stdDeviation="0 0"/></filter><filter id="mbV" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur id="mbVs" stdDeviation="0 0"/></filter></defs>';
-  document.body.appendChild(fsvg); const stage = document.getElementById('stage') || glEl.parentElement;
-  function blur(kind, amt) { if (amt < .4) { stage.style.filter = ''; return; } if (kind === 'H') { document.getElementById('mbHs').setAttribute('stdDeviation', `${amt.toFixed(1)} ${(amt * .15).toFixed(1)}`); stage.style.filter = 'url(#mbH)'; }
-    else if (kind === 'R') stage.style.filter = `blur(${(amt * .45).toFixed(1)}px)`; else { document.getElementById('mbVs').setAttribute('stdDeviation', `${(amt * .15).toFixed(1)} ${amt.toFixed(1)}`); stage.style.filter = 'url(#mbV)'; } }
+  // el desenfoque va SOLO al mundo (canvas 3D + capa de personajes), nunca al subtítulo: el texto queda nítido aunque la cámara se mueva
+  document.body.appendChild(fsvg); const setF = v => { glEl.style.filter = v; fxEl.style.filter = v; };
+  function blur(kind, amt) { if (amt < .4) { setF(''); return; } if (kind === 'H') { document.getElementById('mbHs').setAttribute('stdDeviation', `${amt.toFixed(1)} ${(amt * .15).toFixed(1)}`); setF('url(#mbH)'); }
+    else if (kind === 'R') setF(`blur(${(amt * .45).toFixed(1)}px)`); else { document.getElementById('mbVs').setAttribute('stdDeviation', `${(amt * .15).toFixed(1)} ${amt.toFixed(1)}`); setF('url(#mbV)'); } }
   return { st, probe, blur, V }; })();
 const sm = x => x * x * (3 - 2 * x), sm5 = x => x * x * x * (x * (x * 6 - 15) + 10);
 window.render = function (T) {

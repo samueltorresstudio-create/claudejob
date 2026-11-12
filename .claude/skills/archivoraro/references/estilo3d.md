@@ -262,8 +262,11 @@ El usuario dijo que en las palomas «se mueven mal». En la referencia:
 ### Ritmo de cámara pedido por el usuario (12-11-2026)
 - «La transición de cámara un poco más lenta y no tan de golpe»: `CFG.transDur: .95`, `CFG.blurK: .55` (menos desenfoque), `CFG.antic: .3` (anticipación más larga). Son los valores por defecto a partir de ahora.
 - «Que la cámara nunca esté quieta, aunque se mueva un poco»: deriva tipo cámara en mano sobre `W2.setCam` (seno lento, ±5 cm de posición, 35 % en el punto de mira), además del movimiento de cada plano. Ver el bloque «cámara nunca quieta» de `proyectos/62_vacas/scenes_p.js`.
+- «Cuando hay un movimiento de cámara, que el texto no se vea borroso»: el desenfoque de las transiciones se aplica SOLO a `#gl` (3D) y `#fx` (personajes), nunca a `#cap`. El subtítulo siempre nítido (ya está así en `core3d.js`). Para corregir un vídeo ya renderizado sin repetirlo entero: `FRAMES=lista.json node render.js full 4` re-renderiza solo esos fotogramas (calcula la lista replicando la lógica de transición + anticipación de `core3d.js`, como en `proyectos/62_vacas/blurlist.js`).
+
 ### Plano final con acercamiento
 - En el último plano (push-in), el sujeto (trofeo, personaje) debe caber entero hasta el último fotograma: dolly corto (≤ 0,25 m) y desplaza el `look` a la vez para mantenerlo centrado. Comprueba el fotograma final antes del render.
 
 ### Subtítulos nítidos en las transiciones (fallo detectado por el usuario)
-- El desenfoque de movimiento de las transiciones se aplica a `#stage`. La capa `<svg id="cap">` va FUERA de `#stage` (después del `</div>`), para que el texto se lea siempre. Ya está corregido en `engine_3d/index.html`; revisa los `index.html` de proyectos antiguos.
+- Doble seguridad: `core3d.js` aplica el desenfoque SOLO a `#gl` y `#fx` (nunca a `#cap`), así funciona también con `index.html` antiguos.
+- Antes el desenfoque se aplicaba a `#stage`. La capa `<svg id="cap">` va FUERA de `#stage` (después del `</div>`), para que el texto se lea siempre. Ya está corregido en `engine_3d/index.html`; revisa los `index.html` de proyectos antiguos.
