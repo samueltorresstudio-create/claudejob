@@ -264,3 +264,6 @@ El usuario dijo que en las palomas «se mueven mal». En la referencia:
 - «Que la cámara nunca esté quieta, aunque se mueva un poco»: deriva tipo cámara en mano sobre `W2.setCam` (seno lento, ±5 cm de posición, 35 % en el punto de mira), además del movimiento de cada plano. Ver el bloque «cámara nunca quieta» de `proyectos/62_vacas/scenes_p.js`.
 ### Plano final con acercamiento
 - En el último plano (push-in), el sujeto (trofeo, personaje) debe caber entero hasta el último fotograma: dolly corto (≤ 0,25 m) y desplaza el `look` a la vez para mantenerlo centrado. Comprueba el fotograma final antes del render.
+
+### Subtítulos nítidos en las transiciones (fallo detectado por el usuario)
+- El desenfoque de movimiento de las transiciones se aplica a `#stage`. La capa `<svg id="cap">` va FUERA de `#stage` (después del `</div>`), para que el texto se lea siempre. Ya está corregido en `engine_3d/index.html`; revisa los `index.html` de proyectos antiguos.
