@@ -34,6 +34,8 @@ Este documento resume TODO lo hablado y hecho con el usuario en la sesión larga
 - Primeros 2 s: el personaje o lo más interesante, en cámara y con acción. Gancho fortísimo.
 - Datos reales: **compruébalos en la web** antes de darlos. Si las fuentes no coinciden, di la cifra prudente y cuenta como «leyenda» lo que lo sea.
 - Al entregar: vídeo con `SendUserFile` (attach), título y descripción de YouTube y TikTok en bloques de código, y comentario para fijar con una pregunta. TikTok: descripción corta.
+- **NUNCA recuadros/etiquetas de texto arriba** («1943», «U.S. ARMY», «FRED SKINNER», «COMITÉ CIENTÍFICO»…): ni uno. Solo el subtítulo palabra a palabra. (12-11-2026)
+- Vídeo de las palomas (64) rechazado: «fondos y misil parecen plastilina, detalles mal puestos, movimientos mal». Causas vistas: objetos lisos sin textura ni detalle (misil = huevo gris), todo bañado en naranja y desenfocado (DOF/bloom), personajes en primerísimo plano tapando el escenario, motas de polvo que parecen manchas, bandera de España en el uniforme de un oficial de EE. UU. La referencia tiene escenarios nítidos con textura pintada a mano, luz de día, colores variados y planos medios con el personaje dentro del escenario.
 - Todo lo que aprendas, **guárdalo en la skill y haz commit y push** en la rama `claude/archivoraro-skill`.
 
 ## 3. Estilos de animación (de más nuevo a más viejo)

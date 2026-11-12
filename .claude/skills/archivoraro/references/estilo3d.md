@@ -219,3 +219,8 @@ Lo que separa un escenario normalito de uno como la referencia (aplicado en `wor
 - `push`/`fly` entre dos planos del MISMO cuarto pueden atravesar a un personaje 2D (se dibuja gigante) o un objeto grande (el misil): si entre las dos cámaras hay algo, usa `swish`.
 - `swish` gira la cámara sin moverla, así que el cuarto de destino tiene que estar CERRADO por todos los lados (paredes, techo, pared trasera). Si no, durante el barrido se ve el cielo. El escenario del premio necesitó telón lateral + techo + paredes oscuras.
 - Revisión obligatoria: tira de fotogramas cada 3 alrededor de cada cambio de escena (de −12 a +12) antes de codificar.
+
+### Prohibido (feedback 12-11-2026)
+- **Ni un recuadro de texto arriba** (fechas, nombres, «U.S. ARMY», «COMITÉ CIENTÍFICO»…). Solo subtítulo.
+- Aspecto «plastilina»: objetos lisos de un color sin textura ni detalles (paneles, remaches, letras, desgaste), sombreado blando por todas partes, DOF y bloom fuertes, tono naranja general. Mira `archivoraro_archivo/referencias/ref3d_*` antes de diseñar: nitidez, textura pintada, luz de día, colores variados y planos medios.
+- Detalles incoherentes (p. ej., bandera de España en un uniforme de EE. UU.): revisa cada insignia y cada cartel.
