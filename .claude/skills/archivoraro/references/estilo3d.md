@@ -224,3 +224,15 @@ Lo que separa un escenario normalito de uno como la referencia (aplicado en `wor
 - **Ni un recuadro de texto arriba** (fechas, nombres, «U.S. ARMY», «COMITÉ CIENTÍFICO»…). Solo subtítulo.
 - Aspecto «plastilina»: objetos lisos de un color sin textura ni detalles (paneles, remaches, letras, desgaste), sombreado blando por todas partes, DOF y bloom fuertes, tono naranja general. Mira `archivoraro_archivo/referencias/ref3d_*` antes de diseñar: nitidez, textura pintada, luz de día, colores variados y planos medios.
 - Detalles incoherentes (p. ej., bandera de España en un uniforme de EE. UU.): revisa cada insignia y cada cartel.
+
+### Cómo se mueven los personajes (referencia «naranjas heladas», analizada fotograma a fotograma; hojas en `archivoraro_archivo/referencias/ref_naranjas_*`)
+El usuario dijo que en las palomas «se mueven mal». En la referencia:
+1. **Pies clavados al suelo.** Nunca se deslizan ni flotan, y nunca andan sin una animación de paso de verdad. Si un personaje cambia de sitio, es por un corte de plano, no por arrastrarlo.
+2. **Una acción concreta por plano, ligada a lo que se dice**: echa agua con una lata, clava agujeros con un martillo (golpe rápido y repetido), cuelga latas en el árbol, carga un cubo agachado, rompe el hielo de una naranja. Nada de gestos genéricos (brazos que ondean, saludos, botes).
+3. **Objetos de verdad en la mano** (lata, martillo, cubo, naranja), con un tamaño coherente y que interactúan con el escenario (el agua cae sobre las naranjas, la lata está en el tocón).
+4. **De pose a pose**: pose fija y, en la palabra clave, cambio rápido (2–4 fotogramas) a otra pose, que se mantiene. En medio solo hay respiración o un balanceo muy sutil del cuerpo (±1–2°). Nada de rebotes constantes.
+5. **Pose de esfuerzo**: rodillas dobladas, cuerpo inclinado y cara apretada (ojos «> <», dientes). Para hablar: boca abierta en las frases entre comillas («¡oye, la helada!»).
+6. **Tamaño**: plano medio o de cuerpo entero (el personaje ocupa del 40 al 60 % del alto), dentro del escenario. Primer plano solo para una reacción. Muchos planos **sin personaje**: el objeto que importa (termómetro, naranja helada, reloj) con un acercamiento lento de la cámara.
+7. **Cámara**: acercamiento o deriva lenta y constante en cada plano. Entre planos, barrido o vuelo largo con desenfoque.
+8. **Aspecto del mundo**: low-poly estilizado, pero con **textura pintada a pinceladas** en todo (suelo, troncos, arbustos con trazos). Paleta de un solo ambiente por tramo (noche azul y violeta → amanecer rosa), luz cálida puntual (hogueras, farol). Por eso no parece plastilina.
+9. Subtítulos de la referencia: 1–2 palabras, en minúscula, blanco con contorno negro, a media altura (los nuestros van en mayúscula y en color: no cambiar sin preguntar).
