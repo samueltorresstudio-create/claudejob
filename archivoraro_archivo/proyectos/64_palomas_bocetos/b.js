@@ -12,9 +12,9 @@ const ADULT = 1.84;
 const behind = (svg, yClip) => { const id = 'cl' + Math.random().toString(36).slice(2, 8); return `<defs><clipPath id="${id}"><rect x="-200" y="-200" width="1480" height="${(yClip + 200).toFixed(1)}"/></clipPath></defs><g clip-path="url(#${id})">${svg}</g>`; };
 window.shot = function (n) { W.setTime(2 + n); let s = ''; W.charLight = DAY;
   if (n === 0) { // laboratorio: Fred junto al morro, palomas en los palomares
-    W.setCam(V3(3.6, 1.65, 3.8), V3(-5.5, 1.35, .2), 50, 5.6, .0016); W.render();
+    W.setCam(V3(3.2, 1.25, 3.9), V3(-4.5, 1.55, -1.6), 60, 5.4, .0016); W.render();
     W.PIGEONHOLES.forEach((p, i) => { if (i % 4 === 2 || ![[.05, .02], [.05, .28], [.05, .15]].every(([dx, dy]) => W.visible(p.clone().add(V3(dx, dy, .12))) && W.visible(p.clone().add(V3(dx, dy, -.12))))) return; s += pg({ eye: ['calm', 'calm', 'wide', 'closed'][i % 4], bob: (i % 5) * .2 - .4, peck: i % 7 === 3 ? .5 : 0 }, p.clone().add(V3(.02, 0, 0)), .28, W, { shadow: false }); });
-    s += stickAt(Object.assign({}, FRED, { turn: -.3, look: [-8, 2], armL: [120, 10], armR: [18, 20], mouth: 'smile' }), V3(-1.6, 0, 2.7), V3(-1.6, ADULT, 2.7), W);
+    s += stickAt(Object.assign({}, FRED, { turn: -.3, look: [-8, 2], armL: [18, 20], armR: [120, 10], mouth: "smile", turn: -.35 }), V3(.48, 0, 2.56), V3(.48, ADULT, 2.56), W);
   }
   if (n === 1) { // primer plano: Fred y la paloma picoteando la pantalla de la caja de entrenamiento
     W.setCam(V3(.85, 1.48, 2.9), V3(1.95, 1.22, .4), 46, 2.6, .004); W.render();
@@ -28,7 +28,7 @@ window.shot = function (n) { W.setTime(2 + n); let s = ''; W.charLight = DAY;
     M.rotation.order = 'YZX'; M.rotation.set(0, Math.atan2(-d.z, d.x), Math.atan2(d.y, Math.hypot(d.x, d.z)));
     W.setCam(V3(W.SEAX + 42, 9, 36), V3(W.SEAX + 18, 9, -45), 44, 50, .0005); W.render(); }
   if (n === 4) { // sala del comité (detrás de la mesa: recortados por el borde de la mesa)
-    W.setCam(V3(W.MX - .3, 1.42, 4.5), V3(W.MX - .1, 1.3, -1.4), 62, 6.0, .0012); W.render();
+    W.setCam(V3(W.MX - .2, 1.75, 4.4), V3(W.MX - .1, 1.15, -1.4), 58, 5.9, .0012); W.render();
     const yT = W.proj(V3(W.MX, .92, .8)).y;
     [-1.8, -.6, .6, 1.8].forEach((x, k) => s += behind(stickAt(Object.assign({}, BOSSES[k], { turn: -x * .14, look: [-x * 3 + 6, 0], armL: [24, 50], armR: [24, 50], face: k === 2 ? 'angry' : 'smug', mouth: k === 1 ? 'smirk' : 'line' }), V3(W.MX + x, 0, -1.55), V3(W.MX + x, ADULT, -1.55), W, { shadow: false }), yT));
     s += stickAt(Object.assign({}, FRED, { turn: .6, look: [12, -4], armL: [18, 20], armR: [110, 40], mouth: 'open' }), V3(W.MX - 1.9, 0, 2.0), V3(W.MX - 1.9, ADULT, 2.0), W); }

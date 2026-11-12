@@ -192,3 +192,15 @@ Música: cumbia ligera, no suspense (este formato es «curiosidad divertida»).
 - **`W2.visible(p)`** (raycast): no dibujes un personaje 2D si un objeto 3D lo tapa (las palomas de los palomares salían pintadas encima del morro). Comprueba varios puntos (patas, cabeza, lados).
 - **Personajes detrás de una mesa:** recórtalos con un `clipPath` a la altura del borde de la mesa (`W2.proj(borde).y`), o las piernas salen pintadas encima del tablero.
 - La cámara siempre **dentro** de la sala (una cámara fuera de la pared enseñaba un plano marrón gigante).
+
+### Calidad «como la referencia» (el usuario: «muy normalitos, mejóralos mucho», nov. 2026)
+
+Lo que separa un escenario normalito de uno como la referencia (aplicado en `world_palomas.js` v2, úsalo de plantilla):
+- **Texturas pintadas a mano en canvas, nunca colores planos:** `planksT()` (tablas con degradado por tabla, vetas, nudos, clavos, juntas oscuras), `wallT()` (papel pintado con motivo y suciedad abajo), `panelT()` (zócalo de paneles con biselado), `paper()` (carteles y papeles envejecidos) y `grain()` (ruido).
+- **Sol de verdad entrando por ventanas con hueco:** las paredes y los parteluces proyectan sombra y dejan manchas de luz en el suelo. Añade haces de luz aditivos y degradados.
+- **Fondo pintado tras las ventanas** (ciudad, nubes, árboles), nunca un plano azul liso.
+- **Color saturado:** `GLC.style.filter = 'saturate(1.18) contrast(1.06)'`, más exposición y luz de relleno dentro.
+- **Llénalo:** alfombra, carteles con dibujo, corcho con papeles e hilo rojo, archivador, estanterías con libros de colores, tarros, radio, máquina de escribir, ventilador, tuberías, plumas y alpiste en el suelo, macetas.
+- **El latón sin mapa de entorno sale negro:** metalness bajo (.3) y un poco de emisivo.
+- **Un interior cerrado (morro, cabina) necesita tapas:** si queda un extremo abierto se ve el cielo.
+- **Cámara:** angular (fov 55–60), baja y cerca del personaje, con un objeto grande en el plano.
