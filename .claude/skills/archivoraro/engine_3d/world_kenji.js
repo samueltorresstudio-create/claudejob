@@ -19,9 +19,9 @@ const W2 = (() => {
   const blot = (g, w, h, n, col, r0, r1) => { for (let i = 0; i < n; i++) { const x = rnd() * w, y = rnd() * h, r = r0 + rnd() * (r1 - r0); const gr = g.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, col); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(x - r, y - r, r * 2, r * 2); } };
   // ---------- cielo de verano y luz (sol detrás de la cámara, a la izquierda: caras iluminadas) ----------
   const SUN = new T.Vector3(-.5, .62, .6).normalize();
-  const sky = new T.Mesh(new T.SphereGeometry(2000, 32, 16), new T.ShaderMaterial({ side: T.BackSide, depthWrite: false, fog: false, uniforms: { sun: { value: SUN } },
+  const sky = new T.Mesh(new T.SphereGeometry(2000, 32, 16), new T.ShaderMaterial({ side: T.BackSide, depthWrite: false, fog: false, uniforms: { sun: { value: SUN }, morn: { value: 0 } },
     vertexShader: 'varying vec3 vd; void main(){ vd=normalize(position); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }',
-    fragmentShader: 'uniform vec3 sun; varying vec3 vd; void main(){ float h=vd.y; vec3 top=vec3(.16,.46,.9), mid=vec3(.5,.74,.97), hor=vec3(.88,.93,.95); vec3 c=h>.08?mix(mid,top,smoothstep(.08,.65,h)):mix(hor,mid,smoothstep(-.05,.08,h)); float s=max(dot(vd,sun),0.); c+=vec3(1.,.92,.75)*(pow(s,12.)*.2); gl_FragColor=vec4(c,1.); }' }));
+    fragmentShader: 'uniform vec3 sun; uniform float morn; varying vec3 vd; void main(){ float h=vd.y; vec3 top=mix(vec3(.16,.46,.9),vec3(.42,.52,.82),morn), mid=mix(vec3(.5,.74,.97),vec3(.93,.76,.74),morn), hor=mix(vec3(.88,.93,.95),vec3(.97,.83,.7),morn); vec3 c=h>.08?mix(mid,top,smoothstep(.08,.65,h)):mix(hor,mid,smoothstep(-.05,.08,h)); float s=max(dot(vd,sun),0.); c+=vec3(1.,.92,.75)*(pow(s,12.)*.2*(1.-morn*.7)); gl_FragColor=vec4(c,1.); }' }));
   sky.frustumCulled = false; scene.add(sky);
   scene.fog = new T.FogExp2('#d9e8ee', .0042);
   const hemi = new T.HemisphereLight('#d2e6ff', '#7c8a4e', 1.55); scene.add(hemi);
@@ -59,7 +59,7 @@ const W2 = (() => {
   const tinT = tex(512, 256, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 32, 0); gr.addColorStop(0, '#8fa3b5'); gr.addColorStop(.5, '#c4d2de'); gr.addColorStop(1, '#8fa3b5'); g.fillStyle = gr; for (let x = 0; x < w; x += 32) { g.save(); g.translate(x, 0); g.fillRect(0, 0, 32, h); g.restore(); }
     blot(g, w, h, 18, 'rgba(160,80,40,.18)', 10, 40); }, [8, 1]);
   const barn = new T.Group(); barn.position.set(0, 0, -21); scene.add(barn);
-  for (let x = -12; x <= 12; x += 4) [-4, 4].forEach(z => add(RB(.3, z < 0 ? 5.2 : 4, .3, .03), STD({ color: '#6e4a2c' }), x, z < 0 ? 2.6 : 2, z, { parent: barn }));
+  for (let x = -12; x <= 12; x += 4) [-4, 4].forEach(z => add(RB(.3, z < 0 ? 5.2 : 4, .3, .03), STD({ map: woodT, color: '#a07a56' }), x, z < 0 ? 2.6 : 2, z, { parent: barn }));
   const roofA = add(RB(26, .14, 9.2, .02), STD({ map: tinT, metalness: .45, roughness: .45 }), 0, 4.65, 0, { parent: barn, rx: .13 });
   add(RB(26, 2.6, .2, .02), STD({ map: woodT, color: '#9a7a5a' }), 0, 1.3, -4.05, { parent: barn }); // pared del fondo
   for (let x = -11; x <= 11; x += 2.2) add(RB(.08, 1.2, .08, .02), STD({ color: '#d9dde3', metalness: .5 }), x, .9, 3.4, { parent: barn }); // barras del comedero
@@ -91,7 +91,7 @@ const W2 = (() => {
   const wb = new T.Group(); wb.position.set(8.5, 0, -12.6); wb.rotation.y = -.6; scene.add(wb); add(RB(1.1, .4, .7, .1), STD({ color: '#2f8a4a', metalness: .3 }), 0, .62, 0, { parent: wb }); add(new T.CylinderGeometry(.22, .22, .1, 16), STD({ color: '#1b1b1f' }), .62, .22, 0, { parent: wb, rx: Math.PI / 2 }); [-.25, .25].forEach(z => add(RB(1.2, .05, .05, .02), STD({ color: '#6e4a2c' }), -.8, .6, z, { parent: wb, rz: .25 }));
   add(new T.IcosahedronGeometry(.36, 1), STD({ color: '#e2c26a', flatShading: true }), 8.5, .9, -12.6, { s: [1.3, .5, 1] });
   // ---------- rincón de pintura (lo que usa Kenji) ----------
-  const PAINT = new T.Vector3(-6.4, 0, -4.2);
+  const PAINT = new T.Vector3(-8.6, 0, -3.0);
   add(new T.PlaneGeometry(2.6, 1.8), STD({ color: '#9ec8e8', roughness: .4, transparent: true, opacity: .85 }), PAINT.x, .02, PAINT.z, { rx: -Math.PI / 2, cast: false, noInk: true });
   const bucket = (x, z, paint, label) => { const g = new T.Group(); g.position.set(x, 0, z); scene.add(g); add(new T.CylinderGeometry(.24, .2, .4, 24, 1, true), STD({ color: '#d9dde3', metalness: .4, roughness: .4, side: T.DoubleSide }), 0, .2, 0, { parent: g });
     add(new T.CircleGeometry(.23, 24), STD({ color: paint, roughness: .2 }), 0, .36, 0, { parent: g, rx: -Math.PI / 2, cast: false, noInk: true }); add(new T.TorusGeometry(.24, .015, 6, 24, Math.PI), STD({ color: '#8a8f96', metalness: .6 }), 0, .4, 0, { parent: g });
@@ -143,20 +143,56 @@ const W2 = (() => {
   for (let i = 0; i < 160; i++) { const sd = rnd() > .5 ? 1 : -1, x = sd * (75 + rnd() * 150), z = -60 + rnd() * 120; CED.push([x, hgt(x, z), z, 2.4 + rnd() * 2.4]); }
   const cedIM = new T.InstancedMesh(new T.ConeGeometry(1, 3, 6), cedarM, CED.length); CED.forEach(([x, y, z, s], i) => { dm.position.set(x, y + s * 1.4, z); dm.scale.set(s * .7, s, s * .7); dm.updateMatrix(); cedIM.setMatrixAt(i, dm.matrix); }); cedIM.castShadow = true; cedIM.userData.noInk = true; scene.add(cedIM);
   [[-160, -420, 220, 160], [40, -480, 280, 210], [220, -400, 200, 150], [-320, -360, 180, 120]].forEach(([x, z, r, h]) => { const c = new T.ConeGeometry(r, h, 9, 3); const p = c.attributes.position; for (let i = 0; i < p.count; i++) p.setX(i, p.getX(i) * (1 + (rnd() - .5) * .12)); c.computeVertexNormals(); add(c, STD({ color: '#5f7f8a', flatShading: true }), x, h / 2 - 5, z, { noInk: true, cast: false }); });
+  // ---------- barbería del pueblo (junto a la carretera) con su palo giratorio ----------
+  const shopT = tex(1024, 640, (g, w, h) => { g.fillStyle = '#f2ece0'; g.fillRect(0, 0, w, h); noise(g, w, h, 6000, ['rgba(0,0,0,.05)', 'rgba(255,255,255,.08)']); blot(g, w, h, 14, 'rgba(120,100,80,.12)', 30, 90);
+    g.fillStyle = '#2f5f9f'; g.fillRect(0, h - 110, w, 110); for (let x = 0; x < w; x += 60) { g.fillStyle = 'rgba(0,0,0,.12)'; g.fillRect(x, h - 110, 4, 110); }
+    g.fillStyle = '#3b2a1e'; g.fillRect(90, 210, 470, 320); const gr = g.createLinearGradient(100, 220, 540, 520); gr.addColorStop(0, '#bfe0f2'); gr.addColorStop(.5, '#6f9cc0'); gr.addColorStop(1, '#3d6080'); g.fillStyle = gr; g.fillRect(104, 224, 442, 292);
+    g.fillStyle = '#c8302e'; g.fillRect(230, 380, 90, 110); g.fillRect(250, 330, 50, 60); g.fillStyle = '#d9dde3'; g.fillRect(270, 490, 10, 30); g.fillStyle = 'rgba(255,255,255,.35)'; g.beginPath(); g.moveTo(110, 460); g.lineTo(300, 226); g.lineTo(380, 226); g.lineTo(110, 512); g.fill();
+    g.fillStyle = '#3b2a1e'; g.fillRect(640, 200, 230, 340); g.fillStyle = '#d9c4a0'; g.fillRect(654, 214, 202, 312); g.fillStyle = '#3b2a1e'; g.fillRect(752, 214, 6, 312); for (let y = 250; y < 520; y += 40) { g.fillRect(654, y, 202, 4); }
+    g.fillStyle = '#c8a13a'; g.beginPath(); g.arc(840, 370, 9, 0, 7); g.fill();
+    g.fillStyle = '#1b2a4a'; g.fillRect(70, 40, 884, 130); g.strokeStyle = '#f2ece0'; g.lineWidth = 8; g.strokeRect(84, 54, 856, 102); g.fillStyle = '#f6efe0'; g.font = '900 86px IPAGothic'; g.textAlign = 'center'; g.fillText('理容 たなか', w / 2, 136); });
+  const SHOP = new T.Group(); SHOP.position.set(-28, 0, 2.6); scene.add(SHOP);
+  add(RB(7, 3.6, 4.2, .05), [STD({ color: '#e8e0d0' }), STD({ color: '#e8e0d0' }), STD({ color: '#3e4a5a' }), STD({ color: '#3e4a5a' }), STD({ map: shopT }), STD({ color: '#e8e0d0' })], 0, 1.8, 0, { parent: SHOP });
+  const shopRoof = add(new T.ConeGeometry(1, 1, 4, 1), STD({ map: kawaraT, roughness: .5, metalness: .2 }), 0, 4.5, 0, { parent: SHOP, ry: Math.PI / 4 }); shopRoof.scale.set(6.2, 1.8, 3.9);
+  const awnT = tex(512, 64, (g, w, h) => { for (let k = 0; k < 16; k++) { g.fillStyle = k % 2 ? '#f6f3ec' : '#2f5f9f'; g.fillRect(k * w / 16, 0, w / 16, h); } });
+  add(RB(6.6, .1, 1.3, .03), STD({ map: awnT }), 0, 2.95, 2.65, { parent: SHOP, rx: .32 });
+  add(RB(7.4, .25, .3, .05), STD({ color: '#3e4a5a' }), 0, 3.62, 2.12, { parent: SHOP });
+  const poleT = tex(256, 512, (g, w, h) => { g.save(); g.translate(w / 2, h / 2); g.rotate(-Math.PI / 4.4); const cols = ['#d23a32', '#f6f3ec', '#2f5f9f', '#f6f3ec']; for (let k = -24; k < 24; k++) { g.fillStyle = cols[((k % 4) + 4) % 4]; g.fillRect(-600, k * 32, 1200, 32); } g.restore(); }, [1, 1]);
+  const POLE = new T.Group(); POLE.position.set(-24.15, 1.95, 4.95); scene.add(POLE);
+  const poleCyl = add(new T.CylinderGeometry(.15, .15, 1.15, 32, 1, true), STD({ map: poleT, roughness: .25 }), 0, 0, 0, { parent: POLE, noInk: true });
+  add(new T.CylinderGeometry(.19, .19, 1.2, 32, 1, true), STD({ color: '#dff0ff', transparent: true, opacity: .22, roughness: .05, metalness: .2 }), 0, 0, 0, { parent: POLE, cast: false, noInk: true });
+  [.62, -.62].forEach(y => { add(new T.CylinderGeometry(.21, .21, .1, 24), STD({ color: '#c9ced6', metalness: .55, roughness: .3 }), 0, y, 0, { parent: POLE }); });
+  add(new T.SphereGeometry(.17, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2), STD({ color: '#c9ced6', metalness: .55, roughness: .3 }), 0, .67, 0, { parent: POLE });
+  add(new T.CylinderGeometry(.025, .025, .5, 8), STD({ color: '#b8bec6', metalness: .5 }), 0, .4, -.3, { parent: POLE, rx: Math.PI / 2, noInk: true }); add(new T.CylinderGeometry(.025, .025, .5, 8), STD({ color: '#b8bec6', metalness: .5 }), 0, -.4, -.3, { parent: POLE, rx: Math.PI / 2, noInk: true });
+  // bancos y macetas delante de la barbería
+  add(RB(1.8, .1, .5, .03), STD({ map: woodT, color: '#c09a70' }), -29.5, .55, 5.2); [-1, 1].forEach(sd => add(RB(.08, .5, .45, .02), STD({ color: '#3a3e46' }), -29.5 + sd * .8, .27, 5.2));
+  [[-31.3, 5.1], [-26, 5.2]].forEach(([x, z]) => { add(new T.CylinderGeometry(.3, .24, .5, 16), STD({ color: '#b5603f' }), x, .25, z); add(new T.IcosahedronGeometry(.42, 1), STD({ color: '#4f8f3a', flatShading: true }), x, .75, z); });
   // ---------- post: brillo + desenfoque de fondo ----------
   const comp = new EffectComposer(R); comp.setSize(W, H); comp.addPass(new RenderPass(scene, camera));
   const bloom = new UnrealBloomPass(new T.Vector2(W / 2, H / 2), .2, .5, .92); comp.addPass(bloom);
-  const dof = new BokehPass(scene, camera, { focus: 8, aperture: .003, maxblur: .007 }); comp.addPass(dof); comp.addPass(new OutputPass());
+  const dof = new BokehPass(scene, camera, { focus: 8, aperture: .003, maxblur: .006 }); comp.addPass(dof); comp.addPass(new OutputPass());
+  const gradeMat = new T.ShaderMaterial({ uniforms: { tDiffuse: { value: null }, time: { value: 0 }, morn: { value: 0 } }, depthTest: false, depthWrite: false,
+    vertexShader: 'varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position.xy,0.,1.); }',
+    fragmentShader: 'uniform sampler2D tDiffuse; uniform float time, morn; varying vec2 vUv; float h(vec2 p){ return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453); } void main(){ vec3 c=texture2D(tDiffuse,vUv).rgb; float l=dot(c,vec3(.299,.587,.114)); c+=vec3(-.01,.008,.028)*(1.-l); c+=vec3(.03,.014,-.016)*l; c+=vec3(.02,.0,-.012)*morn; c=mix(vec3(l),c,1.16); c=c*c*(3.-2.*c)*.3+c*.7; vec2 d=vUv-.5; c*=1.-dot(d*vec2(1.,.6),d*vec2(1.,.6))*.45; c+=(h(vUv*vec2(1080.,1920.)+time)-.5)*.022; gl_FragColor=vec4(c,1.); }' });
+  const gq = new T.Mesh(new T.PlaneGeometry(2, 2), gradeMat); gq.frustumCulled = false; const gScene = new T.Scene(); gScene.add(gq); const gCam = new T.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  comp.addPass({ enabled: true, needsSwap: true, clear: false, renderToScreen: false, setSize() { }, dispose() { }, render(r, write, read) { gradeMat.uniforms.tDiffuse.value = read.texture; r.setRenderTarget(this.renderToScreen ? null : write); r.render(gScene, gCam); } });
   // ---------- contorno de tinta en el 3D ----------
   const inkM = new T.ShaderMaterial({ side: T.BackSide, uniforms: { k: { value: .0022 }, col: { value: new T.Color('#1b1720') } },
     vertexShader: 'uniform float k; void main(){ vec4 mv=modelViewMatrix*vec4(position,1.); vec3 n=normalize(normalMatrix*normal); mv.xyz+=n*(-mv.z)*k; gl_Position=projectionMatrix*mv; }',
     fragmentShader: 'uniform vec3 col; void main(){ gl_FragColor=vec4(col,1.); }' });
-  const toInk = []; scene.traverse(o => { if (!o.isMesh || o.isInstancedMesh || o === sky || o.userData.noInk || (o.material && o.material.transparent)) return; const ty = o.geometry.type; if (ty === 'PlaneGeometry' || ty === 'CircleGeometry') return; toInk.push(o); });
+  const toInk = []; scene.traverse(o => { if (!o.isMesh || o.isInstancedMesh || o === sky || o.userData.noInk || (o.material && o.material.transparent) || Array.isArray(o.material) && false) return; const ty = o.geometry.type; if (ty === 'PlaneGeometry' || ty === 'CircleGeometry') return; toInk.push(o); });
   toInk.forEach(o => { let g = o.geometry.clone(); ['normal', 'uv'].forEach(a => g.deleteAttribute(a)); g = mergeVertices(g, 1e-3); g.computeVertexNormals(); g.clearGroups(); const h = new T.Mesh(g, inkM); h.castShadow = false; h.receiveShadow = false; o.add(h); });
   // ---------- API ----------
   function setCam(pos, look, fov = 45, focus = null, ap = .003) { camera.fov = fov; camera.updateProjectionMatrix(); camera.position.copy(pos); camera.lookAt(look); camera.updateMatrixWorld(); sky.position.copy(camera.position);
     sun.position.copy(look).addScaledVector(SUN, 120); sun.target.position.copy(look); sun.target.updateMatrixWorld(); dof.uniforms.focus.value = focus ?? pos.distanceTo(look); dof.uniforms.aperture.value = ap; }
   function proj(p) { const v = p.clone(), cs = v.clone().applyMatrix4(camera.matrixWorldInverse), d = -cs.z; v.project(camera); const ppm = (H / 2) / (d * Math.tan(camera.fov * Math.PI / 360)); return { x: (v.x + 1) / 2 * W, y: (1 - v.y) / 2 * H, d, ppm, ok: d > .1 }; }
   function render() { comp.render(); }
-  return { T, scene, camera, R, setCam, proj, render, SUN, hgt, PAINT, HOUSE, dof, bloom, comp, inkM };
+  const CLOUDS = []; scene.children.forEach(o => { if (o.isGroup && o.children.length === 7 && o.position.y > 80) CLOUDS.push([o, o.position.clone()]); });
+  function setTime(t) { gradeMat.uniforms.time.value = t % 10; POLE.rotation.y = -t * 2.6; CLOUDS.forEach(([o, p0]) => o.position.x = p0.x + t * 1.2); }
+  let mood = 0; const SUN_DAY = SUN.clone(), SUN_MORN = new T.Vector3(.75, .3, .58).normalize();
+  function setMood(m) { mood = m; SUN.copy(SUN_DAY).lerp(SUN_MORN, m).normalize(); sky.material.uniforms.morn.value = m; gradeMat.uniforms.morn.value = m; sun.color.set(m > .5 ? '#ffd8b0' : '#fff0d4'); sun.intensity = 4.6 - m * .9;
+    hemi.color.set(m > .5 ? '#ffd6c8' : '#d2e6ff'); hemi.groundColor.set(m > .5 ? '#7a6a5a' : '#7c8a4e'); scene.fog.color.set(m > .5 ? '#f3d6c2' : '#d9e8ee'); R.toneMappingExposure = 1.22 - m * .05; }
+  const ray = new T.Raycaster(); const solids = []; scene.traverse(o => { if (o.isMesh && !o.isInstancedMesh && o.material !== inkM && o !== sky && !o.userData.noInk && !(o.material && o.material.transparent)) solids.push(o); });
+  function visible(p, tol = .12) { const o = camera.position, d = p.clone().sub(o), L = d.length(); ray.set(o, d.normalize()); ray.far = L - tol; return ray.intersectObjects(solids, false).length === 0; }
+  return { T, scene, camera, R, setCam, setTime, setMood, visible, proj, render, SUN, hgt, PAINT, HOUSE, POLE, SHOP, dof, bloom, comp, inkM };
 })();

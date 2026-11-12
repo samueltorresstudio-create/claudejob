@@ -249,3 +249,12 @@ El usuario dijo que en las palomas «se mueven mal». En la referencia:
 - **Siempre ancladas al objeto**: calcula A, C y B proyectando puntos 3D del objeto (`W.proj`). Nunca uses coordenadas fijas de pantalla. Si el objeto se mueve, la flecha se mueve con él.
 - La punta indica exactamente la dirección real: «se va a la izquierda» es una flecha encima del barco, dentro de la pantalla, que apunta a la izquierda. «El misil gira» es una flecha que sale del morro hacia delante y se curva hacia su lado.
 - Tamaño proporcional al objeto (grosor ≈ 1,5–3 % de su tamaño en píxeles). Nunca puede salirse del objeto que la contiene ni del encuadre. Compruébala en una foto de prueba antes del render.
+### Movimiento con IK y acciones de verdad (vídeo 62, nov. 2026)
+- `armIK(sd, objetivo, {brush, brushScale, brushRot, bob})` en `proyectos/62_vacas/scenes_p.js`: resuelve el brazo (2 segmentos 90/86) para que la mano o la punta de la brocha llegue EXACTAMENTE a un punto. `frameOf/toScr/toLoc` repiten las transformaciones de `stickAt`/`cowAt` para pasar de coordenadas del personaje o de la vaca a pantalla y al revés.
+- `paintAction(...)`: la brocha baja por la raya y la raya fresca (`cow2({fresh})`) nace justo donde pasa la punta. Así nunca hay brocha «pintando en el aire».
+- Un objeto que la mano tiene que tocar por dentro (cubo): dibújalo en 2D en dos capas (fondo + pintura, personaje, pared delantera) con `bucketBack/bucketFront`.
+- Los brazos van DETRÁS del cuerpo en `stick()`: si el objetivo queda detrás del propio personaje en pantalla, la mano no se ve. Coloca al personaje al lado de lo que toca, no delante.
+- Cámara mirando hacia +z: la derecha de la pantalla es −x del mundo. Comprueba con el producto vectorial en qué lado cae cada personaje antes de encuadrar.
+- Transiciones: `push` entre planos que miran en sentidos opuestos barre el cielo; usa `swish`. `push` hacia una cara en primer plano la atraviesa; usa `swish`.
+- Mañana: un cielo con mucho degradado rosa se rompe en bandas (8 bits); suaviza colores, iguala la niebla al horizonte y sube un poco el grano.
+- Velocidad medida: ≈2,9 s por fotograma con 4 páginas cuando hay cientos de moscas 2D (cada mosca es un grupo SVG). 73 s de vídeo ≈ 1 h 45 min.
