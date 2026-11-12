@@ -12,14 +12,13 @@ Una cuchara de oro te da de comer la carne más cara del castillo…
 y el rey no te quita ojo, esperando a ver si caes muerto.
 Eres su catador: pruebas todo antes que él, por si está envenenado.
 Cada comida es una ruleta rusa.
-Hasta que una noche, en un gran banquete, pruebas un trozo de asado… y se te duerme la lengua.
-Levantas la vista. Al otro lado de la mesa, el hermano del rey te está mirando, con la mano en el puñal.
-Ha envenenado el plato. Y está esperando a ver si avisas al rey.
-La garganta te arde como si hubieras tragado cristales. El sudor te cae por el cuello.
-Pero no te atreves ni a toser, ni a soltar la cuchara.
-[serious] Porque sabes lo que les pasa a los catadores que estropean una traición: encierran a toda tu familia en casa… y le prenden fuego.
-Así que miras al rey, sonríes como puedes… y le dices que la carne está buenísima.
-El rey se ríe, le pega un bocado enorme al mismo trozo… y cae muerto encima de la mesa.
-Los guardias no saben ni qué hacer.
-El hermano te mete un antídoto en el bolsillo, se pone la corona… y te nombra su catador personal.
+Hasta que una noche, en un banquete, pruebas el asado… y se te duerme la lengua.
+Levantas la vista: el hermano del rey te está mirando, con la mano en el puñal.
+Ha envenenado el plato. Y espera a ver si avisas al rey.
+La garganta te arde como si tragaras cristales, y el sudor te cae por el cuello.
+Pero no te atreves ni a toser.
+[serious] Porque si estropeas su traición, encierran a tu familia en casa… y le prenden fuego.
+Así que miras al rey, sonríes como puedes… y le dices que está buenísima.
+El rey se ríe, le pega un bocado al mismo trozo… y cae muerto sobre la mesa.
+El hermano te mete un antídoto en el bolsillo, se pone la corona… y te nombra su catador.
 [deadpan] [slowly] Y te da… una cuchara de oro.
