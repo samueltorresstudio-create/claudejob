@@ -241,7 +241,7 @@ S.navy = (t, D, B) => { const E = EVS.navy(B); W.setTime(t + 50); W.charLight = 
   return s; };
 // 15 · 2024: la paloma recibe el premio (escenario cerrado, telón)
 S.prize = (t, D, B) => { const E = EVS.prize(B); W.setTime(t + 55); W.charLight = { tint: '#ffe8c8', k: .2, rim: '#fff4dc', rimA: .7, rimX: 0, rimY: -1 };
-  const k = k01(t, 0, D), cam = V3(W.SX + .15 - k * .1, 1.12 - k * .06, 2.55 - k * .55), look = V3(W.SX - .18, .92, -.15); W.setCam(cam, look, 40, cam.distanceTo(V3(W.SX - .2, .8, -.15)), .0012); W.render();
+  const k = k01(t, 0, D), cam = V3(W.SX + .15 - k * .1, 1.12 - k * .03, 2.55 - k * .22), look = V3(W.SX - .18 + k * .07, .92, -.15); W.setCam(cam, look, 40, cam.distanceTo(V3(W.SX - .2, .8, -.15)), .0012); W.render();
   const fl = t > E.premio ? Math.max(0, Math.sin((t - E.premio) * 12)) * .9 : 0;
   let s = pg({ eye: blink(t) ? 'closed' : 'calm', goggles: true, flap: fl, bob: Math.sin(t * 3) * .3, look: [6, -2] }, V3(W.SX - .42, .6, -.1), .34);
   if (t > E.premio) { for (let i = 0; i < 40; i++) { const tt = t - E.premio, x = (hs(i, 1) * 1080 + Math.sin(tt * 2 + i) * 30), y = -40 + ((tt * (180 + hs(i, 2) * 160) + hs(i, 3) * 400) % 1300); s += `<rect x="${x.toFixed(0)}" y="${y.toFixed(0)}" width="16" height="26" fill="${[YEL, PINK, BLUE, GREEN, '#fff'][i % 5]}" stroke="${K}" stroke-width="3" transform="rotate(${(tt * 200 * (hs(i, 4) - .5) + i * 40).toFixed(0)} ${x.toFixed(0)} ${y.toFixed(0)})"/>`; } }

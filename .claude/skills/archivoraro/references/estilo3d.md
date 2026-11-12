@@ -262,3 +262,5 @@ El usuario dijo que en las palomas «se mueven mal». En la referencia:
 ### Ritmo de cámara pedido por el usuario (12-11-2026)
 - «La transición de cámara un poco más lenta y no tan de golpe»: `CFG.transDur: .95`, `CFG.blurK: .55` (menos desenfoque), `CFG.antic: .3` (anticipación más larga). Son los valores por defecto a partir de ahora.
 - «Que la cámara nunca esté quieta, aunque se mueva un poco»: deriva tipo cámara en mano sobre `W2.setCam` (seno lento, ±5 cm de posición, 35 % en el punto de mira), además del movimiento de cada plano. Ver el bloque «cámara nunca quieta» de `proyectos/62_vacas/scenes_p.js`.
+### Plano final con acercamiento
+- En el último plano (push-in), el sujeto (trofeo, personaje) debe caber entero hasta el último fotograma: dolly corto (≤ 0,25 m) y desplaza el `look` a la vez para mantenerlo centrado. Comprueba el fotograma final antes del render.
