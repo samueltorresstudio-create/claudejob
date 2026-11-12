@@ -302,3 +302,30 @@ El usuario dijo que en las palomas «se mueven mal». En la referencia:
 - **Público**: sprites de nuestros personajes pre-renderizados (`proyectos/68_red_porteria/bake_crowd.js`, 16 variantes × quieto/celebrando) metidos en `crowd.js` como data-URI (Chromium bloquea texturas `file://`). `W2.crowd(imgs)` devuelve una promesa: esperar antes de renderizar. `setCheer(k)` = fracción del público celebrando (brazos arriba, saltando).
 - `stick.js` nuevo: `hat:'bowler'|'flatcap'` (ENCAJADOS en la cabeza, con patillas por debajo; el usuario: «los sombreros bien puestos, no superpuestos»), `outfit:'kit1889'` (`hoops:true` = aros horizontales como la referencia, cuello con cordón), `knickers` (bombacho hasta la rodilla), `whistle` (silbato del árbitro, encima del cuerpo).
 - Detalle del público como la referencia: variedad de gorras/bombines inclinados, bigotes, barbas, gafas, bufandas, chalecos, pelo de colores.
+
+
+## Reglas del tutorial de la referencia (3 vídeos «Creatorize» sobre el estilo Ricks Clips, 12-11-2026)
+El usuario los pasó como «consejos a la hora de crear los vídeos». Orden real: `video_yt` → grabación 19:37 → grabación 20:34. Leídos de los textos en pantalla (sin audio).
+
+**Personajes**
+- La MISMA cara en todos: 2 óvalos negros, boca pequeña, cejas cortas de pincel. Sin nariz, orejas ni mofletes (nariz o pestañas «rompen el estilo»). La identidad viene del SOMBRERO y del cuerpo. (Nosotros: el usuario eligió antes «ojos de palo»; no cambiarlos sin preguntar.)
+- Un solo color de piel; tinta cálida, nunca negro puro; el sombrero es la forma más grande tras la cabeza; prueba de la silueta (distinguirlos en negro).
+- Unidad D = ancho de la cabeza. Extremidades 0,06 D de goma, curvas suaves; manos = bolas de tinta sin dedos; ~3 cabezas de alto.
+
+**Animación**
+- Pose nueva en cada fotograma, sin desenfoque de movimiento en los personajes.
+- 60–70 % del movimiento en los primeros 4–5 fotogramas, luego asentamiento lento (ease-out fuerte: usar `snap()` = outQuart en ~0,5 s).
+- Personaje parado = COMPLETAMENTE quieto (sin respiración, balanceo ni bob). No usar `breathe()` en este estilo.
+- La cara gira (flip) en 1 fotograma; la cara se mueve 1 fotograma ANTES que el cuerpo; la boca cambia cada ~2 fotogramas al hablar; 0 parpadeos mientras habla.
+
+**Cámara**
+- Cada plano = posición + objetivo + lente que cambian en el tiempo. Tres movimientos: push-in (acaba 1,9× más cerca, outCubic), órbita (~98°, no 180°), whip (frena en 1 fotograma, sin rebote).
+- La cámara solo está quieta el 4,5 % de los fotogramas. Lente estrecha (26°): el fondo se ve grande detrás de los personajes.
+- 5 estilos: cortes secos (Dread Cuts), plano único, found footage, «el observador», «a través del acero» (la cámara sigue el sonido atravesando paredes).
+
+**Acabado («los detalles importan más que nada»)**
+- Ropa con degradado suave: lado claro, lado 1,4–2× más oscuro y una raya pálida de brillo.
+- Sombra de cada personaje proyectada desde el sol.
+- 9 capas: mundo, niebla, bruma, desenfoque de fondo, bloom, pantalla, PERSONAJES (encima, nunca desenfocados), partículas, etalonaje.
+
+**Rendimiento**: no actualizar ni dibujar lo que no se ve (personajes fuera de cuadro), cachear las caras. Ellos: 84 → 19 ms por fotograma.
