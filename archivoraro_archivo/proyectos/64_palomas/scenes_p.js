@@ -149,7 +149,6 @@ S.peck = (t, D, B) => { const E = EVS.peck(B); W.setTime(t + 20); const sx = -.6
   const pk = t > E.picotea ? Math.pow(Math.max(0, Math.sin((t - E.picotea) * 18)), .6) : 0;
   let s = byDist([stationPigeon(1, { eye: 'angry', goggles: true, peck: pk * .35, look: [8, 2] }, .36, cam)], cam);
   if (t > E.picotea) { const sp = W.proj(V3(W.NX + 1.5, 1.05, -.12)); for (let i = 0; i < 4; i++) s += ring(sp.x, sp.y, sp.ppm * .18, ((t - E.picotea) * 3.2 - i * .28) % 1.3, YEL); }
-  if (t > E.izq - .4) { const sp = W.proj(V3(W.NX + 1.51, 1.05, 0)), u = sp.ppm, cx = sp.x + sx * .26 * u + .05 * u - Math.sin(t * 9) * 5, y = sp.y - .085 * u; s += arrow([cx + .06 * u, y], [cx, y - .01 * u], [cx - .065 * u, y], (t - E.izq + .4) / .3, YEL, .017 * u); }
   return s; };
 // 7 · ¡y el misil gira a la izquierda! (persecución sobre el mar; las palomas siguen en sus ventanitas)
 S.turn = (t, D, B) => { const E = EVS.turn(B); W.setTime(t + 23);
