@@ -30,7 +30,7 @@ const TR = (() => { if (typeof W2 === 'undefined' || !W2.setCam) return null; co
   const fsvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); fsvg.setAttribute('width', 0); fsvg.setAttribute('height', 0); fsvg.style.position = 'absolute';
   fsvg.innerHTML = '<defs><filter id="mbH" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur id="mbHs" stdDeviation="0 0"/></filter><filter id="mbV" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur id="mbVs" stdDeviation="0 0"/></filter></defs>';
   // el desenfoque va SOLO al mundo (canvas 3D + capa de personajes), nunca al subtítulo: el texto queda nítido aunque la cámara se mueva
-  document.body.appendChild(fsvg); const setF = v => { glEl.style.filter = v; fxEl.style.filter = v; };
+  document.body.appendChild(fsvg); const setF = v => { glEl.style.filter = v; fxEl.style.filter = CFG.blurChars === false ? '' : v; };   // CFG.blurChars:false → los personajes nunca se desenfocan (regla del tutorial)
   function blur(kind, amt) { if (amt < .4) { setF(''); return; } if (kind === 'H') { document.getElementById('mbHs').setAttribute('stdDeviation', `${amt.toFixed(1)} ${(amt * .15).toFixed(1)}`); setF('url(#mbH)'); }
     else if (kind === 'R') setF(`blur(${(amt * .45).toFixed(1)}px)`); else { document.getElementById('mbVs').setAttribute('stdDeviation', `${(amt * .15).toFixed(1)} ${amt.toFixed(1)}`); setF('url(#mbV)'); } }
   return { st, probe, blur, V }; })();

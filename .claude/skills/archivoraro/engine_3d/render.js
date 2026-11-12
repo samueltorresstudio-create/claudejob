@@ -6,6 +6,7 @@ const mode = process.argv[2] || 'preview';
 
 async function openPage(browser) {
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
+  if (process.env.FAST) await page.addInitScript(() => { window.FAST_PREVIEW = 1; });   // previsualización rápida (si el mundo la soporta)
   page.on('pageerror', e => console.error('PAGE ERROR', e.message));
   await page.goto('file://' + path.join(dir, 'index.html'));
   await page.evaluate(async () => {
@@ -13,6 +14,7 @@ async function openPage(browser) {
     await document.fonts.load('700 30px "JetBrains Mono"');
     await document.fonts.load('800 30px "JetBrains Mono"');
     await document.fonts.ready;
+    if (window.READY) await window.READY;   // texturas que cargan en segundo plano (p. ej. el público del estadio)
   });
   return page;
 }

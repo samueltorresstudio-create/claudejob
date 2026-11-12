@@ -4,9 +4,9 @@
 // Campo: x ∈ [-34, 34], z ∈ [-52, 52]. Portería protagonista en z = -52 (postes en x = ±3.66, larguero a 2.44 m). La red va hacia z < -52.
 window.GLC = document.getElementById("gl");
 const W2 = (() => {
-  const T = THREE, W = 1080, H = 1920;
+  const T = THREE, W = 1080, H = 1920, FAST = !!window.FAST_PREVIEW;   // FAST: previsualización rápida (media resolución, sin post) con FAST=1 node render.js preview …
   const R = new T.WebGLRenderer({ canvas: GLC, antialias: true, preserveDrawingBuffer: true });
-  R.setPixelRatio(1); R.setSize(W, H, false); R.shadowMap.enabled = true; R.shadowMap.type = T.PCFSoftShadowMap;
+  R.setPixelRatio(FAST ? .5 : 1); R.setSize(W, H, false); if (FAST) { GLC.style.width = W + 'px'; GLC.style.height = H + 'px'; } R.shadowMap.enabled = true; R.shadowMap.type = T.PCFSoftShadowMap;
   R.toneMapping = T.NeutralToneMapping; R.toneMappingExposure = 1.2; R.outputColorSpace = T.SRGBColorSpace;
   const scene = new T.Scene(), camera = new T.PerspectiveCamera(45, W / H, .05, 2500);
   const rnd = (() => { let s = 1889; return () => (s = (s * 16807) % 2147483647) / 2147483647; })();
@@ -24,7 +24,7 @@ const W2 = (() => {
   sky.frustumCulled = false; scene.add(sky);
   scene.fog = new T.FogExp2('#d6dfe6', .0046);
   const hemi = new T.HemisphereLight('#d6e6ff', '#6f7f48', 1.5); scene.add(hemi);
-  const sun = new T.DirectionalLight('#fff0d6', 4.5); sun.castShadow = true; sun.shadow.mapSize.set(4096, 4096);
+  const sun = new T.DirectionalLight('#fff0d6', 4.5); sun.castShadow = true; sun.shadow.mapSize.set(FAST ? 1024 : 4096, FAST ? 1024 : 4096);
   const sc = sun.shadow.camera; sc.left = -40; sc.right = 40; sc.top = 40; sc.bottom = -40; sc.near = 1; sc.far = 340; sun.shadow.bias = -.0004; sun.shadow.normalBias = .05; scene.add(sun, sun.target);
   const cloudM = STD({ color: '#ffffff', roughness: 1, emissive: '#8494aa', emissiveIntensity: .3 });
   for (let i = 0; i < 16; i++) { const g = new T.Group(), a = -Math.PI * .95 + i / 16 * Math.PI * 1.9, r = 360 + (i % 3) * 90; g.position.set(Math.cos(a) * r * .9, 90 + (i % 4) * 20, -Math.abs(Math.sin(a)) * r - 60); scene.add(g);
@@ -149,10 +149,10 @@ const W2 = (() => {
     const proms = []; const texs = files.map(f => { let res; proms.push(new Promise(r => res = r)); const t = loader.load(f, res, undefined, res); t.colorSpace = T.SRGBColorSpace; t.anisotropy = 4; return t; });
     const geo = new T.PlaneGeometry(2.07, 2.83); geo.translate(0, 1.33, 0); // mismo tamaño que los personajes 2D (sprite de 520×710 unidades)
     const per = Array.from({ length: N }, () => []); SEATS.forEach((s, i) => { if (rnd() < (opt.empty ?? .04)) return; per[Math.floor(rnd() * N)].push(s); });
-    for (let v = 0; v < N; v++) [0, 1].forEach(ch => { const mat = new T.MeshBasicMaterial({ map: texs[v + ch * N], alphaTest: .5, side: T.DoubleSide, color: '#e6e2dc' }); const im = new T.InstancedMesh(geo, mat, per[v].length); im.userData = { v, ch, seats: per[v] }; im.frustumCulled = false; scene.add(im); CROWD.meshes.push(im); }); return Promise.all(proms); }
+    for (let v = 0; v < N; v++) [0, 1].forEach(ch => { const mat = new T.MeshBasicMaterial({ map: texs[v + ch * N], alphaTest: .5, side: T.DoubleSide, color: '#f6ecdc', toneMapped: false }); const im = new T.InstancedMesh(geo, mat, per[v].length); im.userData = { v, ch, seats: per[v] }; im.frustumCulled = false; scene.add(im); CROWD.meshes.push(im); }); return Promise.all(proms); }
   let cheerK = 0, crowdT = 0, HIDE = []; function hideSeats(a) { HIDE = a || []; }
   function updCrowd() { if (!CROWD.meshes.length) return; const dm = new T.Object3D(), yaw = Math.atan2(camera.position.x, camera.position.z);
-    CROWD.meshes.forEach(im => { const { ch, seats } = im.userData; seats.forEach((s, i) => { const ph = (s[0] * 1.7 + s[2] * 2.3) % 6.28, me = hsh(s[0], s[2]) < cheerK; const hid = HIDE.some(h => s[0] > h[0] && s[0] < h[1] && s[2] > h[2] && s[2] < h[3]);   // rectángulos [x0, x1, z0, z1] const show = !hid && (ch ? me : !me);
+    CROWD.meshes.forEach(im => { const { ch, seats } = im.userData; seats.forEach((s, i) => { const ph = (s[0] * 1.7 + s[2] * 2.3) % 6.28, me = splitX === null ? hsh(s[0], s[2]) < cheerK : (s[0] < splitX && hsh(s[0], s[2]) < cheerK); const hid = HIDE.some(h => s[0] > h[0] && s[0] < h[1] && s[2] > h[2] && s[2] < h[3]); /* HIDE: rectángulos [x0, x1, z0, z1] */ const show = !hid && (ch ? me : !me);
       const bob = ch ? Math.abs(Math.sin(crowdT * 9 + ph)) * .12 : Math.sin(crowdT * 2.2 + ph) * .02; const yawI = Math.atan2(camera.position.x - s[0], camera.position.z - s[2]);
       dm.position.set(s[0], s[1] - .05 + bob, s[2]); dm.rotation.set(0, yawI, 0); const sc = show ? .92 + hsh(s[2], s[0]) * .16 : 0; dm.scale.set(sc, sc, sc); dm.updateMatrix(); im.setMatrixAt(i, dm.matrix); }); im.instanceMatrix.needsUpdate = true; }); }
   const hsh = (a, b) => { const x = Math.sin(a * 127.1 + b * 311.7) * 43758.5453; return x - Math.floor(x); };
@@ -234,11 +234,11 @@ const W2 = (() => {
   function setCam(pos, look, fov = 45, focus = null, ap = .003) { camera.fov = fov; camera.updateProjectionMatrix(); camera.position.copy(pos); camera.lookAt(look); camera.updateMatrixWorld(); sky.position.copy(camera.position);
     sun.position.copy(look).addScaledVector(SUN, 120); sun.target.position.copy(look); sun.target.updateMatrixWorld(); dof.uniforms.focus.value = focus ?? pos.distanceTo(look); dof.uniforms.aperture.value = ap; updCrowd(); }
   function proj(p) { const v = p.clone(), cs = v.clone().applyMatrix4(camera.matrixWorldInverse), d = -cs.z; v.project(camera); const ppm = (H / 2) / (d * Math.tan(camera.fov * Math.PI / 360)); return { x: (v.x + 1) / 2 * W, y: (1 - v.y) / 2 * H, d, ppm, ok: d > .1 }; }
-  function render() { updCrowd(); comp.render(); }
+  function render() { updCrowd(); if (FAST) R.render(scene, camera); else comp.render(); }
   const CLOUDS = []; scene.children.forEach(o => { if (o.isGroup && o.children.length === 7 && o.position.y > 80) CLOUDS.push([o, o.position.clone()]); });
   function setTime(t) { gradeMat.uniforms.time.value = t % 10; crowdT = t; setTimeRoom(t); CLOUDS.forEach(([o, p0]) => o.position.x = p0.x + t * 1.1);
     SMOKE.forEach(([m, x, h, z, ph, r]) => { const k = (t * .1 + ph) % 1, big = r > 1; m.position.set(x + k * (big ? 14 : 4) + Math.sin(k * 6 + ph * 9) * r, h + k * (big ? 22 : 5), z - k * 3); const sz = (big ? 9 : 2.4) * (.5 + k * 1.8); m.scale.set(sz, sz, 1); m.material.opacity = .75 * Math.sin(Math.min(1, k * 1.15) * Math.PI) ** .7; }); }
-  function setCheer(k) { cheerK = k; }
+  let splitX = null; function setCheer(k, sx = null) { cheerK = k; splitX = sx; }   // sx: solo celebran los asientos con x < sx
   let mood = 0; const SUN_DAY = SUN.clone(), SUN_EVE = new T.Vector3(.72, .26, .64).normalize();
   function setMood(m) { mood = m; const room = m === 2, e = room ? 0 : m; SUN.copy(SUN_DAY).lerp(SUN_EVE, e).normalize(); sky.material.uniforms.morn.value = e; sky.material.uniforms.night.value = room ? 1 : 0; gradeMat.uniforms.morn.value = room ? .5 : e;
     sun.color.set(e > .5 ? '#ffb878' : '#fff0d6'); sun.intensity = room ? 0 : 4.5 - e * .5; hemi.intensity = room ? .55 : 1.5; hemi.color.set(room ? '#6a78a8' : e > .5 ? '#ffc8b0' : '#d6e6ff'); hemi.groundColor.set(room ? '#3a2a20' : e > .5 ? '#6a5a44' : '#6f7f48');
