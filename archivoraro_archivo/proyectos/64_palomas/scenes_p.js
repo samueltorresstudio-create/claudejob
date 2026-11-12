@@ -98,8 +98,8 @@ function spray(t, n = 18) { let s = ''; for (let i = 0; i < n; i++) { const k = 
 // 1 · GANCHO: el misil cruza el mar a toda velocidad; la cámara va pegada al morro y se ven las tres palomas pilotando con gafas
 S.hook = (t, D, B) => { const E = EVS.hook(B); W.setTime(t + 1);
   const yaw = Math.PI / 2 + .35 + Math.sin(t * .8) * .05, F = flyMissile(t, yaw, Math.sin(t * 1.3) * .08), k = k01(t, 0, D);
-  const nose = F.pos.clone().addScaledVector(F.dir, 1.6).add(V3(0, .1, 0)), cam = nose.clone().addScaledVector(F.dir, .4 - k * .4).addScaledVector(F.side, 2.5 + k * 2.6).add(V3(0, .15 + k * .6, 0));
-  const look = nose.clone().addScaledVector(F.dir, .1 + k * .3).add(V3(0, -k * .1, 0)); W.setCam(cam, look, 44 + k * 6, cam.distanceTo(nose), .0005); W.render();
+  const nose = F.pos.clone().addScaledVector(F.dir, 1.6).add(V3(0, .1, 0)), kk = k * k, cam = nose.clone().addScaledVector(F.dir, .4 + kk * 5.2).addScaledVector(F.side, 2.5 + kk * 3.2).add(V3(0, .15 + kk * 1.1, 0));
+  const look = nose.clone().addScaledVector(F.dir, .1 - kk * 1.0).add(V3(0, -kk * .2, 0)); W.setCam(cam, look, 44 + k * 6, cam.distanceTo(nose), .0005); W.render();
   return speedLines(t, 20, .28) + portPigeons(t, cam, { wide: t > E.palomas && t < E.palomas + .9 }) + spray(t); };
 // 2 · el general le da a Fred un saco de dinero (plano medio, los dos de cuerpo entero)
 S.army = (t, D, B) => { const E = EVS.army(B); W.setTime(t + 4); W.charLight = DAY;
@@ -148,7 +148,7 @@ S.peck = (t, D, B) => { const E = EVS.peck(B); W.setTime(t + 20); const sx = -.6
 S.turn = (t, D, B) => { const E = EVS.turn(B); W.setTime(t + 23);
   const k = k01(t, .15, D), yaw0 = Math.PI / 2 + .35, yaw = yaw0 + k * .75, roll = -Math.sin(Math.min(1, k * 1.3) * Math.PI * .5) * .7 * (1 - Math.max(0, k - .7) * 2);
   const F = flyMissile(t, yaw0 + k * .4, roll); W.MISSILE.rotation.y = yaw; W.MISSILE.updateMatrixWorld(true); const dir = V3(Math.cos(yaw), -.06, -Math.sin(yaw)).normalize(), side = V3(-dir.z, 0, dir.x);
-  const cam = F.pos.clone().addScaledVector(dir, -7.5).addScaledVector(side, 3.4).add(V3(0, 2.0, 0)), look = F.pos.clone().addScaledVector(dir, 5).add(V3(0, -.6, 0));
+  const cam = F.pos.clone().addScaledVector(dir, -7.5).addScaledVector(side, 3.4).add(V3(0, 2.0, 0)), look = F.pos.clone().addScaledVector(dir, 1.5).add(V3(0, -.3, 0));
   W.setCam(cam, look, 50, cam.distanceTo(F.pos), .0004); W.render();
   let s = speedLines(t, 22, .35); const mp = W.proj(F.pos.clone().add(V3(0, 1.2, 0)));
   if (t > E.gira - .1) { const a = clamp((t - E.gira + .1) / .3); s += `<g transform="translate(${(mp.x - 200).toFixed(0)},${(mp.y - 160).toFixed(0)}) scale(${(.6 + .4 * eBack(a)).toFixed(3)}) rotate(-14)" opacity="${a.toFixed(2)}"><path d="M120,-60 Q-40,-90 -100,10" stroke="${K}" stroke-width="34" fill="none" stroke-linecap="round"/><path d="M120,-60 Q-40,-90 -100,10" stroke="${YEL}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="M-140,-20 L-96,48 L-50,-2Z" fill="${YEL}" stroke="${K}" stroke-width="8" stroke-linejoin="round"/></g>`; }
