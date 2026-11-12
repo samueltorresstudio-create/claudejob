@@ -5,22 +5,23 @@ Suetonio (Vespasiano 23): Tito se quejó; su padre le acercó a la nariz el dine
 La frase «pecunia non olet» no está en ninguna fuente antigua: no decir que la dijo así. NO comprobado (no usar): vasijas en las esquinas para los transeúntes.
 Licencia: el lavandero «tú» es dramatización; Coliseo en obras al fondo (empezó con Vespasiano, h. 70-72).
 
-[sarcastic] etc. = etiquetas ligeras (2) para ElevenLabs.
+Datos añadidos (comprobados): las letrinas públicas romanas eran bancos corridos donde la gente se sentaba junta; el pis de las letrinas públicas se recogía y se vendía a lavanderos y curtidores.
 
-En Roma lavaban la ropa con pis… y el emperador cobraba un impuesto por él.
-Imagina que eres lavandero en Roma.
-Tu trabajo es meterte hasta las rodillas en una tina de pis… y pisar togas como si fueran uvas.
-[sarcastic] El pis no es tuyo, tranquilo.
-Lo traen en tinajas de las letrinas públicas, y tú lo compras.
-Y lo dejas unos días al sol, porque el fresco no sirve.
+--- VERSIÓN 2 (12-11-2026, pedido del usuario: empezar con «eres un romano y estás haciendo pis en tu ropa») ---
+Eres un romano y estás haciendo pis… en tu propia ropa.
+Bueno, no directamente. Lo haces en las letrinas públicas, sentado codo con codo con tus vecinos.
+Lo que no sabes es que todo eso se recoge en tinajas… y se lo compra el lavandero.
+Mañana le llevas tu toga, y la mete en una tina llena de pis.
+Luego se sube encima y la pisa durante horas, como si fueran uvas.
+[sarcastic] Y tú encima le pagas.
 ¿Y por qué alguien lava con pis?
 Verás, piensa en el limpiador de la cocina, el que pica en la nariz.
-Eso es amoníaco. Y el pis, cuando se queda viejo, se convierte en amoníaco.
-El amoníaco se come la grasa, y las togas blancas salen todavía más blancas.
-Entonces llega un emperador nuevo, Vespasiano, con las arcas vacías.
-Mira las tinajas llenas… y le pone un impuesto al pis.
-Toda Roma se ríe. Hasta su hijo Tito le dice que es una vergüenza.
-Vespasiano coge las monedas del primer pago y se las pone a Tito en la nariz.
+Eso es amoníaco. Y el pis, cuando se queda unos días al sol, se convierte en amoníaco.
+El amoníaco se come la grasa, y tu toga sale más blanca que nunca.
+El emperador, Vespasiano, necesita dinero… y ve todas esas tinajas llenas.
+Así que le pone un impuesto al pis.
+Toda Roma se ríe de él. Hasta su hijo Tito le dice que es una vergüenza.
+Vespasiano coge las monedas del primer pago y se las pone a Tito debajo de la nariz.
 «¿Huelen?»
 «No.»
 [deadpan] [slowly] «Pues vienen del pis.»
