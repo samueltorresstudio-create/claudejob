@@ -86,18 +86,20 @@ function onPlane(C, U, V, w, h, svg) { const a = W.proj(C), b = W.proj(C.clone()
 const NOSEP = () => { const c = new THREE.Vector3(); W.NOSE_PORTS.forEach(p => c.add(p.getWorldPosition(new THREE.Vector3()))); return c.multiplyScalar(1 / 3); };
 const NOSEN = () => { const p = W.NOSE_PORTS[1], a = p.getWorldPosition(new THREE.Vector3()); return p.localToWorld(new THREE.Vector3(0, 0, 1)).sub(a).normalize(); };
 const MP = () => W.MISSILE_PORTS;
+function window_(port, o, cam, rad) { const c = port.getWorldPosition(new THREE.Vector3()), p = W.proj(c); if (!p.ok) return ''; const r = rad * p.ppm, id = 'wn' + Math.round(Math.random() * 1e6), sc = r / 72;
+  return `<defs><clipPath id="${id}"><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}"/></clipPath></defs><g clip-path="url(#${id})"><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}" fill="#33505e"/><circle cx="${(p.x - r * .3).toFixed(1)}" cy="${(p.y - r * .4).toFixed(1)}" r="${(r * .9).toFixed(1)}" fill="#4a7286" opacity=".6"/><g transform="translate(${(p.x - 110 * sc).toFixed(1)},${(p.y + 262 * sc).toFixed(1)}) scale(${sc.toFixed(4)})">${pigeon(o)}</g></g><path d="M${(p.x - r * .62).toFixed(1)},${(p.y - r * .42).toFixed(1)} A${(r * .78).toFixed(1)},${(r * .78).toFixed(1)} 0 0 1 ${(p.x + r * .2).toFixed(1)},${(p.y - r * .76).toFixed(1)}" stroke="#fff" stroke-width="${(r * .1).toFixed(1)}" fill="none" opacity=".5" stroke-linecap="round"/>`; }
 function handAt(F, o, side = 1) { const pf = W.proj(F), ph = W.proj(V3(F.x, F.y + ADULT, F.z)), s = Math.hypot(ph.x - pf.x, ph.y - pf.y) / 462, [sh, el] = side > 0 ? o.armR : o.armL, r = a => a * Math.PI / 180;
   const ex = side * 44 + Math.sin(r(side * sh)) * 90, ey = -360 + (o.bob || 0) + Math.cos(r(side * sh)) * 90, hx = ex + Math.sin(r(side * (sh + el))) * 86, hy = ey + Math.cos(r(side * (sh + el))) * 86; return { x: pf.x + hx * s, y: pf.y + hy * s, s }; }
 // ---------- el misil en vuelo sobre el mar (gancho y giro) ----------
 function flyMissile(t, yaw, roll = 0) { const M = W.MISSILE, dir = V3(Math.cos(yaw), -.06, -Math.sin(yaw)).normalize(), pos = V3(W.SEAX + 52, 16, 70).addScaledVector(dir, t * 34);
   M.position.copy(pos); M.rotation.order = 'YZX'; M.rotation.set(roll, yaw, -.06); M.updateMatrixWorld(true); return { pos, dir, side: V3(-dir.z, 0, dir.x) }; }
-function portPigeons(t, cam, opt = {}) { let s = ''; MP().forEach((p, i) => { s += peek(p, { eye: blink(t, i * .9) ? 'closed' : (opt.wide && i === 1 ? 'wide' : (opt.angry ? 'angry' : 'calm')), goggles: true, look: [10, 0], bob: Math.sin(t * 7 + i * 2) * .15 }, 1, cam, .13); }); return s; }
+function portPigeons(t, cam, opt = {}) { let s = ''; MP().forEach((p, i) => { s += window_(p, { eye: blink(t, i * .9) ? 'closed' : (opt.wide && i === 1 ? 'wide' : (opt.angry ? 'angry' : 'calm')), goggles: true, look: [10, 0], bob: Math.sin(t * 7 + i * 2) * .15 }, cam, .17); }); return s; }
 function spray(t, n = 18) { let s = ''; for (let i = 0; i < n; i++) { const k = ((t * 1.6 + hs(i, 5)) % 1), x = 540 + (hs(i, 2) - .5) * 1300 * (.3 + k), y = 1920 - k * 260 - hs(i, 3) * 120; s += `<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${(4 + 10 * hs(i, 4)) * (1 - k)}" fill="#fff" opacity="${(.6 * (1 - k)).toFixed(2)}"/>`; } return s; }
 // 1 · GANCHO: el misil cruza el mar a toda velocidad; la cámara va pegada al morro y se ven las tres palomas pilotando con gafas
 S.hook = (t, D, B) => { const E = EVS.hook(B); W.setTime(t + 1);
   const yaw = Math.PI / 2 + .35 + Math.sin(t * .8) * .05, F = flyMissile(t, yaw, Math.sin(t * 1.3) * .08), k = k01(t, 0, D);
-  const nose = F.pos.clone().addScaledVector(F.dir, 2.5), cam = nose.clone().addScaledVector(F.dir, .55 - k * .9).addScaledVector(F.side, 2.7 + k * 1.6).add(V3(0, .1 + k * .55, 0));
-  const look = nose.clone().addScaledVector(F.dir, .2 - k * .45).add(V3(0, -k * .1, 0)); W.setCam(cam, look, 44 + k * 6, cam.distanceTo(nose), .0005); W.render();
+  const nose = F.pos.clone().addScaledVector(F.dir, 1.6).add(V3(0, .1, 0)), cam = nose.clone().addScaledVector(F.dir, .4 - k * .4).addScaledVector(F.side, 2.5 + k * 2.6).add(V3(0, .15 + k * .6, 0));
+  const look = nose.clone().addScaledVector(F.dir, .1 + k * .3).add(V3(0, -k * .1, 0)); W.setCam(cam, look, 44 + k * 6, cam.distanceTo(nose), .0005); W.render();
   return speedLines(t, 20, .28) + portPigeons(t, cam, { wide: t > E.palomas && t < E.palomas + .9 }) + spray(t); };
 // 2 · el general le da a Fred un saco de dinero (plano medio, los dos de cuerpo entero)
 S.army = (t, D, B) => { const E = EVS.army(B); W.setTime(t + 4); W.charLight = DAY;
