@@ -24,3 +24,23 @@ Cuando Kenji cuenta las moscas, la cebra tiene cincuenta y seis. La mitad.
 Y las rayas negras eran para demostrar que no era el olor de la pintura.
 A la mañana siguiente, el vecino vuelve a apoyarse en la valla.
 «Oye, Kenji… ¿me dejas la brocha?»
+
+--- PARA ELEVENLABS (con etiquetas v3; Edoardo – Dark Measured Natural, estabilidad Natural) ---
+[curious] Un granjero japonés le está pintando rayas de cebra a una vaca negra.
+En el pueblo ya le llaman Kenji el Rayas.
+El vecino se apoya en la valla, lo mira un rato y suelta: [sarcastic] «¿Y la jirafa para cuándo?»
+Kenji ni se gira. Moja la brocha y sigue.
+A la segunda vaca le pinta rayas negras… sobre una vaca negra. [deadpan] No se ven ni de cerca.
+Y a la tercera ni la toca.
+[mischievously] Ahora imagina que eres una mosca de establo, de las que pican. Es agosto y tienes hambre.
+Ves la vaca normal y aterrizas sin problema, junto a otras ciento veintisiete moscas.
+En la de las rayas negras, igual: ciento once.
+Pero vas a por la cebra, frenas… y te pasas de largo.
+Lo vuelves a intentar y te estampas contra el lomo.
+[amazed] ¿Cómo es posible?
+Verás, piensa en el palo de una barbería. Las rayas parecen subir, pero en realidad solo giran.
+A la mosca le pasa igual: las rayas la engañan, calcula mal y no frena a tiempo.
+Cuando Kenji cuenta las moscas, la cebra tiene cincuenta y seis. [dramatic] La mitad.
+Y las rayas negras eran para demostrar que no era el olor de la pintura.
+A la mañana siguiente, el vecino vuelve a apoyarse en la valla.
+[playful] «Oye, Kenji… ¿me dejas la brocha?»
