@@ -30,3 +30,5 @@ Guárdalos en `<WS>/entregas/titulos_y_descripciones.txt` y dalos también en el
 - Vídeo final: `<WS>/entregas/<NN>_<nombre>_CON_VOZ.mp4` (lo deja `finish.py`). Envíalo con `SendUserFile` (display `attach`), igual que la portada: el usuario los descarga «como siempre».
 - `finish.py` también añade el guion a `<WS>/guiones_elevenlabs.txt`.
 - Numeración: sigue la del usuario (41 = Tsunami 4, 42 = Tsunami 5, 43 = La cámara, 44 = Tsunami 6…). Pregunta el número solo si no hay forma de deducirlo.
+
+**Pegar en YouTube (12-11-2026):** al copiar un bloque de código con el botón de copiar del chat y pegarlo en YouTube Studio, el título sale con fondo negro o «transparente» porque se pega con formato. Entrega SIEMPRE además un `.txt` de texto plano con `SendUserFile` (en el repo: `archivoraro_archivo/textos/publicar_NN_nombre.txt`) y recuerda: pegar sin formato (Ctrl+Mayús+V en ordenador; en el móvil, mantener pulsado → «Pegar como texto sin formato»).

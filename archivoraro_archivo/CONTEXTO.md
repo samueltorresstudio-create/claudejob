@@ -33,7 +33,7 @@ Este documento resume TODO lo hablado y hecho con el usuario en la sesión larga
   - un personaje encima de la canoa en vez de dentro.
 - Primeros 2 s: el personaje o lo más interesante, en cámara y con acción. Gancho fortísimo.
 - Datos reales: **compruébalos en la web** antes de darlos. Si las fuentes no coinciden, di la cifra prudente y cuenta como «leyenda» lo que lo sea.
-- Al entregar: vídeo con `SendUserFile` (attach), título y descripción de YouTube y TikTok en bloques de código, y comentario para fijar con una pregunta. TikTok: descripción corta.
+- Al entregar: vídeo con `SendUserFile` (attach), título y descripción de YouTube y TikTok en bloques de código y TAMBIÉN en un .txt de texto plano (copiar el bloque y pegarlo en YouTube Studio lo pega con fondo negro), y comentario para fijar con una pregunta. TikTok: descripción corta.
 - **Flechas bien hechas**: ancladas al objeto que señalan, apuntando a la dirección real, curvas limpias con contorno; nada fuera de sitio (ver estilo3d.md → «Flechas»).
 - **NUNCA recuadros/etiquetas de texto arriba** («1943», «U.S. ARMY», «FRED SKINNER», «COMITÉ CIENTÍFICO»…): ni uno. Solo el subtítulo palabra a palabra. (12-11-2026)
 - Vídeo de las palomas (64) rechazado: «fondos y misil parecen plastilina, detalles mal puestos, movimientos mal». Causas vistas: objetos lisos sin textura ni detalle (misil = huevo gris), todo bañado en naranja y desenfocado (DOF/bloom), personajes en primerísimo plano tapando el escenario, motas de polvo que parecen manchas, bandera de España en el uniforme de un oficial de EE. UU. La referencia tiene escenarios nítidos con textura pintada a mano, luz de día, colores variados y planos medios con el personaje dentro del escenario.
