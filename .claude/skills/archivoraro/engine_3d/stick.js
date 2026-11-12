@@ -180,6 +180,25 @@ function stick(o) {
     body += `<g transform="translate(${-48 + sx2},${SH + 64})"><path d="M-8,-20 L8,-20 L5,0 L-5,0Z" fill="#c8243a" stroke="${INKC}" stroke-width="3"/><circle cx="0" cy="10" r="13" fill="#e7c24a" stroke="${INKC}" stroke-width="4"/><path d="M0,1 L3,8 L10,8 L4,12 L6,19 L0,15 L-6,19 L-4,12 L-10,8 L-3,8Z" fill="#fff6c8"/></g>`;
     body += `<path d="M${-64 + sx2},${SH - 26} Q${sx2},${SH + 18} ${64 + sx2},${SH - 26} Q${70 + sx2},${SH - 4} ${50 + sx2},${SH + 8} Q${sx2},${SH + 40} ${-50 + sx2},${SH + 8} Q${-70 + sx2},${SH - 4} ${-64 + sx2},${SH - 26}Z" fill="#f6f3ec" stroke="${INKC}" stroke-width="6" stroke-linejoin="round"/>` +
       [[-44, -10], [-22, 6], [0, 12], [22, 6], [44, -10]].map(([x, y]) => `<path d="M${x + sx2},${SH + y} l0,9 M${x - 4 + sx2},${SH + y + 3} l8,0" stroke="${INKC}" stroke-width="4" stroke-linecap="round"/>`).join('');
+  } else if (d.outfit === 'labcoat' || d.outfit === 'suit') { // labcoat: bata blanca abierta con solapas, camisa y corbata en V, bolis, bolsillos, faldón largo · suit: traje (sin bolis ni faldón)
+    const suit = d.outfit === 'suit', open = suit ? 22 : 30, sh2 = d.shirt || (suit ? '#f4f2ec' : '#cfe0f0');
+    let c = `<rect x="-95" y="${SH - 60}" width="190" height="320" fill="${sh2}"/>`;
+    if (d.view !== 'back') c += `<path d="M-9,${SH - 18} L9,${SH - 18} L6,${SH + 96} L0,${SH + 110} L-6,${SH + 96}Z" fill="${d.tie || '#7a2a2a'}" stroke="${INKC}" stroke-width="3"/>` +
+      `<path d="M-4,${SH + 20} L4,${SH + 12} M-5,${SH + 50} L5,${SH + 42}" stroke="#000" stroke-opacity=".25" stroke-width="3"/>`;
+    c += `<path d="M-95,${SH - 40} L${-open},${SH - 40} L${-open * .5},${HIP + 40} L-95,${HIP + 40}Z" fill="url(#${id}g)"/><path d="M95,${SH - 40} L${open},${SH - 40} L${open * .5},${HIP + 40} L95,${HIP + 40}Z" fill="url(#${id}g)"/>`;
+    c += `<path d="M${-open},${SH - 40} L${-open * .5},${HIP + 40} M${open},${SH - 40} L${open * .5},${HIP + 40}" stroke="${INKC}" stroke-width="5"/>`;
+    if (d.view !== 'back') {
+      [-1, 1].forEach(sd => c += `<path d="M${sd * open},${SH - 40} L${sd * (open + 30)},${SH + 4} L${sd * (open * .82)},${SH + 70}" fill="${d.topD}" stroke="${INKC}" stroke-width="4.5" stroke-linejoin="round"/>`);
+      if (!suit) c += `<rect x="-78" y="${SH + 50}" width="36" height="34" rx="3" fill="${d.top}" stroke="${INKC}" stroke-width="3.5"/>` +
+        `<rect x="-72" y="${SH + 30}" width="7" height="28" rx="3" fill="#2f5fbf" stroke="${INKC}" stroke-width="2.5"/><rect x="-60" y="${SH + 34}" width="7" height="24" rx="3" fill="#c23a3a" stroke="${INKC}" stroke-width="2.5"/>`;
+      if (suit) c += `<path d="M-74,${SH + 52} L-46,${SH + 52} L-50,${SH + 40} L-56,${SH + 48} L-62,${SH + 38} L-68,${SH + 48}Z" fill="${d.square || '#f4f2ec'}" stroke="${INKC}" stroke-width="2.5"/><path d="M-78,${SH + 52} L-42,${SH + 52}" stroke="${INKC}" stroke-width="3.5"/>`;
+      [-1, 1].forEach(sd => c += `<path d="M${sd * 44},${HIP - 46} L${sd * 82},${HIP - 46} L${sd * 82},${HIP - 4}" fill="none" stroke="${INKC}" stroke-width="3.5" stroke-linecap="round"/>`);
+      [0, 1].forEach(k => c += `<circle cx="${-open * .9 + 10}" cy="${SH + 110 + k * 46}" r="5.5" fill="#f4f2ec" stroke="${INKC}" stroke-width="2.5"/>`);
+    }
+    c += `<path d="M58,${SH + 4} Q66,${SH + 70} 46,${HIP - 64}" stroke="#000" stroke-opacity=".1" stroke-width="16" fill="none" stroke-linecap="round"/><rect x="-95" y="${SH - 60}" width="190" height="320" fill="url(#${id}b)"/>`;
+    body += IN(c);
+    if (!suit) body += [-1, 1].map(sd => `<path d="M${sd * 93},${HIP - 40} Q${sd * 98},${HIP + 40} ${sd * 90},${HIP + 104} L${sd * (open * .5 + 4)},${HIP + 104} L${sd * (open * .5)},${HIP + 10} Q${sd * 60},${HIP + 4} ${sd * 93},${HIP - 40}Z" fill="${d.top}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/><path d="M${sd * 70},${HIP + 30} Q${sd * 74},${HIP + 70} ${sd * 70},${HIP + 96}" stroke="#000" stroke-opacity=".1" stroke-width="10" fill="none"/>`).join('');
+    if (d.view !== 'back') body += [-1, 1].map(sd => `<path d="M${sd * 8 + sx2},${SH - 30} L${sd * 34 + sx2},${SH - 36} L${sd * 22 + sx2},${SH - 4}Z" fill="${sh2}" stroke="${INKC}" stroke-width="4.5" stroke-linejoin="round"/>`).join('');
   } else if (d.outfit === 'chef') {
     let c = `<rect x="-95" y="${SH - 60}" width="190" height="320" fill="url(#${id}b)"/>`;
     c += `<path d="M10,${SH - 26} Q34,${SH + 60} 20,${HIP + 10}" stroke="${INKC}" stroke-width="4" fill="none" opacity=".55"/>`;                       // double-breasted overlap

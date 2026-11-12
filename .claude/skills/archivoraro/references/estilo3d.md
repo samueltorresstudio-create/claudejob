@@ -183,3 +183,12 @@ Música: cumbia ligera, no suspense (este formato es «curiosidad divertida»).
 - **Quita la vegetación flotante, árboles o casas que queden delante de la cámara**: un jacinto gigante en primer plano estropea el plano.
 - Cámara en un primer plano sobre el agua: siempre por encima de la superficie (y ≥ 0,8), mirando hacia abajo.
 - Si un elemento 3D queda raro (la avioneta del portón), **quítalo antes que dejarlo mal**.
+
+## Palomas, laboratorio y misil (vídeo 64, nov. 2026)
+
+- `pigeon.js`: `pigeon(o)` paloma de perfil (gris, cuello irisado, ojo naranja con párpado pesado). Opciones `peck` (picotear), `bob` (cabeceo), `walk`, `flap` (ala), `eye` ('calm'|'wide'|'closed'|'angry'), `goggles` (gafas de piloto). `pigeonAt(o, pies, cimaCabeza, W2, {shadow, blur})`; `o.flip` la gira. Altura real ≈ 0,3 m.
+- `stick.js`: `outfit:'labcoat'` (bata blanca con solapas, camisa y corbata, bolis en el bolsillo, faldón largo) y `outfit:'suit'` (traje con pañuelo en el bolsillo).
+- `world_palomas.js`: varias zonas en una escena: laboratorio de 1943 (palomares `W2.PIGEONHOLES`, caja de entrenamiento `TRAIN`, morro del misil `NOSE_LAB`, pizarra, sacos de ALPISTE, cajas U.S. ARMY), interior del morro (`NX`, 3 puestos con pantalla; `W2.setScreen(x, hit)` mueve el barco), sala del comité (`MX`), escenario del premio (`SX`, `TROPHY`) y mar con buque de guerra y misil (`SEAX`, `SHIP`, `MISSILE`).
+- **`W2.visible(p)`** (raycast): no dibujes un personaje 2D si un objeto 3D lo tapa (las palomas de los palomares salían pintadas encima del morro). Comprueba varios puntos (patas, cabeza, lados).
+- **Personajes detrás de una mesa:** recórtalos con un `clipPath` a la altura del borde de la mesa (`W2.proj(borde).y`), o las piernas salen pintadas encima del tablero.
+- La cámara siempre **dentro** de la sala (una cámara fuera de la pared enseñaba un plano marrón gigante).
