@@ -276,6 +276,11 @@ El usuario dijo que en las palomas «se mueven mal». En la referencia:
 - **Plano final de dos personajes**: los dos enteros y separados; calcula el encuadre proyectando posiciones (`W2.proj`) en vez de a ojo. Las cabezas del estilo son muy anchas (~0,9 m). Quien pide algo extiende el brazo HACIA el otro; quien tiene el objeto no se lo ofrece (lo lleva colgando en la mano).
 - **Voz distinta para un personaje** (solo voces propias del usuario): `python3 -I tools/char_voice.py <proy> "a-b,c-d" -1.5 3.2` cambia solo esos tramos de `narration.wav` (guarda `narration_orig.wav`). Preset elegido por el usuario: −1,5 semitonos + saturación suave («grave y rasposo»). Pregunta siempre con 3 pruebas cortas antes de aplicarlo.
 
+### Fondos de los planos de diálogo: nunca sosos
+- Detrás de quien habla tiene que haber algo (pedido del usuario): casita, seto con faroles de piedra, tendedero con ropa de colores, macetas, cobertizo, árboles. Con el desenfoque de fondo queda rico sin distraer.
+- Antes de poner objetos, mira TODAS las cámaras del vídeo (`grep "cp = V3" scenes_p.js`): en la 62 el tendedero tapaba el plano del apodo porque esa cámara estaba justo ahí. Deja libre el cono de visión de las otras cámaras, y pon lo grande detrás de ellas.
+- Al cambiar el mundo, re-renderiza todas las escenas donde se vea lo nuevo (compruébalo con un preview de cada escena), no solo la que pidió el usuario.
+
 ### Brazos apoyados en una valla (personaje detrás de la valla)
 - `leanArms(F, { k, lean, bob, from, ask })` devuelve `{ back, front }`: `back` (brazo desde el hombro) va ANTES de `who()` para que el hombro quede escondido detrás del cuerpo; `front` (antebrazo y mano) DESPUÉS de `rails2d`, encima de la barra. Todo en coordenadas locales con la misma inclinación (`lean`) que el personaje: si no, un brazo flota fuera del cuerpo y el otro cruza la camisa (fallo que vio el usuario).
 - Codos por fuera del cuerpo (±116), manos juntas sobre la barra (±28). Para apoyarse: dos fases (suben las manos doblando el codo, luego se abren los codos), ~0,45 s, nunca de golpe.

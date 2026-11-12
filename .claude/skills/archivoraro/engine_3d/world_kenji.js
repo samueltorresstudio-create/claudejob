@@ -129,6 +129,20 @@ const W2 = (() => {
     for (let k = 0; k < 6; k++) add(new T.IcosahedronGeometry(1 + rnd() * .5, 2), STD({ color: ['#4f8f3a', '#5fa346', '#3f7f33'][k % 3], roughness: .95 }), (rnd() - .5) * 2, 3 + rnd() * 1.2, (rnd() - .5) * 2, { parent: g });
     if (fruit) for (let k = 0; k < 14; k++) { const a = rnd() * 6.28, r = 1.3 + rnd() * .5; add(new T.SphereGeometry(.13, 10, 8), STD({ color: '#f2862a', roughness: .5 }), Math.cos(a) * r, 2.8 + rnd() * 1.6, Math.sin(a) * r, { parent: g }); } };
   tree(-17, -12, 1.1, true); tree(-30, -15, 1.3, false); tree(22, -14, 1, true); tree(31, 2, 1.2, false); tree(-20, 4, .9, false);
+  // ---------- al otro lado de la carretera (fondo de los planos del vecino en la valla): casa, seto con entrada y faroles, tendedero, macetas, cobertizo ----------
+  // OJO: la cámara del apodo está en (8.4, 2.1, 19.6) mirando a -z → deja libre x ∈ [6, 10] para z < 20 (si no, tapa el plano). La casa va detrás de esa cámara.
+  jHouse(8, 27.5, 9, 6, Math.PI, .9);
+  const stoneM = STD({ color: '#a8a296', roughness: .95 }), hedgeM = STD({ color: '#3f7f33', roughness: .95, flatShading: true });
+  [[-1.5, 5.4], [10.6, 14.5]].forEach(([x0, x1]) => { const w = x1 - x0, cx = (x0 + x1) / 2; add(RB(w, .7, .5, .06), stoneM, cx, .35, 14.6); for (let x = x0 + .5; x < x1; x += 1.1) add(new T.IcosahedronGeometry(.55, 1), hedgeM, x, .95, 14.6, { s: [1.1, .7, .8] }); });
+  const toro = (x, z) => { const m = STD({ color: '#9a958a', roughness: .95 }); add(RB(.5, .2, .5, .04), m, x, .1, z); add(new T.CylinderGeometry(.09, .11, .8, 8), m, x, .6, z); add(RB(.42, .1, .42, .03), m, x, 1.03, z);
+    add(RB(.34, .32, .34, .03), STD({ color: '#d9d2c0', emissive: '#ffcf7a', emissiveIntensity: .25 }), x, 1.24, z); add(new T.ConeGeometry(.38, .28, 4), m, x, 1.54, z, { ry: Math.PI / 4 }); add(new T.SphereGeometry(.07, 8, 6), m, x, 1.72, z); };
+  toro(5.5, 15.3); toro(10.5, 15.3);                                                                   // faroles de piedra a los lados de la entrada
+  { const lx = 2.4, lz = 17.6; [-1.3, 1.3].forEach(d => add(new T.CylinderGeometry(.04, .04, 2, 6), STD({ color: '#8a8478' }), lx + d, 1, lz)); add(new T.CylinderGeometry(.03, .03, 2.7, 6), STD({ color: '#c9ced6', metalness: .4 }), lx, 1.95, lz, { rz: Math.PI / 2 });
+    [['#c8302e', -.95, .55], ['#f6f3ec', -.3, .7], ['#2f6fbf', .35, .5], ['#f2c53a', .95, .45]].forEach(([c, dx, h]) => add(RB(.5, h, .03, .01), STD({ color: c, roughness: .9 }), lx + dx, 1.92 - h / 2, lz, { ry: .1 })); }   // tendedero con ropa
+  [[4.7, 15.2, '#c8302e'], [11.3, 15.2, '#f2c53a'], [.3, 15.2, '#e86aa0']].forEach(([x, z, c]) => { add(new T.CylinderGeometry(.2, .15, .32, 10), STD({ color: '#b0643a' }), x, .16, z); add(new T.IcosahedronGeometry(.24, 1), STD({ color: '#4f8f3a', flatShading: true }), x, .45, z); for (let k = 0; k < 4; k++) add(new T.SphereGeometry(.06, 6, 5), STD({ color: c }), x + Math.cos(k * 1.6) * .16, .58, z + Math.sin(k * 1.6) * .12); });
+  { const sh = new T.Group(); sh.position.set(12.6, 0, 18.6); sh.rotation.y = -.25; scene.add(sh); add(RB(3, 2.1, 2.2, .04), STD({ color: '#7a5a3a', roughness: .9 }), 0, 1.05, 0, { parent: sh }); add(RB(3.5, .08, 2.8, .02), STD({ color: '#8d96a0', metalness: .4, roughness: .45 }), 0, 2.25, 0, { parent: sh, rx: -.18 });
+    add(RB(1, 1.6, .05, .02), STD({ color: '#5a4030' }), .5, .8, -1.12, { parent: sh }); }                // cobertizo con tejado de chapa
+  tree(3, 24.5, 1, true); tree(14.5, 24, .9, false); tree(-3, 21, 1.1, false);
   const sunflower = (x, z, h) => { add(new T.CylinderGeometry(.03, .04, h, 6), STD({ color: '#4a8a2a' }), x, h / 2, z, { noInk: true }); const hd = new T.Group(); hd.position.set(x, h, z + .05); hd.rotation.x = -.15; scene.add(hd);
     for (let i = 0; i < 12; i++) { const q = new T.Group(); q.rotation.z = i / 12 * 6.28; hd.add(q); add(RB(.1, .3, .02, .01), STD({ color: '#ffc81a' }), 0, .27, 0, { parent: q, noInk: true }); } add(new T.CylinderGeometry(.17, .17, .06, 16), STD({ color: '#6a3a1a' }), 0, 0, .02, { parent: hd, rx: Math.PI / 2 }); };
   for (let i = 0; i < 9; i++) sunflower(-28.5 + i * 1.1, -16.2 + (i % 2) * .5, 1.8 + (i % 3) * .3);
