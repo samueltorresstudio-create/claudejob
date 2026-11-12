@@ -204,3 +204,13 @@ Lo que separa un escenario normalito de uno como la referencia (aplicado en `wor
 - **El latón sin mapa de entorno sale negro:** metalness bajo (.3) y un poco de emisivo.
 - **Un interior cerrado (morro, cabina) necesita tapas:** si queda un extremo abierto se ve el cielo.
 - **Cámara:** angular (fov 55–60), baja y cerca del personaje, con un objeto grande en el plano.
+
+### Velocidad con el mundo «de calidad» (medido en el vídeo 64)
+
+- **Coste por fotograma:** unos 0,7 s la escena sola, 1,8 s el AO a resolución completa, 1 s el desenfoque y 0,7 s el brillo. La captura con el SVG de los personajes suma de 1,5 a 2,5 s.
+- **AO a media resolución** (`ao.setSize(W/2, H/2)`): casi igual y 1,6 s menos.
+- **Nada de filtros CSS en el `<canvas>`:** encarecen cada captura. La saturación va en el shader de gradación.
+- **Luces puntuales por zona:** `userData.zone` y encender solo las de la zona de la cámara.
+- **Resultado:** unos 4 s por fotograma con 4 páginas, unas 2 h para 60 s.
+- **No lances `audio.py` mientras se renderiza:** con la CPU ocupada pasa de 50 s a más de 15 min.
+- **Transición `swish`** (barrido sin mover la cámara) para pasar entre zonas distintas del mundo, así la cámara no atraviesa paredes.

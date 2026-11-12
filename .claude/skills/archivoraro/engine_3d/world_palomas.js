@@ -3,7 +3,7 @@
 //  LAB  (0,0,0)    laboratorio años 40 · NOSE (40,0,0) interior del morro · MEET (80,0,0) sala del comité · STAGE (120,0,0) premio 2024
 //  SEA (-1200,0,0) mar con buque de guerra (camuflaje dazzle) y el misil «Pelican».
 window.GLC = document.getElementById("gl");
-GLC.style.filter = 'saturate(1.18) contrast(1.06)';
+// (la saturación va en el shader de gradación: un filtro CSS en el canvas encarece mucho cada captura)
 const W2 = (() => {
   const T = THREE, W = 1080, H = 1920;
   const R = new T.WebGLRenderer({ canvas: GLC, antialias: true, preserveDrawingBuffer: true });
@@ -129,7 +129,8 @@ const W2 = (() => {
   add(new T.CylinderGeometry(.55, .55, .9, 40), paintM, -.45, 0, 0, { rz: Math.PI / 2, parent: noseB }); add(OGIVE(.55, 1.1), paintM, 0, 0, 0, { rz: -Math.PI / 2, parent: noseB });
   add(new T.TorusGeometry(.56, .035, 8, 40), olive, -.88, 0, 0, { ry: Math.PI / 2, parent: noseB }); add(new T.TorusGeometry(.56, .025, 8, 40), redM, -.02, 0, 0, { ry: Math.PI / 2, parent: noseB });
   NOSE_LAB.updateMatrixWorld(true);
-  [-.5, 0, .5].forEach(a => { const p = new T.Group(); p.position.set(.36, Math.sin(a) * .5, -Math.cos(a) * .5); noseB.add(p); p.lookAt(p.getWorldPosition(new T.Vector3()).add(new T.Vector3(.5, Math.sin(a), -Math.cos(a)).applyQuaternion(noseB.getWorldQuaternion(new T.Quaternion()))));
+  const NOSE_PORTS = [];
+  [-.5, 0, .5].forEach(a => { const p = new T.Group(); p.position.set(.36, Math.sin(a) * .5, -Math.cos(a) * .5); noseB.add(p); NOSE_PORTS.push(p); p.lookAt(p.getWorldPosition(new T.Vector3()).add(new T.Vector3(.5, Math.sin(a), -Math.cos(a)).applyQuaternion(noseB.getWorldQuaternion(new T.Quaternion()))));
     add(new T.CylinderGeometry(.11, .11, .04, 24), STD({ color: '#24323a', roughness: .1, metalness: .3 }), 0, 0, 0, { rx: Math.PI / 2, parent: p }); add(new T.TorusGeometry(.11, .025, 8, 24), brassM, 0, 0, .02, { parent: p }); });
   [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(([a, b]) => box(.07, 1.0, .07, blackM, -.45 + a * .32, 0, b * .32, { parent: NOSE_LAB })); box(.82, .07, .82, blackM, -.45, .95, 0, { parent: NOSE_LAB });
   plane(.6, .18, paper(256, 80, (g) => { g.fillStyle = '#1b1720'; g.fillRect(0, 0, 256, 80); txt(g, 'PELICAN · 1943', 128, 42, 30, '#f2c94c'); }), -.45, .82, .42, { parent: NOSE_LAB });
@@ -191,6 +192,25 @@ const W2 = (() => {
   for (let i = 0; i < 14; i++) plane(.07, .14, featherT, rr(-6, -3.5), .008, rr(-3, 4), { rx: -Math.PI / 2, rz: rr(0, 6), alpha: true });
   for (let i = 0; i < 6; i++) plane(.07, .14, featherT, rr(-1, 3), .008, rr(-1, 2.5), { rx: -Math.PI / 2, rz: rr(0, 6), alpha: true });
   cyl(.03, .03, 1.2, woodD, 3.9, 0, 1.8); add(new T.CylinderGeometry(.025, .025, .6, 8), woodD, 3.9, 1.2, 1.8, { rz: Math.PI / 2 }); cyl(.25, .28, .05, woodD, 3.9, 0, 1.8);
+  // ---------- más belleza: cortinas, jaulas de alambre, taburetes, globo terráqueo, ficus, apliques, libros en el suelo ----------
+  const curtLabT = tex(512, 512, (g, w, h) => { for (let x = 0; x < w; x += 48) { const gr = g.createLinearGradient(x, 0, x + 48, 0); gr.addColorStop(0, '#8a2a1a'); gr.addColorStop(.5, '#d8643a'); gr.addColorStop(1, '#8a2a1a'); g.fillStyle = gr; g.fillRect(x, 0, 48, h); } for (let y = 0; y < h; y += 40) { g.fillStyle = 'rgba(255,220,160,.12)'; g.fillRect(0, y, w, 6); } grain(g, w, h, .06); }, [2, 1]);
+  const curtain = (x, z, w, sd) => { const geo = new T.PlaneGeometry(w, 2.9, 24, 8); const p = geo.attributes.position; for (let i = 0; i < p.count; i++) { const u = p.getX(i) / w + .5, v = p.getY(i) / 2.9 + .5; p.setZ(i, Math.sin(u * Math.PI * 7) * .07 + (1 - v) * .05 * sd); p.setX(i, p.getX(i) * (.55 + .45 * v)); } geo.computeVertexNormals(); add(geo, STD({ map: curtLabT, side: T.DoubleSide, roughness: .9 }), x, 2.55, z, { noInk: true }); };
+  WINS.forEach(wx => { curtain(wx - 1.75, -LZ + .32, .7, 1); curtain(wx + 1.75, -LZ + .32, .7, -1); box(3.9, .06, .06, brassM, wx, 4.0, -LZ + .35, { r: .02 }); });
+  const wireT = tex(256, 256, (g, w, h) => { g.clearRect(0, 0, w, h); g.strokeStyle = '#d8b04a'; g.lineWidth = 5; for (let x = 0; x <= w; x += 22) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); } g.lineWidth = 7; [0, h * .5, h - 4].forEach(y => { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }); });
+  const wireM = new T.MeshStandardMaterial({ map: wireT, transparent: true, alphaTest: .3, side: T.DoubleSide, metalness: .3, roughness: .4 });
+  const cage = (x, y, z, s = 1) => { const g = new T.Group(); g.position.set(x, y, z); g.scale.setScalar(s); scene.add(g); cyl(.24, .24, .04, woodD, 0, 0, 0, { parent: g }); add(new T.CylinderGeometry(.22, .22, .42, 24, 1, true), wireM, 0, .25, 0, { parent: g, noInk: true }); add(new T.SphereGeometry(.22, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), wireM, 0, .46, 0, { parent: g, noInk: true }); add(new T.TorusGeometry(.05, .012, 6, 16), brassM, 0, .72, 0, { parent: g }); cyl(.006, .006, .3, woodD, 0, .14, 0, { parent: g, rz: Math.PI / 2 }); return g; };
+  const CAGES = [cage(3.4, .9, -.05, .9), cage(6.55, 2.55, 2.1, .8), cage(6.55, 2.55, 1.2, .8)];
+  box(.4, .04, 1.5, woodD, 6.75, 2.5, 1.65); [1.1, 2.2].forEach(z => box(.04, .2, .04, woodD, 6.9, 2.32, z));
+  const stool = (x, z) => { const g = new T.Group(); g.position.set(x, 0, z); scene.add(g); cyl(.2, .2, .06, woodM, 0, .66, 0, { parent: g }); [0, 1, 2].forEach(k => { const a = k * 2.094; add(new T.CylinderGeometry(.02, .025, .68, 8), woodD, Math.cos(a) * .13, .33, Math.sin(a) * .13, { parent: g, rx: Math.sin(a) * .12, rz: -Math.cos(a) * .12 }); }); add(new T.TorusGeometry(.13, .012, 6, 20), woodD, 0, .25, 0, { parent: g, rx: Math.PI / 2 }); };
+  stool(.0, 1.7); stool(2.3, 1.75); stool(-3.0, -3.9);
+  const globe = new T.Group(); globe.position.set(-3.8, .8, -4.75); scene.add(globe); cyl(.08, .1, .04, brassM, 0, 0, 0, { parent: globe }); cyl(.012, .012, .12, brassM, 0, .04, 0, { parent: globe });
+  const globeT = tex(512, 256, (g, w, h) => { g.fillStyle = '#5aa0c8'; g.fillRect(0, 0, w, h); g.fillStyle = '#e8d29a'; [[90, 80, 60, 50], [150, 170, 30, 50], [280, 70, 80, 40], [300, 150, 40, 50], [420, 170, 40, 25], [400, 80, 30, 30]].forEach(([x, y, a, b]) => { g.beginPath(); g.ellipse(x, y, a, b, .3, 0, 7); g.fill(); }); g.strokeStyle = 'rgba(255,255,255,.35)'; for (let x = 0; x < w; x += 42) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); } });
+  add(new T.SphereGeometry(.17, 32, 20), STD({ map: globeT, roughness: .4 }), 0, .32, 0, { parent: globe, rz: .4 }); add(new T.TorusGeometry(.19, .01, 6, 32, Math.PI), brassM, 0, .32, 0, { parent: globe, rz: .4 + Math.PI / 2 });
+  const ficus = (x, z, s) => { const g = new T.Group(); g.position.set(x, 0, z); g.scale.setScalar(s); scene.add(g); cyl(.26, .2, .42, STD({ color: '#b8583a' }), 0, 0, 0, { parent: g }); cyl(.27, .27, .05, STD({ color: '#9a4a2e' }), 0, .4, 0, { parent: g }); cyl(.03, .04, 1.2, woodD, 0, .4, 0, { parent: g });
+    const lm = [STD({ color: '#3f8a3a' }), STD({ color: '#5aa848' }), STD({ color: '#2f7032' })]; for (let k = 0; k < 26; k++) { const a = k * 2.4, r = .18 + (k % 4) * .08, y = 1.0 + (k % 7) * .13; add(new T.SphereGeometry(.13, 10, 8), lm[k % 3], Math.cos(a) * r, y, Math.sin(a) * r, { parent: g, s: [1, .55, .7], rz: Math.cos(a) * .5, ry: a }); } };
+  ficus(-6.2, 5.2, 1); ficus(6.2, -3.0, .9);
+  [[-LX + .2, 2.9, 1.2], [LX - .2, 2.9, 5.0]].forEach(([x, y, z]) => { const sd = Math.sign(-x); box(.06, .2, .12, brassM, x, y - .1, z); add(new T.CylinderGeometry(.06, .12, .18, 16, 1, true), STD({ color: '#f3e0b0', emissive: '#ffcf80', emissiveIntensity: .6, side: T.DoubleSide }), x + sd * .14, y + .08, z, { noInk: true }); const pl = new T.PointLight('#ffcf8a', 1.2, 4, 2); pl.position.set(x + sd * .2, y + .1, z); scene.add(pl); });
+  [[-5.6, 4.3], [6.2, .2]].forEach(([x, z]) => { let y = 0; for (let k = 0; k < 6; k++) { const bh = rr(.05, .09); box(rr(.32, .4), bh, rr(.24, .28), STD({ color: ['#a82a2a', '#2f5f9a', '#3e7a4a', '#d8a44a', '#6a3a7a'][k % 5] }), x + rr(-.03, .03), y, z, { ry: rr(-.3, .3) }); y += bh; } });
   // =====================================================================  NOSE (40,0,0)
   const NX = 40, NOSE = new T.Group(); NOSE.position.set(NX, 0, 0); scene.add(NOSE);
   const rivetT = tex(1024, 512, (g, w, h) => { g.fillStyle = '#9fb0a8'; g.fillRect(0, 0, w, h); for (let y = 0; y < h; y += 128) for (let x = (y / 128 % 2) * 128 - 128; x < w; x += 256) { const gr = g.createLinearGradient(x, y, x + 256, y + 128); gr.addColorStop(0, '#b2c2ba'); gr.addColorStop(1, '#8a9a92'); g.fillStyle = gr; g.fillRect(x + 2, y + 2, 252, 124); }
@@ -320,21 +340,33 @@ const W2 = (() => {
   // =====================================================================  post + contorno
   const comp = new EffectComposer(R); comp.setSize(W, H); comp.addPass(new RenderPass(scene, camera));
   const bloom = new UnrealBloomPass(new T.Vector2(W / 2, H / 2), .28, .55, .86); comp.addPass(bloom);
+  const ao = new GTAOPass(scene, camera, W, H); ao.blendIntensity = .9; ao.updateGtaoMaterial({ radius: .5, distanceExponent: 1.4, thickness: 1 }); comp.addPass(ao); const aoSet = ao.setSize.bind(ao); ao.setSize = (w, h) => aoSet(Math.round(w / 2), Math.round(h / 2)); ao.setSize(W, H);   // AO a media resolución: casi igual y 1,6 s menos por fotograma
   const dof = new BokehPass(scene, camera, { focus: 6, aperture: .003, maxblur: .008 }); comp.addPass(dof); comp.addPass(new OutputPass());
+  // gradación de color de cine: sombras frías, luces cálidas, curva en S, viñeta suave y grano
+  const gradeMat = new T.ShaderMaterial({ uniforms: { tDiffuse: { value: null }, time: { value: 0 }, warm: { value: 1 } }, depthTest: false, depthWrite: false,
+    vertexShader: 'varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position.xy,0.,1.); }',
+    fragmentShader: 'uniform sampler2D tDiffuse; uniform float time, warm; varying vec2 vUv; float h(vec2 p){ return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453); } void main(){ vec3 c=texture2D(tDiffuse,vUv).rgb; float l=dot(c,vec3(.299,.587,.114)); c+=vec3(-.012,.012,.03)*(1.-l)*warm; c+=vec3(.035,.016,-.02)*l*warm; c=mix(vec3(l),c,1.17); c=c*c*(3.-2.*c)*.35+c*.65; vec2 d=vUv-.5; c*=1.-dot(d*vec2(1.,.6),d*vec2(1.,.6))*.55; c+=(h(vUv*vec2(1080.,1920.)+time)-.5)*.018; gl_FragColor=vec4(c,1.); }' });
+  const gq = new T.Mesh(new T.PlaneGeometry(2, 2), gradeMat); gq.frustumCulled = false; const gScene = new T.Scene(); gScene.add(gq); const gCam = new T.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  comp.addPass({ enabled: true, needsSwap: true, clear: false, renderToScreen: false, setSize() { }, dispose() { }, render(r, write, read) { gradeMat.uniforms.tDiffuse.value = read.texture; r.setRenderTarget(this.renderToScreen ? null : write); r.render(gScene, gCam); } });
   const inkM = new T.ShaderMaterial({ side: T.BackSide, uniforms: { k: { value: .0022 }, col: { value: new T.Color('#1b1720') } },
     vertexShader: 'uniform float k; void main(){ vec4 mv=modelViewMatrix*vec4(position,1.); vec3 n=normalize(normalMatrix*normal); mv.xyz+=n*(-mv.z)*k; gl_Position=projectionMatrix*mv; }',
     fragmentShader: 'uniform vec3 col; void main(){ gl_FragColor=vec4(col,1.); }' });
   const toInk = []; scene.traverse(o => { if (!o.isMesh || o === sky || o.userData.noInk || o.material.transparent || o.material.side === T.BackSide || o.material.blending === T.AdditiveBlending) return; const ty = o.geometry.type; if (ty === 'PlaneGeometry' || ty === 'ShapeGeometry' || ty === 'CircleGeometry') return; toInk.push(o); });
   toInk.forEach(o => { let g = o.geometry.clone(); ['normal', 'uv'].forEach(a => { if (g.attributes[a]) g.deleteAttribute(a); }); g = mergeVertices(g, 1e-3); g.computeVertexNormals(); g.clearGroups(); const h = new T.Mesh(g, inkM); h.castShadow = false; h.receiveShadow = false; o.add(h); });
-  function setTime(t) { waterM.uniforms.time.value = t; FAN.rotation.y = t * 2.2; const p = usF.attributes.position; if (!usF.userData.b) usF.userData.b = p.array.slice(); const b = usF.userData.b; for (let k = 0; k < p.count; k++) { const x = b[k * 3] + .65; p.setZ(k, Math.sin(x * 4 - t * 4) * .05 * x); } p.needsUpdate = true; redLamp.material.color.set(Math.sin(t * 6) > 0 ? '#ff4a3a' : '#7a1a14'); }
+  function setTime(t) { waterM.uniforms.time.value = t; gradeMat.uniforms.time.value = t % 10; FAN.rotation.y = t * 2.2; const p = usF.attributes.position; if (!usF.userData.b) usF.userData.b = p.array.slice(); const b = usF.userData.b; for (let k = 0; k < p.count; k++) { const x = b[k * 3] + .65; p.setZ(k, Math.sin(x * 4 - t * 4) * .05 * x); } p.needsUpdate = true; redLamp.material.color.set(Math.sin(t * 6) > 0 ? '#ff4a3a' : '#7a1a14'); }
   function setCam(pos, look, fov = 45, focus = null, ap = .003) { camera.fov = fov; camera.updateProjectionMatrix(); camera.position.copy(pos); camera.lookAt(look); camera.updateMatrixWorld(); sky.position.copy(camera.position);
     const sea = pos.x < -400, lab = Math.abs(pos.x) < 20; SUN = sea ? SUN_SEA : SUN_LAB; scene.fog.density = sea ? .0011 : 0;
     const anchor = lab ? new T.Vector3(0, 1, 0) : look; sun.position.copy(anchor).addScaledVector(SUN, sea ? 200 : 40); sun.target.position.copy(anchor); sun.target.updateMatrixWorld();
     const sz = sea ? 90 : 12; sc.left = -sz; sc.right = sz; sc.top = sz; sc.bottom = -sz; sc.updateProjectionMatrix(); sun.intensity = sea ? 4.6 : (lab ? 6.2 : 2.4); hemi.intensity = sea ? 1.5 : (lab ? 1.75 : 1.35); R.toneMappingExposure = lab ? 1.32 : 1.2; noseLight.intensity = 3.0;
-    dof.uniforms.focus.value = focus ?? pos.distanceTo(look); dof.uniforms.aperture.value = ap; }
+    const zone = sea ? 'sea' : lab ? 'lab' : Math.abs(pos.x - NX) < 20 ? 'nose' : Math.abs(pos.x - MX) < 20 ? 'meet' : 'stage';
+    if (zone !== curZone) { curZone = zone; scene.traverse(o => { if ((o.isPointLight || o.isSpotLight) && o.userData.zone) o.visible = o.userData.zone === zone; }); }
+    ao.enabled = !sea && !window.__NOAO; dof.uniforms.focus.value = focus ?? pos.distanceTo(look); dof.uniforms.aperture.value = ap; }
+  // cada luz puntual pertenece a su zona (encender todas a la vez multiplica el coste por fotograma)
+  let curZone = null; const zoneOf = v => v.x < -400 ? 'sea' : Math.abs(v.x) < 20 ? 'lab' : Math.abs(v.x - NX) < 20 ? 'nose' : Math.abs(v.x - MX) < 20 ? 'meet' : 'stage';
+  scene.updateMatrixWorld(true); scene.traverse(o => { if (o.isPointLight || o.isSpotLight) o.userData.zone = zoneOf(o.getWorldPosition(new T.Vector3())); });
   function proj(p) { const v = p.clone(), cs = v.clone().applyMatrix4(camera.matrixWorldInverse), d = -cs.z; v.project(camera); const ppm = (H / 2) / (d * Math.tan(camera.fov * Math.PI / 360)); return { x: (v.x + 1) / 2 * W, y: (1 - v.y) / 2 * H, d, ppm, ok: d > .1 }; }
   function render() { comp.render(); }
   const ray = new T.Raycaster(); const solids = []; scene.traverse(o => { if (o.isMesh && o.material !== inkM && o !== sky && o !== water && !o.material.transparent && o.material.side !== T.BackSide && !o.userData.noInk) solids.push(o); });
   function visible(p, tol = .12) { const o = camera.position, d = p.clone().sub(o), L = d.length(); ray.set(o, d.normalize()); ray.far = L - tol; return ray.intersectObjects(solids, false).length === 0; }
-  return { visible, T, scene, camera, R, setCam, setTime, proj, render, get SUN() { return SUN; }, dof, bloom, comp, inkM, setScreen: drawScreen, PIGEONHOLES, TRAIN, TRAIN_SCR, NOSE_LAB, NOSE, NX, STATIONS, MEET, MX, STAGE, SX, TROPHY, SHIP, MISSILE, SEAX, LX, LZ, mid: () => 0, hgt: () => 0 };
+  return { SCR_TEX: scrT, NOSE_PORTS, CAGES, ao, visible, T, scene, camera, R, setCam, setTime, proj, render, get SUN() { return SUN; }, dof, bloom, comp, inkM, setScreen: drawScreen, PIGEONHOLES, TRAIN, TRAIN_SCR, NOSE_LAB, NOSE, NX, STATIONS, MEET, MX, STAGE, SX, TROPHY, SHIP, MISSILE, SEAX, LX, LZ, mid: () => 0, hgt: () => 0 };
 })();
