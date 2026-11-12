@@ -121,6 +121,10 @@ Catálogo completo visto en las grabaciones (cada uno en un mundo distinto):
 
 **Error mío detectado:** proponer sucesos («el cocinero que sobrevivió 3 días», «el hombre que vendió la Torre Eiffel») o ganchos que solo plantean. Lo que funciona es «hay un sistema/regla/hecho que parece absurdo → te meto dentro → te explico el mecanismo con algo de tu vida diaria → remate».
 
+## «Imaginación y locura» (lo que el usuario echa de menos, 12-11-2026)
+
+Rechazó ideas correctas pero «sin el toque de imaginación y locura». No basta con contar un hecho real con gancho: hay que **inventar una situación absurda y visual** (una abuela invencible, un pirata con cofres, un plátano que se desmaya en una plaza, una cárcel sin guardias, el foso con fluido no newtoniano) cuyo **remate sea un dato real**. Personajes con mote, escalada cómica, el espectador dentro, y la ciencia/psicología como sorpresa final. Si la idea se puede contar igual en un documental, no vale.
+
 ## Cómo suenan de verdad (transcripción palabra a palabra de la cuenta de referencia, 11-11-2026)
 
 Frases reales, tal cual: «Gambling is illegal in Japan. Yet there's a gambling hall on almost every street. Inside, thousands of machines flashing and screaming while people carry out buckets full of steel balls. Police stroll right past the door, but nobody ever gets arrested. So you win yourself a bucket, try to cash it in. But the counter won't give you a single yen…» · «How do painkillers know where the pain is? You swallow one for a headache, and then what? Does it pull out a little map?» · «A man snuck into a family's house every night and moved every single thing one inch to the left. The first night nobody notices, because who measures their couch? By the end of the week, the fridge is blocking the back door, and dad is pretty sure he's losing his mind.» · «He put a bronze ball in a dragon's mouth and told the emperor: if this ever falls out, run. The whole court burst out laughing.» · «If your ship got hit by a cannonball, you'd actually be one of the lucky ones.»
