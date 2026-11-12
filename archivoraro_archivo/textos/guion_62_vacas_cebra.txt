@@ -26,7 +26,7 @@ A la mañana siguiente, el vecino vuelve a apoyarse en la valla.
 «Oye, Kenji… ¿me dejas la brocha?»
 
 --- PARA ELEVENLABS (versión buena: una frase por línea, etiquetas al principio; Edoardo – Dark Measured Natural, estabilidad Natural) ---
-[excited] Un granjero japonés le está pintando rayas de cebra a una vaca negra.
+[curious] Un granjero japonés le está pintando rayas de cebra a una vaca negra.
 En el pueblo ya le llaman Kenji el Rayas.
 El vecino se apoya en la valla, lo mira un rato y suelta:
 [sarcastic] «¿Y la jirafa para cuándo?»
@@ -40,7 +40,7 @@ Ves la vaca normal y aterrizas sin problema, junto a otras ciento veintisiete mo
 En la de las rayas negras, igual: ciento once.
 Pero vas a por la cebra, frenas… y te pasas de largo.
 Lo vuelves a intentar y te estampas contra el lomo.
-[curious] ¿Cómo es posible?
+¿Cómo es posible?
 Verás, piensa en el palo de una barbería.
 Las rayas parecen subir, pero en realidad solo giran.
 A la mosca le pasa igual: las rayas la engañan, calcula mal y no frena a tiempo.
