@@ -8,7 +8,8 @@ const cpChat=(t,typed,sent,o={})=>{const msg='Llama a la policía';
   if(typed>0){const n=Math.ceil(msg.length*clamp(typed)), w=200, y=230;
     if(sent){scr+=`<rect x="${262-w}" y="${y}" width="${w}" height="44" rx="14" fill="#2f8a5a"/><text x="${262-w+14}" y="${y+29}" font-family="Inter" font-weight="700" font-size="19" fill="#fff">${msg}</text>`;
       if(o.fail>0) scr+=`<g opacity="${clamp(o.fail*3).toFixed(2)}"><circle cx="${262-w-24}" cy="${y+22}" r="15" fill="#e02a3a"/><text x="${262-w-24}" y="${y+30}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="22" fill="#fff">!</text><text x="262" y="${y+72}" text-anchor="end" font-family="Inter" font-weight="800" font-size="18" fill="#ff5a6a">No enviado</text></g>`;}
-    else {scr+=`<rect x="10" y="520" width="260" height="54" rx="27" fill="#1b2232"/><text x="30" y="555" font-family="Inter" font-weight="600" font-size="19" fill="#fff">${msg.slice(0,n)}${Math.floor(t*3)%2?'|':''}</text>`;}}
+    else {scr+=`<rect x="10" y="520" width="${o.send?200:260}" height="54" rx="27" fill="#1b2232"/><text x="30" y="555" font-family="Inter" font-weight="600" font-size="19" fill="#fff">${msg.slice(0,n)}${Math.floor(t*3)%2?'|':''}</text>`;
+      if(o.send) scr+=`<circle cx="244" cy="547" r="27" fill="#2f8a5a"/><path d="M232,547 L258,547 M248,537 L258,547 L248,557" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="244" cy="${600-14*Math.min(1,(window.__T||0)%1.2)}" r="34" fill="${CPYOU.skin}" opacity=".0"/>`;}}
   if(o.nodata) scr+=`<rect x="150" y="26" width="58" height="22" rx="4" fill="#e02a3a"/><text x="179" y="43" text-anchor="middle" font-family="Inter" font-weight="900" font-size="14" fill="#fff">SIN RED</text>`;
   // teclado
   if(!sent){scr+=`<rect x="0" y="590" width="280" height="0" fill="#000"/>`;}
@@ -103,48 +104,53 @@ S.phone=(t,D,B)=>{const E=EVS.phone(B);
   s+=cpHands(t,cpChat(t,typed,false),{dx:shake(t,1,3)});
   return cam(s,1.0,540,560,540,560)};
 
-S.wifi=(t,D,B)=>{const E=EVS.wifi(B);
-  if(t<E.datos){ // tu móvil: no enviado, sin red
-    let s=`<rect x="-600" y="-900" width="2280" height="2400" fill="#1a1612"/>`+`<g opacity=".35">${cpRoom(t)}</g>`+dark(.6,[[540,560,500,500]]);
-    s+=cpHands(t,cpChat(t,1,true,{fail:prog(t,E.sale-.4,E.sale),nodata:true}),{dx:shake(t,.6,3)});
-    return cam(s,lerp(1.0,1.12,prog(t,0,E.datos)),540,560,540,560)};
-  // el router de la estantería se apaga… y Dani tiene el móvil en la mano
-  const off=t>E.apagar;
-  const {bg,fg}=cpSofa(t,{tv:'show',router:off?'off':'on',dani:{phoneR:true,look:[3,8],mouth:'line'},you:{phoneR:true,look:[3,7]}});
-  const a=eIO(prog(t,E.datos,E.datos+.5)), b=eIO(prog(t,E.movil-.3,E.movil+.2));
-  let s=cam(bg+fg,lerp(lerp(1.5,2.3,a),2.6,b),lerp(lerp(700,930,a),cpDX+60,b),lerp(lerp(560,330,a),cpFD[1]+190,b),540,560);
-  if(off&&b<.5) s+=bang(820,330,'CLIC',PINK,P(t,E.apagar,.2),70);
-  if(b>.4){const ph=`<rect width="280" height="590" fill="#0f1420"/>${statusK({left:'23:07'})}<text x="140" y="140" text-anchor="middle" font-family="Inter" font-weight="900" font-size="34" fill="#fff">Wi-Fi</text><rect x="70" y="200" width="140" height="70" rx="35" fill="${off?'#3a3f4a':'#3aaa5a'}"/><circle cx="${off?105:175}" cy="235" r="30" fill="#fff"/><text x="140" y="330" text-anchor="middle" font-family="Inter" font-weight="800" font-size="24" fill="${off?'#ff5a6a':'#8aff9a'}">${off?'DESACTIVADO':'ACTIVADO'}</text>`;
-    s+=`<g opacity="${clamp((b-.4)*3).toFixed(2)}">${phoneK(820,560,.85,ph,6)}</g>`;}
-  return s};
+S.grab=(t,D,B)=>{const E=EVS.grab(B);
+  // tu móvil: el mensaje escrito y el pulgar encima de «enviar»… y su mano te lo arranca
+  // su mano entra por la derecha, agarra el móvil y se lo lleva (se queda a la vista)
+  let s=`<rect x="-600" y="-900" width="2280" height="2400" fill="#1a1612"/>`+`<g opacity=".35">${cpRoom(t)}</g>`+dark(.6,[[540,560,500,500]]);
+  const reach=eOut(prog(t,E.dani-.25,E.quita-.1)), pull=eIO(prog(t,E.quita-.1,E.quita+.35));
+  const scr=cpChat(t,1,false,{send:true});
+  const px=lerp(540,790,pull), py=lerp(560,480,pull), rot=lerp(0,18,pull), ps=lerp(1.45,1.15,pull);
+  // tus manos: con el móvil hasta que te lo quita; luego vacías, abiertas
+  if(pull<.05) s+=cpHands(t,scr,{dx:shake(t,reach>0?.4:1,3)});
+  else { s+=`<g transform="translate(540,560) scale(1.45)">${[[-170,240,-1],[170,260,1]].map(([hx,hy,sd])=>`<path d="M${hx+sd*40},${hy+700} L${hx+sd*10},${hy+60}" stroke="${CPYOU.top}" stroke-width="120" stroke-linecap="round"/><circle cx="${hx}" cy="${hy+18*pull}" r="62" fill="${CPYOU.skin}"/><circle cx="${hx-sd*44}" cy="${hy-50+18*pull}" r="26" fill="${CPYOU.skin}"/>`).join('')}</g>`;
+    s+=`<g transform="translate(${px},${py}) rotate(${rot}) scale(${ps})">${phoneK(0,0,1,scr)}</g>`; }
+  // la mano de Dani (jersey gris) agarrando el borde derecho del móvil
+  if(reach>0){const gx=pull<.05?lerp(1500,540+150*1.45,reach):px+150*ps, gy=pull<.05?lerp(700,560,reach):py+20*ps;
+    s+=`<g filter="url(#chFX)"><path d="M${gx+60},${gy+20} L${gx+700},${gy+160}" stroke="${CPDANI.top}" stroke-width="170" stroke-linecap="round"/><rect x="${gx+40}" y="${gy-70}" width="60" height="180" rx="20" fill="${CPDANI.topD}"/><ellipse cx="${gx+20}" cy="${gy+10}" rx="70" ry="88" fill="${CPDANI.skin}"/>${[-50,-14,22,58].map(dy=>`<ellipse cx="${gx-46}" cy="${gy+dy}" rx="34" ry="17" fill="${CPDANI.skin}" stroke="#000" stroke-opacity=".12" stroke-width="3"/>`).join('')}</g>`;}
+  if(pull>0&&pull<1) for(let i=0;i<5;i++) s+=`<line x1="${160+i*30}" y1="${360+i*70}" x2="${460+i*30}" y2="${340+i*70}" stroke="#fff" stroke-width="6" opacity="${(.5*(1-pull)).toFixed(2)}" stroke-linecap="round"/>`;
+  const hit=t>E.quita?Math.exp(-(t-E.quita)*6):0;
+  return cam(s,lerp(1.0,1.1,prog(t,0,D)),540,560,540,560,shake(t,hit,14))+cpRed(hit*.6)};
 
 S.rule3=(t,D,B)=>{const E=EVS.rule3(B), k=eIO(prog(t,0,D));
   const turn=eIO(prog(t,E.pregunta-.2,E.pregunta+.4));
-  const {bg,fg}=cpSofa(t,{tv:'show',you:{phoneR:true,look:[3,7],eyes:'wide',brows:'worried',mouth:'line'},dani:{look:[lerp(0,-9,turn),lerp(-3,2,turn)],mouth:'line',brows:turn>.5?'angry':null}});
+  const {bg,fg}=cpSofa(t,{dphone:true,tv:'show',you:{look:[6,2],eyes:'wide',brows:'worried',mouth:'line'},dani:{look:[lerp(3,-9,turn),lerp(8,2,turn)],mouth:'line',brows:turn>.5?'angry':null}});
   return focusCam(bg,fg+sweat(cpYX,905,cpS,t),1,lerp(cpFY[0]+40,(cpFY[0]+cpFD[0])/2,k),cpFY[1]+30,{z1:lerp(2.3,2.0,k),blur:5,dx:shake(t,.3,2)})};
 
 S.look=(t,D,B)=>{const E=EVS.look(B);
-  // tu móvil en primer plano… y su cara asomando por encima, mirando la pantalla
-  let s=`<rect x="-600" y="-900" width="2280" height="2400" fill="#1a1612"/><g opacity=".3">${cpRoom(t)}</g>`+dark(.65,[[600,500,520,520]]);
-  const lean=eOut(prog(t,0,E.mira));
-  s+=A({...CPDANI,x:lerp(1180,980,lean),y:1420,s:1.45,look:[-8,7],mouth:'line',brows:'angry',tilt:-8});
-  s+=cpHands(t,cpChat(t,1,true,{fail:1,nodata:true}),{dx:shake(t,.5,2),y:640,s:1.25});
-  if(t>E.pantalla-.1) s+=`<rect x="0" y="0" width="1080" height="1100" fill="#000" opacity="${(.25*P(t,E.pantalla-.1,.3)).toFixed(2)}"/>`;
-  return cam(s,lerp(1.0,1.12,prog(t,0,D)),620,560,540,560)};
+  // él sostiene tu móvil y lee el mensaje; la pantalla le ilumina la cara desde abajo
+  const {bg,fg}=cpSofa(t,{dphone:true,tv:'news',dani:{look:[2,10],eyes:'open',mouth:'line',brows:'angry',blink:false},you:{eyes:'wide',brows:'worried',look:[7,3],mouth:'line'}});
+  const k=eIO(prog(t,0,D));
+  let s=focusCam(bg,fg,1,cpDX-10,cpFD[1]+60,{z1:lerp(2.2,2.6,k),blur:6})+dark(.35,[[560,640,380,420]]);
+  s+=`<ellipse cx="560" cy="760" rx="260" ry="200" fill="#9fd0ff" opacity="${(.12+.04*Math.sin(t*9)).toFixed(2)}" style="mix-blend-mode:screen"/>`;
+  // lo que está leyendo: tu mensaje sin enviar
+  if(t>E.pantalla-.15){const a=eBack(P(t,E.pantalla-.15,.35));
+    s+=`<g transform="translate(860,420) scale(${a.toFixed(3)})">${phoneK(0,0,.62,cpChat(t,1,false,{send:true}),8)}</g>`;}
+  return s};
 
 S.ask=(t,D,B)=>{const E=EVS.ask(B);
   const up=eIO(prog(t,E.has-.1,E.has+.5)), talk=t>E.has&&t<E.tv+.35;
-  const {bg,fg}=cpSofa(t,{tv:'news',dani:{blink:false,look:[lerp(-4,-9,up),lerp(7,0,up)],mouth:talk?'o':'line',mopen:talk?.08+.14*Math.abs(Math.sin(t*12)):null,brows:'angry'},you:{phoneR:true,look:[3,7]}});
+  const {bg,fg}=cpSofa(t,{dphone:true,tv:'news',dani:{blink:false,look:[lerp(-4,-9,up),lerp(7,0,up)],mouth:talk?'o':'line',mopen:talk?.08+.14*Math.abs(Math.sin(t*12)):null,brows:'angry'},you:{look:[6,2],eyes:'wide'}});
   return focusCam(bg,fg,1,cpFD[0]-10,cpFD[1]+10,{z1:2.9+.15*t,blur:7,dx:shake(t,.15,2)})+dark(.4,[[540,600,320,360]])};
 
 S.up=(t,D,B)=>{const E=EVS.up(B);
   const up=eIO(prog(t,E.lev,E.despacio+.3));
-  const {bg,fg}=cpSofa(t,{tv:'news',you:{phoneR:true,look:[lerp(3,7,up),lerp(8,-1,up)],eyes:'wide',brows:'worried',mouth:'line',tilt:lerp(10,0,up)},dani:{look:[-9,0],mouth:'line',brows:'angry'}});
+  const {bg,fg}=cpSofa(t,{dphone:true,tv:'news',you:{look:[lerp(3,7,up),lerp(8,-1,up)],eyes:'wide',brows:'worried',mouth:'line',tilt:lerp(10,0,up)},dani:{look:[-9,0],mouth:'line',brows:'angry'}});
   return focusCam(bg,fg+sweat(cpYX,905,cpS,t),1,cpFY[0]+10,cpFY[1]+lerp(25,0,up),{z1:2.9,blur:7,dx:shake(t,.35,3)})};
 
 S.end=(t,D,B)=>{const E=EVS.end(B), k=eIO(prog(t,0,D));
   const talk=t<E.nada+.3;
-  const {bg,fg}=cpSofa(t,{tv:'news',dani:{blink:false,look:[-9,0],mouth:'smile',brows:'angry'},you:{eyes:'wide'}});
+  const {bg,fg}=cpSofa(t,{dphone:true,tv:'news',dani:{blink:false,look:[-9,0],mouth:'smile',brows:'angry'},you:{eyes:'wide'}});
   let s=focusCam(bg,fg,1,cpFD[0]-15,cpFD[1]+5,{z1:lerp(3.1,3.7,k),blur:8})+dark(.55,[[540,600,300,330]]);
   // la luz de la tele parpadea y se apaga al final
   const fl=t>E.nada?prog(t,E.nada,E.nada+.5):0;

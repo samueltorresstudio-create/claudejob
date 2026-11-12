@@ -13,9 +13,9 @@ const EVS={
   odio:B=>({pregunta:B[0].w[1],odio:B[0].w[6]}),
   rule2:B=>({puerta:B[0].w[5],movil:B[0].w[8],finge:B[0].w[10]}),
   phone:B=>({escribes:B[0].w[0],llama:B[0].w[8],policia:B[0].w[11]}),
-  wifi:B=>({sale:B[0].w[4],datos:B[0].w[7],wifi:B[0].w[10],apagar:B[0].w[14],movil:B[0].w[18]}),
+  grab:B=>({enviar:B[0].w[4],dani:B[0].w[5],quita:B[0].w[7],manos:B[0].w[12]}),
   rule3:B=>({pregunta:B[0].w[4],rapido:B[0].w[9]}),
-  look:B=>({mira:B[0].w[6],pantalla:B[0].w[8]}),
+  look:B=>({lee:B[0].w[6],pantalla:B[0].w[8]}),
   ask:B=>({has:B[0].w[0],hombre:B[0].w[3],tv:B[0].w[6]}),
   up:B=>({lev:B[0].w[0],despacio:B[0].w[4]}),
   end:B=>({sera:B[0].w[0],nada:B[0].w[5]}),
@@ -127,6 +127,8 @@ function cpSofa(t,o={}){
   const bg=cpRoom(t,o)+sofaK(540,SY,820,'#3f6f74');
   let fg=A({...CPYOU,x:yx,y:SY,s:sc,sit:true,look:[-2,-2],...(o.you||{})});
   fg+=A({...CPDANI,x:dx,y:SY,s:sc*1.04,sit:true,look:[2,-2],...(o.dani||{})});
+  if(o.dphone){const hx=dx+6, hy=SY-sc*1.04*250; // tu móvil en las manos de Dani, a la altura del pecho, con su luz
+    fg+=`<ellipse cx="${hx}" cy="${hy-40}" rx="${110*sc}" ry="${150*sc}" fill="#9fd0ff" opacity=".18"/><g transform="translate(${hx},${hy}) rotate(-8)">${phoneK(0,0,sc*.32,`<rect width="280" height="590" fill="#0f1420"/><rect x="20" y="230" width="200" height="44" rx="14" fill="#2f8a5a"/><rect x="10" y="520" width="200" height="54" rx="27" fill="#1b2232"/>`)}</g><circle cx="${hx-sc*44}" cy="${hy+sc*40}" r="${sc*30}" fill="${CPDANI.skin}"/><circle cx="${hx+sc*44}" cy="${hy+sc*44}" r="${sc*30}" fill="${CPDANI.skin}"/>`;}
   fg+=sofaArmsK(540,SY,820,'#3f6f74');
   // mesa baja delante: palomitas, dos tazas y el mando
   fg+=`<rect x="230" y="1000" width="620" height="24" rx="6" fill="#6e4e36"/><rect x="240" y="1024" width="600" height="80" fill="#5a3e2a"/><rect x="250" y="1034" width="290" height="60" fill="#4a3222"/><rect x="550" y="1034" width="280" height="60" fill="#4a3222"/>`;
@@ -188,4 +190,4 @@ const CPTV=(t,mode,o={})=>cpTVSet(540,1180,1000,mode,t,o);   // la tele en prime
 
 window.CFG={steps:['1. NO CAMBIES LA CARA','2. NO MIRES LA PUERTA','3. NO CONTESTES RÁPIDO'],stepsTitle:'REGLAS',listEnd:'look',
   hud:(h,bt,st,T)=>'SALÓN · '+cpClock(T),
-  band:{hook:'#14203a',sofa:'#2a2018',news:'#1a1612',photo:'#14203a',near:'#2a2018',rule1:'#2a2018',victim:'#14203a',contract:'#3a2a1a',remote:'#1a1612',odio:'#2a2018',rule2:'#2a2018',phone:'#0f1420',wifi:'#1a1612',rule3:'#2a2018',look:'#1a1612',ask:'#1a1612',up:'#1a1612',end:'#0c0a08'}};
+  band:{hook:'#14203a',sofa:'#2a2018',news:'#1a1612',photo:'#14203a',near:'#2a2018',rule1:'#2a2018',victim:'#14203a',contract:'#3a2a1a',remote:'#1a1612',odio:'#2a2018',rule2:'#2a2018',phone:'#0f1420',grab:'#0f1420',rule3:'#2a2018',look:'#1a1612',ask:'#1a1612',up:'#1a1612',end:'#0c0a08'}};

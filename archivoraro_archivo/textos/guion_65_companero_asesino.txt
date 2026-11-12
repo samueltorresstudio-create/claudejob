@@ -1,6 +1,5 @@
 65 · ¿Y SI TU COMPAÑERO DE PISO FUERA UN ASESINO? — ficción, estilo 2D original (engine/). Vídeo sin voz entregado; falta el MP3.
-Cambio de lógica respecto a la primera versión: Dani está en el sofá, así que no puede apagar el router de su cuarto; lo apaga desde su móvil.
-Y el mensaje no es al 112 (no se le escribe por SMS normal): es a tu hermana, y no sale porque no tienes datos y él apaga el wifi.
+Cambios de lógica: el mensaje es a tu hermana (al 112 no se escribe por SMS normal) y no llega a salir porque Dani te QUITA EL MÓVIL de las manos (idea del usuario, mejor que lo del router).
 
 ¿Y si tu compañero de piso fuera un asesino… y te enteraras por la tele?
 Llevas cuatro meses compartiendo piso con Dani. Martes, once de la noche, los dos en el sofá.
@@ -14,9 +13,9 @@ Dani coge el mando… y cambia de canal.
 Le preguntas por qué lo quita. «Odio las noticias», dice.
 Regla dos: no mires la puerta. Coge el móvil y finge que lees algo.
 Escribes a tu hermana con el pulgar temblando: «Llama a la policía».
-Pero el mensaje no sale. No tienes datos… y el wifi lo acaba de apagar él, desde su móvil.
+Pero no llegas a enviarlo. Dani te quita el móvil de las manos.
 Regla tres: si te pregunta algo, no contestes demasiado rápido.
-Dani no te mira a ti. Mira la pantalla de tu móvil.
+Dani no te mira a ti. Lee la pantalla de tu móvil.
 [slowly] «¿Has reconocido al hombre de la televisión?»
 Levantas la cabeza muy despacio.
 [deadpan] [slowly] «Será mejor… que no digas nada.»

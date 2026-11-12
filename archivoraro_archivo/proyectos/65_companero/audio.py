@@ -75,11 +75,12 @@ m.heartbeat(sc0['rule2'], sc0['phone'], bpm=104, gain=.18)
 m.typing(E['phone.escribes'] + .2, int((E['phone.policia'] - E['phone.escribes']) / .11), .05, .11)
 m.whoosh(E['phone.policia'] + .25, .06, .3)   # enviar…
 
-# ---------- no sale; el wifi se apaga ----------
-error_buzz(E['wifi.sale'] - .2, .1)
-click(E['wifi.apagar'], .14)
-m.add(m.sweep(900, 200, .5, .3), E['wifi.apagar'] + .05, .05)   # el router se apaga
-m.sting(E['wifi.movil'], .22)
+# ---------- no llegas a enviarlo: te arranca el móvil ----------
+m.add(m.tone(1320, .05, .002, .04), E['grab.enviar'] - .3, .03)   # el pulgar sobre «enviar»
+m.whoosh(E['grab.quita'] - .12, .2, .3)
+m.add(m.hit(140, 60, .25, .08), E['grab.quita'] + .05, .25)
+m.sting(E['grab.quita'] + .1, .26)
+m.heartbeat(E['grab.manos'], sc0['rule3'], bpm=124, gain=.2)
 
 # ---------- regla tres: latido rápido; te mira ----------
 m.heartbeat(sc0['rule3'], sc0['ask'], bpm=118, gain=.22)
