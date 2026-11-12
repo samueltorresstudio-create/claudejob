@@ -86,6 +86,13 @@ function onPlane(C, U, V, w, h, svg) { const a = W.proj(C), b = W.proj(C.clone()
 const NOSEP = () => { const c = new THREE.Vector3(); W.NOSE_PORTS.forEach(p => c.add(p.getWorldPosition(new THREE.Vector3()))); return c.multiplyScalar(1 / 3); };
 const NOSEN = () => { const p = W.NOSE_PORTS[1], a = p.getWorldPosition(new THREE.Vector3()); return p.localToWorld(new THREE.Vector3(0, 0, 1)).sub(a).normalize(); };
 const MP = () => W.MISSILE_PORTS;
+// FLECHA bien hecha: curva suave (A → control C → B en píxeles), contorno de tinta, punta alineada con la tangente final y trazo que «se dibuja» (k 0..1)
+function arrow(A, C, B, k, col = YEL, w = 26) { if (k <= 0) return ''; k = clamp(k); const q = (t) => [(1 - t) * (1 - t) * A[0] + 2 * (1 - t) * t * C[0] + t * t * B[0], (1 - t) * (1 - t) * A[1] + 2 * (1 - t) * t * C[1] + t * t * B[1]];
+  const e = eOut(k), N = 24, pts = []; for (let i = 0; i <= N; i++) pts.push(q(i / N * e)); const E = pts[N], Pm = q(Math.max(0, e - .04)), ang = Math.atan2(E[1] - Pm[1], E[0] - Pm[0]), hl = w * 2.1, hw = w * 1.5;
+  const base = [E[0] - Math.cos(ang) * hl * .75, E[1] - Math.sin(ang) * hl * .75], d = 'M' + pts.slice(0, N - 1).map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' L') + ` L${base[0].toFixed(1)},${base[1].toFixed(1)}`;
+  const tip = [E[0] + Math.cos(ang) * hl * .25, E[1] + Math.sin(ang) * hl * .25], l = [base[0] + Math.cos(ang + Math.PI / 2) * hw, base[1] + Math.sin(ang + Math.PI / 2) * hw], r = [base[0] - Math.cos(ang + Math.PI / 2) * hw, base[1] - Math.sin(ang + Math.PI / 2) * hw];
+  const head = `M${tip[0].toFixed(1)},${tip[1].toFixed(1)} L${l[0].toFixed(1)},${l[1].toFixed(1)} L${r[0].toFixed(1)},${r[1].toFixed(1)}Z`;
+  return `<g opacity="${clamp(k * 4).toFixed(2)}"><path d="${d}" stroke="${K}" stroke-width="${w + 14}" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${head}" fill="${K}" stroke="${K}" stroke-width="14" stroke-linejoin="round"/><path d="${d}" stroke="${col}" stroke-width="${w}" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${head}" fill="${col}"/></g>`; }
 function window_(port, o, cam, rad) { const c = port.getWorldPosition(new THREE.Vector3()), p = W.proj(c); if (!p.ok) return ''; const r = rad * p.ppm, id = 'wn' + Math.round(Math.random() * 1e6), sc = r / 72;
   return `<defs><clipPath id="${id}"><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}"/></clipPath></defs><g clip-path="url(#${id})"><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}" fill="#33505e"/><circle cx="${(p.x - r * .3).toFixed(1)}" cy="${(p.y - r * .4).toFixed(1)}" r="${(r * .9).toFixed(1)}" fill="#4a7286" opacity=".6"/><g transform="translate(${(p.x - 110 * sc).toFixed(1)},${(p.y + 262 * sc).toFixed(1)}) scale(${sc.toFixed(4)})">${pigeon(o)}</g></g><path d="M${(p.x - r * .62).toFixed(1)},${(p.y - r * .42).toFixed(1)} A${(r * .78).toFixed(1)},${(r * .78).toFixed(1)} 0 0 1 ${(p.x + r * .2).toFixed(1)},${(p.y - r * .76).toFixed(1)}" stroke="#fff" stroke-width="${(r * .1).toFixed(1)}" fill="none" opacity=".5" stroke-linecap="round"/>`; }
 function handAt(F, o, side = 1) { const pf = W.proj(F), ph = W.proj(V3(F.x, F.y + ADULT, F.z)), s = Math.hypot(ph.x - pf.x, ph.y - pf.y) / 462, [sh, el] = side > 0 ? o.armR : o.armL, r = a => a * Math.PI / 180;
@@ -142,7 +149,7 @@ S.peck = (t, D, B) => { const E = EVS.peck(B); W.setTime(t + 20); const sx = -.6
   const pk = t > E.picotea ? Math.pow(Math.max(0, Math.sin((t - E.picotea) * 18)), .6) : 0;
   let s = byDist([stationPigeon(1, { eye: 'angry', goggles: true, peck: pk * .35, look: [8, 2] }, .36, cam)], cam);
   if (t > E.picotea) { const sp = W.proj(V3(W.NX + 1.5, 1.05, -.12)); for (let i = 0; i < 4; i++) s += ring(sp.x, sp.y, sp.ppm * .18, ((t - E.picotea) * 3.2 - i * .28) % 1.3, YEL); }
-  if (t > E.izq - .4) { const a = clamp((t - E.izq + .4) / .3); s += `<g transform="translate(300,470) scale(${(.6 + .4 * eBack(a)).toFixed(3)})" opacity="${a.toFixed(2)}"><path d="M60,-40 L-60,0 L60,40 L60,16 L150,16 L150,-16 L60,-16Z" fill="${YEL}" stroke="${K}" stroke-width="12" stroke-linejoin="round"/></g>`; }
+  if (t > E.izq - .4) { const sp = W.proj(V3(W.NX + 1.51, 1.05, 0)), u = sp.ppm, cx = sp.x + sx * .26 * u + .05 * u - Math.sin(t * 9) * 5, y = sp.y - .085 * u; s += arrow([cx + .06 * u, y], [cx, y - .01 * u], [cx - .065 * u, y], (t - E.izq + .4) / .3, YEL, .017 * u); }
   return s; };
 // 7 · ¡y el misil gira a la izquierda! (persecución sobre el mar; las palomas siguen en sus ventanitas)
 S.turn = (t, D, B) => { const E = EVS.turn(B); W.setTime(t + 23);
@@ -151,7 +158,8 @@ S.turn = (t, D, B) => { const E = EVS.turn(B); W.setTime(t + 23);
   const cam = F.pos.clone().addScaledVector(dir, -7.5).addScaledVector(side, 3.4).add(V3(0, 2.0, 0)), look = F.pos.clone().addScaledVector(dir, 1.5).add(V3(0, -.3, 0));
   W.setCam(cam, look, 50, cam.distanceTo(F.pos), .0004); W.render();
   let s = speedLines(t, 22, .35); const mp = W.proj(F.pos.clone().add(V3(0, 1.2, 0)));
-  if (t > E.gira - .1) { const a = clamp((t - E.gira + .1) / .3); s += `<g transform="translate(${(mp.x - 200).toFixed(0)},${(mp.y - 160).toFixed(0)}) scale(${(.6 + .4 * eBack(a)).toFixed(3)}) rotate(-14)" opacity="${a.toFixed(2)}"><path d="M120,-60 Q-40,-90 -100,10" stroke="${K}" stroke-width="34" fill="none" stroke-linecap="round"/><path d="M120,-60 Q-40,-90 -100,10" stroke="${YEL}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="M-140,-20 L-96,48 L-50,-2Z" fill="${YEL}" stroke="${K}" stroke-width="8" stroke-linejoin="round"/></g>`; }
+  if (t > E.gira - .15) { const nose = F.pos.clone().addScaledVector(dir, 3.3), up = V3(0, 1, 0), A = W.proj(nose.clone().addScaledVector(up, .6).addScaledVector(dir, .8)), C = W.proj(nose.clone().addScaledVector(up, .6).addScaledVector(dir, 4.8)), B2 = W.proj(nose.clone().addScaledVector(up, .55).addScaledVector(dir, 5.2).addScaledVector(side, -3.0));
+    if (A.ok && C.ok && B2.ok) s += arrow([A.x, A.y], [C.x, C.y], [B2.x, B2.y], (t - E.gira + .15) / .4, YEL, 30); }
   return s; };
 // 8 · el perro: Fred le enseña la galleta, el perro se sienta y se la da; al final se sienta sin galleta
 S.dog = (t, D, B) => { const E = EVS.dog(B); W.setTime(t + 25); W.charLight = DAY;

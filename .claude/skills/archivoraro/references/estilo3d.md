@@ -243,3 +243,9 @@ El usuario dijo que en las palomas «se mueven mal». En la referencia:
 - `stick.js` nuevo: `hat:'tenugui'` (pañuelo japonés en la frente), `boots` (botas de agua), `prop:'brush'` + `paint` + `brushRot`, `splat` (manchas de pintura en la ropa), `noArms` (para dibujar brazos apoyados en una valla por encima de las barras).
 - **Personajes detrás de una valla:** el 2D siempre queda encima del 3D. Dibuja después las barras en 2D (`rails2d` en `proyectos/62_vacas_cebra_bocetos/sheet.html`) y, si se apoya, los antebrazos encima (`leanArms`).
 - Vertical: una vaca entera (≈2,3 m) necesita la cámara a ≈6,5 m con fov 46.
+
+### Flechas en pantalla (el usuario: «hazlas bien bien, no mal puestas ni mal»)
+- Usa la función `arrow(A, C, B, k, col, w)` de `archivoraro_archivo/proyectos/64_palomas/scenes_p.js`: curva suave, contorno de tinta y punta alineada con la tangente final. El trazo se dibuja en 0,3–0,4 s.
+- **Siempre ancladas al objeto**: calcula A, C y B proyectando puntos 3D del objeto (`W.proj`). Nunca uses coordenadas fijas de pantalla. Si el objeto se mueve, la flecha se mueve con él.
+- La punta indica exactamente la dirección real: «se va a la izquierda» es una flecha encima del barco, dentro de la pantalla, que apunta a la izquierda. «El misil gira» es una flecha que sale del morro hacia delante y se curva hacia su lado.
+- Tamaño proporcional al objeto (grosor ≈ 1,5–3 % de su tamaño en píxeles). Nunca puede salirse del objeto que la contiene ni del encuadre. Compruébala en una foto de prueba antes del render.
