@@ -1,5 +1,5 @@
 // «Las palomas que pilotaban misiles» — ESTILO 3D (world_palomas.js) + personajes 2D (stick.js, pigeon.js). Sin voz (fake_voice), con transiciones.
-window.CFG = { capY: 1500, capSize: 96, transDur: .55,
+window.CFG = { capY: 1500, capSize: 96, transDur: .95, blurK: .55, antic: .3,
   trans: { army: 'swish', lab: 'whip', how: 'swish', screen: 'swish', peck: 'push', turn: 'swish', dog: 'swish', train: 'whip', three: 'swish', committee: 'swish', cancel: 'swish', crackpot: 'swish', navy: 'swish', prize: 'swish' } };
 const EVS = {
   hook: B => ({ tres: B[0].w[3], palomas: B[0].w[4], misil: B[0].w[10] }), army: B => ({ y1943: B[0].w[2], ejercito: B[0].w[4], dinero: B[0].w[10] }),
@@ -12,6 +12,9 @@ const EVS = {
   prize: B => ({ y2024: B[0].w[2], premio: B[0].w[6], palomas: B[0].w[9] }),
 };
 const S = {};
+// cámara nunca quieta: deriva suave tipo «cámara en mano» encima de cada movimiento (preferencia del usuario)
+{ const _setCam = W2.setCam.bind(W2); W2.setCam = (p, l, f, fo, ap) => { const T = window.__T || 0, d = new THREE.Vector3(Math.sin(T * .53) * .05 + Math.sin(T * 1.31) * .015, Math.sin(T * .71 + 1) * .035, Math.sin(T * .37 + 2) * .04);
+  return _setCam(p.clone().add(d), l.clone().add(d.clone().multiplyScalar(.35)), f, fo, ap); }; }
 const W = W2, K = '#1b1720';
 const DAY = { tint: '#ffe6c4', k: .14, rim: '#fff6e6', rimA: .5, rimX: -1, rimY: -.5 };
 const hs = (a, b = 1) => { const x = Math.sin(a * 127.1 + b * 311.7) * 43758.5453; return x - Math.floor(x); };
@@ -103,7 +106,7 @@ function flyMissile(t, yaw, roll = 0) { const M = W.MISSILE, dir = V3(Math.cos(y
 function portPigeons(t, cam, opt = {}) { let s = ''; MP().forEach((p, i) => { s += window_(p, { eye: blink(t, i * .9) ? 'closed' : (opt.wide && i === 1 ? 'wide' : (opt.angry ? 'angry' : 'calm')), goggles: true, look: [10, 0], bob: Math.sin(t * 7 + i * 2) * .15 }, cam, .17); }); return s; }
 function spray(t, n = 18) { let s = ''; for (let i = 0; i < n; i++) { const k = ((t * 1.6 + hs(i, 5)) % 1), x = 540 + (hs(i, 2) - .5) * 1300 * (.3 + k), y = 1920 - k * 260 - hs(i, 3) * 120; s += `<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${(4 + 10 * hs(i, 4)) * (1 - k)}" fill="#fff" opacity="${(.6 * (1 - k)).toFixed(2)}"/>`; } return s; }
 // 1 · GANCHO: el misil cruza el mar a toda velocidad; la cámara va pegada al morro y se ven las tres palomas pilotando con gafas
-S.hook = (t, D, B) => { const E = EVS.hook(B); W.setTime(t + 1);
+S.hook = (t, D, B) => { W.SHIP.position.set(W.SEAX, 0, -60); W.SHIP.rotation.y = 0; const E = EVS.hook(B); W.setTime(t + 1);
   const yaw = Math.PI / 2 + .35 + Math.sin(t * .8) * .05, F = flyMissile(t, yaw, Math.sin(t * 1.3) * .08), k = k01(t, 0, D);
   const nose = F.pos.clone().addScaledVector(F.dir, 1.6).add(V3(0, .1, 0)), kk = k * k, cam = nose.clone().addScaledVector(F.dir, .4 + kk * 5.2).addScaledVector(F.side, 2.5 + kk * 3.2).add(V3(0, .15 + kk * 1.1, 0));
   const look = nose.clone().addScaledVector(F.dir, .1 - kk * 1.0).add(V3(0, -kk * .2, 0)); W.setCam(cam, look, 44 + k * 6, cam.distanceTo(nose), .0005); W.render();
@@ -154,8 +157,10 @@ S.peck = (t, D, B) => { const E = EVS.peck(B); W.setTime(t + 20); const sx = -.6
 S.turn = (t, D, B) => { const E = EVS.turn(B); W.setTime(t + 23);
   const k = k01(t, .15, D), yaw0 = Math.PI / 2 + .35, yaw = yaw0 + k * .75, roll = -Math.sin(Math.min(1, k * 1.3) * Math.PI * .5) * .7 * (1 - Math.max(0, k - .7) * 2);
   const F = flyMissile(t, yaw0 + k * .4, roll); W.MISSILE.rotation.y = yaw; W.MISSILE.updateMatrixWorld(true); const dir = V3(Math.cos(yaw), -.06, -Math.sin(yaw)).normalize(), side = V3(-dir.z, 0, dir.x);
-  const cam = F.pos.clone().addScaledVector(dir, -7.5).addScaledVector(side, 3.4).add(V3(0, 2.0, 0)), look = F.pos.clone().addScaledVector(dir, 1.5).add(V3(0, -.3, 0));
-  W.setCam(cam, look, 50, cam.distanceTo(F.pos), .0004); W.render();
+  // el barco se va a la izquierda (primero) y el misil lo sigue: el barco siempre queda delante, en el plano
+  const ks = k01(t, 0, D * .8), ys = yaw0 + .0 + ks * .62; W.SHIP.position.set(W.SEAX + 52 + Math.cos(ys) * 190, 0, 70 - Math.sin(ys) * 190); W.SHIP.rotation.y = ys - Math.PI / 2;
+  const cam = F.pos.clone().addScaledVector(dir, -10.5).addScaledVector(side, 3.0).add(V3(0, 2.8, 0)), look = F.pos.clone().addScaledVector(dir, 7).add(V3(0, -.6, 0));
+  W.setCam(cam, look, 54, cam.distanceTo(F.pos), .0004); W.render();
   let s = speedLines(t, 22, .35); const mp = W.proj(F.pos.clone().add(V3(0, 1.2, 0)));
   if (t > E.gira - .15) { const nose = F.pos.clone().addScaledVector(dir, 3.3), up = V3(0, 1, 0), A = W.proj(nose.clone().addScaledVector(up, .6).addScaledVector(dir, .8)), C = W.proj(nose.clone().addScaledVector(up, .6).addScaledVector(dir, 4.8)), B2 = W.proj(nose.clone().addScaledVector(up, .55).addScaledVector(dir, 5.2).addScaledVector(side, -3.0));
     if (A.ok && C.ok && B2.ok) s += arrow([A.x, A.y], [C.x, C.y], [B2.x, B2.y], (t - E.gira + .15) / .4, YEL, 30); }
@@ -173,7 +178,7 @@ S.dog = (t, D, B) => { const E = EVS.dog(B); W.setTime(t + 25); W.charLight = DA
 // 9 · Fred hace lo mismo: la paloma acierta en el barco y Fred le echa alpiste en la bandeja
 S.train = (t, D, B) => { const E = EVS.train(B); W.setTime(t + 31); W.charLight = DAY;
   W.TRAIN_SCR.material.map = W.SCR_TEX; W.TRAIN_SCR.material.color.set('#ffffff'); W.TRAIN_SCR.material.needsUpdate = true; W.setScreen(Math.sin(t * 1.3) * .15, t > E.acierta && t < E.acierta + .5 ? 1 : 0);
-  const k = k01(t, 0, D), cam = V3(.55 + k * .15, 1.42, 3.4 - k * .25), look = V3(1.85, 1.12, .3); W.setCam(cam, look, 46, cam.distanceTo(V3(1.7, 1, .45)), .0007); W.render();
+  const k = k01(t, 0, D), cam = V3(.55 + k * .15, 1.4, 4.0 - k * .25), look = V3(1.85, 1.1, .3); W.setCam(cam, look, 50, cam.distanceTo(V3(1.7, 1, .45)), .0007); W.render();
   const pourA = t > E.comida && t < E.comida + .8, pourB = t > E.acierta + .05 && t < E.acierta + .85, tilt = pourA || pourB ? 75 : 0;
   const f = breathe(keyed(t, [[0, { armL: [16, 24], armR: [30, 70] }], [E.comida - .1, { armR: [92, 20] }], [E.comida + .8, { armR: [30, 70] }], [E.acierta, { armR: [92, 20] }], [E.acierta + .9, { armR: [30, 70], armL: [120, 40] }]]), t);
   let s = behind(fred(Object.assign(f, { face: t > E.acierta ? 'happy' : 'smug', mouth: t > E.acierta ? 'laugh' : 'smile', turn: .3, look: [10, 8], holdR: HELD_CUP(-tilt) }), V3(1.85, 0, -.8), { shadow: false }), W.proj(V3(1.85, .9, -.1)).y);
