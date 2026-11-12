@@ -267,6 +267,9 @@ El usuario dijo que en las palomas «se mueven mal». En la referencia:
 ### Acercamiento a un objeto en la mano (contador, cartel…)
 - Si la cámara se acerca a algo que lleva un personaje, la CARA debe seguir dentro del plano: encuadra cara + objeto (vacas 62: el primer intento cortaba la cabeza de Kenji en el 0056). Revisa ese plano con los tiempos de la voz real, porque al cambiar la duración de la escena el zoom puede durar más.
 
+### Nunca un plano vacío al final de una escena
+- Si el protagonista sale de cuadro (la mosca que «se pasa de largo»), que siga visible alejándose hasta el final de la escena. Con la voz real las escenas duran distinto que con la voz falsa: el hueco sin nada (solo valla y cielo) puede alargarse a casi 1 s. Revisa siempre el último segundo de cada escena tras sincronizar la voz.
+
 ### Plano final con acercamiento
 - En el último plano (push-in), el sujeto (trofeo, personaje) debe caber entero hasta el último fotograma: dolly corto (≤ 0,25 m) y desplaza el `look` a la vez para mantenerlo centrado. Comprueba el fotograma final antes del render.
 

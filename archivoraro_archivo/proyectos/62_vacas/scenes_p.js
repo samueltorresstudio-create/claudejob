@@ -265,9 +265,10 @@ S.cebra = (t, D, B) => { const E = EVS.cebra(B); setup(window.__T || t);
   const a = k01(t, 0, E.frenas + .2), b = k01(t, E.pasas - .05, E.pasas + .45);
   const cp = L3(V3(-2.2, 1.35, -2.0), V3(-2.55, 1.3, -5.3), eOut(a)).add(V3(b * .6 - t * .06, b * .9, -b * .4 - t * .08)), cl = L3(V3(-2.9, 1.1, -8), V3(-2.9, 2.6, -8.6), b); W.setCam(cp, cl, 48, cp.distanceTo(cl), .0035); W.render();
   let s = cow(cowLife(t, 0, Object.assign({}, COW1_DONE, { eyes: 'closed' })), COW1, 'right');
-  const brake = t > E.frenas && t < E.pasas, fx = 520 + b * 980 + Math.sin(t * 5) * 8, fy = 1000 + Math.sin(t * 7) * 12 - b * 380;
-  s += bigFly(fx, fy, 1.5, t, { legs: brake ? 'out' : 'tuck', eye: brake || b > 0 ? 'wide' : 'lid', rot: brake ? -20 : (b > 0 ? 14 : -4) });
-  if (b > 0 && b < 1) s += speedLines(t, 24, .6 * Math.sin(b * Math.PI), -1);
+  // la mosca se pasa de largo pero NO sale del plano: sigue alejándose hacia el fondo hasta el final de la escena (nunca un plano vacío)
+  const c = k01(t, E.pasas + .45, D + .05), brake = t > E.frenas && t < E.pasas, fx = 520 + eOut(b) * 270 + c * 50 + Math.sin(t * 5) * 8, fy = 1000 + Math.sin(t * 7) * 12 - eOut(b) * 330 - c * 140;
+  s += bigFly(fx, fy, 1.5 * (1 - .5 * c), t, { legs: brake ? 'out' : 'tuck', eye: brake || b > 0 ? 'wide' : 'lid', rot: brake ? -20 : (b > 0 ? 14 : -4) });
+  if (b > 0) s += speedLines(t, 24, .6 * Math.max(Math.sin(b * Math.PI), b * (1 - c) * .7), -1);
   return s; };
 // 14 · lo vuelves a intentar y te estampas contra el lomo
 S.estampa = (t, D, B) => { const E = EVS.estampa(B); setup(window.__T || t);
