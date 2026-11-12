@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#000}canvas,svg{position:absolute;left:0;top:0}</style></head>
+<body><canvas id="gl" width="1080" height="1920"></canvas><svg id="fx" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<script src="three_post.js"></script><script src="util3d.js"></script><script src="world_kenji.js"></script><script src="stick.js"></script><script src="hair.js"></script><script src="cow2d.js"></script>
+<script>
+W2.charLight={tint:'#ffe2bd',k:.14,rim:'#fff6e6',rimA:.5,rimX:-1,rimY:-.6};
+const KENJI={eyeStyle:'palo',rich:true,legLen:1.18,outfit:'shirt',top:'#4a6a8a',topD:'#33506e',pants:'#3b4a63',belt:'#5a3a22',hat:'tenugui',hatCol:'#2f4f8f',hair2:'side',hairCol:'#1b1418',boots:'#e8e8e4',shoes:'#e8e8e4',sole:'#9aa3ad',prop:'brush',paint:'#f6f3ec',splat:'#f6f3ec',face:'smug',mouth:'line'};
+const VECINO={eyeStyle:'palo',rich:true,legLen:1.1,outfit:'flannel',top:'#c8443a',topD:'#8a2a24',line:'#f2c94c',tee:'#f4f2ec',cap:'#2f6a3a',capD:'#1f4a28',capLogo:'#ffd34a',hair2:'capHair',hairCol:'#8a847c',mustache:'#9a948c',wrinkles:true,glasses:true,belly:1.18,face:'smug',mouth:'smirk',boots:'#3a3e46',shoes:'#3a3e46'};
+const ST=(o,x,z,h=1.84,ex={})=>stickAt(Object.assign({},o,ex),V3(x,0,z),V3(x,h,z),W2);
+function cowScr(F,face){const p=W2.proj(F),q=W2.proj(V3(F.x,F.y+1.45,F.z));return {x:p.x,y:p.y,s:Math.hypot(q.x-p.x,q.y-p.y)/462,f:face==='left'?-1:1};}
+function landPts(n,seed,f){const r=k=>{const x=Math.sin(k*12.9898+seed*78.233)*43758.5453;return x-Math.floor(x)};const a=[];for(let k=0;k<n;k++)a.push([f*(-290+r(k)*520),-400+r(k+99)*190]);return a;}
+function rails2d(x0,x1,z){let s='';const W=W2,q=(x,y)=>W.proj(V3(x,y,z));[.55,1.15].forEach(y=>{const a=q(x0,y+.07),b=q(x1,y+.07),c=q(x1,y-.07),d=q(x0,y-.07);s+=`<path d="M${a.x},${a.y} L${b.x},${b.y} L${c.x},${c.y} L${d.x},${d.y}Z" fill="#9a6c40" stroke="#1b1720" stroke-width="5" stroke-linejoin="round"/><path d="M${a.x},${a.y+3} L${b.x},${b.y+3}" stroke="#c99a6a" stroke-width="3"/>`;});
+ for(let i=0;i<=10;i++){const x=-11+i*2.2;if(x<x0-.3||x>x1+.3)continue;const a=q(x-.1,1.5),b=q(x+.1,1.5),c=q(x+.1,0),d=q(x-.1,0);s+=`<path d="M${a.x},${a.y} L${b.x},${b.y} L${c.x},${c.y} L${d.x},${d.y}Z" fill="#b08a60" stroke="#1b1720" stroke-width="5"/>`;}return s;}
+function leanArms(x,z,col){const W=W2,f=W.proj(V3(x,0,z)),t=W.proj(V3(x,1.84,z)),s=Math.hypot(t.x-f.x,t.y-f.y)/462,cx=f.x,sy=f.y-360*s*1.84/1.84*(1.84/1.84),r=W.proj(V3(x,1.22,z-.6));
+ const SHy=f.y+(-360+0)*s, Ry=r.y;let o='';[-1,1].forEach(sd=>{const sx=cx+sd*44*s,ex=cx+sd*96*s,hx=cx+sd*26*s;
+  o+=`<path d="M${sx},${SHy} Q${cx+sd*90*s},${(SHy+Ry)/2} ${ex},${Ry}" stroke="#1b1720" stroke-width="${10*s}" fill="none" stroke-linecap="round"/><path d="M${ex},${Ry} L${hx},${Ry-6*s}" stroke="#1b1720" stroke-width="${10*s}" stroke-linecap="round"/><ellipse cx="${hx}" cy="${Ry-6*s}" rx="${13*s}" ry="${11*s}" fill="#1b1720"/>`;});return o;}
+const SH={
+ 1:()=>{W2.setCam(V3(-3.0,1.35,-1.2),V3(-3.25,1.0,-8),46,6.6,.004);W2.render();
+   return cowAt({stripes:'white',wet:true,paintTo:-60,tag:'01',eyes:'lid',chew:.5},V3(-2.9,0,-8.2),W2)+ST(KENJI,-4.25,-7.2,1.84,{armR:[96,-6],armL:[18,20],brushRot:84,look:[12,0],lean:4});},
+ 2:()=>{W2.setCam(V3(0,1.5,-4.4),V3(1.3,1.35,0),46,4.1,.004);W2.render();
+   return ST(VECINO,1.4,-.35,1.84,{noArms:true,look:[-6,2],browTilt:.4})+rails2d(-.6,3.4,-1)+leanArms(1.4,-.35);},
+ 3:()=>{W2.setCam(V3(3.2,1.6,-.4),V3(-1,.9,-9.5),54,8,.0022);W2.render();
+   return cowAt({stripes:null,tag:'03',eyes:'annoyed',tail:.7,twitch:true},V3(-2.6,0,-13.6),W2)+cowAt({stripes:'black',wet:true,tag:'02',eyes:'lid',chew:.2},V3(1.2,0,-10.2),W2)+
+     cowAt({stripes:'white',tag:'01',eyes:'lid',chew:.6},V3(-2.4,0,-6.4),W2)+ST(KENJI,1.5,-4.8,1.84,{armR:[30,40],armL:[18,20],look:[-8,0],brushRot:-60});},
+ 4:()=>{const F=V3(-2.2,0,-8);W2.setCam(V3(-2,1.15,-1.5),V3(-2.3,.85,-8),46,6.5,.004);W2.render();const c=cowScr(F);
+   return cowAt({stripes:null,tag:'03',eyes:'annoyed',tail:-.8,twitch:true,mouth:'moo'},F,W2)+flySwarm(c.x,c.y,c.s,60,0,{land:landPts(44,3,1),big:1.6});},
+ 5:()=>{const F=V3(-2.2,0,-8);W2.setCam(V3(-2,1.15,-1.5),V3(-2.3,.85,-8),46,6.5,.004);W2.render();const c=cowScr(F);
+   return cowAt({stripes:'white',tag:'01',eyes:'closed',chew:.8,grass:true},F,W2)+flySwarm(c.x,c.y,c.s,7,.3,{land:landPts(3,7,1),big:1.6,miss:[[-480,-600,-150,-430],[380,-640,100,-432],[-200,-700,20,-428]]});},
+ 6:()=>{W2.setCam(V3(6.5,8,6.5),V3(-2,.5,-8.5),52,14,.0015);W2.render();
+   return cowAt({tag:'03'},V3(-2.6,0,-13.6),W2)+cowAt({stripes:'black',tag:'02'},V3(1,0,-9.6),W2,{face:'left'})+cowAt({stripes:'white',tag:'01'},V3(-2.4,0,-6.4),W2)+ST(KENJI,1.3,-5.2)+ST(VECINO,1.4,-.35,1.84,{armL:[14,20],armR:[14,20],look:[-6,-4]});}};
+window.shot=i=>{document.getElementById('fx').innerHTML=SH[i]();};
+</script></body></html>
