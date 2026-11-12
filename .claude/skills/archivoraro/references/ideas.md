@@ -123,7 +123,7 @@ Catálogo completo visto en las grabaciones (cada uno en un mundo distinto):
 
 ## «Imaginación y locura» (lo que el usuario echa de menos, 12-11-2026)
 
-Rechazó ideas correctas pero «sin el toque de imaginación y locura». No basta con contar un hecho real con gancho: hay que **inventar una situación absurda y visual** (una abuela invencible, un pirata con cofres, un plátano que se desmaya en una plaza, una cárcel sin guardias, el foso con fluido no newtoniano) cuyo **remate sea un dato real**. Personajes con mote, escalada cómica, el espectador dentro, y la ciencia/psicología como sorpresa final. Si la idea se puede contar igual en un documental, no vale.
+Rechazó ideas correctas pero «sin el toque de imaginación y locura». No basta con contar un hecho real con gancho: hay que **inventar una situación absurda y visual** (una abuela invencible, un pirata con cofres, un plátano que se desmaya en una plaza, una cárcel sin guardias, el foso con fluido no newtoniano) cuyo **remate sea un dato real**. Personajes con mote, escalada cómica, el espectador dentro, y la ciencia/psicología como sorpresa final. Si la idea se puede contar igual en un documental, no vale. Y **variedad de mundos** (laboratorio, corte, circo, bar, boda, pueblo…): no todo castillos y batallas (el usuario: «te estás centrando solo en lo del castillo»). Lo que tenía el foso: un fenómeno real MUY VISUAL que se ve y sorprende (correr sobre un líquido), no un estudio de psicología ni un acertijo.
 
 ## Cómo suenan de verdad (transcripción palabra a palabra de la cuenta de referencia, 11-11-2026)
 
