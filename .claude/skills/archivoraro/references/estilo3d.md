@@ -295,3 +295,10 @@ El usuario dijo que en las palomas «se mueven mal». En la referencia:
 ### Subtítulos nítidos en las transiciones (fallo detectado por el usuario)
 - Doble seguridad: `core3d.js` aplica el desenfoque SOLO a `#gl` y `#fx` (nunca a `#cap`), así funciona también con `index.html` antiguos.
 - Antes el desenfoque se aplicaba a `#stage`. La capa `<svg id="cap">` va FUERA de `#stage` (después del `</div>`), para que el texto se lea siempre. Ya está corregido en `engine_3d/index.html`; revisa los `index.html` de proyectos antiguos.
+
+
+## Estadio de fútbol de 1889 (68 · La red de la portería, nov. 2026)
+- `engine_3d/world_futbol.js`: campo con barro en las áreas y tiza gastada, porterías de madera, **red deformable** (`setNet({hit:[x,y], t, amp, rest:[x]})`: onda al entrar el balón y bolsa donde reposa), balón de cuero de 1889 (`ball(p, rot, vis)`), valla blanca, gradas de madera con tejado, faldón con letreros y banderines, casas de ladrillo, chimeneas con humo (sprites), campanario.
+- **Público**: sprites de nuestros personajes pre-renderizados (`proyectos/68_red_porteria/bake_crowd.js`, 16 variantes × quieto/celebrando) metidos en `crowd.js` como data-URI (Chromium bloquea texturas `file://`). `W2.crowd(imgs)` devuelve una promesa: esperar antes de renderizar. `setCheer(k)` = fracción del público celebrando (brazos arriba, saltando).
+- `stick.js` nuevo: `hat:'bowler'|'flatcap'` (ENCAJADOS en la cabeza, con patillas por debajo; el usuario: «los sombreros bien puestos, no superpuestos»), `outfit:'kit1889'` (`hoops:true` = aros horizontales como la referencia, cuello con cordón), `knickers` (bombacho hasta la rodilla), `whistle` (silbato del árbitro, encima del cuerpo).
+- Detalle del público como la referencia: variedad de gorras/bombines inclinados, bigotes, barbas, gafas, bufandas, chalecos, pelo de colores.
