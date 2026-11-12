@@ -63,7 +63,7 @@ Voz del usuario: **Eleven v3, «Edoardo – Dark Measured Natural», estabilidad
 - **Energía en el gancho**: si va una etiqueta, que sea en la 1.ª o 2.ª frase (`[urgent]`/`[tense]`).
 - Etiquetas de emoción **muy pocas** (2–4 en todo el guion), solo en los momentos especiales, al principio de la frase: `[serious] [tense] [urgent] [ominous] [sad] [hopeful]`. **Nada de `[whispers]`** (el usuario no quiere susurros).
 - **Curiosidades (voz alegre): catálogo de etiquetas v3** (pedido del usuario: variedad según la situación, no en cada frase):
-  - gancho: `[curious]` (mejor que `[excited]`: con Edoardo, `[excited]` suena demasiado fuerte; el usuario lo dijo el 12-11-2026);
+  - gancho: SIN etiqueta (12-11-2026 el usuario quitó `[excited]` y luego `[curious]`: «pocos, en momentos específicos y que sean ligeros»). Pauta actual: 2–3 etiquetas ligeras en todo el guion (`[sarcastic]` en una pulla, `[deadpan]` en un remate seco, `[deadpan] [slowly]` en la última frase); nada de `[excited]`;
   - remate seco y alargado («Mala… idea»): `[deadpan] [slowly]` en una línea aparte, con puntos suspensivos dentro;
   - humor: `[laughs]`, `[sarcastic]`, `[mischievously]`, `[playful]`;
   - sorpresa: `[surprised]`, `[amazed]`;
