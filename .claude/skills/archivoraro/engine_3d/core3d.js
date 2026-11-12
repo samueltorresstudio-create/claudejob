@@ -18,7 +18,7 @@ const ACC = { y: YEL, p: PINK, b: BLUE, g: GREEN };
 const fxEl = document.getElementById('fx'), capEl = document.getElementById('cap'), glEl = document.getElementById('gl');
 // ---------- camera transitions between shots (reference style: the camera flies / whips / pushes into the next shot, with motion blur) ----------
 // CFG.blurK (multiplica el desenfoque de las transiciones; <1 = más suave), CFG.antic (s de anticipación antes del cambio).
-// CFG.trans: { sceneName: 'fly' | 'whip' | 'push' | 'pull' | 'swish' | 'cut' } ('swish' = barrido sin mover la cámara de sitio: úsalo entre zonas distintas del mundo, así la cámara no atraviesa paredes) (transition INTO that scene); default CFG.transDefault ('fly'). CFG.transDur (s, default .55).
+// CFG.trans: { sceneName: 'fly' | 'whip' | 'push' | 'pull' | 'swish' | 'cut' } ('swish' = barrido sin mover la cámara de sitio: úsalo entre zonas distintas del mundo, así la cámara no atraviesa paredes; 'glide' = deslizamiento suave SIN desenfoque y con los personajes del plano nuevo desde el primer fotograma: úsalo cuando alguien empieza a hablar justo al empezar la escena y los dos planos miran a la misma zona) (transition INTO that scene); default CFG.transDefault ('fly'). CFG.transDur (s, default .55); CFG.transDurBy = { escena: s } para alargar una transición concreta (p. ej. un 'glide' largo).
 // How: probe the previous scene's last camera and the new scene's camera (no rendering), then override W2.setCam while the new scene draws,
 // so its 2D characters are projected with the moving camera and stay glued to the 3D world.
 const TR = (() => { if (typeof W2 === 'undefined' || !W2.setCam) return null; const orig = W2.setCam.bind(W2), origR = W2.render.bind(W2), V = THREE.Vector3;
@@ -42,7 +42,7 @@ window.render = function (T) {
   let bi = BEATS.findIndex(b => T >= b.start && T < b.start + b.d); if (bi < 0) bi = BEATS.length - 1;
   const b = BEATS[bi], st = T - b.sStart;
   // transition into this scene?
-  const si = BEATS.findIndex(x => x.sStart === b.sStart), prev = si > 0 ? BEATS[si - 1] : null, kind = (CFG.trans || {})[b.sc] || CFG.transDefault || 'fly', TD = CFG.transDur || .55;
+  const si = BEATS.findIndex(x => x.sStart === b.sStart), prev = si > 0 ? BEATS[si - 1] : null, kind = (CFG.trans || {})[b.sc] || CFG.transDefault || 'fly', TD = (CFG.transDurBy || {})[b.sc] || CFG.transDur || .55;
   let svg = '', inTr = false;
   if (TR) TR.blur('H', 0);
   if (TR && prev && kind !== 'cut' && st < TD) {
@@ -55,13 +55,13 @@ window.render = function (T) {
         if (kind === 'whip') { const fw = l.clone().sub(p), yaw = bump * .75, c = Math.cos(yaw), s2 = Math.sin(yaw); l = p.clone().add(new V(fw.x * c - fw.z * s2, fw.y, fw.x * s2 + fw.z * c)); }
         return { p, l, f, apK: 1 - bump * .8 }; };
       // first half: the previous shot keeps its characters while the camera leaves; second half: the new shot (switch hidden at peak blur)
-      svg = (k < .5 ? S[prev.sc](prev.sDur - .001, prev.sDur, prev.B) : S[b.sc](st, b.sDur, b.B)) || ''; TR.st.ov = null;
-      const amt = bump * (kind === 'whip' || kind === 'swish' ? 30 : kind === 'push' ? 14 : 18) * (CFG.blurK ?? 1); TR.blur(kind === 'whip' || kind === 'swish' ? 'H' : kind === 'push' ? 'R' : 'V', amt);
+      svg = (k < .5 && kind !== 'glide' ? S[prev.sc](prev.sDur - .001, prev.sDur, prev.B) : S[b.sc](st, b.sDur, b.B)) || ''; TR.st.ov = null;
+      const amt = kind === 'glide' ? 0 : bump * (kind === 'whip' || kind === 'swish' ? 30 : kind === 'push' ? 14 : 18) * (CFG.blurK ?? 1); TR.blur(kind === 'whip' || kind === 'swish' ? 'H' : kind === 'push' ? 'R' : 'V', amt);
       if (kind === 'push' && k < .5) svg += `<rect width="1080" height="1920" fill="#fff" opacity="${(.25 * Math.sin(Math.PI * k * 2)).toFixed(3)}"/>`; } }
   if (!inTr) svg = S[b.sc](st, b.sDur, b.B) || '';
   // the previous scene accelerates into the transition: last .18 s gets a little push + blur (anticipation)
   const nb = BEATS.slice(bi).find(x => x.sStart !== b.sStart), nk = nb ? ((CFG.trans || {})[nb.sc] || CFG.transDefault || 'fly') : 'cut';
-  if (TR && nb && nk !== 'cut') { const left = nb.start - T, AN = CFG.antic ?? .18; if (left < AN) TR.blur(nk === 'whip' || nk === 'swish' ? 'H' : nk === 'push' ? 'R' : 'V', (1 - left / AN) * 6 * (CFG.blurK ?? 1)); }
+  if (TR && nb && nk !== 'cut' && nk !== 'glide') { const left = nb.start - T, AN = CFG.antic ?? .18; if (left < AN) TR.blur(nk === 'whip' || nk === 'swish' ? 'H' : nk === 'push' ? 'R' : 'V', (1 - left / AN) * 6 * (CFG.blurK ?? 1)); }
   const cutK = b.start === b.sStart && bi > 0 ? st : 9;                                    // hard cuts keep a quick white pop
   if (cutK < .1 && CFG.flash !== false && (!TR || kind === 'cut')) svg += `<rect width="1080" height="1920" fill="#fff" opacity="${(.18 * (1 - cutK / .1)).toFixed(3)}"/>`;
   svg += `<defs><radialGradient id="vg3" cx=".5" cy=".45" r=".8"><stop offset=".62" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".32"/></radialGradient></defs><rect width="1080" height="1920" fill="url(#vg3)"/>`;

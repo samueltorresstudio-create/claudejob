@@ -1,9 +1,9 @@
 // «Las vacas cebra» (62) — ESTILO 3D: world_kenji.js + personajes 2D (stick.js, cow2d.js). Sin voz (fake_voice), cámara siempre en movimiento.
 // Reglas de movimiento (referencia «naranjas»): pies clavados, una acción concreta por plano ligada a la palabra, de pose a pose con cambios
 // rápidos y respiración sutil; la mano y la brocha se resuelven con cinemática inversa (IK) para tocar de verdad la vaca o el cubo.
-window.CFG = { capY: 1500, capSize: 96, transDur: .95, blurK: .55, antic: .3,
+window.CFG = { capY: 1500, capSize: 96, transDur: .95, transDurBy: { brocha: 1.4 }, blurK: .55, antic: .3,
   trans: { apodo: 'fly', valla: 'fly', jirafa: 'swish', moja: 'swish', negra: 'fly', nosevan: 'swish', tercera: 'fly', mosca: 'whip', hambre: 'fly', normal: 'swish',
-    negras: 'whip', cebra: 'whip', estampa: 'whip', como: 'swish', barberia: 'fly', giran: 'fly', engana: 'fly', cuenta: 'fly', olor: 'whip', manana: 'fly', brocha: 'swish' } };
+    negras: 'whip', cebra: 'whip', estampa: 'whip', como: 'swish', barberia: 'fly', giran: 'fly', engana: 'fly', cuenta: 'fly', olor: 'whip', manana: 'fly', brocha: 'glide' } };
 const EVS = {
   hook: B => ({ pintando: B[0].w[5], cebra: B[0].w[8], negra: B[0].w[12] }), apodo: B => ({ llaman: B[0].w[4], kenji: B[0].w[5], rayas: B[0].w[7] }),
   valla: B => ({ apoya: B[0].w[3], mira: B[0].w[8], suelta: B[0].w[12] }), jirafa: B => ({ jirafa: B[0].w[2], cuando: B[0].w[4] }),
@@ -60,13 +60,28 @@ const COW1_DONE = { stripes: 'white', tag: '01' }, COW2_DONE = { stripes: 'black
 function rails2d(x0, x1, z = -1) { let s = ''; const q = (x, y) => W.proj(V3(x, y, z));
   [.55, 1.15].forEach(y => { const a = q(x0, y + .07), b = q(x1, y + .07), c = q(x1, y - .07), d = q(x0, y - .07); if (!a.ok || !b.ok) return; s += `<path d="M${a.x},${a.y} L${b.x},${b.y} L${c.x},${c.y} L${d.x},${d.y}Z" fill="#9a6c40" stroke="${K}" stroke-width="${Math.max(2, a.ppm * .02).toFixed(1)}" stroke-linejoin="round"/><path d="M${a.x},${a.y + 2} L${b.x},${b.y + 2}" stroke="#c99a6a" stroke-width="${Math.max(1.5, a.ppm * .012).toFixed(1)}"/>`; });
   for (let i = 0; i <= 10; i++) { const x = -11 + i * 2.2; if (x < x0 - .3 || x > x1 + .3) continue; const a = q(x - .1, 1.5), b = q(x + .1, 1.5), c = q(x + .1, 0), d = q(x - .1, 0); if (!a.ok) continue; s += `<path d="M${a.x},${a.y} L${b.x},${b.y} L${c.x},${c.y} L${d.x},${d.y}Z" fill="#b08a60" stroke="${K}" stroke-width="${Math.max(2, a.ppm * .02).toFixed(1)}"/>`; } return s; }
-// brazos del vecino apoyados en la barra de arriba (encima de la barra); sides: 'both' | 'left'
-function leanArms(F, sides = 'both', bob = 0) { const fr = frameOf(F, 1.84), r = W.proj(V3(F.x, 1.22, -1.0)); if (!fr.ok || !r.ok) return ''; const s = fr.s, cx = fr.x, SHy = fr.y + (-360 + bob) * s, Ry = r.y; let o = '';
-  [-1, 1].forEach(sd => { if (sides === 'left' && sd > 0) return; const sx = cx + sd * 44 * s, ex = cx + sd * 98 * s, hx = cx + sd * 26 * s;
-    o += `<path d="M${sx},${SHy} Q${cx + sd * 92 * s},${(SHy + Ry) / 2} ${ex},${Ry - 4 * s}" stroke="${K}" stroke-width="${10 * s}" fill="none" stroke-linecap="round"/><path d="M${ex},${Ry - 4 * s} L${hx},${Ry - 9 * s}" stroke="${K}" stroke-width="${10 * s}" stroke-linecap="round"/><ellipse cx="${hx}" cy="${Ry - 9 * s}" rx="${13 * s}" ry="${11 * s}" fill="${K}"/>`; }); return o; }
-// brazo derecho del vecino estirado por encima de la valla, palma arriba («¿me dejas la brocha?»)
-function askArm(F, k, bob = 0) { if (k <= 0) return ''; const fr = frameOf(F, 1.84), s = fr.s, sx = fr.x + 44 * s, sy = fr.y + (-360 + bob) * s, ex = sx + lerp(40, 70, k) * s, ey = sy + lerp(80, 50, k) * s, hx = sx + lerp(60, 150, k) * s, hy = sy + lerp(140, 40, k) * s;
-  return `<path d="M${sx},${sy} Q${ex + 10 * s},${ey} ${hx},${hy}" stroke="${K}" stroke-width="${10 * s}" fill="none" stroke-linecap="round"/><g transform="translate(${hx},${hy}) scale(${s})"><path d="M-14,-4 Q-18,12 2,14 Q22,14 24,0 L30,-10 Q26,-14 20,-8 Z" fill="${K}"/><path d="M-12,-6 l-6,-14 M-2,-8 l-2,-16 M8,-8 l2,-16" stroke="${K}" stroke-width="7" stroke-linecap="round"/></g>`; }
+// brazos del vecino apoyados en la barra de arriba. Devuelve { back, front }: back (brazo, DETRÁS del cuerpo) va antes de who(); front (antebrazo y mano, ENCIMA de la barra) va después de rails2d.
+// Todo en coordenadas locales del personaje y con su inclinación (lean), igual que stick.js (si no, el hombro queda flotando fuera del cuerpo).
+// k: 0 = brazos colgando (pose de from), 1 = apoyado. ask: { sd, k } → ese brazo pasa de apoyado a estirado con la palma arriba («¿me dejas la brocha?»).
+function leanArms(F, o = {}) { const fr = frameOf(F, 1.84), r = W.proj(V3(F.x, 1.22, -1.0)); if (!fr.ok || !r.ok) return { back: '', front: '' };
+  const s = fr.s, lean = o.lean || 0, bob = o.bob || 0, e = eIO(clamp(o.k ?? 1)), ry = toLoc(fr, r.x, r.y, 1, lean)[1], from = o.from || { L: [12, 15], R: [12, 15] }; let back = '', front = '';
+  const P = (x, y) => toScr(fr, x, y, 1, lean).map(v => v.toFixed(1)), W10 = (9 * s).toFixed(1);
+  [-1, 1].forEach(sd => { const [a1, a2] = sd < 0 ? from.L : from.R, Sx = sd * 44, Sy = -360 + bob;
+    const hEx = Sx + Math.sin(rad(sd * a1)) * 90, hEy = Sy + Math.cos(rad(sd * a1)) * 90, hHx = hEx + Math.sin(rad(sd * (a1 + a2))) * 86, hHy = hEy + Math.cos(rad(sd * (a1 + a2))) * 86;
+    // dos fases: primero suben las manos hasta la barra (doblando el codo), luego los codos se abren y las manos se juntan sobre la barra
+    const eu = eOut(clamp(e * 1.7)), ei = eIO(clamp((e - .3) / .7));
+    let Ex = lerp(hEx, sd * 116, ei), Ey = lerp(hEy, ry - 4, eu), Hx = lerp(hHx, sd * 28, ei), Hy = lerp(hHy, ry - 9, eu);
+    const ak = o.ask && o.ask.sd === sd ? eIO(clamp(o.ask.k)) : 0;
+    if (ak > 0) { Ex = lerp(Ex, sd * 112, ak); Ey = lerp(Ey, ry - 34, ak); Hx = lerp(Hx, sd * 196, ak); Hy = lerp(Hy, ry - 96, ak); }
+    const [sx, sy] = P(Sx, Sy), [ex, ey] = P(Ex, Ey), [hx, hy] = P(Hx, Hy), [qx, qy] = P(lerp((Sx + Ex) / 2 + sd * 6, sd * 92, e * (1 - ak)), (Sy + Ey) / 2);
+    back += `<path d="M${sx},${sy} Q${qx},${qy} ${ex},${ey}" stroke="${K}" stroke-width="${W10}" fill="none" stroke-linecap="round"/>`;
+    const fore = `<path d="M${ex},${ey} L${hx},${hy}" stroke="${K}" stroke-width="${W10}" stroke-linecap="round"/>` + (ak > .35
+      ? `<g transform="translate(${hx},${hy}) rotate(${(fr.r * 180 / Math.PI + lean).toFixed(1)}) scale(${(sd * s).toFixed(4)},${s.toFixed(4)})"><path d="M-14,-4 Q-18,12 2,14 Q22,14 24,0 L30,-10 Q26,-14 20,-8 Z" fill="${K}"/><path d="M-12,-6 l-6,-14 M-2,-8 l-2,-16 M8,-8 l2,-16" stroke="${K}" stroke-width="7" stroke-linecap="round"/></g>`
+      : `<ellipse cx="${hx}" cy="${hy}" rx="${(12 * s).toFixed(1)}" ry="${(10.5 * s).toFixed(1)}" fill="${K}"/>`);
+    if (e >= .5 || ak > 0) front += fore; else back += fore; });
+  return { back, front }; }
+// boca al ritmo REAL de la voz (venv.js = envolvente de narration.wav por fotograma): abierta / media / cerrada
+const mouthV = (T, rest = 'smirk') => { const v = (window.VENV || [])[Math.round(T * 30)] || 0; return v >= .55 ? 'open' : v >= .22 ? 'o' : v > 0 ? 'line' : rest; };
 // ---------- moscas ----------
 function fly1(x, y, sc, ang, t, landed, k = 0) { const fl = landed ? 0 : Math.sin(t * 90 + k * 3) * 38, wa = landed ? 18 : 0;
   return `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) rotate(${ang.toFixed(0)}) scale(${sc.toFixed(3)})">` + (landed ? '' : `<ellipse cx="-4" cy="-10" rx="14" ry="7" fill="#e6f2ff" fill-opacity=".35" transform="rotate(${-30 - fl} -2 -2)"/><ellipse cx="-4" cy="10" rx="14" ry="7" fill="#e6f2ff" fill-opacity=".35" transform="rotate(${30 + fl} -2 2)"/>`) +
@@ -184,15 +199,16 @@ S.apodo = (t, D, B) => { const E = EVS.apodo(B); setup(window.__T || t);
 // 3 · el vecino se apoya en la valla y mira
 S.valla = (t, D, B) => { const E = EVS.valla(B); setup(window.__T || t);
   const cp = V3(-.2 + t * .08, 1.55, -4.6 + t * .18), cl = V3(1.35, 1.38, 0); W.setCam(cp, cl, 44, cp.distanceTo(cl), .004); W.render();
-  const ap = k01(t, E.apoya - .1, E.apoya + .02), br = breathe(t, .7), talking = t > E.suelta;
-  const o = Object.assign({}, br, { noArms: ap > .5, lean: lerp(0, 6, ap), look: t > E.mira ? [-10, 3] : [-3, 0], mouth: talking ? 'open' : 'smirk', browTilt: t > E.mira ? .4 : 0, face: blink(t, .2) ? 'closed' : 'smug' });
-  if (ap <= .5) { o.armL = [12, 15]; o.armR = [12, 15]; }
-  return who(VECINO, o, NB) + rails2d(-1, 4) + (ap > .5 ? leanArms(NB, 'both', br.bob) : ''); };
+  const ap = k01(t, E.apoya - .3, E.apoya + .15), br = breathe(t, .7);
+  const o = Object.assign({}, br, { noArms: true, lean: lerp(0, 6, eIO(ap)), look: t > E.mira ? [-10, 3] : [-3, 0], mouth: 'smirk', browTilt: t > E.mira ? .4 : 0, face: blink(t, .2) ? 'closed' : 'smug' });
+  const A = leanArms(NB, { k: ap, lean: o.lean, bob: br.bob });
+  return A.back + who(VECINO, o, NB) + rails2d(-1, 4) + A.front; };
 // 4 · «¿Y la jirafa para cuándo?»
 S.jirafa = (t, D, B) => { const E = EVS.jirafa(B); setup(window.__T || t);
   const cp = V3(.7, 1.6, -3.5 + t * .14), cl = V3(1.4, 1.48, 0); W.setCam(cp, cl, 40, cp.distanceTo(cl), .006); W.render();
-  const br = breathe(t, .7), tl = t < E.cuando + .35, o = Object.assign({}, br, { noArms: true, lean: 6, look: [-10, 3], mouth: talk(t, tl) || 'smirk', browTilt: .6, brows: t > E.jirafa ? .6 : .2, headTilt: br.headTilt + (t > E.jirafa ? -5 : 0), face: 'smug' });
-  return who(VECINO, o, NB) + rails2d(-1, 4) + leanArms(NB, 'both', br.bob); };
+  const br = breathe(t, .7), o = Object.assign({}, br, { noArms: true, lean: 6, look: [-10, 3], mouth: mouthV(window.__T || t), browTilt: .6, brows: t > E.jirafa ? .6 : .2, headTilt: br.headTilt + (t > E.jirafa ? -5 : 0), face: 'smug' });
+  const A = leanArms(NB, { lean: 6, bob: br.bob });
+  return A.back + who(VECINO, o, NB) + rails2d(-1, 4) + A.front; };
 // 5 · Kenji ni se gira: moja la brocha en el cubo y sigue pintando
 S.moja = (t, D, B) => { const E = EVS.moja(B); setup(window.__T || t);
   const cp = V3(-1.9 - t * .12, 1.25, -2.9 - t * .1), cl = V3(-3.4, 1.0, -7.6); W.setCam(cp, cl, 46, cp.distanceTo(cl), .0035); W.render();
@@ -220,7 +236,8 @@ S.nosevan = (t, D, B) => { const E = EVS.nosevan(B); setup(window.__T || t);
   const cp = V3(.85, 1.6, -3.3 + t * .14), cl = V3(1.55, 1.46, 0); W.setCam(cp, cl, 38, cp.distanceTo(cl), .006); W.render();
   const sq = k01(t, E.ven - .1, E.ven + .05), br = breathe(t, .7);
   const o = Object.assign({}, br, { noArms: true, lean: lerp(6, 11, sq), look: [-12, 6], face: 'angry', mouth: 'line', browTilt: lerp(.4, -.6, sq), brows: lerp(.3, -.5, sq), headTilt: br.headTilt + sq * 8 });
-  return who(VECINO, o, NB) + rails2d(-1, 4) + leanArms(NB, 'both', br.bob); };
+  const A = leanArms(NB, { lean: o.lean, bob: br.bob });
+  return A.back + who(VECINO, o, NB) + rails2d(-1, 4) + A.front; };
 // 8 · a la tercera ni la toca: la vaca normal mastica; Kenji la mira y pasa (pose a pose)
 S.tercera = (t, D, B) => { const E = EVS.tercera(B); setup(window.__T || t);
   const cp = V3(.9 + t * .08, 1.4, -5.6 - t * .1), cl = V3(-.5, .95, -12.6); W.setCam(cp, cl, 46, cp.distanceTo(cl), .0035); W.render();
@@ -290,8 +307,8 @@ S.barberia = (t, D, B) => { const E = EVS.barberia(B); setup(window.__T || t);
   const cp = V3(-21.6 - t * .25, 1.75, 10.6 - t * .5), cl = V3(-25.4, 1.85, 4.6); W.setCam(cp, cl, 46, cp.distanceTo(cl), .0025); W.render(); return ''; };
 // 17 · parecen subir, pero solo giran
 S.giran = (t, D, B) => { const E = EVS.giran(B); setup(window.__T || t);
-  const a = .35 - t * .06, cp = V3(-24.15 + Math.sin(a) * 2.6, 1.98, 4.95 + Math.cos(a) * 2.6), cl = V3(-24.15, 1.95, 4.95); W.setCam(cp, cl, 40, cp.distanceTo(cl), .006); W.render();
-  const p = W.proj(V3(-24.15, 1.95, 4.95)), top = W.proj(V3(-24.15, 2.5, 4.95)), bot = W.proj(V3(-24.15, 1.4, 4.95)), r = p.ppm * .19;
+  const a = .35 - t * .06, cp = V3(-24.75 + Math.sin(a) * 2.6, 1.98, 4.95 + Math.cos(a) * 2.6), cl = V3(-24.75, 1.95, 4.95); W.setCam(cp, cl, 40, cp.distanceTo(cl), .006); W.render();
+  const p = W.proj(V3(-24.75, 1.95, 4.95)), top = W.proj(V3(-24.75, 2.5, 4.95)), bot = W.proj(V3(-24.75, 1.4, 4.95)), r = p.ppm * .19;
   const up = t > E.subir - .2 && t < E.giran - .05 ? clamp((t - E.subir + .2) / .6) : 0, sp = clamp((t - E.giran + .2) / .5);
   const ax = p.x + p.ppm * .26; return arrowUp(ax, bot.y, top.y, up, t) + (t > E.realidad && t < E.giran + .1 ? crossX(ax, p.y, k01(t, E.realidad, E.realidad + .2)) : '') + arrowSpin(p.x, p.y + p.ppm * .05, p.ppm * .27, p.ppm * .08, sp, t); };
 // 18 · a la mosca le pasa igual: calcula mal y no frena a tiempo (cámara lenta)
@@ -329,16 +346,19 @@ S.olor = (t, D, B) => { const E = EVS.olor(B); setup(window.__T || t);
 // 21 · a la mañana siguiente: el vecino vuelve a la valla (rodeado de moscas)
 S.manana = (t, D, B) => { const E = EVS.manana(B); setup(window.__T || t, 1);
   const cp = V3(-.4 + t * .1, 1.6, -4.7 + t * .2), cl = V3(1.35, 1.4, 0); W.setCam(cp, cl, 44, cp.distanceTo(cl), .004); W.render();
-  const ap = k01(t, E.apoyarse - .1, E.apoyarse + .02), br = breathe(t, .7), sw = t < E.apoyarse ? Math.max(0, Math.sin(t * 9)) : 0;
-  const o = Object.assign({}, br, { noArms: ap > .5, lean: lerp(0, 6, ap), look: [-8, 2], face: 'smug', mouth: 'line', brows: .4, browTilt: -.3 });
-  if (ap <= .5) { o.armL = [12, 15]; o.armR = [lerp(14, 160, sw), lerp(15, 70, sw)]; }
+  const T = window.__T || t, ap = k01(t, E.apoyarse - .3, E.apoyarse + .15), br = breathe(T, .7), sw = Math.max(0, Math.sin(t * 9)) * (1 - k01(t, E.apoyarse - .6, E.apoyarse - .3));
+  const o = Object.assign({}, br, { noArms: true, lean: lerp(0, 6, eIO(ap)), look: [-8, 2], face: 'smug', mouth: 'line', brows: .4, browTilt: -.3 });
+  const A = leanArms(NB, { k: ap, lean: o.lean, bob: br.bob, from: { L: [12, 15], R: [lerp(14, 160, sw), lerp(15, 70, sw)] } });
   const hp = W.proj(V3(NB.x, 1.84, NB.z));
-  return who(VECINO, o, NB) + rails2d(-1, 4) + (ap > .5 ? leanArms(NB, 'both', br.bob) : '') + buzz(hp.x, hp.y - 40, 5, hp.ppm * .45, hp.ppm * .0028, t, 5); };
+  return A.back + who(VECINO, o, NB) + rails2d(-1, 4) + A.front + buzz(hp.x, hp.y - 40, 5, hp.ppm * .45, hp.ppm * .0028, T, 5); };
 // 22 · «Oye, Kenji… ¿me dejas la brocha?»
-S.brocha = (t, D, B) => { const E = EVS.brocha(B); setup(window.__T || t, 1);
-  const cp = V3(.6 + t * .06, 1.55, -8.2 + t * .14), cl = V3(1.6, 1.3, -1.0); W.setCam(cp, cl, 46, cp.distanceTo(cl), .0035); W.render();
-  const br = breathe(t, .7), tl = t > E.oye - .05 && t < E.brocha + .35, ask = k01(t, E.dejas - .15, E.dejas + .1);
-  const vo = Object.assign({}, br, { noArms: true, lean: 6, look: [-10, 2], mouth: talk(t, tl) || 'smirk', brows: .5, browTilt: -.4, face: blink(t, .2) ? 'closed' : 'smug' });
-  const KF = V3(1.95, 0, -4.0), kb = breathe(t, 1), turn = k01(t, E.kenji - .1, E.kenji + .05);
-  const kenji = who(KENJI, Object.assign({}, kb, { prop: 'brush', brushRot: 20, brushScale: .62, armR: [36, 40], look: [lerp(0, 12, turn), 0], face: 'smug' }), KF);
-  return who(VECINO, vo, NB) + rails2d(-1, 4) + leanArms(NB, ask > 0 ? 'left' : 'both', br.bob) + askArm(NB, ask, br.bob) + buzz(W.proj(V3(NB.x, 1.84, NB.z)).x, W.proj(V3(NB.x, 1.84, NB.z)).y - 40, 3, 50, .5, t, 7) + kenji; };
+S.brocha = (t, D, B) => { const E = EVS.brocha(B), T = window.__T || t; setup(T, 1);
+  // plano a la altura de los dos: Kenji (dentro del corral, a la izquierda) y el vecino (en la valla, a la derecha) bien grande para que se le vea hablar
+  const cp = V3(1.92 - t * .02, 1.45, -7.1 + t * .12), cl = V3(1.85, 1.25, -.8); W.setCam(cp, cl, 40, cp.distanceTo(cl), .0035); W.render();
+  const br = breathe(T, .7), ask = k01(t, E.dejas - .35, E.dejas + .2);
+  const vo = Object.assign({}, br, { noArms: true, lean: 6, look: [-8, 2], mouth: mouthV(T, 'line'), brows: .4, browTilt: -.3, face: blink(t, .2) ? 'closed' : 'smug' });
+  const A = leanArms(NB, { lean: 6, bob: br.bob, ask: { sd: -1, k: ask } });
+  const KF = V3(2.4, 0, -1.35), kb = breathe(t, 1), turn = k01(t, E.kenji - .1, E.kenji + .25);
+  const kenji = who(KENJI, Object.assign({}, kb, { prop: 'brush', brushRot: 172, brushScale: .62, armR: [14, 12], look: [lerp(0, 12, turn), 0], face: 'smug' }), KF);
+  const hp = W.proj(V3(NB.x, 1.84, NB.z));
+  return A.back + who(VECINO, vo, NB) + rails2d(-1, 4) + A.front + buzz(hp.x, hp.y - 40, 5, hp.ppm * .45, hp.ppm * .0028, T, 5) + kenji; };

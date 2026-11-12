@@ -157,13 +157,15 @@ const W2 = (() => {
   const awnT = tex(512, 64, (g, w, h) => { for (let k = 0; k < 16; k++) { g.fillStyle = k % 2 ? '#f6f3ec' : '#2f5f9f'; g.fillRect(k * w / 16, 0, w / 16, h); } });
   add(RB(6.6, .1, 1.3, .03), STD({ map: awnT }), 0, 2.95, 2.65, { parent: SHOP, rx: .32 });
   add(RB(7.4, .25, .3, .05), STD({ color: '#3e4a5a' }), 0, 3.62, 2.12, { parent: SHOP });
-  const poleT = tex(256, 512, (g, w, h) => { g.save(); g.translate(w / 2, h / 2); g.rotate(-Math.PI / 4.4); const cols = ['#d23a32', '#f6f3ec', '#2f5f9f', '#f6f3ec']; for (let k = -24; k < 24; k++) { g.fillStyle = cols[((k % 4) + 4) % 4]; g.fillRect(-600, k * 32, 1200, 32); } g.restore(); }, [1, 1]);
-  const POLE = new T.Group(); POLE.position.set(-24.15, 1.95, 4.95); scene.add(POLE);
+  // rayas en hélice SIN COSTURA (8 bandas por vuelta, múltiplo de 4 colores): al girar no se ve ninguna línea de corte
+  const poleT = tex(512, 512, (g, w, h) => { const cols = ['#d23a32', '#f6f3ec', '#2f5f9f', '#f6f3ec'], N = 8, K = 9; for (let c = -2; c < N + K + 2; c++) { g.fillStyle = cols[((c % 4) + 4) % 4]; g.beginPath(); g.moveTo(c * w / N, 0); g.lineTo((c + 1) * w / N, 0); g.lineTo((c + 1 - K) * w / N, h); g.lineTo((c - K) * w / N, h); g.closePath(); g.fill(); } });
+  const POLE = new T.Group(); POLE.position.set(-24.75, 1.95, 4.95); scene.add(POLE);   // delante de la fachada, a 0,25 m de la esquina (los soportes van a la pared)
   const poleCyl = add(new T.CylinderGeometry(.15, .15, 1.15, 32, 1, true), STD({ map: poleT, roughness: .25 }), 0, 0, 0, { parent: POLE, noInk: true });
   add(new T.CylinderGeometry(.19, .19, 1.2, 32, 1, true), STD({ color: '#dff0ff', transparent: true, opacity: .22, roughness: .05, metalness: .2 }), 0, 0, 0, { parent: POLE, cast: false, noInk: true });
   [.62, -.62].forEach(y => { add(new T.CylinderGeometry(.21, .21, .1, 24), STD({ color: '#c9ced6', metalness: .55, roughness: .3 }), 0, y, 0, { parent: POLE }); });
   add(new T.SphereGeometry(.17, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2), STD({ color: '#c9ced6', metalness: .55, roughness: .3 }), 0, .67, 0, { parent: POLE });
-  add(new T.CylinderGeometry(.025, .025, .5, 8), STD({ color: '#b8bec6', metalness: .5 }), 0, .4, -.3, { parent: POLE, rx: Math.PI / 2, noInk: true }); add(new T.CylinderGeometry(.025, .025, .5, 8), STD({ color: '#b8bec6', metalness: .5 }), 0, -.4, -.3, { parent: POLE, rx: Math.PI / 2, noInk: true });
+  // soportes fijos a la fachada (z = 4.7): NO giran, solo gira el cilindro de rayas
+  [.4, -.4].forEach(y => { add(new T.CylinderGeometry(.025, .025, .3, 8), STD({ color: '#b8bec6', metalness: .5 }), 0, y, -.2, { parent: POLE, rx: Math.PI / 2, noInk: true }); add(RB(.12, .12, .03, .01), STD({ color: '#b8bec6', metalness: .5 }), 0, y, -.25, { parent: POLE, noInk: true }); });
   // bancos y macetas delante de la barbería
   add(RB(1.8, .1, .5, .03), STD({ map: woodT, color: '#c09a70' }), -29.5, .55, 5.2); [-1, 1].forEach(sd => add(RB(.08, .5, .45, .02), STD({ color: '#3a3e46' }), -29.5 + sd * .8, .27, 5.2));
   [[-31.3, 5.1], [-26, 5.2]].forEach(([x, z]) => { add(new T.CylinderGeometry(.3, .24, .5, 16), STD({ color: '#b5603f' }), x, .25, z); add(new T.IcosahedronGeometry(.42, 1), STD({ color: '#4f8f3a', flatShading: true }), x, .75, z); });
@@ -188,7 +190,7 @@ const W2 = (() => {
   function proj(p) { const v = p.clone(), cs = v.clone().applyMatrix4(camera.matrixWorldInverse), d = -cs.z; v.project(camera); const ppm = (H / 2) / (d * Math.tan(camera.fov * Math.PI / 360)); return { x: (v.x + 1) / 2 * W, y: (1 - v.y) / 2 * H, d, ppm, ok: d > .1 }; }
   function render() { comp.render(); }
   const CLOUDS = []; scene.children.forEach(o => { if (o.isGroup && o.children.length === 7 && o.position.y > 80) CLOUDS.push([o, o.position.clone()]); });
-  function setTime(t) { gradeMat.uniforms.time.value = t % 10; POLE.rotation.y = -t * 2.6; CLOUDS.forEach(([o, p0]) => o.position.x = p0.x + t * 1.2); }
+  function setTime(t) { gradeMat.uniforms.time.value = t % 10; poleCyl.rotation.y = -t * 2.6; CLOUDS.forEach(([o, p0]) => o.position.x = p0.x + t * 1.2); }
   let mood = 0; const SUN_DAY = SUN.clone(), SUN_MORN = new T.Vector3(.75, .3, .58).normalize();
   function setMood(m) { mood = m; SUN.copy(SUN_DAY).lerp(SUN_MORN, m).normalize(); sky.material.uniforms.morn.value = m; gradeMat.uniforms.morn.value = m; sun.color.set(m > .5 ? '#ffd8b0' : '#fff0d4'); sun.intensity = 4.6 - m * .9;
     hemi.color.set(m > .5 ? '#ffd6c8' : '#d2e6ff'); hemi.groundColor.set(m > .5 ? '#7a6a5a' : '#7c8a4e'); scene.fog.color.set(m > .5 ? '#f3d6c2' : '#d9e8ee'); R.toneMappingExposure = 1.22 - m * .05; }

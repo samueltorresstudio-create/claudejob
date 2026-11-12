@@ -270,6 +270,20 @@ El usuario dijo que en las palomas «se mueven mal». En la referencia:
 ### Nunca un plano vacío al final de una escena
 - Si el protagonista sale de cuadro (la mosca que «se pasa de largo»), que siga visible alejándose hasta el final de la escena. Con la voz real las escenas duran distinto que con la voz falsa: el hueco sin nada (solo valla y cielo) puede alargarse a casi 1 s. Revisa siempre el último segundo de cada escena tras sincronizar la voz.
 
+### Personajes que HABLAN en pantalla (correcciones del usuario, 62 vacas)
+- **Boca sincronizada con la voz real**: `python3 -I ../tools/mk_venv.py` (desde el proyecto, después de `sync_voice.py`) crea `venv.js` (envolvente de `narration.wav` por fotograma, normalizada en local para que las frases dichas bajito también abran la boca). Cárgalo en `index.html` después de `voice.js` y usa `mouthV(window.__T)` → 'open' / 'o' / 'line' (y la boca de reposo en silencio). Nunca un `talk()` con seno fijo: no coincide con la voz.
+- **Que se le vea desde la primera sílaba**: si una frase de diálogo empieza justo al empezar la escena, NO uses una transición con desenfoque (`swish`/`whip`) que lo tape. Usa `'glide'` (deslizamiento suave sin desenfoque, con los personajes del plano nuevo desde el primer fotograma) y alárgala con `CFG.transDurBy = { escena: 1.4 }`.
+- **Plano final de dos personajes**: los dos enteros y separados; calcula el encuadre proyectando posiciones (`W2.proj`) en vez de a ojo. Las cabezas del estilo son muy anchas (~0,9 m). Quien pide algo extiende el brazo HACIA el otro; quien tiene el objeto no se lo ofrece (lo lleva colgando en la mano).
+- **Voz distinta para un personaje** (solo voces propias del usuario): `python3 -I tools/char_voice.py <proy> "a-b,c-d" -1.5 3.2` cambia solo esos tramos de `narration.wav` (guarda `narration_orig.wav`). Preset elegido por el usuario: −1,5 semitonos + saturación suave («grave y rasposo»). Pregunta siempre con 3 pruebas cortas antes de aplicarlo.
+
+### Brazos apoyados en una valla (personaje detrás de la valla)
+- `leanArms(F, { k, lean, bob, from, ask })` devuelve `{ back, front }`: `back` (brazo desde el hombro) va ANTES de `who()` para que el hombro quede escondido detrás del cuerpo; `front` (antebrazo y mano) DESPUÉS de `rails2d`, encima de la barra. Todo en coordenadas locales con la misma inclinación (`lean`) que el personaje: si no, un brazo flota fuera del cuerpo y el otro cruza la camisa (fallo que vio el usuario).
+- Codos por fuera del cuerpo (±116), manos juntas sobre la barra (±28). Para apoyarse: dos fases (suben las manos doblando el codo, luego se abren los codos), ~0,45 s, nunca de golpe.
+
+### Palo de barbería (o cualquier cilindro que gira)
+- Textura de rayas en hélice SIN COSTURA (bandas por vuelta múltiplo del nº de colores); si no, se ve una línea de corte girando («bugueado»).
+- Gira SOLO el cilindro de rayas; tapas, cristal y soportes quietos. Los soportes llegan a la pared de verdad (el palo va delante de la fachada, no en el aire junto a la esquina).
+
 ### Plano final con acercamiento
 - En el último plano (push-in), el sujeto (trofeo, personaje) debe caber entero hasta el último fotograma: dolly corto (≤ 0,25 m) y desplaza el `look` a la vez para mantenerlo centrado. Comprueba el fotograma final antes del render.
 
