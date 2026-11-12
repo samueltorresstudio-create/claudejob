@@ -284,6 +284,12 @@ const W2 = (() => {
   box(9, .6, .5, STD({ color: '#d8a83a', metalness: .6, roughness: .3 }), 0, 5.3, -2.6, { parent: STAGE });
   const awT = tex(1024, 200, (g, w, h) => { g.fillStyle = '#141418'; g.fillRect(0, 0, w, h); g.strokeStyle = '#f2c94c'; g.lineWidth = 8; g.strokeRect(10, 10, w - 20, h - 20); for (let x = 30; x < w - 20; x += 40) { g.fillStyle = (x / 40) % 2 ? '#fff2b0' : '#f2c94c'; g.beginPath(); g.arc(x, 22, 6, 0, 7); g.fill(); g.beginPath(); g.arc(x, h - 22, 6, 0, 7); g.fill(); } txt(g, 'IG NOBEL · 2024', w / 2, h / 2 + 4, 92, '#f2c94c'); });
   plane(4.6, .9, awT, 0, 4.55, -2.8, { parent: STAGE, basic: true });
+  // sala cerrada (telón a los lados, techo y pared del fondo oscuros) para que ningún barrido de cámara vea el cielo
+  const sideCurtM = STD({ map: curtT, roughness: .8, color: '#8a6a70' }), darkM = STD({ color: '#0d0c12', roughness: .9 });
+  [-1, 1].forEach(sd => box(.3, 8, 13, sideCurtM, sd * 7, 0, 2.6, { parent: STAGE, cast: false }));
+  box(14.6, .3, 13, darkM, 0, 8, 2.6, { parent: STAGE, cast: false, noInk: true });
+  box(14.6, 8, .3, darkM, 0, 0, 9, { parent: STAGE, cast: false, noInk: true });
+  box(14.6, 8, .3, darkM, 0, 0, -3.5, { parent: STAGE, cast: false, noInk: true });
   box(.7, 1.1, .5, STD({ map: planksT({ w: 256, h: 512, n: 2, hue: 20, sat: 50, lit: 26 }), roughness: .3 }), 1.9, .6, -.4, { parent: STAGE }); box(.8, .06, .6, woodD, 1.9, 1.7, -.4, { parent: STAGE }); add(new T.CylinderGeometry(.01, .01, .4, 6), blackM, 1.9, 1.95, -.25, { parent: STAGE, rz: .3 });
   const TROPHY = new T.Group(); TROPHY.position.set(0, .6, -.2); STAGE.add(TROPHY);
   cyl(.15, .18, .12, blackM, 0, 0, 0, { parent: TROPHY }); cyl(.035, .06, .3, brassM, 0, .12, 0, { parent: TROPHY });

@@ -1,6 +1,6 @@
 // «Las palomas que pilotaban misiles» — ESTILO 3D (world_palomas.js) + personajes 2D (stick.js, pigeon.js). Sin voz (fake_voice), con transiciones.
 window.CFG = { capY: 1500, capSize: 96, transDur: .55,
-  trans: { army: 'fly', lab: 'whip', how: 'push', screen: 'swish', peck: 'push', turn: 'swish', dog: 'swish', train: 'whip', three: 'swish', committee: 'swish', cancel: 'push', crackpot: 'swish', navy: 'fly', prize: 'swish' } };
+  trans: { army: 'swish', lab: 'whip', how: 'swish', screen: 'swish', peck: 'push', turn: 'swish', dog: 'swish', train: 'whip', three: 'swish', committee: 'swish', cancel: 'push', crackpot: 'swish', navy: 'swish', prize: 'swish' } };
 const EVS = {
   hook: B => ({ tres: B[0].w[3], palomas: B[0].w[4], misil: B[0].w[10] }), army: B => ({ y1943: B[0].w[2], ejercito: B[0].w[4], dinero: B[0].w[10] }),
   lab: B => ({ fred: B[0].w[2], lab: B[0].w[7], palomas: B[0].w[10] }), how: B => ({ como: B[0].w[1], paloma: B[0].w[4] }),

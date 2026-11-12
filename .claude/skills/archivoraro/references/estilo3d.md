@@ -214,3 +214,8 @@ Lo que separa un escenario normalito de uno como la referencia (aplicado en `wor
 - **Resultado:** unos 4 s por fotograma con 4 páginas, unas 2 h para 60 s.
 - **No lances `audio.py` mientras se renderiza:** con la CPU ocupada pasa de 50 s a más de 15 min.
 - **Transición `swish`** (barrido sin mover la cámara) para pasar entre zonas distintas del mundo, así la cámara no atraviesa paredes.
+
+### Transiciones: lecciones del vídeo de las palomas (revisión fotograma a fotograma)
+- `push`/`fly` entre dos planos del MISMO cuarto pueden atravesar a un personaje 2D (se dibuja gigante) o un objeto grande (el misil): si entre las dos cámaras hay algo, usa `swish`.
+- `swish` gira la cámara sin moverla, así que el cuarto de destino tiene que estar CERRADO por todos los lados (paredes, techo, pared trasera). Si no, durante el barrido se ve el cielo. El escenario del premio necesitó telón lateral + techo + paredes oscuras.
+- Revisión obligatoria: tira de fotogramas cada 3 alrededor de cada cambio de escena (de −12 a +12) antes de codificar.
