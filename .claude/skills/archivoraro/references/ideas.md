@@ -22,6 +22,8 @@ Si el audio se queda corto, `extend_total.py` alarga la última escena sin voz (
 - «Lo peor de X no es Y… es Z.»
 - Pregunta implícita que solo responde el final. El gancho tiene que mencionar el tema de la serie (si es un tsunami, que suene a tsunami).
 
+**Lo que el usuario rechaza como «sin gancho» (12-11-2026):** una primera frase que solo plantea la situación («Un rey ata una cuerda alrededor del planeta», «Un profesor apuesta con su clase…»). El gancho es la IMAGEN MÁS FUERTE de toda la historia, dicha en la primera frase y en presente, con peligro o con algo imposible, que deje una pregunta abierta: «Alguien lleva un año viviendo en tu armario… y tú no lo sabes.» / «Un avión aterriza con el piloto colgando por fuera de la ventana.» / «Un hombre tira una pared de su sótano… y detrás hay una ciudad entera.» Nada de historias que ya circulan mucho por TikTok (la Torre Eiffel ya la había visto).
+
 ## Esqueleto de un vídeo (≈15–19 frases)
 
 1. Gancho (1 frase) + promesa (1 frase).
