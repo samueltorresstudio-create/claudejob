@@ -69,16 +69,18 @@ def applause(a, b, gain=.08):
     m.add(s * np.clip(x / .3, 0, 1) * np.clip((b - a - x) / .5, 0, 1), a, gain)
 
 # ambiente de laboratorio (ventilador y ciudad lejana) en las escenas del laboratorio
-for sc in ('hook', 'army', 'lab', 'how', 'dog', 'train', 'crackpot', 'navy'):
+for sc in ('army', 'lab', 'how', 'dog', 'train', 'crackpot', 'navy'):
     m.amb(m.bed_noise(120, 700, .3, .4), sc0[sc], scEnd[sc], .012)
 for sc in ('screen', 'peck', 'three'):
     m.amb(m.bed_noise(60, 400, .2, .2), sc0[sc], scEnd[sc], .02)   # zumbido dentro del morro
 
 # 1 gancho: tres palomas asoman
-for k in range(3): boing(sc0['hook'] + .15 + k * .22, .1); coo(sc0['hook'] + .3 + k * .22, .07, (k - 1) * .4, 420 + k * 40)
-pop(E['hook.tres'], .16, 760); ding(E['hook.tres'] + .05, .07)
+jet(sc0['hook'], scEnd['hook'] - sc0['hook'] + .1, .16)   # el misil pasa rugiendo sobre el mar
+m.add(m.sweep(200, 900, .5, .3), sc0['hook'], .08)
+for k in range(3): coo(E['hook.tres'] + k * .18, .08, (k - 1) * .4, 420 + k * 40)
+pop(E['hook.palomas'], .12, 760)
 # 2 ejército: saco de dinero
-thud(E['army.dinero'] + .1, .3, 90)
+thud(E['army.dinero'] + .3, .18, 110)
 for k in range(6): coin(E['army.dinero'] + .1 + k * .06)
 pop(E['army.y1943'], .12, 700); pop(E['army.ejercito'], .1, 880)
 # 3 laboratorio lleno de palomas
@@ -95,7 +97,7 @@ m.add(m.sweep(700, 400, .4, .2), E['peck.izq'] - .3, .05)
 # 7 el misil gira
 jet(sc0['turn'] - .1, scEnd['turn'] - sc0['turn'] + .1, .1); m.add(m.sweep(300, 900, .8, .4), E['turn.gira'], .06)
 # 8 perro
-bark(sc0['dog'] + .6); bark(sc0['dog'] + .85, .1); pop(E['dog.galleta'], .12, 880); crunch(E['dog.sienta'] + .45, .1)
+bark(sc0['dog'] + .6); bark(sc0['dog'] + .85, .1); pop(E['dog.galleta'], .1, 880); crunch(E['dog.sienta'] + .5, .1)
 pop(E['dog.sienta'], .1, 600); ding(E['dog.solo'], .08, 1760); bark(E['dog.solo'] + .2, .1)
 # 9 entrenamiento: acierto → alpiste
 for k in range(6): peck(E['train.acierta'] - .35 + k * .22, .11)
@@ -111,15 +113,14 @@ ding(E['three.mayoria'] + .1, .08, 1568)
 for k in range(5): m.add(m.band(rng.standard_normal(int(.4 * SR)), 200, 900) * np.sin(np.linspace(0, np.pi, int(.4 * SR))), sc0['committee'] + .3 + k * .6, .025)
 pop(E['committee.comite'], .1, 760)
 # 12 cancelado: sello
-m.add(m.layer(m.hit(140, 60, .35, .12), m.noise(.12, 200, 3000, .002, .08)), E['cancel.cancelo'], .5); m.boom(E['cancel.cancelo'], .16, 1.0)
+m.add(m.sweep(900, 300, .14, .08), E['cancel.cancelo'] - .14, .07); m.add(m.layer(m.hit(140, 60, .35, .12), m.noise(.12, 200, 3000, .002, .08)), E['cancel.cancelo'], .5); m.boom(E['cancel.cancelo'], .16, 1.0)
 m.add(m.sweep(400, 180, .5, .3), E['cancel.no'], .06); pop(E['cancel.y1944'], .1, 700)
 # 13 chiflado: boing y risa de muelle
 for k in range(4): boing(E['crackpot.chiflado'] + k * .14, .11)
-flap(E['crackpot.chiflado'], .08, 5)
 # 14 Marina: sábana, polvo, contador de años
 m.add(m.noise(.45, 400, 6000, .02, .3), E['navy.resucito'] - .1, .14); thud(E['navy.resucito'] + .2, .12, 70)
 pop(E['navy.y1948'], .12, 760); pop(E['navy.marina'], .1, 880)
-for k in range(6): tick(E['navy.cinco'] - .3 + k * .22, .06)
+pop(E['navy.cinco'], .1, 880)
 # 15 premio: aplausos, fanfarria
 applause(E['prize.premio'] - .1, CUT + .2, .1)
 for k, f in enumerate((523, 659, 784, 1046)): m.add(m.tone(f, .5, .01, .35, harm=(1, 2, 3)), E['prize.premio'] + k * .12, .05)

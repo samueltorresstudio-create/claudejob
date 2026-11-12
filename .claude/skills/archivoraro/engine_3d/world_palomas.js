@@ -19,7 +19,13 @@ const W2 = (() => {
   const cyl = (rt, rb, h, mat, x, y, z, o = {}) => add(new T.CylinderGeometry(rt, rb, h, o.seg || 20), mat, x, y + h / 2, z, o);
   const plane = (w, h, map, x, y, z, o = {}) => add(new T.PlaneGeometry(w, h), o.basic ? new T.MeshBasicMaterial({ map, transparent: !!o.alpha, side: o.ds ? T.DoubleSide : T.FrontSide }) : STD({ map, roughness: o.rough ?? .85, transparent: !!o.alpha, side: o.ds ? T.DoubleSide : T.FrontSide }), x, y, z, Object.assign({ noInk: true, cast: false }, o));
   // ---------- pinceles: texturas pintadas a mano ----------
-  const grain = (g, w, h, a = .06, n = 1400) => { for (let i = 0; i < n; i++) { g.fillStyle = rnd() < .5 ? `rgba(0,0,0,${rnd() * a})` : `rgba(255,255,255,${rnd() * a * .8})`; g.fillRect(rnd() * w, rnd() * h, 1 + rnd() * 3, 1 + rnd() * 3); } };
+  // pinceladas: trazos cortos con el color de debajo, un poco más claro u oscuro (textura «pintada a mano» como la referencia)
+  let bseed = 777; const brnd = () => (bseed = (bseed * 16807) % 2147483647) / 2147483647, brr = (a, b) => a + brnd() * (b - a);
+  const brush = (g, w, h, dens = 1) => { const rnd = brnd, rr = brr, id = g.getImageData(0, 0, w, h).data, N = Math.round(w * h / 520 * dens); g.lineCap = 'round';
+    for (let i = 0; i < N; i++) { const x = rnd() * w, y = rnd() * h, o = (Math.floor(y) * w + Math.floor(x)) * 4, v = rnd() < .5 ? rr(.78, .92) : rr(1.06, 1.2), a = rnd() * Math.PI * 2, L = rr(6, 22) * Math.max(1, w / 1024);
+      g.strokeStyle = `rgba(${Math.min(255, id[o] * v) | 0},${Math.min(255, id[o + 1] * v) | 0},${Math.min(255, id[o + 2] * v) | 0},${rr(.35, .7).toFixed(2)})`; g.lineWidth = rr(2, 5) * Math.max(1, w / 1024);
+      g.beginPath(); g.moveTo(x, y); g.quadraticCurveTo(x + Math.cos(a) * L * .5 + rr(-3, 3), y + Math.sin(a) * L * .5 + rr(-3, 3), x + Math.cos(a) * L, y + Math.sin(a) * L); g.stroke(); } };
+  const grain = (g, w, h, a = .06, n = 1400) => { if (w * h >= 200000) brush(g, w, h); for (let i = 0; i < n; i++) { g.fillStyle = rnd() < .5 ? `rgba(0,0,0,${rnd() * a})` : `rgba(255,255,255,${rnd() * a * .8})`; g.fillRect(rnd() * w, rnd() * h, 1 + rnd() * 3, 1 + rnd() * 3); } };
   const hsl = (h, s, l) => `hsl(${h},${s}%,${l}%)`;
   function planksT(o = {}) { const { w = 1024, h = 1024, n = 8, hue = 28, sat = 48, lit = 40, vertical = false, rep } = o;
     return tex(w, h, (g) => { g.save(); if (vertical) { g.translate(w, 0); g.rotate(Math.PI / 2); } const L = vertical ? h : w, S = vertical ? w : h, ph = S / n;
@@ -49,13 +55,20 @@ const W2 = (() => {
     fragmentShader: 'uniform vec3 sun; varying vec3 vd; void main(){ float h=vd.y; vec3 top=vec3(.12,.42,.9), mid=vec3(.42,.7,.97), hor=vec3(.86,.93,.98); vec3 c=h>.08?mix(mid,top,smoothstep(.08,.6,h)):mix(hor,mid,smoothstep(-.04,.08,h)); float s=max(dot(vd,sun),0.); c+=vec3(1.,.9,.7)*(pow(s,8.)*.3+pow(s,500.)*3.); gl_FragColor=vec4(c,1.); }' }));
   sky.frustumCulled = false; scene.add(sky);
   scene.fog = new T.FogExp2('#cfe4f4', 0);
-  const hemi = new T.HemisphereLight('#e8f0ff', '#7a5a3a', 1.25); scene.add(hemi);
-  const sun = new T.DirectionalLight('#ffe6b8', 5.2); sun.castShadow = true; sun.shadow.mapSize.set(4096, 4096); const sc = sun.shadow.camera; sc.near = 1; sc.far = 400; sun.shadow.bias = -.0003; sun.shadow.normalBias = .03; sun.shadow.radius = 3; scene.add(sun, sun.target);
+  const hemi = new T.HemisphereLight('#dde8ff', '#6a5a48', 1.25); scene.add(hemi);
+  const sun = new T.DirectionalLight('#fff0d8', 5.2); sun.castShadow = true; sun.shadow.mapSize.set(4096, 4096); const sc = sun.shadow.camera; sc.near = 1; sc.far = 400; sun.shadow.bias = -.0003; sun.shadow.normalBias = .03; sun.shadow.radius = 3; scene.add(sun, sun.target);
   const woodM = STD({ map: planksT({ w: 512, h: 512, n: 4, hue: 26, sat: 50, lit: 42 }) }), woodD = STD({ map: planksT({ w: 512, h: 512, n: 4, hue: 22, sat: 46, lit: 28 }) });
   const brassM = STD({ color: '#f0c050', metalness: .3, roughness: .3, emissive: '#4a3000', emissiveIntensity: .35 }), blackM = STD({ color: '#24242a', roughness: .5 }), steelM = STD({ color: '#b8c0c6', metalness: .6, roughness: .35 });
   const greenMetal = STD({ color: '#5f8a6a', roughness: .45, metalness: .2 }), redM = STD({ color: '#c8302e', roughness: .5 }), cream = STD({ color: '#f3ead2', roughness: .6 });
   const OGIVE = (r, L) => { const pts = []; for (let i = 0; i <= 24; i++) { const t = i / 24; pts.push(new T.Vector2(Math.max(.004, r * Math.sqrt(1 - t * t) * (1 - .15 * t)), t * L)); } return new T.LatheGeometry(pts, 40); };
-  const paintM = STD({ color: '#f4efe2', roughness: .45, metalness: .1 }), olive = STD({ color: '#6b7a3c', roughness: .55 });
+  const missileT = tex(1024, 1024, (g, w, h) => { const rnd = brnd, rr = brr; g.fillStyle = '#e4dcc4'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 40; i++) { g.fillStyle = `rgba(${rnd() < .5 ? '120,105,80' : '255,250,235'},${rr(.05, .12)})`; g.fillRect(0, rr(0, h), w, rr(10, 60)); }   // vetas de chapa
+    for (let v = 0; v < h; v += 205) { g.fillStyle = 'rgba(40,32,24,.55)'; g.fillRect(0, v, w, 5); g.fillStyle = 'rgba(255,250,235,.5)'; g.fillRect(0, v + 5, w, 3); for (let u = 8; u < w; u += 22) { g.fillStyle = 'rgba(60,50,40,.55)'; g.beginPath(); g.arc(u, v + 16, 4, 0, 7); g.fill(); g.fillStyle = 'rgba(255,255,240,.6)'; g.beginPath(); g.arc(u - 1, v + 15, 1.6, 0, 7); g.fill(); } }
+    for (let u = 0; u < w; u += 256) { g.fillStyle = 'rgba(40,32,24,.5)'; g.fillRect(u, 0, 4, h); for (let v = 10; v < h; v += 24) { g.fillStyle = 'rgba(60,50,40,.5)'; g.beginPath(); g.arc(u + 14, v, 3.5, 0, 7); g.fill(); } }
+    g.fillStyle = 'rgba(70,50,30,.08)'; for (let i = 0; i < 90; i++) { const x = rr(0, w), y = rr(0, h); g.fillRect(x, y, rr(2, 6), rr(40, 160)); }   // churretes
+    [[.25, 'U.S. ARMY'], [.75, 'PROJECT PIGEON']].forEach(([u, t]) => { g.save(); g.translate(u * w, h * .42); g.rotate(-Math.PI / 2); txt(g, t, 0, 0, 62, 'rgba(40,46,30,.85)', 900); g.restore(); });
+    g.save(); g.translate(.25 * w + 70, h * .42); g.rotate(-Math.PI / 2); txt(g, 'PELICAN  Mk·1  1943', 0, 0, 30, 'rgba(40,46,30,.7)', 800); g.restore(); });
+  const paintM = STD({ map: missileT, roughness: .72, metalness: .08 }), olive = STD({ color: '#6b7a3c', roughness: .55 });
   // =====================================================================  LAB (0,0,0)
   const LX = 7, LZ = 6, LH = 4.4;
   add(new T.BoxGeometry(LX * 2, .2, LZ * 2), STD({ map: planksT({ n: 7, hue: 27, sat: 55, lit: 44, rep: [3.5, 3] }), roughness: .55 }), 0, -.1, 0, { cast: false, noInk: true });
@@ -256,7 +269,7 @@ const W2 = (() => {
   [[0, -5, 0, 12], [-6, 0, Math.PI / 2, 10], [6, 0, -Math.PI / 2, 10], [0, 5, Math.PI, 12]].forEach(([x, z, ry, w]) => { const g = new T.Group(); g.position.set(x, 0, z); g.rotation.y = ry; MEET.add(g); add(new T.BoxGeometry(w, 4, .3), mWall, 0, 2, 0, { parent: g, noInk: true }); add(new T.BoxGeometry(w, 1.6, .32), mPanel, 0, .8, .01, { parent: g, cast: false, noInk: true }); box(w, .1, .14, woodD, 0, 1.6, .2, { parent: g, cast: false }); });
   for (let x = -5; x <= 5; x += 2.5) box(.22, .26, 10, woodD, x, 3.84, 0, { parent: MEET, cast: false });
   box(5.4, .1, 1.6, STD({ map: planksT({ w: 512, h: 256, n: 2, hue: 20, sat: 55, lit: 26 }), roughness: .3 }), 0, .82, 0, { parent: MEET }); box(5.1, .7, 1.3, STD({ map: panelT('#6a3a1e', { n: 6 }) }), 0, .12, 0, { parent: MEET });
-  [-1.8, -.6, .6, 1.8].forEach((x) => { plane(.42, .3, paper(256, 180, (g) => { g.save(); g.translate(128, 80); g.rotate(-.15); g.strokeStyle = '#c8302e'; g.lineWidth = 6; g.strokeRect(-100, -28, 200, 56); txt(g, 'ALTO SECRETO', 0, 2, 30, '#c8302e'); g.restore(); txt(g, 'PROYECTO PALOMA', 128, 150, 18, '#2a1c12', 700); }, '#e8cf9a'), x, .925, -.35, { parent: MEET, rx: -Math.PI / 2, rz: rr(-.15, .15) });
+  [-1.8, -.6, .6, 1.8].forEach((x) => { plane(.42, .3, paper(512, 360, (g) => { g.scale(2, 2); g.save(); g.translate(128, 80); g.rotate(-.15); g.strokeStyle = '#c8302e'; g.lineWidth = 6; g.strokeRect(-100, -28, 200, 56); txt(g, 'ALTO SECRETO', 0, 2, 30, '#c8302e'); g.restore(); txt(g, 'PROYECTO PALOMA', 128, 150, 18, '#2a1c12', 700); }, '#e8cf9a'), x, .925, -.35, { parent: MEET, rx: -Math.PI / 2, rz: rr(-.15, .15) });
     add(new T.CylinderGeometry(.05, .045, .14, 12), new T.MeshStandardMaterial({ color: '#dff1ff', transparent: true, opacity: .45 }), x + .3, .99, -.25, { parent: MEET, noInk: true }); });
   [-1.2, 1.2].forEach(x => { const l = new T.Group(); l.position.set(x, .92, .2); MEET.add(l); cyl(.08, .1, .04, brassM, 0, 0, 0, { parent: l }); cyl(.012, .012, .3, brassM, 0, .04, 0, { parent: l }); add(new T.CylinderGeometry(.13, .13, .34, 16, 1, false, 0, Math.PI), STD({ color: '#1f7a4a', emissive: '#0a3a20', emissiveIntensity: .4, roughness: .2, side: T.DoubleSide }), 0, .36, 0, { parent: l, rz: Math.PI / 2 }); const pl = new T.PointLight('#ffe0a0', 1.6, 3.5, 2); pl.position.set(0, .25, 0); l.add(pl); });
   cyl(.14, .1, .06, STD({ color: '#3a3a40', metalness: .4 }), 0, .92, .35, { parent: MEET });
@@ -334,7 +347,7 @@ const W2 = (() => {
   const MISSILE = new T.Group(); MISSILE.position.set(SEAX + 60, 60, 80); scene.add(MISSILE);
   add(new T.CylinderGeometry(.55, .5, 4.4, 32), paintM, 0, 0, 0, { rz: Math.PI / 2, parent: MISSILE }); add(OGIVE(.55, 1.1), paintM, 2.2, 0, 0, { rz: -Math.PI / 2, parent: MISSILE });
   MISSILE.updateMatrixWorld(true);
-  [-.5, 0, .5].forEach(a => { const p = new T.Group(); p.position.set(2.56, Math.sin(a) * .5, Math.cos(a) * .5); MISSILE.add(p); p.lookAt(p.getWorldPosition(new T.Vector3()).add(new T.Vector3(.7, Math.sin(a), Math.cos(a)))); add(new T.CylinderGeometry(.1, .1, .04, 20), STD({ color: '#24323a', roughness: .1 }), 0, 0, 0, { rx: Math.PI / 2, parent: p }); add(new T.TorusGeometry(.1, .022, 8, 20), brassM, 0, 0, .02, { parent: p }); });
+  const MISSILE_PORTS = []; [-.5, 0, .5].forEach(a => { const p = new T.Group(); p.position.set(2.5, Math.sin(a) * .52, Math.cos(a) * .52); MISSILE.add(p); MISSILE_PORTS.push(p); p.lookAt(p.getWorldPosition(new T.Vector3()).add(new T.Vector3(.7, Math.sin(a), Math.cos(a)))); add(new T.CylinderGeometry(.13, .13, .04, 20), STD({ color: '#24323a', roughness: .1 }), 0, 0, 0, { rx: Math.PI / 2, parent: p }); add(new T.TorusGeometry(.13, .026, 8, 20), brassM, 0, 0, .02, { parent: p }); });
   add(new T.TorusGeometry(.56, .045, 8, 32), olive, 1.4, 0, 0, { ry: Math.PI / 2, parent: MISSILE }); add(new T.TorusGeometry(.53, .035, 8, 32), redM, -1.6, 0, 0, { ry: Math.PI / 2, parent: MISSILE });
   const wingS = new T.Shape(); wingS.moveTo(0, 0); wingS.lineTo(-1.2, 3.0); wingS.lineTo(-2.0, 3.0); wingS.lineTo(-1.6, 0); wingS.closePath();
   [-1, 1].forEach(sd => { const wgm = new T.ExtrudeGeometry(wingS, { depth: .1, bevelEnabled: true, bevelThickness: .02, bevelSize: .02, bevelSegments: 1 }); wgm.rotateX(-Math.PI / 2 * sd); add(wgm, olive, .6, 0, sd * .1, { parent: MISSILE }); });
@@ -345,7 +358,7 @@ const W2 = (() => {
   [-1, 1].forEach(sd => add(new T.CircleGeometry(.36, 24), new T.MeshBasicMaterial({ map: starT }), -.6, 0, sd * .53, { ry: sd > 0 ? 0 : Math.PI, parent: MISSILE, noInk: true }));
   // =====================================================================  post + contorno
   const comp = new EffectComposer(R); comp.setSize(W, H); comp.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new T.Vector2(W / 2, H / 2), .28, .55, .86); comp.addPass(bloom);
+  const bloom = new UnrealBloomPass(new T.Vector2(W / 2, H / 2), .14, .45, .9); comp.addPass(bloom);
   const ao = new GTAOPass(scene, camera, W, H); ao.blendIntensity = .9; ao.updateGtaoMaterial({ radius: .5, distanceExponent: 1.4, thickness: 1 }); comp.addPass(ao); const aoSet = ao.setSize.bind(ao); ao.setSize = (w, h) => aoSet(Math.round(w / 2), Math.round(h / 2)); ao.setSize(W, H);   // AO a media resolución: casi igual y 1,6 s menos por fotograma
   const dof = new BokehPass(scene, camera, { focus: 6, aperture: .003, maxblur: .008 }); comp.addPass(dof); comp.addPass(new OutputPass());
   // gradación de color de cine: sombras frías, luces cálidas, curva en S, viñeta suave y grano
@@ -374,5 +387,5 @@ const W2 = (() => {
   function render() { comp.render(); }
   const ray = new T.Raycaster(); const solids = []; scene.traverse(o => { if (o.isMesh && o.material !== inkM && o !== sky && o !== water && !o.material.transparent && o.material.side !== T.BackSide && !o.userData.noInk) solids.push(o); });
   function visible(p, tol = .12) { const o = camera.position, d = p.clone().sub(o), L = d.length(); ray.set(o, d.normalize()); ray.far = L - tol; return ray.intersectObjects(solids, false).length === 0; }
-  return { SCR_TEX: scrT, NOSE_PORTS, CAGES, ao, visible, T, scene, camera, R, setCam, setTime, proj, render, get SUN() { return SUN; }, dof, bloom, comp, inkM, setScreen: drawScreen, PIGEONHOLES, TRAIN, TRAIN_SCR, NOSE_LAB, NOSE, NX, STATIONS, MEET, MX, STAGE, SX, TROPHY, SHIP, MISSILE, SEAX, LX, LZ, mid: () => 0, hgt: () => 0 };
+  return { SCR_TEX: scrT, NOSE_PORTS, CAGES, ao, visible, T, scene, camera, R, setCam, setTime, proj, render, get SUN() { return SUN; }, dof, bloom, comp, inkM, setScreen: drawScreen, PIGEONHOLES, TRAIN, TRAIN_SCR, NOSE_LAB, NOSE, NX, STATIONS, MEET, MX, STAGE, SX, TROPHY, SHIP, MISSILE, MISSILE_PORTS, SEAX, LX, LZ, mid: () => 0, hgt: () => 0 };
 })();

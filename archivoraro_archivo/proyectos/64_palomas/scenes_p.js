@@ -1,6 +1,6 @@
 // «Las palomas que pilotaban misiles» — ESTILO 3D (world_palomas.js) + personajes 2D (stick.js, pigeon.js). Sin voz (fake_voice), con transiciones.
 window.CFG = { capY: 1500, capSize: 96, transDur: .55,
-  trans: { army: 'swish', lab: 'whip', how: 'swish', screen: 'swish', peck: 'push', turn: 'swish', dog: 'swish', train: 'whip', three: 'swish', committee: 'swish', cancel: 'push', crackpot: 'swish', navy: 'swish', prize: 'swish' } };
+  trans: { army: 'swish', lab: 'whip', how: 'swish', screen: 'swish', peck: 'push', turn: 'swish', dog: 'swish', train: 'whip', three: 'swish', committee: 'swish', cancel: 'swish', crackpot: 'swish', navy: 'swish', prize: 'swish' } };
 const EVS = {
   hook: B => ({ tres: B[0].w[3], palomas: B[0].w[4], misil: B[0].w[10] }), army: B => ({ y1943: B[0].w[2], ejercito: B[0].w[4], dinero: B[0].w[10] }),
   lab: B => ({ fred: B[0].w[2], lab: B[0].w[7], palomas: B[0].w[10] }), how: B => ({ como: B[0].w[1], paloma: B[0].w[4] }),
@@ -20,7 +20,7 @@ const ease = x => x * x * (3 - 2 * x), k01 = (t, a, b) => ease(clamp((t - a) / (
 const MIX = { rich: true, eyeStyle: 'palo', legLen: 1.18 }, ADULT = 1.84;
 const FRED = Object.assign({}, MIX, { outfit: 'labcoat', top: '#f6f4ee', topD: '#d9d6cc', shirt: '#cfe0f0', tie: '#7a2a2a', hair2: 'side', hairCol: '#3a2a1c', glasses: true, face: 'smug', mouth: 'smirk', pants: '#4a4f5a', shoes: '#2a1e16', sole: '#2a1e16' });
 const GEN = Object.assign({}, MIX, { outfit: 'military', top: '#7a6a48', topD: '#5a4e34', hat: 'peaked', capTop: '#6a5a3a', hair2: 'buzz', hairCol: '#2a1a12', medals: true, nameTape: 'GRAY', mustache: '#3a2a1c', face: 'smug', mouth: 'line', pants: '#6a5a3a', shoes: '#15161c', sole: '#15161c', belly: 1.1 });
-const NAVY = Object.assign({}, MIX, { outfit: 'navy', top: '#1d2740', topD: '#121a2e', hat: 'peaked', hair2: 'side', hairCol: '#5a3a22', badge: true, face: 'smug', mouth: 'smirk', pants: '#1d2740', shoes: '#15161c', sole: '#15161c' });
+const NAVY = Object.assign({}, MIX, { outfit: 'navy', top: '#1d2740', topD: '#121a2e', hat: 'peaked', hair2: 'side', hairCol: '#5a3a22', badge: true, ribbon: '#24408e', ribbon2: '#e8e2d2', face: 'smug', mouth: 'smirk', pants: '#1d2740', shoes: '#15161c', sole: '#15161c' });
 const SUIT = (top, hair, extra = {}) => Object.assign({}, MIX, { outfit: 'suit', top, topD: top, tie: '#2a2a33', hair2: hair, hairCol: '#2a2a2a', face: 'smug', mouth: 'line', pants: top, shoes: '#15161c', sole: '#15161c' }, extra);
 const BOSSES = [SUIT('#4a4f5a', 'bald', { hairCol: '#d9d6cc', mustache: '#d9d6cc', browCol: '#d9d6cc', glasses: true, wrinkles: true }), SUIT('#5a4a3a', 'side', { mustache: '#2a1a12' }), GEN, SUIT('#2f3540', 'curly', { hairCol: '#5a3a22' })];
 const pg = (o, F, h, opt) => pigeonAt(o, F, V3(F.x, F.y + h, F.z), W, opt);
@@ -60,159 +60,180 @@ function dog(o = {}) { const d = Object.assign({ col: '#d9a066', colD: '#a8703a'
 function dogAt(o, F, h, opt = {}) { const pf = W.proj(F), pt = W.proj(V3(F.x, F.y + h, F.z)); if (!pf.ok) return ''; const L = Math.hypot(pt.x - pf.x, pt.y - pf.y), s = L / 400;
   return `<ellipse cx="${pf.x.toFixed(1)}" cy="${pf.y.toFixed(1)}" rx="${(200 * s).toFixed(1)}" ry="${(30 * s).toFixed(1)}" fill="#141826" opacity=".3" style="filter:blur(4px)"/><g transform="translate(${pf.x.toFixed(1)},${pf.y.toFixed(1)}) scale(${s.toFixed(4)})">${dog(o)}</g>`; }
 // paloma asomada a una ventanita del morro (recortada por el círculo)
-function peek(port, o, k, cam) { const c = port.getWorldPosition(new THREE.Vector3()), p = W.proj(c); if (!p.ok || k <= 0) return ''; const r = .1 * p.ppm, id = 'pk' + Math.round(Math.random() * 1e6), sc = r / 46 * 1.05 * (.6 + .4 * eBack(clamp(k))), dy = (1 - eOut(clamp(k))) * r * 1.4;
+function peek(port, o, k, cam, rad = .1) { const c = port.getWorldPosition(new THREE.Vector3()), p = W.proj(c); if (!p.ok || k <= 0) return ''; const r = rad * p.ppm, id = 'pk' + Math.round(Math.random() * 1e6), sc = r / 46 * 1.05 * (.6 + .4 * eBack(clamp(k))), dy = (1 - eOut(clamp(k))) * r * 1.4;
   return `<defs><clipPath id="${id}"><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}"/></clipPath></defs><g clip-path="url(#${id})"><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}" fill="#2a3a44"/><g transform="translate(${(p.x - 92 * sc + r * .1).toFixed(1)},${(p.y + 282 * sc + dy).toFixed(1)}) scale(${sc.toFixed(4)})">${pigeon(o)}</g></g><path d="M${(p.x - r * .6).toFixed(1)},${(p.y - r * .5).toFixed(1)} A${(r * .8).toFixed(1)},${(r * .8).toFixed(1)} 0 0 1 ${(p.x + r * .3).toFixed(1)},${(p.y - r * .75).toFixed(1)}" stroke="#fff" stroke-width="${(r * .12).toFixed(1)}" fill="none" opacity=".55" stroke-linecap="round"/>`; }
 // estaciones del morro: posición de la paloma (sobre la tabla) y hacia dónde mira
 function station(k) { const st = W.STATIONS[k], F = st.localToWorld(new THREE.Vector3(-.08, .56, 0)), dir = st.localToWorld(new THREE.Vector3(1, .56, 0)).sub(st.localToWorld(new THREE.Vector3(0, .56, 0))); return { F, dir }; }
 function stationPigeon(k, o, h = .36, cam) { const { F, dir } = station(k), a = W.proj(F), b = W.proj(F.clone().addScaledVector(dir, .3)); return { p: F, f: () => pg(Object.assign({ flip: b.x < a.x }, o), F, h) }; }
-// ======================= escenas =======================
-// 1 · gancho: tres palomas asoman por las ventanitas del morro; la cámara se aleja y aparece Fred, orgulloso
+// ======================= escenas (v2: planos abiertos, pies clavados, una acción concreta por plano, sin etiquetas) =======================
+// ---------- poses: de pose a pose (cambio rápido en la palabra clave) + respiración sutil ----------
+const REST = { armL: [16, 12], armR: [16, 12] };
+const lerpA = (a, b, k) => a.map((v, i) => v + (b[i] - v) * k);
+function keyed(t, keys, d = .14) { let i = 0; while (i + 1 < keys.length && t >= keys[i + 1][0]) i++;
+  const cur = Object.assign({}, REST, keys[i][1]); if (i === 0) return cur; const prev = Object.assign({}, REST, keys[i - 1][1]), k = ease(clamp((t - keys[i][0]) / d));
+  ['armL', 'armR', 'legL', 'legR'].forEach(n => { if (prev[n] && cur[n]) cur[n] = lerpA(prev[n], cur[n], k); });
+  ['lean', 'headTilt', 'turn'].forEach(n => { if (prev[n] != null || cur[n] != null) cur[n] = (prev[n] || 0) + ((cur[n] || 0) - (prev[n] || 0)) * k; });
+  return cur; }
+const breathe = (o, t, ph = 0) => Object.assign(o, { bob: (o.bob || 0) + Math.sin(t * 2.3 + ph) * 3, headTilt: (o.headTilt || 0) + Math.sin(t * 1.7 + ph) * 1.2 });
+// ---------- objetos en la mano (unidades del personaje: alto ≈ 470) ----------
+const HELD_PIGEON = (o = {}) => `<g transform="translate(-6,70) scale(.42)">${pigeon(Object.assign({ eye: 'calm' }, o))}</g>`;
+const HELD_BAG = `<g transform="scale(.5)">${moneyBag(0, 236, 1)}</g>`;
+const HELD_CUP = (tilt = 0) => `<g transform="rotate(${tilt.toFixed(1)})"><path d="M-30,-8 L-24,52 Q0,62 24,52 L30,-8Z" fill="#b8c0c6" stroke="${K}" stroke-width="7" stroke-linejoin="round"/><ellipse cx="0" cy="-8" rx="30" ry="9" fill="#d8b860" stroke="${K}" stroke-width="6"/><path d="M-18,10 L-15,44" stroke="#fff" stroke-width="6" opacity=".4" stroke-linecap="round"/></g>`;
+const HELD_COOKIE = `<g transform="translate(16,-6)">${cookie(0, 0, 1.15)}</g>`;
+// dibuja un SVG (coordenadas -w/2..w/2, -h/2..h/2) pegado a un plano 3D (centro C, ejes U y V en metros): para tinta sobre un papel
+function onPlane(C, U, V, w, h, svg) { const a = W.proj(C), b = W.proj(C.clone().add(U)), c = W.proj(C.clone().add(V)); if (!a.ok || !b.ok || !c.ok) return '';
+  const m = [(b.x - a.x) / (w / 2), (b.y - a.y) / (w / 2), (c.x - a.x) / (h / 2), (c.y - a.y) / (h / 2), a.x, a.y]; return `<g transform="matrix(${m.map(v => v.toFixed(4)).join(',')})">${svg}</g>`; }
 const NOSEP = () => { const c = new THREE.Vector3(); W.NOSE_PORTS.forEach(p => c.add(p.getWorldPosition(new THREE.Vector3()))); return c.multiplyScalar(1 / 3); };
 const NOSEN = () => { const p = W.NOSE_PORTS[1], a = p.getWorldPosition(new THREE.Vector3()); return p.localToWorld(new THREE.Vector3(0, 0, 1)).sub(a).normalize(); };
-S.hook = (t, D, B) => { const E = EVS.hook(B); W.setTime(t + 1); W.charLight = DAY;
-  const c = NOSEP(), n = NOSEN(), side = new THREE.Vector3(-n.z, 0, n.x), k = k01(t, .9, D);
-  const cam = c.clone().addScaledVector(n, 1.05 + k * 2.4).addScaledVector(side, k * 1.4).add(V3(0, .05 + k * .35, 0)), look = c.clone().addScaledVector(side, k * .9).add(V3(0, -k * .25, 0));
-  W.setCam(cam, look, 40 + k * 14, cam.distanceTo(c), .004 - k * .002); W.render();
-  let s = ''; const goggles = [true, true, true];
-  W.NOSE_PORTS.forEach((p, i) => { const t0 = .15 + i * .22; s += peek(p, { eye: blink(t, i) ? 'closed' : 'calm', goggles: goggles[i], look: [8, 0], bob: Math.sin(t * 5 + i) * .3 }, (t - t0) / .35, cam); });
-  if (k > .25) { const F = c.clone().addScaledVector(side, 1.15).addScaledVector(n, .35); F.y = 0; s += fred({ face: 'smug', mouth: 'smile', turn: -.35, look: [-10, 0], armL: [18, 20], armR: [150 - 20 * Math.sin(t * 6), 10] }, F); }
-  if (t > E.tres) s += bigNum(820, 330, '3', YEL, P(t, E.tres, .3), 230);
-  return s + motes(t, 16, .35); };
-// 2 · el ejército pone el dinero: el general deja un saco en la mesa y Fred sonríe
+const MP = () => W.MISSILE_PORTS;
+function handAt(F, o, side = 1) { const pf = W.proj(F), ph = W.proj(V3(F.x, F.y + ADULT, F.z)), s = Math.hypot(ph.x - pf.x, ph.y - pf.y) / 462, [sh, el] = side > 0 ? o.armR : o.armL, r = a => a * Math.PI / 180;
+  const ex = side * 44 + Math.sin(r(side * sh)) * 90, ey = -360 + (o.bob || 0) + Math.cos(r(side * sh)) * 90, hx = ex + Math.sin(r(side * (sh + el))) * 86, hy = ey + Math.cos(r(side * (sh + el))) * 86; return { x: pf.x + hx * s, y: pf.y + hy * s, s }; }
+// ---------- el misil en vuelo sobre el mar (gancho y giro) ----------
+function flyMissile(t, yaw, roll = 0) { const M = W.MISSILE, dir = V3(Math.cos(yaw), -.06, -Math.sin(yaw)).normalize(), pos = V3(W.SEAX + 52, 16, 70).addScaledVector(dir, t * 34);
+  M.position.copy(pos); M.rotation.order = 'YZX'; M.rotation.set(roll, yaw, -.06); M.updateMatrixWorld(true); return { pos, dir, side: V3(-dir.z, 0, dir.x) }; }
+function portPigeons(t, cam, opt = {}) { let s = ''; MP().forEach((p, i) => { s += peek(p, { eye: blink(t, i * .9) ? 'closed' : (opt.wide && i === 1 ? 'wide' : (opt.angry ? 'angry' : 'calm')), goggles: true, look: [10, 0], bob: Math.sin(t * 7 + i * 2) * .15 }, 1, cam, .13); }); return s; }
+function spray(t, n = 18) { let s = ''; for (let i = 0; i < n; i++) { const k = ((t * 1.6 + hs(i, 5)) % 1), x = 540 + (hs(i, 2) - .5) * 1300 * (.3 + k), y = 1920 - k * 260 - hs(i, 3) * 120; s += `<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${(4 + 10 * hs(i, 4)) * (1 - k)}" fill="#fff" opacity="${(.6 * (1 - k)).toFixed(2)}"/>`; } return s; }
+// 1 · GANCHO: el misil cruza el mar a toda velocidad; la cámara va pegada al morro y se ven las tres palomas pilotando con gafas
+S.hook = (t, D, B) => { const E = EVS.hook(B); W.setTime(t + 1);
+  const yaw = Math.PI / 2 + .35 + Math.sin(t * .8) * .05, F = flyMissile(t, yaw, Math.sin(t * 1.3) * .08), k = k01(t, 0, D);
+  const nose = F.pos.clone().addScaledVector(F.dir, 2.5), cam = nose.clone().addScaledVector(F.dir, .55 - k * .9).addScaledVector(F.side, 2.7 + k * 1.6).add(V3(0, .1 + k * .55, 0));
+  const look = nose.clone().addScaledVector(F.dir, .2 - k * .45).add(V3(0, -k * .1, 0)); W.setCam(cam, look, 44 + k * 6, cam.distanceTo(nose), .0005); W.render();
+  return speedLines(t, 20, .28) + portPigeons(t, cam, { wide: t > E.palomas && t < E.palomas + .9 }) + spray(t); };
+// 2 · el general le da a Fred un saco de dinero (plano medio, los dos de cuerpo entero)
 S.army = (t, D, B) => { const E = EVS.army(B); W.setTime(t + 4); W.charLight = DAY;
-  const k = k01(t, 0, D), cam = V3(.65 - k * .1, 1.6, 5.6 - k * .4), look = V3(.65, 1.2, .9); W.setCam(cam, look, 52, cam.distanceTo(V3(.5, 1, 1.5)), .0018); W.render();
-  const drop = clamp((t - E.dinero + .25) / .35), bagW = V3(.55, .9, 1.0), bp = W.proj(bagW), bs = bp.ppm * .0017;
-  let s = '';
-  const L = [{ p: V3(.1, 0, 2.0), f: () => fred({ face: t > E.dinero ? 'happy' : 'wide', mouth: t > E.dinero ? 'laugh' : 'o', brows: t > E.dinero ? .4 : 1, turn: .45, look: [12, 4], armL: t > E.dinero ? [130, 30] : [18, 20], armR: t > E.dinero ? [140, 20] : [20, 20] }, V3(.1, 0, 2.0)) },
-    { p: V3(1.25, 0, 1.5), f: () => who(GEN, { turn: -.45, look: [-12, 4], face: 'smug', mouth: t > E.dinero ? 'smirk' : 'line', armL: drop > 0 && drop < 1 ? [70, 20] : [20, 30], armR: [24, 30] }, V3(1.25, 0, 1.5)) }];
-  s += byDist(L, cam);
-  if (drop > 0) { const y = lerp(bp.y - 420, bp.y, eOut(drop)), sq = drop >= 1 ? Math.max(0, 1 - (t - E.dinero - .1) * 5) * Math.sin((t - E.dinero) * 30) : 0; s += moneyBag(bp.x, y, bs, sq);
-    for (let i = 0; i < 6; i++) s += coin(bp.x + (i - 2.5) * 30, bp.y - 120 * bs * 5, (t - E.dinero - .05 - i * .04) / .8, (i - 2.5) * 60); }
-  s += pill(540, 330, '1943', YEL, P(t, E.y1943, .3), 60) + (t > E.ejercito ? pill(540, 460, 'U.S. ARMY', GREEN, P(t, E.ejercito, .3), 40) : '');
-  return s + motes(t, 12, .3); };
-// 3 · Fred y el laboratorio lleno de palomas
+  const k = k01(t, 0, D), cam = V3(.78, 1.32, 5.6 - k * .3), look = V3(.78, 1.38, 1.6); W.setCam(cam, look, 60, cam.distanceTo(V3(.7, 1, 1.8)), .0008); W.render();
+  const give = E.dinero - .15, got = E.dinero + .3;
+  const g = breathe(keyed(t, [[0, { armL: [16, 12], armR: [18, 20] }], [give, { armL: [78, 8], armR: [18, 20] }], [got, { armL: [16, 12], armR: [18, 20] }]]), t, 1);
+  const f = breathe(keyed(t, [[0, { armL: [16, 12], armR: [16, 12] }], [give + .1, { armR: [72, 14] }], [got, { armR: [40, 70], armL: [110, 30] }]]), t);
+  const L = [{ p: V3(.3, 0, 2.0), f: () => fred(Object.assign(f, { face: t > got ? 'happy' : (t > E.y1943 ? 'wide' : 'smug'), mouth: t > got ? 'laugh' : (t > E.y1943 ? 'o' : 'smirk'), turn: .45, look: [12, 4], holdR: t > got ? HELD_BAG : null }), V3(.3, 0, 2.0)) },
+    { p: V3(1.25, 0, 1.6), f: () => who(GEN, Object.assign(g, { turn: -.45, look: [-12, 4], face: 'smug', mouth: t > E.ejercito ? 'smirk' : 'line', holdL: t <= got ? HELD_BAG : null }), V3(1.25, 0, 1.6)) }];
+  let s = byDist(L, cam);
+  if (t > got) { const hp = W.proj(V3(.58, 1.1, 2.0)); s += sparkle(hp.x, hp.y, hp.ppm * .35, clamp((t - got) / .6)); }
+  return s; };
+// 3 · el laboratorio lleno de palomas: Fred, plantado frente al palomar, les echa alpiste con un vaso
 S.lab = (t, D, B) => { const E = EVS.lab(B); W.setTime(t + 8); W.charLight = DAY;
-  const k = k01(t, 0, D), cam = V3(1.6 - k * 1.1, 1.55 - k * .1, 3.6 - k * 1.0), look = V3(-6.2, 1.45 - k * .1, 2.2 + k * .4); W.setCam(cam, look, 52, 6.5, .0014); W.render();
-  let s = ''; const flap = t > E.palomas ? Math.max(0, Math.sin((t - E.palomas) * 14)) : 0;
-  W.PIGEONHOLES.forEach((p, i) => { if (i % 5 === 3) return; const top = p.clone().add(V3(.02, .29, 0)); if (![[0, .03], [0, .3]].every(([dx, dy]) => W.visible(p.clone().add(V3(.1, dy, .14))) && W.visible(p.clone().add(V3(.1, dy, -.14))))) return;
-    s += pg({ eye: blink(t, i * .7) ? 'closed' : (i % 6 === 1 ? 'wide' : 'calm'), bob: Math.sin(t * 4 + i) * .5, peck: i % 7 === 2 ? Math.max(0, Math.sin(t * 7 + i)) * .6 : 0, flap: i % 2 ? flap * .9 : 0 }, p.clone().add(V3(.04, 0, 0)), .27, { shadow: false }); });
-  const fx = lerp(-1.5, -2.7, k), fz = lerp(3.0, 2.4, k), wk = walkPose(t * 7, { amp: .8 }), F = V3(fx, 0, fz);
-  s += fred(Object.assign({}, wk, { face: 'smug', mouth: 'smile', turn: -.6, look: [-10, 0] }), F);
-  const pp = W.proj(V3(fx, ADULT + .22, fz)); if (pp.ok) { const h = pp.ppm * .26; s += `<g transform="translate(${(pp.x - 30).toFixed(1)},${(pp.y + 6 + wk.bob * pp.ppm * .0012).toFixed(1)}) scale(${(-h / 330).toFixed(4)},${(h / 330).toFixed(4)})">${pigeon({ eye: 'calm', bob: Math.sin(t * 6) * .5 })}</g>`; }
-  s += pill(540, 300, 'FRED SKINNER', YEL, P(t, E.fred, .3), 50);
-  return s + motes(t, 16, .35); };
-// 4 · ¿y cómo pilota una paloma? (primer plano de una paloma en su casillero)
+  const k = k01(t, 0, D), cam = V3(-.5 - k * .4, 1.4, 4.3 - k * .2), look = V3(-6.2, 1.25, 2.0); W.setCam(cam, look, 56, 5.2, .0006); W.render();
+  let s = ''; const flap = t > E.palomas ? Math.max(0, Math.sin((t - E.palomas) * 14)) * Math.max(0, 1 - (t - E.palomas) * .8) : 0, pour = t > E.lab - .2;
+  W.PIGEONHOLES.forEach((p, i) => { if (i % 5 === 3) return; if (![[0, .03], [0, .3]].every(([dx, dy]) => W.visible(p.clone().add(V3(.1, dy, .14))) && W.visible(p.clone().add(V3(.1, dy, -.14))))) return;
+    s += pg({ eye: blink(t, i * .7) ? 'closed' : (i % 6 === 1 ? 'wide' : 'calm'), bob: Math.sin(t * 4 + i) * .4, peck: pour && i % 3 === 0 ? Math.max(0, Math.sin(t * 9 + i)) * .7 : 0, flap: i % 2 ? flap * .9 : 0 }, p.clone().add(V3(.04, 0, 0)), .27, { shadow: false }); });
+  const F = V3(-4.9, 0, 2.55), tilt = pour ? 70 + Math.sin(t * 14) * 8 : 0;
+  const f = breathe(keyed(t, [[0, { armL: [16, 12], armR: [24, 30] }], [E.lab - .2, { armR: [96, 30], armL: [30, 60] }]]), t);
+  s += fred(Object.assign(f, { face: t > E.fred ? 'smug' : 'smug', mouth: pour ? 'smile' : 'smirk', turn: -.55, look: [-12, 2], holdR: HELD_CUP(-tilt) }), F);
+  if (pour) { const hp = handAt(F, f, 1); s += seeds(hp.x - 80 * hp.s, hp.y + 20 * hp.s, ((t - E.lab) % .9) / .9, 10, 40, hp.s * 2.2) + seeds(hp.x - 100 * hp.s, hp.y + 20 * hp.s, ((t - E.lab + .45) % .9) / .9, 10, 40, hp.s * 2.2); }
+  return s; };
+// 4 · ¿y cómo pilota una paloma? (plano de objeto: una paloma en su casillero ladea la cabeza)
 const HOW = 6;
 S.how = (t, D, B) => { const E = EVS.how(B); W.setTime(t + 12); W.charLight = DAY;
-  const h = W.PIGEONHOLES[HOW], k = k01(t, 0, D), cam = h.clone().add(V3(1.25 - k * .35, .2, .45 - k * .2)), look = h.clone().add(V3(0, .17, .02)); W.setCam(cam, look, 36, cam.distanceTo(look), .007); W.render();
-  const tilt = Math.sin(clamp((t - E.como) / .5) * Math.PI) * .6;
-  let s = pg({ eye: 'wide', look: [4, -8], bob: tilt, flip: false }, h.clone().add(V3(.03, 0, .02)), .27, { shadow: false });
-  const hp = W.proj(h.clone().add(V3(0, .42, -.04))); s += qmark(780, 560, 1.1, (t - E.como + .1) / .35);
-  return s; };
-// 5 · dentro del morro: ventanita arriba, pantalla con el barco delante
+  const h = W.PIGEONHOLES[HOW], k = k01(t, 0, D), cam = h.clone().add(V3(1.3 - k * .35, .22, .45 - k * .2)), look = h.clone().add(V3(0, .17, .02)); W.setCam(cam, look, 36, cam.distanceTo(look), .003); W.render();
+  const tilt = t > E.como ? Math.sin(clamp((t - E.como) / .5) * Math.PI) * .6 : 0;
+  return pg({ eye: t > E.paloma ? 'wide' : 'calm', look: [4, -8], bob: tilt, flip: false }, h.clone().add(V3(.03, 0, .02)), .27, { shadow: false }) + qmark(780, 560, 1, (t - E.paloma + .05) / .3); };
+// 5 · dentro del morro: la paloma mira por la ventanita y tiene delante la pantalla con el barco
 S.screen = (t, D, B) => { const E = EVS.screen(B); W.setTime(t + 14); W.setScreen(0); W.charLight = { tint: '#d8ffe0', k: .16, rim: '#e6fff0', rimA: .5, rimX: 1, rimY: -.3 };
   const up = 1 - k01(t, E.ventanita + .5, E.pantalla), cam = V3(W.NX + .1 + (1 - up) * .15, .85 + (1 - up) * .33, .7 + (1 - up) * .02), look = V3(W.NX + 1.4, .92 + up * .13, 0);
-  W.setCam(cam, look, 46 + up * 16, 1.25, .006); W.render();
+  W.setCam(cam, look, 46 + up * 16, 1.25, .002); W.render();
   let s = byDist([stationPigeon(1, { eye: blink(t) ? 'closed' : 'calm', goggles: true, look: up > .5 ? [4, -10] : [8, 0], bob: Math.sin(t * 3) * .2 }, .36, cam)], cam);
   if (t > E.barco) { const sp = W.proj(V3(W.NX + 1.51, 1.05, 0)); s += `<circle cx="${sp.x.toFixed(1)}" cy="${sp.y.toFixed(1)}" r="${(sp.ppm * .26 * (1 + .06 * Math.sin(t * 12))).toFixed(1)}" fill="none" stroke="${PINK}" stroke-width="10" opacity="${clamp((t - E.barco) / .2).toFixed(2)}"/>`; }
   return s; };
 // 6 · el barco se va a la izquierda y la paloma lo picotea
 S.peck = (t, D, B) => { const E = EVS.peck(B); W.setTime(t + 20); const sx = -.6 * k01(t, .3, E.izq + .2); W.setScreen(sx, t > E.picotea ? 1 : 0); W.charLight = { tint: '#d8ffe0', k: .16, rim: '#e6fff0', rimA: .5, rimX: 1, rimY: -.3 };
-  const k = k01(t, 0, D), cam = V3(W.NX + .42 + k * .1, 1.16, .72 - k * .06), look = V3(W.NX + 1.4, .98, 0); W.setCam(cam, look, 44, cam.distanceTo(look), .006); W.render();
+  const k = k01(t, 0, D), cam = V3(W.NX + .42 + k * .1, 1.16, .72 - k * .06), look = V3(W.NX + 1.4, .98, 0); W.setCam(cam, look, 44, cam.distanceTo(look), .002); W.render();
   const pk = t > E.picotea ? Math.pow(Math.max(0, Math.sin((t - E.picotea) * 18)), .6) : 0;
   let s = byDist([stationPigeon(1, { eye: 'angry', goggles: true, peck: pk * .35, look: [8, 2] }, .36, cam)], cam);
-  if (t > E.picotea) { const sp = W.proj(V3(W.NX + 1.5, 1.05 - .0, -.12)); for (let i = 0; i < 4; i++) s += ring(sp.x, sp.y, sp.ppm * .18, ((t - E.picotea) * 3.2 - i * .28) % 1.3, YEL); }
+  if (t > E.picotea) { const sp = W.proj(V3(W.NX + 1.5, 1.05, -.12)); for (let i = 0; i < 4; i++) s += ring(sp.x, sp.y, sp.ppm * .18, ((t - E.picotea) * 3.2 - i * .28) % 1.3, YEL); }
   if (t > E.izq - .4) { const a = clamp((t - E.izq + .4) / .3); s += `<g transform="translate(300,470) scale(${(.6 + .4 * eBack(a)).toFixed(3)})" opacity="${a.toFixed(2)}"><path d="M60,-40 L-60,0 L60,40 L60,16 L150,16 L150,-16 L60,-16Z" fill="${YEL}" stroke="${K}" stroke-width="12" stroke-linejoin="round"/></g>`; }
   return s; };
-// 7 · ¡y el misil gira a la izquierda! (persecución sobre el mar)
+// 7 · ¡y el misil gira a la izquierda! (persecución sobre el mar; las palomas siguen en sus ventanitas)
 S.turn = (t, D, B) => { const E = EVS.turn(B); W.setTime(t + 23);
-  const M = W.MISSILE, k = k01(t, .15, D), yaw0 = Math.PI / 2 + .35, yaw = yaw0 + k * .75, roll = -Math.sin(Math.min(1, k * 1.3) * Math.PI * .5) * .7 * (1 - Math.max(0, k - .7) * 2);
-  const P0 = V3(W.SEAX + 52, 18, 70), dir = V3(Math.cos(yaw), -.12, -Math.sin(yaw)).normalize(), pos = P0.clone().addScaledVector(V3(Math.cos(yaw0 + k * .4), -.1, -Math.sin(yaw0 + k * .4)), t * 34);
-  M.position.copy(pos); M.rotation.order = 'YZX'; M.rotation.set(roll, yaw, -.12);
-  const back = dir.clone().multiplyScalar(-1), side = V3(-dir.z, 0, dir.x), cam = pos.clone().addScaledVector(back, 8.5).addScaledVector(side, 3.4).add(V3(0, 2.2, 0)), look = pos.clone().addScaledVector(dir, 6).add(V3(0, -.6, 0));
-  W.setCam(cam, look, 50, cam.distanceTo(pos), .0006); W.render();
-  let s = speedLines(t, 22, .35); const mp = W.proj(pos.clone().add(V3(0, 1.2, 0)));
+  const k = k01(t, .15, D), yaw0 = Math.PI / 2 + .35, yaw = yaw0 + k * .75, roll = -Math.sin(Math.min(1, k * 1.3) * Math.PI * .5) * .7 * (1 - Math.max(0, k - .7) * 2);
+  const F = flyMissile(t, yaw0 + k * .4, roll); W.MISSILE.rotation.y = yaw; W.MISSILE.updateMatrixWorld(true); const dir = V3(Math.cos(yaw), -.06, -Math.sin(yaw)).normalize(), side = V3(-dir.z, 0, dir.x);
+  const cam = F.pos.clone().addScaledVector(dir, -7.5).addScaledVector(side, 3.4).add(V3(0, 2.0, 0)), look = F.pos.clone().addScaledVector(dir, 5).add(V3(0, -.6, 0));
+  W.setCam(cam, look, 50, cam.distanceTo(F.pos), .0004); W.render();
+  let s = speedLines(t, 22, .35); const mp = W.proj(F.pos.clone().add(V3(0, 1.2, 0)));
   if (t > E.gira - .1) { const a = clamp((t - E.gira + .1) / .3); s += `<g transform="translate(${(mp.x - 200).toFixed(0)},${(mp.y - 160).toFixed(0)}) scale(${(.6 + .4 * eBack(a)).toFixed(3)}) rotate(-14)" opacity="${a.toFixed(2)}"><path d="M120,-60 Q-40,-90 -100,10" stroke="${K}" stroke-width="34" fill="none" stroke-linecap="round"/><path d="M120,-60 Q-40,-90 -100,10" stroke="${YEL}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="M-140,-20 L-96,48 L-50,-2Z" fill="${YEL}" stroke="${K}" stroke-width="8" stroke-linejoin="round"/></g>`; }
   return s; };
-// 8 · piensa en tu perro: se sienta → galleta → al final se sienta solo
+// 8 · el perro: Fred le enseña la galleta, el perro se sienta y se la da; al final se sienta sin galleta
 S.dog = (t, D, B) => { const E = EVS.dog(B); W.setTime(t + 25); W.charLight = DAY;
-  const k = k01(t, 0, D), F = V3(1.6, 0, 1.75), cam = V3(.9 - k * .2, .62, 3.9 - k * .5), look = V3(1.75, .48, 1.75); W.setCam(cam, look, 42, cam.distanceTo(F), .005); W.render();
-  const sit1 = t > E.sienta - .15 && t < E.final - .1, sit2 = t > E.solo - .25, sit = sit1 || sit2 ? 1 : 0, ck = (t - E.sienta - .05) / .45, eat = t > E.sienta + .4 && t < E.final - .1;
-  let s = dogAt({ sit, wag: t, happy: eat || sit2, eye: sit2 ? 'calm' : (sit1 ? 'calm' : 'wide'), look: [6, -2] }, F, .62);
-  const hp = W.proj(V3(F.x + .25, sit ? .74 : .55, F.z));
-  if (ck > 0 && ck < 1) { const x = lerp(hp.x - 520, hp.x + 20, ck), y = lerp(hp.y - 120, hp.y, ck) - Math.sin(ck * Math.PI) * 220; s += cookie(x, y, hp.ppm * .0028 * (1 + .2 * Math.sin(ck * 9))); }
-  if (eat) s += puff(hp.x + 40, hp.y + 10, hp.ppm * .12, clamp((t - E.sienta - .4) / .4), '#e8c08a');
-  if (t > E.galleta - .05 && t < E.sienta - .15) s += cookie(140, 980, 1.6 + .1 * Math.sin(t * 8));
-  if (sit2) s += sparkle(hp.x - 60, hp.y - hp.ppm * .45, hp.ppm * .35, clamp((t - E.solo + .25) / .6));
-  if (sit2) s += pill(540, 380, '¡SOLO!', GREEN, P(t, E.solo - .2, .3), 54);
-  return s + motes(t, 10, .25); };
-// 9 · Fred hizo lo mismo: acierta en el barco → cae alpiste
+  const k = k01(t, 0, D), FD = V3(1.3, 0, 1.85), FF = V3(2.3, 0, 1.55), cam = V3(1.85, 1.0, 5.6 - k * .25), look = V3(1.85, 1.02, 1.6); W.setCam(cam, look, 58, cam.distanceTo(FD), .0007); W.render();
+  const sit1 = t > E.sienta - .1 && t < E.final - .1, sit2 = t > E.solo - .2, sit = sit1 || sit2 ? 1 : 0, give = E.sienta + .15, eaten = E.sienta + .45;
+  const f = breathe(keyed(t, [[0, { armL: [16, 12] }], [E.galleta - .1, { armL: [118, 30] }], [give, { armL: [58, 6] }], [eaten, { armL: [16, 12] }], [E.solo - .1, { armL: [16, 12], armR: [16, 12] }]]), t);
+  let s = dogAt({ sit, wag: t, happy: (t > eaten && t < E.final) || sit2, eye: sit ? 'calm' : 'wide', look: [6, -2] }, FD, .62);
+  s += fred(Object.assign(f, { face: sit2 ? 'happy' : 'smug', mouth: sit2 ? 'laugh' : 'smile', turn: -.5, look: [-12, 6], holdL: t > E.galleta - .3 && t < eaten ? HELD_COOKIE : null }), FF);
+  const mp = W.proj(V3(FD.x + .3, sit ? .74 : .55, FD.z)); if (t > eaten - .1 && t < eaten + .4) s += puff(mp.x + 30, mp.y + 10, mp.ppm * .12, clamp((t - eaten + .1) / .45), '#e8c08a');
+  if (sit2) s += sparkle(mp.x - 60, mp.y - mp.ppm * .45, mp.ppm * .35, clamp((t - E.solo + .2) / .6));
+  return s; };
+// 9 · Fred hace lo mismo: la paloma acierta en el barco y Fred le echa alpiste en la bandeja
 S.train = (t, D, B) => { const E = EVS.train(B); W.setTime(t + 31); W.charLight = DAY;
   W.TRAIN_SCR.material.map = W.SCR_TEX; W.TRAIN_SCR.material.color.set('#ffffff'); W.TRAIN_SCR.material.needsUpdate = true; W.setScreen(Math.sin(t * 1.3) * .15, t > E.acierta && t < E.acierta + .5 ? 1 : 0);
-  const k = k01(t, 0, D), cam = V3(1.05 + k * .25, 1.38, 2.35 - k * .25), look = V3(1.95, 1.18, .45); W.setCam(cam, look, 46, cam.distanceTo(V3(1.7, 1, .45)), .004); W.render();
-  let s = behind(fred({ face: t > E.acierta ? 'happy' : 'smug', mouth: t > E.acierta ? 'laugh' : 'smile', turn: .3, look: [10, 8], armL: [16, 24], armR: t > E.comida ? [60 + 20 * Math.sin(t * 9), 60] : [30, 70] }, V3(1.85, 0, -.8), { shadow: false }), W.proj(V3(1.85, .9, -.1)).y);
+  const k = k01(t, 0, D), cam = V3(.55 + k * .15, 1.42, 3.4 - k * .25), look = V3(1.85, 1.12, .3); W.setCam(cam, look, 46, cam.distanceTo(V3(1.7, 1, .45)), .0007); W.render();
+  const pourA = t > E.comida && t < E.comida + .8, pourB = t > E.acierta + .05 && t < E.acierta + .85, tilt = pourA || pourB ? 75 : 0;
+  const f = breathe(keyed(t, [[0, { armL: [16, 24], armR: [30, 70] }], [E.comida - .1, { armR: [92, 20] }], [E.comida + .8, { armR: [30, 70] }], [E.acierta, { armR: [92, 20] }], [E.acierta + .9, { armR: [30, 70], armL: [120, 40] }]]), t);
+  let s = behind(fred(Object.assign(f, { face: t > E.acierta ? 'happy' : 'smug', mouth: t > E.acierta ? 'laugh' : 'smile', turn: .3, look: [10, 8], holdR: HELD_CUP(-tilt) }), V3(1.85, 0, -.8), { shadow: false }), W.proj(V3(1.85, .9, -.1)).y);
   const pk = t > E.acierta - .35 ? Math.pow(Math.max(0, Math.sin((t - E.acierta + .35) * 14)), .6) : 0;
   s += pg({ peck: pk * .55, eye: t > E.acierta ? 'calm' : 'wide', look: [6, 0] }, V3(1.62, .9, .45), .3);
   const tray = W.TRAIN.localToWorld(new THREE.Vector3(.28, .2, .38)), tp = W.proj(tray);
-  s += seeds(tp.x, tp.y - tp.ppm * .12, (t - E.comida) / .9, 12, 50, tp.ppm * .006) + seeds(tp.x, tp.y - tp.ppm * .12, (t - E.acierta - .1) / .9, 14, 60, tp.ppm * .006);
-  if (t > E.acierta) s += check(780, 520, 1.2, (t - E.acierta) / .3);
-  return s + motes(t, 12, .3); };
+  s += seeds(tp.x, tp.y - tp.ppm * .35, (t - E.comida) / .9, 12, 50, tp.ppm * .006) + seeds(tp.x, tp.y - tp.ppm * .35, (t - E.acierta - .1) / .9, 14, 60, tp.ppm * .006);
+  if (t > E.acierta) s += check(780, 520, 1.1, (t - E.acierta) / .3);
+  return s; };
 // 10 · tres palomas por si una se distrae; manda la mayoría
 S.three = (t, D, B) => { const E = EVS.three(B); W.setTime(t + 36); W.setScreen(0, t > E.mayoria ? 1 : 0); W.charLight = { tint: '#d8ffe0', k: .16, rim: '#e6fff0', rimA: .5, rimX: 1, rimY: -.3 };
-  const k = k01(t, 0, D), cam = V3(W.NX - 1.75 + k * .3, 1.55, .0 + Math.sin(k * 2) * .08), look = V3(W.NX + 1.0, .92, 0); W.setCam(cam, look, 78, 2.6, .003); W.render();
+  const k = k01(t, 0, D), cam = V3(W.NX - 1.75 + k * .3, 1.55, .0 + Math.sin(k * 2) * .08), look = V3(W.NX + 1.0, .92, 0); W.setCam(cam, look, 78, 2.6, .001); W.render();
   const dist = t > E.distrae - .3 && t < E.mayoria + .2, pk = t > E.mayoria ? Math.pow(Math.max(0, Math.sin((t - E.mayoria) * 16)), .6) : 0;
-  const L = [0, 1, 2].map(i => stationPigeon(i, i === 2 && dist ? { eye: 'calm', goggles: true, look: [-10, -6], bob: Math.sin(t * 4) * .4, flip: undefined } : { eye: i === 2 ? 'wide' : 'calm', goggles: true, peck: i === 2 ? pk * .3 : pk * .35, look: [8, 0] }, .36, cam));
+  const L = [0, 1, 2].map(i => stationPigeon(i, { eye: 'calm', goggles: true, peck: pk * .35, look: [8, 0] }, .36, cam));
   if (dist) { const { F, dir } = station(2); const a = W.proj(F), b = W.proj(F.clone().addScaledVector(dir, .3)); L[2] = { p: F, f: () => pg({ flip: b.x > a.x, eye: 'calm', goggles: true, look: [10, -8], bob: Math.sin(t * 4) * .5 }, F, .36) }; }
   let s = byDist(L, cam);
   if (dist) { const { F } = station(2), fp = W.proj(F.clone().add(V3(0, .55, .25))); const fx = fp.x + Math.sin(t * 9) * 40, fy = fp.y + Math.cos(t * 7) * 30; s += `<g transform="translate(${fx.toFixed(1)},${fy.toFixed(1)})"><ellipse cx="-8" cy="-10" rx="12" ry="8" fill="#dff" opacity=".8" stroke="${K}" stroke-width="2"/><ellipse cx="8" cy="-10" rx="12" ry="8" fill="#dff" opacity=".8" stroke="${K}" stroke-width="2"/><circle r="8" fill="${K}"/></g>`; }
-  if (t > E.tres) [0, 1, 2].forEach(i => { const { F } = station(i), p = W.proj(F.clone().add(V3(0, .62, 0))); s += pill(p.x, p.y, String(i + 1), i === 2 && dist ? PINK : YEL, P(t, E.tres + i * .1, .25), 40); });
-  if (t > E.mayoria) s += check(540, 420, 1.4, (t - E.mayoria - .1) / .3);
+  if (t > E.mayoria) s += check(540, 420, 1.3, (t - E.mayoria - .1) / .3);
   return s; };
-// 11 · el comité
+// 11 · el comité: Fred, de pie delante de la mesa, les enseña una paloma en la mano
 const MEETY = (x) => W.proj(V3(W.MX + x, .92, -.8)).y;
 S.committee = (t, D, B) => { const E = EVS.committee(B); W.setTime(t + 40); W.charLight = { tint: '#ffd9a8', k: .16, rim: '#fff0d6', rimA: .5, rimX: -1, rimY: -.5 };
-  const k = k01(t, 0, D), cam = V3(W.MX + .2 - k * .4, 1.6, 4.7 - k * .5), look = V3(W.MX - .2, 1.25, -1.3); W.setCam(cam, look, 56, 5.4, .0012); W.render();
+  const k = k01(t, 0, D), cam = V3(W.MX + .1 - k * .15, 1.5, 4.6 - k * .2), look = V3(W.MX - .1, 1.2, -1.0); W.setCam(cam, look, 64, 4.6, .0006); W.render();
   let s = ''; const yT = MEETY(0);
-  [-1.8, -.6, .6, 1.8].forEach((x, i) => s += behind(who(BOSSES[i], { turn: -.35 + i * .05, look: [-8, 0], armL: [24, 50], armR: [24, 50], face: blink(t, i) ? 'closed' : 'smug', mouth: 'line', brows: t > E.cientificos ? -.3 : 0 }, V3(W.MX + x, 0, -1.55), { shadow: false }), yT));
-  s += fred({ face: 'smug', mouth: 'open', turn: .55, look: [12, -4], armL: [18, 20], armR: [120 + 10 * Math.sin(t * 5), 20] }, V3(W.MX - .6, 0, 1.4));
-  const hp = W.proj(V3(W.MX - .6, ADULT + .2, 1.4)); if (hp.ok) { const h = hp.ppm * .28; s += `<g transform="translate(${(hp.x + 10).toFixed(1)},${(hp.y + 4).toFixed(1)}) scale(${(h / 330).toFixed(4)})">${pigeon({ eye: 'calm', goggles: true, bob: Math.sin(t * 5) * .4 })}</g>`; }
-  s += pill(540, 300, 'COMITÉ CIENTÍFICO', YEL, P(t, E.comite, .3), 44);
+  [-1.8, -.6, .6, 1.8].forEach((x, i) => { const o = breathe({ turn: -.35 + i * .05, look: [-10, 2], armL: [24, 50], armR: [24, 50], face: blink(t, i) ? 'closed' : 'smug', mouth: 'line', brows: t > E.cientificos ? -.3 : 0 }, t, i); s += behind(who(BOSSES[i], o, V3(W.MX + x, 0, -1.55), { shadow: false }), yT); });
+  const f = breathe(keyed(t, [[0, { armR: [40, 60] }], [.35, { armR: [86, 42] }], [E.cientificos, { armR: [86, 42], armL: [70, 40] }]]), t);
+  s += fred(Object.assign(f, { face: 'smug', mouth: t > E.comite ? 'open' : 'smile', turn: .55, look: [12, -4], holdR: HELD_PIGEON({ goggles: true, eye: blink(t, 2) ? 'closed' : 'calm', bob: Math.sin(t * 5) * .3 }) }), V3(W.MX - .55, 0, 1.2));
   return s; };
-// 12 · no les convenció → CANCELADO
+// 12 · no les convenció: plano del papel «PROYECTO PALOMA» y el sello que baja de golpe: CANCELADO
 S.cancel = (t, D, B) => { const E = EVS.cancel(B); W.setTime(t + 44); W.charLight = { tint: '#ffd9a8', k: .16, rim: '#fff0d6', rimA: .5, rimX: -1, rimY: -.5 };
-  const k = k01(t, 0, D), shake = t > E.cancelo ? Math.max(0, 1 - (t - E.cancelo) * 4) * Math.sin((t - E.cancelo) * 60) * .04 : 0;
-  const cam = V3(W.MX + .3 + shake, 1.55, 2.9 - k * .6), look = V3(W.MX + .3, 1.6 + shake, -1.55); W.setCam(cam, look, 46, 4.4, .0015); W.render();
-  let s = ''; const yT = MEETY(0);
-  [-.6, .6, 1.8].forEach((x, j) => { const i = j + 1; s += behind(who(BOSSES[i], { turn: -.1 * x, look: [-x * 4, 0], armL: i === 2 ? [100, 120] : [24, 50], armR: i === 2 ? [100, 120] : [24, 50], face: 'angry', mouth: i === 2 ? 'open' : 'line', headTilt: i === 2 ? Math.sin(t * 9) * 6 : 0, brows: -.6 }, V3(W.MX + x, 0, -1.55), { shadow: false }), yT); });
-  s += pill(540, 330, 'OCTUBRE 1944', YEL, P(t, E.y1944, .3), 50) + stamp(540, 900, 'CANCELADO', (t - E.cancelo + .05) / .5);
+  const PC = V3(W.MX + .6, .93, -.35), hit = E.cancelo, shake = t > hit ? Math.max(0, 1 - (t - hit) * 4) * Math.sin((t - hit) * 60) * .012 : 0, k = k01(t, 0, D);
+  const cam = V3(W.MX + .6 + shake, 1.62 - k * .12, .42 - k * .1), look = V3(W.MX + .6, .93 + shake, -.42); W.setCam(cam, look, 44, cam.distanceTo(PC), .0012); W.render();
+  let s = ''; const pp = W.proj(PC), sc = pp.ppm * .00085;
+  // tinta en el papel (en perspectiva sobre la mesa)
+  if (t > hit) { const a = clamp((t - hit) / .06); s += onPlane(PC.clone().add(V3(0, .002, .045)), V3(.18, 0, 0), V3(0, 0, .126), 760, 532, `<g opacity="${(.92 * a).toFixed(2)}">${stamp(0, 0, 'CANCELADO', 1)}</g>`); }
+  // brazo del general con el sello: tiembla arriba y baja de golpe en «canceló»
+  const down = t < hit - .12 ? 0 : clamp((t - hit + .12) / .12), up = t > hit + .35 ? clamp((t - hit - .35) / .3) : 0, lift = (1 - down) + up * .8;
+  const hx = pp.x + Math.sin(t * 22) * 6 * (1 - down), hy = pp.y - 58 * sc - lift * 330 * sc + (t > hit && t < hit + .08 ? 12 * sc : 0);
+  const arm = `<path d="M${(hx + 260 * sc).toFixed(1)},-40 Q${(hx + 160 * sc).toFixed(1)},${((hy - 300 * sc) / 2).toFixed(1)} ${hx.toFixed(1)},${(hy - 220 * sc).toFixed(1)}" stroke="${K}" stroke-width="${(150 * sc).toFixed(1)}" fill="none" stroke-linecap="round"/><path d="M${(hx + 260 * sc).toFixed(1)},-40 Q${(hx + 160 * sc).toFixed(1)},${((hy - 300 * sc) / 2).toFixed(1)} ${hx.toFixed(1)},${(hy - 220 * sc).toFixed(1)}" stroke="#7a6a48" stroke-width="${(120 * sc).toFixed(1)}" fill="none" stroke-linecap="round"/>`;
+  const st = `<g transform="translate(${hx.toFixed(1)},${hy.toFixed(1)}) scale(${sc.toFixed(4)})"><rect x="-150" y="-40" width="300" height="60" rx="10" fill="#3a2a22" stroke="${K}" stroke-width="12"/><rect x="-170" y="18" width="340" height="40" rx="6" fill="#c8302e" stroke="${K}" stroke-width="12"/><rect x="-40" y="-230" width="80" height="200" rx="30" fill="#8a5a32" stroke="${K}" stroke-width="12"/><ellipse cx="0" cy="-240" rx="80" ry="60" fill="#8a5a32" stroke="${K}" stroke-width="12"/><circle cx="-10" cy="-250" r="78" fill="#f4f2ee" stroke="${K}" stroke-width="12"/><path d="M-60,-300 Q-20,-330 30,-300" stroke="#fff" stroke-width="10" opacity=".5" fill="none"/><rect x="-100" y="-210" width="200" height="40" rx="14" fill="#7a6a48" stroke="${K}" stroke-width="10"/></g>`;
+  s += arm + st;
+  if (t > hit && t < hit + .4) s += ring(pp.x, pp.y, pp.ppm * .25, (t - hit) / .4, '#fff');
   return s; };
-// 13 · «una idea de chiflado»
+// 13 · «una idea de chiflado»: Fred, plantado, hace el gesto de «está loco» con el dedo en la sien y se ríe; la paloma le mira
 S.crackpot = (t, D, B) => { const E = EVS.crackpot(B); W.setTime(t + 48); W.charLight = DAY;
-  const k = k01(t, 0, D), cam = V3(-1.2 + Math.sin(k * 1.4) * .5, 1.7, 3.6 - k * .3), look = V3(-3.2, 1.5, 1.4); W.setCam(cam, look, 44, cam.distanceTo(V3(-3, 1.4, 1.6)), .004); W.render();
-  const F = V3(-2.9, 0, 1.7), ch = t > E.chiflado - .1;
-  let s = fred({ face: ch ? 'happy' : 'smug', mouth: ch ? 'laugh' : 'smirk', sweat: !ch, turn: .35, look: [8, 0], armL: [18, 20], armR: ch ? [160, 150 + 10 * Math.sin(t * 20)] : [20, 20], brows: ch ? .5 : 0 }, F);
-  const hp = W.proj(V3(F.x, ADULT + .22, F.z)); if (hp.ok) { const h = hp.ppm * .26; s += `<g transform="translate(${(hp.x - 34).toFixed(1)},${(hp.y + 4).toFixed(1)}) scale(${(-h / 330).toFixed(4)},${(h / 330).toFixed(4)})">${pigeon({ eye: ch ? 'wide' : 'calm', bob: Math.sin(t * 6) * .5, flap: ch ? Math.max(0, Math.sin(t * 16)) : 0 })}</g>`;
-    if (ch) { const a = clamp((t - E.chiflado + .1) / .3); for (let i = 0; i < 3; i++) { const r = (60 + i * 40) * (.6 + .4 * a), cx = hp.x + 170, cy = hp.y + 60; s += `<path d="M${cx + r},${cy} A${r},${r * .8} 0 1 1 ${cx - r * .2},${cy - r * .7}" stroke="${YEL}" stroke-width="12" fill="none" stroke-linecap="round" opacity="${a.toFixed(2)}" transform="rotate(${(t * 300 + i * 90).toFixed(0)} ${cx} ${cy})"/>`; } } }
-  s += pill(540, 330, '«IDEA DE CHIFLADO»', PINK, P(t, E.chiflado, .3), 46);
-  return s + motes(t, 14, .35); };
-// 14 · 1948: la Marina destapa el morro y sigue probando cinco años
+  const k = k01(t, 0, D), F = V3(-2.9, 0, 1.7), cam = V3(-1.9 - k * .15, 1.32, 5.6 - k * .25), look = V3(-2.85, 1.0, 1.6); W.setCam(cam, look, 56, cam.distanceTo(F), .0008); W.render();
+  const ch = t > E.chiflado - .1;
+  const f = breathe(keyed(t, [[0, { armL: [30, 80], armR: [30, 80] }], [E.llamo, { armL: [70, 100], armR: [70, 100] }], [E.chiflado - .1, { armL: [16, 12], armR: [162, 150] }]]), t);
+  if (ch) f.armR = [162, 150 + 12 * Math.sin(t * 22)];
+  let s = fred(Object.assign(f, { face: ch ? 'happy' : 'smug', mouth: ch ? 'laugh' : 'smirk', sweat: !ch, turn: .35, look: [8, 0], brows: ch ? .5 : 0 }), F);
+  s += pg({ eye: ch ? 'wide' : 'calm', look: [-8, -10], flip: true, bob: Math.sin(t * 5) * .3 }, V3(-2.2, 0, 1.95), .34);
+  if (ch) { const hp = W.proj(V3(F.x + .3, ADULT - .05, F.z)), a = clamp((t - E.chiflado + .1) / .3); for (let i = 0; i < 3; i++) { const r = (30 + i * 22) * (.6 + .4 * a) * hp.ppm / 280, cx = hp.x + 40, cy = hp.y - 20; s += `<path d="M${cx + r},${cy} A${r},${r * .8} 0 1 1 ${cx - r * .2},${cy - r * .7}" stroke="${YEL}" stroke-width="10" fill="none" stroke-linecap="round" opacity="${a.toFixed(2)}" transform="rotate(${(t * 300 + i * 90).toFixed(0)} ${cx} ${cy})"/>`; } }
+  return s; };
+// 14 · 1948: un oficial de la Marina tira de la sábana que tapaba el morro y luego saluda
 S.navy = (t, D, B) => { const E = EVS.navy(B); W.setTime(t + 50); W.charLight = DAY;
   const c = NOSEP(), n = NOSEN(), side = new THREE.Vector3(-n.z, 0, n.x), k = k01(t, 0, D);
-  const cam = c.clone().addScaledVector(n, 3.9 - k * .5).addScaledVector(side, -.8 + k * .3).add(V3(0, .25, 0)), look = c.clone().addScaledVector(side, -.5).add(V3(0, -.2, 0)); W.setCam(cam, look, 54, cam.distanceTo(c), .002); W.render();
-  const pull = clamp((t - E.resucito + .25) / .45), F = c.clone().addScaledVector(side, -.85).addScaledVector(n, .9); F.y = 0;
+  const cam = c.clone().addScaledVector(n, 5.1 - k * .35).addScaledVector(side, -1.0 + k * .2).add(V3(0, .1, 0)), look = c.clone().addScaledVector(side, -.55).add(V3(0, -.35, 0)); W.setCam(cam, look, 52, cam.distanceTo(c), .0007); W.render();
+  const pull = clamp((t - E.resucito + .2) / .4), F = c.clone().addScaledVector(side, -1.0).addScaledVector(n, .9); F.y = 0;
   let s = '';
   const cp = W.proj(c.clone().add(V3(0, .05, 0))), R0 = cp.ppm * 1.15;
-  if (pull < 1) { const dx = pull * -900, dy = -pull * 500, rot = -pull * 50; s += `<g transform="translate(${(cp.x + dx).toFixed(1)},${(cp.y + dy).toFixed(1)}) rotate(${rot.toFixed(1)})" opacity="${(1 - pull * .6).toFixed(2)}"><path d="M${-R0},${R0 * .7} C${-R0 * 1.1},${-R0 * .2} ${-R0 * .5},${-R0 * .8} 0,${-R0 * .8} C${R0 * .6},${-R0 * .8} ${R0 * 1.1},${-R0 * .2} ${R0},${R0 * .7} Q${R0 * .5},${R0 * .5} 0,${R0 * .75} Q${-R0 * .5},${R0 * .5} ${-R0},${R0 * .7}Z" fill="#e8e2d2" stroke="${K}" stroke-width="10" stroke-linejoin="round"/><path d="M${-R0 * .5},${-R0 * .5} Q0,${-R0 * .2} ${R0 * .4},${R0 * .5} M${-R0 * .1},${-R0 * .7} Q${R0 * .3},${-R0 * .2} ${R0 * .7},${R0 * .3}" stroke="#bdb5a0" stroke-width="8" fill="none"/></g>`; }
+  if (pull < 1) { const dx = pull * -900, dy = -pull * 300, rot = -pull * 40; s += `<g transform="translate(${(cp.x + dx).toFixed(1)},${(cp.y + dy).toFixed(1)}) rotate(${rot.toFixed(1)})" opacity="${(1 - pull * .7).toFixed(2)}"><path d="M${-R0},${R0 * .7} C${-R0 * 1.1},${-R0 * .2} ${-R0 * .5},${-R0 * .8} 0,${-R0 * .8} C${R0 * .6},${-R0 * .8} ${R0 * 1.1},${-R0 * .2} ${R0},${R0 * .7} Q${R0 * .5},${R0 * .5} 0,${R0 * .75} Q${-R0 * .5},${R0 * .5} ${-R0},${R0 * .7}Z" fill="#e8e2d2" stroke="${K}" stroke-width="10" stroke-linejoin="round"/><path d="M${-R0 * .5},${-R0 * .5} Q0,${-R0 * .2} ${R0 * .4},${R0 * .5} M${-R0 * .1},${-R0 * .7} Q${R0 * .3},${-R0 * .2} ${R0 * .7},${R0 * .3}" stroke="#bdb5a0" stroke-width="8" fill="none"/></g>`; }
   if (pull > 0) s += puff(cp.x, cp.y + 40, cp.ppm * .9, clamp((t - E.resucito) / .7), '#d9cfb8');
-  s += who(NAVY, { face: pull >= 1 ? 'happy' : 'smug', mouth: pull >= 1 ? 'smile' : 'line', turn: .45, look: [12, 0], armL: [18, 20], armR: pull > 0 && pull < 1 ? [150, 20] : [30, 30] }, F);
-  s += pill(540, 320, '1948', YEL, P(t, E.y1948, .3), 60) + (t > E.marina ? pill(540, 450, 'U.S. NAVY', BLUE, P(t, E.marina, .3), 40) : '');
-  if (t > E.cinco - .3) { const yr = Math.min(1953, 1948 + Math.floor(clamp((t - E.cinco + .3) / 1.3) * 5.99)); s += bigNum(540, 1180, String(yr), YEL, P(t, E.cinco - .3, .3), 170); }
-  return s + motes(t, 18, .4); };
-// 15 · 2024: le dieron un premio por aquellas palomas
+  const o = breathe(keyed(t, [[0, { armR: [120, 10] }], [E.resucito - .2, { armR: [150, 20] }], [E.resucito + .25, { armR: [40, 20] }], [E.cinco - .1, { armR: [150, 142] }]]), t);
+  s += who(NAVY, Object.assign(o, { face: pull >= 1 ? 'happy' : 'smug', mouth: pull >= 1 ? 'smile' : 'line', turn: .45, look: [12, 0] }), F);
+  return s; };
+// 15 · 2024: la paloma recibe el premio (escenario cerrado, telón)
 S.prize = (t, D, B) => { const E = EVS.prize(B); W.setTime(t + 55); W.charLight = { tint: '#ffe8c8', k: .2, rim: '#fff4dc', rimA: .7, rimX: 0, rimY: -1 };
-  const k = k01(t, 0, D), cam = V3(W.SX + .15 - k * .1, 1.12 - k * .06, 2.55 - k * .55), look = V3(W.SX - .18, .92, -.15); W.setCam(cam, look, 40, cam.distanceTo(V3(W.SX - .2, .8, -.15)), .004); W.render();
+  const k = k01(t, 0, D), cam = V3(W.SX + .15 - k * .1, 1.12 - k * .06, 2.55 - k * .55), look = V3(W.SX - .18, .92, -.15); W.setCam(cam, look, 40, cam.distanceTo(V3(W.SX - .2, .8, -.15)), .0012); W.render();
   const fl = t > E.premio ? Math.max(0, Math.sin((t - E.premio) * 12)) * .9 : 0;
   let s = pg({ eye: blink(t) ? 'closed' : 'calm', goggles: true, flap: fl, bob: Math.sin(t * 3) * .3, look: [6, -2] }, V3(W.SX - .42, .6, -.1), .34);
   if (t > E.premio) { for (let i = 0; i < 40; i++) { const tt = t - E.premio, x = (hs(i, 1) * 1080 + Math.sin(tt * 2 + i) * 30), y = -40 + ((tt * (180 + hs(i, 2) * 160) + hs(i, 3) * 400) % 1300); s += `<rect x="${x.toFixed(0)}" y="${y.toFixed(0)}" width="16" height="26" fill="${[YEL, PINK, BLUE, GREEN, '#fff'][i % 5]}" stroke="${K}" stroke-width="3" transform="rotate(${(tt * 200 * (hs(i, 4) - .5) + i * 40).toFixed(0)} ${x.toFixed(0)} ${y.toFixed(0)})"/>`; } }
-  s += pill(540, 330, '2024', YEL, P(t, E.y2024, .3), 64) + (t > E.premio ? pill(540, 470, 'PREMIO IG NOBEL', PINK, P(t, E.premio, .3), 42) : '');
-  return s + motes(t, 14, .4); };
+  return s; };
