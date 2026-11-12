@@ -1,0 +1,26 @@
+IDEAS (2.ª tanda) · 12-11-2026 — más rebuscadas; datos comprobados en la web el 12-11-2026
+Pedido: nada visto en TikTok (la Torre Eiffel ya la había visto). Explicar datos con una escena cómica inventada, como el vídeo del fluido no newtoniano
+(la señora llena el foso del castillo, pasa corriendo, pone un cartel de una tortuga y el ejército entra despacio y se hunde). Y también otras de todo tipo.
+
+ESCENA INVENTADA PARA EXPLICAR UN DATO
+1. LA CUERDA ALREDEDOR DEL MUNDO (matemáticas). Un rey ata una cuerda pegada al suelo alrededor de todo su planeta; el criado le pone 1 metro de más;
+   «un metro en 40.000 km, ni se nota»… y la cuerda se levanta 16 cm en TODO el planeta: pasa un gato por debajo en cualquier sitio.
+   Dato: radio extra = 1 m / 2π ≈ 15,9 cm, sea el círculo del tamaño que sea. Genera discusión en comentarios («imposible»).
+2. EL PROFESOR QUE APOSTÓ CON SU CLASE (probabilidad). Apuesta a que en su clase de 23 hay dos que cumplen el mismo día; se ríen (hay 365 días); pierden.
+   Dato: 23 personas = 253 parejas → 50,7 %; con 30, ~70 %; con 50, ~97 %. Comentario fijado: «Pon tu cumpleaños y mira si coincides con alguien».
+3. EL RATÓN QUE CAYÓ POR UN POZO DE UN KILÓMETRO (física). Ratón, hombre y caballo caen por el mismo pozo de mina; el ratón se sacude y se va andando.
+   Dato: ensayo «On Being the Right Size» (J. B. S. Haldane, 1926): diez veces más pequeño = mil veces menos peso pero solo cien veces menos superficie → el aire lo frena.
+   (Es un ejemplo del ensayo, no un experimento: contarlo como «según un biólogo». Sin mostrar nada desagradable con el hombre y el caballo.)
+
+EXPERIMENTO REAL QUE YA ES CÓMICO
+4. LAS HORMIGAS CON ZANCOS (Science, 2006, Wittlinger, Wehner y Wolf; hormigas del desierto Cataglyphis). Les pegaron zancos de pelo de cerdo:
+   se pasaron de largo el nido y se quedaron buscándolo; a otras les acortaron las patas: se quedaron cortas. Vuelven a casa contando pasos.
+
+HISTORIAS REALES POCO VISTAS
+5. ★ LA MUJER QUE VIVÍA EN SU ARMARIO (Kasuya, Fukuoka, Japón, mayo 2008). A un hombre que vive solo le desaparece comida; pone cámaras que le avisan al móvil;
+   ve a alguien en su cocina mientras él está fuera; la policía encuentra a Tatsuko Horikawa, 58 años, en el altillo de un armario, con un colchón; llevaba ~1 año; se duchaba;
+   solo cogía comida. Terror suave = lo que mejor funciona en el canal. Final: «¿Cuándo abriste por última vez el altillo de tu armario?»
+6. EL PILOTO QUE SALIÓ POR LA VENTANA (British Airways 5390, 10-6-1990). A 17.300 pies (≈5.300 m) revienta el parabrisas y el capitán Tim Lancaster sale medio cuerpo fuera;
+   el auxiliar Nigel Ogden le agarra y luego otros se turnan; el copiloto aterriza en Southampton; el capitán sobrevive y volvió a volar en menos de 5 meses.
+   Giro: el parabrisas se había cambiado 27 horas antes; 84 de los 90 tornillos eran 0,66 mm más finos de lo debido.
+   (No comprobado, no usar: que la tripulación lo creyera muerto.)
