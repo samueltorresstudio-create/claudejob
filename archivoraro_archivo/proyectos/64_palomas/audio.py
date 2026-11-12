@@ -25,6 +25,7 @@ def kick(d=.25):
     x = t(d); f = 90 * np.exp(-x * 18) + 45; return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-x * 9)
 
 # ---------- música: 100 bpm, ligera ----------
+MUSIC_VOL = .6   # volumen de la música (pedido: más baja)
 BPM = 100; beat = 60 / BPM
 prog = [(110.0, [440, 554, 659]), (82.4, [415, 494, 659]), (73.4, [370, 440, 587]), (82.4, [415, 494, 659])]   # A E D E
 mel = [880, 740, 659, 740, 880, 988, 880, 740, 659, 554, 659, 740, 659, 554, 494, 554]
@@ -32,7 +33,7 @@ def quiet(x):  # la banda baja en el «cancelado»
     return sc0['cancel'] + .4 < x < scEnd['cancel'] + .2
 tt, i = 0.0, 0
 while tt < CUT - .05:
-    bar, b = divmod(i, 4); root, ch = prog[bar % 4]; g = .4 if quiet(tt) else 1.0
+    bar, b = divmod(i, 4); root, ch = prog[bar % 4]; g = (.4 if quiet(tt) else 1.0) * MUSIC_VOL
     if b in (0, 2): m.add(bass(root), tt, .32 * g, bed=True); m.add(kick(), tt, .16 * g, bed=True)
     if b in (1, 3): m.add(bass(root * 1.5), tt + beat * .5, .2 * g, bed=True); m.add(m.noise(.12, 800, 4000, .002, .08), tt, .05 * g, -.2, bed=True)
     for h, ga in ((0, .06), (.5, .04), (.75, .045)): m.add(guacharaca(), tt + h * beat, ga * g, .25, bed=True)
