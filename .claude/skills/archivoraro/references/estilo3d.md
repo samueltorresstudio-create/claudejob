@@ -258,3 +258,7 @@ El usuario dijo que en las palomas «se mueven mal». En la referencia:
 - Transiciones: `push` entre planos que miran en sentidos opuestos barre el cielo; usa `swish`. `push` hacia una cara en primer plano la atraviesa; usa `swish`.
 - Mañana: un cielo con mucho degradado rosa se rompe en bandas (8 bits); suaviza colores, iguala la niebla al horizonte y sube un poco el grano.
 - Velocidad medida: ≈2,9 s por fotograma con 4 páginas cuando hay cientos de moscas 2D (cada mosca es un grupo SVG). 73 s de vídeo ≈ 1 h 45 min.
+
+### Ritmo de cámara pedido por el usuario (12-11-2026)
+- «La transición de cámara un poco más lenta y no tan de golpe»: `CFG.transDur: .95`, `CFG.blurK: .55` (menos desenfoque), `CFG.antic: .3` (anticipación más larga). Son los valores por defecto a partir de ahora.
+- «Que la cámara nunca esté quieta, aunque se mueva un poco»: deriva tipo cámara en mano sobre `W2.setCam` (seno lento, ±5 cm de posición, 35 % en el punto de mira), además del movimiento de cada plano. Ver el bloque «cámara nunca quieta» de `proyectos/62_vacas/scenes_p.js`.

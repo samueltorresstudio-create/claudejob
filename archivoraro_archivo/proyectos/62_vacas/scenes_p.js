@@ -1,7 +1,7 @@
 // «Las vacas cebra» (62) — ESTILO 3D: world_kenji.js + personajes 2D (stick.js, cow2d.js). Sin voz (fake_voice), cámara siempre en movimiento.
 // Reglas de movimiento (referencia «naranjas»): pies clavados, una acción concreta por plano ligada a la palabra, de pose a pose con cambios
 // rápidos y respiración sutil; la mano y la brocha se resuelven con cinemática inversa (IK) para tocar de verdad la vaca o el cubo.
-window.CFG = { capY: 1500, capSize: 96, transDur: .55,
+window.CFG = { capY: 1500, capSize: 96, transDur: .95, blurK: .55, antic: .3,
   trans: { apodo: 'fly', valla: 'fly', jirafa: 'swish', moja: 'swish', negra: 'fly', nosevan: 'swish', tercera: 'fly', mosca: 'whip', hambre: 'fly', normal: 'swish',
     negras: 'whip', cebra: 'whip', estampa: 'whip', como: 'swish', barberia: 'fly', giran: 'fly', engana: 'fly', cuenta: 'fly', olor: 'whip', manana: 'fly', brocha: 'swish' } };
 const EVS = {
@@ -18,6 +18,9 @@ const EVS = {
   manana: B => ({ siguiente: B[0].w[2], vecino: B[0].w[4], apoyarse: B[0].w[7], valla: B[0].w[10] }), brocha: B => ({ oye: B[0].w[0], kenji: B[0].w[1], dejas: B[0].w[3], brocha: B[0].w[5] }),
 };
 const S = {}, W = W2, K = '#1b1720';
+// cámara nunca quieta: deriva suave tipo «cámara en mano» encima de cada movimiento (el usuario: «que la cámara nunca esté quieta»)
+{ const _setCam = W2.setCam.bind(W2); W2.setCam = (p, l, f, fo, ap) => { const T = window.__T || 0, d = V3(Math.sin(T * .53) * .05 + Math.sin(T * 1.31) * .015, Math.sin(T * .71 + 1) * .035, Math.sin(T * .37 + 2) * .04);
+  return _setCam(p.clone().add(d), l.clone().add(d.clone().multiplyScalar(.35)), f, fo, ap); }; }
 const DAY = { tint: '#ffe2bd', k: .14, rim: '#fff6e6', rimA: .5, rimX: -1, rimY: -.6 }, MORN = { tint: '#ffc8b0', k: .2, rim: '#ffe0c0', rimA: .55, rimX: 1, rimY: -.4 };
 const hs = (a, b = 1) => { const x = Math.sin(a * 127.1 + b * 311.7) * 43758.5453; return x - Math.floor(x); };
 const smo = x => x * x * (3 - 2 * x), k01 = (t, a, b) => smo(clamp((t - a) / (b - a)));
@@ -126,9 +129,19 @@ function bucketBack(x, y, sc, paint) { return `<g transform="translate(${x.toFix
 function bucketFront(x, y, sc, paint, label) { return `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${sc.toFixed(3)})"><path d="M-70,-120 L-58,0 Q0,16 58,0 L70,-120 Q0,-100 -70,-120Z" fill="#c9ced6" stroke="${K}" stroke-width="8" stroke-linejoin="round"/><path d="M-66,-80 L-60,-30 Q0,-16 60,-30 L66,-80 Q0,-62 -66,-80Z" fill="${label}"/>` +
   `<path d="M-50,-112 q-3,26 3,34 q7,-6 2,-34Z M30,-110 q-3,18 3,24 q6,-5 1,-24Z" fill="${paint}"/><path d="M-62,-110 Q-56,-50 -52,-10" stroke="#fff" stroke-width="6" opacity=".5" fill="none" stroke-linecap="round"/><path d="M-70,-120 Q0,-160 70,-120" stroke="#5a5e66" stroke-width="6" fill="none"/></g>`; }
 function smell(x, y, sc, t) { let s = ''; for (let i = 0; i < 3; i++) { const k = ((t * .7 + i / 3) % 1), yy = y - k * 260 * sc, xx = x + (i - 1) * 40 * sc; s += `<path d="M${xx},${yy} q${18 * sc},${-30 * sc} 0,${-60 * sc} q${-18 * sc},${-30 * sc} 0,${-60 * sc}" stroke="#7fb04a" stroke-width="${8 * sc}" fill="none" stroke-linecap="round" opacity="${(Math.sin(k * Math.PI) * .9).toFixed(2)}"/>`; } return s; }
-function arrowUp(x, y0, y1, k, t) { if (k <= 0) return ''; const yy = lerp(y0, y1, eOut(k)); return `<g opacity="${clamp(k * 3).toFixed(2)}"><path d="M${x},${y0} L${x},${yy}" stroke="#fff" stroke-width="14" stroke-dasharray="26 18" stroke-dashoffset="${(-t * 120).toFixed(0)}" stroke-linecap="round"/><path d="M${x},${y0} L${x},${yy}" stroke="${K}" stroke-width="4" stroke-dasharray="26 18" stroke-dashoffset="${(-t * 120).toFixed(0)}" opacity=".0"/><path d="M${x - 36},${yy + 40} L${x},${yy} L${x + 36},${yy + 40}" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`; }
-function arrowSpin(x, y, rx, ry, k, t) { if (k <= 0) return ''; const a0 = t * 3, sw = Math.PI * 1.5 * eOut(k), pts = []; for (let i = 0; i <= 30; i++) { const a = a0 + sw * i / 30; pts.push([x + Math.cos(a) * rx, y + Math.sin(a) * ry]); }
-  const [ax, ay] = pts[30], [bx, by] = pts[28], ang = Math.atan2(ay - by, ax - bx); return `<g opacity="${clamp(k * 3).toFixed(2)}"><path d="M${pts.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' L')}" stroke="#ffd34a" stroke-width="14" fill="none" stroke-linecap="round"/><path d="M${ax + Math.cos(ang + 2.5) * 40},${ay + Math.sin(ang + 2.5) * 40} L${ax},${ay} L${ax + Math.cos(ang - 2.5) * 40},${ay + Math.sin(ang - 2.5) * 40}" stroke="#ffd34a" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`; }
+// flecha bien hecha (la misma de las palomas): curva suave, contorno de tinta, punta alineada con la tangente
+function arrow(A, C, B, k, col = YEL, w = 26) { if (k <= 0) return ''; k = clamp(k); const q = (t) => [(1 - t) * (1 - t) * A[0] + 2 * (1 - t) * t * C[0] + t * t * B[0], (1 - t) * (1 - t) * A[1] + 2 * (1 - t) * t * C[1] + t * t * B[1]];
+  const e = eOut(k), N = 24, pts = []; for (let i = 0; i <= N; i++) pts.push(q(i / N * e)); const E = pts[N], Pm = q(Math.max(0, e - .04)), ang = Math.atan2(E[1] - Pm[1], E[0] - Pm[0]), hl = w * 2.1, hw = w * 1.5;
+  const base = [E[0] - Math.cos(ang) * hl * .75, E[1] - Math.sin(ang) * hl * .75], d = 'M' + pts.slice(0, N - 1).map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' L') + ` L${base[0].toFixed(1)},${base[1].toFixed(1)}`;
+  const tip = [E[0] + Math.cos(ang) * hl * .25, E[1] + Math.sin(ang) * hl * .25], l = [base[0] + Math.cos(ang + Math.PI / 2) * hw, base[1] + Math.sin(ang + Math.PI / 2) * hw], r = [base[0] - Math.cos(ang + Math.PI / 2) * hw, base[1] - Math.sin(ang + Math.PI / 2) * hw];
+  const head = `M${tip[0].toFixed(1)},${tip[1].toFixed(1)} L${l[0].toFixed(1)},${l[1].toFixed(1)} L${r[0].toFixed(1)},${r[1].toFixed(1)}Z`;
+  return `<g opacity="${clamp(k * 4).toFixed(2)}"><path d="${d}" stroke="${K}" stroke-width="${w + 14}" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${head}" fill="${K}" stroke="${K}" stroke-width="14" stroke-linejoin="round"/><path d="${d}" stroke="${col}" stroke-width="${w}" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${head}" fill="${col}"/></g>`; }
+function arrowUp(x, y0, y1, k, t, w = 24) { if (k <= 0) return ''; return arrow([x, y0], [x + Math.abs(y1 - y0) * .12, (y0 + y1) / 2], [x, y1], k, '#ffffff', w); }
+function arrowSpin(x, y, rx, ry, k, t) { if (k <= 0) return ''; const a0 = t * 3, sw = Math.PI * 1.5 * eOut(clamp(k)), pts = []; for (let i = 0; i <= 30; i++) { const a = a0 + sw * i / 30; pts.push([x + Math.cos(a) * rx, y + Math.sin(a) * ry]); }
+  const [ax, ay] = pts[30], [bx, by] = pts[28], ang = Math.atan2(ay - by, ax - bx), d = 'M' + pts.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' L'), hl = 44, hw = 30;
+  const tip = [ax + Math.cos(ang) * hl * .3, ay + Math.sin(ang) * hl * .3], base = [ax - Math.cos(ang) * hl * .7, ay - Math.sin(ang) * hl * .7], l = [base[0] + Math.cos(ang + Math.PI / 2) * hw, base[1] + Math.sin(ang + Math.PI / 2) * hw], r = [base[0] - Math.cos(ang + Math.PI / 2) * hw, base[1] - Math.sin(ang + Math.PI / 2) * hw];
+  const head = `M${tip[0].toFixed(1)},${tip[1].toFixed(1)} L${l[0].toFixed(1)},${l[1].toFixed(1)} L${r[0].toFixed(1)},${r[1].toFixed(1)}Z`;
+  return `<g opacity="${clamp(k * 3).toFixed(2)}"><path d="${d}" stroke="${K}" stroke-width="30" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${head}" fill="${K}" stroke="${K}" stroke-width="14" stroke-linejoin="round"/><path d="${d}" stroke="#ffd34a" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${head}" fill="#ffd34a"/></g>`; }
 function crossX(x, y, k) { if (k <= 0) return ''; const sc = .6 + .4 * eBack(clamp(k)); return `<g transform="translate(${x},${y}) scale(${sc.toFixed(2)})" opacity="${clamp(k * 3).toFixed(2)}"><path d="M-40,-40 L40,40 M40,-40 L-40,40" stroke="${K}" stroke-width="30" stroke-linecap="round"/><path d="M-40,-40 L40,40 M40,-40 L-40,40" stroke="#ff4f5a" stroke-width="18" stroke-linecap="round"/></g>`; }
 const byDist = (L) => L.sort((a, b) => b.p.distanceTo(W.camera.position) - a.p.distanceTo(W.camera.position)).map(o => o.f()).join('');
 function setup(T, mood = 0) { W.setTime(T); W.setMood(mood); W.charLight = mood ? MORN : DAY; }
@@ -250,7 +263,7 @@ S.negras = (t, D, B) => { const E = EVS.negras(B); setup(window.__T || t);
 // 13 · vas a por la cebra, frenas… y te pasas de largo (vista de mosca)
 S.cebra = (t, D, B) => { const E = EVS.cebra(B); setup(window.__T || t);
   const a = k01(t, 0, E.frenas + .2), b = k01(t, E.pasas - .05, E.pasas + .45);
-  const cp = L3(V3(-2.2, 1.35, -2.0), V3(-2.55, 1.3, -5.3), eOut(a)).add(V3(b * .6, b * .9, -b * .4)), cl = L3(V3(-2.9, 1.1, -8), V3(-2.9, 2.6, -8.6), b); W.setCam(cp, cl, 48, cp.distanceTo(cl), .0035); W.render();
+  const cp = L3(V3(-2.2, 1.35, -2.0), V3(-2.55, 1.3, -5.3), eOut(a)).add(V3(b * .6 - t * .06, b * .9, -b * .4 - t * .08)), cl = L3(V3(-2.9, 1.1, -8), V3(-2.9, 2.6, -8.6), b); W.setCam(cp, cl, 48, cp.distanceTo(cl), .0035); W.render();
   let s = cow(cowLife(t, 0, Object.assign({}, COW1_DONE, { eyes: 'closed' })), COW1, 'right');
   const brake = t > E.frenas && t < E.pasas, fx = 520 + b * 980 + Math.sin(t * 5) * 8, fy = 1000 + Math.sin(t * 7) * 12 - b * 380;
   s += bigFly(fx, fy, 1.5, t, { legs: brake ? 'out' : 'tuck', eye: brake || b > 0 ? 'wide' : 'lid', rot: brake ? -20 : (b > 0 ? 14 : -4) });
@@ -259,7 +272,7 @@ S.cebra = (t, D, B) => { const E = EVS.cebra(B); setup(window.__T || t);
 // 14 · lo vuelves a intentar y te estampas contra el lomo
 S.estampa = (t, D, B) => { const E = EVS.estampa(B); setup(window.__T || t);
   const hit = E.estampas, ap = k01(t, 0, hit), sh = t > hit && t < hit + .35 ? Math.sin(t * 70) * .04 * (1 - (t - hit) / .35) : 0;
-  const cp = L3(V3(-4.3, 1.55, -4.2), V3(-3.4, 1.42, -5.5), eOut(ap)).add(V3(sh, sh, 0)), cl = V3(-3.0, 1.22, -8); W.setCam(cp, cl, 46, cp.distanceTo(cl), .0035); W.render();
+  const cp = L3(V3(-4.3, 1.55, -4.2), V3(-3.4, 1.42, -5.5), eOut(ap)).add(V3(sh + Math.max(0, t - hit) * .12, sh, -Math.max(0, t - hit) * .1)), cl = V3(-3.0, 1.22, -8); W.setCam(cp, cl, 46, cp.distanceTo(cl), .0035); W.render();
   const fr = frameOf(COW1, 1.45), [HX, HY] = toScr(fr, -40, -414, 1);
   let s = cow(cowLife(t, 0, Object.assign({}, COW1_DONE, { eyes: 'closed' })), COW1, 'right');
   if (t < hit) { const k = eIO(ap); s += bigFly(lerp(120, HX - 40, k), lerp(760, HY - 70, k), lerp(1.5, 1.05, k), t, { legs: 'tuck', eye: k > .75 ? 'wide' : 'lid', rot: 22 }); }
@@ -278,7 +291,7 @@ S.barberia = (t, D, B) => { const E = EVS.barberia(B); setup(window.__T || t);
 S.giran = (t, D, B) => { const E = EVS.giran(B); setup(window.__T || t);
   const a = .35 - t * .06, cp = V3(-24.15 + Math.sin(a) * 2.6, 1.98, 4.95 + Math.cos(a) * 2.6), cl = V3(-24.15, 1.95, 4.95); W.setCam(cp, cl, 40, cp.distanceTo(cl), .006); W.render();
   const p = W.proj(V3(-24.15, 1.95, 4.95)), top = W.proj(V3(-24.15, 2.5, 4.95)), bot = W.proj(V3(-24.15, 1.4, 4.95)), r = p.ppm * .19;
-  const up = t > E.subir - .2 && t < E.realidad ? clamp((t - E.subir + .2) / .6) : 0, sp = clamp((t - E.giran + .2) / .5);
+  const up = t > E.subir - .2 && t < E.giran - .05 ? clamp((t - E.subir + .2) / .6) : 0, sp = clamp((t - E.giran + .2) / .5);
   const ax = p.x + p.ppm * .26; return arrowUp(ax, bot.y, top.y, up, t) + (t > E.realidad && t < E.giran + .1 ? crossX(ax, p.y, k01(t, E.realidad, E.realidad + .2)) : '') + arrowSpin(p.x, p.y + p.ppm * .05, p.ppm * .27, p.ppm * .08, sp, t); };
 // 18 · a la mosca le pasa igual: calcula mal y no frena a tiempo (cámara lenta)
 S.engana = (t, D, B) => { const E = EVS.engana(B); setup(window.__T || t);
@@ -286,7 +299,7 @@ S.engana = (t, D, B) => { const E = EVS.engana(B); setup(window.__T || t);
   const fr = frameOf(COW1, 1.45), [TX, TY] = toScr(fr, 0, -420, 1);
   let s = cow(cowLife(t * .5, 0, Object.assign({}, COW1_DONE, { eyes: 'closed' })), COW1, 'right');
   // trayectoria prevista (aterrizaje) y real (se pasa)
-  const pk = k01(t, E.calcula - .2, E.calcula + .3); if (pk > 0) { s += `<path d="M120,760 Q${(120 + TX) / 2},${TY - 260} ${TX},${TY - 20}" stroke="#fff" stroke-width="10" stroke-dasharray="22 18" fill="none" opacity="${(pk * .9).toFixed(2)}"/>`; if (t > E.frena) s += crossX(TX, TY - 20, k01(t, E.frena, E.frena + .2)); }
+  const pk = k01(t, E.calcula - .2, E.calcula + .3); if (pk > 0) { s += `<g opacity="${(pk * .95).toFixed(2)}"><path d="M120,760 Q${(120 + TX) / 2},${TY - 260} ${TX},${TY - 20}" stroke="${K}" stroke-width="20" stroke-dasharray="22 18" fill="none" stroke-linecap="round"/><path d="M120,760 Q${(120 + TX) / 2},${TY - 260} ${TX},${TY - 20}" stroke="#fff" stroke-width="10" stroke-dasharray="22 18" fill="none" stroke-linecap="round"/></g>`; if (t > E.frena) s += crossX(TX, TY - 20, k01(t, E.frena, E.frena + .2)); }
   const fk = k01(t, E.engañan - .5, E.tiempo + .3), fx = lerp(-60, 1260, fk), fy = TY - 160 - Math.sin(fk * Math.PI) * 120 + fk * 40;
   if (fk > 0 && fk < 1) { s += bigFly(fx, fy, 1.0, t * .35, { legs: fk > .45 ? 'out' : 'tuck', eye: fk > .5 ? 'wide' : 'lid', rot: fk > .5 ? -16 : 8 }); if (fk > .5) s += `<path d="M${fx - 120},${fy} l-180,0 M${fx - 120},${fy + 30} l-140,0" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".7"/>`; }
   return s; };
