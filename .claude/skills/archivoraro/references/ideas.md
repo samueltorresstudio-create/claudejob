@@ -59,7 +59,7 @@ Si encuentras un fallo en partes ya publicadas, no propongas resubir: arréglalo
 Voz del usuario: **Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural»**. Él genera el MP3 y te lo pasa.
 
 - Una frase por línea, sin título, sin numeración, dentro de un bloque de código para copiar.
-- **Siempre con etiquetas `[...]`** cuando le pases el guion para grabar (el usuario lo recordó el 12-11-2026: «¿No añades []?»). Nunca le des la versión sin etiquetas como guion para ElevenLabs.
+- **Siempre con etiquetas `[...]`** cuando le pases el guion para grabar (el usuario lo recordó el 12-11-2026: «¿No añades []?»). Nunca le des la versión sin etiquetas como guion para ElevenLabs. Etiquetas SIEMPRE al principio de la línea (nunca en mitad), una frase por línea, 3–6 etiquetas; el remate final con `[deadpan] [slowly]` y puntos suspensivos (formato de `textos/guion_64_palomas_misil.txt`).
 - **Energía en el gancho**: si va una etiqueta, que sea en la 1.ª o 2.ª frase (`[urgent]`/`[tense]`).
 - Etiquetas de emoción **muy pocas** (2–4 en todo el guion), solo en los momentos especiales, al principio de la frase: `[serious] [tense] [urgent] [ominous] [sad] [hopeful]`. **Nada de `[whispers]`** (el usuario no quiere susurros).
 - **Curiosidades (voz alegre): catálogo de etiquetas v3** (pedido del usuario: variedad según la situación, no en cada frase):
