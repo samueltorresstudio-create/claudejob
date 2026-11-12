@@ -59,3 +59,12 @@ Entrega:
 - Envíala con `SendUserFile` (display `render`).
 - Describe en 3–4 viñetas qué tiene.
 - Ofrece una variante: primer plano solo de la cara, u otro gancho.
+
+
+## Portada en ESTILO 3D (póster renderizado con el mundo del vídeo) — 62 vacas, 12-11-2026
+
+- Página propia: copia `index.html` del proyecto a `cover.html`, añade `<svg id="ttl">` encima y un `coverNN.js` con `window.renderCover(o)` que usa las mismas piezas del vídeo (`setup`, `who`, `cow`, `landing`, `bigFly`, `stars`, `byDist`). Captura con `shot_cover.js out.png '{parámetros}'` (ver `archivoraro_archivo/proyectos/62_vacas/`).
+- **En vertical, cámara ALTA mirando hacia abajo**: lo lejano queda más arriba, así se apilan tres cosas sin taparse (vaca negra llena de moscas arriba, vaca cebra en medio a la izquierda, protagonista a la derecha). Posiciones propias de la portada, no las de las escenas.
+- Itera con 2 variantes por render y míralas lado a lado; comprueba también a 200 px de ancho.
+- Fallos que salieron: cámara demasiado cerca (la vaca tapaba todo), protagonista cortado en el borde, brocha metida en el ojo de la vaca (que toque el cuerpo o una pata), mosca cortada en el borde, vaca del fondo tapada por la cabeza del protagonista.
+- Texto: gancho amarillo corto («SE RIERON DE ÉL…») + título de dos líneas (~200 px, Inter 900, contorno oscuro); la palabra clave con relleno temático (CEBRA con rayas finas: franjas negras de ~25 % para que se lea). Degradado oscuro abajo.
