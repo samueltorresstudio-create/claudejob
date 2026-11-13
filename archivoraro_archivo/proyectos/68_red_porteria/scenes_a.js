@@ -2,7 +2,7 @@
 // lente estrecha, cada plano es push-in / órbita (~98°) / whip que frena en seco; la cámara casi nunca quieta;
 // movimientos «snap» (60–70 % en los primeros 4–5 fotogramas), personaje parado = totalmente quieto, la cara cambia 1 fotograma antes que el cuerpo,
 // boca cada ~2 fotogramas al hablar, sin parpadeos, personajes nunca desenfocados.
-window.CFG = { capY: 1500, capSize: 96, transDur: .42, blurK: .35, antic: .1, blurChars: false, transDurBy: { liverpool: .7, arbitro: .6, anulan: .25, noche: .5, dibuja: .4, rien: .5, papelera: .5, prueba: .5 },
+window.CFG = { capY: 1500, capSize: 96, transDur: .42, blurK: .35, antic: .1, blurChars: false, transDurBy: { liverpool: .7, arbitro: .6, anulan: .25, noche: .5, dibuja: .28, rien: .5, papelera: .5, prueba: .5 },
   trans: { liverpool: 'fly', nada: 'glide', pierde: 'whip', gritos: 'whip', arbitro: 'fly', brodie: 'whip', anulan: 'whip', noche: 'swish', bolsillos: 'glide', dibuja: 'swish', rien: 'swish',
     sardinas: 'glide', papelera: 'swish', discutir: 'glide', prueba: 'swish', disparo: 'whip', liga: 'whip', hoy: 'whip', gracias: 'whip' } };
 // eventos: cada palabra del subtítulo es un evento (sin acentos, en minúsculas; los números con «_»): E.balon, E.entra, E._1889…

@@ -81,8 +81,8 @@ S.disparo = (t, D, B) => { const E = EVS.disparo(B), T = window.__T || t; setup(
   if (t < tw) { W.ball(bp, spin, true); cam(orb(V3(0, 1.1, -40.4), 90, 1.5, 7.6 - t * .5), V3(0, 1.15, -40.45), 30, .0022);
     return byDist([{ p: KP2, f: () => who('DELANTERO', kick(.6 + (t - tk) / .55), KP2) }, { p: bp, f: () => ball2d(bp, spin) }]); }
   // detrás de la red (mirando hacia el campo): la red 2D va ENCIMA de todo; el portero se tira tarde hacia el balón
-  W.NET.visible = false; W.ball(bp, spin, false); const C0 = V3(-.5, 1.15, -56.2), tgA = V3(-.35, 1.0, -51.0), tgB = V3(N.x, .5, -53.6), kz = k01(t, th + .6, D), tg = L3(tgA, tgB, kz), cp = L3(C0, pushIn(C0, tgB, 1, 1.25), kz); cam(cp, tg, 56, .0014);
-  const dk = clamp((t - tk - .12) / .5), e = oc(dk), ang = rad(lerp(0, 82, e)), cx = GK0.x + e * 1.8, cy = .92 * (1 - e) + .3 * e + Math.sin(Math.min(1, dk) * Math.PI) * .45, F = V3(cx - Math.sin(ang) * .92, cy - Math.cos(ang) * .92, GK0.z), Hc = V3(cx + Math.sin(ang) * .92, cy + Math.cos(ang) * .92, GK0.z);   // se tira al lado contrario
+  W.NET.visible = false; W.ball(bp, spin, false); const C0 = V3(-.5, 1.15, -56.2), tgA = V3(-.35, .66, -51.0), tgB = V3(N.x, .5, -53.6), kz = k01(t, th + .6, D), tg = L3(tgA, tgB, kz), cp = L3(C0, pushIn(C0, tgB, 1, 1.25), kz); cam(cp, tg, 72, .0014);
+  const dk = clamp((t - th + .02) / .5), e = oc(dk), ang = rad(lerp(0, -76, e)), cx = GK0.x - e * .5, cy = .92 * (1 - e) + .3 * e + Math.sin(Math.min(1, dk) * Math.PI) * .45, F = V3(cx - Math.sin(ang) * .92, cy - Math.cos(ang) * .92, GK0.z), Hc = V3(cx + Math.sin(ang) * .92, cy + Math.cos(ang) * .92, GK0.z);   // se tira hacia el balón, pero tarde (el balón ya está dentro)
   const gk = Object.assign({}, CAST.KEEPER, { view: 'back', armL: [lerp(44, 168, e), 8], armR: [lerp(44, 160, e), 10], legL: [lerp(12, 4, e), 0], legR: [lerp(12, 22, e), lerp(0, 20, e)] });
   return stickAt(gk, F, Hc, W) + ball2d(bp, spin, t < th ? fl(B02, v, Math.max(0, t - tk - .04)) : null, t < th ? 1.3 : 1) + net2d(); };
 // 18 · ese mismo año, obligatoria en la liga inglesa (órbita de ~98° alrededor de la portería con su red)
@@ -91,16 +91,16 @@ S.liga = (t, D, B) => { const E = EVS.liga(B), T = window.__T || t; setup(T, 1, 
   L.push({ p: GK, f: () => who('KEEPER', { face: 'smug', mouth: 'line', look: [8, 9], headTilt: 8, armL: [30, 96], armR: [30, 96] }, GK) }, { p: ST, f: () => who('DELANTERO', cheer(T, 1), ST) });
   const k = oc(t / D), cp = orb(V3(0, 1.3, -52.4), lerp(-50, 48, k), lerp(5, 11, k), lerp(17, 25, k)); cam(cp, V3(0, 1.5, -52.4), 30, .002); return byDist(L); };
 // 19 · hoy: cada vez que un balón toca la red, el estadio entero grita a la vez
-function gorras(T, t0, n = 16) { let s = ''; for (let i = 0; i < n; i++) { const d = T - t0 - hs(i, 5) * .7; if (d < 0 || d > 1.5) continue; const x = -9 + hs(i, 2) * 18, r = Math.floor(hs(i, 3) * 9), [y0, z] = rowG(r), p = W.proj(V3(x + (hs(i, 4) - .5) * d, y0 + 2.4 + 4.6 * d - 4.2 * d * d, z)); if (!p.ok) continue; const sc = p.ppm / 300;
+function gorras(T, t0, n = 16) { let s = ''; for (let i = 0; i < n; i++) { const d = T - t0 - hs(i, 5) * 1.1; if (d < 0 || d > 1.5) continue; const x = -9 + hs(i, 2) * 18, r = Math.floor(hs(i, 3) * 9), [y0, z] = rowG(r), p = W.proj(V3(x + (hs(i, 4) - .5) * d, y0 + 2.4 + 4.6 * d - 4.2 * d * d, z)); if (!p.ok) continue; const sc = p.ppm / 230;
     s += `<g transform="translate(${p.x.toFixed(1)},${p.y.toFixed(1)}) rotate(${(d * 400 * (i % 2 ? 1 : -1)).toFixed(0)}) scale(${sc.toFixed(2)})"><path d="M-50,10 Q-50,-36 0,-38 Q50,-36 50,10Z" fill="${FHC[i % 16] || '#6b6458'}" stroke="${K}" stroke-width="7" stroke-linejoin="round"/><path d="M10,10 Q60,4 74,18 Q40,26 8,20Z" fill="#3e3a36" stroke="${K}" stroke-width="6" stroke-linejoin="round"/></g>`; } return s; }
-S.hoy = (t, D, B) => { const E = EVS.hoy(B), T = window.__T || t; setup(T, 1, .12, Y91); const ti = E.toca - .12, tf = .3, th = ti + tf, ta = E.el - .12, N = V3(-.6, 1.3, netZ(1.3) + .12), p0 = V3(2.2, .8, -45.5), v = V3((N.x - p0.x) / tf, (N.y - p0.y + 4.9 * tf * tf) / tf, (N.z - p0.z) / tf), gr = E.grita - .1;
+S.hoy = (t, D, B) => { const E = EVS.hoy(B), T = window.__T || t; setup(T, 1, .12, 'HOY'); const ti = E.toca - .12, tf = .3, th = ti + tf, ta = E.el - .12, N = V3(-.6, 1.3, netZ(1.3) + .12), p0 = V3(2.2, .8, -45.5), v = V3((N.x - p0.x) / tf, (N.y - p0.y + 4.9 * tf * tf) / tf, (N.z - p0.z) / tf), gr = E.grita - .1;
   W.NET.visible = true; const A = .8, bul = d => A * Math.exp(-d * 3.2) * Math.cos(d * 13); let bp = null, spin = t * 20;
   if (t >= ti && t < th) bp = fl(p0, v, t - ti); else if (t >= th) { const d = t - th, y = Math.max(.14, N.y - 4.9 * Math.max(0, d - .1) ** 2 * .8); bp = V3(N.x, y, netZ(y) + .12 - bul(d) * Math.min(1, y / .5 + .3)); }
   W.setNet(t >= th ? { hit: [N.x, N.y], t: t - th, amp: A, rest: t > th + .5 ? [N.x] : null, wind: T * 6 } : { wind: T * 2 }); W.ball(bp, spin, !!bp);
   if (t > gr) W.setCheer(1); else if (t > th) W.setCheer(.5);
   const w = snap(t, ta, .32), tg1 = V3(-.5, 1.25, -53.4), c1 = pushIn(V3(4.6, 1.5, -44.5), tg1, t / Math.max(.3, ta), 1.5), tg2 = V3(0, 5.2, -63), c2 = pushIn(V3(0, 3.0, -33), tg2, (t - ta) / (D - ta), 1.45);
-  cam(L3(c1, c2, w), L3(tg1, tg2, w), lerp(30, 34, w), .002); return gorras(t, gr); };
+  cam(L3(c1, c2, w), L3(tg1, tg2, w), lerp(30, 34, w), .002); return gorras(t, gr, 42); };
 // 20 · gracias a un señor que dibujaba tuberías: Brodie, tranquilo entre el público que salta, se toca el bombín
 S.gracias = (t, D, B) => { const E = EVS.gracias(B), T = window.__T || t; setup(T, 1, .9, Y91); const fans = standW(T, (F, id) => cheer(T, id * 1.3)), tip = E.dibujaba - .15;
   const br = seq(t, [[0, { face: 'smug', mouth: 'smile', look: [8, 0], armR: [16, 22], armL: [16, 22], headTilt: 0, hatTilt: 0 }], [tip, { armR: [150, 128], hatTilt: 11, headTilt: 5, look: [3, 2], mouth: 'smirk' }, .4]]);
-  const tg = V3(BSEAT.x, BSEAT.y + 1.3, BSEAT.z); cam(pushIn(V3(-28.5, 2.5, -23.1), tg, t / D, 2.3), tg, 30, .003); return byDist(fans.concat([{ p: BSEAT, f: () => who('BRODIE', br, BSEAT) }])); };
+  const tg = V3(BSEAT.x, BSEAT.y + 1.62, BSEAT.z); cam(pushIn(V3(-28.5, 2.75, -23.1), tg, t / D, 1.95), tg, 30, .003); return byDist(fans.concat([{ p: BSEAT, f: () => who('BRODIE', br, BSEAT) }])); };
