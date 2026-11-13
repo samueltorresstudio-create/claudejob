@@ -16,6 +16,7 @@ Este documento resume TODO lo hablado y hecho con el usuario en la sesión larga
   - Historias de miedo/suspense: Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural».
   - **Curiosidades nuevas: quiere OTRA voz más alegre y rápida**, y la elegirá él. Haz los vídeos **sin voz** hasta que la mande.
   - No clonar la voz de Edoardo. Nada de susurros.
+  - **Voice Design (13-11-2026), voz nueva para curiosidades al estilo de los vídeos de referencia** (descrita, sin clonar a nadie). Prompt en inglés (funciona mejor): «Young adult male narrator, late 20s, speaking Spanish with a Castilian Spain accent. Warm, mid-low voice with a slight rasp. Fast, energetic storytelling pace with punchy rhythm, like a viral short-video narrator telling a friend a crazy true story. Playful and confident, with dry deadpan timing on punchlines and short pauses before reveals. Clear diction, close-mic studio quality, no background noise, no reverb.» Texto de prueba: las 3 primeras frases del guion del 68.
   - **No volver a proponer `create_environment` para guardar la clave de ElevenLabs** (lo denegó).
 - Correo del usuario: privado, no enviarlo a servicios externos.
 
