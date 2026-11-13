@@ -16,6 +16,7 @@ Guárdalos en `<WS>/entregas/titulos_y_descripciones.txt` y dalos también en el
 
 - **Título de YouTube**: gancho + emoji + «(Parte N)» en series. **Nunca hashtags en el título.**
 - **Descripción de YouTube**: 2–3 frases que vendan el giro sin destriparlo, luego hashtags (`#shorts` + temáticos).
+- **Etiquetas de YouTube** (el usuario las pide): una línea separada por comas, máx. 500 caracteres. Orden: tema exacto → «quién inventó / origen de…» → personaje/lugar/año → categoría (historia, curiosidades, datos curiosos) → canal (archivo raro, archivoraro) → shorts. Sin #.
 - **TikTok**: **corta, una línea y poco** (el usuario lo pide así): el gancho en una frase + 1 emoji como mucho, y debajo 5–8 hashtags. Nada de párrafos ni listas de reglas.
 
 ## Comentario fijado y constancia
