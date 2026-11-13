@@ -1,0 +1,35 @@
+69 · CASAS GRATIS EN JAPÓN (akiya) — guion propio en español (13-11-2026)
+Basado en la referencia «Why Japan Houses are FREE» (@JapanimationCLIPS), análisis en referencias/ref_akiya_analisis.md.
+Misma historia y estructura (tú como protagonista → misterio → hipótesis descartadas → causas → revelación → bucle), frases NUESTRAS
+(no se traduce el guion del otro creador palabra por palabra). Detalles propios: zapatillas, tazas del té, periódico de 2003, la vecina.
+Datos comprobados (13-11-2026): 9 millones de casas vacías (encuesta 2023, récord, 13,8 %); Tokio ≈ 898.000; sin casa el terreno pierde
+la rebaja del impuesto (1/6) → hasta ×6; derribar cuesta ≈ 1–3 millones de yenes; tasación de la casa de madera ≈ 0 a los 20–30 años
+(vida útil fiscal 22 años); hay que avisar si hubo suicidio, asesinato, accidente o muerte que tardó en descubrirse (guía MLIT 2021),
+la muerte natural no; hay municipios que dan ayudas por mudarse a una akiya; hay casas a 0 yenes en los akiya banks.
+Voz: «Stickmans» (Eleven v4), la que creó el usuario para curiosidades.
+
+PARA ELEVENLABS (≈185 palabras, ≈65–68 s):
+En Japón te regalan casas.
+Y aun así, hay millones vacías.
+Entras en el «akiya bank», la web de casas abandonadas.
+Tres habitaciones, en la montaña. Precio: cero yenes.
+[sarcastic] «Esto es una estafa».
+Pues no.
+Vas a verla. La puerta está abierta.
+Dentro siguen las zapatillas, las tazas del té y un periódico de dos mil tres en la mesa.
+Como si alguien acabara de salir.
+La vecina te dice que ahí no entra nadie desde hace veinte años.
+Y lo raro es que en Japón hay nueve millones de casas vacías.
+Hay pueblos que hasta te pagan por vivir en una.
+¿Están encantadas?
+Alguna sí: si alguien murió dentro de mala manera, te lo tienen que avisar.
+Pero casi todas son normales.
+¿En mitad de la nada? Solo en Tokio hay casi novecientas mil.
+La historia de verdad es otra.
+El dueño muere, y sus hijos viven en la ciudad.
+Tirarla cuesta millones… y sin casa, el impuesto del terreno se multiplica hasta por seis.
+Así que la dejan ahí, cerrada.
+¿Y venderla? Casi imposible: allí las casas son como los coches.
+En cuanto alguien entra a vivir, pierden valor.
+A los treinta años, la casa ya casi no vale nada.
+[deadpan] [slowly] Por eso… te las regalan.
