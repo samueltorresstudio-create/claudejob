@@ -93,6 +93,15 @@ Son **vídeos sueltos de una parte, de 40–60 s**, cada uno sobre **una curiosi
 6. **Escalada por pasos:** «La primera noche nadie lo nota… al final de la semana la nevera tapa la puerta…».
 7. **Pago final que da la razón al «loco»** y corte justo ahí. Ejemplo: la bola cae, nadie siente nada, se ríen… y días después llega un mensajero: terremoto a 600 km.
 
+**Variante «¿por qué…?» con hipótesis falsas (ref. akiya, @JapanimationCLIPS, 13-11-2026; análisis en `archivoraro_archivo/referencias/ref_akiya_analisis.md`)**
+- Gancho de contradicción en 4 palabras («En Japón las casas son gratis»), con la prueba visual en el primer segundo.
+- El espectador es el protagonista (stickman azul) en segunda persona, con detalles inquietantes concretos: zapatos en la entrada, calendario de 1998, platos en el fregadero.
+- «Pero lo raro es…» + escala.
+- Se descartan una a una las explicaciones obvias (¿encantadas? algunas sí, la mayoría no; ¿en mitad de la nada? Tokio tiene cientos de miles).
+- «Investigas y das con la historia real»: cadena de causas, una por frase y plano.
+- Revelación final.
+- **Bucle**: la última frase desemboca en la primera.
+
 **Ritmo**
 - 110–150 palabras.
 - Frases de 4–10 palabras, una idea por frase. **Cada frase es un plano** (cambio cada 1–2 s) y lo que se dice se ve de forma literal.

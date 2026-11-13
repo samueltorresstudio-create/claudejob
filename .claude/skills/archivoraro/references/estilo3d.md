@@ -352,3 +352,11 @@ El usuario los pasó como «consejos a la hora de crear los vídeos». Orden rea
 - **Al llegar la voz real, los tiempos de las palabras cambian**: revisa cada momento atado a una palabra. En el 68: el matojo debía cruzar en «nada» (`t0 = E.nada - .54`), el chut del primer gol en «disparo» y la red temblando hasta «red» (`setNet({decay: 1.5})`, balón colgado ~1,5 s); y nada clave (balón) a la altura de la cabeza de un personaje tumbado detrás.
 - **Render largo**: el render completo (~2000 fotogramas a ~3 s) supera el límite de una tarea en segundo plano (30 min por defecto). Lánzalo con `timeout` 7200000 o en tramos; si se corta, renderiza solo los que falten con `FRAMES=lista.json` (comprueba cuántos hay: `N = round(TOTAL × 30)`, no más; los de sobra alargan el vídeo). Y NO mezcles el audio a la vez: le roba CPU al render.
 - **Herramientas**: `FAST=1 ./strip.sh nombre t1,t2…` (previsualización a media resolución, 3× más rápida) y `node probe.js t…` / `node probe2.js t "x,y,z"` para saber dónde cae algo en pantalla sin renderizar.
+
+### Recursos vistos en la ref. akiya (13-11-2026)
+- Iconos «pop» sobre la cabeza: «!» rojo, «?» amarillo, ✔ verde y bocadillo de pensamiento con un dibujo dentro.
+- Estallido de impacto (círculo blanco + rayos) en la palabra clave.
+- Contadores animados: mapa que se llena de puntos, precio que baja, años que pasan.
+- Fundido corto (≈0,2 s) con desenfoque al cambiar de lugar; corte seco dentro del mismo lugar.
+- Grandes movimientos de cámara solo en los planos de escala (dron sobre el pueblo, alejarse de una parada de autobús en mitad de la nada).
+- En nuestros vídeos, los textos (FREE, ¥0, ×6) van como objetos del mundo, nunca como rótulos.
