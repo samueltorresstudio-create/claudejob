@@ -129,7 +129,8 @@ class Mix:
         lv = np.zeros(self.N)
         lv[self.span(a, b)] = gain
         k = max(1, int(fade * SR))
-        lv = np.convolve(lv, np.ones(k) / k, 'same')
+        c = np.cumsum(np.concatenate(([0.0], np.pad(lv, (k - 1 - (k - 1) // 2, (k - 1) // 2)))))   # media móvil O(N) (= convolve 'same', mucho más rápida)
+        lv = (c[k:] - c[:-k]) / k
         self.bed[:, 0] += sig * lv
         self.bed[:, 1] += np.roll(sig, 400) * lv
 
@@ -251,7 +252,7 @@ class Mix:
             nar, nsr = sf.read(os.path.join(self.proj, 'narration.wav'))
             assert nsr == SR
             nar = nar[:self.N] if len(nar) >= self.N else np.pad(nar, (0, self.N - len(nar)))
-            e = np.convolve(np.abs(nar), np.ones(int(.15 * SR)) / int(.15 * SR), 'same')
+            e = (lambda x, k: (lambda c: (c[k:] - c[:-k]) / k)(np.cumsum(np.concatenate(([0.0], np.pad(x, (k - 1 - (k - 1) // 2, (k - 1) // 2)))))))(np.abs(nar), int(.15 * SR))
             e = np.clip(e / (np.percentile(e[e > 1e-4], 90) + 1e-9), 0, 1)
             mix = self.bed * (1 - 0.55 * e)[:, None] + self.fx * (1 - 0.25 * e)[:, None]
             mix = mix / np.abs(mix).max() * 0.33
