@@ -2,7 +2,7 @@
  {"sc":"gol","say":"Un balón entra por la portería… y medio estadio jura que ha ido fuera.","cap":"UN BALÓN|y ENTRA POR LA PORTERÍA… Y MEDIO ESTADIO JURA QUE HA IDO FUERA.|p","pause":0.15},
  {"sc":"liverpool","say":"Liverpool, mil ochocientos ochenta y nueve: las porterías son dos palos y un larguero.","cap":"LIVERPOOL,|b 1889:|b LAS PORTERÍAS SON DOS PALOS|y Y UN LARGUERO.|y","pause":0.1},
  {"sc":"nada","say":"Detrás, nada.","cap":"DETRÁS, NADA.|p","pause":0.15},
- {"sc":"pierde","say":"Si el chut es fuerte, el balón se pierde entre la gente… y empiezan los gritos.","cap":"SI EL CHUT ES FUERTE, EL BALÓN SE PIERDE|y ENTRE LA GENTE… Y EMPIEZAN LOS GRITOS.|p","pause":0.1},
+ {"sc":"pierde","say":"Si el chute es fuerte, el balón se pierde entre la gente… y empiezan los gritos.","cap":"SI EL CHUT ES FUERTE, EL BALÓN SE PIERDE|y ENTRE LA GENTE… Y EMPIEZAN LOS GRITOS.|p","pause":0.1},
  {"sc":"gritos","say":"«¡Por encima!» «¡Por dentro del palo!»","cap":"«¡POR ENCIMA!»|p «¡POR DENTRO|g DEL PALO!»|g","pause":0.15},
  {"sc":"arbitro","say":"Y el árbitro, desde el centro del campo, decide a ojo.","cap":"Y EL ÁRBITRO,|b DESDE EL CENTRO DEL CAMPO, DECIDE A OJO.|y","pause":0.15},
  {"sc":"brodie","say":"En la grada está John Brodie, un ingeniero que dibuja tuberías.","cap":"EN LA GRADA ESTÁ JOHN|y BRODIE,|y UN INGENIERO QUE DIBUJA TUBERÍAS.|b","pause":0.15},
