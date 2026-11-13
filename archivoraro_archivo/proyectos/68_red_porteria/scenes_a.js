@@ -133,8 +133,8 @@ S.gol = (t, D, B) => { const E = EVS.gol(B), u = hkTau(t), T = u; setup(T, 0, .0
     return Object.assign(yell, { armR: [26 + Math.sin(ph) * 6, 24], armL: [26 + Math.sin(ph + 1) * 6, 24] }); });
   // dos protagonistas delante de la grada, junto a la valla: uno celebra (izquierda) y otro, furioso, señala fuera del palo (derecha)
   const FC = V3(-1.55, 0, -57.3), FA = V3(2.2, 0, -57.3), qc = T * 9, qa = T * 13;
-  const star1 = { p: FC, f: () => who(fanLook(7), { face: 'happy', mouth: 'laugh', bob: -Math.abs(Math.sin(qc)) * 30, armL: [128 + Math.sin(qc) * 12, 40], armR: [132 - Math.sin(qc) * 12, 38], headTilt: Math.sin(qc) * 7, lean: Math.sin(qc * .5) * 4 }, FC) };
-  const star2 = { p: FA, f: () => who(Object.assign(fanLook(1), { mustache: true, hat: 'bowler', hatCol: '#25222a' }), { face: 'wide', mouth: Math.sin(qa) > -.4 ? 'open' : 'o', brows: -1, browTilt: .6, look: [-10, -2], bob: -Math.abs(Math.sin(qa)) * 8, headTilt: Math.sin(qa * .5) * 6, lean: -6, armL: [96 + Math.sin(qa) * 4, -6], armR: [128 + Math.sin(qa * 1.3) * 16, 58] }, FA) };
+  const star1 = { p: FC, f: () => who(fanLook(7), { armHalo: '#efe6d2', face: 'happy', mouth: 'laugh', bob: -Math.abs(Math.sin(qc)) * 30, armL: [114 + Math.sin(qc) * 14, 14], armR: [116 - Math.sin(qc) * 14, 12], headTilt: Math.sin(qc) * 7, lean: Math.sin(qc * .5) * 4 }, FC) };
+  const star2 = { p: FA, f: () => who(Object.assign(fanLook(1), { mustache: true, hat: 'bowler', hatCol: '#25222a' }), { armHalo: '#efe6d2', face: 'wide', mouth: Math.sin(qa) > -.4 ? 'open' : 'o', brows: -1, browTilt: .6, look: [-10, -2], bob: -Math.abs(Math.sin(qa)) * 8, headTilt: Math.sin(qa * .5) * 6, lean: -6, armL: [122 + Math.sin(qa) * 4, -12], armR: [108 + Math.sin(qa * 1.6) * 18, 22] }, FA) };
   return byDist(fans.concat([star1, star2])) + hkCaps(T, 1.93, 30, -6, -.4) + dizzy(V3(hitF.x, hitF.y + 2.25, hitF.z), T); };
 
 // 2 · Liverpool, 1889: grúa sobre los tejados hasta el cartel «1889» → baja hasta la portería (de frente, grada desenfocada) →
