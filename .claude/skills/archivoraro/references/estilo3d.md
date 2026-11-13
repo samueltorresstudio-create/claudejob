@@ -360,3 +360,15 @@ El usuario los pasó como «consejos a la hora de crear los vídeos». Orden rea
 - Fundido corto (≈0,2 s) con desenfoque al cambiar de lugar; corte seco dentro del mismo lugar.
 - Grandes movimientos de cámara solo en los planos de escala (dron sobre el pueblo, alejarse de una parada de autobús en mitad de la nada).
 - En nuestros vídeos, los textos (FREE, ¥0, ×6) van como objetos del mundo, nunca como rótulos.
+
+## Pueblo japonés con casas vacías (69 · Casas gratis en Japón, nov. 2026)
+- `engine_3d/world_akiya.js`: pueblo de montaña (carretera con cuneta y rejillas, kominka con tejado de cuatro aguas `kominka(x,z,ry,{old,...})`, maleza, muros de piedra, espejo de curva, bambú, santuario con torii, arrozales en terrazas, valle con casitas instanciadas para la vista de dron). Zonas en x: interior con genkan y tatami (`IX`=400), piso del protagonista de noche (`AX`), ayuntamiento + inmobiliaria con maqueta de Japón (`OX`, `setPins(k)`, `setStamp(k)`), concesionario con plataformas giratorias (`SX`), Tokio (`TX`), parada de bus entre arrozales (`STOP`).
+- Objetos con estado: `setGift(k,t,sq)` (lazo de regalo que cae y rebota, etiqueta «¥0»), `setDoor(H,k)` (puerta corredera), `setPhone({...})` (pantalla con canvas que se redibuja: web akiya bank, camas, precio, sello), `setDigger`, `setBills`, `setCoins(n)`, `setHouseGone`, `setAge(a)` (casa nueva que envejece: color, hiedra, maleza) y `setPrice(v)` (cartel 売出中 en 万円).
+- `setMood(m, n)`: día / atardecer / noche (cielo con estrellas y luna, ventanas encendidas, faroles).
+- Lecciones de la revisión:
+  - **Overlays 2D junto a objetos escalados**: el móvil 3D va escalado ×0,1; las manos 2D se dimensionan con `ppm` del tamaño REAL (≈1–2 cm), no del modelo sin escalar (salían dos óvalos negros que tapaban todo el plano).
+  - **`pushIn` no puede atravesar a un personaje**: si el personaje está en la línea cámara→objetivo, crece hasta tapar el plano. Ponlo fuera de esa línea o usa un desplazamiento lateral corto.
+  - **Cámaras dentro de las salas**: comprueba que la cámara no queda detrás de la pared (`room()` con paredes a ±d/2); si no, el plano sale del color de la pared.
+  - **Personaje detrás de un mostrador**: `clipAbove(svg, y)` con la y proyectada del borde del mostrador.
+  - **Cámaras de interior** con su propia luz por zona (se encienden según `pos.x`).
+  - Los cedros instanciados pueden quedar delante de una grúa: quita los que estén cerca del sitio del plano.

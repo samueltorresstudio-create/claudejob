@@ -7,4 +7,6 @@ window.CAST69 = {
   HIJO: { outfit: 'suit', top: '#2a2d36', topD: '#1c1e26', shirt: '#dfe8f2', tie: '#7a2e3a', pants: '#1c1e26', hair2: 'buzz', hairCol: '#1b1720', rich: true, eyeStyle: 'palo', legLen: 1.18, face: 'smug', mouth: 'line' },
   HIJA: { outfit: 'zipjacket', top: '#e8b84a', topD: '#c0902a', pants: '#2a2d36', hair2: 'side', hairCol: '#3a2418', bun: '#3a2418', rich: true, eyeStyle: 'palo', legLen: 1.18, face: 'smug', mouth: 'line' },
   DUENO: { outfit: 'cardigan', top: '#7a5a3a', topD: '#5a4028', shirt: '#f4f1ea', hair2: 'bald', mustache: true, glasses: true, wrinkles: true, browCol: '#f4f2ec', rich: true, eyeStyle: 'palo', face: 'happy', mouth: 'smile' },
+  NOVIA: { outfit: 'tee', top: '#e86aa0', topD: '#c04a80', pants: '#33415e', hair2: 'side', hairCol: '#4a2a1a', bun: '#4a2a1a', earrings: '#f2c53a', rich: true, eyeStyle: 'palo', legLen: 1.12, face: 'happy', mouth: 'smile' },
+  NOVIO: { outfit: 'zipjacket', top: '#2f6fbf', topD: '#1f4f8f', pants: '#4a4a52', hair2: 'tupe', hairCol: '#1b1720', rich: true, eyeStyle: 'palo', legLen: 1.18, face: 'happy', mouth: 'smile' },
 };
