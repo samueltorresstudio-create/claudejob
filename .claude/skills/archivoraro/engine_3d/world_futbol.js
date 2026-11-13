@@ -77,7 +77,7 @@ const W2 = (() => {
   // deformación: golpe (onda amortiguada) + bolsa donde reposa el balón
   function setNet(o = {}) { const p = netGeo.attributes.position, hit = o.hit, t = o.t ?? 0, A = o.amp ?? .55, rest = o.rest;
     for (let k = 0; k < NB.length; k++) { let [x, y, z, v] = NB[k]; let dz = 0, dy = 0;
-      if (hit && t >= 0) { const d2 = (x - hit[0]) ** 2 + (y - hit[1]) ** 2, f = Math.exp(-d2 / .9) * Math.exp(-t * 3.2) * Math.cos(t * 13), push = A * f * (1 - Math.min(1, t * .15)); dz -= push * (v > .2 ? 1 : v / .2); }
+      if (hit && t >= 0) { const d2 = (x - hit[0]) ** 2 + (y - hit[1]) ** 2, f = Math.exp(-d2 / .9) * Math.exp(-t * (o.decay ?? 3.2)) * Math.cos(t * 13), push = A * f * (1 - Math.min(1, t * .15)); dz -= push * (v > .2 ? 1 : v / .2); }
       if (rest) { const d2 = (x - rest[0]) ** 2 + (y - .2) ** 2; const f = Math.exp(-d2 / .5) * (v > .5 ? (v - .5) * 2 : 0); dz -= f * .28; dy -= f * .06; }
       dz += Math.sin(x * 2.1 + (o.wind ?? 0) * 1.3 + y) * .015 * v; p.setXYZ(k, x, y + dy, z + dz); }
     p.needsUpdate = true; netGeo.computeVertexNormals(); }

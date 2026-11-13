@@ -73,11 +73,11 @@ S.prueba = (t, D, B) => { const T = window.__T || t; setup(T, 1, .15, Y91); cons
   cam(cp, cl, lerp(38, 30, k01(t, 0, D)), .0022); return byDist(L); };
 // 17 · primer disparo… y el balón se queda temblando en la red (visto desde detrás de la red)
 const netZ = y => -52 - (y >= 2.1 ? 1.4 : 1.4 + .7 * (2.1 - y) / 2.1);
-S.disparo = (t, D, B) => { const E = EVS.disparo(B), T = window.__T || t; setup(T, 1, .15, Y91); const tk = .5, tf = .42, th = tk + tf, tw = tk + .07, N = V3(-.75, .95, netZ(.95) - .05), v = V3((N.x - B02.x) / tf, (N.y - B02.y + 4.9 * tf * tf) / tf, (N.z - B02.z) / tf);
+S.disparo = (t, D, B) => { const E = EVS.disparo(B), T = window.__T || t; setup(T, 1, .15, Y91); const tk = Math.max(.5, E.disparo + .2),   /* chut en «disparo»; el balón llega a la red en la pausa */ tf = .42, th = tk + tf, tw = tk + .07, N = V3(-.75, 1.5, netZ(1.5) - .05), v = V3((N.x - B02.x) / tf, (N.y - B02.y + 4.9 * tf * tf) / tf, (N.z - B02.z) / tf);
   if (t > th) W.setCheer(.9);
-  let bp = B02, spin = 0; const A = .95, bul = d => A * Math.exp(-d * 3.2) * Math.cos(d * 13) * (1 - Math.min(1, d * .15));
-  if (t >= tk && t < th) { bp = fl(B02, v, t - tk); spin = (t - tk) * 30; } else if (t >= th) { const d = t - th, y = Math.max(.14, N.y - 4.9 * Math.max(0, d - .12) ** 2 * .8); bp = V3(N.x + Math.sin(d * 9) * .03 * Math.exp(-d * 2), y, netZ(y) + .1 - bul(d) * Math.min(1, y / .5 + .3) + (y < .2 ? .1 : 0)); spin = 13 + Math.exp(-d * 3) * 4 + Math.sin(T * 9) * .12 * Math.exp(-d * .8); }
-  W.NET.visible = true; W.setNet(t >= th ? { hit: [N.x, N.y], t: t - th, amp: A, rest: t > th + .5 ? [N.x] : null, wind: T * 7 } : { wind: T * 2 });
+  let bp = B02, spin = 0; const A = .95, bul = d => A * Math.exp(-d * 1.5) * Math.cos(d * 13) * (1 - Math.min(1, d * .15));
+  if (t >= tk && t < th) { bp = fl(B02, v, t - tk); spin = (t - tk) * 30; } else if (t >= th) { const d = t - th, y = Math.max(.14, N.y - 4.9 * Math.max(0, d - 1.5) ** 2 * .5);   /* se queda temblando en la red y luego resbala */ bp = V3(N.x + Math.sin(d * 9) * .03 * Math.exp(-d * 2), y, netZ(y) + .1 - bul(d) * Math.min(1, y / .5 + .3) + (y < .2 ? .1 : 0)); spin = 13 + Math.exp(-d * 3) * 4 + Math.sin(T * 9) * .12 * Math.exp(-d * .8); }
+  W.NET.visible = true; W.setNet(t >= th ? { hit: [N.x, N.y], t: t - th, amp: A, decay: 1.5, rest: t > th + 1.9 ? [N.x] : null, wind: T * 7 } : { wind: T * 2 });
   if (t < tw) { W.ball(bp, spin, true); cam(orb(V3(0, 1.1, -40.4), 90, 1.5, 7.6 - t * .5), V3(0, 1.15, -40.45), 30, .0022);
     return byDist([{ p: KP2, f: () => who('DELANTERO', kick(.6 + (t - tk) / .55), KP2) }, { p: bp, f: () => ball2d(bp, spin) }]); }
   // detrás de la red (mirando hacia el campo): la red 2D va ENCIMA de todo; el portero se tira tarde hacia el balón
@@ -102,5 +102,5 @@ S.hoy = (t, D, B) => { const E = EVS.hoy(B), T = window.__T || t; setup(T, 1, .1
   cam(L3(c1, c2, w), L3(tg1, tg2, w), lerp(30, 34, w), .002); return gorras(t, gr, 42); };
 // 20 · gracias a un señor que dibujaba tuberías: Brodie, tranquilo entre el público que salta, se toca el bombín
 S.gracias = (t, D, B) => { const E = EVS.gracias(B), T = window.__T || t; setup(T, 1, .9, Y91); const fans = standW(T, (F, id) => cheer(T, id * 1.3)), tip = E.dibujaba - .15;
-  const br = seq(t, [[0, { face: 'smug', mouth: 'smile', look: [8, 0], armR: [16, 22], armL: [16, 22], headTilt: 0, hatTilt: 0 }], [tip, { armR: [150, 128], hatTilt: 11, headTilt: 5, look: [3, 2], mouth: 'smirk' }, .4]]);
+  const br = seq(t, [[0, { armHalo: '#efe6d2', face: 'smug', mouth: 'smile', look: [8, 0], armR: [16, 22], armL: [16, 22], headTilt: 0, hatTilt: 0 }], [tip, { armR: [150, 128], hatTilt: 11, headTilt: 5, look: [3, 2], mouth: 'smirk' }, .4]]);
   const tg = V3(BSEAT.x, BSEAT.y + 1.62, BSEAT.z); cam(pushIn(V3(-28.5, 2.75, -23.1), tg, t / D, 1.95), tg, 30, .003); return byDist(fans.concat([{ p: BSEAT, f: () => who('BRODIE', br, BSEAT) }])); };

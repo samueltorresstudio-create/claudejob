@@ -158,7 +158,7 @@ ts_ = e('papelera.si', -.05); te_ = max(ts_ + .6, e('papelera.entra', -.05))
 crumple(sc0['papelera'] + .2); swoosh(ts_, .06, .5); plop(te_, .14); m.add(m.noise(.2, 600, 4000, .003, .12), te_ + .03, .05)
 if e('discutir.discutir'): ding(e('discutir.discutir') + .1, .06)
 # 16-17 · 1891: el primer gol a la red
-d0 = sc0['disparo']; kick(d0 + .5, .34); swoosh(d0 + .52, .12, .4); netswish(d0 + .92, .24); m.add(cymbal(), d0 + .92, .08); roar(d0 + .95, 3.2, .26, .2)
+d0 = sc0['disparo']; dk_ = d0 + max(.5, e('disparo.disparo') - d0 + .2); kick(dk_, .34); swoosh(dk_ + .02, .12, .4); netswish(dk_ + .42, .24); m.add(cymbal(), dk_ + .42, .08); roar(dk_ + .45, 3.2, .26, .2)
 # 18 · obligatoria en la liga: silbato y aplausos
 if sc0.get('liga'): whistle(sc0['liga'] + .3, .3, .05); roar(sc0['liga'], 3.3, .1, .5)
 # 19 · hoy: balón a la red y el estadio entero grita a la vez

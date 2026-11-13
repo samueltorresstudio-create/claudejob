@@ -164,7 +164,7 @@ function tumble(p, rot, s) { const q = W.proj(p); if (!q.ok) return ''; const r 
 S.nada = (t, D, B) => { const E = EVS.nada(B), T = window.__T || t; setup(T, 0, .03); W.goalInk(.006);
   // mirando hacia abajo a la hierba vacía de detrás de la portería; pasa el matojo; al final la cámara sube hasta la grada aburrida
   const k = k01(t, 0, D), cp = L3(V3(.3, 2.35, -51.3), V3(.1, 1.75, -52.2), k), cl = L3(V3(0, .15, -55.0), V3(0, 1.45, -58.2), k01(t, E.nada + .15, D + .2)); cam(cp, cl, 50, .0022);
-  const t0 = .12, x = lerp(1.95, -2.2, clamp((t - t0) / 1.15)), bounce = Math.abs(Math.sin((t - t0) * 6.5)) * .2, tw = V3(x, .3 + bounce, -54.8);
+  const t0 = Math.max(.05, E.nada - .54), x = lerp(1.95, -2.2, clamp((t - t0) / 1.15)),   /* el matojo pasa por el centro justo al decir «nada» */ bounce = Math.abs(Math.sin((t - t0) * 6.5)) * .2, tw = V3(x, .3 + bounce, -54.8);
   const fans = hkFans(T, (F, id) => ({ face: 'smug', mouth: 'line', look: [clamp((x - F.x) * 2.5, -12, 12), 3], brows: .2 }));
   return byDist(fans) + (t > t0 ? tumble(tw, -(t - t0) * 9, 1) : ''); };
 
