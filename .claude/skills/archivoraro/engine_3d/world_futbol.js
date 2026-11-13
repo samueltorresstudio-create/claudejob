@@ -81,6 +81,10 @@ const W2 = (() => {
       if (rest) { const d2 = (x - rest[0]) ** 2 + (y - .2) ** 2; const f = Math.exp(-d2 / .5) * (v > .5 ? (v - .5) * 2 : 0); dz -= f * .28; dy -= f * .06; }
       dz += Math.sin(x * 2.1 + (o.wind ?? 0) * 1.3 + y) * .015 * v; p.setXYZ(k, x, y + dy, z + dz); }
     p.needsUpdate = true; netGeo.computeVertexNormals(); }
+  { const idx = []; for (let j = 0; j < NV; j++) for (let i = 0; i < NU; i++) { const a = j * (NU + 1) + i, b = a + 1, c = a + NU + 1, d = c + 1; idx.push(a, d, b, c); }
+    const lg = new T.BufferGeometry(); lg.setAttribute('position', netGeo.attributes.position); lg.setIndex(idx); const netLn = new T.LineSegments(lg, new T.LineBasicMaterial({ color: '#f4f2ea', transparent: true, opacity: .85 })); netLn.frustumCulled = false; NET.add(netLn); NET.userData.lines = netLn;
+    [-3.66, 3.66].forEach(x => { const P = []; for (let j = 0; j < 12; j++) { const [z0, y0] = prof(j / 12), [z1, y1] = prof((j + 1) / 12); for (let k = 0; k < 8; k++) { const a = k / 8, b = (k + 1) / 8; P.push(x, y0 * a, z0, x, y1 * b, z1, x, y0 * b, z0, x, y1 * a, z1); } }
+      const sgl = new T.BufferGeometry(); sgl.setAttribute('position', new T.Float32BufferAttribute(P, 3)); NET.add(new T.LineSegments(sgl, netLn.material)); }); }
   setNet({});
   // ---------- balón de cuero de 1889 (paneles y cordones) ----------
   const ballT = tex(512, 256, (g, w, h) => { g.fillStyle = '#8a4e26'; g.fillRect(0, 0, w, h); blot(g, w, h, 30, 'rgba(60,30,12,.25)', 10, 50); blot(g, w, h, 16, 'rgba(200,140,80,.2)', 10, 40);
@@ -158,11 +162,11 @@ const W2 = (() => {
   const hsh = (a, b) => { const x = Math.sin(a * 127.1 + b * 311.7) * 43758.5453; return x - Math.floor(x); };
   // ---------- cartel con el año, encima del faldón de la grada del fondo ----------
   const yearC = document.createElement('canvas'); yearC.width = 1024; yearC.height = 256; const yearT = new T.CanvasTexture(yearC); yearT.colorSpace = T.SRGBColorSpace; yearT.anisotropy = 8;
-  function setYear(txt) { if (yearC._t === txt) return; yearC._t = txt; const g = yearC.getContext('2d'); g.fillStyle = '#efe6c8'; g.fillRect(0, 0, 1024, 256); g.strokeStyle = '#2e4a3a'; g.lineWidth = 18; g.strokeRect(9, 9, 1006, 238); g.fillStyle = '#1b1720'; g.font = '900 150px Inter, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(txt, 512, 136); yearT.needsUpdate = true; }
-  setYear('LIVERPOOL 1889'); { const dk = STD({ color: '#2e4a3a' }); add(new T.BoxGeometry(7.4, 1.8, .14), [dk, dk, dk, dk, STD({ map: yearT }), dk], 0, 9.5, -57.45); }
+  function setYear(txt) { if (yearC._t === txt) return; yearC._t = txt; const g = yearC.getContext('2d'); g.fillStyle = '#efe6c8'; g.fillRect(0, 0, 1024, 256); g.strokeStyle = '#2e4a3a'; g.lineWidth = 18; g.strokeRect(9, 9, 1006, 238); g.fillStyle = '#1b1720'; g.font = '900 200px Inter, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(txt, 512, 140); yearT.needsUpdate = true; }
+  setYear('1889'); { const dk = STD({ color: '#2e4a3a' }); add(new T.BoxGeometry(3.6, .9, .14), [dk, dk, dk, dk, STD({ map: yearT }), dk], 0, 9.15, -57.45); }
   // ---------- caja de madera y rollo de cuerda (para colgar la red) ----------
   const crateT = tex(256, 256, (g, w, h) => { g.fillStyle = '#b08450'; g.fillRect(0, 0, w, h); for (let i = 0; i < 5; i++) { g.fillStyle = 'rgba(60,35,15,.5)'; g.fillRect(0, i * 51 + 48, w, 4); } g.strokeStyle = '#6a4424'; g.lineWidth = 22; g.strokeRect(11, 11, w - 22, h - 22); g.beginPath(); g.moveTo(11, 11); g.lineTo(w - 11, h - 11); g.stroke(); noise(g, w, h, 1500, ['rgba(0,0,0,.06)', 'rgba(255,255,255,.06)']); });
-  const CRATE = new T.Group(); CRATE.position.set(2.2, 0, -51.5); scene.add(CRATE); add(RB(.9, .62, .7, .03), STD({ map: crateT }), 0, .31, 0, { parent: CRATE, ry: .15 });
+  const CRATE = new T.Group(); CRATE.position.set(2.2, 0, -51.5); scene.add(CRATE); add(RB(.9, .62, .7, .03), STD({ map: crateT }), 0, .31, 0, { parent: CRATE, ry: .15 }); add(RB(.8, .6, .64, .03), STD({ map: crateT }), .03, .92, .02, { parent: CRATE, ry: -.1 });   // dos cajas apiladas (Brodie se sube para atar la red al larguero)
   for (let k = 0; k < 4; k++) add(new T.TorusGeometry(.22 - k * .01, .035, 8, 24), STD({ color: '#c9a66b' }), .95, .04 + k * .06, .25, { parent: CRATE, rx: Math.PI / 2 });
   // ---------- DESPACHO de Brodie de noche (lejos del estadio, en x = 300): mesa con lámpara de aceite, plano azul, ventana con la ciudad, papelera ----------
   const OX = 300, ROOM = new T.Group(); ROOM.position.set(OX, 0, 0); scene.add(ROOM);
@@ -200,7 +204,7 @@ const W2 = (() => {
   const flame = add(new T.SphereGeometry(.04, 12, 10), new T.MeshBasicMaterial({ color: '#ffd27a' }), -1.7, 1.16, -1.5, { parent: ROOM, cast: false, noInk: true, s: [1, 1.9, 1] });
   const lampL = new T.PointLight('#ffb060', 0, 14, 1.6); lampL.position.set(-1.7, 1.3, -1.5); lampL.castShadow = true; lampL.shadow.mapSize.set(1024, 1024); lampL.shadow.bias = -.002; ROOM.add(lampL); lampL.visible = false;
   const fillL = new T.PointLight('#ffc890', 0, 16, 1.4); fillL.position.set(.6, 2.4, 1.6); ROOM.add(fillL); fillL.visible = false;
-  add(new T.CylinderGeometry(.05, .06, .09, 12), STD({ color: '#1b1720', roughness: .2 }), -.1, .89, -1.6, { parent: ROOM }); [0, 1, 2].forEach(k => add(new T.CylinderGeometry(.035, .035, .8, 10), STD({ color: ['#eae2cc', '#24508a', '#eae2cc'][k] }), -1.25 + k * .05, .885 + (k === 2 ? .06 : 0), -.9 + k * .03 - (k === 2 ? .03 : 0), { parent: ROOM, rz: Math.PI / 2, ry: .2 }));
+  add(new T.CylinderGeometry(.05, .06, .09, 12), STD({ color: '#1b1720', roughness: .2 }), -.1, .89, -1.6, { parent: ROOM }); [0, 1, 2].forEach(k => add(new T.CylinderGeometry(.035, .035, .8, 10), STD({ color: ['#eae2cc', '#24508a', '#eae2cc'][k] }), -1.62 + k * .05, .885 + (k === 2 ? .06 : 0), -1.0 + k * .03 - (k === 2 ? .03 : 0), { parent: ROOM, rz: Math.PI / 2, ry: .2 }));
   // silla (el pantalón colgado se dibuja en 2D), papelera de mimbre, bolas de papel
   const CHAIR = new T.Vector3(OX + 1.25, 0, -1.75); add(RB(.5, .06, .5, .02), deskM, 1.25, .5, -1.75, { parent: ROOM }); add(RB(.5, .7, .06, .02), deskM, 1.25, 1.02, -1.98, { parent: ROOM }); [[1.03, -1.95], [1.47, -1.95], [1.03, -1.55], [1.47, -1.55]].forEach(([x, z]) => add(RB(.05, .5, .05, .01), deskM, x, .25, z, { parent: ROOM }));
   const wickerT = tex(256, 128, (g, w, h) => { g.fillStyle = '#b98a4e'; g.fillRect(0, 0, w, h); for (let y = 0; y < h; y += 12) for (let x = (y / 12) % 2 ? 0 : 12; x < w; x += 24) { g.fillStyle = 'rgba(70,40,15,.55)'; g.fillRect(x, y, 12, 10); } g.fillStyle = '#8a5e2e'; g.fillRect(0, 0, w, 10); g.fillRect(0, h - 8, w, 8); }, [3, 1]);

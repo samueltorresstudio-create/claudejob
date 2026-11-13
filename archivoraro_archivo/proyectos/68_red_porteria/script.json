@@ -1,0 +1,22 @@
+[
+ {"sc":"gol","say":"Un balón entra por la portería… y medio estadio jura que ha ido fuera.","cap":"UN BALÓN|y ENTRA POR LA PORTERÍA… Y MEDIO ESTADIO JURA QUE HA IDO FUERA.|p","pause":0.15},
+ {"sc":"liverpool","say":"Liverpool, mil ochocientos ochenta y nueve: las porterías son dos palos y un larguero.","cap":"LIVERPOOL,|b 1889:|b LAS PORTERÍAS SON DOS PALOS|y Y UN LARGUERO.|y","pause":0.1},
+ {"sc":"nada","say":"Detrás, nada.","cap":"DETRÁS, NADA.|p","pause":0.15},
+ {"sc":"pierde","say":"Si el chut es fuerte, el balón se pierde entre la gente… y empiezan los gritos.","cap":"SI EL CHUT ES FUERTE, EL BALÓN SE PIERDE|y ENTRE LA GENTE… Y EMPIEZAN LOS GRITOS.|p","pause":0.1},
+ {"sc":"gritos","say":"«¡Por encima!» «¡Por dentro del palo!»","cap":"«¡POR ENCIMA!»|p «¡POR DENTRO|g DEL PALO!»|g","pause":0.15},
+ {"sc":"arbitro","say":"Y el árbitro, desde el centro del campo, decide a ojo.","cap":"Y EL ÁRBITRO,|b DESDE EL CENTRO DEL CAMPO, DECIDE A OJO.|y","pause":0.15},
+ {"sc":"brodie","say":"En la grada está John Brodie, un ingeniero que dibuja tuberías.","cap":"EN LA GRADA ESTÁ JOHN|y BRODIE,|y UN INGENIERO QUE DIBUJA TUBERÍAS.|b","pause":0.15},
+ {"sc":"anulan","say":"Un sábado ve cómo anulan un gol clarísimo…","cap":"UN SÁBADO VE CÓMO ANULAN|p UN GOL CLARÍSIMO…|y","pause":0.1},
+ {"sc":"noche","say":"y esa noche no pega ojo.","cap":"Y ESA NOCHE|b NO PEGA OJO.","pause":0.15},
+ {"sc":"bolsillos","say":"Cuentan que la idea se la dieron los bolsillos de su pantalón: algo que se trague el balón.","cap":"CUENTAN QUE LA IDEA SE LA DIERON LOS BOLSILLOS|y DE SU PANTALÓN: ALGO QUE SE TRAGUE|y EL BALÓN.","pause":0.15},
+ {"sc":"dibuja","say":"Dibuja una red enorme detrás de la portería.","cap":"DIBUJA UNA RED|y ENORME|y DETRÁS DE LA PORTERÍA.","pause":0.15},
+ {"sc":"rien","say":"Los futbolistas se ríen:","cap":"LOS FUTBOLISTAS SE RÍEN:|p","pause":0.05},
+ {"sc":"sardinas","say":"«¿Y qué vamos a pescar, sardinas?»","cap":"«¿Y QUÉ VAMOS A PESCAR, SARDINAS?»|b","pause":0.15},
+ {"sc":"papelera","say":"Pero piensa en una papelera: si la bola de papel entra, se queda dentro.","cap":"PERO PIENSA EN UNA PAPELERA:|y SI LA BOLA DE PAPEL ENTRA, SE QUEDA DENTRO.|g","pause":0.1},
+ {"sc":"discutir","say":"Nada que discutir.","cap":"NADA QUE DISCUTIR.|g","pause":0.15},
+ {"sc":"prueba","say":"En mil ochocientos noventa y uno la prueban en un partido.","cap":"EN 1891|b LA PRUEBAN EN UN PARTIDO.","pause":0.1},
+ {"sc":"disparo","say":"Primer disparo… y el balón se queda temblando en la red.","cap":"PRIMER DISPARO…|y Y EL BALÓN SE QUEDA TEMBLANDO|g EN LA RED.|g","pause":0.15},
+ {"sc":"liga","say":"Ese mismo año, ya es obligatoria en la liga inglesa.","cap":"ESE MISMO AÑO, YA ES OBLIGATORIA|y EN LA LIGA INGLESA.","pause":0.15},
+ {"sc":"hoy","say":"Hoy, cada vez que un balón toca la red, el estadio entero grita a la vez.","cap":"HOY, CADA VEZ QUE UN BALÓN TOCA LA RED,|g EL ESTADIO ENTERO GRITA|y A LA VEZ.","pause":0.15},
+ {"sc":"gracias","say":"Gracias a un señor que dibujaba tuberías.","cap":"GRACIAS A UN SEÑOR QUE DIBUJABA TUBERÍAS.|b","pause":0.2,"cut":true}
+]

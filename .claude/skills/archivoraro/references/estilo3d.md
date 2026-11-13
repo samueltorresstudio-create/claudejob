@@ -330,3 +330,13 @@ El usuario los pasó como «consejos a la hora de crear los vídeos». Orden rea
 - 9 capas: mundo, niebla, bruma, desenfoque de fondo, bloom, pantalla, PERSONAJES (encima, nunca desenfocados), partículas, etalonaje.
 
 **Rendimiento**: no actualizar ni dibujar lo que no se ve (personajes fuera de cuadro), cachear las caras. Ellos: 84 → 19 ms por fotograma.
+
+
+### Montaje del 68 (red de la portería): lo que hubo que corregir en la revisión
+- **Brodie en la grada tapado por la fila de delante**: un personaje que tiene que verse entre el público va en la PRIMERA fila (o subido a algo), nunca detrás de otras cabezas (las cabezas miden ~0,8 m).
+- **Red invisible de lejos**: la textura con `alphaTest` desaparece a más de ~10 m. La red lleva además líneas 3D (`LineSegments` que comparten los vértices de la malla deformable): se ven a cualquier distancia y siguen el golpe del balón.
+- **Planos desde detrás de la red**: ocultar la red 3D y dibujar `net2d()` ENCIMA de los personajes y el balón; el portero se tira al lado contrario para que el balón se vea entrar.
+- **El delantero tapaba el balón**: en planos por detrás del que chuta, cámara alta (2,5 m) y lejos (25 m) para que la trayectoria pase por encima de su cabeza; balón 2D más grande con estela (`ball2d(p, spin, prev, big)`).
+- **Carteles con texto (año) cortados**: solo el número, cartel estrecho.
+- **Nada importante durante la transición**: si un gesto clave pasa al principio de una escena, acorta su transición (`transDurBy`) o empieza el gesto después.
+- **Herramientas**: `FAST=1 ./strip.sh nombre t1,t2…` (previsualización a media resolución, 3× más rápida) y `node probe.js t…` / `node probe2.js t "x,y,z"` para saber dónde cae algo en pantalla sin renderizar.

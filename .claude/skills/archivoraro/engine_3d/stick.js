@@ -86,10 +86,11 @@ function stick(o) {
     c += `<path d="M-30,${SH + 10} Q-42,${SH + 110} -26,${SHO - 8} M26,${SH + 60} Q38,${SH + 110} 30,${SHO - 6}" stroke="#000" stroke-width="4" fill="none" opacity=".18" stroke-linecap="round"/>`;
     const sh = d.fshorts || d.shorts || '#f1efe8';
     c += `<rect x="-90" y="${SHO}" width="180" height="160" fill="${sh}"/><rect x="-90" y="${SHO - 7}" width="180" height="12" fill="${d.hem || A}"/><rect x="-90" y="${SHO + 5}" width="180" height="9" fill="${mixC(sh, '#000000', .3)}"/><path d="M-4,${SHO + 16} L-8,${HIP + 40}" stroke="${mixC(sh, '#000000', .35)}" stroke-width="3"/>`;
-    if (d.badge !== false) c += `<g transform="translate(34,${SH + 44})"><path d="M-15,-17 L15,-17 L15,3 Q15,17 0,23 Q-15,17 -15,3Z" fill="${d.badgeCol || '#f2c94c'}" stroke="${INKC}" stroke-width="4" stroke-linejoin="round"/><path d="M-8,-6 L8,-6 M0,-12 L0,12" stroke="${INKC}" stroke-width="3.5" opacity=".7"/></g>`;
+    if (d.badge !== false && d.view !== 'back') c += `<g transform="translate(34,${SH + 44})"><path d="M-15,-17 L15,-17 L15,3 Q15,17 0,23 Q-15,17 -15,3Z" fill="${d.badgeCol || '#f2c94c'}" stroke="${INKC}" stroke-width="4" stroke-linejoin="round"/><path d="M-8,-6 L8,-6 M0,-12 L0,12" stroke="${INKC}" stroke-width="3.5" opacity=".7"/></g>`;
     c += `<rect x="-90" y="${SH - 60}" width="180" height="200" fill="url(#${id}b)"/>`;
     body += IN(c);
-    // cuello con cordón (lacing) por encima
+    // cuello con cordón (lacing) por encima (de espaldas, solo el cuello)
+    if (d.view === 'back') body += `<path d="M${-34 + sx2},${SH - 30} Q${sx2},${SH - 14} ${34 + sx2},${SH - 30}" stroke="${d.collar || '#f4f2ec'}" stroke-width="12" fill="none" stroke-linecap="round"/>`; else
     body += `<path d="M${-34 + sx2},${SH - 34} L${sx2 - 4},${SH + 6} L${34 + sx2},${SH - 34} L${22 + sx2},${SH - 20} L${sx2},${SH - 8} L${-22 + sx2},${SH - 20}Z" fill="${d.collar || '#f4f2ec'}" stroke="${INKC}" stroke-width="4" stroke-linejoin="round"/>` +
       `<path d="M${sx2 - 2},${SH - 4} L${sx2 - 2},${SH + 40}" stroke="${INKC}" stroke-width="4"/>` + [0, 1, 2].map(k => `<path d="M${sx2 - 10},${SH + 6 + k * 12} L${sx2 + 6},${SH + 12 + k * 12}" stroke="#8a5a2a" stroke-width="3.5" stroke-linecap="round"/>`).join('');
   } else if (d.outfit === 'hoodie') {
