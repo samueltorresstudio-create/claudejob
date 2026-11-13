@@ -2,8 +2,8 @@
 // lente estrecha, cada plano es push-in / órbita (~98°) / whip que frena en seco; la cámara casi nunca quieta;
 // movimientos «snap» (60–70 % en los primeros 4–5 fotogramas), personaje parado = totalmente quieto, la cara cambia 1 fotograma antes que el cuerpo,
 // boca cada ~2 fotogramas al hablar, sin parpadeos, personajes nunca desenfocados.
-window.CFG = { capY: 1500, capSize: 96, transDur: .42, blurK: .35, antic: .1, blurChars: false, transDurBy: { liverpool: .7, arbitro: .6, anulan: .25, noche: .5, dibuja: .28, rien: .5, papelera: .5, prueba: .5 },
-  trans: { liverpool: 'fly', nada: 'glide', pierde: 'whip', gritos: 'whip', arbitro: 'fly', brodie: 'whip', anulan: 'whip', noche: 'swish', bolsillos: 'glide', dibuja: 'swish', rien: 'swish',
+window.CFG = { capY: 1500, capSize: 96, transDur: .42, blurK: .35, antic: .1, blurChars: false, transDurBy: { liverpool: .7, nada: .34, arbitro: .6, anulan: .25, noche: .5, dibuja: .28, rien: .5, papelera: .5, prueba: .5 },
+  trans: { liverpool: 'fly', nada: 'swish', pierde: 'whip', gritos: 'whip', arbitro: 'fly', brodie: 'whip', anulan: 'whip', noche: 'swish', bolsillos: 'glide', dibuja: 'swish', rien: 'swish',
     sardinas: 'glide', papelera: 'swish', discutir: 'glide', prueba: 'swish', disparo: 'whip', liga: 'whip', hoy: 'whip', gracias: 'whip' } };
 // eventos: cada palabra del subtítulo es un evento (sin acentos, en minúsculas; los números con «_»): E.balon, E.entra, E._1889…
 const norm = w => w.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -65,33 +65,108 @@ function star(p, r, k) { if (k <= 0 || k >= 1) return ''; const q = p.x !== unde
 function dizzy(F, T) { const q = W.proj(F); if (!q.ok) return ''; let s = ''; for (let i = 0; i < 4; i++) { const a = T * 5 + i * 1.57, x = q.x + Math.cos(a) * q.ppm * .42, y = q.y + Math.sin(a) * q.ppm * .12, sc = q.ppm / 300 * (.8 + .3 * Math.sin(a)); s += `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${sc.toFixed(2)}) rotate(${(T * 200 + i * 40).toFixed(0)})"><path d="M0,-18 L5,-5 L18,-5 L8,3 L12,17 L0,8 L-12,17 L-8,3 L-18,-5 L-5,-5Z" fill="#ffd34a" stroke="${K}" stroke-width="4" stroke-linejoin="round"/></g>`; } return s; }
 const byDist = L => L.filter(Boolean).sort((a, b) => b.p.distanceTo(W.camera.position) - a.p.distanceTo(W.camera.position)).map(o => o.f()).join('');
 // estado del mundo por defecto en cada fotograma (cada escena cambia después lo que necesite, ANTES de cam())
-function setup(T, mood = 0, cheerK = 0, year = '1889') { W.setTime(T); W.setMood(mood); W.charLight = [DAY, EVE, NIGHT][mood]; W.setCheer(cheerK); W.hideSeats([]); W.setYear(year); W.NET.visible = false; W.netMesh.visible = true; W.CRATE.visible = false; W.ball(null, 0, false); W.paper(null, 0, false); }
+function setup(T, mood = 0, cheerK = 0, year = '1889') { W.setTime(T); W.setMood(mood); W.charLight = [DAY, EVE, NIGHT][mood]; W.setCheer(cheerK); W.hideSeats([]); W.setYear(year); W.NET.visible = false; W.netMesh.visible = true; W.CRATE.visible = false; W.ball(null, 0, false); W.paper(null, 0, false); W.goalInk(); }
 // aficionados «héroe» en 2D en las dos primeras filas de detrás de la portería (el resto del público son sprites 3D)
 function heroFans(x0, n, T, poseOf) { W.hideSeats([[x0 - .35, x0 + n * .62 + .1, -59.55, -58.0]]); const L = []; for (let r = 0; r < 2; r++) for (let i = 0; i < n; i++) { const [y, z] = rowG(r), x = x0 + i * .62 + (r ? .31 : 0), id = (i * 5 + r * 7 + Math.abs(Math.round(x0 * 3))) % 16, F = V3(x, y, z); L.push({ p: F, f: () => who(fanLook(id), poseOf(F, id, r, i) || {}, F) }); } return L; }
 
-// 1 · GANCHO: el chut, el balón cruza la portería y se pierde entre el público; media grada celebra y la otra protesta
-S.gol = (t, D, B) => { const E = EVS.gol(B), T = window.__T || t; setup(T, 0, .04); if (t > 1.2) W.setCheer(.95, .1);
-  const tk = .5, KP = V3(0, 0, -36), b0 = V3(.3, .11, -36.62), v = V3(-1.08, 6.5, -34), th = tk + .64, hitP = fl(b0, v, .64);
-  let bp = b0, spin = 0; if (t >= tk && t < th) { bp = fl(b0, v, t - tk); spin = (t - tk) * 30; } else if (t >= th) { bp = fl(hitP, V3(.9, 6.4, -2.4), t - th); spin = 19 + (t - th) * 9; }
-  const lost = t > th + 1.3, fans = heroFans(-2.3, 9, T, (F, id, r, i) => { const hit = r === 0 && i === 3; if (t < th) return { look: [0, 2] }; if (hit) return { face: 'closed', mouth: 'o', bob: 14 * (1 - snap(t, th, .5)), headTilt: 10 };
-    return F.x < .1 ? cheer(T, id) : shout(T, id, 1); });
-  const ok = oc((t - tk - .05) / .5), tp = E.y - .12, ctr = V3(0, 1.1, -36.4);
-  let cp = orb(ctr, lerp(90, 4, ok), lerp(1.5, 7, ok), lerp(7.6, 12.5, ok)), cl = L3(V3(0, 1.15, -36.45), V3(.5, 1.7, -56), ok);
-  if (t > tp) { const w = snap(t, tp, .3), tg2 = V3(.1, 3.3, -59.5), c2 = pushIn(V3(.3, 2.7, -42.5), tg2, (t - tp) / (D - tp), 1.4); cp = L3(cp, c2, w); cl = L3(cl, tg2, w); }
-  W.ball(bp, spin, t < th); cam(cp, cl, 30);
-  const u = .6 + (t - tk) / .55, kp = Object.assign(kick(u), ok > .5 ? { view: 'back', turn: 0 } : {});
-  const L = fans.concat([{ p: KP, f: () => who('DELANTERO', kp, KP) }, lost ? null : { p: bp, f: () => ball2d(bp, spin, t > tk && t < th ? fl(b0, v, Math.max(0, t - tk - .045)) : null, t > tk && t < th ? 1.5 : 1) + star(hitP, .5, (t - th) / .35) }]);
-  return byDist(L) + (t > th + .15 ? dizzy(V3(hitP.x, hitP.y + .75, hitP.z), T) : ''); };
+// 1 · GANCHO (0–4,4 s), cuatro planos:
+//  A (0–0,40) contrapicado lateral del delantero, ya con la pierna atrás en el fotograma 0; golpe en 0,30 con destello y sacudida.
+//  B (0,40–0,95) detrás de la portería (donde no hay red), CÁMARA LENTA ×0,32: el portero se estira a tope, el balón le pasa por encima
+//    de los dedos, entra junto al palo y viene directo a cámara.
+//  C (0,95–1,93) contraplano: el balón sigue hasta la grada y le da a un señor en la cabeza (la gorra sale volando); rebota y se pierde.
+//  D (1,93–fin) medio estadio celebra (izquierda) … barrido rápido en «jura» … y la otra mitad grita que ha ido FUERA, señalando fuera del palo.
+const HK = { KP: V3(0, 0, -36), b0: V3(.3, .11, -36.52), G: V3(-2.7, 1.85, -52), H: V3(-2.86, 2.08, -58.42), GK: V3(-.2, 0, -51.4), tk: .3, tg: .57, th: .68, x0: -5.96 };
+const hkTau = t => t < .46 ? t : t < .98 ? .46 + (t - .46) * .32 : .6264 + (t - .98);
+function hkBall(u) { const { b0, G, H, tk, tg, th } = HK;
+  if (u < tk) return { p: b0.clone(), s: 0, v: true };
+  if (u < tg) { const k = (u - tk) / (tg - tk), p = b0.clone().lerp(G, k); p.y += Math.sin(k * Math.PI) * .9; return { p, s: (u - tk) * 45, v: true }; }
+  if (u < th) { const k = (u - tg) / (th - tg); return { p: G.clone().lerp(H, k), s: (u - tk) * 45, v: true }; }
+  const d = u - th; return { p: V3(H.x + d * 1.4, H.y + .25 + d * 4.6 - 4.9 * d * d, H.z - d * 5.2), s: 17 - d * 6, v: d < .85 }; }
+// portero: preparado → se estira a tope hacia el palo (x −) → cae al césped
+function hkKeeper(u, view) { const e = oc(clamp((u - .405) / .17)), f = k01(u, .6, .86), GK = HK.GK;
+  const ang = rad(-72 * e - 17 * f), cx = GK.x - e * .62 - f * .32, cy = lerp(lerp(.86, 1.32, e), .27, f) + Math.sin(clamp((u - .405) / .25) * Math.PI) * .12 * (1 - f);
+  const F = V3(cx - Math.sin(ang) * .92, cy - Math.cos(ang) * .92, GK.z), Hc = V3(cx + Math.sin(ang) * .92, cy + Math.cos(ang) * .92, GK.z);
+  const P = Object.assign({}, CAST.KEEPER, { view, armL: [lerp(42, 124, e), lerp(34, 4, e)], armR: [lerp(42, 104, e), lerp(34, 10, e)], legL: [lerp(14, 4, e), 0], legR: [lerp(14, 28, e), lerp(0, 24, e)], face: e > .15 ? 'wide' : 'smug', mouth: e > .15 ? 'o' : 'line', brows: .4 });
+  return stickAt(P, F, Hc, W); }
+// las dos primeras filas de detrás de la portería en 2D (el resto, sprites); el aficionado nº 5 de la fila 0 está en HK.H.x (el del balonazo)
+function hkFans(T, poseOf) { W.hideSeats([[HK.x0 - .35, HK.x0 + 19 * .62 + .1, -59.55, -58.0]]); const L = [];
+  for (let r = 0; r < 2; r++) for (let i = 0; i < 19; i++) { const [y, z] = rowG(r), x = HK.x0 + i * .62 + (r ? .31 : 0), id = (i * 5 + r * 7 + 3) % 16, F = V3(x, y, z), hit = r === 0 && i === 5;
+    L.push({ p: F, f: () => { const P = poseOf(F, id, r, i, hit) || {}; const look = Object.assign({}, fanLook(id), hit ? { hat: P.capOff ? undefined : 'flatcap', hatCol: '#6b6458', hair2: 'side', hairCol: '#5a3a22', mustache: true } : {}); return who(look, P, F); } }); }
+  return L; }
+function hkCap(T0, t, F) { const d = t - T0; if (d < 0 || d > 1.1) return ''; const p = W.proj(V3(F.x - d * .9, F.y + 2.2 + d * 3.2 - 4.9 * d * d * .8, F.z + d * .6)); if (!p.ok) return ''; const sc = p.ppm / 230;
+  return `<g transform="translate(${p.x.toFixed(1)},${p.y.toFixed(1)}) rotate(${(-d * 540).toFixed(0)}) scale(${sc.toFixed(2)})"><path d="M-50,10 Q-50,-36 0,-38 Q50,-36 50,10Z" fill="#6b6458" stroke="${K}" stroke-width="7" stroke-linejoin="round"/><path d="M10,10 Q60,4 74,18 Q40,26 8,20Z" fill="#3e3a36" stroke="${K}" stroke-width="6" stroke-linejoin="round"/></g>`; }
+function hkCaps(T, t0, n, xa, xb) { let s = ''; for (let i = 0; i < n; i++) { const d = T - t0 - hs(i, 5) * 1.0; if (d < 0 || d > 1.5) continue; const x = xa + hs(i, 2) * (xb - xa), r = Math.floor(hs(i, 3) * 7), [y0, z] = rowG(r), p = W.proj(V3(x + (hs(i, 4) - .5) * d, y0 + 2.3 + 4.4 * d - 4.2 * d * d, z)); if (!p.ok) continue; const sc = p.ppm / 230;
+    s += `<g transform="translate(${p.x.toFixed(1)},${p.y.toFixed(1)}) rotate(${(d * 400 * (i % 2 ? 1 : -1)).toFixed(0)}) scale(${sc.toFixed(2)})"><path d="M-50,10 Q-50,-36 0,-38 Q50,-36 50,10Z" fill="${FHC[i % 16] || '#6b6458'}" stroke="${K}" stroke-width="7" stroke-linejoin="round"/><path d="M10,10 Q60,4 74,18 Q40,26 8,20Z" fill="#3e3a36" stroke="${K}" stroke-width="6" stroke-linejoin="round"/></g>`; } return s; }
+// onda de choque del golpe (anillo blanco con tinta) en un punto 3D
+function shock(p, k, R = .55) { if (k <= 0 || k >= 1) return ''; const q = W.proj(p); if (!q.ok) return ''; const r = q.ppm * R * (.25 + eOut(k)), w = Math.max(2, q.ppm * .05 * (1 - k));
+  return `<circle cx="${q.x.toFixed(1)}" cy="${q.y.toFixed(1)}" r="${r.toFixed(1)}" fill="none" stroke="${K}" stroke-width="${(w + 6).toFixed(1)}" opacity="${(1 - k).toFixed(2)}"/><circle cx="${q.x.toFixed(1)}" cy="${q.y.toFixed(1)}" r="${r.toFixed(1)}" fill="none" stroke="#fff6d8" stroke-width="${w.toFixed(1)}" opacity="${(1 - k).toFixed(2)}"/>`; }
+S.gol = (t, D, B) => { const E = EVS.gol(B), u = hkTau(t), T = u; setup(T, 0, .04); W.goalInk(.0042); const b = hkBall(u), prev = u > HK.tk + .02 ? hkBall(u - .035).p : null, blurOn = typeof TR !== 'undefined' && TR;
+  const hitF = V3(HK.x0 + 5 * .62, rowG(0)[0], rowG(0)[1]), tHit = .98 + (HK.th - .6264);   // ≈ 1,03 s
+  // ---------- A · el chut ----------
+  if (t < .40) { const k = snap(t, 0, .45), sh = t > HK.tk ? Math.exp(-(t - HK.tk) * 26) * .07 : 0;
+    const cp = orb(V3(.05, .92, -36.3), lerp(84, 66, k), lerp(2, 6, k), lerp(6.6, 5.0, k)), cl = L3(V3(0, .95, -36.45), V3(-.1, .98, -37.1), k01(t, .28, .4));
+    cp.x += Math.sin(t * 93) * sh; cp.y += Math.cos(t * 71) * sh; W.ball(b.p, b.s, true); cam(cp, cl, 34, .003);
+    return who('DELANTERO', Object.assign(kick(.38 + u * .74), { face: 'angry', mouth: 'grin', brows: -.6 }), HK.KP) + ball2d(b.p, b.s, prev, t > HK.tk ? 1.35 : 1) + shock(HK.b0.clone().add(V3(0, .05, 0)), (t - HK.tk) / .22) + star(HK.b0, .32, (t - HK.tk) / .16); }
+  // ---------- B · detrás de la portería, a cámara lenta ----------
+  if (t < .95) { const k = clamp((t - .40) / .55), cp = V3(lerp(-1.15, -2.55, k01(t, .40, .95)), lerp(.95, 1.12, k), lerp(-56.2, -55.75, oc(k))), cl = V3(lerp(-1.35, -2.3, k01(t, .40, .95)), lerp(.85, 1.25, k), -46);
+    W.ball(null, 0, false); cam(cp, cl, 78, .0012); if (blurOn && t < .45) TR.blur('H', (1 - (t - .40) / .05) * 9);
+    return byDist([{ p: HK.GK, f: () => hkKeeper(u, 'back') }, b.v ? { p: b.p, f: () => ball2d(b.p, b.s, prev, 1.15) } : null]); }
+  // ---------- C · contraplano: el balón se va a la grada y le da a uno en la cabeza ----------
+  if (t < 1.93) { const k = clamp((t - .95) / .98), sh = t > tHit ? Math.exp(-(t - tHit) * 14) * .05 : 0, cp = L3(V3(-2.12, 1.72, -52.4), V3(-2.4, 1.86, -53.75), oc(k)), cl = V3(-2.8, lerp(1.92, 2.0, k), -58.4);
+    cp.x += Math.sin(t * 80) * sh; cp.y += Math.cos(t * 67) * sh; W.ball(null, 0, false); cam(cp, cl, 40, .0026); const after = t - tHit;
+    const fans = hkFans(T, (F, id, r, i, hit) => { const dx = F.x - hitF.x;
+      if (hit) return after < 0 ? { face: 'wide', mouth: 'o', look: [0, 4], brows: .5 } : { face: 'closed', mouth: 'o', capOff: true, headTilt: -16 * Math.exp(-after * 4) + Math.sin(T * 7) * 6, bob: 18 * Math.exp(-after * 5), lean: Math.sin(T * 5) * 4, armL: [30, 40], armR: [24, 50] };
+      if (after < .05) return { face: Math.abs(dx) < 2 ? 'wide' : 'smug', mouth: Math.abs(dx) < 2 ? 'o' : 'line', look: [0, 3] };
+      if (after < .35) return { face: 'wide', mouth: 'o', look: [dx < 0 ? 9 : -9, -2], headTilt: dx < 0 ? 6 : -6 };
+      return dx < 0 ? cheer(T, id) : Object.assign(shout(T, id, -1), { look: [-6, 0] }); });
+    if (t > 1.4) W.setCheer(.9, hitF.x);
+    const ballI = b.v ? [{ p: b.p, f: () => ball2d(b.p, b.s, u < HK.th ? prev : null, 1) }] : [];
+    return byDist(fans.concat(ballI)) + star(V3(hitF.x, hitF.y + 1.95, hitF.z), .5, after / .3) + hkCap(tHit, t, hitF) + (after > .25 ? dizzy(V3(hitF.x, hitF.y + 2.25, hitF.z), T) : ''); }
+  // ---------- D · medio estadio celebra… y el otro medio jura que ha ido FUERA ----------
+  const tw = E.jura - .1, w = snap(t, tw, .26), kA = (t - 1.93) / Math.max(.3, tw - 1.93), kB = (t - tw) / (D - tw);
+  const clA = V3(-2.3, 2.1, -58.4), cpA = pushIn(V3(-1.6, 1.6, -53.3), clA, kA, 1.18), clB = V3(2.05, 1.75, -57.8), cpB = pushIn(V3(1.55, 1.55, -53.3), clB, kB, 1.5);
+  W.setCheer(.95, 0); cam(L3(cpA, cpB, w), L3(clA, clB, w), 48, .0024); if (blurOn) TR.blur('H', Math.sin(Math.PI * clamp((t - tw) / .26)) * 26);
+  const fans = hkFans(T, (F, id, r, i, hit) => { if (hit) return { face: 'closed', mouth: 'o', capOff: true, headTilt: Math.sin(T * 7) * 7, lean: Math.sin(T * 5) * 4, armL: [26, 40], armR: [22, 50] };
+    if (F.x < -.2) { const q = T * 9 + id * 1.3; return { face: 'happy', mouth: 'laugh', bob: -Math.abs(Math.sin(q)) * 18, armL: [34 + Math.sin(q) * 8, 30], armR: [34 - Math.sin(q) * 8, 30], headTilt: Math.sin(q) * 6 }; }
+    // la mitad que protesta: boca abierta gritando, cejas muy bajas, un brazo señalando hacia fuera del palo (arriba a la izquierda) y el otro con el puño agitándose
+    const ph = T * 13 + id * 1.7, yell = { face: 'wide', mouth: Math.sin(ph) > -.3 ? 'open' : 'o', brows: -1, browTilt: .5, bob: -Math.abs(Math.sin(ph)) * 10, headTilt: Math.sin(ph * .5) * 5, look: [-9, -2], lean: -4 + Math.sin(ph * .5) * 3 };
+    return Object.assign(yell, { armR: [26 + Math.sin(ph) * 6, 24], armL: [26 + Math.sin(ph + 1) * 6, 24] }); });
+  // dos protagonistas delante de la grada, junto a la valla: uno celebra (izquierda) y otro, furioso, señala fuera del palo (derecha)
+  const FC = V3(-1.55, 0, -57.3), FA = V3(2.2, 0, -57.3), qc = T * 9, qa = T * 13;
+  const star1 = { p: FC, f: () => who(fanLook(7), { face: 'happy', mouth: 'laugh', bob: -Math.abs(Math.sin(qc)) * 30, armL: [128 + Math.sin(qc) * 12, 40], armR: [132 - Math.sin(qc) * 12, 38], headTilt: Math.sin(qc) * 7, lean: Math.sin(qc * .5) * 4 }, FC) };
+  const star2 = { p: FA, f: () => who(Object.assign(fanLook(1), { mustache: true, hat: 'bowler', hatCol: '#25222a' }), { face: 'wide', mouth: Math.sin(qa) > -.4 ? 'open' : 'o', brows: -1, browTilt: .6, look: [-10, -2], bob: -Math.abs(Math.sin(qa)) * 8, headTilt: Math.sin(qa * .5) * 6, lean: -6, armL: [96 + Math.sin(qa) * 4, -6], armR: [128 + Math.sin(qa * 1.3) * 16, 58] }, FA) };
+  return byDist(fans.concat([star1, star2])) + hkCaps(T, 1.93, 30, -6, -.4) + dizzy(V3(hitF.x, hitF.y + 2.25, hitF.z), T); };
 
-// 2 · Liverpool, 1889: grúa desde lo alto hasta el poste; la cámara sube por el palo y recorre el larguero
-S.liverpool = (t, D, B) => { const E = EVS.liverpool(B), T = window.__T || t; setup(T, 0, .03);
-  const a = E.las, b = E.dos, c = E.larguero;
-  const cp = sp(t, [[0, V3(17, 27, 16)], [a, V3(11, 7, -26)], [b, V3(6.9, 1.25, -44.6)], [c, V3(5.0, 1.2, -45.0)], [D, V3(.8, 1.5, -32.5)]]);
-  const cl = sp(t, [[0, V3(0, 6, -56)], [a, V3(2.5, 2.5, -52)], [b, V3(3.66, 1.25, -52)], [c, V3(2.6, 2.44, -52)], [D, V3(0, 1.6, -54)]]);
-  cam(cp, cl, lerp(40, 30, k01(t, 0, b)), .002); return ''; };
+// 2 · Liverpool, 1889: grúa sobre los tejados hasta el cartel «1889» → baja hasta la portería (de frente, grada desenfocada) →
+//   «dos palos»: contrapicado de un palo y barrido al otro → «un larguero»: desde abajo, el larguero contra el cielo, recorriéndolo.
+//   (Antes el larguero se veía de canto contra el público y parecía un fallo: ahora siempre de frente o desde abajo, con fondo limpio.)
+function whipTo(t, t0, a, b, dur = .16) { const w = snap(t, t0, dur); if (typeof TR !== 'undefined' && TR) TR.blur('H', Math.sin(Math.PI * clamp((t - t0) / dur)) * 24); return [L3(a[0], b[0], w), L3(a[1], b[1], w)]; }
+S.liverpool = (t, D, B) => { const E = EVS.liverpool(B), T = window.__T || t; setup(T, 0, .03); W.goalInk(.006);
+  const a = E.las, c = E.dos - .06, d = E.palos - .04, e = E.y - .02;
+  // grúa: tejados → cartel 1889 → baja hasta la portería, de frente y algo elevada: el larguero queda delante de los abrigos oscuros
+  // de las primeras filas (no de las caras blancas) y el público desenfocado; tinta gruesa en el marco
+  if (t < a) { const cp = sp(t, [[0, V3(17, 27, 16)], [E._1889, V3(8, 11.5, -17)], [a, V3(3.0, 6.2, -30.5)]]), cl = sp(t, [[0, V3(0, 6, -56)], [E._1889, V3(0, 8.7, -57.4)], [a, V3(0, 1.4, -52.3)]]);
+    cam(cp, cl, lerp(40, 46, k01(t, E._1889, a)), .002); return ''; }
+  const k2 = oc((t - a) / (c - a)), S2 = [L3(V3(3.0, 6.2, -30.5), V3(.3, 4.2, -36.2), k2), V3(0, 1.35, -52.3)];
+  if (t < c) { cam(S2[0], S2[1], 46, .0045); return ''; }
+  // «dos palos»: un palo… barrido… el otro (de frente, cerca, con el público muy desenfocado detrás)
+  const kp = (t0, t1) => k01(t, t0, t1), S3 = [V3(-3.1 + kp(c, d) * .2, 2.3, -47.4), V3(-3.66, 1.2, -52)], S4 = [V3(3.1 - kp(d, e) * .2, 2.3, -47.4), V3(3.66, 1.2, -52)];
+  // «un larguero»: plano cerrado del larguero, que la cámara recorre de un palo al otro
+  const xs = lerp(-2.4, 2.4, k01(t, e, D)), S5 = [V3(xs, 3.15, -48.3), V3(xs, 2.3, -52.06)];
+  let P; if (t < d) P = whipTo(t, c, S2, S3); else if (t < e) P = whipTo(t, d, S3, S4); else P = whipTo(t, e, S4, S5, .2);
+  cam(P[0], P[1], 38, .006); return ''; };
 
-// 3 · «Detrás, nada»: push-in hacia la portería vacía
-S.nada = (t, D, B) => { const T = window.__T || t; setup(T, 0, .03); const tg = V3(0, 1.4, -56.5); cam(pushIn(V3(0, 1.5, -31), tg, t / D, 1.9), tg, 30, .002); return ''; };
+// 3 · «Detrás, nada»: atravesamos la portería por debajo del larguero y detrás… nada: hierba vacía, la valla y la grada mirando
+//   cómo pasa rodando un matojo (como en las películas del Oeste).
+function tumble(p, rot, s) { const q = W.proj(p); if (!q.ok) return ''; const r = q.ppm * .34 * s; let d = '';
+  for (let i = 0; i < 9; i++) { const a = hs(i, 4) * 6.28, b = a + 1.6 + hs(i, 6) * 2.4, r1 = r * (.45 + hs(i, 7) * .5); d += `M${(Math.cos(a) * r1).toFixed(1)},${(Math.sin(a) * r1).toFixed(1)} Q${(Math.cos((a + b) / 2) * r * 1.25).toFixed(1)},${(Math.sin((a + b) / 2) * r * 1.25).toFixed(1)} ${(Math.cos(b) * r1).toFixed(1)},${(Math.sin(b) * r1).toFixed(1)} `; }
+  return `<ellipse cx="${q.x.toFixed(1)}" cy="${(q.y + r * 1.02).toFixed(1)}" rx="${(r * .8).toFixed(1)}" ry="${(r * .16).toFixed(1)}" fill="#141826" opacity=".25"/><g transform="translate(${q.x.toFixed(1)},${q.y.toFixed(1)}) rotate(${(rot * 57.3).toFixed(0)})"><circle r="${(r * .9).toFixed(1)}" fill="#c9a86a" opacity=".35"/><path d="${d}" stroke="${K}" stroke-width="${Math.max(3, r * .1).toFixed(1)}" fill="none" stroke-linecap="round"/><path d="${d}" stroke="#b08a4a" stroke-width="${Math.max(1.5, r * .05).toFixed(1)}" fill="none" stroke-linecap="round"/></g>`; }
+S.nada = (t, D, B) => { const E = EVS.nada(B), T = window.__T || t; setup(T, 0, .03); W.goalInk(.006);
+  // mirando hacia abajo a la hierba vacía de detrás de la portería; pasa el matojo; al final la cámara sube hasta la grada aburrida
+  const k = k01(t, 0, D), cp = L3(V3(.3, 2.35, -51.3), V3(.1, 1.75, -52.2), k), cl = L3(V3(0, .15, -55.0), V3(0, 1.45, -58.2), k01(t, E.nada + .15, D + .2)); cam(cp, cl, 50, .0022);
+  const t0 = .12, x = lerp(1.95, -2.2, clamp((t - t0) / 1.15)), bounce = Math.abs(Math.sin((t - t0) * 6.5)) * .2, tw = V3(x, .3 + bounce, -54.8);
+  const fans = hkFans(T, (F, id) => ({ face: 'smug', mouth: 'line', look: [clamp((x - F.x) * 2.5, -12, 12), 3], brows: .2 }));
+  return byDist(fans) + (t > t0 ? tumble(tw, -(t - t0) * 9, 1) : ''); };
 
 // 4 · el balón rebota de cabeza en cabeza, se pierde… y empiezan los gritos
 S.pierde = (t, D, B) => { const E = EVS.pierde(B), T = window.__T || t; setup(T, 0, .05);

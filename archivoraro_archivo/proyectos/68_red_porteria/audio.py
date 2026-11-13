@@ -115,7 +115,21 @@ for sc in m.sc0:
     else: m.amb(CROWD, sc0[sc], scEnd[sc], .05 if sc not in ('nada', 'liverpool') else .035)
 
 # 1 · gol: chut, balón, golpe en una cabeza, media grada celebra y la otra protesta
-g0 = sc0['gol']; kick(g0 + .5); swoosh(g0 + .55, .1); bonk(g0 + 1.14); ooh(g0 + 1.15, .1); roar(g0 + 1.25, 2.8, .2)
+g0 = sc0['gol']
+kick(g0 + .30, .4); m.add(m.hit(140, 40, .45, .18), g0 + .30, .22)                     # chut con golpe grave
+x_ = t(.62); m.add(m.band(rng.standard_normal(len(x_)), 70, 700) * np.sin(np.linspace(0, np.pi, len(x_))) ** 1.5, g0 + .42, .16)   # cámara lenta: soplido grave
+m.add(m.sweep(110, 45, .6, .3), g0 + .44, .14)
+swoosh(g0 + .84, .16, .28)                                                                 # el balón pasa rozando la cámara
+bonk(g0 + 1.03, .32); ooh(g0 + 1.08, .1); swoosh(g0 + 1.08, .05, .3)                       # balonazo en la cabeza, la gorra sale volando
+roar(g0 + 1.35, 3.0, .18, .2)                                                              # media grada celebra…
+for k in range(6): shout(g0 + 1.55 + k * .38, .05, 150 + (k % 3) * 25, 2)                   # …y la otra protesta
+swoosh(e('gol.jura', -.15), .08, .26)                                                      # barrido a la mitad enfadada
+if e('gol.fuera'): shout(e('gol.fuera') - .12, .09, 185, 3)                                # «¡FUERA!»
+# 2-3 · Liverpool: barridos entre los palos y el larguero; «detrás, nada»: viento y el matojo rodando
+for w_ in ('liverpool.dos', 'liverpool.palos', 'liverpool.y'):
+    if e(w_): swoosh(e(w_) - .1, .06, .22)
+n0 = sc0['nada']; m.amb(m.bed_noise(1200, 5000, .7, .6), n0, scEnd['nada'], .03)
+for k in range(9): m.add(m.noise(.07, 900, 7000, .004, .05), n0 + .25 + k * .12 + rng.random() * .03, .025, .6 - k * .14)
 # 4 · el balón se pierde entre la gente (dos cabezazos) y empiezan los gritos
 p0 = sc0['pierde']; swoosh(p0 + .2, .08); bonk(p0 + .75, .22); bonk(p0 + 1.35, .2); ooh(p0 + .8, .07)
 if e('pierde.empiezan'): shout(e('pierde.empiezan') - .05, .07, 170, 5); roar(e('pierde.empiezan'), 1.6, .12)

@@ -234,6 +234,8 @@ const W2 = (() => {
     fragmentShader: 'uniform vec3 col; void main(){ gl_FragColor=vec4(col,1.); }' });
   const toInk = []; scene.traverse(o => { if (!o.isMesh || o.isInstancedMesh || o === sky || o.userData.noInk || (o.material && o.material.transparent)) return; const ty = o.geometry.type; if (ty === 'PlaneGeometry' || ty === 'CircleGeometry' || ty === 'BufferGeometry') return; toInk.push(o); });
   toInk.forEach(o => { let g = o.geometry.clone(); ['normal', 'uv'].forEach(a => g.deleteAttribute(a)); g = mergeVertices(g, 1e-3); g.computeVertexNormals(); g.clearGroups(); const h = new T.Mesh(g, inkM); h.castShadow = false; h.receiveShadow = false; o.add(h); });
+  // las porterías llevan una tinta más gruesa: el marco (crema) tiene que leerse siempre contra el público
+  const inkG = inkM.clone(); [GOAL, GOAL2].forEach(g => g.traverse(o => { if (o.material === inkM) o.material = inkG; })); function goalInk(k = .0022) { inkG.uniforms.k.value = k; }   // goalInk(.006) = marco muy marcado
   // ---------- API ----------
   function setCam(pos, look, fov = 45, focus = null, ap = .003) { camera.fov = fov; camera.updateProjectionMatrix(); camera.position.copy(pos); camera.lookAt(look); camera.updateMatrixWorld(); sky.position.copy(camera.position);
     sun.position.copy(look).addScaledVector(SUN, 120); sun.target.position.copy(look); sun.target.updateMatrixWorld(); dof.uniforms.focus.value = focus ?? pos.distanceTo(look); dof.uniforms.aperture.value = ap; updCrowd(); }
@@ -251,5 +253,5 @@ const W2 = (() => {
   const ray = new T.Raycaster(); const solids = []; scene.traverse(o => { if (o.isMesh && !o.isInstancedMesh && o.material !== inkM && o !== sky && !o.userData.noInk && !(o.material && o.material.transparent)) solids.push(o); });
   function visible(p, tol = .12) { const o = camera.position, d = p.clone().sub(o), L = d.length(); ray.set(o, d.normalize()); ray.far = L - tol; return ray.intersectObjects(solids, false).length === 0; }
   const hgt = () => 0;
-  return { T, scene, camera, R, setCam, setTime, setMood, setCheer, hideSeats, visible, proj, render, SUN, hgt, GOAL, NET, setNet, netLines, netMesh, BALL, ball, crowd, SEATS, setYear, CRATE, OX, CHAIR, BIN, plan, paper, dof, bloom, comp, inkM };
+  return { goalInk, T, scene, camera, R, setCam, setTime, setMood, setCheer, hideSeats, visible, proj, render, SUN, hgt, GOAL, NET, setNet, netLines, netMesh, BALL, ball, crowd, SEATS, setYear, CRATE, OX, CHAIR, BIN, plan, paper, dof, bloom, comp, inkM };
 })();
