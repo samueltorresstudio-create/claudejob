@@ -68,3 +68,10 @@ Entrega:
 - Itera con 2 variantes por render y míralas lado a lado; comprueba también a 200 px de ancho.
 - Fallos que salieron: cámara demasiado cerca (la vaca tapaba todo), protagonista cortado en el borde, brocha metida en el ojo de la vaca (que toque el cuerpo o una pata), mosca cortada en el borde, vaca del fondo tapada por la cabeza del protagonista.
 - Texto: gancho amarillo corto («SE RIERON DE ÉL…») + título de dos líneas (~200 px, Inter 900, contorno oscuro); la palabra clave con relleno temático (CEBRA con rayas finas: franjas negras de ~25 % para que se lea). Degradado oscuro abajo.
+
+## Portada de un villano humano (65 · compañero asesino, 13-11-2026)
+
+- Póster propio en el proyecto (`proyectos/65_companero/poster.html`): carga `lib.js`, `kit.js` y el `scenes.js` del vídeo para reutilizar sus piezas (la tele con «SE BUSCA», el móvil, el reparto), más las `defs` del motor (`chFX`, `glowY`, `glowB`, `beam`).
+- **Un humano no da miedo con su cara de serie** (ojos grandes, coloretes, sonrisa): sombra sobre los ojos recortada a la forma de la cabeza (`clipPath` en elipse; un rectángulo deja un recuadro visible), luz de la pantalla desde abajo, coloretes tapados y dos brillos rojos en las pupilas.
+- La prueba al lado de la cara: su foto de «SE BUSCA» en la tele junto a su cabeza real. Se entiende en miniatura sin leer.
+- Texto: gancho amarillo («TU COMPAÑERO DE PISO…») + «ES UN» + «ASESINO» enorme en rojo con brillo.
