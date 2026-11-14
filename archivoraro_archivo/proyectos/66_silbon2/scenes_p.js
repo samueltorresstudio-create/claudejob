@@ -184,7 +184,7 @@ S.rule0=(t,D,B)=>{const E=EVS.rule0(B);
   const k=eIO(prog(t,0,D));
   let o=cam(s2Gap(t,{bones:6}),lerp(1.15,1.35,k),540,760,540,620);
   o+=s2Num(6,t,.1,860,300,110);
-  if(t>E.vera-.1) o+=`<rect x="0" y="0" width="1080" height="1100" fill="#000" opacity="${(.35*P(t,E.vera,.4)).toFixed(2)}"/>`+countPop('12',540,520,220,t-E.vera,'#ffffff').replace('fill="#ffffff"','fill="#ffffff" opacity=".9"');
+  if(t>E.vera-.1) o+=`<rect x="0" y="0" width="1080" height="1100" fill="#000" opacity="${(.35*P(t,E.vera,.4)).toFixed(2)}"/>`;
   return o};
 
 S.seven=(t,D,B)=>{const E=EVS.seven(B);
