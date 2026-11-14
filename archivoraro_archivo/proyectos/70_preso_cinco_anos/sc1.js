@@ -74,8 +74,7 @@ function paper2d() { const O = W.ORDER, mesh = O.children[0]; O.updateMatrixWorl
 // =====================================================================================================
 S.suplica = (t, D, B) => { const E = EVS.suplica(B); setup(t + B[0].s, { light: IN }); W.setOrder(0, 1); cond(2, 1); const tJ = Math.max(.9, (E.juez || D * .45) - .05);
   if (t < tJ) { const cp = L3(V3(JX + 1.25, 1.85, -4.35), V3(JX + 1.6, 1.82, -4.0), oc(t / tJ)); cam(cp, V3(JX + 3.4, 1.62, -1.6), 46);
-    const pose = { face: 'happy', mouth: talkM(t, .1, tJ, 'open'), browTilt: -.9, brows: .2, lean: -6, armL: [128, 128], armR: [128, 128], headTilt: Math.sin(t * 9) * 3, look: [-6, -4] }; let s = dockShot(t, { pose, pacoLook: [-14, 0], pacoFace: 'smug', pacoMouth: 'line' });
-    const h = headScr(F_DOCK), sc = sOf(F_DOCK); s += tears(h, sc, t); return s; }
+    const pose = { face: 'happy', mouth: 'open', browTilt: -.9, brows: .2, lean: -4, armL: [38 + Math.sin(t * 7) * 4, -150], armR: [38 + Math.sin(t * 7) * 4, -150], headTilt: Math.sin(t * 9) * 3, look: [-6, -4], cry: t, clasp: true }; return dockShot(t, { pose, pacoLook: [-14, 0], pacoFace: 'smug', pacoMouth: 'line' }); }
   whipBlur(t, tJ); const u = t - tJ; cam(L3(V3(JX + .42, 2.12, -3.05), V3(JX + .3, 2.1, -3.45), oc(u / (D - tJ))), V3(JX, 2.05, -5.95), 40);
   const top = W.proj(V3(JX, 1.84, -4.46)).y; const F = V3(JX, .62, -5.95); const pose = seq(u, [[0, { face: 'smug', mouth: 'line', look: [10, 12], brows: -.2, browTilt: .3, legLen: .7, armL: [16, 30], armR: [16, 30] }], [.5, { browTilt: -.4, brows: .7, look: [14, 10], sweat: true }, .25]]);
   return clipAbove(who('JUEZ', pose, F, 1.52), top); };

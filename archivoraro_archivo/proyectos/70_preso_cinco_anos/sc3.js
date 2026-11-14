@@ -17,13 +17,13 @@ S.pistas = (t, D, B) => { const E = EVS.pistas(B); setup(t + B[0].s, { light: IN
 // =====================================================================================================
 S.director = (t, D, B) => { const E = EVS.director(B); setup(t + B[0].s, { light: IN }); const tD = E.detuvo || D * .3, tR = E.director || D * .7; cam(L3(V3(16.2, 1.72, 7.6), V3(16.0, 1.7, 7.1), oc(t / D)), V3(15.05, 1.32, .9), 50);
   const cuffed = t > tD; const Fd = V3(15.05, 0, 1.0); const L = [];
-  L.push([Fd, who('DIRECTOR', cuffed ? { face: 'happy', mouth: 'open', browTilt: -.9, armL: [26, -46], armR: [26, -46], look: [0, 6] } : { face: 'wide', mouth: 'o', armL: [70, 30], armR: [70, 30], brows: .8, sweat: true }, Fd)]);
+  L.push([Fd, who('DIRECTOR', cuffed ? { face: 'happy', mouth: 'open', browTilt: -.9, armL: [26, -46], armR: [26, -46], look: [0, 6], cry: t > tR - .2 ? t : null } : { face: 'wide', mouth: 'o', armL: [70, 30], armR: [70, 30], brows: .8, sweat: true }, Fd)]);
   L.push([V3(13.85, 0, 1.25), who('POLI1', { face: 'smug', mouth: 'line', armR: cuffed ? [62, 40] : [70, 60], armL: [10, 10], look: [12, 0] }, V3(13.85, 0, 1.25))]);
   L.push([V3(16.3, 0, 1.3), who('POLI2', { face: 'angry', mouth: 'line', armL: cuffed ? [62, 40] : [70, 60], armR: [10, 10], look: [-12, 0] }, V3(16.3, 0, 1.3))]);
   [[CR[5], 13.0, -1.6], [CR[2], 18.4, -.9], [CR[6], 19.6, .4]].forEach(([c, x, z]) => L.push([V3(x, 0, z), who(c, { face: 'wide', mouth: 'o', look: [x > 15 ? -12 : 12, 0], armL: [20, 40], armR: [20, 40] }, V3(x, 0, z), ADULT, { blur: 3 })]));
   L.push([V3(18.0, 0, -2.75), clipAbove(who('CAJERA', { face: 'wide', mouth: 'o', armL: [130, 110], armR: [20, 40], look: [-14, 0] }, V3(18.0, 0, -2.75), ADULT, { blur: 3 }), W.proj(V3(18, 1.18, -2.6)).y)]);
   let s = depth(L); const hp = W.proj(V3(15.05, 1.05, 1.15)), sc = sOf(Fd); if (cuffed) { s += CUFFS(hp.x, hp.y, sc * 1.6) + ring(hp.x, hp.y, 120, (t - tD) / .3, '#fff'); SHAKE = .015 * Math.exp(-(t - tD) * 8); }
-  if (t > tR - .2) s += tears(headScr(Fd), sc, t); return s; };
+  return s; };
 
 // =====================================================================================================
 // 17 · TÚNEL — vista en corte: él duerme en la litera… la cámara baja por debajo del suelo: el pozo, el túnel, el cartel de SALIDA tachado

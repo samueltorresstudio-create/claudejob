@@ -390,3 +390,4 @@ El usuario los pasó como «consejos a la hora de crear los vídeos». Orden rea
   - Barrotes delante de una cara: ninguna barra horizontal a la altura de los ojos.
   - Una transición `swish` que gira la cámara pegada a una caja oscura (la garita) da fotogramas negros: usa `glide` si los dos planos están en la misma sala.
   - Un gateo NO se puede hacer girando la figura de pie: hace falta una figura de perfil propia con IK y apoyos que no patinen (`crawl70.js`).
+- **Lágrimas (fallo visto por el usuario en el 70: «descoordinadas y mal»)**: no las dibujes como capa aparte encima del personaje (se despegaban de los ojos y salían enormes delante de la cara). Van DENTRO de la cabeza con `stick({ cry: t })`: chorro desde cada ojo con gota en el párpado y gotas que caen, y así siguen el giro, la inclinación y el tamaño de la cabeza. Para suplicar, `clasp: true` (manos juntas delante del pecho) en vez de los brazos levantados.
