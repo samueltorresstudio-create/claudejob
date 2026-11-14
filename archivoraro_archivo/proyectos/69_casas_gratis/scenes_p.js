@@ -141,7 +141,7 @@ S.pagan = (t, D, B) => { const E = EVS.pagan(B), T = window.__T || t; setup(T, 0
     const y = Math.max(.05, 2.4 + vy * u - 2.2 * u * u), z = -.2 + u * (.6 + hs(i, 4)), q = W.proj(V3(x0 + vx * u + Math.sin(u * 6 + i) * .15, y, z)); if (q.ok) bills += bill2d(q.x, q.y, q.ppm / 900, (u * 260 + i * 40) % 360, Math.cos(u * 9 + i)); }
   return clipAbove(who('FUNC', PF, FF), cy) + who('TU', PT, FT) + bills; };
 // 13 · «¿Están encantadas?»: de noche, la casa con la puerta entreabierta; la cámara se acerca despacio.
-const NIGHT_CAM = [V3(-.4, 1.5, 11.2), V3(1.9, 1.9, -1.6)], TU_N = V3(.1, 0, 7.8);
+const NIGHT_CAM = [V3(-.4, 1.5, 11.2), V3(1.9, 1.9, -1.6)], TU_N = V3(-.3, 0, 6.6);
 S.encantadas = (t, D, B) => { const E = EVS.encantadas(B), T = window.__T || t; setup(T, 0, 1, NIGHT); W.setDoor(W.HOUSE, .45); cam(pushIn(NIGHT_CAM[0], NIGHT_CAM[1], t / (D + 4.9), 1.25), NIGHT_CAM[1], 50);
   const P = { face: 'smug', mouth: 'line', brows: .5, look: [10, -4], turn: .4, armL: [16, 22], armR: [16, 22], sweat: true }, hp = headScr(TU_N);
   return who('TU', P, TU_N) + popIcon('?', hp.x + 20, hp.y - hp.ppm * 1.0, 120, clamp((t - E.encantadas + .1) / .3)); };
@@ -161,7 +161,7 @@ S.nada = (t, D, B) => { const E = EVS.nada(B), T = window.__T || t; const tc = E
   if (t < tc) { setup(T); const k = oc(t / tc); cam(L3(V3(st.x + 2.4, 1.5, st.z + 5.2), V3(st.x + 34, 46, st.z + 70), k), L3(V3(st.x + .2, 1.2, st.z), V3(st.x, 0, st.z - 4), k), lerp(46, 50, k));
     const F = V3(st.x + .4, 0, st.z + .1), wp = { face: 'smug', mouth: 'line', look: [6, 2], armL: [12, 20], armR: [12, 20] }; let s = who('TU', wp, F); for (let i = 0; i < 3; i++) s += bird((T * 90 + i * 300) % 1300 - 100, 300 + i * 60, 18, T * 9 + i); return s; }
   setup(T); const k = oc((t - tc) / (D - tc)); cam(L3(V3(TX + 4.2, 1.5, 10.8), V3(TX + 1.2, 1.7, 4.2), k), L3(V3(TX + 1.5, 6, -6), V3(TX, 2.6, -5.2), k), lerp(62, 48, k));
-  let s = ''; [[-6, 1, .9], [3.5, -1, 1.15], [-2.5, 1, 1.3]].forEach(([x0, dir, sp_], i) => { const x = TX + x0 + dir * (t - tc) * sp_, F = V3(x, .2, i === 1 ? 9.4 : 8.8); s += who(i === 1 ? 'HIJA' : 'AGENTE', Object.assign({ turn: dir * .8, face: 'smug', mouth: 'line', look: [dir * 10, 0] }, walkPose(T * 7 + i * 2)), F); });
+  let s = ''; [[-6, 1, .9], [3.5, -1, 1.15], [-2.5, 1, 1.3]].forEach(([x0, dir, sp_], i) => { const x = TX + x0 + dir * (t - tc) * sp_, F = V3(x, .2, i === 1 ? -.4 : -.8); s += who(i === 1 ? 'HIJA' : 'AGENTE', Object.assign({ turn: dir * .8, face: 'smug', mouth: 'line', look: [dir * 10, 0] }, walkPose(T * 7 + i * 2)), F); });
   return s; };
 // 17 · «La historia de verdad es otra»: delante del altar, el retrato del dueño.
 S.historia = (t, D, B) => { const E = EVS.historia(B), T = window.__T || t; setup(T, 0, 0, IN); const p0 = V3(IX + 3.7, IY + 1.6, .9), tg = V3(IX + 2.7, IY + 1.15, -2.0); cam(pushIn(p0, tg, t / D, 1.2), tg, 50);
