@@ -15,9 +15,9 @@
       g.strokeStyle = 'rgba(160,255,190,.45)'; g.lineWidth = 3; for (let k = 0; k < 4; k++) { g.beginPath(); g.moveTo(x + 10 + k * 36, y + 100); g.lineTo(x + 10 + k * 36, y + 30); g.stroke(); } g.fillStyle = 'rgba(160,255,190,.25)'; g.fillRect(x, y + ((t * 40 + i * 30) % 116), 160, 3); txt(g, 'CAM ' + (j * 3 + i + 1), x + 30, y + 14, 14, '#9affb8', 800); } CCTV.t.needsUpdate = true; }
   drawCCTV(0);
   // rayas de días en la pared de la celda: n rayas completas + la que dibuja ahora (k 0..1)
-  function setTally(n, k = 0) { const g = TALLY.g, w = 1024, h = 512; g.clearRect(0, 0, w, h); g.strokeStyle = 'rgba(245,240,225,.92)'; g.lineCap = 'round'; const gx = 46, gy = 120;
+  function setTally(n, k = 0) { const g = TALLY.g, w = 1024, h = 512; g.clearRect(0, 0, w, h); g.strokeStyle = 'rgba(42,36,32,.88)'; g.lineCap = 'round'; const gx = 46, gy = 120;
     const pos = i => { const grp = Math.floor(i / 5), r = i % 5, col = grp % 9, row = Math.floor(grp / 9); return { grp, r, x: 30 + col * 108, y: 40 + row * 118 }; };
-    const stroke = (i, kk) => { const p = pos(i); g.lineWidth = 8; g.beginPath(); if (p.r < 4) { const x = p.x + p.r * 20 + (i % 3) * 1.5; g.moveTo(x, p.y); g.lineTo(x + (i % 2) * 3, p.y + 92 * kk); } else { g.moveTo(p.x - 10, p.y + 70); g.lineTo(p.x - 10 + 92 * kk, p.y + 70 - 50 * kk); } g.stroke(); };
+    const stroke = (i, kk) => { const p = pos(i); g.lineWidth = 11; g.beginPath(); if (p.r < 4) { const x = p.x + p.r * 20 + (i % 3) * 1.5; g.moveTo(x, p.y); g.lineTo(x + (i % 2) * 3, p.y + 92 * kk); } else { g.moveTo(p.x - 10, p.y + 70); g.lineTo(p.x - 10 + 92 * kk, p.y + 70 - 50 * kk); } g.stroke(); };
     for (let i = 0; i < n; i++) stroke(i, 1); if (k > 0) stroke(n, k); TALLY.t.needsUpdate = true; }
   setTally(23);
   // libro de cuentas del director
@@ -89,6 +89,6 @@
     STREETLAMPS.forEach(l => l.material.emissiveIntensity = (n > .5 || m > .7) ? 2.2 : .25); ALLEYBULB.material.emissiveIntensity = n > .5 || m > .7 ? 2 : .2; }
   const ray = new T.Raycaster(); const solids = []; scene.traverse(o => { if (o.isMesh && !o.isInstancedMesh && o.material !== inkM && o !== sky && !o.userData.noInk && !(o.material && o.material.transparent)) solids.push(o); });
   function visible(p, tol = .12) { const o = camera.position, d = p.clone().sub(o), L = d.length(); ray.set(o, d.normalize()); ray.far = L - tol; return ray.intersectObjects(solids, false).length === 0; }
-  return { T, scene, camera, R, setCam, proj, render, setTime, setMood, visible, SUN, JX, KX, ZS, TUN, BOOTH, DK, VHOLE, setCondena: drawCondena, setOrder, ORDER, setClocks, setTally, setLedger, setCal, setCellDoor, setMattress, setMess, setCellLid, setVTile, setVaultDoor,
+  return { T, scene, camera, R, setCam, proj, render, setTime, setMood, visible, SUN, JX, KX, ZS, TUN, BOOTH, DK, VHOLE, setCondena: drawCondena, setOrder, ORDER, ORDERC: orderC, setClocks, setTally, setLedger, setCal, setCellDoor, setMattress, setMess, setCellLid, setVTile, setVaultDoor,
     setGold, goldPos, GOLD, CASH, setGlint, setCoffee, setPolice, setLantern, setSection, COFFEE, QUEJAS, WETSIGN, MUG, CACTUS, MATTRESS, VDOOR, POLICE, CELLLIGHTS: null, dof, bloom, comp, inkM, get SECTION() { return SECTION; } };
 })();

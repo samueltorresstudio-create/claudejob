@@ -101,9 +101,9 @@
   }
   zoneLight('#ffe2b0', 5.5, 13, JX, 4.3, -3.5, inJ); zoneLight('#ffe2b0', 5.5, 13, JX, 4.3, 0, inJ); zoneLight('#ffe2b0', 5, 13, JX, 4.3, 3.5, inJ);
   zoneLight('#d8e8ff', 4, 14, JX - 5.5, 3, 0, inJ); zoneLight('#ffd6a0', 3.5, 6, JX, 3.2, -4.2, inJ); zoneLight('#9fe0a8', 1.4, 2.5, JX + 2.25, 2.1, -5.0, inJ);
-  function drawCondena(n, k) { const g = condena.g, w = 320, h = 200; g.fillStyle = '#2a1c12'; g.fillRect(0, 0, w, h); txt(g, 'CONDENA', w / 2, 26, 30, '#f2d27a', 900);
+  function drawCondena(n, k, prev) { const g = condena.g, w = 320, h = 200; g.fillStyle = '#2a1c12'; g.fillRect(0, 0, w, h); txt(g, 'CONDENA', w / 2, 26, 30, '#f2d27a', 900);
     const card = (x, d, fl) => { g.save(); g.translate(x, 116); g.scale(1, fl); g.fillStyle = '#f4efe2'; g.fillRect(-58, -66, 116, 132); g.strokeStyle = INK; g.lineWidth = 6; g.strokeRect(-58, -66, 116, 132); g.beginPath(); g.moveTo(-58, 0); g.lineTo(58, 0); g.stroke(); txt(g, String(d), 0, 4, 112, '#c8243a', 900); g.restore(); };
-    card(100, Math.floor(n / 10), 1); const a = n % 10, b = (n + 9) % 10; card(220, k < .5 ? b : a, Math.abs(Math.cos(k * Math.PI))); txt(g, 'AÑOS', w / 2, 188, 22, '#f2d27a', 800); condena.t.needsUpdate = true; }
+    card(100, Math.floor(n / 10), 1); const a = n % 10, b = prev ?? (n + 9) % 10; card(220, k < .5 ? b : a, Math.abs(Math.cos(k * Math.PI))); txt(g, 'AÑOS', w / 2, 188, 22, '#f2d27a', 800); condena.t.needsUpdate = true; }
   drawCondena(0, 1);
   function drawOrder(k) { const g = orderC.g, w = 600, h = 800; paperBg(g, w, h, '#f6f0de'); txt(g, 'JUZGADO DE LO PENAL', w / 2, 70, 34, '#5a4a3a', 800); g.fillStyle = '#5a4a3a'; g.fillRect(60, 100, w - 120, 4);
     txt(g, 'ORDEN', w / 2, 170, 92, INK, 900); txt(g, 'Nº 707', w / 2, 250, 52, '#5a4a3a', 900);

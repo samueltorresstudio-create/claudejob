@@ -91,11 +91,11 @@
   // ventanita con barrotes en el muro exterior (+ alféizar con cactus)
   { add(RB(.2, .06, 1.2, .01), MAT.concrete, 1.4, 1.45, -1.6); var CACTUS = new T.Group(); CACTUS.position.set(1.4, 1.48, -2.0); scene.add(CACTUS); add(new T.CylinderGeometry(.07, .055, .1, 12), STD({ color: '#c86a3a' }), 0, .05, 0, { parent: CACTUS });
     add(new T.CapsuleGeometry(.045, .12, 4, 10), STD({ color: '#4a9a4a', roughness: .9 }), 0, .19, 0, { parent: CACTUS }); add(new T.CapsuleGeometry(.025, .05, 4, 8), STD({ color: '#4a9a4a' }), .05, .2, 0, { parent: CACTUS, rz: -.7 }); add(new T.SphereGeometry(.025, 8, 6), STD({ color: '#ff6a9a', emissive: '#a02a4a', emissiveIntensity: .3 }), 0, .29, 0, { parent: CACTUS });
-    for (let k = 0; k < 4; k++) add(new T.CylinderGeometry(.024, .024, 1.0, 8), MAT.bars, 1.9, 1.95, -1.93 + k * .22); add(new T.CylinderGeometry(.024, .024, 1.1, 8), MAT.bars, 1.9, 1.95, -1.6, { rx: Math.PI / 2 }); }
+    for (let k = 0; k < 4; k++) add(new T.CylinderGeometry(.024, .024, 1.0, 8), MAT.bars, 1.9, 1.95, -1.93 + k * .22); add(new T.CylinderGeometry(.024, .024, 1.1, 8), MAT.bars, 1.9, 2.3, -1.6, { rx: Math.PI / 2 }); }
   // pared interior de la celda (lado del muro) con el hueco de la ventana
   BX(1.47, 1.5, 0, 2.8, -3.2, -2.15, MAT.cellWall, { cast: false, r: .003 }); BX(1.47, 1.5, 0, 2.8, -1.05, 0, MAT.cellWall, { cast: false, r: .003 }); BX(1.47, 1.5, 0, 1.45, -2.15, -1.05, MAT.cellWall, { cast: false, r: .003 }); BX(1.47, 1.5, 2.45, 2.8, -2.15, -1.05, MAT.cellWall, { cast: false, r: .003 });
   // pared izquierda (lado x = -1.4) con las rayas de los días: W2.setTally(n, k)
-  var TALLY = signTex(1024, 512); add(new T.PlaneGeometry(1.9, .95), new T.MeshStandardMaterial({ map: TALLY.t, transparent: true, roughness: .9 }), -1.395, 1.6, -1.3, { ry: Math.PI / 2, cast: false, noInk: true });
+  var TALLY = signTex(1024, 512); TALLY.t.wrapS = T.RepeatWrapping; TALLY.t.repeat.x = -1; TALLY.t.offset.x = 1; add(new T.PlaneGeometry(1.9, .95), new T.MeshStandardMaterial({ map: TALLY.t, transparent: true, roughness: .9 }), -1.395, 1.6, -1.3, { ry: Math.PI / 2, cast: false, noInk: true });
   // cuadro de punto de cruz «HOGAR, DULCE HOGAR», estante con taza llena de cucharas dobladas, libros, radio y calendario
   sign(.66, .5, 300, (g, w, h) => { g.fillStyle = '#f4eedc'; g.fillRect(0, 0, w, h); for (let y = 10; y < h; y += 8) for (let x = 10; x < w; x += 8) { if (rnd() > .985) { g.fillStyle = 'rgba(0,0,0,.08)'; g.fillRect(x, y, 3, 3); } }
     const X_ = (x, y, c) => { g.strokeStyle = c; g.lineWidth = 3; g.beginPath(); g.moveTo(x - 3, y - 3); g.lineTo(x + 3, y + 3); g.moveTo(x + 3, y - 3); g.lineTo(x - 3, y + 3); g.stroke(); };
@@ -119,7 +119,8 @@
   zoneLight('#ffe8c8', 16, 18, -3, 5.6, 3.5, inHall); zoneLight('#ffe8c8', 14, 18, -11, 5.6, 3.5, inHall); zoneLight('#e4ecff', 9, 16, -6, 2.6, 6.5, inHall); var NIGHTFILL = zoneLight('#6a7ad8', 10, 18, -4.5, 4.5, 2.5, p => inHall(p) && NIGHT > .5); var BOOTHLAMP = zoneLight('#ffd8a0', 7, 5, -5.8, 1.5, 7.2, p => inHall(p) && NIGHT > .5); ZL.slice(-3).forEach(([l]) => l.userData.nightK = .22); zoneLight('#ffe6b8', 3, 6, -4.5, 2.2, 6.4, p => inHall(p) && p.z > 2);
   // ---------- muro exterior (x ∈ [1.5, 2.3]) con el hueco de la ventana; callejón; muro del banco con «BANCO» pintado ----------
   BX(1.5, 2.3, -1.2, 7.4, -3.6, -2.15, MAT.stone, { r: .01 }); BX(1.5, 2.3, -1.2, 7.4, -1.05, 8.0, MAT.stone, { r: .01 }); BX(1.5, 2.3, -1.2, 1.45, -2.15, -1.05, MAT.stone, { r: .01 }); BX(1.5, 2.3, 2.45, 7.4, -2.15, -1.05, MAT.stone, { r: .01 });
-  BX(2.3, 2.52, 1.4, 1.45, -2.25, -.95, MAT.concrete);                                                                                        // alféizar de fuera (la paloma se posa aquí)
+  BX(2.3, 2.52, 1.4, 1.45, -2.25, -.95, MAT.concrete);
+  [[-3.6, -2.15, -1.2, 7.4], [-1.05, 8.0, -1.2, 7.4], [-2.15, -1.05, -1.2, 1.45], [-2.15, -1.05, 2.45, 7.4]].forEach(([a, b, c, d]) => wallZY(a, b, c, d, 2.302, MAT.stone, 2.4, -1));                                                                                        // alféizar de fuera (la paloma se posa aquí)
   for (let y = -.6; y < 7; y += 2.2) add(new T.CylinderGeometry(.06, .06, .01, 6), MAT.black, 2.31, y, 5.5);
   add(new T.CylinderGeometry(.07, .07, 7.6, 10), STD({ color: '#6a6e74', metalness: .4, roughness: .5 }), 2.42, 3.6, 3.4); add(new T.CylinderGeometry(.09, .07, .3, 10), STD({ color: '#6a6e74', metalness: .4 }), 2.48, .15, 3.4, { rz: .5 });   // bajante
   floorXZ(2.3, 5.3, -6, 10, .001, MAT.cobble, 1.5); BX(2.3, 5.3, -.15, 0, ZS, 0, MAT.cobble, { r: .002 });
@@ -130,9 +131,9 @@
   add(new T.CircleGeometry(.6, 20), STD({ color: '#8aa0b0', roughness: .05, metalness: .4 }), 3.3, .006, 4.2, { rx: -Math.PI / 2, s: [1.4, 1, 1], cast: false, noInk: true });
   for (let k = 0; k < 14; k++) add(new T.ConeGeometry(.04, .2 + rnd() * .2, 4), STD({ color: '#6a9a3a' }), [2.38, 5.22][k % 2], .1, -5 + k * 1.1, { noInk: true });
   BX(5.3, 5.9, -1.2, 6.2, -3.6, 10, MAT.brick, { r: .01 });
-  { const t = tex(920, 400, (g, w, h) => { g.clearRect(0, 0, w, h); g.globalAlpha = .92; txt(g, 'BANCO', w / 2, h * .46, 300, '#f2ece0', 900); g.globalAlpha = .6; txt(g, 'DESDE 1902', w / 2, h * .88, 74, '#f2ece0', 900); g.globalAlpha = 1;
-    g.globalCompositeOperation = 'destination-out'; for (let i = 0; i < 900; i++) { g.fillStyle = `rgba(0,0,0,${.3 + rnd() * .6})`; g.fillRect(rnd() * w, rnd() * h, 2 + rnd() * 6, 2 + rnd() * 4); } for (let i = 0; i < 26; i++) { g.fillStyle = 'rgba(0,0,0,.8)'; g.fillRect(0, i * h / 26, w, 2); } });
-    add(new T.PlaneGeometry(1.75, .76), new T.MeshStandardMaterial({ map: t, transparent: true, roughness: .9, depthWrite: false }), 5.295, 2.0, -1.6, { ry: -Math.PI / 2, cast: false, noInk: true }); }
+  { const t = tex(920, 400, (g, w, h) => { g.clearRect(0, 0, w, h); g.globalAlpha = 1; txt(g, 'BANCO', w / 2, h * .46, 300, '#fbf6ea', 900, 'center', 14, '#5a2a1a'); g.globalAlpha = .75; txt(g, 'DESDE 1902', w / 2, h * .88, 74, '#f2ece0', 900); g.globalAlpha = 1;
+    g.globalCompositeOperation = 'destination-out'; for (let i = 0; i < 260; i++) { g.fillStyle = `rgba(0,0,0,${.3 + rnd() * .6})`; g.fillRect(rnd() * w, rnd() * h, 2 + rnd() * 6, 2 + rnd() * 4); } for (let i = 0; i < 26; i++) { g.fillStyle = 'rgba(0,0,0,.8)'; g.fillRect(0, i * h / 26, w, 2); } });
+    add(new T.PlaneGeometry(1.75, .76), new T.MeshStandardMaterial({ map: t, transparent: true, roughness: .9, depthWrite: false }), 5.295, 1.82, -1.6, { ry: -Math.PI / 2, cast: false, noInk: true }); }
   { const br = new T.Group(); br.position.set(5.2, 3.6, -1.6); scene.add(br); add(new T.CylinderGeometry(.02, .02, .5, 6), MAT.black, -.25, 0, 0, { parent: br, rz: Math.PI / 2 }); add(new T.ConeGeometry(.18, .16, 14, 1, true), STD({ color: '#2a5a3a', side: T.DoubleSide }), -.5, -.04, 0, { parent: br }); add(new T.SphereGeometry(.07, 10, 8), STD({ color: '#fff4d0', emissive: '#ffd890', emissiveIntensity: .2 }), -.5, -.1, 0, { parent: br }); var ALLEYBULB = br.children[2]; }
   // ---------- bajo tierra: tierra cortada (solo en vista de corte) y túnel ----------
   const TUN = { x0: -1.3, x1: 9.4, y0: -3.1, y1: -1.7, zb: -3.3 };
