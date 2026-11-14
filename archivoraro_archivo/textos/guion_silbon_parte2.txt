@@ -1,13 +1,14 @@
-SILBÓN · PARTE 2 — idea 3 («Canelo rasca la puerta») + la abuela muere (petición del usuario, 14-11-2026). Estilo 2D original mejorado (como el 65).
+SILBÓN · PARTE 2 — gancho «tú te salvas» (aprobado) + idea 3 («Canelo rasca la puerta») + la abuela muere (petición del usuario, 14-11-2026). Estilo 2D original mejorado (como el 65).
 Continuidad con la parte 1: 03:00, cuentan huesos en la puerta, Mateo lo oye y la abuela no, faltan dos horas (amanecer a las 05:00),
 látigo del abuelo en la pared, Canelo fuera. Reglas 1-3 de la parte 1 → aquí 4, 5 y 6.
 Lógica: la abuela oye los arañazos (oye bien), pero no oye los huesos: según la leyenda, quien no los oye no ve el amanecer.
 El látigo espanta lo que rasca, pero el conteo termina igual. Final en bucle con la regla 1 (silbido lejos = está cerca).
 
-[tense] Si a las tres de la mañana tu perro rasca la puerta para entrar… no abras hasta oírle ladrar.
-Mateo lo oyó todo. Alguien contaba huesos junto a su puerta. Su abuela, en la cama de al lado… no oyó nada.
-Y si nadie en la casa oye los huesos… alguien no verá el amanecer.
-Faltan dos horas. Solo hay una forma de salvarla: que ella también lo oiga.
+[tense] Si oyes al Silbón contar huesos en tu puerta… tranquilo. Tú te salvas.
+El problema… es quien duerme a tu lado.
+Mateo lo oyó todo. Su abuela, en la cama de al lado… no oyó nada.
+Y si ella no lo oye antes de que termine de contar… no verá el amanecer.
+Son las tres. Va por el siete.
 Mateo le aprieta la mano. «Abuela… escucha».
 Pero el conteo se para. Y empieza otro ruido. Algo rasca la puerta. Y gime, como un perro.
 Regla cuatro: si rasca y no ladra… no es tu perro.

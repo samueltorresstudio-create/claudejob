@@ -1,0 +1,23 @@
+[
+ {"sc":"hook","hud":"PARTE 2 · 03:00","alert":true,"say":"Si oyes al Silbón contar huesos en tu puerta… tranquilo. Tú te salvas.","cap":"SI OYES AL SILBÓN|p CONTAR HUESOS EN TU PUERTA… TRANQUILO. TÚ TE SALVAS.|g","pause":0.25},
+ {"sc":"hook2","hud":"PARTE 2 · 03:00","alert":true,"say":"El problema… es quien duerme a tu lado.","cap":"EL PROBLEMA… ES QUIEN DUERME|p A TU LADO.|p","pause":0.3},
+ {"sc":"nohear","hud":"HUESOS · 5/12","say":"Mateo lo oyó todo. Su abuela, en la cama de al lado… no oyó nada.","cap":"MATEO LO OYÓ TODO.|y SU ABUELA, EN LA CAMA DE AL LADO… NO OYÓ NADA.|p","pause":0.2},
+ {"sc":"rule0","hud":"HUESOS · 6/12","alert":true,"say":"Y si ella no lo oye antes de que termine de contar… no verá el amanecer.","cap":"Y SI ELLA NO LO OYE ANTES DE QUE TERMINE DE CONTAR… NO VERÁ EL AMANECER.|p","pause":0.2},
+ {"sc":"seven","hud":"HUESOS · 7/12","say":"Son las tres. Va por el siete.","cap":"SON LAS TRES.|y VA POR EL SIETE.|p","pause":0.25},
+ {"sc":"hand","hud":"HUESOS · 7/12","say":"Mateo le aprieta la mano. «Abuela… escucha».","cap":"MATEO LE APRIETA LA MANO. «ABUELA… ESCUCHA».|y","pause":0.25},
+ {"sc":"scratch","hud":"HUESOS · 7/12","alert":true,"say":"Pero el conteo se para. Y empieza otro ruido. Algo rasca la puerta. Y gime, como un perro.","cap":"PERO EL CONTEO SE PARA. Y EMPIEZA OTRO RUIDO. ALGO RASCA LA PUERTA.|p Y GIME, COMO UN PERRO.","pause":0.2},
+ {"sc":"rule4","hud":"HUESOS · 7/12","step":0,"say":"Regla cuatro: si rasca y no ladra… no es tu perro.","cap":"REGLA CUATRO:|y SI RASCA Y NO LADRA… NO ES TU PERRO.|p","pause":0.25},
+ {"sc":"wakeup","hud":"HUESOS · 7/12","say":"La abuela se despierta. «Es Canelo. Pobrecito, tiene frío». Y se levanta a abrir.","cap":"LA ABUELA SE DESPIERTA. «ES CANELO. POBRECITO, TIENE FRÍO». Y SE LEVANTA A ABRIR.|p","pause":0.2},
+ {"sc":"whip","hud":"HUESOS · 7/12","say":"Mateo descuelga el látigo del abuelo y se pone delante de la puerta.","cap":"MATEO DESCUELGA EL LÁTIGO|y DEL ABUELO Y SE PONE DELANTE DE LA PUERTA.","pause":0.2},
+ {"sc":"bark","hud":"HUESOS · 7/12","say":"Entonces Canelo ladra. Como loco. Desde el patio de atrás.","cap":"ENTONCES CANELO LADRA.|y COMO LOCO. DESDE EL PATIO DE ATRÁS.|p","pause":0.2},
+ {"sc":"still","hud":"HUESOS · 7/12","alert":true,"say":"Y en la puerta… los arañazos siguen.","cap":"Y EN LA PUERTA… LOS ARAÑAZOS SIGUEN.|p","pause":0.25},
+ {"sc":"rule5","hud":"HUESOS · 7/12","alert":true,"step":1,"say":"Regla cinco: si tu perro ladra lejos y algo rasca cerca… lo que rasca es el Silbón.","cap":"REGLA CINCO:|y SI TU PERRO LADRA LEJOS Y ALGO RASCA CERCA… LO QUE RASCA ES EL SILBÓN.|p","pause":0.2},
+ {"sc":"crack","hud":"HUESOS · 7/12","say":"Mateo hace chasquear el látigo contra el suelo. Una. Dos. Tres veces.","cap":"MATEO HACE CHASQUEAR EL LÁTIGO|y CONTRA EL SUELO. UNA. DOS. TRES VECES.","pause":0.2},
+ {"sc":"silence","hud":"HUESOS · 7/12","say":"Los arañazos paran. Silencio.","cap":"LOS ARAÑAZOS PARAN. SILENCIO.|b","pause":0.35},
+ {"sc":"rule6","hud":"HUESOS · 9/12","alert":true,"step":2,"say":"Regla seis: que pare no significa que se haya ido.","cap":"REGLA SEIS:|y QUE PARE NO SIGNIFICA QUE SE HAYA IDO.|p","pause":0.25},
+ {"sc":"count2","hud":"HUESOS · 12/12","alert":true,"say":"Desde fuera, una voz flojita sigue contando. «Diez… once… doce».","cap":"DESDE FUERA, UNA VOZ FLOJITA SIGUE CONTANDO. «DIEZ… ONCE… DOCE».|p","pause":0.3},
+ {"sc":"smile","hud":"HUESOS · 12/12","alert":true,"say":"La abuela, a su lado, sonríe: «¿Ves? Ya se ha ido. No se oye nada».","cap":"LA ABUELA, A SU LADO, SONRÍE: «¿VES? YA SE HA IDO. NO SE OYE NADA».|p","pause":0.3},
+ {"sc":"dawn","hud":"AMANECER · 05:00","say":"A las cinco sale el sol. Canelo entra moviendo la cola.","cap":"A LAS CINCO SALE EL SOL.|y CANELO ENTRA MOVIENDO LA COLA.","pause":0.3},
+ {"sc":"dead","hud":"AMANECER · 05:01","alert":true,"say":"La abuela no se despierta.","cap":"LA ABUELA NO SE DESPIERTA.|p","pause":0.4},
+ {"sc":"end","hud":"NOCHE 2 · 03:00","alert":true,"cut":true,"say":"Esa noche, a las tres… Mateo oye silbar. Lejos. Muy lejos.","cap":"ESA NOCHE, A LAS TRES… MATEO OYE SILBAR.|p LEJOS. MUY LEJOS.|p","pause":0.2}
+]
