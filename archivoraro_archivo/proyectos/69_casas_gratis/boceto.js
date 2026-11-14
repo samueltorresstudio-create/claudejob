@@ -25,6 +25,7 @@ window.SC = {
   coche2: () => { W.setMood(0, 0); const X = W.TX; W.setCam(V3(X - 24, 1.4, 9.2), V3(X - 20, .8, 3.5), 46); return ''; },
   coche3: () => { W.setMood(0, 0); const X = W.TX; W.setCam(V3(X + 30.5, 1.4, 9.4), V3(X + 26, .8, 5.6), 46); return ''; },
   cf: () => { W.setMood(0, 0); const X = W.SX; W.TT_CAR.rotation.y = -1.25; W.setCam(V3(X + .9, 1.25, 4.0), V3(X - .9, .7, -.4), 40); return ''; },
+  sala: () => { W.setMood(0, 0); const X = W.SX; W.TT_CAR.rotation.y = .6; W.TT_HOUSE.rotation.y = -.4; W.setCam(V3(X - .15, 1.75, 7.6), V3(X + .1, 1.05, -.2), 50); return ''; },
   pueblo: () => { W.setMood(0, 0); W.setGift(0); W.charLight = DAY; W.setCam(V3(-46, 34, 62), V3(6, -2, -40), 52); return ''; },
   interior: () => { W.setMood(0, 0); W.setGift(0); W.charLight = IN; W.setCam(V3(IX + 3.7, IY + 1.55, 2.5), V3(IX + .1, IY + .7, -1.2), 60); return who('TU', { face: 'wide', mouth: 'grin', look: [-10, 4], turn: -.35, armL: [20, 40], armR: [24, 50], sweat: true }, V3(IX + 1.3, IY, -1.0)); },
   genkan: () => { W.setMood(0, 0); W.setGift(0); W.charLight = IN; W.setCam(V3(IX + 5.7, IY + .1, 1.3), V3(IX + 4.45, IY - .1, -.5), 50); return ''; },

@@ -191,7 +191,7 @@ S.dejan = (t, D, B) => { const E = EVS.dejan(B), T = window.__T || t; setup(T); 
 S.venderla = (t, D, B) => { const E = EVS.venderla(B), T = window.__T || t; const tc = E.casi - .12; whipBlur(t, tc);
   if (t < tc) { setup(T); const F = V3(4.6, 0, 7.2), p0 = V3(4.3, 1.65, 11.0), tg = V3(4.6, 1.55, 7.2); cam(pushIn(p0, tg, t / tc, 1.15), tg, 42); const hp = headScr(F);
     return who('TU', { face: 'smug', mouth: 'line', brows: .4, look: [-8, -4], armL: [16, 22], armR: [80, 120], headTilt: -6 }, F) + popIcon('?', hp.x + 150, hp.y - 160, 130, clamp((t - .05) / .3)); }
-  setup(T, 0, 0, OFFL); const k = oc((t - tc) / (D - tc)); cam(L3(V3(SX - .4, 2.6, 5.1), V3(SX + .2, 2.2, 4.5), k), V3(SX + .1, .9, -1.6), 60); return ''; };
+  setup(T, 0, 0, OFFL); const k = oc((t - tc) / (D - tc)); cam(L3(V3(SX - .15, 1.75, 7.6), V3(SX - .05, 1.6, 6.7), k), V3(SX + .1, 1.05, -.2), 50); return ''; };
 // 22 · «En cuanto alguien entra a vivir, pierden valor»: una pareja entra en una casa nueva y el cartel de precio empieza a bajar.
 const NEWCAM = () => [V3(W.NX - 2.6, 1.8, W.NZ + 13.6), V3(W.NX - 1.0, 2.3, W.NZ + 2)];
 S.pierden = (t, D, B) => { const E = EVS.pierden(B), T = window.__T || t; setup(T); const drop = k01(t, E.pierden - .1, D + .5); W.setPrice(3e7 - drop * 1.2e7, t > E.pierden ? .5 + .5 * Math.sin(T * 12) : 0);
