@@ -383,3 +383,10 @@ El usuario los pasó como «consejos a la hora de crear los vídeos». Orden rea
 - **Personaje sentado detrás de una mesa vista desde arriba**: el recorte se hace con el borde DE ATRÁS de la mesa (lo que la tapa desde la cámara), no con el de delante.
 - **Muchas luces de zona**: se apagan con `visible = false` fuera de su zona (menos coste por píxel). `userData.nightK` atenúa las de día cuando `setMood(…, 1)`.
 - Encuadres verticales: a 2 m solo caben ~1,1 m de ancho. Para dos personajes y un objeto (cafetera, celda) la cámara va a 4 m o más.
+- **Revisión del 70 (lo que salió mal en el primer render):**
+  - Un objeto 3D que pasa DELANTE de un personaje 2D (la orden que vuela a la cámara) queda detrás del dibujo: hay que pintarlo en 2D encima (`paper2d`: proyección afín de 3 esquinas + `toDataURL` del lienzo) y ocultar el 3D mientras tanto.
+  - Cámaras pegadas a un muro (x = 1,45 con el muro en 1,5): la deriva de cámara en mano la mete dentro y sale un fondo negro con los personajes flotando. Deja ≥ 0,3 m de margen.
+  - Personaje tumbado (F y cabeza en horizontal): los brazos en reposo apuntan «hacia los pies» y uno sale como una antena. Para dormir, `noArms: true`; para las manos en la nuca, `[150, 122]`.
+  - Barrotes delante de una cara: ninguna barra horizontal a la altura de los ojos.
+  - Una transición `swish` que gira la cámara pegada a una caja oscura (la garita) da fotogramas negros: usa `glide` si los dos planos están en la misma sala.
+  - Un gateo NO se puede hacer girando la figura de pie: hace falta una figura de perfil propia con IK y apoyos que no patinen (`crawl70.js`).
