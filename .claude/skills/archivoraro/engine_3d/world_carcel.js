@@ -140,7 +140,8 @@ const W2 = (() => {
     // placa con el nombre del juez
     sign(1.5, .3, 120, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#f2d27a'); gr.addColorStop(1, '#b8892a'); g.fillStyle = gr; g.fillRect(0, 0, w, h); g.strokeStyle = '#5a3a08'; g.lineWidth = 8; g.strokeRect(4, 4, w - 8, h - 8); txt(g, 'JUEZ  R. MORA', w / 2, h / 2 + 2, 66, '#3a2604', 900); }, X, 1.4, -4.47, { d: .03 });
     // sillón del juez
-    BX(X - .55, X + .55, .64, 3.0, -6.4, -6.15, MAT.velvet, { r: .1 }); BX(X - .5, X + .5, .64, 1.15, -6.3, -5.6, MAT.velvet, { r: .08 }); BX(X - .62, X + .62, 2.85, 3.08, -6.45, -6.1, MAT.woodDk, { r: .06 });
+    { const chM = STD({ map: tex(128, 256, (g, w, h) => { g.fillStyle = '#5a1620'; g.fillRect(0, 0, w, h); for (let i = 0; i < 4; i++) for (let j = 0; j < 7; j++) { const x = 16 + i * 32 + (j % 2) * 16, y = 18 + j * 34; const gr = g.createRadialGradient(x, y, 1, x, y, 16); gr.addColorStop(0, 'rgba(0,0,0,.45)'); gr.addColorStop(1, 'rgba(255,200,200,.06)'); g.fillStyle = gr; g.fillRect(x - 16, y - 16, 32, 32); g.fillStyle = '#d8a640'; g.beginPath(); g.arc(x, y, 2.5, 0, 7); g.fill(); } }), roughness: .9 });
+    BX(X - .5, X + .5, .64, 2.55, -6.4, -6.18, chM, { r: .1 }); BX(X - .5, X + .5, .64, 1.15, -6.3, -5.6, chM, { r: .08 }); BX(X - .58, X + .58, 2.45, 2.62, -6.45, -6.12, MAT.woodDk, { r: .06 }); }
     // escudo de la justicia (balanza) entre cortinas
     sign(1.9, 1.9, 512, (g, w, h) => { g.fillStyle = '#7a4a22'; g.beginPath(); g.arc(w / 2, h / 2, w / 2 - 4, 0, 7); g.fill(); g.lineWidth = 16; g.strokeStyle = '#d8a640'; g.stroke(); g.fillStyle = '#efe0b8'; g.beginPath(); g.arc(w / 2, h / 2, w / 2 - 40, 0, 7); g.fill(); g.lineWidth = 8; g.strokeStyle = INK; g.stroke();
       g.strokeStyle = '#8a5a12'; g.lineWidth = 14; g.lineCap = 'round'; g.beginPath(); g.moveTo(w / 2, 120); g.lineTo(w / 2, 370); g.moveTo(140, 170); g.lineTo(372, 170); g.moveTo(190, 400); g.lineTo(322, 400); g.stroke();
@@ -158,7 +159,7 @@ const W2 = (() => {
     // contador «CONDENA» sobre el estrado (tarjetas que pasan): W2.setCondena(n, k)
     var condena = signTex(320, 200); add(RB(.62, .4, .14, .03), MAT.woodDk, X + 1.55, 2.04, -4.75); add(new T.PlaneGeometry(.56, .35), STD({ map: condena.t, roughness: .6 }), X + 1.55, 2.04, -4.675, { cast: false, noInk: true });
     // mazo (taco), lámpara verde de banquero, papeles, jarra
-    add(new T.CylinderGeometry(.16, .17, .07, 20), MAT.woodDk, X - .95, 1.88, -5.0);
+    add(new T.CylinderGeometry(.16, .17, .07, 20), MAT.woodDk, X + .78, 1.88, -4.95);
     { const lp = new T.Group(); lp.position.set(X + 2.25, 1.84, -5.15); scene.add(lp); add(new T.CylinderGeometry(.03, .03, .4, 8), MAT.brass, 0, .2, 0, { parent: lp }); add(new T.CylinderGeometry(.1, .12, .04, 16), MAT.brass, 0, .02, 0, { parent: lp });
       add(new T.CylinderGeometry(.1, .24, .14, 20, 1, true, 0, Math.PI), STD({ color: '#1f6a3a', emissive: '#1f6a3a', emissiveIntensity: .4, side: T.DoubleSide }), 0, .42, 0, { parent: lp, rz: Math.PI / 2, ry: Math.PI / 2 }); }
     for (let k = 0; k < 5; k++) add(RB(.5, .012, .65, .002), STD({ color: k % 2 ? '#f4f0e4' : '#ece4d0' }), X - .2 + k * .03, 1.85 + k * .013, -5.05, { ry: (k - 2) * .06, noInk: true });
@@ -317,11 +318,11 @@ const W2 = (() => {
   add(RB(.5, .1, .36, .04), MAT.steelShiny, 1.3, .85, -1.0); add(new T.CylinderGeometry(.015, .015, .14, 6), MAT.steelShiny, 1.42, .97, -1.0, { rz: Math.PI / 2 });
   add(RB(.03, .36, .28, .01), STD({ color: '#d8e4ec', metalness: .6, roughness: .15 }), 1.47, 1.25, -1.0);
   // ventanita con barrotes en el muro exterior (+ alféizar con cactus)
-  { add(RB(.2, .06, .9, .01), MAT.concrete, 1.4, 1.6, -1.6); var CACTUS = new T.Group(); CACTUS.position.set(1.4, 1.63, -1.85); scene.add(CACTUS); add(new T.CylinderGeometry(.07, .055, .1, 12), STD({ color: '#c86a3a' }), 0, .05, 0, { parent: CACTUS });
+  { add(RB(.2, .06, 1.2, .01), MAT.concrete, 1.4, 1.45, -1.6); var CACTUS = new T.Group(); CACTUS.position.set(1.4, 1.48, -2.0); scene.add(CACTUS); add(new T.CylinderGeometry(.07, .055, .1, 12), STD({ color: '#c86a3a' }), 0, .05, 0, { parent: CACTUS });
     add(new T.CapsuleGeometry(.045, .12, 4, 10), STD({ color: '#4a9a4a', roughness: .9 }), 0, .19, 0, { parent: CACTUS }); add(new T.CapsuleGeometry(.025, .05, 4, 8), STD({ color: '#4a9a4a' }), .05, .2, 0, { parent: CACTUS, rz: -.7 }); add(new T.SphereGeometry(.025, 8, 6), STD({ color: '#ff6a9a', emissive: '#a02a4a', emissiveIntensity: .3 }), 0, .29, 0, { parent: CACTUS });
-    for (let k = 0; k < 4; k++) add(new T.CylinderGeometry(.022, .022, .7, 8), MAT.bars, 1.9, 1.95, -1.92 + k * .213); add(new T.CylinderGeometry(.022, .022, .8, 8), MAT.bars, 1.9, 2.1, -1.6, { rx: Math.PI / 2 }); }
+    for (let k = 0; k < 4; k++) add(new T.CylinderGeometry(.024, .024, 1.0, 8), MAT.bars, 1.9, 1.95, -1.93 + k * .22); add(new T.CylinderGeometry(.024, .024, 1.1, 8), MAT.bars, 1.9, 1.95, -1.6, { rx: Math.PI / 2 }); }
   // pared interior de la celda (lado del muro) con el hueco de la ventana
-  BX(1.47, 1.5, 0, 2.8, -3.2, -2.0, MAT.cellWall, { cast: false, r: .003 }); BX(1.47, 1.5, 0, 2.8, -1.2, 0, MAT.cellWall, { cast: false, r: .003 }); BX(1.47, 1.5, 0, 1.6, -2.0, -1.2, MAT.cellWall, { cast: false, r: .003 }); BX(1.47, 1.5, 2.3, 2.8, -2.0, -1.2, MAT.cellWall, { cast: false, r: .003 });
+  BX(1.47, 1.5, 0, 2.8, -3.2, -2.15, MAT.cellWall, { cast: false, r: .003 }); BX(1.47, 1.5, 0, 2.8, -1.05, 0, MAT.cellWall, { cast: false, r: .003 }); BX(1.47, 1.5, 0, 1.45, -2.15, -1.05, MAT.cellWall, { cast: false, r: .003 }); BX(1.47, 1.5, 2.45, 2.8, -2.15, -1.05, MAT.cellWall, { cast: false, r: .003 });
   // pared izquierda (lado x = -1.4) con las rayas de los días: W2.setTally(n, k)
   var TALLY = signTex(1024, 512); add(new T.PlaneGeometry(1.9, .95), new T.MeshStandardMaterial({ map: TALLY.t, transparent: true, roughness: .9 }), -1.395, 1.6, -1.3, { ry: Math.PI / 2, cast: false, noInk: true });
   // cuadro de punto de cruz «HOGAR, DULCE HOGAR», estante con taza llena de cucharas dobladas, libros, radio y calendario
@@ -343,11 +344,11 @@ const W2 = (() => {
   [[-.4, .02, -1.2, .4, '#c8302e'], [.1, .02, -.6, -.6, '#2f6fbf'], [.7, .02, -1.4, 1.2, '#e8b830'], [-1.0, .02, -.7, .2, '#5a8a5a']].forEach(([x, y, z, r, c]) => add(RB(.19, .05, .26, .01), STD({ color: c }), x, y + .025, z, { ry: r, parent: MESS }));
   add(RB(.5, .08, .3, .05), STD({ color: '#f2efe6', roughness: 1 }), .2, .05, -2.0, { ry: .7, parent: MESS }); add(RB(.6, .03, .5, .02), STD({ color: '#d8d2c0' }), -.6, .02, -1.6, { ry: -.4, parent: MESS }); add(RB(.4, .02, .3, .01), STD({ color: '#8a9ab0' }), .9, .015, -.5, { ry: 1.2, parent: MESS });
   // luces de la celda y de la galería
-  zoneLight('#ffe6b8', 5.5, 6, -.2, 2.4, -1.3, p => inCell(p) || (p.y < 0 && p.x < 3) || SECTION); var CELLSUN = zoneLight('#fff2d0', 7, 5, 2.6, 2.2, -1.6, inCell, { decay: 1.6 });
+  var CELLLAMP = zoneLight('#ffe6b8', 5.5, 6, -.2, 2.4, -1.3, p => (inCell(p) || (p.y < 0 && p.x < 3) || SECTION)); CELLLAMP.userData.nightK = .12; var CELLSUN = zoneLight('#fff2d0', 7, 5, 2.6, 2.2, -1.6, inCell, { decay: 1.6 }); var CELLMOON = zoneLight('#7a8cff', 9, 6, 1.2, 2.0, -1.6, p => (inCell(p) || SECTION) && NIGHT > .5, { decay: 1.4 });
   zoneLight('#ffe8c8', 16, 18, -3, 5.6, 3.5, inHall); zoneLight('#ffe8c8', 14, 18, -11, 5.6, 3.5, inHall); zoneLight('#e4ecff', 9, 16, -6, 2.6, 6.5, inHall); var NIGHTFILL = zoneLight('#6a7ad8', 10, 18, -4.5, 4.5, 2.5, p => inHall(p) && NIGHT > .5); var BOOTHLAMP = zoneLight('#ffd8a0', 7, 5, -5.8, 1.5, 7.2, p => inHall(p) && NIGHT > .5); ZL.slice(-3).forEach(([l]) => l.userData.nightK = .22); zoneLight('#ffe6b8', 3, 6, -4.5, 2.2, 6.4, p => inHall(p) && p.z > 2);
   // ---------- muro exterior (x ∈ [1.5, 2.3]) con el hueco de la ventana; callejón; muro del banco con «BANCO» pintado ----------
-  BX(1.5, 2.3, -1.2, 7.4, -3.6, -2.0, MAT.stone, { r: .01 }); BX(1.5, 2.3, -1.2, 7.4, -1.2, 8.0, MAT.stone, { r: .01 }); BX(1.5, 2.3, -1.2, 1.6, -2.0, -1.2, MAT.stone, { r: .01 }); BX(1.5, 2.3, 2.3, 7.4, -2.0, -1.2, MAT.stone, { r: .01 });
-  BX(2.3, 2.5, 1.55, 1.6, -2.1, -1.1, MAT.concrete);                                                                                        // alféizar de fuera (la paloma se posa aquí)
+  BX(1.5, 2.3, -1.2, 7.4, -3.6, -2.15, MAT.stone, { r: .01 }); BX(1.5, 2.3, -1.2, 7.4, -1.05, 8.0, MAT.stone, { r: .01 }); BX(1.5, 2.3, -1.2, 1.45, -2.15, -1.05, MAT.stone, { r: .01 }); BX(1.5, 2.3, 2.45, 7.4, -2.15, -1.05, MAT.stone, { r: .01 });
+  BX(2.3, 2.52, 1.4, 1.45, -2.25, -.95, MAT.concrete);                                                                                        // alféizar de fuera (la paloma se posa aquí)
   for (let y = -.6; y < 7; y += 2.2) add(new T.CylinderGeometry(.06, .06, .01, 6), MAT.black, 2.31, y, 5.5);
   add(new T.CylinderGeometry(.07, .07, 7.6, 10), STD({ color: '#6a6e74', metalness: .4, roughness: .5 }), 2.42, 3.6, 3.4); add(new T.CylinderGeometry(.09, .07, .3, 10), STD({ color: '#6a6e74', metalness: .4 }), 2.48, .15, 3.4, { rz: .5 });   // bajante
   floorXZ(2.3, 5.3, -6, 10, .001, MAT.cobble, 1.5); BX(2.3, 5.3, -.15, 0, ZS, 0, MAT.cobble, { r: .002 });
@@ -360,7 +361,7 @@ const W2 = (() => {
   BX(5.3, 5.9, -1.2, 6.2, -3.6, 10, MAT.brick, { r: .01 });
   { const t = tex(920, 400, (g, w, h) => { g.clearRect(0, 0, w, h); g.globalAlpha = .92; txt(g, 'BANCO', w / 2, h * .46, 300, '#f2ece0', 900); g.globalAlpha = .6; txt(g, 'DESDE 1902', w / 2, h * .88, 74, '#f2ece0', 900); g.globalAlpha = 1;
     g.globalCompositeOperation = 'destination-out'; for (let i = 0; i < 900; i++) { g.fillStyle = `rgba(0,0,0,${.3 + rnd() * .6})`; g.fillRect(rnd() * w, rnd() * h, 2 + rnd() * 6, 2 + rnd() * 4); } for (let i = 0; i < 26; i++) { g.fillStyle = 'rgba(0,0,0,.8)'; g.fillRect(0, i * h / 26, w, 2); } });
-    add(new T.PlaneGeometry(2.0, .87), new T.MeshStandardMaterial({ map: t, transparent: true, roughness: .9, depthWrite: false }), 5.295, 2.2, -1.6, { ry: -Math.PI / 2, cast: false, noInk: true }); }
+    add(new T.PlaneGeometry(1.75, .76), new T.MeshStandardMaterial({ map: t, transparent: true, roughness: .9, depthWrite: false }), 5.295, 2.0, -1.6, { ry: -Math.PI / 2, cast: false, noInk: true }); }
   { const br = new T.Group(); br.position.set(5.2, 3.6, -1.6); scene.add(br); add(new T.CylinderGeometry(.02, .02, .5, 6), MAT.black, -.25, 0, 0, { parent: br, rz: Math.PI / 2 }); add(new T.ConeGeometry(.18, .16, 14, 1, true), STD({ color: '#2a5a3a', side: T.DoubleSide }), -.5, -.04, 0, { parent: br }); add(new T.SphereGeometry(.07, 10, 8), STD({ color: '#fff4d0', emissive: '#ffd890', emissiveIntensity: .2 }), -.5, -.1, 0, { parent: br }); var ALLEYBULB = br.children[2]; }
   // ---------- bajo tierra: tierra cortada (solo en vista de corte) y túnel ----------
   const TUN = { x0: -1.3, x1: 9.4, y0: -3.1, y1: -1.7, zb: -3.3 };
@@ -381,6 +382,7 @@ const W2 = (() => {
   for (let x = .2; x < 8.4; x += 1.3) { [TUN.zb + .06].forEach(z => { BX(x - .06, x + .06, TUN.y0, TUN.y1, z - .04, z + .04, MAT.woodDk); }); BX(x - .06, x + .06, TUN.y1 - .1, TUN.y1, TUN.zb, ZS, MAT.woodDk); }
   const candles = []; [.9, 3.5, 6.1, 8.2].forEach(x => { add(RB(.1, .03, .1, .01), MAT.woodLt, x, TUN.y0 + .9, TUN.zb + .08); add(new T.CylinderGeometry(.025, .025, .1, 8), STD({ color: '#f4eedc' }), x, TUN.y0 + .97, TUN.zb + .08); candles.push(add(new T.SphereGeometry(.025, 8, 6), STD({ color: '#ffd060', emissive: '#ffb030', emissiveIntensity: 3 }), x, TUN.y0 + 1.05, TUN.zb + .08, { cast: false, noInk: true })); });
   [.9, 3.5, 6.1, 8.2].forEach(x => zoneLight('#ffb050', 2.6, 3.2, x, TUN.y0 + 1.05, TUN.zb + .4, () => SECTION, { decay: 1.5 }));
+  zoneLight('#ffd6a8', 6, 16, 4, -2.6, 2.5, () => SECTION, { decay: 1.1 }); zoneLight('#c8b0ff', 4, 16, 1, -.5, 3, () => SECTION, { decay: 1.1 });
   // cubos de tierra, cucharas clavadas, plano del banco y cartel tachado
   [[1.8, '#7a6a5a'], [5.0, '#6a5a4a']].forEach(([x, c]) => { add(new T.CylinderGeometry(.14, .11, .24, 12), STD({ color: '#8a8e94', metalness: .4 }), x, TUN.y0 + .12, TUN.zb + .35); add(new T.SphereGeometry(.12, 10, 6), STD({ color: '#8a5a36', roughness: 1 }), x, TUN.y0 + .24, TUN.zb + .35, { s: [1, .4, 1] }); });
   for (let k = 0; k < 5; k++) { add(new T.CylinderGeometry(.008, .008, .16, 5), MAT.steelShiny, 2.6 + k * .07, TUN.y0 + .55 + (k % 2) * .06, TUN.zb + .02, { rx: Math.PI / 2 - .2, noInk: true }); add(new T.SphereGeometry(.02, 6, 5), MAT.steelShiny, 2.6 + k * .07, TUN.y0 + .55 + (k % 2) * .06, TUN.zb + .1, { s: [1, .6, 1.4], noInk: true }); }
@@ -501,11 +503,11 @@ const W2 = (() => {
   // puerta redonda de la cámara (bisagra en z = -.5): W2.setVaultDoor(k)
   var VDOOR = new T.Group(); VDOOR.position.set(12.2, 0, -.5); scene.add(VDOOR);
   { const d = new T.Group(); d.position.set(0, 1.45, -1.3); VDOOR.add(d); add(new T.CylinderGeometry(1.22, 1.22, .42, 48), MAT.steelShiny, .05, 0, 0, { parent: d, rz: Math.PI / 2 });
-    add(new T.CylinderGeometry(1.0, 1.0, .03, 40), STD({ map: tex(512, 512, (g, w, h) => { g.fillStyle = '#b8c0c8'; g.fillRect(0, 0, w, h); for (let r = 40; r < 256; r += 18) { g.strokeStyle = `rgba(0,0,0,${.05 + (r % 36) / 400})`; g.lineWidth = 2; g.beginPath(); g.arc(w / 2, h / 2, r, 0, 7); g.stroke(); } txt(g, 'INVIOLABLE', w / 2, 420, 46, '#4a5058', 900); }), metalness: .5, roughness: .3 }), .27, 0, 0, { parent: d, rz: Math.PI / 2, noInk: true });
+    add(new T.CylinderGeometry(1.0, 1.0, .03, 40), STD({ map: tex(512, 512, (g, w, h) => { g.fillStyle = '#b8c0c8'; g.fillRect(0, 0, w, h); for (let r = 40; r < 256; r += 18) { g.strokeStyle = `rgba(0,0,0,${.05 + (r % 36) / 400})`; g.lineWidth = 2; g.beginPath(); g.arc(w / 2, h / 2, r, 0, 7); g.stroke(); } g.save(); g.translate(w / 2, h / 2); g.rotate(Math.PI / 2); g.scale(1, -1); txt(g, 'INVIOLABLE', 0, 164, 46, '#4a5058', 900); g.restore(); }), metalness: .5, roughness: .3 }), .27, 0, 0, { parent: d, rz: Math.PI / 2, noInk: true });
     for (let k = 0; k < 16; k++) { const a = k / 16 * Math.PI * 2; add(new T.CylinderGeometry(.06, .06, .5, 10), MAT.steelShiny, -.02, Math.sin(a) * 1.06, Math.cos(a) * 1.06, { parent: d, rz: Math.PI / 2 }); }
     const wh = new T.Group(); wh.position.set(.42, 0, 0); d.add(wh); add(new T.TorusGeometry(.42, .045, 10, 32), MAT.brass, 0, 0, 0, { parent: wh, ry: Math.PI / 2 }); add(new T.CylinderGeometry(.1, .1, .14, 16), MAT.brass, -.05, 0, 0, { parent: wh, rz: Math.PI / 2 });
     for (let k = 0; k < 3; k++) { const s_ = add(new T.CylinderGeometry(.03, .03, .84, 8), MAT.brass, 0, 0, 0, { parent: wh }); s_.rotation.x = k * Math.PI / 3; } d.userData.wheel = wh; VDOOR.userData.d = d;
-    add(RB(.1, .5, .24, .03), MAT.steelShiny, .02, 0, 1.18, { parent: d }); }
+    add(RB(.1, .5, .24, .03), MAT.steelShiny, .22, 0, -1.08, { parent: d }); }
   // estanterías con lingotes (dos módulos al fondo; hueco entre ellos sobre la losa suelta), fajos de billetes y sacos
   const GOLD = [], CASH = []; const goldGeo = (() => { const g = new T.CylinderGeometry(.075, .1, .065, 4, 1); g.rotateY(Math.PI / 4); g.scale(1.85, 1, .82); return g; })();
   const shelfUnit = (x0, x1, items) => { BX(x0, x1, 2.4, 2.45, -3.58, -3.02, MAT.steelDk); [x0, x1].forEach(x => BX(x - .04, x + .04, 0, 2.45, -3.58, -3.02, MAT.steelDk)); BX(x0, x1, 0, 2.45, -3.6, -3.58, MAT.steelDk);
@@ -565,6 +567,10 @@ const W2 = (() => {
   sign(1.6, .62, 300, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#f2d27a'); gr.addColorStop(1, '#b8892a'); g.fillStyle = gr; g.fillRect(0, 0, w, h); g.strokeStyle = '#5a3a08'; g.lineWidth = 10; g.strokeRect(6, 6, w - 12, h - 12); txt(g, 'CÁMARA ACORAZADA', w / 2, h * .36, 62, '#3a2604', 900); txt(g, 'INVIOLABLE DESDE 1902', w / 2, h * .7, 48, '#3a2604', 800); }, 14.0, 2.2, -3.56, { d: .03 });
   sign(1.3, 1.8, 400, (g, w, h) => { g.fillStyle = '#1f3a6a'; g.fillRect(0, 0, w, h); g.fillStyle = '#f2d27a'; g.beginPath(); g.roundRect(w / 2 - 70, 170, 140, 120, 16); g.fill(); g.strokeStyle = '#f2d27a'; g.lineWidth = 22; g.beginPath(); g.arc(w / 2, 170, 52, Math.PI, 0); g.stroke(); g.fillStyle = '#1f3a6a'; g.beginPath(); g.arc(w / 2, 220, 16, 0, 7); g.fill(); g.fillRect(w / 2 - 6, 220, 12, 40);
     txt(g, 'SU DINERO,', w / 2, 380, 48, '#fff', 900); txt(g, 'A SALVO', w / 2, 440, 64, '#f2d27a', 900); txt(g, '100 %', w / 2, 510, 54, '#fff', 900); g.strokeStyle = '#f2d27a'; g.lineWidth = 12; g.strokeRect(6, 6, w - 12, h - 12); }, 25.95, 2.4, 4.0, { ry: -Math.PI / 2, d: .03 });
+  // timbre de alarma junto a la cámara (con piloto verde «OK»)
+  { const al = new T.Group(); al.position.set(15.2, 2.75, -3.52); scene.add(al); add(new T.SphereGeometry(.3, 24, 14, 0, 6.3, 0, 1.6), STD({ color: '#d8262e', metalness: .3, roughness: .35 }), 0, 0, .02, { parent: al, rx: Math.PI / 2 }); add(new T.CylinderGeometry(.05, .05, .1, 10), MAT.steelShiny, 0, 0, .34, { parent: al, rx: Math.PI / 2 });
+    add(RB(.22, .3, .1, .02), MAT.steelDk, 0, -.5, .05, { parent: al }); var ALARMLED = add(new T.SphereGeometry(.035, 10, 8), STD({ color: '#3aff7a', emissive: '#2aff6a', emissiveIntensity: 2 }), 0, -.46, .11, { parent: al, cast: false });
+    sign(.5, .14, 60, (g, w, h) => { g.fillStyle = '#2a2a2a'; g.fillRect(0, 0, w, h); txt(g, 'ALARMA', w / 2, h / 2 + 2, 40, '#f2efe6', 900); }, 0, -.74, .04, { parent: al, d: .02 }); }
   // lámpara de araña, postes con cordón, planta, banco
   { const ch = new T.Group(); ch.position.set(17.2, 5.0, 3.8); scene.add(ch); add(new T.CylinderGeometry(.015, .015, 1.0, 6), MAT.brass, 0, .5, 0, { parent: ch }); add(new T.TorusGeometry(.6, .04, 8, 30), MAT.brass, 0, 0, 0, { parent: ch, rx: Math.PI / 2 }); for (let k = 0; k < 8; k++) add(new T.SphereGeometry(.09, 10, 8), STD({ color: '#fff8e0', emissive: '#ffe0a0', emissiveIntensity: 1.8 }), Math.cos(k * .785) * .6, .1, Math.sin(k * .785) * .6, { parent: ch, cast: false }); }
   [[15.5, -.6], [17.3, -.6], [19.1, -.6]].forEach(([x, z], i, A) => { add(new T.CylinderGeometry(.04, .05, 1.0, 10), MAT.brass, x, .5, z); add(new T.SphereGeometry(.07, 10, 8), MAT.brass, x, 1.02, z); if (i < A.length - 1) add(new T.TorusGeometry(.9, .03, 6, 20, Math.PI), MAT.velvet, x + .9, .95, z, { rz: Math.PI, s: [1, .25, 1] }); });
@@ -700,7 +706,7 @@ const W2 = (() => {
   function setCal(k, ring = 0) { drawCalPage(CAL, 'LUNES', '7', ring); drawCalPage(calPageC, 'DOMINGO', '6', 0); CALPAGE.visible = k < 1; CALPAGE.rotation.x = -k * 2.6; CALPAGE.position.y = 1.235 + k * .02; }
   setCal(0);
   // orden de libertad: pose 0 encima de la barandilla del banquillo → 1 delante de la cámara (cp, look)
-  const ORD0 = { p: new T.Vector3(JX + 3.25, 1.1, -2.2), r: new T.Euler(-Math.PI / 2 + .25, 0, .35) };
+  const ORD0 = { p: new T.Vector3(JX + 3.05, 1.09, -2.27), r: new T.Euler(-Math.PI / 2 + .22, 0, Math.PI - .3) };
   function setOrder(k, hl = 0, cp = null, look = null) { drawOrder(hl); if (!cp) { ORDER.position.copy(ORD0.p); ORDER.rotation.copy(ORD0.r); return; }
     const fw = look.clone().sub(cp).normalize(), tgt = cp.clone().addScaledVector(fw, .62); ORDER.position.copy(ORD0.p).lerp(tgt, k); ORDER.position.y += Math.sin(Math.PI * k) * .25;
     const q0 = new T.Quaternion().setFromEuler(ORD0.r), m = new T.Matrix4().lookAt(tgt, cp, new T.Vector3(0, 1, 0)), q1 = new T.Quaternion().setFromRotationMatrix(m); ORDER.quaternion.copy(q0).slerp(q1, k); }
@@ -741,7 +747,7 @@ const W2 = (() => {
   // ---------- cámara, luces por zona, ambiente ----------
   let NIGHT = 0;
   function setCam(pos, look, fov = 45, focus = null, ap = .003) { camera.fov = fov; camera.updateProjectionMatrix(); camera.position.copy(pos); camera.lookAt(look); camera.updateMatrixWorld(); sky.position.copy(camera.position);
-    ZL.forEach(([l, I, test]) => { const on = !!test(pos); l.visible = on; l.intensity = on ? I * (NIGHT > .5 && l.userData.dayOnly ? 0 : 1) * (l.userData.nightK && NIGHT > .5 ? l.userData.nightK : 1) : 0; });
+    ZL.forEach(([l, I, test]) => { const on = !!test(pos); l.visible = on; l.intensity = on ? I * (NIGHT > .5 && l.userData.nightK != null ? l.userData.nightK : 1) : 0; });
     sun.position.copy(look).addScaledVector(SUN, 120); sun.target.position.copy(look); sun.target.updateMatrixWorld(); dof.uniforms.focus.value = focus ?? pos.distanceTo(look); dof.uniforms.aperture.value = ap; }
   function proj(p) { const v = p.clone(), cs = v.clone().applyMatrix4(camera.matrixWorldInverse), d = -cs.z; v.project(camera); const ppm = (H / 2) / (d * Math.tan(camera.fov * Math.PI / 360)); return { x: (v.x + 1) / 2 * W, y: (1 - v.y) / 2 * H, d, ppm, ok: d > .1 }; }
   function render() { comp.render(); }
@@ -752,9 +758,10 @@ const W2 = (() => {
     sun.color.set(n > .5 ? '#9fb4ff' : m > .5 ? '#ffc890' : '#fff0d4'); sun.intensity = lerp(lerp(4.2, 3.2, m), 1.6, n);
     hemi.color.set(n > .5 ? '#5a6ab0' : m > .5 ? '#ffd0b8' : '#d2e6ff'); hemi.groundColor.set(n > .5 ? '#1a1e30' : m > .5 ? '#7a5a4a' : '#8a7a62'); hemi.intensity = lerp(1.25, .55, n);
     scene.fog.color.set(n > .5 ? '#1c2440' : m > .5 ? '#f0c8a8' : '#d6e6ee'); R.toneMappingExposure = lerp(1.2, 1.05, n);
+    CELLSUN.userData.nightK = 0;
     STREETLAMPS.forEach(l => l.material.emissiveIntensity = (n > .5 || m > .7) ? 2.2 : .25); ALLEYBULB.material.emissiveIntensity = n > .5 || m > .7 ? 2 : .2; }
   const ray = new T.Raycaster(); const solids = []; scene.traverse(o => { if (o.isMesh && !o.isInstancedMesh && o.material !== inkM && o !== sky && !o.userData.noInk && !(o.material && o.material.transparent)) solids.push(o); });
   function visible(p, tol = .12) { const o = camera.position, d = p.clone().sub(o), L = d.length(); ray.set(o, d.normalize()); ray.far = L - tol; return ray.intersectObjects(solids, false).length === 0; }
   return { T, scene, camera, R, setCam, proj, render, setTime, setMood, visible, SUN, JX, KX, ZS, TUN, BOOTH, DK, VHOLE, setCondena: drawCondena, setOrder, ORDER, setClocks, setTally, setLedger, setCal, setCellDoor, setMattress, setMess, setCellLid, setVTile, setVaultDoor,
-    setGold, goldPos, GOLD, setGlint, setCoffee, setPolice, setLantern, setSection, COFFEE, QUEJAS, WETSIGN, MUG, CACTUS, MATTRESS, VDOOR, POLICE, CELLLIGHTS: null, dof, bloom, comp, inkM, get SECTION() { return SECTION; } };
+    setGold, goldPos, GOLD, CASH, setGlint, setCoffee, setPolice, setLantern, setSection, COFFEE, QUEJAS, WETSIGN, MUG, CACTUS, MATTRESS, VDOOR, POLICE, CELLLIGHTS: null, dof, bloom, comp, inkM, get SECTION() { return SECTION; } };
 })();
