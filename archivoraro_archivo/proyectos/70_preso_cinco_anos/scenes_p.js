@@ -3,7 +3,7 @@
 // textos solo dentro del mundo (orden de libertad, contador de condena, carteles, libro de cuentas, calendario, «BANCO» pintado).
 window.CFG = { capY: 1500, capSize: 96, transDur: .42, blurK: .35, antic: .1, blurChars: false,
   transDurBy: { suplica: .34, risa: .34, cinco: .2, bucle: .5, noche: .26, modelo: .5 },
-  trans: { suplica: 'whip', risa: 'swish', juez: 'whip', cinco: 'cut', feliz: 'swish', modelo: 'cut', ventana: 'swish', ruido: 'swish', registro: 'swish', nada: 'cut', banco: 'swish',
+  trans: { suplica: 'whip', risa: 'swish', juez: 'whip', cinco: 'cut', feliz: 'swish', modelo: 'cut', ventana: 'swish', ruido: 'cut', registro: 'swish', nada: 'cut', banco: 'swish',
     lunes: 'swish', lingote: 'swish', pistas: 'swish', director: 'whip', tunel: 'swish', debajo: 'glide', noche: 'whip', salir: 'swish', vaciar: 'swish', final: 'swish', bucle: 'swish' } };
 const norm = w => w.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const EVS = {}; window.SCRIPT.forEach(l => { const ws = l.cap.split(' ').map(w => norm(w.split('|')[0])); EVS[l.sc] = B => { const o = {}; ws.forEach((w, i) => { const k = /^[0-9]/.test(w) ? '_' + w : w; if (k && !(k in o)) o[k] = B[0].w[i]; }); o._last = B[0].w[ws.length - 1]; return o; }; });
@@ -105,11 +105,11 @@ S.juez = (t, D, B) => { const E = EVS.juez(B); setup(t + B[0].s, { light: IN });
 // 5 · CINCO — mazazo en «vale», el contador de condena pasa a 5 y el preso salta de alegría con ojos de estrella
 // =====================================================================================================
 S.cinco = (t, D, B) => { const E = EVS.cinco(B); setup(t + B[0].s, { light: IN }); W.setOrder(0, 1); const tV = E.vale ?? .1, tC = E.cinco ?? D * .4, tA = Math.max(tC + .32, (E.anos ?? D * .6) - .02);
-  if (t < tC - .06) { cond(0, 1); cam(L3(V3(JX + 1.25, 2.28, -3.25), V3(JX + 1.18, 2.25, -3.45), oc(t / tA)), V3(JX + .6, 2.0, -5.1), 50);
+  if (t < tC - .06) { cond(2, 1); cam(L3(V3(JX + 1.25, 2.28, -3.25), V3(JX + 1.18, 2.25, -3.45), oc(t / tA)), V3(JX + .6, 2.0, -5.1), 50);
     const top = W.proj(V3(JX + .4, 1.84, -4.46)).y, F = V3(JX, .62, -5.95); const up = t < tV - .09; const hit = clamp((t - tV + .09) / .09);
     const pose = { face: up ? 'smug' : 'angry', mouth: up ? 'line' : 'grin', legLen: .7, look: [12, 8], armL: [16, 30], armR: hit > 0 ? [lerp(140, 70, hit), lerp(50, 20, hit)] : [140, 50], holdR: GAVEL(hit > 0 ? lerp(-40, -118, hit) : -40), brows: up ? .2 : -.4 };
     let s = clipAbove(who('JUEZ', pose, F, 1.52), top); if (t > tV) { SHAKE = .05 * Math.exp(-(t - tV) * 14); const p = W.proj(V3(JX + .78, 1.95, -4.95)); s += impact(p.x, p.y, 150, (t - tV) / .3) + ring(p.x, p.y + 10, 160, (t - tV) / .35); } return s; }
-  if (t < tA) { whipBlur(t, tC - .06, .16); cond(5, clamp((t - tC) / .2), 0); const u = t - tC + .06; cam(L3(V3(JX + 1.55, 2.15, -3.6), V3(JX + 1.55, 2.12, -3.8), oc(u / (tA - tC + .06))), V3(JX + 1.55, 1.95, -4.75), 42);
+  if (t < tA) { whipBlur(t, tC - .06, .16); cond(7, clamp((t - tC) / .2), 2); const u = t - tC + .06; cam(L3(V3(JX + 1.55, 2.15, -3.6), V3(JX + 1.55, 2.12, -3.8), oc(u / (tA - tC + .06))), V3(JX + 1.55, 1.95, -4.75), 42);
     const p = W.proj(V3(JX + 1.55, 2.04, -4.68)); return glint(p.x + 150, p.y - 120, 46, Math.sin(Math.PI * clamp((t - tC) / .45))) + glint(p.x - 160, p.y + 90, 30, Math.sin(Math.PI * clamp((t - tC - .1) / .4))); }
   whipBlur(t, tA); const u = t - tA, jump = Math.abs(Math.sin(u * 8.5)) * .22 * (u < 1.4 ? 1 : 0); cam(L3(V3(JX + 2.55, 1.86, -3.75), V3(JX + 2.7, 1.84, -3.5), oc(u / (D - tA))), V3(JX + 3.38, 1.6, -1.6), 48);
   const F = F_DOCK.clone(); F.y += jump; const top = W.proj(V3(F_DOCK.x, 1.05, -2.3)).y;
