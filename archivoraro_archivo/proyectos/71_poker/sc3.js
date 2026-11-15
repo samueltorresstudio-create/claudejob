@@ -2,11 +2,11 @@
 // =====================================================================================================
 // 9 · CONDICIÓN — plano secuencia desde la puerta: Manolo cruza el bar hasta la mesa del fondo (cartel de RESERVADO); los tres ya esperan
 // =====================================================================================================
-const walkPath = (k) => sp(k, [[0, V3(.9, 0, 3.6)], [.5, V3(1.7, 0, 1.2)], [1, V3(1.85, 0, -1.0)]]);   // acaba a la izquierda del grupo, sin taparse con nadie
+const walkPath = (k) => sp(k, [[0, V3(.9, 0, 3.6)], [.5, V3(1.6, 0, 1.1)], [1, V3(2.1, 0, -1.3)]]);   // acaba a la izquierda del grupo, sin taparse con nadie
 S.condicion = (t, D, B) => { const E = EVS.condicion(B); setup(t + B[0].s, { chips: defaultChips(0, 0) }); const k = eIO(clamp(t / D)), wk = clamp(t / (D * .92));
-  const cp = sp(k, [[0, V3(-.9, 1.75, 5.7)], [.55, V3(-.2, 1.72, 5.0)], [1, V3(.6, 1.7, 3.6)]]), lk = sp(k, [[0, V3(1.0, 1.25, 2.6)], [.55, V3(2.3, 1.2, .4)], [1, V3(3.3, 1.05, TC.z)]]); cam(cp, lk, 54);
+  const cp = sp(k, [[0, V3(1.15, 1.8, 5.7)], [.55, V3(2.3, 1.95, 5.25)], [1, V3(3.2, 2.05, 4.85)]]), lk = sp(k, [[0, V3(.95, 1.3, 2.0)], [.55, V3(2.4, 1.15, -.6)], [1, V3(3.5, 1.05, TC.z + .1)]]); cam(cp, lk, lerp(54, 58, k));
   const F = walkPath(eIO(wk)), ph = wk * 26; const L = [[F, who('MANOLO', Object.assign({ view: 'back' }, wk < .97 ? walkPose(ph, { amp: .8 }) : { armL: [14, 14], armR: [14, 14] }), F)],
-    seated('pepe', { face: 'smug', mouth: 'line', look: [10, 0] }), seated('luis', { face: 'smug', mouth: 'line', look: [-10, 0] }), seated('toni', { view: 'back' }, { noClip: true })];
+    seated('pepe', { face: 'smug', mouth: 'line', look: [10, 0] }), seated('luis', { face: 'smug', mouth: 'line', look: [-10, 0] })];
   return depth(L); };
 
 // =====================================================================================================
