@@ -41,9 +41,11 @@ let _tc = 0; function behindTable(svg) { const pts = []; for (let i = 0; i < 64;
   const hull = lo.slice(0, -1).concat(up.slice(0, -1)), id = 'tb' + (++_tc);
   return `<defs><clipPath id="${id}" clip-rule="evenodd"><path clip-rule="evenodd" d="M-3000,-3000 H5000 V5000 H-3000Z M${hull.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' L')}Z"/></clipPath></defs><g clip-path="url(#${id})">${svg}</g>`; }
 // un jugador sentado: n = 'manolo' | 'pepe' | 'luis' | 'toni'; los que no son Toni (de espaldas a la cámara del frente) se recortan con la mesa
+// brazos: REST = colgando (las manos quedan tras la mesa); BELLY = manos a la tripa (risa); SHOCK(q) = de colgando a las manos bajo la barbilla, pasando POR DELANTE del cuerpo (nunca hacia el vecino)
+const REST = () => [12, 10], BELLY = () => [20, -110], SHOCK = q => [lerp(12, 20, q), lerp(10, -200, q)];
 const NAME = { manolo: 'MANOLO', pepe: 'PEPE', luis: 'LUIS', toni: 'TONI' };
 const TURN = { manolo: 0, pepe: .55, luis: -.55, toni: 0 };
-function seated(n, pose = {}, opt = {}) { const F = seatF(n); const o = Object.assign({ legLen: SIT0.legLen, legL: SIT0.legL, legR: SIT0.legR, turn: TURN[n], armL: [64, 62], armR: [64, 62] }, pose); const svg = who(NAME[n], o, F, SEATH, opt);
+function seated(n, pose = {}, opt = {}) { const F = seatF(n); const o = Object.assign({ legLen: SIT0.legLen, legL: SIT0.legL, legR: SIT0.legR, turn: TURN[n], armL: [12, 10], armR: [12, 10] }, pose); const svg = who(NAME[n], o, F, SEATH, opt);
   return [V3(F.x, 1, F.z), opt.noClip ? svg : behindTable(svg)]; }
 // recorte a la barra (personaje de pie detrás del mostrador)
 const behindBar = (svg) => clipAbove(svg, W.proj(V3(W.camera.position.x, 1.12, BZ)).y + 2);
@@ -62,11 +64,11 @@ S.gancho = (t, D, B) => { const E = EVS.gancho(B); const tP = (E.a || E.proposit
   let L = defaultChips(0, 0); const tower = []; for (let k = 0; k < 26; k++) { const h0 = TH + .026 + k * .0125, p = base.clone().lerp(ctr, push * .55);
     if (fall <= 0) tower.push([p.x, h0, p.z, k * .6]); else { const a = k * 2.39, r = .05 + (k % 7) * .045 * eOut(fall), dly = clamp(fall * 1.6 - k / 40), y = lerp(h0, TH + .026 + (k % 3) * .0125, eOut(dly)); tower.push([p.x + Math.cos(a) * r * dly, y, p.z + Math.sin(a) * r * dly, k, dly * (k % 2 ? 1.2 : -1.2) * (1 - dly), dly * .8 * (1 - dly)]); } }
   W.setChips(L.concat(tower)); W.setTime(t + B[0].s);
-  if (t < tP) { const k = eOut(clamp(t / 1.6)); const cp = sp(k, [[0, V3(TC.x - .9, 2.6, TC.z + 2.9)], [1, V3(TC.x + .1, 1.9, TC.z + 2.85)]]); cam(cp, V3(TC.x, .98, TC.z - .45), lerp(64, 58, k));
+  if (t < tP) { const k = eOut(clamp(t / 1.6)); const cp = sp(k, [[0, V3(TC.x - .9, 2.6, TC.z + 2.9)], [1, V3(TC.x + .1, 1.9, TC.z + 2.85)]]); cam(cp, V3(TC.x, .98, TC.z - .45), lerp(66, 62, k));
     SHAKE = fall > 0 && fall < .4 ? .012 : 0;
-    const L2 = [seated('manolo', { face: 'smug', mouth: 'smirk', armL: [lerp(70, 104, push), lerp(40, 18, push)], armR: [lerp(70, 104, push), lerp(40, 18, push)], look: [0, 10] }),
-      seated('pepe', { face: fall > .1 ? 'wide' : 'smug', mouth: fall > .1 ? 'o' : 'line', brows: fall > .1 ? .9 : 0, look: [10, 6], armL: [40, 70], armR: [40, 70] }),
-      seated('luis', { face: fall > .1 ? 'wide' : 'smug', mouth: fall > .1 ? 'grin' : 'line', brows: fall > .1 ? .9 : 0, look: [-10, 6], armL: [40, 70], armR: [40, 70] })];
+    const L2 = [seated('manolo', { face: 'smug', mouth: 'smirk', armL: [lerp(12, 30, push), lerp(10, -10, push)], armR: [lerp(12, 30, push), lerp(10, -10, push)], look: [0, 10] }),
+      seated('pepe', { face: fall > .1 ? 'wide' : 'smug', mouth: fall > .1 ? 'o' : 'line', brows: fall > .1 ? .9 : 0, look: [10, 6], armL: SHOCK(eOut(clamp((fall - .1) / .3))), armR: SHOCK(eOut(clamp((fall - .1) / .3))) }),
+      seated('luis', { face: fall > .1 ? 'wide' : 'smug', mouth: fall > .1 ? 'grin' : 'line', brows: fall > .1 ? .9 : 0, look: [-10, 6], armL: SHOCK(eOut(clamp((fall - .1) / .3))), armR: SHOCK(eOut(clamp((fall - .1) / .3))) })];
     let s = depth(L2); const pc = W.proj(V3(TC.x, TH + .1, TC.z - .2)); if (fall > 0) s += ring(pc.x, pc.y, 220, fall / .6, '#fff') + impact(pc.x, pc.y - 30, 160, fall / .45);
     for (let i = 0; i < 6; i++) { const kk = clamp((t - .5 - i * .05) / .6); if (kk > 0 && kk < 1) s += chip2d(pc.x + Math.cos(i * 1.1) * 260 * eOut(kk), pc.y - Math.sin(Math.PI * kk) * 260 + kk * 120, 1.1, kk * 500 + i * 60, ['#c8302e', '#2f6fbf', '#1b1b22', '#f2efe6', '#2f9a5a', '#e8a830'][i]); }
     return s; }

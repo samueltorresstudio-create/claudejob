@@ -25,8 +25,8 @@ S.cunado = (t, D, B) => { const E = EVS.cunado(B); setup(t + B[0].s); const t1 =
   if (t < t1) { lic(clamp((t - .35) / .5)); const k = oc(clamp(t / t1)); cam(L3(V3(LP.x - .1, 2.2, -3.4), V3(LP.x - .08, 2.22, -3.6), k), V3(LP.x, LP.y, LP.z), 40, .002); const p = W.proj(V3(LP.x, LP.y - .04, LP.z)); return t > .8 ? glint(p.x + 190, p.y - 60, 30, Math.abs(Math.sin(t * 5))) : ''; }
   if (t < t2) { whipBlur(t, t1); const u = t - t1, Fc = V3(-1.9, 0, -2.4); cam(L3(V3(-1.55, 1.68, .55), V3(-1.57, 1.66, .3), oc(clamp(u / (t2 - t1)))), V3(-1.9, 1.4, -2.4), 48);
     return who('CUNADO', { face: 'happy', mouth: 'laugh', armR: [150, 30], armL: [60, 60], holdL: CANA, look: [0, 0], headTilt: 6 }, Fc); }
-  whipBlur(t, t2); const u = t - t2; W.setChips(defaultChips(14, 4)); cam(L3(V3(TC.x + 1.45, 2.3, TC.z + 2.95), V3(TC.x + 1.32, 2.24, TC.z + 2.62), oc(clamp(u / (D - t2)))), V3(TC.x + .05, 1.1, TC.z - .5), 58);
-  const L = [seated('manolo', { face: 'happy', mouth: 'smile' }), seated('pepe', { face: 'happy', mouth: 'laugh', armL: [40, 110], armR: [60, 70] }), seated('luis', { face: 'happy', mouth: 'laugh' }), seated('toni', { view: 'back' }, { noClip: true })];
+  whipBlur(t, t2); const u = t - t2; W.setChips(defaultChips(14, 4)); cam(L3(V3(TC.x + 1.45, 2.9, TC.z + 2.95), V3(TC.x + 1.32, 2.84, TC.z + 2.62), oc(clamp(u / (D - t2)))), V3(TC.x + .05, 1.0, TC.z - .5), 58);
+  const L = [seated('manolo', { face: 'happy', mouth: 'smile' }), seated('pepe', { face: 'happy', mouth: 'laugh', armL: BELLY(), armR: BELLY() }), seated('luis', { face: 'happy', mouth: 'laugh', armL: BELLY(), armR: BELLY() }), seated('toni', { view: 'back' }, { noClip: true })];
   return depth(L); };
 
 // =====================================================================================================
@@ -34,9 +34,10 @@ S.cunado = (t, D, B) => { const E = EVS.cunado(B); setup(t + B[0].s); const t1 =
 // =====================================================================================================
 const WALLET = (open = 0) => `<g transform="rotate(-10)"><rect x="-40" y="-26" width="80" height="52" rx="8" fill="#5a3a22" stroke="${K}" stroke-width="6"/>${open ? `<path d="M-40,-26 L-30,-60 L30,-60 L40,-26" fill="#6a4a2a" stroke="${K}" stroke-width="6"/>` : ''}</g>`;
 S.caja = (t, D, B) => { const E = EVS.caja(B); setup(t + B[0].s, { dinner: true, clock: [23, 50] }); const t1 = Math.max(1.0, (E.vuelve || D * .45) - .2), t2 = Math.max(t1 + .8, (E.antes || D * .75) - .1);
-  if (t < t1) { const k = oc(clamp(t / t1)); cam(L3(V3(DT.x + .1, 2.0, DT.z + 3.0), V3(DT.x + .12, 1.98, DT.z + 2.75), k), V3(DT.x, 1.1, DT.z - .4), 58);
-    let s = diners(t, { pepe: { face: 'happy', mouth: 'laugh', armL: [100, 30], holdL: WALLET(1), armR: [30, 30] }, luis: { face: 'happy', mouth: 'laugh', armL: [30, 30], armR: [30, 30] }, toni: { face: 'happy', mouth: 'laugh', armR: [100, 30], holdR: WALLET(1), armL: [30, 30] } }); const p0 = W.proj(V3(DT.x, 1.5, DT.z - .7));
-    for (let i = 0; i < 10; i++) { const kk = clamp((t - .1 - i * .07) / .7); s += flyBill({ x: p0.x - 200 + (i % 3) * 200, y: p0.y }, { x: 1300, y: p0.y - 500 }, kk, 1.3, 400 * (i % 2 ? 1 : -1), ['#9ab88a', '#e8b07a', '#7ab0e8'][i % 3]); } return s; }
+  // la cartera, al costado del pecho y por fuera del cuerpo (holdTop: la capa de los brazos va detrás del cuerpo)
+  if (t < t1) { const k = oc(clamp(t / t1)); cam(L3(V3(DT.x, 2.0, DT.z + 3.35), V3(DT.x, 1.96, DT.z + 3.25), k), V3(DT.x, 1.1, DT.z - .4), 70);
+    let s = diners(t, { pepe: { face: 'happy', mouth: 'laugh', armL: [106, -116], holdL: WALLET(1), holdTop: 1, armR: [12, 10] }, luis: { face: 'happy', mouth: 'laugh', armL: [12, 10], armR: [12, 10] }, toni: { face: 'happy', mouth: 'laugh', armR: [106, -116], holdR: WALLET(1), holdTop: 1, armL: [12, 10] } }); const pw = W.proj(V3(DSEAT.pepe.x - .55, .98, DSEAT.pepe.z)), tw = W.proj(V3(DSEAT.toni.x + .55, .98, DSEAT.toni.z));   // los billetes salen de las carteras y escapan por los lados (no cruzan ninguna cara)
+    for (let i = 0; i < 10; i++) { const kk = clamp((t - .1 - i * .07) / .7), sd = i % 2 ? 1 : -1, o = sd < 0 ? pw : tw; s += flyBill({ x: o.x, y: o.y }, { x: o.x + sd * 700, y: o.y - 900 }, kk, 1.3, 400 * sd, ['#9ab88a', '#e8b07a', '#7ab0e8'][i % 3]); } return s; }
   if (t < t2) { whipBlur(t, t1); const u = t - t1, open = oc(clamp(u / .3)); till(open, 1 + u * .4, ((u * 931) % 1000).toFixed(2).replace('.', ',')); const tp = W.TILL.position;
     cam(L3(V3(tp.x + .45, 1.62, tp.z + 1.25), V3(tp.x + .42, 1.6, tp.z + 1.1), oc(clamp(u / (t2 - t1)))), V3(tp.x, 1.2, tp.z), 44, .004);
     const p = W.proj(V3(tp.x, 1.2, tp.z + .25)); let s = ''; for (let i = 0; i < 12; i++) { const kk = clamp((u - i * .07) / .55); s += flyBill({ x: -200, y: p.y - 500 + (i % 4) * 60 }, { x: p.x + (i % 3 - 1) * 40, y: p.y }, kk, 1.4, 300, ['#9ab88a', '#e8b07a', '#7ab0e8'][i % 3]); }
@@ -49,14 +50,16 @@ S.caja = (t, D, B) => { const E = EVS.caja(B); setup(t + B[0].s, { dinner: true,
 // =====================================================================================================
 function moth(x, y, s, t) { const f = Math.abs(Math.sin(t * 20)); return `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${s.toFixed(2)})"><ellipse rx="${(26 * (.4 + f * .6)).toFixed(1)}" ry="18" cx="-16" fill="#c8b8a0" stroke="${K}" stroke-width="4"/><ellipse rx="${(26 * (.4 + f * .6)).toFixed(1)}" ry="18" cx="16" fill="#c8b8a0" stroke="${K}" stroke-width="4"/><ellipse rx="6" ry="16" fill="${K}"/></g>`; }
 S.hambre = (t, D, B) => { const E = EVS.hambre(B); setup(t + B[0].s, { dinner: true }); const tM = (E.gastan || D * .55) - .1; const k = oc(clamp(t / D));
-  cam(L3(V3(DT.x + .15, 1.8, DT.z + 3.4), V3(DT.x + .14, 1.78, DT.z + 3.15), k), V3(DT.x, 1.15, DT.z - .4), 58);
-  const chew = Math.floor(t * 8) % 2; const fork = ph => [118 + Math.sin(t * 14 + ph) * 10, 40];   // el brazo que come va por FUERA del grupo; el de dentro, sobre la mesa
-  let s = diners(t, { luis: { face: 'happy', mouth: chew ? 'o' : 'laugh', armL: [30, 30], armR: [30, 30] }, toni: { face: 'happy', mouth: chew ? 'laugh' : 'o', armR: fork(1), armL: [30, 30] },
-    pepe: { face: tM < t ? 'wide' : 'happy', mouth: tM < t ? 'o' : (chew ? 'laugh' : 'o'), armL: tM < t ? [96, 20] : fork(2), holdL: tM < t ? WALLET(1) : '', armR: [30, 30] } });
+  cam(L3(V3(DT.x - .12, 1.8, DT.z + 3.35), V3(DT.x - .12, 1.78, DT.z + 3.25), k), V3(DT.x - .12, 1.12, DT.z - .4), 74);   // a la izquierda queda sitio para la polilla
+  const chew = Math.floor(t * 8) % 2; const fork = ph => { const q = (Math.sin(t * 14 + ph) + 1) / 2; return [lerp(60, 88, q), lerp(128, 108, q)]; };   // la mano sube y baja junto a la mejilla (fuera de la cabeza: los brazos van detrás del cuerpo)
+  let s = diners(t, { luis: { face: 'happy', mouth: chew ? 'o' : 'laugh', armL: [12, 10], armR: fork(0) }, toni: { face: 'happy', mouth: chew ? 'laugh' : 'o', armR: fork(1), armL: [12, 10] },
+    pepe: { face: tM < t ? 'wide' : 'happy', mouth: tM < t ? 'o' : (chew ? 'laugh' : 'o'), armL: tM < t ? [106, -116] : fork(2), holdL: tM < t ? WALLET(1) : '', holdTop: tM < t ? 1 : 0, armR: [12, 10] } });   // la cartera, abierta al costado
   const un = oc(clamp((t - .3) / (D * .75))), hp = W.proj(V3(DT.x + .25, .8, DT.z + .58)), fp = W.proj(V3(DT.x + .3, .01, DT.z + .58 + .9 * un)), mp = W.proj(V3(DT.x + .27, .02, DT.z + .6));
   const path = `M${hp.x.toFixed(1)},${hp.y.toFixed(1)} L${mp.x.toFixed(1)},${lerp(hp.y, mp.y, Math.min(1, un * 2)).toFixed(1)}` + (un > .5 ? ` L${lerp(mp.x, fp.x, (un - .5) * 2).toFixed(1)},${lerp(mp.y, fp.y, (un - .5) * 2).toFixed(1)}` : '');
   s += `<path d="${path}" stroke="${K}" stroke-width="46" fill="none" stroke-linejoin="round"/><path d="${path}" stroke="#fbf8f0" stroke-width="36" fill="none" stroke-linejoin="round"/><path d="${path}" stroke="#8a8478" stroke-width="24" fill="none" stroke-dasharray="5 9" opacity=".55"/>`;   // renglones del tique
-  if (t > tM) { const h = headScr(DSEAT.pepe, SEATH), u = t - tM; s += moth(h.x + 140 + u * 120, h.y + 120 - u * 260 + Math.sin(u * 9) * 20, 1.2, t); } return s; };
+  if (t > tM) { const F = DSEAT.pepe, h = headScr(F, SEATH), f = W.proj(F), q = (f.y - h.y) / 470, u = t - tM;   // unidades del muñeco → pantalla
+    const v = eIO(clamp((u - .45) / .8)), ux = lerp(-165, 260, v) + Math.sin(u * 9) * 10, uy = u < .45 ? lerp(-330, -690, u / .45) : -690 - 40 * v;   // sube por fuera de la cabeza de Pepe y cruza POR ENCIMA de las cabezas
+    s += moth(h.x + ux * q, f.y + uy * q, 1.4, t); } return s; };   // la polilla sale de la cartera y sube por fuera de la cabeza de Pepe (lejos de Luis)
 
 // =====================================================================================================
 // 18 · TREINTA — la pizarra de partidas: Pepe 512, Luis 497, Toni 541… Manolo: 0 (se rodea en amarillo)
@@ -84,6 +87,6 @@ S.bucle = (t, D, B) => { const E = EVS.bucle(B); const tT = Math.max(1.2, (E.tir
     let s = depth(L); const cx = 540, cy = 1160; s += `<g transform="translate(${cx},${cy + 120}) scale(3.3)">${FAN(ROYAL, 1, true, .6 + .3 * Math.sin(t * 9))}</g>` + hand2d(cx - 60, cy + 330, 3.0, -14) + hand2d(cx + 80, cy + 320, 3.0, 20);
     return s + glint(cx - 300, cy - 260, 40, Math.abs(Math.sin(t * 5))); }
   whipBlur(t, tT); const u = t - tT, k = eIO(clamp(u / (D - tT))); const cp = sp(k, [[0, V3(TC.x + .1, 1.9, TC.z + 2.85)], [1, V3(TC.x - .9, 2.6, TC.z + 2.9)]]); cam(cp, V3(TC.x, .98, TC.z - .45), lerp(58, 64, k));
-  const L = [seated('manolo', { face: 'smug', mouth: 'smirk', armR: [118, 12], armL: [70, 40], look: [0, 10] }), seated('pepe', { face: 'happy', mouth: 'laugh', look: [10, 6] }), seated('luis', { face: 'happy', mouth: 'laugh', look: [-10, 6] })];
+  const L = [seated('manolo', { face: 'smug', mouth: 'smirk', armR: [150, 20], armL: REST(), look: [0, 10] }), seated('pepe', { face: 'happy', mouth: 'laugh', look: [10, 6] }), seated('luis', { face: 'happy', mouth: 'laugh', look: [-10, 6] })];
   let s = depth(L); const from = V3(TC.x + .02, TH + .32, TC.z - .62); ROYAL.forEach((c, i) => { const kk = clamp(u * 1.6 - i * .06), e = eOut(kk), to = V3(TC.x - .15 + i * .07, TH + .03, TC.z - .25 + (i % 2) * .05), p = from.clone().lerp(to, e); p.y += Math.sin(Math.PI * Math.min(1, kk)) * .1; s += cardOnTable(p, (1 - e) * 2.4 + i * .25 - .5, c[0], c[1], false); });
   return s; };

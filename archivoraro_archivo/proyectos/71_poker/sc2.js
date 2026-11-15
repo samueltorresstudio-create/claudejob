@@ -6,11 +6,11 @@ function potToWinners(t0, t, pot = 36) { let L = defaultChips(0, 2); const who_ 
   for (let i = 0; i < pot; i++) { const w = who_[i % 3], kk = clamp((t - t0 - (i % 12) * .04) / .55), e = eIO(kk), j = i % 5, a = W.stack(TC.x + Math.cos(j * 1.26) * .11, TC.z + Math.sin(j * 1.26) * .09, 9, 8 + j)[Math.floor(i / 5)], dst = stackAt(w, TR_ - .42).add(V3(Math.sin(i) * .05, 0, Math.cos(i) * .05));
     const x = lerp(a[0], dst.x, e), z = lerp(a[2], dst.z, e), y = lerp(a[1], TH + .026 + Math.floor(i / 3) * .0125, e) + Math.sin(Math.PI * kk) * .14; L.push([x, y, z, i + kk * 6]); } return L; }
 S.bote = (t, D, B) => { const E = EVS.bote(B); const tR = Math.max(.2, (E.reparten || .8) - .15); setup(t + B[0].s, { chips: potToWinners(tR, t) });
-  const k = clamp(t / D), a = lerp(.74, .5, eIO(k)); const cp = V3(TC.x + Math.sin(a) * 3.5, 2.4, TC.z + Math.cos(a) * 3.5); cam(cp, V3(TC.x + .05, .98, TC.z - .4), 50);
+  const k = clamp(t / D), a = lerp(.74, .5, eIO(k)); const cp = V3(TC.x + Math.sin(a) * 3.5, 3.0, TC.z + Math.cos(a) * 3.5); cam(cp, V3(TC.x + .05, .98, TC.z - .4), 50);
   const grab = oc(clamp((t - tR) / .35)); const L = [seated('manolo', { face: 'happy', mouth: 'smile', look: [0, 8] }),
-    seated('pepe', { face: 'happy', mouth: 'laugh', look: [10, 10], armL: [lerp(64, 56, grab), lerp(62, 20, grab)], armR: [64, 62] }),
-    seated('luis', { face: 'happy', mouth: 'laugh', look: [-10, 10], armL: [64, 62], armR: [lerp(64, 56, grab), lerp(62, 20, grab)] }),
-    seated('toni', { view: 'back', armL: [lerp(40, 70, grab), lerp(40, 20, grab)], armR: [lerp(40, 70, grab), lerp(40, 20, grab)] }, { noClip: true })];
+    seated('pepe', { face: 'happy', mouth: 'laugh', look: [10, 10], armL: [lerp(12, 56, grab), lerp(10, 20, grab)], armR: REST() }),
+    seated('luis', { face: 'happy', mouth: 'laugh', look: [-10, 10], armL: REST(), armR: [lerp(12, 56, grab), lerp(10, 20, grab)] }),
+    seated('toni', { view: 'back', armL: REST(), armR: REST() }, { noClip: true })];
   let s = depth(L); const pc = W.proj(V3(TC.x, TH + .1, TC.z)); if (grab > 0 && grab < 1) s += impact(pc.x, pc.y, 160, (t - tR) / .4); return s; };
 
 // =====================================================================================================
@@ -49,10 +49,10 @@ S.cien = (t, D, B) => { const E = EVS.cien(B); setup(t + B[0].s, { chips: defaul
 // 6 · PEOR — los tres se ríen de él a carcajadas… y en la estantería, su trofeo: «AL PEOR»
 // =====================================================================================================
 S.peor = (t, D, B) => { const E = EVS.peor(B); setup(t + B[0].s, { chips: defaultChips(0, 0) }); const t1 = Math.max(.7, (E.peor || D * .55) - .2);
-  if (t < t1) { const k = oc(clamp(t / t1)); cam(L3(V3(TC.x + .45, 2.45, TC.z + 2.6), V3(TC.x + .42, 2.4, TC.z + 2.4), k), V3(TC.x, .98, TC.z - .55), 56);
+  if (t < t1) { const k = oc(clamp(t / t1)); cam(L3(V3(TC.x + .45, 2.95, TC.z + 2.6), V3(TC.x + .42, 2.9, TC.z + 2.4), k), V3(TC.x, .98, TC.z - .55), 56);
     const L = [seated('manolo', { face: 'happy', mouth: 'smile', look: [0, 6], browTilt: -.4 }),
-      seated('pepe', { face: 'happy', mouth: 'laugh', armL: [40, 110], armR: [70, 40], headTilt: -8 + Math.sin(t * 9) * 4 }), seated('luis', { face: 'happy', mouth: 'laugh', armL: [70, 40], armR: [40, 110], headTilt: 8 + Math.sin(t * 9 + 1) * 4 }),
-      seated('toni', { view: 'back', armL: [40, 120], armR: [150, 40], headTilt: Math.sin(t * 10) * 6 }, { noClip: true })];
+      seated('pepe', { face: 'happy', mouth: 'laugh', armL: BELLY(), armR: BELLY(), headTilt: -8 + Math.sin(t * 9) * 4 }), seated('luis', { face: 'happy', mouth: 'laugh', armL: BELLY(), armR: BELLY(), headTilt: 8 + Math.sin(t * 9 + 1) * 4 }),
+      seated('toni', { view: 'back', armL: REST(), armR: [150, 40], headTilt: Math.sin(t * 10) * 6 }, { noClip: true })];
     SHAKE = .006; return depth(L); }
   whipBlur(t, t1); const u = t - t1, k = oc(clamp(u / (D - t1))); const tr = W.TROPHY.position;
   cam(L3(V3(tr.x - 1.2, tr.y + .35, tr.z + .45), V3(tr.x - .95, tr.y + .3, tr.z + .35), k), V3(tr.x, tr.y + .18, tr.z), 40, .005);
