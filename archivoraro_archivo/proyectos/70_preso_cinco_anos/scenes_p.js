@@ -217,7 +217,7 @@ S.lunes = (t, D, B) => { const E = EVS.lunes(B); setup(t + B[0].s, { light: IN }
   if (t < t2) { whipBlur(t, t1); const u = t - t1, k = eIO(clamp((u - .25) / (t2 - t1 - .3))); W.setVaultDoor(k * .85, -u * 3); cam(L3(V3(15.7, 1.66, 1.9), V3(15.3, 1.64, 1.6), oc(u / (t2 - t1))), V3(12.7, 1.45, -2.3), 52);
     const F = V3(13.0 + k * .3, 0, -3.0 + k * .2); return who('DIRECTOR', { face: 'angry', mouth: 'grin', armL: [100, -20], armR: [100, -20], lean: -8 * (1 - k), look: [-14, 0], brows: -.4 }, F); }
   whipBlur(t, t2); const u = t - t2, tF = (E.faltaba || t2 + .3) - t2, tP = (E.poco || t2 + .9) - t2; ledger(u < tF ? 200 : 199, u < tF ? 50 : 49, clamp((u - tP + .1) / .4)); calk(1, 1);
-  cam(L3(V3(8.2, 1.98, 3.7), V3(8.2, 1.94, 3.45), oc(u / (D - t2))), V3(8.2, 1.18, 1.6), 50); const top = W.proj(V3(8.2, .82, 1.5)).y;
+  cam(L3(V3(8.2, 2.05, 3.7), V3(8.2, 2.01, 3.45), oc(u / (D - t2))), V3(8.2, .98, 1.75), 52); const top = W.proj(V3(8.2, .82, 1.5)).y;
   return clipAbove(who('DIRECTOR', { face: u < tF ? 'smug' : 'wide', mouth: u < tF ? 'line' : 'o', legLen: .7, look: [0, 14], armL: [30, 60], armR: [30, 60], sweat: u > tF, brows: u > tF ? .8 : 0 }, F_DIR, 1.6), top); };
 
 // =====================================================================================================
