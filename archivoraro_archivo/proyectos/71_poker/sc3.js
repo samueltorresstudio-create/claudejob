@@ -21,16 +21,16 @@ S.sonrie = (t, D, B) => { setup(t + B[0].s, { chips: [] }); let L = defaultChips
 // =====================================================================================================
 // 11 · CENA — grúa que baja desde el techo a la mesa de la cena: los tres con la carta; el camarero apunta
 // =====================================================================================================
-const DSEAT = { pepe: V3(DT.x - .8, SIT0.y0, DT.z - .85), luis: V3(DT.x, SIT0.y0, DT.z - .85), toni: V3(DT.x + .8, SIT0.y0, DT.z - .85) };   // separados: las cabezas (0,78 m) no se pisan
+const DSEAT = { pepe: V3(DT.x - .88, SIT0.y0, DT.z - .85), luis: V3(DT.x, SIT0.y0, DT.z - .85), toni: V3(DT.x + .88, SIT0.y0, DT.z - .85) };   // separados: las cabezas (0,78 m) no se pisan
 const MENU = `<g transform="rotate(-8)"><rect x="-50" y="-130" width="100" height="130" rx="6" fill="#7a2a22" stroke="${K}" stroke-width="6"/><rect x="-38" y="-118" width="76" height="106" fill="#f4ecd8"/><path d="M-28,-96 L28,-96 M-28,-76 L20,-76 M-28,-56 L26,-56 M-28,-36 L16,-36" stroke="#8a7a6a" stroke-width="6"/></g>`;
 const PAD = `<g transform="rotate(-10)"><rect x="-34" y="-90" width="68" height="90" rx="4" fill="#fbf8f0" stroke="${K}" stroke-width="6"/><path d="M-22,-70 L22,-70 M-22,-54 L16,-54 M-22,-38 L20,-38" stroke="#5a6a8a" stroke-width="5"/></g>`;
 function diners(t, ov = {}, opt = {}) { const edge = W.proj(V3(DT.x, .79, DT.z - .55)).y; const L = Object.entries(DSEAT).map(([n, F], i) => [V3(F.x, 1, F.z), who(NAME[n], Object.assign({ legLen: SIT0.legLen, legL: SIT0.legL, legR: SIT0.legR, armL: [70, 60], armR: [70, 60], face: 'happy', mouth: 'smile' }, (ov[n] || ov.all || {})), F, SEATH, opt)]);
   if (opt.last) { const i = Object.keys(DSEAT).indexOf(opt.last); const d = L.splice(i, 1)[0]; return clipAbove(depth(L) + d[1], edge + 4); }   // opt.last: ese comensal encima (su copa alzada no queda detrás del vecino)
   return clipAbove(depth(L), edge + 4); }
 S.cena = (t, D, B) => { const E = EVS.cena(B); const tC = (E.cenar || D * .8) - .2; setup(t + B[0].s, { dinner: t > tC }); const k = eIO(clamp(t / D));
-  const cp = sp(k, [[0, V3(DT.x + .25, 3.3, DT.z + 3.3)], [1, V3(DT.x + .2, 1.95, DT.z + 3.25)]]); cam(cp, V3(DT.x, 1.05, DT.z - .4), lerp(62, 58, k));
+  const cp = sp(k, [[0, V3(DT.x + .25, 3.3, DT.z + 3.3)], [1, V3(DT.x + .2, 1.95, DT.z + 3.25)]]); cam(cp, V3(DT.x, 1.05, DT.z - .4), lerp(62, 60, k));
   // las cartas del menú, por FUERA del grupo (L = lado izquierdo de la pantalla, R = derecho): ninguna tapa una cara
-  let s = diners(t, { luis: { mouth: 'smile', look: [0, 8] }, pepe: { armL: [96, 40], holdL: MENU, face: 'happy', mouth: 'laugh' }, toni: { armR: [96, 40], holdR: MENU, mouth: 'smile', look: [-6, 8] } });
+  let s = diners(t, { luis: { mouth: 'smile', look: [0, 8], armL: [30, 30], armR: [30, 30] }, pepe: { armL: [96, 40], holdL: MENU, armR: [30, 30], face: 'happy', mouth: 'laugh' }, toni: { armR: [96, 40], holdR: MENU, armL: [30, 30], mouth: 'smile', look: [-6, 8] } });
   if (t > tC) { const p = W.proj(V3(DT.x, .95, DT.z)); s += ring(p.x, p.y, 260, (t - tC) / .4, '#fff'); } return s; };
 
 // =====================================================================================================
@@ -62,12 +62,12 @@ const BILL = `<g transform="rotate(-6)"><ellipse cx="0" cy="0" rx="46" ry="12" f
 const SITB = SIT(.82, .22), FMB = V3(-.8, SITB.y0, -2.45);
 const manoloBar = (o = {}, opt) => who('MANOLO', Object.assign({ legLen: SITB.legLen, legL: SITB.legL, legR: SITB.legR, face: 'smug', mouth: 'smirk', armL: [24, 70], armR: [70, 60], holdR: MUG2('#f2efe6'), look: [-8, 4] }, o), FMB, ADULT, opt);
 S.guino = (t, D, B) => { const E = EVS.guino(B); setup(t + B[0].s, { dinner: true }); const tW = Math.max(.9, (E.guina || D * .62) - .12);
-  if (t < tW) { const k = oc(clamp(t / tW)); cam(L3(V3(DT.x - 2.0, 1.75, DT.z + 3.2), V3(DT.x - 1.9, 1.73, DT.z + 3.0), k), V3(DT.x + .3, 1.15, DT.z - .4), 62);   // en diagonal desde la izquierda: la fila (Pepe, Luis, Toni, camarero) se aleja sin taparse
-    const Fw = V3(DT.x + 1.25, 0, DT.z - .15), give = oc(clamp((t - .3) / .5));
-    let s = diners(t, { all: { face: 'happy', mouth: 'smile', look: [10, 6] }, pepe: { face: 'wide', mouth: 'o', look: [12, 4] } });
-    s = depth([[V3(DT.x, 1, DT.z - .85), s], [Fw, who('CAMARERO', { face: 'smug', mouth: 'smile', look: [-14, 6], armR: [lerp(60, 96, give), lerp(40, 10, give)], holdR: BILL, armL: [14, 14] }, Fw)], [FMB, manoloBar({}, { blur: 4 })]]); return s; }
+  if (t < tW) { const k = oc(clamp(t / tW)); cam(L3(V3(DT.x + .45, 1.9, DT.z + 3.3), V3(DT.x + .45, 1.88, DT.z + 3.2), k), V3(DT.x + .45, 1.12, DT.z - .4), lerp(78, 76, k));   // de frente y abierto: los tres + el camarero, sin pisarse (comprobado con dbg_fit.js)   // en diagonal desde la izquierda: la fila (Pepe, Luis, Toni, camarero) se aleja sin taparse
+    const Fw = V3(DT.x + 1.75, 0, DT.z - .75), give = oc(clamp((t - .3) / .5));
+    let s = diners(t, { all: { face: 'happy', mouth: 'smile', look: [10, 6], armL: [30, 30], armR: [30, 30] }, pepe: { face: 'wide', mouth: 'o', look: [12, 4], armL: [30, 30], armR: [30, 30] } });
+    s = depth([[V3(DT.x, 1, DT.z - .85), s], [Fw, who('CAMARERO', { face: 'smug', mouth: 'smile', look: [-14, 6], armL: [lerp(60, 150, give), lerp(40, 25, give)], holdL: BILL, holdTop: 1, armR: [14, 14] }, Fw)]]); return s; }
   whipBlur(t, tW); const u = t - tW, t2 = (D - tW) * .5;
-  if (u < t2) { const Fw = V3(DT.x + 1.25, 0, DT.z - .15); cam(L3(V3(Fw.x - .2, 1.85, Fw.z + 1.55), V3(Fw.x - .18, 1.84, Fw.z + 1.4), oc(clamp(u / t2))), V3(Fw.x, 1.75, Fw.z), 40);
+  if (u < t2) { const Fw = V3(DT.x + 1.75, 0, DT.z - .75); cam(L3(V3(Fw.x - .2, 1.85, Fw.z + 1.55), V3(Fw.x - .18, 1.84, Fw.z + 1.4), oc(clamp(u / t2))), V3(Fw.x, 1.75, Fw.z), 40);
     const wk = u > .12; let s = who('CAMARERO', { face: 'smug', mouth: 'smirk', wink: wk, look: [14, 0], turn: .5, armR: [96, 10], holdR: BILL, armL: [14, 14], headTilt: wk ? -8 : 0 }, Fw); const h = headScr(Fw); if (wk) s += glint(h.x + 120, h.y - 130, 40, eBack(clamp((u - .12) / .25))); return s; }
   whipBlur(t, tW + t2); const v = u - t2; cam(L3(V3(FMB.x + .3, 1.65, FMB.z + 1.55), V3(FMB.x + .28, 1.64, FMB.z + 1.4), oc(clamp(v / (D - tW - t2)))), V3(FMB.x, 1.5, FMB.z), 40);
   const lift = oc(clamp(v / .3)); return manoloBar({ face: 'smug', mouth: 'smirk', armR: [lerp(70, 128, lift), lerp(60, 20, lift)], look: [-6, 0], headTilt: 4 }); };

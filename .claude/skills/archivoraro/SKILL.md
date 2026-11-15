@@ -110,8 +110,9 @@ rm -rf frames finish.log
 
 Espera en segundo plano con `until grep -q "^DONE" finish.log …` (el render de 80–90 s tarda unos 10 minutos). Al acabar:
 1. Comprueba en `finish.log` la duración y que el corte a negro está bien.
-2. Mira `final_sheet.png`. Si ves algún fallo, arréglalo y re-renderiza **solo ese tramo**: `R0=<fotograma_inicial> R1=<fotograma_final> node render.js full 4` (fotograma = segundo × 30), y vuelve a ejecutar `finish.py`. Por eso no se borra `frames/` hasta que el usuario dé el vídeo por bueno.
-3. Envía `<WS>/entregas/<nombre>_CON_VOZ.mp4` con `SendUserFile` (display `attach`), di cuánto dura y ofrece portada y descripciones.
+2. Pasa `python3 -I tools/spikes.py <proyecto>`: encuentra fotogramas SUELTOS rotos (fallo puntual de render que una hoja cada 6 fotogramas no ve; en el 71 salió uno con el suelo en primer plano). Re-renderiza los que marque con `FRAMES=lista.json node render.js full 4`.
+3. Mira `final_sheet.png`. Si ves algún fallo, arréglalo y re-renderiza **solo ese tramo**: `R0=<fotograma_inicial> R1=<fotograma_final> node render.js full 4` (fotograma = segundo × 30), y vuelve a ejecutar `finish.py`. Por eso no se borra `frames/` hasta que el usuario dé el vídeo por bueno.
+4. Envía `<WS>/entregas/<nombre>_CON_VOZ.mp4` con `SendUserFile` (display `attach`), di cuánto dura y ofrece portada y descripciones.
 
 ## Reglas que el usuario ya ha pedido
 
