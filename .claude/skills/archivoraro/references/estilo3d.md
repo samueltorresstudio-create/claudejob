@@ -391,3 +391,17 @@ El usuario los pasó como «consejos a la hora de crear los vídeos». Orden rea
   - Una transición `swish` que gira la cámara pegada a una caja oscura (la garita) da fotogramas negros: usa `glide` si los dos planos están en la misma sala.
   - Un gateo NO se puede hacer girando la figura de pie: hace falta una figura de perfil propia con IK y apoyos que no patinen (`crawl70.js`).
 - **Lágrimas (fallo visto por el usuario en el 70: «descoordinadas y mal»)**: no las dibujes como capa aparte encima del personaje (se despegaban de los ojos y salían enormes delante de la cara). Van DENTRO de la cabeza con `stick({ cry: t })`: chorro desde cada ojo con gota en el párpado y gotas que caen, y así siguen el giro, la inclinación y el tamaño de la cabeza. Para suplicar, `clasp: true` (manos juntas delante del pecho) en vez de los brazos levantados.
+
+## Bar de barrio y mesa de póker (71 · El que siempre pierde al póker, nov. 2026)
+- `proyectos/71_poker/world_bar.js` = `parts/w1_base.js + w2_bar.js + w5_api.js`: bar con suelo hidráulico, azulejo, barra, vitrina de tapas, cafetera roja, caja registradora (`setTill(k, fill, scr)`), jamones, foto de 1995 (`drawPhoto`), licencia (`drawLicense`), pizarra de partidas (`setScore`), mesa de póker `TC/TR/TH` con lámpara, mesa de cenar `DT` (`setDinner`), flashback en sepia (`setSepia`).
+- Fichas: `InstancedMesh` (`setChips`, `stack`). **Fajos de billetes 3D** (`setMoney(alto)`): 3 `InstancedMesh` (10 € rojo, 20 € azul, 50 € verde) con material por cara (canto de papel rayado + faja en el centro; cara de arriba con el billete), 8 fajos por capa girando 90° cada capa, la capa de arriba cae en cascada. Faja roja con la cifra que se reescribe (`setBand(valor, y, escala)`), texto solo en las caras de delante/detrás.
+- **Sentados de verdad (feedback del usuario: «parece que están de pie en la silla»)**: misma escala que de pie (`ADULT`), cadera a la altura del asiento (origen = asiento − 0,80 m), piernas `[55, 58]` y `legLen = (asiento − suelo) / 0,636`. Helper `SIT(asiento, suelo)`.
+- **Gafas (feedback: «las gafas están bug»)**: el puente y las patillas tienen que seguir el giro de la cara (`turn`): puente entre los bordes interiores de los cristales, patilla solo en el lado que se ve. Con bigote, el bigote se encoge (×0,7) para no pisar los cristales.
+- **De espaldas**: la ropa no puede enseñar botones, bolsillos ni solapas (rebeca de espaldas = tela lisa con costura).
+- Lecciones de la revisión:
+  - **`cam()` pinta en el acto**: todo el estado 3D (fichas, torre, faja, caja, reloj) se pone ANTES de llamar a `cam()`; si no, ese fotograma sale con el estado del anterior (la torre no aparecía).
+  - **Objeto 3D delante de personajes 2D** (la torre delante de los jugadores desenfocados): se recorta el dibujo con una **máscara** de agujeros = envolvente convexa proyectada de cada pieza (`holeMask`); con varias piezas, máscara (unión) y no `clip-path` evenodd (los solapes se anulan).
+  - Mesa redonda de 4 en vertical: la cámara nunca justo detrás del que está de espaldas (tapa la mesa); mejor en diagonal a ~3,5 m, con él en el borde del encuadre.
+  - Bocadillos de pensamiento: centro entre x 160–920 e y ≥ 210, o se salen del vertical.
+  - Texto en pantallas/carteles con cifra variable: mide el texto y reduce la fuente para que quepa (la caja cortaba «9.999,99»).
+  - Brazos que cruzan la cara (mano en la barbilla de otro personaje): revisa las poses `[a1, a2]` de los vecinos; a 110° el brazo va a la altura del hombro.
