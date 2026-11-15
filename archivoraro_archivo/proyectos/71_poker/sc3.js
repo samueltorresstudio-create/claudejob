@@ -55,12 +55,12 @@ const BILL = `<g transform="rotate(-6)"><ellipse cx="0" cy="0" rx="46" ry="12" f
 const SITB = SIT(.82, .22), FMB = V3(-.8, SITB.y0, -2.45);
 const manoloBar = (o = {}, opt) => who('MANOLO', Object.assign({ legLen: SITB.legLen, legL: SITB.legL, legR: SITB.legR, face: 'smug', mouth: 'smirk', armL: [24, 70], armR: [70, 60], holdR: MUG2('#f2efe6'), look: [-8, 4] }, o), FMB, ADULT, opt);
 S.guino = (t, D, B) => { const E = EVS.guino(B); setup(t + B[0].s, { dinner: true }); const tW = Math.max(.9, (E.guina || D * .62) - .12);
-  if (t < tW) { const k = oc(clamp(t / tW)); cam(L3(V3(DT.x + 2.6, 1.72, DT.z + 3.0), V3(DT.x + 2.5, 1.7, DT.z + 2.8), k), V3(DT.x + .4, 1.12, DT.z - .3), 56);
-    const Fw = V3(DT.x + 1.05, 0, DT.z + .2), give = oc(clamp((t - .3) / .5));
+  if (t < tW) { const k = oc(clamp(t / tW)); cam(L3(V3(DT.x - 2.0, 1.75, DT.z + 3.2), V3(DT.x - 1.9, 1.73, DT.z + 3.0), k), V3(DT.x + .3, 1.15, DT.z - .4), 62);   // en diagonal desde la izquierda: la fila (Pepe, Luis, Toni, camarero) se aleja sin taparse
+    const Fw = V3(DT.x + 1.25, 0, DT.z - .15), give = oc(clamp((t - .3) / .5));
     let s = diners(t, { all: { face: 'happy', mouth: 'smile', look: [10, 6] }, pepe: { face: 'wide', mouth: 'o', look: [12, 4] } });
     s = depth([[V3(DT.x, 1, DT.z - .85), s], [Fw, who('CAMARERO', { face: 'smug', mouth: 'smile', look: [-14, 6], armR: [lerp(60, 96, give), lerp(40, 10, give)], holdR: BILL, armL: [14, 14] }, Fw)], [FMB, manoloBar({}, { blur: 4 })]]); return s; }
   whipBlur(t, tW); const u = t - tW, t2 = (D - tW) * .5;
-  if (u < t2) { const Fw = V3(DT.x + 1.05, 0, DT.z + .2); cam(L3(V3(Fw.x - .2, 1.85, Fw.z + 1.55), V3(Fw.x - .18, 1.84, Fw.z + 1.4), oc(clamp(u / t2))), V3(Fw.x, 1.75, Fw.z), 40);
+  if (u < t2) { const Fw = V3(DT.x + 1.25, 0, DT.z - .15); cam(L3(V3(Fw.x - .2, 1.85, Fw.z + 1.55), V3(Fw.x - .18, 1.84, Fw.z + 1.4), oc(clamp(u / t2))), V3(Fw.x, 1.75, Fw.z), 40);
     const wk = u > .12; let s = who('CAMARERO', { face: 'smug', mouth: 'smirk', wink: wk, look: [14, 0], turn: .5, armR: [96, 10], holdR: BILL, armL: [14, 14], headTilt: wk ? -8 : 0 }, Fw); const h = headScr(Fw); if (wk) s += glint(h.x + 120, h.y - 130, 40, eBack(clamp((u - .12) / .25))); return s; }
   whipBlur(t, tW + t2); const v = u - t2; cam(L3(V3(FMB.x + .3, 1.65, FMB.z + 1.55), V3(FMB.x + .28, 1.64, FMB.z + 1.4), oc(clamp(v / (D - tW - t2)))), V3(FMB.x, 1.5, FMB.z), 40);
   const lift = oc(clamp(v / .3)); return manoloBar({ face: 'smug', mouth: 'smirk', armR: [lerp(70, 128, lift), lerp(60, 20, lift)], look: [-6, 0], headTilt: 4 }); };
