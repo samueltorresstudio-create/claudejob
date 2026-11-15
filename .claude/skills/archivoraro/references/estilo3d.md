@@ -405,3 +405,7 @@ El usuario los pasó como «consejos a la hora de crear los vídeos». Orden rea
   - Bocadillos de pensamiento: centro entre x 160–920 e y ≥ 210, o se salen del vertical.
   - Texto en pantallas/carteles con cifra variable: mide el texto y reduce la fuente para que quepa (la caja cortaba «9.999,99»).
   - Brazos que cruzan la cara (mano en la barbilla de otro personaje): revisa las poses `[a1, a2]` de los vecinos; a 110° el brazo va a la altura del hombro.
+  - **Brazos y objetos en la mano (`armL/armR`, `holdL/holdR`)**: en vista de frente `L` sale por el lado IZQUIERDO de la pantalla y `R` por el DERECHO. En un grupo en fila (comensales), el objeto alzado (carta, cartera, copa, tenedor) va siempre por FUERA: el de la izquierda con `L`, el de la derecha con `R`, y el del centro con los brazos sobre la mesa (`[30, 30]`). Si no, la mano y el objeto tapan la cara del vecino.
+  - **Personajes en fila**: las cabezas miden 0,78 m. Separa a los sentados ≥ 0,8 m (y mueve las sillas con ellos) y aleja la cámara (≥ 3,5 m con fov 56–58) para que quepan los tres.
+  - Al cambiar código de escenas a mitad de render, el resto del render sigue con el código viejo (cada worker lo cargó al empezar): para el render y vuelve a lanzar solo los fotogramas afectados (`FRAMES=lista.json`).
+  - Nunca pongas un comentario `//` en mitad de una línea de código de una sola línea: se come lo que va detrás (pasó con `const p0 = …` en «caja»).

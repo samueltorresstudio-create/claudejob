@@ -34,8 +34,8 @@ S.cunado = (t, D, B) => { const E = EVS.cunado(B); setup(t + B[0].s); const t1 =
 // =====================================================================================================
 const WALLET = (open = 0) => `<g transform="rotate(-10)"><rect x="-40" y="-26" width="80" height="52" rx="8" fill="#5a3a22" stroke="${K}" stroke-width="6"/>${open ? `<path d="M-40,-26 L-30,-60 L30,-60 L40,-26" fill="#6a4a2a" stroke="${K}" stroke-width="6"/>` : ''}</g>`;
 S.caja = (t, D, B) => { const E = EVS.caja(B); setup(t + B[0].s, { dinner: true, clock: [23, 50] }); const t1 = Math.max(1.0, (E.vuelve || D * .45) - .2), t2 = Math.max(t1 + .8, (E.antes || D * .75) - .1);
-  if (t < t1) { const k = oc(clamp(t / t1)); cam(L3(V3(DT.x + .4, 1.9, DT.z + 2.2), V3(DT.x + .45, 1.88, DT.z + 2.0), k), V3(DT.x + .2, 1.1, DT.z - .4), 54);
-    let s = diners(t, { all: { face: 'happy', mouth: 'laugh', armR: [100, 30], holdR: WALLET(1), armL: [60, 60] } }); const p0 = W.proj(V3(DT.x, 1.5, DT.z - .7));
+  if (t < t1) { const k = oc(clamp(t / t1)); cam(L3(V3(DT.x + .1, 2.0, DT.z + 3.0), V3(DT.x + .12, 1.98, DT.z + 2.75), k), V3(DT.x, 1.1, DT.z - .4), 58);
+    let s = diners(t, { pepe: { face: 'happy', mouth: 'laugh', armL: [100, 30], holdL: WALLET(1), armR: [30, 30] }, luis: { face: 'happy', mouth: 'laugh', armL: [30, 30], armR: [30, 30] }, toni: { face: 'happy', mouth: 'laugh', armR: [100, 30], holdR: WALLET(1), armL: [30, 30] } }); const p0 = W.proj(V3(DT.x, 1.5, DT.z - .7));
     for (let i = 0; i < 10; i++) { const kk = clamp((t - .1 - i * .07) / .7); s += flyBill({ x: p0.x - 200 + (i % 3) * 200, y: p0.y }, { x: 1300, y: p0.y - 500 }, kk, 1.3, 400 * (i % 2 ? 1 : -1), ['#9ab88a', '#e8b07a', '#7ab0e8'][i % 3]); } return s; }
   if (t < t2) { whipBlur(t, t1); const u = t - t1, open = oc(clamp(u / .3)); till(open, 1 + u * .4, ((u * 931) % 1000).toFixed(2).replace('.', ',')); const tp = W.TILL.position;
     cam(L3(V3(tp.x + .45, 1.62, tp.z + 1.25), V3(tp.x + .42, 1.6, tp.z + 1.1), oc(clamp(u / (t2 - t1)))), V3(tp.x, 1.2, tp.z), 44, .004);
@@ -49,11 +49,13 @@ S.caja = (t, D, B) => { const E = EVS.caja(B); setup(t + B[0].s, { dinner: true,
 // =====================================================================================================
 function moth(x, y, s, t) { const f = Math.abs(Math.sin(t * 20)); return `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${s.toFixed(2)})"><ellipse rx="${(26 * (.4 + f * .6)).toFixed(1)}" ry="18" cx="-16" fill="#c8b8a0" stroke="${K}" stroke-width="4"/><ellipse rx="${(26 * (.4 + f * .6)).toFixed(1)}" ry="18" cx="16" fill="#c8b8a0" stroke="${K}" stroke-width="4"/><ellipse rx="6" ry="16" fill="${K}"/></g>`; }
 S.hambre = (t, D, B) => { const E = EVS.hambre(B); setup(t + B[0].s, { dinner: true }); const tM = (E.gastan || D * .55) - .1; const k = oc(clamp(t / D));
-  cam(L3(V3(DT.x + .3, 1.7, DT.z + 2.3), V3(DT.x + .28, 1.68, DT.z + 2.05), k), V3(DT.x, 1.15, DT.z - .4), 52);
-  const chew = Math.floor(t * 8) % 2; let s = diners(t, { all: { face: 'happy', mouth: chew ? 'o' : 'laugh', armR: [118 + Math.sin(t * 14) * 10, 40], armL: [100, 30] }, pepe: { face: tM < t ? 'wide' : 'happy', mouth: tM < t ? 'o' : (chew ? 'laugh' : 'o'), armR: tM < t ? [96, 20] : [118, 40], holdR: tM < t ? WALLET(1) : '', armL: [100, 30] } });
+  cam(L3(V3(DT.x + .15, 1.8, DT.z + 3.4), V3(DT.x + .14, 1.78, DT.z + 3.15), k), V3(DT.x, 1.15, DT.z - .4), 58);
+  const chew = Math.floor(t * 8) % 2; const fork = ph => [118 + Math.sin(t * 14 + ph) * 10, 40];   // el brazo que come va por FUERA del grupo; el de dentro, sobre la mesa
+  let s = diners(t, { luis: { face: 'happy', mouth: chew ? 'o' : 'laugh', armL: [30, 30], armR: [30, 30] }, toni: { face: 'happy', mouth: chew ? 'laugh' : 'o', armR: fork(1), armL: [30, 30] },
+    pepe: { face: tM < t ? 'wide' : 'happy', mouth: tM < t ? 'o' : (chew ? 'laugh' : 'o'), armL: tM < t ? [96, 20] : fork(2), holdL: tM < t ? WALLET(1) : '', armR: [30, 30] } });
   const un = oc(clamp((t - .3) / (D * .75))), hp = W.proj(V3(DT.x + .25, .8, DT.z + .58)), fp = W.proj(V3(DT.x + .3, .01, DT.z + .58 + .9 * un)), mp = W.proj(V3(DT.x + .27, .02, DT.z + .6));
   const path = `M${hp.x.toFixed(1)},${hp.y.toFixed(1)} L${mp.x.toFixed(1)},${lerp(hp.y, mp.y, Math.min(1, un * 2)).toFixed(1)}` + (un > .5 ? ` L${lerp(mp.x, fp.x, (un - .5) * 2).toFixed(1)},${lerp(mp.y, fp.y, (un - .5) * 2).toFixed(1)}` : '');
-  s += `<path d="${path}" stroke="${K}" stroke-width="46" fill="none" stroke-linejoin="round"/><path d="${path}" stroke="#fbf8f0" stroke-width="36" fill="none" stroke-linejoin="round"/><path d="${path}" stroke="#8a8478" stroke-width="20" fill="none" stroke-dasharray="4 14" opacity=".7"/>`;
+  s += `<path d="${path}" stroke="${K}" stroke-width="46" fill="none" stroke-linejoin="round"/><path d="${path}" stroke="#fbf8f0" stroke-width="36" fill="none" stroke-linejoin="round"/><path d="${path}" stroke="#8a8478" stroke-width="24" fill="none" stroke-dasharray="5 9" opacity=".55"/>`;   // renglones del tique
   if (t > tM) { const h = headScr(DSEAT.pepe, SEATH), u = t - tM; s += moth(h.x + 140 + u * 120, h.y + 120 - u * 260 + Math.sin(u * 9) * 20, 1.2, t); } return s; };
 
 // =====================================================================================================
