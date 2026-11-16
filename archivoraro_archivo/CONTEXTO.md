@@ -26,7 +26,7 @@ Este documento resume TODO lo hablado y hecho con el usuario en la sesión larga
 - Antes de un vídeo nuevo: **bocetos/fotos de los personajes Y del escenario dentro del mundo 3D**, y esperar su «sí».
   - Si pide fotos, **no hagas vídeo**.
   - Si un diseño no le gusta, rehazlo de verdad. No insistas.
-- **Ideas inventadas (16-11-2026):** el usuario rechazó 10 anécdotas simpáticas («no son como la de la cárcel»). Las ideas inventadas tienen que seguir la estructura del preso: rechaza algo que todos querrían, despiste, pista, registro sin éxito, «Mientras tanto» con un inocente detenido, «Verás» con un plan ingenioso y bucle. Ver `textos/ideas_2026-11-16_formato_preso.txt`.
+- **Ideas inventadas (16-11-2026):** el usuario rechazó 10 anécdotas simpáticas («no son como la de la cárcel»). Las ideas inventadas tienen que seguir la estructura del preso: rechaza algo que todos querrían, despiste, pista, registro sin éxito, «Mientras tanto» con un inocente detenido, «Verás» con un plan ingenioso y bucle. Pero NO copies el robo (dinero, joyas, oro: el usuario lo rechazó). Ver `textos/ideas_2026-11-16_sin_robos.txt`.
 - **«Ni un fallo»**: revisa hojas de fotogramas con lupa antes de enviar. Errores que ya detectó (están en `references/lessons.md`):
   - un coche dentro de la cancha;
   - un sombrero «levitando»;
