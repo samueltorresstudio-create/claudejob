@@ -419,3 +419,36 @@ El usuario los pasó como «consejos a la hora de crear los vídeos». Orden rea
   - **Gag pequeño (polilla que sale de la cartera)**: calcula su recorrido en unidades del muñeco (`q = (proj(F).y − headScr(F).y) / 470` px por unidad), que suba por FUERA de la cabeza y cruce por ENCIMA de las cabezas (y < −680); si el personaje está pegado al borde, abre el plano hacia ese lado para que quepa.
   - **Encuadre con 4 en fila en vertical** (3 sentados + camarero de pie): no se calcula a ojo. `dbg_fit.js` proyecta el ancho de cada cabeza (centro ± 0,39 m en la dirección «derecha» de la cámara) para varias cámaras candidatas y se elige la que deja huecos ≥ 25 px y nadie cortado (en el 71: frontal, fov 76–78, camarero 0,87 m más allá del último).
   - **Fallo puntual de render**: un fotograma suelto puede salir roto (mismo plano, la mitad inferior con otra imagen) aunque cámara y escena sean idénticas. Pasa `scripts/spikes.py` antes de montar.
+
+## Corte medieval, sala de guerra, puerto y fondo del mar (72 · El chiste más peligroso de Francia, nov. 2026)
+Mundo `world_corte.js` (en `archivoraro_archivo/proyectos/72_bufon/parts/`). Zonas por x: salón del trono (x ±7), sala de guerra (x 60), plaza con horca (x 120), puerto de La Esclusa (x 300) y fondo del mar (x 420). Reparto en `cast72.js` (bufón, rey, nobles, guardia, mensajero).
+
+### Medidas de los personajes: los planos cerrados salían pegadísimos
+- La cabeza mide **0,8 m** de diámetro, y su centro está a 1,84 m de los pies (ADULT). El personaje entero mide unos 2,25 m.
+- Primer plano de cara: cámara a **3,5–4,8 m** con fov 30–40. **Nunca a menos de 3 m.**
+- Plano medio con dos personajes: a unos 5–6 m. Plano general de sala: a 9–10 m.
+- **Antes de renderizar, calcula el encuadre con `scripts/frame.py`.** Da la posición de pies y cabeza en pantalla, el tamaño de la cabeza en px y avisa si se sale de cuadro. Coincide al píxel con `W2.proj`.
+  ```
+  python3 frame.py 'cx,cy,cz' 'lx,ly,lz' fov NOMBRE:x,y,z …
+  ```
+- `lean` desplaza la cabeza unos 100–120 px: tenlo en cuenta al separar cabezas.
+- Cabezas separadas: centros a ≥ 1 m entre sí, o con profundidades muy distintas y sin solaparse en pantalla.
+
+### Fallos feos detectados y su arreglo
+- **Rayas de «cristal» en los primeros planos:** era el filtro de luz de contorno (rim), que crecía con la escala del personaje. Ahora el grosor está en píxeles de pantalla (`rs = 1/max(1, s)` en `stickAt`). Copia el `stick.js` del 72.
+- **Personajes detrás de una mesa vistos desde arriba:** las piernas «cuelgan» por encima del tablero. Recórtalos con `clipAbove` en el borde lejano de la mesa. En planos cenitales muy cerrados, no los pongas.
+- **Llamas en forma de cono** (parecían conos de tráfico de cerca): ahora son una gota con `LatheGeometry`.
+- **Mapa quemado y todo naranja:** las luces cálidas encima de la mesa, con intensidad 22, lo blanqueaban. Usa luces suaves y casi blancas (6–8), y la luz de personaje CANDLE neutra (k .16).
+- **Fondo del mar con línea de horizonte:** el color de borrado no pasa por el tone mapping. Oculta el cielo y pon una esfera de fondo con niebla (`SEABOX`, MeshBasic con `fog: true`).
+- **Mano que agarra un objeto en primer plano:** con manos negras de muñeco se lee como una mancha. Mejor un primerísimo plano de la cara con líneas de tensión.
+- **Barcos con almenas:** parecían de Lego. Ahora llevan castillos lisos con barandilla, y la vista va en diagonal desde detrás de los barcos que atacan (velas de cara).
+- **Lágrimas de risa:** parecían llanto. Usa líneas de risa a los lados de la cabeza (`laughLines`).
+
+### Recursos que funcionaron
+- **Gancho en el fotograma 0:** las mangas del rey bajan el gorro de cascabeles sobre la cabeza del bufón, «¡ding!» y brillo.
+- **Bucle:** el último plano repite la cámara del primero (`CAM0`).
+- **Inserto de recorte de papel** para la parte delicada (marineros que se tiran al agua):
+  - pergamino con viñeta, olas por capas y barcos y siluetas de tinta;
+  - entra con una cortinilla de borde rasgado (`tornWipe`).
+- **Franjas negras que se cierran** al «dejar de respirar», con los ojos centrados en la franja que queda.
+- **«Solo se oyen tus cascabeles»:** en el audio se quita TODA la música y quedan solo los cascabeles.
