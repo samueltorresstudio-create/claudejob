@@ -1,29 +1,29 @@
-72 · EL CHISTE MÁS PELIGROSO DE FRANCIA — guion v2 para ElevenLabs (voz «Stickmans», estabilidad Natural)
+72 · EL CHISTE MÁS PELIGROSO DE FRANCIA — guion v3 para ElevenLabs (voz «Stickmans», estabilidad Natural)
 Versión propia en español del Short de @Emuuexplains (ref_bufon_analisis.md): misma estructura, frases nuestras. Base real: batalla de La Esclusa, 24-6-1340; lo del bufón es una anécdota que «se cuenta» (decirlo en la descripción).
-v2 (17-11-2026, el usuario preguntó si se podía mejorar): condición clara en el gancho, horca concreta, chiste más redondo y explicado, silencio con los cascabeles, frase del rey en el giro, bucle con el gorro.
+v3 (17-11-2026): el usuario lo quiere de 63–67 s. Ritmo medido de «Stickmans»: ≈ 2,97 palabras/s (70: 209 palabras = 70,1 s; 71: 216 = 72,8 s) → objetivo ≈ 190–195 palabras.
 Pegar tal cual, una frase por línea:
 
 Tu rey te pone un gorro con cascabeles… y te nombra su bufón.
-Eres el único hombre de Francia que puede decirle la verdad a la cara.
-Con una sola condición: que se ría.
+Eres el único en Francia que puede decirle la verdad.
+Con una condición: que se ría.
 Si el rey deja de reír… tú dejas de respirar.
-Año mil trescientos cuarenta. Francia está en guerra con Inglaterra.
+Año mil trescientos cuarenta. Guerra con Inglaterra.
 Y llega una noticia que nadie quiere dar.
-Los ingleses han encerrado la flota del rey en un puerto… y la han hecho astillas.
-Miles de marineros franceses, en el fondo del mar.
+Los ingleses le han hecho astillas toda la flota.
+Miles de marineros, en el fondo del mar.
 Ningún noble se atreve a decírselo.
-El último que le trajo una mala noticia… sigue colgado en la plaza.
+El último que le trajo malas noticias… sigue colgado en la plaza.
 Así que te empujan a ti.
-Entras dando saltitos, con las piernas temblando, y gritas: «¡Majestad, qué cobardes son los ingleses!».
+Entras dando saltitos y gritas: «¡Majestad, qué cobardes son los ingleses!».
 El rey se ríe: «¿Cobardes? ¿Por qué?».
-[mischievously] «Porque cuando se les hundían los barcos… ni uno tuvo valor para tirarse al agua.
+[mischievously] «Porque cuando se hundían sus barcos… ni uno se atrevió a tirarse al agua.
 No como nuestros valientes marineros».
 El rey deja de reír.
-Lo ha entendido todo.
-En la sala solo se oyen tus cascabeles.
-Los guardias le miran. Solo esperan una palabra.
+Lo ha entendido.
+Solo se oyen tus cascabeles.
+Los guardias esperan una sola palabra.
 [dramatic] Pero el rey no mira al bufón… mira a sus nobles.
-«¿Y ninguno de vosotros tenía valor para decírmelo?».
+«¿Ninguno de vosotros tenía valor para decírmelo?».
 Salvas la cabeza.
-Y desde ese día, cada vez que la guerra va mal…
+Y desde entonces, cada vez que la guerra va mal…
 [deadpan] [slowly] adivina a quién empujan hacia el trono… con su gorro de cascabeles.
