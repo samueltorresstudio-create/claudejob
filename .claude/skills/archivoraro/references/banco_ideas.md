@@ -11,6 +11,24 @@ Estado:
 - ⭐ recomendada
 - · pendiente
 
+## Gusto del usuario (17-11-2026)
+Le gustaron:
+- el muerto de Huelva (Mincemeat);
+- el oso soldado (Wojtek);
+- las mujeres de Weinsberg;
+- el robo del siglo (Banco Río);
+- la maratón de 1904;
+- el hombre que se comió un avión.
+
+Le parecieron «meh, más rebuscadas»: Onoda, Blas de Lezo, Praga, Hans el Listo, la epidemia de baile, el árbol de Corea, el pollo sin cabeza, Mad Jack y los emús.
+
+El patrón:
+- **una imagen imposible que se entiende en 2 segundos sin saber historia**: un oso con uniforme, un hombre comiéndose un avión, ladrones pidiendo pizza, un muerto con un maletín;
+- **un plan o un caos concreto que escala**;
+- **nada que necesite contexto político, religioso o una «explicación científica»**.
+
+Prompt para pedir más ideas a ChatGPT: `archivoraro_archivo/textos/prompt_chatgpt_ideas.txt`.
+
 | # | idea | país | gancho (2 líneas) | datos comprobados / cuidado | estado |
 |---|---|---|---|---|---|
 | 1 | Los hipopótamos de Escobar | Colombia | «Un hombre compró cuatro hipopótamos. / Treinta años después hay más de 180… y nadie sabe cómo pararlos.» | 4 traídos en los 80 a la Hacienda Nápoles; 169 según el Gobierno (2023) y 181–215 según un censo científico; especie invasora desde 2022; podrían ser más de 1.000 en 2035 | ✅ `example/hipopotamos_3d` |
@@ -61,4 +79,4 @@ Estado:
 | 46 | El soldado que fue a la guerra con espada, arco y gaita (Mad Jack Churchill) | Reino Unido | «En la Segunda Guerra Mundial, con tanques y ametralladoras… / un soldado británico iba a la batalla con espada, arco y gaita.» | Jack Churchill; tocaba la gaita al bajar las rampas de desembarco; «un oficial sin espada va mal vestido». Lo de matar a un alemán con una flecha (1940) y capturar a 42 con la espada (Molina, 1943): **se cuenta** | ⭐⭐ |
 | 47 | Tirados por la ventana… y vivos (Defenestración de Praga) | Bohemia | «En 1618 tiraron a tres hombres por una ventana del castillo de Praga. / Los tres sobrevivieron… y empezó una guerra de 30 años.» | 23-5-1618; Slavata, Martinic y el secretario Fabricius; caída de unos 16–21 m (no des cifra exacta: «más de 15 metros»); los católicos dijeron que los salvaron los ángeles y los protestantes que cayeron en estiércol (leyenda); el emperador nombró a Fabricius «barón de Hohenfall» («de la Gran Caída») | ⭐⭐⭐ humor |
 | 48 | La epidemia de baile (Estrasburgo, 1518) | Francia (entonces Sacro Imperio) | «En 1518 una mujer empezó a bailar en la calle… y no podía parar. / Y las autoridades decidieron que la cura era… bailar más.» | Julio de 1518, Frau Troffea; hasta unas 400 personas; los médicos dijeron «sangre caliente»: el concejo despejó el mercado, montó un escenario y contrató músicos; empeoró; prohibieron la música y los llevaron al santuario de San Vito. **No des cifra de muertos** (sin fuente primaria) | ⭐⭐⭐ |
-| 49 | El hombre que se comió un avión (Monsieur Mangetout) | Francia | «Un hombre se comió un avión entero. / Tardó dos años… y no fue un truco.» | Michel Lotito; una Cessna 150 entre 1978 y 1980, a trozos pequeños con agua; también bicis y televisores; placa del Guinness. Que se comiera la placa y que los plátanos le sentaran mal: **se cuenta** | ⭐⭐ |
+| 49 | El hombre que se comió un avión (Monsieur Mangetout) | Francia | «Un hombre se comió un avión entero. / Tardó dos años… y no fue un truco.» | Michel Lotito; una Cessna 150 entre 1978 y 1980, a trozos pequeños con agua; también bicis y televisores; placa del Guinness. Que se comiera la placa y que los plátanos le sentaran mal: **se cuenta** | ⭐⭐ · **guardada: le gustó al usuario (17-11-2026)** |
