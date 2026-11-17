@@ -105,7 +105,7 @@
   { const g = new T.Group(); g.position.copy(THRONE); scene.add(g); const fg = m => { m.userData.fg = true; FGO.push(m); return m; };
     const velvet = STD({ map: tex(256, 512, (gg, w, h) => lisPattern(gg, w, h, '#22408f', '#e8b830', 96, 52)), roughness: 1 });
     add(RB(1.4, .62, 1.0, .05), GOLD, 0, .1, 0, { parent: g }); add(RB(1.2, .05, 1.02, .02), GOLDD, 0, -.16, 0, { parent: g });
-    fg(add(RB(.98, .16, .9, .06), STD({ color: '#22408f', roughness: .95 }), 0, .47, .02, { parent: g })); fg(add(RB(1.0, .04, .06, .02), GOLDD, 0, .4, .48, { parent: g }));
+    add(RB(.98, .16, .9, .06), STD({ color: '#22408f', roughness: .95, bumpMap: WEAVE, bumpScale: .6 }), 0, .47, .02, { parent: g }); add(RB(1.0, .04, .06, .02), GOLDD, 0, .4, .48, { parent: g });
     const back = new T.ExtrudeGeometry(archShape(1.4, 2.9), { depth: .18, bevelEnabled: true, bevelThickness: .03, bevelSize: .03, bevelSegments: 2 }); add(back, GOLD, 0, .1, -.5, { parent: g });
     add(new T.ShapeGeometry(archShape(1.05, 2.4)), velvet, 0, .45, -.24, { parent: g, cast: false, noInk: true }); add(new T.TorusGeometry(.2, .035, 8, 24), GOLDD, 0, 2.6, -.24, { parent: g }); add(new T.SphereGeometry(.08, 12, 10), STD({ color: '#c8243a', roughness: .3 }), 0, 2.6, -.22, { parent: g });
     [-1, 1].forEach(sd => { fg(add(RB(.17, .44, .98, .05), GOLD, sd * .57, .72, .02, { parent: g })); fg(add(RB(.22, .06, 1.02, .03), GOLDD, sd * .57, .96, .02, { parent: g }));

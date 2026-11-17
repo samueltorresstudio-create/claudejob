@@ -1,7 +1,8 @@
 
 // ---------- el rey sentado en el trono ----------
-const SIT_K = SITP(1.29, .75), KSEAT = V3(0, SIT_K.y0, -13.47);
-const kingSit = (pose, opt) => [KSEAT, who('REY', Object.assign({ legLen: .54 / .93, legL: [10, -6], legR: [10, -6], hose: ['#22408f', '#22408f'], armL: [24, 30], armR: [24, 30], cape: null }, pose), KSEAT, ADULT, opt)];
+const SIT_K = SITP(1.29, .75), KSEAT = V3(0, SIT_K.y0, -13.75);
+const kingSit = (pose, opt) => [KSEAT, who('REY', Object.assign({ legLen: SEAT_LEG, legL: [10, -6], legR: [10, -6], hose: ['#22408f', '#22408f'], armL: [24, 30], armR: [24, 30], cape: null }, pose), KSEAT, ADULT, Object.assign({ shadow: false, light: Object.assign({}, IN, { rimA: 0 }) }, opt))];
+let SEAT_LEG = .62;
 const KHEAD = () => V3(0, KSEAT.y + 1.72, KSEAT.z);
 // bufón delante de la tarima
 const JF0 = V3(0, 0, -9.5);

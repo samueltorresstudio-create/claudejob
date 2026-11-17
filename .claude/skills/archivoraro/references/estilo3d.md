@@ -466,6 +466,11 @@ Mundo `world_corte.js` (en `archivoraro_archivo/proyectos/72_bufon/parts/`). Zon
   - Se activa por escena con `setup({ fg: true })`. **Solo cuando nadie está delante del trono.**
   - Además: asiento más alto (1,29 m), brazos metidos hacia dentro para que tapen los costados, el rey sin capa al sentarse, piernas casi rectas con calzas azules y pies en la tarima.
   - Sirve para cualquier mueble que deba tapar a un personaje (mesa, barra, mostrador).
+  - **Corrección tras ver el resultado («cuando está sentado está bug»):**
+    - el COJÍN no va en la capa de primer término: si lo tapa, el rey parece cortado por la cintura y las piernas salen sueltas. Solo van delante los brazos del trono y los pomos;
+    - el cuerpo se apoya SOBRE el cojín (pies del personaje a mitad del asiento, z -13,75) y las piernas bajan por delante del asiento hasta la tarima;
+    - sin sombra de suelo (`shadow: false`);
+    - sin luz de contorno (`rimA: 0`): en primer plano el contorno dibujaba una raya gris entre el cuerpo y el brazo.
 - **«Los escenarios parecen de plastilina de mala calidad»:** lo que más cambia el resultado:
   1. **Texturas con relieve** (`parts/w1b_pbr.js`): cada textura se pinta en color y en altura (bumpMap). Hay:
      - sillería con juntas hundidas y grietas;
