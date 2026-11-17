@@ -150,7 +150,7 @@ S.salvas = (t, D, B) => { setup(t + B[0].s, { light: IN }); const k = oc(clamp(t
 S.bucle = (t, D, B) => { const E = EVS.bucle(B); const tA = (E.adivina || D * .45) - .1, tC = (E.con || D * .8) - .1;
   if (t < tA) { setup(t + B[0].s, { light: IN, doors: 0 }); const k = oc(clamp(t / tA)), look = snap(t, (E.mal || tA * .8) - .15, .3);
     cam(L3(V3(.1, 2.1, 1.6), V3(-.05, 2.05, 2.4), k), V3(-.05, 1.6, 8.8), 46);
-    const N = [[.15, 9.1, 'NOBLE1', .15], [1.05, 9.5, 'NOBLE3', 0]];
+    const N = [[.45, 9.1, 'NOBLE1', .15], [1.25, 9.5, 'NOBLE3', 0]];
     const L = N.map(([x, z, n, tn], i) => P_(n, { turn: tn, face: look > .5 ? 'smug' : 'wide', mouth: look > .5 ? 'smirk' : 'line', look: [lerp((i - 1) * -10, -20, look), lerp(0, -2, look)], armR: [50, -70], holdR: LETTER(-10 + i * 8), holdTop: 1, sweat: look < .5 }, V3(x, 0, z)));
     L.push(P_('BUFON', { turn: .45, face: look > .5 ? 'wide' : 'happy', mouth: look > .5 ? 'o' : 'smile', hornSwing: Math.sin(t * 4) * .3, sweat: look > .5, armL: look > .5 ? [30, -100] : [14, 10] }, V3(-1.15, 0, 8.2)));
     return depth(L); }

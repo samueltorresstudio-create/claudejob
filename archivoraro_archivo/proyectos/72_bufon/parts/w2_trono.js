@@ -129,7 +129,7 @@
     add(new T.TorusGeometry(.32, .025, 8, 24), IRON, x, y + 1.85, z, { rx: Math.PI / 2 }); for (let k = 0; k < 5; k++) { const a = k / 5 * 6.283; candle(x + Math.cos(a) * .32, y + 1.86, z + Math.sin(a) * .32, .2); } candle(x, y + 1.9, z, .26); };
   candelabra(-2.4, .75, -13.3); candelabra(2.4, .75, -13.3);
   const brazier = (x, z) => { add(new T.CylinderGeometry(.42, .22, .38, 18, 1, true), STD({ color: '#8a5a2a', metalness: .4, roughness: .45, side: T.DoubleSide }), x, 1.0, z); add(new T.CylinderGeometry(.05, .08, .82, 8), IRON, x, .41, z);
-    [0, 1, 2, 3, 4].forEach(k => { const f = flame(x + Math.cos(k * 1.26) * .16, 1.12, z + Math.sin(k * 1.26) * .16, 2.2 + (k % 2) * .8); }); add(new T.CylinderGeometry(.36, .36, .06, 18), STD({ color: '#3a1a0a', emissive: '#ff5a10', emissiveIntensity: .8, roughness: 1 }), x, 1.14, z, { cast: false, noInk: true }); };
+    [0, 1, 2, 3, 4, 5, 6].forEach(k => { const f = flame(x + Math.cos(k * .9) * (k ? .18 : 0), 1.12, z + Math.sin(k * .9) * (k ? .18 : 0), k ? 1.25 + (k % 2) * .45 : 2.0); }); add(new T.CylinderGeometry(.36, .36, .06, 18), STD({ color: '#3a1a0a', emissive: '#ff5a10', emissiveIntensity: .8, roughness: 1 }), x, 1.14, z, { cast: false, noInk: true }); };
   brazier(-2.9, -10.6); brazier(2.9, -10.6);
   // lámparas de corona con velas
   [[-6.5], [1.5]].forEach(([z]) => { add(new T.TorusGeometry(1.15, .05, 8, 40), IRON, 0, 6.9, z, { rx: Math.PI / 2 }); for (let k = 0; k < 10; k++) { const a = k / 10 * 6.283; candle(Math.cos(a) * 1.15, 6.93, z + Math.sin(a) * 1.15, .18); }

@@ -491,3 +491,10 @@ Mundo `world_corte.js` (en `archivoraro_archivo/proyectos/72_bufon/parts/`). Zon
      - barcos con castillos abiertos y jarcia.
   - Quita los haces de luz transparentes con GTAO: los toma como superficies y salen como barras negras.
   - Coste: el fotograma pasa de unos 3 s a 6–7 s en previsualización.
+
+### Voz real más larga de lo pedido (72, 17-11-2026)
+- El MP3 de «Stickmans» duraba 69,4 s y el usuario quería 63–67 s.
+- **No se acelera la voz.** Se acortan solo las pausas largas: cada silencio de más de 0,30 s se queda en 0,30 s más el 40 % de lo que sobraba (ffmpeg `silencedetect` a -38 dB, d = 0,18).
+- Con eso se ganaron 2,9 s y la voz quedó en 66,5 s. El vídeo dura 66,9 s, sin oír cortes.
+- Después, `sync_voice.py` con el WAV recortado y `check_sync.py`: 0 líneas dudosas.
+- **Renders de más de 2 h:** lánzalos desacoplados (`setsid nohup node render.js full 4 … &`). Para que avise al terminar, usa una espera en segundo plano (`until grep -q "^frames" log`): las tareas en segundo plano se cortan a las 2 h.
