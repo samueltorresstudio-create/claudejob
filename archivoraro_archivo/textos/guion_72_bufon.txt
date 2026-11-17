@@ -1,27 +1,29 @@
-72 · EL CHISTE MÁS PELIGROSO DE FRANCIA — guion para ElevenLabs (voz «Stickmans», estabilidad Natural)
+72 · EL CHISTE MÁS PELIGROSO DE FRANCIA — guion v2 para ElevenLabs (voz «Stickmans», estabilidad Natural)
 Versión propia en español del Short de @Emuuexplains (ref_bufon_analisis.md): misma estructura, frases nuestras. Base real: batalla de La Esclusa, 24-6-1340; lo del bufón es una anécdota que «se cuenta» (decirlo en la descripción).
+v2 (17-11-2026, el usuario preguntó si se podía mejorar): condición clara en el gancho, horca concreta, chiste más redondo y explicado, silencio con los cascabeles, frase del rey en el giro, bucle con el gorro.
 Pegar tal cual, una frase por línea:
 
 Tu rey te pone un gorro con cascabeles… y te nombra su bufón.
-Y te da un privilegio rarísimo: eres el único hombre de Francia que puede decirle la verdad.
-Pero cada chiste es una apuesta.
-Si el rey deja de reírse… tú dejas de respirar.
+Eres el único hombre de Francia que puede decirle la verdad a la cara.
+Con una sola condición: que se ría.
+Si el rey deja de reír… tú dejas de respirar.
 Año mil trescientos cuarenta. Francia está en guerra con Inglaterra.
-Y llega la peor noticia posible.
-Los ingleses han acorralado toda la flota del rey dentro de un puerto… y la han hecho pedazos.
-Miles de marineros franceses, muertos.
+Y llega una noticia que nadie quiere dar.
+Los ingleses han encerrado la flota del rey en un puerto… y la han hecho astillas.
+Miles de marineros franceses, en el fondo del mar.
 Ningún noble se atreve a decírselo.
-Todos saben cómo acaba el que le trae una mala noticia al rey.
+El último que le trajo una mala noticia… sigue colgado en la plaza.
 Así que te empujan a ti.
-Entras dando saltitos hasta el trono y gritas: «¡Majestad, qué cobardes son los ingleses!».
-El rey se ríe: «¿Y eso por qué?».
-[mischievously] «Porque cuando se les hundieron los barcos… no tuvieron valor para tirarse al agua…
-como nuestros valientes marineros franceses».
-A tu rey se le congela la risa.
-Aprieta el trono con las dos manos.
+Entras dando saltitos, con las piernas temblando, y gritas: «¡Majestad, qué cobardes son los ingleses!».
+El rey se ríe: «¿Cobardes? ¿Por qué?».
+[mischievously] «Porque cuando se les hundían los barcos… ni uno tuvo valor para tirarse al agua.
+No como nuestros valientes marineros».
+El rey deja de reír.
+Lo ha entendido todo.
+En la sala solo se oyen tus cascabeles.
 Los guardias le miran. Solo esperan una palabra.
-[dramatic] Pero el rey se vuelve hacia sus nobles, temblando de rabia.
-Porque el único con valor para contárselo… ha sido el bufón.
+[dramatic] Pero el rey no mira al bufón… mira a sus nobles.
+«¿Y ninguno de vosotros tenía valor para decírmelo?».
 Salvas la cabeza.
 Y desde ese día, cada vez que la guerra va mal…
-[deadpan] [slowly] adivina a quién empujan hacia el trono…
+[deadpan] [slowly] adivina a quién empujan hacia el trono… con su gorro de cascabeles.
