@@ -1,0 +1,146 @@
+[
+{
+"sc": "gorro",
+"say": "Tu rey te pone un gorro con cascabeles… y te nombra su bufón.",
+"cap": "TU REY TE PONE UN GORRO|y CON CASCABELES…|y Y TE NOMBRA SU BUFÓN.|p",
+"pause": 0.1
+},
+{
+"sc": "verdad",
+"say": "Eres el único en Francia que puede decirle la verdad.",
+"cap": "ERES EL ÚNICO|y EN FRANCIA QUE PUEDE DECIRLE LA VERDAD.|b",
+"pause": 0.1
+},
+{
+"sc": "condicion",
+"say": "Con una condición: que se ría.",
+"cap": "CON UNA CONDICIÓN:|y QUE SE RÍA.|y",
+"pause": 0.1
+},
+{
+"sc": "condicion",
+"say": "Si el rey deja de reír… tú dejas de respirar.",
+"cap": "SI EL REY DEJA DE REÍR…|p TÚ DEJAS DE RESPIRAR.|p",
+"pause": 0.1
+},
+{
+"sc": "guerra",
+"say": "Año mil trescientos cuarenta. Guerra con Inglaterra.",
+"cap": "AÑO 1340.|y GUERRA|p CON INGLATERRA.",
+"pause": 0.1
+},
+{
+"sc": "guerra",
+"say": "Y llega una noticia que nadie quiere dar.",
+"cap": "Y LLEGA UNA NOTICIA QUE NADIE|b QUIERE DAR.",
+"pause": 0.1
+},
+{
+"sc": "flota",
+"say": "Los ingleses le han hecho astillas toda la flota.",
+"cap": "LOS INGLESES LE HAN HECHO ASTILLAS|p TODA LA FLOTA.|y",
+"pause": 0.1
+},
+{
+"sc": "fondo",
+"say": "Miles de marineros, en el fondo del mar.",
+"cap": "MILES|y DE MARINEROS, EN EL FONDO|b DEL MAR.",
+"pause": 0.1
+},
+{
+"sc": "nadie",
+"say": "Ningún noble se atreve a decírselo.",
+"cap": "NINGÚN NOBLE SE ATREVE|p A DECÍRSELO.",
+"pause": 0.1
+},
+{
+"sc": "plaza",
+"say": "El último que le trajo malas noticias… sigue colgado en la plaza.",
+"cap": "EL ÚLTIMO QUE LE TRAJO MALAS NOTICIAS… SIGUE COLGADO|p EN LA PLAZA.",
+"pause": 0.1
+},
+{
+"sc": "empujan",
+"say": "Así que te empujan a ti.",
+"cap": "ASÍ QUE TE EMPUJAN|y A TI.|y",
+"pause": 0.1
+},
+{
+"sc": "entra",
+"say": "Entras dando saltitos y gritas: «¡Majestad, qué cobardes son los ingleses!».",
+"cap": "ENTRAS DANDO SALTITOS|y Y GRITAS: «¡MAJESTAD, QUÉ COBARDES|p SON LOS INGLESES!»",
+"pause": 0.1
+},
+{
+"sc": "rie",
+"say": "El rey se ríe: «¿Cobardes? ¿Por qué?».",
+"cap": "EL REY SE RÍE:|y «¿COBARDES?|p ¿POR QUÉ?»",
+"pause": 0.1
+},
+{
+"sc": "remate",
+"say": "«Porque cuando se hundían sus barcos… ni uno se atrevió a tirarse al agua.",
+"cap": "«PORQUE CUANDO SE HUNDÍAN SUS BARCOS… NI UNO SE ATREVIÓ|p A TIRARSE AL AGUA.|b",
+"pause": 0.1
+},
+{
+"sc": "remate",
+"say": "No como nuestros valientes marineros».",
+"cap": "NO COMO NUESTROS VALIENTES|y MARINEROS».",
+"pause": 0.1
+},
+{
+"sc": "silencio",
+"say": "El rey deja de reír.",
+"cap": "EL REY DEJA DE REÍR.|p",
+"pause": 0.1
+},
+{
+"sc": "silencio",
+"say": "Lo ha entendido.",
+"cap": "LO HA ENTENDIDO.|y",
+"pause": 0.1
+},
+{
+"sc": "silencio",
+"say": "Solo se oyen tus cascabeles.",
+"cap": "SOLO SE OYEN TUS CASCABELES.|y",
+"pause": 0.1
+},
+{
+"sc": "guardias",
+"say": "Los guardias esperan una sola palabra.",
+"cap": "LOS GUARDIAS ESPERAN UNA SOLA PALABRA.|p",
+"pause": 0.1
+},
+{
+"sc": "giro",
+"say": "Pero el rey no mira al bufón… mira a sus nobles.",
+"cap": "PERO EL REY NO MIRA AL BUFÓN… MIRA A SUS NOBLES.|y",
+"pause": 0.1
+},
+{
+"sc": "giro",
+"say": "«¿Ninguno de vosotros tenía valor para decírmelo?».",
+"cap": "«¿NINGUNO|p DE VOSOTROS TENÍA VALOR|y PARA DECÍRMELO?»",
+"pause": 0.1
+},
+{
+"sc": "salvas",
+"say": "Salvas la cabeza.",
+"cap": "SALVAS LA CABEZA.|g",
+"pause": 0.1
+},
+{
+"sc": "bucle",
+"say": "Y desde entonces, cada vez que la guerra va mal…",
+"cap": "Y DESDE ENTONCES, CADA VEZ QUE LA GUERRA VA MAL…|p",
+"pause": 0.1
+},
+{
+"sc": "bucle",
+"say": "adivina a quién empujan hacia el trono… con su gorro de cascabeles.",
+"cap": "ADIVINA A QUIÉN EMPUJAN HACIA EL TRONO… CON SU GORRO|y DE CASCABELES.|y",
+"pause": 0.1
+}
+]
