@@ -73,5 +73,5 @@ S.empujan = (t, D, B) => { const open = snap(t, .05, .32); setup(t + B[0].s, { l
   cam(L3(V3(.9, 1.6, 2.6), V3(.75, 1.58, 3.4), k), V3(0, 1.85, 12.5), 46);
   const push = eIO2(clamp((t - .15) / (D * .7))), JF = V3(.1, 0, lerp(13.2, 10.8, push));
   const L = [P_('BUFON', { face: 'wide', mouth: 'o', lean: lerp(-14, 6, push), armL: [120, 30], armR: [130, 20], legL: [24, 10], legR: [-8, 6], sweat: true, hornSwing: Math.sin(t * 14) * .7 }, JF)];
-  [[-1.75, 14.0, 'NOBLE1', .3], [1.75, 14.2, 'NOBLE2', -.3]].forEach(([x, z, n, tn]) => L.push(P_(n, { turn: tn, face: 'smug', mouth: 'smirk', armL: [96, -10], armR: [96, -10], lean: -6 }, V3(x, 0, z))));
+  [[-2.05, 14.0, 'NOBLE1', .3], [1.75, 14.2, 'NOBLE2', -.3]].forEach(([x, z, n, tn]) => L.push(P_(n, { turn: tn, face: 'smug', mouth: 'smirk', armL: [96, -10], armR: [96, -10], lean: -6 }, V3(x, 0, z))));
   let s = depth(L); const fp = W.proj(JF); s += puff(fp.x, fp.y, 90 * fp.ppm / 260, clamp((t - .25) / .7)); return s; };

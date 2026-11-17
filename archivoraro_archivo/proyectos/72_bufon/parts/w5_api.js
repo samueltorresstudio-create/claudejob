@@ -7,6 +7,12 @@
   // oclusión ambiental (rincones, juntas, pies de columnas, contacto con el suelo): quita el aspecto de plastilina
   const gtao = new GTAOPass(scene, camera, W, H, undefined, { radius: .7, distanceExponent: 1.4, thickness: 1.2, scale: 1.25, samples: 10 }, { lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 5, rings: 2, samples: 8 });
   gtao.blendIntensity = 1; comp.addPass(gtao);
+  // limpia píxeles NaN/Inf antes del brillo (el bloom los convierte en bloques negros enormes: visto en 18,3 s y 20,9 s)
+  const sanM = new T.ShaderMaterial({ uniforms: { tDiffuse: { value: null }, px: { value: new T.Vector2(1 / W, 1 / H) } }, depthTest: false, depthWrite: false,
+    vertexShader: 'varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position.xy,0.,1.); }',
+    fragmentShader: 'uniform sampler2D tDiffuse; uniform vec2 px; varying vec2 vUv; bool bad(vec4 c){ return any(isnan(c)) || any(isinf(c)) || any(greaterThan(abs(c), vec4(6e4))); } void main(){ vec4 c=texture2D(tDiffuse,vUv); if(bad(c)){ vec4 s=vec4(0.); float n=0.; for(int i=0;i<8;i++){ float a=float(i)*.785398; vec4 q=texture2D(tDiffuse,vUv+vec2(cos(a),sin(a))*px*4.); if(!bad(q)){ s+=q; n+=1.; } } c = n>0. ? s/n : vec4(0.,0.,0.,1.); } gl_FragColor=c; }' });
+  const sq = new T.Mesh(new T.PlaneGeometry(2, 2), sanM); sq.frustumCulled = false; const sScene = new T.Scene(); sScene.add(sq); const sCam = new T.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  comp.addPass({ enabled: true, needsSwap: true, clear: false, renderToScreen: false, setSize() { }, dispose() { }, render(r, write, read) { sanM.uniforms.tDiffuse.value = read.texture; r.setRenderTarget(write); r.render(sScene, sCam); } });
   const bloom = new UnrealBloomPass(new T.Vector2(W / 2, H / 2), .24, .5, .88); comp.addPass(bloom);
   const dof = new BokehPass(scene, camera, { focus: 8, aperture: .003, maxblur: .006 }); comp.addPass(dof); comp.addPass(new OutputPass());
   const gradeMat = new T.ShaderMaterial({ uniforms: { tDiffuse: { value: null }, time: { value: 0 }, sepia: { value: 0 } }, depthTest: false, depthWrite: false,
@@ -57,6 +63,6 @@
   const ray = new T.Raycaster(); const solids = []; scene.traverse(o => { if (o.isMesh && !o.isInstancedMesh && o.material !== inkM && o !== sky && o !== sea && !o.userData.noInk && !(o.material && o.material.transparent)) solids.push(o); });
   function visible(p, tol = .12) { const o = camera.position, d = p.clone().sub(o), L = d.length(); ray.set(o, d.normalize()); ray.far = L - tol; return ray.intersectObjects(solids, false).length === 0; }
   function shipTop(i) { const s = FLEET.fr[i]; const p = new T.Vector3(0, 2.0, 0); s.b.updateMatrixWorld(true); return p.applyMatrix4(s.b.matrixWorld); }
-  return { setFg, shipTop, T, scene, camera, R, setCam, proj, render, setTime, setMood, visible, SUN, THRONE, BT, HZ0, HZ1, HX0, HX1, MT, mapP, GX, GZ0, GZ1, PX, GALLOWS, HXc, UX, FLEET, HANGED, WDOOR, SBAN,
+  return { comp, setFg, shipTop, T, scene, camera, R, setCam, proj, render, setTime, setMood, visible, SUN, THRONE, BT, HZ0, HZ1, HX0, HX1, MT, mapP, GX, GZ0, GZ1, PX, GALLOWS, HXc, UX, FLEET, HANGED, WDOOR, SBAN,
     setDoors, setBanquet, setTokens, setLightning, setFleet, dof, bloom, comp, inkM, sky, sea };
 })();

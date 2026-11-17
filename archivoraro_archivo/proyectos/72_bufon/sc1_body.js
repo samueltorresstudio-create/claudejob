@@ -63,7 +63,12 @@ const mapClip = (svg, x) => clipAbove(svg, W.proj(V3(x, .93, -1.0)).y);
 S.guerra = (t, D, B) => { const E = EVS.guerra(B); const tB = Math.max(1.6, (E.y || D * .55) - .12); setup(t + B[0].s, { mood: 'war', light: CANDLE, tk: .25 }); const G = W.GX;
   if (t < tB) { const k1 = eIO2(clamp((t - .9) / Math.max(.6, tB - 1.3)));
     cam(L3(V3(G - 1.05, 3.6, .9), V3(G - .05, 3.9, 3.9), k1), L3(V3(G - 1.15, .92, -.62), V3(G - .25, .9, -.6), k1), lerp(34, 46, k1), .003);
-    const L = k1 < .25 ? [] : [[-.9, -1.5, 'NOBLE1', .1], [.55, -1.5, 'NOBLE2', -.1]].map(([x, z, n, tn]) => { const F = V3(G + x, 0, z); return [F, mapClip(who(n, { turn: tn, face: 'smug', mouth: 'line', look: [0, 16], armL: [26, -60], armR: [26, -60] }, F, ADULT), G + x)]; });
+    // los nobles entran andando por los lados cuando la cabeza ya cabe en el plano (antes se veían decapitados por el borde de arriba)
+    const T0 = .9 + .553 * Math.max(.6, tB - 1.3), ent = 1 - clamp((t - T0) / 1.0);
+    const L = t < T0 ? [] : [[-.9, -1.5, 'NOBLE1', .1, -1], [.55, -1.5, 'NOBLE2', -.1, 1]].map(([x, z, n, tn, sd]) => { const xx = x + sd * 1.6 * ent, F = V3(G + xx, 0, z), wa = Math.min(1, ent * 6), wp = walkPose(t * 9 + (sd > 0 ? Math.PI : 0), { amp: wa });
+      const pose = Object.assign({ face: 'smug', mouth: 'line', look: [0, 16] }, wa > 0 ? { lift: wp.lift, bob: wp.bob, lean: wp.lean, headTilt: wp.headTilt } : {},
+        { turn: lerp(tn, sd * .45, wa), armL: [lerp(26, wp.armL[0], wa), lerp(-60, wp.armL[1], wa)], armR: [lerp(26, wp.armR[0], wa), lerp(-60, wp.armR[1], wa)] });
+      return [F, mapClip(who(n, pose, F, ADULT), G + xx)]; });
     let s = depth(L); const t13 = E._1340 || .4; if (t > t13 - .1) { const p = W.proj(W.mapP(.11, .13, .02)); s += glint(p.x + 60, p.y - 40, 46, Math.abs(Math.sin((t - t13) * 5)) * .9 + .1); }
     const tI = E.inglaterra || tB * .8; if (t > tI - .2) { const p = W.proj(W.mapP(.36, .12, .02)); s += ring(p.x, p.y, 200, (t - tI + .2) / .55, '#ff4f5a'); }
     return s; }

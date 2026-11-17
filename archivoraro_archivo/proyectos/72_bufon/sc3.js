@@ -46,13 +46,11 @@ S.entra = (t, D, B) => { const E = EVS.entra(B); const tG = Math.max(1.4, (E.maj
     cam(V3(.7, 1.9, z - 5.6 - k * .3), V3(0, 1.5, z + .4), 46);
     const air = hop > .25, ph = Math.sin(t * Math.PI * 2.4) > 0;
     const L = [P_('BUFON', { face: 'happy', mouth: 'grin', armL: [130 + Math.sin(t * 15) * 15, 20], armR: [130 - Math.sin(t * 15) * 15, 20], legL: air ? (ph ? [40, -70] : [-10, 20]) : [4, 0], legR: air ? (ph ? [-10, 20] : [40, -70]) : [4, 0], hornSwing: Math.sin(t * 15) * .9 }, JF)];
-    [[-1.5, 6.2, 'NOBLE1', .5], [1.6, 7.0, 'NOBLE2', -.5], [-1.7, 8.6, 'NOBLE3', .5], [1.8, 9.4, 'NOBLE4', -.5]].forEach(([x, zz, n, tn]) => L.push(P_(n, { turn: tn, face: 'wide', mouth: 'line', sweat: true, armL: [30, -100], armR: [14, 10] }, V3(x, 0, zz))));
     let s = depth(L); if (!air) { const fp = W.proj(V3(JF.x, 0, JF.z)); s += puff(fp.x, fp.y, 70 * fp.ppm / 260, (t * 2.4 % 1) * 2); } return s; }
   const u = t - tG, tC = E.cobardes || D * .7, punch = snap(t, tC - .05, .18); whipBlur(t, tG);
   cam(L3(V3(.15, 2.6, -13.6), V3(.1, 2.5, -13.1), oc(clamp(u / (D - tG)))), V3(0, 1.5, -9.5), lerp(50, 42, punch), .003);
   const shout = { face: 'happy', mouth: 'open', brows: .8, armL: [118, 14], armR: [118, 14], lean: 4, look: [0, -6], hornSwing: Math.sin(t * 13) * .7 };
   const L = [P_('BUFON', shout, JF0)];
-  [[-2.2, -5.0, 'NOBLE1', .5], [2.25, -5.3, 'NOBLE2', -.5]].forEach(([x, z, n, tn]) => L.push(P_(n, { turn: tn, face: 'wide', mouth: 'o', sweat: n !== 'GUARDIA' }, V3(x, 0, z))));
   let s = depth(L); const h = headScr(JF0), q = sOf(JF0); s += burstLines(h.x + 120 * q, h.y + 30 * q, 120 * q, ((t - tG) % .5) / .5, '#ffd34a') + burstLines(h.x - 120 * q, h.y + 30 * q, 120 * q, ((t - tG + .25) % .5) / .5, '#ffd34a');
   return s; };
 
@@ -149,10 +147,10 @@ S.salvas = (t, D, B) => { setup(t + B[0].s, { light: IN }); const k = oc(clamp(t
 // =====================================================================================================
 S.bucle = (t, D, B) => { const E = EVS.bucle(B); const tA = (E.adivina || D * .45) - .1, tC = (E.con || D * .8) - .1;
   if (t < tA) { setup(t + B[0].s, { light: IN, doors: 0 }); const k = oc(clamp(t / tA)), look = snap(t, (E.mal || tA * .8) - .15, .3);
-    cam(L3(V3(.1, 2.1, 1.6), V3(-.05, 2.05, 2.4), k), V3(-.05, 1.6, 8.8), 46);
-    const N = [[.45, 9.1, 'NOBLE1', .15], [1.25, 9.5, 'NOBLE3', 0]];
+    cam(L3(V3(.05, 2.1, 1.0), V3(-.05, 2.05, 1.5), k), V3(-.1, 1.6, 8.8), 50);
+    const N = [[.5, 9.2, 'NOBLE1', .15], [1.5, 9.6, 'NOBLE3', 0]];
     const L = N.map(([x, z, n, tn], i) => P_(n, { turn: tn, face: look > .5 ? 'smug' : 'wide', mouth: look > .5 ? 'smirk' : 'line', look: [lerp((i - 1) * -10, -20, look), lerp(0, -2, look)], armR: [50, -70], holdR: LETTER(-10 + i * 8), holdTop: 1, sweat: look < .5 }, V3(x, 0, z)));
-    L.push(P_('BUFON', { turn: .45, face: look > .5 ? 'wide' : 'happy', mouth: look > .5 ? 'o' : 'smile', hornSwing: Math.sin(t * 4) * .3, sweat: look > .5, armL: look > .5 ? [30, -100] : [14, 10] }, V3(-1.15, 0, 8.2)));
+    L.push(P_('BUFON', { turn: .45, face: look > .5 ? 'wide' : 'happy', mouth: look > .5 ? 'o' : 'smile', hornSwing: Math.sin(t * 4) * .3, sweat: look > .5, armL: look > .5 ? [30, -100] : [14, 10] }, V3(-1.05, 0, 8.8)));
     return depth(L); }
   if (t < tC) { const u = t - tA; setup(t + B[0].s, { light: IN }); whipBlur(t, tA);
     cam(L3(V3(.15, 2.6, -13.6), V3(.1, 2.5, -13.0), oc(clamp(u / (tC - tA)))), V3(0, 1.5, -6.5), 44);

@@ -3,7 +3,7 @@
 // cámara siempre en movimiento, textos solo dentro del mundo (el mapa con «AÑO MCCCXL»).
 window.CFG = { capY: 1500, capSize: 96, transDur: .42, blurK: .35, antic: .1, blurChars: false,
   transDurBy: { verdad: .4, condicion: .36, guerra: .4, flota: .36, fondo: .4, nadie: .36, plaza: .4, empujan: .36, entra: .36, rie: .3, remate: .3, silencio: .3, guardias: .3, giro: .3, salvas: .3, bucle: .4 },
-  trans: { verdad: 'swish', condicion: 'whip', guerra: 'swish', flota: 'whip', fondo: 'push', nadie: 'swish', plaza: 'swish', empujan: 'swish', entra: 'whip', rie: 'whip', remate: 'whip',
+  trans: { verdad: 'swish', condicion: 'whip', guerra: 'swish', flota: 'cut', fondo: 'swish', nadie: 'swish', plaza: 'swish', empujan: 'swish', entra: 'whip', rie: 'whip', remate: 'whip',
     silencio: 'whip', guardias: 'whip', giro: 'whip', salvas: 'whip', bucle: 'swish' } };
 const norm = w => w.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const EVS = {}; window.SCRIPT.forEach(l => { const ws = l.cap.split(' ').map(w => norm(w.split('|')[0])); const prev = EVS[l.sc]; const idx = window.SCRIPT.filter(x => x.sc === l.sc).indexOf(l);
