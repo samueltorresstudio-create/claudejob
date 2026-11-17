@@ -452,3 +452,37 @@ Mundo `world_corte.js` (en `archivoraro_archivo/proyectos/72_bufon/parts/`). Zon
   - entra con una cortinilla de borde rasgado (`tornWipe`).
 - **Franjas negras que se cierran** al «dejar de respirar», con los ojos centrados en la franja que queda.
 - **«Solo se oyen tus cascabeles»:** en el audio se quita TODA la música y quedan solo los cascabeles.
+
+### Segunda ronda del 72 (feedback del usuario, 17-11-2026)
+- **«El bufón es raro»:** la capucha que enmarcaba la cara parecía un casco, el cuerpo era flaco, las piernas larguísimas y había cascabeles por todas partes. El bufón nuevo (`hat: 'jester2'`, `jv2: true` en `stick.js`):
+  - gorro clásico partido en dos colores, con tres puntas blandas que caen y un cascabel en cada una;
+  - sin capucha;
+  - traje a cuartos rojo y amarillo, cuello de 6 picos con 3 cascabeles;
+  - cuerpo y piernas normales.
+
+  Si un personaje «es raro», simplifícalo y compáralo con el resto del reparto: misma silueta de cuerpo y pocas piezas que se lean bien.
+- **«El rey parece superpuesto en el trono»:** el personaje 2D se pinta siempre encima del 3D. Arreglo: **capa de primer término**.
+  - Las piezas marcadas con `fg` (brazos del trono, pomos, cojín) se recortan de la imagen final con una máscara y se pintan EN OTRO CANVAS (`gl2`) encima de los personajes.
+  - Se activa por escena con `setup({ fg: true })`. **Solo cuando nadie está delante del trono.**
+  - Además: asiento más alto (1,29 m), brazos metidos hacia dentro para que tapen los costados, el rey sin capa al sentarse, piernas casi rectas con calzas azules y pies en la tarima.
+  - Sirve para cualquier mueble que deba tapar a un personaje (mesa, barra, mostrador).
+- **«Los escenarios parecen de plastilina de mala calidad»:** lo que más cambia el resultado:
+  1. **Texturas con relieve** (`parts/w1b_pbr.js`): cada textura se pinta en color y en altura (bumpMap). Hay:
+     - sillería con juntas hundidas y grietas;
+     - mármol con vetas;
+     - tablones con veta y nudos;
+     - adoquines mojados;
+     - revoco;
+     - tejas;
+     - trama de tela.
+  2. **Mapa de entorno PMREM**, con `scene.environmentIntensity` por ambiente: el oro pasa a ser metal de verdad (metalness .85) y el mármol y los adoquines mojados reflejan.
+  3. **Oclusión ambiental `GTAOPass`** (viene en `three_post.js`): sombras de contacto en rincones, pies de columnas y juntas.
+  4. **Cantos menos redondeados** (`RB` con radio por defecto .02) y **contorno de tinta más fino** (k .0012).
+  5. **Menos saturación** en la gradación (mezcla .98, no 1.14) y colores apagados en vez de primarios puros.
+  6. **Detalle:**
+     - tapiz con pliegues de verdad (geometría ondulada) y flecos;
+     - arquería gótica entre columnas;
+     - mantel con caída plisada;
+     - barcos con castillos abiertos y jarcia.
+  - Quita los haces de luz transparentes con GTAO: los toma como superficies y salen como barras negras.
+  - Coste: el fotograma pasa de unos 3 s a 6–7 s en previsualización.
