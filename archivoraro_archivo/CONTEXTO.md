@@ -151,3 +151,9 @@ Numeración de entregas:
   - Sin GPU irá lento.
   - Hay que comprobar si el entorno llega a huggingface.co.
   - Para clonar voces se aplica la misma regla: solo la voz del propio usuario o una con permiso.
+
+## Estudio de YouTube con Metricool (17-11-2026)
+- Datos desde el 25-10 (antes no hay). Visualizaciones 25-10 → 14-11: ≈220.000; pico el 13-11 (105.113 en un día), con 12-11 (34.418) y 14-11 (36.197). Otro pico menor el 28-10 (11.870: zombis en el avión + prehistoria).
+- Suscriptores: 90 (04-11) → 676 (17-11). Ganados 25-10→14-11: 492; perdidos: 80. Conversión ≈0,22 % (suscriptores por visualización).
+- Metricool no da todavía vídeo a vídeo (visualizaciones/retención salen vacías), ni fuentes de tráfico ni demografía; la lista de vídeos solo llega al 04-11.
+- Mejor hora (Europe/Madrid): martes–viernes a las 16:00 (pico miércoles y jueves); 2.ª franja 10:00; sábado y domingo rinden la mitad.
