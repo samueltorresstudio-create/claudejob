@@ -1,7 +1,7 @@
 
 // ---------- el rey sentado en el trono ----------
-const SIT_K = SITP(1.1, .75), KSEAT = V3(0, SIT_K.y0, -13.85);
-const kingSit = (pose, opt) => [KSEAT, who('REY', Object.assign({ legLen: SIT_K.legLen, legL: SIT_K.legL, legR: SIT_K.legR, armL: [24, 30], armR: [24, 30] }, pose), KSEAT, ADULT, opt)];
+const SIT_K = SITP(1.29, .75), KSEAT = V3(0, SIT_K.y0, -13.47);
+const kingSit = (pose, opt) => [KSEAT, who('REY', Object.assign({ legLen: .54 / .93, legL: [10, -6], legR: [10, -6], hose: ['#22408f', '#22408f'], armL: [24, 30], armR: [24, 30], cape: null }, pose), KSEAT, ADULT, opt)];
 const KHEAD = () => V3(0, KSEAT.y + 1.72, KSEAT.z);
 // bufón delante de la tarima
 const JF0 = V3(0, 0, -9.5);
@@ -58,7 +58,7 @@ S.entra = (t, D, B) => { const E = EVS.entra(B); const tG = Math.max(1.4, (E.maj
 // =====================================================================================================
 // 13 · RÍE — el rey, en el trono, se parte de risa (se da palmadas en la rodilla); «¿Por qué?»: se inclina hacia delante, intrigado.
 // =====================================================================================================
-S.rie = (t, D, B) => { const E = EVS.rie(B); const tP = (E.por || D * .65) - .12; setup(t + B[0].s, { light: IN }); const k = oc(clamp(t / D)), q2 = snap(t, tP, .35);
+S.rie = (t, D, B) => { const E = EVS.rie(B); const tP = (E.por || D * .65) - .12; setup(t + B[0].s, { light: IN, fg: true }); const k = oc(clamp(t / D)), q2 = snap(t, tP, .35);
   cam(L3(V3(.7, 1.9, -9.3), V3(.55, 1.95, -10.0), k), V3(0, 1.88, -13.85), 40);
   const laugh = { face: 'closed', mouth: 'laugh', headTilt: Math.sin(t * 16) * 9, armL: [34 + Math.sin(t * 18) * 12, -70], armR: [34 - Math.sin(t * 18) * 12, -70], lean: Math.sin(t * 9) * 3 };
   const ask = { face: 'wide', mouth: 'o', brows: .5, look: [0, 12], lean: 4, armL: [30, -60], armR: [40, -120], headTilt: -6 };
@@ -92,7 +92,7 @@ S.remate = (t, D, B) => { const E = EVS.remate(B); const tH = Math.max(.9, (E.hu
 // 15 · SILENCIO — «el rey deja de reír»: primerísimo plano, la risa se le congela; «lo ha entendido»: su mano aprieta el pomo de oro del trono;
 // «solo se oyen tus cascabeles»: primerísimo plano de los cascabeles del bufón, que tiemblan.
 // =====================================================================================================
-S.silencio = (t, D, B) => { const E = EVS.silencio(B); const tL = (E.lo || D * .33) - .1, tS = (E.solo || D * .62) - .1; setup(t + B[0].s, { light: IN });
+S.silencio = (t, D, B) => { const E = EVS.silencio(B); const tL = (E.lo || D * .33) - .1, tS = (E.solo || D * .62) - .1; setup(t + B[0].s, { light: IN, fg: t < tS });
   if (t < tL) { const k = oc(clamp(t / tL)), stop = snap(t, .25, .25), hd = KHEAD(); cam(L3(V3(.05, 2.2, -9.1), V3(.04, 2.18, -9.6), k), V3(0, 2.12, hd.z), 32, .003);
     let s = depth([kingSit(stop < .5 ? { face: 'closed', mouth: 'laugh', headTilt: Math.sin(t * 16) * 5 } : { face: 'smug', mouth: 'line', brows: -.2, look: [0, 4] })]);
     return s; }
@@ -109,8 +109,8 @@ S.silencio = (t, D, B) => { const E = EVS.silencio(B); const tL = (E.lo || D * .
 // =====================================================================================================
 // 16 · GUARDIAS — primer plano del guardia con la alabarda: los ojos se le van hacia el rey, esperando la orden; destello en la hoja.
 // =====================================================================================================
-S.guardias = (t, D, B) => { setup(t + B[0].s, { light: IN }); const k = oc(clamp(t / D)), GF = V3(-3.6, 0, -11.0), slide = snap(t, D * .35, .35);
-  cam(L3(V3(-1.0, 2.0, -7.6), V3(-1.3, 1.95, -8.1), k), V3(-3.55, 1.75, -11.0), 36, .003);
+S.guardias = (t, D, B) => { setup(t + B[0].s, { light: IN }); const k = oc(clamp(t / D)), GF = V3(-3.9, 0, -8.6), slide = snap(t, D * .35, .35);
+  cam(L3(V3(-1.2, 2.0, -5.2), V3(-1.5, 1.95, -5.7), k), V3(-3.85, 1.75, -8.6), 36, .003);
   let s = depth([P_('GUARDIA', { turn: .35, face: 'angry', mouth: 'line', brows: -.5, look: [lerp(0, 18, slide), lerp(0, -2, slide)], armR: [40, -30] }, GF)]);
   const g = W.proj(V3(GF.x - .5, 2.55, GF.z)); s += glint(g.x, g.y, 46, Math.max(0, Math.sin(clamp((t - D * .55) / .5) * Math.PI)));
   return s; };
@@ -119,7 +119,7 @@ S.guardias = (t, D, B) => { setup(t + B[0].s, { light: IN }); const k = oc(clamp
 // 17 · GIRO — el rey no mira al bufón: los ojos se le van… a los nobles (barrido hasta ellos, sudando);
 // «¿Ninguno de vosotros…?»: se levanta del trono y les señala, furioso; los nobles se encogen.
 // =====================================================================================================
-S.giro = (t, D, B) => { const E = EVS.giro(B); const tM = (E.sus || D * .3) - .35, tQ = (E.ninguno || D * .45) - .12; setup(t + B[0].s, { light: IN });
+S.giro = (t, D, B) => { const E = EVS.giro(B); const tM = (E.sus || D * .3) - .35, tQ = (E.ninguno || D * .45) - .12; setup(t + B[0].s, { light: IN, fg: t < tM || (t >= tQ && snap(t - tQ, .02, .35) < .5) });
   const NOB = [[1.95, -9.3, 'NOBLE1', -.5], [2.75, -10.9, 'NOBLE2', -.55], [3.25, -8.3, 'NOBLE4', -.6]];
   if (t < tM) { const k = oc(clamp(t / tM)), hd = KHEAD(), sl = snap(t, (E.bufon || tM * .5) + .05, .3); cam(L3(V3(.4, 2.15, -9.3), V3(.3, 2.12, -9.8), k), V3(0, 2.05, hd.z), 34, .003);
     return depth([kingSit({ face: 'smug', mouth: 'line', brows: -.4, look: [lerp(-4, 18, sl), lerp(10, 2, sl)], armL: [24, 30], armR: [24, 30] })]); }
@@ -130,7 +130,7 @@ S.giro = (t, D, B) => { const E = EVS.giro(B); const tM = (E.sus || D * .3) - .3
   cam(L3(V3(.4, 2.7, -4.4), V3(.35, 2.6, -4.9), k), V3(.6, 1.95, -12.4), 46); SHAKE = u < .35 ? .03 * (1 - u / .35) : 0;
   const KF = V3(-.2, .75, lerp(-13.6, -12.8, up)), stand = { face: 'angry', mouth: talkM(u, 0, D - tQ - .2, 'open'), brows: -.9, turn: .45, armR: [96, 0], armL: [20, 40], lean: 6, prop: 'scepter' };
   const L = [up < .5 ? kingSit({ face: 'angry', mouth: 'open', brows: -.9, lean: 12, turn: .3 }) : P_('REY', stand, KF)];
-  [[1.35, -9.7, 'NOBLE1', -.5]].forEach(([x, z, n, tn], i) => L.push(P_(n, { turn: tn, face: 'wide', mouth: 'o', sweat: true, lean: -6, armL: [110, -100], armR: [100, -90], brows: 1, headTilt: Math.sin(u * 28 + i) * 3 }, V3(x, 0, z))));
+  [[1.65, -9.5, 'NOBLE1', -.5]].forEach(([x, z, n, tn], i) => L.push(P_(n, { turn: tn, face: 'wide', mouth: 'o', sweat: true, lean: -6, armL: [110, -100], armR: [100, -90], brows: 1, headTilt: Math.sin(u * 28 + i) * 3 }, V3(x, 0, z))));
   let s = depth(L); const h = W.proj(V3(KF.x, KF.y + 1.7, KF.z)); s += burstLines(h.x + 90, h.y + 20, 130, ((u) % .45) / .45, '#ff4f5a');
   return s; };
 
@@ -149,15 +149,15 @@ S.salvas = (t, D, B) => { setup(t + B[0].s, { light: IN }); const k = oc(clamp(t
 S.bucle = (t, D, B) => { const E = EVS.bucle(B); const tA = (E.adivina || D * .45) - .1, tC = (E.con || D * .8) - .1;
   if (t < tA) { setup(t + B[0].s, { light: IN, doors: 0 }); const k = oc(clamp(t / tA)), look = snap(t, (E.mal || tA * .8) - .15, .3);
     cam(L3(V3(.1, 2.1, 1.6), V3(-.05, 2.05, 2.4), k), V3(-.05, 1.6, 8.8), 46);
-    const N = [[-.2, 9.1, 'NOBLE1', .15], [.7, 9.5, 'NOBLE3', 0]];
+    const N = [[.15, 9.1, 'NOBLE1', .15], [1.05, 9.5, 'NOBLE3', 0]];
     const L = N.map(([x, z, n, tn], i) => P_(n, { turn: tn, face: look > .5 ? 'smug' : 'wide', mouth: look > .5 ? 'smirk' : 'line', look: [lerp((i - 1) * -10, -20, look), lerp(0, -2, look)], armR: [50, -70], holdR: LETTER(-10 + i * 8), holdTop: 1, sweat: look < .5 }, V3(x, 0, z)));
-    L.push(P_('BUFON', { turn: .45, face: look > .5 ? 'wide' : 'happy', mouth: look > .5 ? 'o' : 'smile', hornSwing: Math.sin(t * 4) * .3, sweat: look > .5, armL: look > .5 ? [30, -100] : [14, 10] }, V3(-1.0, 0, 8.2)));
+    L.push(P_('BUFON', { turn: .45, face: look > .5 ? 'wide' : 'happy', mouth: look > .5 ? 'o' : 'smile', hornSwing: Math.sin(t * 4) * .3, sweat: look > .5, armL: look > .5 ? [30, -100] : [14, 10] }, V3(-1.15, 0, 8.2)));
     return depth(L); }
   if (t < tC) { const u = t - tA; setup(t + B[0].s, { light: IN }); whipBlur(t, tA);
     cam(L3(V3(.15, 2.6, -13.6), V3(.1, 2.5, -13.0), oc(clamp(u / (tC - tA)))), V3(0, 1.5, -6.5), 44);
     const push = eIO2(clamp(u / ((tC - tA) * .85))), JF = V3(0, 0, lerp(-3.6, -6.6, push)), NZ = lerp(-1.4, -4.2, push);
     const L = [P_('BUFON', { face: 'wide', mouth: 'o', lean: lerp(-12, 4, push), armL: [120, 30], armR: [96, -20], holdR: LETTER(-14), holdTop: 1, legL: [24, 10], legR: [-8, 6], sweat: true, hornSwing: Math.sin(u * 14) * .7 }, JF)];
-    [[-.9, 0, 'NOBLE1', .3], [.95, -.2, 'NOBLE2', -.3]].forEach(([x, dz, n, tn]) => L.push(P_(n, { turn: tn, face: 'smug', mouth: 'smirk', armL: [96, -10], armR: [96, -10], lean: -6 }, V3(x, 0, NZ + dz))));
+    [[-1.85, 0, 'NOBLE1', .3], [1.9, -.2, 'NOBLE2', -.3]].forEach(([x, dz, n, tn]) => L.push(P_(n, { turn: tn, face: 'smug', mouth: 'smirk', armL: [96, -10], armR: [96, -10], lean: -6 }, V3(x, 0, NZ + dz))));
     let s = depth(L); const fp = W.proj(JF); s += puff(fp.x, fp.y, 90 * fp.ppm / 260, clamp((u - .25) / .7)); return s; }
   const u = t - tC; setup(t + B[0].s, { light: IN }); whipBlur(t, tC); const k = oc(clamp(u / (D - tC)));
   cam(L3(V3(.05, 2.05, -5.0), CAM0[0], k), L3(V3(0, 2.0, -8.7), CAM0[1], k), 44, .003);

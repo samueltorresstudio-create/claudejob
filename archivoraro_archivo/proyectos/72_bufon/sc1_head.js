@@ -19,7 +19,7 @@ function sp(t, Ks) { const n = Ks.length; if (t <= Ks[0][0]) return Ks[0][1].clo
   const u = (t - Ks[i][0]) / (Ks[i + 1][0] - Ks[i][0]), a = Ks[Math.max(0, i - 1)][1], b = Ks[i][1], c = Ks[i + 1][1], d = Ks[Math.min(n - 1, i + 2)][1], u2 = u * u, u3 = u2 * u;
   const f = (p0, p1, p2, p3) => .5 * (2 * p1 + (-p0 + p2) * u + (2 * p0 - 5 * p1 + 4 * p2 - p3) * u2 + (-p0 + 3 * p1 - 3 * p2 + p3) * u3); return V3(f(a.x, b.x, c.x, d.x), f(a.y, b.y, c.y, d.y), f(a.z, b.z, c.z, d.z)); }
 function whipBlur(t, t0, dur = .22) { const k = clamp((t - t0 + dur / 2) / dur); if (k > 0 && k < 1 && typeof TR !== 'undefined' && TR) TR.blur('H', Math.sin(Math.PI * k) * 26); }
-function setup(T, o = {}) { W.setTime(T); W.setMood(o.mood || 'hall'); W.setBanquet(!!o.banq); W.setDoors(o.doors ?? 0); W.setTokens(o.tk || 0, o.ts || 0); W.setFleet(o.ff || 0, o.fs || 0, o.fi || 0); W.setLightning(o.lt || 0); W.charLight = o.light || IN; SHAKE = 0; }
+function setup(T, o = {}) { W.setTime(T); W.setMood(o.mood || 'hall'); W.setBanquet(!!o.banq); W.setDoors(o.doors ?? 0); W.setTokens(o.tk || 0, o.ts || 0); W.setFleet(o.ff || 0, o.fs || 0, o.fi || 0); W.setLightning(o.lt || 0); W.setFg(!!o.fg); W.charLight = o.light || IN; SHAKE = 0; }
 const depth = L => L.filter(x => x && x[1]).map(([p, s]) => [W.camera.position.distanceTo(p), s]).sort((a, b) => b[0] - a[0]).map(x => x[1]).join('');
 const sOf = (F, h = ADULT) => { const a = W.proj(F), b = W.proj(V3(F.x, F.y + h, F.z)); return Math.hypot(b.x - a.x, b.y - a.y) / 462; };
 const SITP = (seatY, footY) => ({ y0: seatY - .8026, legLen: (seatY - footY) / .6358, legL: [55, 58], legR: [55, 58] });

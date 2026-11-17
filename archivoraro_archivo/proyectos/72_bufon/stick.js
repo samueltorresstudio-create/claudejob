@@ -255,7 +255,7 @@ function stick(o) {
     const A = d.top, Bc = d.top2 || '#e8b830', Cc = d.top3 || '#c8302e', mid = Math.round((SH + HIP) / 2 + 8);
     let c = `<rect x="-110" y="${SH - 90}" width="110" height="${mid - SH + 90}" fill="${A}"/><rect x="0" y="${SH - 90}" width="110" height="${mid - SH + 90}" fill="${Bc}"/><rect x="-110" y="${mid}" width="110" height="220" fill="${Bc}"/><rect x="0" y="${mid}" width="110" height="220" fill="${A}"/>`;
     c += `<path d="M${sx2 * .5},${SH - 90} L0,${HIP + 60}" stroke="${INKC}" stroke-width="5" opacity=".55"/>`;
-    if (d.view !== 'back') { for (let k = -3; k <= 3; k++) { const x = k * 30; c += `<path d="M${x},${mid - 19} L${x + 15},${mid} L${x},${mid + 19} L${x - 15},${mid}Z" fill="${k % 2 ? Cc : '#f4ecd2'}" stroke="${INKC}" stroke-width="4.5" stroke-linejoin="round"/>`; }
+    if (d.view !== 'back' && !d.jv2) { for (let k = -3; k <= 3; k++) { const x = k * 30; c += `<path d="M${x},${mid - 19} L${x + 15},${mid} L${x},${mid + 19} L${x - 15},${mid}Z" fill="${k % 2 ? Cc : '#f4ecd2'}" stroke="${INKC}" stroke-width="4.5" stroke-linejoin="round"/>`; }
       [SH + 40, SH + 74].forEach(y => c += `<circle cx="${(sx2 * .4).toFixed(1)}" cy="${y}" r="8" fill="#e7c24a" stroke="${INKC}" stroke-width="4"/>`); }
     c += `<rect x="-110" y="${SH - 90}" width="220" height="380" fill="url(#${id}b)"/>`;
     body += IN(c);
@@ -322,7 +322,14 @@ function stick(o) {
     let fr = `M-84,${HIP + 26}`; for (let k = 0; k < 7; k++) fr += ` Q${-72 + k * 24},${HIP + 44} ${-60 + k * 24},${HIP + 28}`;
     body += IN(`<path d="${fr} L84,${HIP + 60} L-84,${HIP + 60}Z" fill="${d.apron || '#f4f1ea'}" stroke="${INKC}" stroke-width="4"/>`) +
       `<g transform="translate(26,${HIP - 54})"><rect x="-9" y="-34" width="18" height="34" rx="4" fill="#4fc0e8" stroke="${INKC}" stroke-width="4"/><rect x="-6" y="-46" width="12" height="12" fill="#fff" stroke="${INKC}" stroke-width="3"/><path d="M6,-44 L16,-44 L16,-38 L6,-38" fill="#fff" stroke="${INKC}" stroke-width="2.5"/><path d="M-4,-26 L-4,-8" stroke="#fff" stroke-opacity=".6" stroke-width="3"/></g>`; }
-  if (d.outfit === 'jester' && d.view !== 'back') { // bajo y cuello de picos con cascabeles
+  if (d.outfit === 'jester' && d.view !== 'back' && d.jv2) { // v2: cuello de 6 picos grandes (cascabel en 3) y bajo de picos sin cascabeles
+    const A = d.top, Bc = d.top2 || '#e8b830';
+    const yb = x => { const t = (x + 66) / 132; return (HIP - 16) + 70 * 2 * t * (1 - t); };
+    for (let k = 0; k < 6; k++) { const x = -55 + k * 22, y0 = yb(x) - 8; body += `<path d="M${x - 13},${y0.toFixed(1)} L${x + 13},${y0.toFixed(1)} L${x},${(y0 + 36).toFixed(1)}Z" fill="${k % 2 ? A : Bc}" stroke="${INKC}" stroke-width="5" stroke-linejoin="round"/>`; }
+    const yc = x => { const t = (x + 84) / 168; return (SH - 34) + 70 * 2 * t * (1 - t); };
+    for (let k = 0; k < 6; k++) { const x = -70 + k * 28, y0 = yc(x) - 4, xx = x + sx2; body += `<path d="M${xx - 17},${y0.toFixed(1)} Q${xx},${(y0 - 6).toFixed(1)} ${xx + 17},${y0.toFixed(1)} L${xx + 4},${(y0 + 44).toFixed(1)} Q${xx},${(y0 + 48).toFixed(1)} ${xx - 4},${(y0 + 44).toFixed(1)}Z" fill="${k % 2 ? Bc : A}" stroke="${INKC}" stroke-width="5" stroke-linejoin="round"/>` + (k % 2 === 0 ? BELL(xx, y0 + 50, .8) : ''); }
+    body += `<path d="M${-74 + sx2},${SH - 34} Q${sx2},${SH + 4} ${74 + sx2},${SH - 34}" stroke="${INKC}" stroke-width="14" fill="none" stroke-linecap="round"/><path d="M${-74 + sx2},${SH - 34} Q${sx2},${SH + 4} ${74 + sx2},${SH - 34}" stroke="#e7c24a" stroke-width="7" fill="none" stroke-linecap="round"/>`; }
+  if (d.outfit === 'jester' && d.view !== 'back' && !d.jv2) { // bajo y cuello de picos con cascabeles
     const A = d.top, Bc = d.top2 || '#e8b830', Cc = d.top3 || '#c8302e';
     const yb = x => { const t = (x + 62) / 124; return (HIP - 20) + 84 * 2 * t * (1 - t); };
     for (let k = 0; k < 7; k++) { const x = -54 + k * 18, y0 = yb(x) - 9; body += `<path d="M${x - 10},${y0.toFixed(1)} L${x + 10},${y0.toFixed(1)} L${x},${(y0 + 34).toFixed(1)}Z" fill="${k % 2 ? A : Bc}" stroke="${INKC}" stroke-width="4.5" stroke-linejoin="round"/>` + BELL(x, y0 + 38, .72); }
@@ -454,6 +461,20 @@ function stick(o) {
       `<path d="M-104,-56 Q0,-92 104,-56 L106,-74 Q0,-112 -106,-74Z" fill="${Cc}" stroke="${INKC}" stroke-width="7" stroke-linejoin="round"/>` +
       [-84, -56, -28, 0, 28, 56, 84].map(x => { const y = -66 - 16 * (1 - (x / 104) ** 2); return `<circle cx="${x}" cy="${y.toFixed(1)}" r="5.5" fill="#f2c23a" stroke="${INKC}" stroke-width="2.5"/>`; }).join('') +
       `<path d="M-70,-128 Q-40,-142 -14,-138" stroke="#ffffff" stroke-opacity=".35" stroke-width="7" fill="none" stroke-linecap="round"/></g>`; }
+  if (d.hat === 'jester2') { const A = d.hatCol || '#c8302e', Bc = d.hatCol2 || '#e8b830', hid = id + 'j2', sw = d.hornSwing || 0;   // gorro clásico: casquete partido en dos colores y tres puntas blandas que caen, con cascabel
+    const pt = (pth, col) => `<path d="${pth}" fill="${col}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/>`;
+    const lx = -206 + sw * 10, ly = -18 + sw * 8, rx = 206 + sw * 10, ry = -18 - sw * 8, mx = 92 + sw * 16, my = -236;
+    h += `<g transform="translate(${TN * 10},${-(d.hatLift || 0)})">` +
+      pt(`M-58,-122 C-128,-162 -196,-136 ${lx},${ly} C-188,-70 -150,-92 -92,-76Z`, Bc) + BELL(lx, ly + 8, 1.25) +
+      pt(`M58,-122 C128,-162 196,-136 ${rx},${ry} C188,-70 150,-92 92,-76Z`, A) + BELL(rx, ry + 8, 1.25) +
+      pt(`M-36,-130 C-44,-214 18,-270 ${mx},${my} C52,-222 34,-192 34,-130Z`, Bc) + BELL(mx, my + 8, 1.25) +
+      `<defs><clipPath id="${hid}"><rect x="0" y="-220" width="220" height="220"/></clipPath></defs>` +
+      `<path d="M-102,-56 C-104,-152 104,-152 102,-56 Q0,-86 -102,-56Z" fill="${A}" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/>` +
+      `<path d="M-102,-56 C-104,-152 104,-152 102,-56 Q0,-86 -102,-56Z" fill="${Bc}" clip-path="url(#${hid})"/>` +
+      `<path d="M-102,-56 C-104,-152 104,-152 102,-56 Q0,-86 -102,-56Z" fill="none" stroke="${INKC}" stroke-width="8" stroke-linejoin="round"/>` +
+      `<path d="M-108,-48 Q0,-84 108,-48 L106,-68 Q0,-106 -106,-68Z" fill="#e7c24a" stroke="${INKC}" stroke-width="7" stroke-linejoin="round"/>` +
+      [-60, 0, 60].map(x => { const y = -60 - 18 * (1 - (x / 108) ** 2); return `<circle cx="${x}" cy="${y.toFixed(1)}" r="7" fill="#c8302e" stroke="${INKC}" stroke-width="3"/>`; }).join('') +
+      `<path d="M-72,-124 Q-44,-140 -16,-136" stroke="#ffffff" stroke-opacity=".35" stroke-width="7" fill="none" stroke-linecap="round"/></g>`; }
   if (d.hat === 'crownLis') { const G = '#f2c23a', GD = '#b8902a';   // corona de Francia: aro de oro con gemas y tres flores de lis, gorro de terciopelo azul
     h += `<g transform="translate(${TN * 10},-74)"><path d="M-72,-28 Q0,-84 72,-28 L70,-4 Q0,-30 -70,-4Z" fill="${d.velvet || '#2a4aa8'}" stroke="${INKC}" stroke-width="6"/>` +
       LIS(-58, -34, 1.05, G, 4.5) + LIS(58, -34, 1.05, G, 4.5) + LIS(0, -50, 1.45, G, 4) +
