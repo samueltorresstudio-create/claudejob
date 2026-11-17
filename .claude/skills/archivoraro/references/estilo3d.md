@@ -498,3 +498,19 @@ Mundo `world_corte.js` (en `archivoraro_archivo/proyectos/72_bufon/parts/`). Zon
 - Con eso se ganaron 2,9 s y la voz quedó en 66,5 s. El vídeo dura 66,9 s, sin oír cortes.
 - Después, `sync_voice.py` con el WAV recortado y `check_sync.py`: 0 líneas dudosas.
 - **Renders de más de 2 h:** lánzalos desacoplados (`setsid nohup node render.js full 4 … &`). Para que avise al terminar, usa una espera en segundo plano (`until grep -q "^frames" log`): las tareas en segundo plano se cortan a las 2 h.
+
+### Revisión del render final del 72 (17-11-2026): fallos que solo se ven en el vídeo entero
+- **Bloques negros enormes (18,3 s y 20,9 s).** Un solo píxel NaN de la escena se convierte, con el `UnrealBloomPass`, en un rectángulo negro de media pantalla.
+  - No es geometría: no aparece al hacer raycast ni al renderizar sin post. Se encuentra apagando los pases uno a uno (`W2.comp.passes[i].enabled = false`).
+  - Arreglo fijo en `w5_api.js`: un pase de saneado antes del bloom. Con `isnan`/`isinf`, cambia el píxel malo por la media de sus vecinos.
+  - Detector: `python3 -I scripts/blackblock.py <proyecto> [i0] [i1]` cuenta los píxeles de negro puro. Da falsos positivos con la tinta de los contornos y con los fundidos a negro; mira la hoja de los marcados.
+- **Transición `whip` o `push` entre zonas lejanas del mundo.** La cámara cruza el mapa: de la sala de guerra (x = 60) al puerto (x = 300) pasaba por la plaza de noche y por el cielo.
+  - Entre zonas distintas, usa `swish`, que gira sin moverse de sitio, o `cut`.
+  - Usa `cut` si al plano anterior le pueden aparecer personajes pegados a la cámara al girar: con `blurChars: false` se ven nítidos y enormes, de espaldas.
+- **Cabezas cortadas por el borde de arriba en un alejamiento.** El plano empezaba en el mapa y los nobles salían decapitados durante 0,5 s.
+  - Arreglo: que entren andando desde los lados (`walkPose`) justo cuando la cabeza ya cabe. El momento se calcula con `frame.py`.
+  - No los hagas aparecer de golpe.
+- **Puntas del gorro del bufón tapando cabezas de nobles al fondo.** El gorro v2 mide unos ±0,85 m. En la proyección, quien esté detrás a menos de unos 0,2 rad del eje del bufón queda tapado.
+  - Si la cámara se aleja (travelling hacia atrás), los del fondo convergen hacia el bufón y siempre acaban tapados.
+  - En ese caso quítalos del plano, o sepáralos más de ±2 m si la cámara está quieta.
+- **Re-render parcial:** `FRAMES=lista.json node render.js full 4` con los índices afectados. Incluye la transición de entrada y la de salida de cada escena que cambies: la transición dibuja el último fotograma de la escena anterior.
