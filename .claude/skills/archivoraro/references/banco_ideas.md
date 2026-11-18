@@ -33,6 +33,20 @@ El patrón:
 
 Prompt para pedir más ideas a ChatGPT: `archivoraro_archivo/textos/prompt_chatgpt_ideas.txt`.
 
+## Top de las guardadas, con la primera frase del vídeo (18-11-2026)
+1. **Se mandó por correo** (#50): «Este hombre se metió en una caja de madera… y se mandó por correo desde Londres hasta Australia.»
+2. **Robo del siglo** (#35): «Unos ladrones tomaron un banco con 23 rehenes… y lo primero que hicieron fue pedir pizza.»
+3. **Silla voladora** (#53): «Este hombre ató más de 40 globos a una silla de jardín… y acabó volando al lado de los aviones.»
+4. **Se comió un avión** (#49): «Este hombre se comió un avión entero. Pieza a pieza. Tardó dos años.»
+5. **El oso soldado** (#28): «Este soldado tenía número, sueldo y uniforme… y era un oso.»
+6. **El mono de Hartlepool** (#54): «Este pueblo ahorcó a un mono porque creyó que era un espía francés… y doscientos años después eligió alcalde a un mono.»
+7. **El muerto de Huelva** (#27): «En 1943 apareció un muerto flotando en una playa de Huelva… y ese muerto engañó a Hitler.»
+8. **Maratón de 1904** (#38): «El primero en cruzar la meta de esta maratón olímpica… había hecho medio recorrido en coche.»
+9. **Planeador de Colditz** (#56, pendiente de guardar): «Estos prisioneros construyeron un avión dentro de su cárcel… para escaparse volando desde el tejado.»
+10. **El clip rojo** (#55): «Este chico cambió un clip rojo por un boli… y un año después tenía una casa.»
+11. **Mujeres de Weinsberg** (#29): «El rey dejó salir a las mujeres con lo que pudieran cargar… y salieron con sus maridos a la espalda.»
+12. **Emperador Norton** (#57, pendiente de guardar): «Un hombre arruinado se proclamó emperador de Estados Unidos… y la ciudad entera le obedeció.»
+
 | # | idea | país | gancho (2 líneas) | datos comprobados / cuidado | estado |
 |---|---|---|---|---|---|
 | 1 | Los hipopótamos de Escobar | Colombia | «Un hombre compró cuatro hipopótamos. / Treinta años después hay más de 180… y nadie sabe cómo pararlos.» | 4 traídos en los 80 a la Hacienda Nápoles; 169 según el Gobierno (2023) y 181–215 según un censo científico; especie invasora desde 2022; podrían ser más de 1.000 en 2035 | ✅ `example/hipopotamos_3d` |
