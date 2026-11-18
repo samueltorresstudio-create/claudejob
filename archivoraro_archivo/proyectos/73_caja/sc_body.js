@@ -19,7 +19,7 @@ S.oscuras = (t, D, B) => { const E = EVS.oscuras(B); const tA = (E.a || D * .55)
   const off = clamp((t - tA) / .35), fl = off > 0 && off < 1 ? (Math.sin(t * 60) > 0 ? 1 : .2) * (1 - off) : 1 - off; W.LIGHTS.torchL.intensity *= fl;
   cam(L3(V3(3.0, -1.35, 1.25), V3(2.6, -1.3, 1.2), oc(clamp(t / D))), V3(.35, -1.47, 1.0), 33, .003);
   const R = regInCrate(W.CR, { face: 'wide', mouth: t < tA ? 'line' : 'o', sweat: true, armL: [130, 40], look: [t < tA ? -12 : 0, t < tA ? 8 : -4] }, t + B[0].s, { on: fl });
-  let s = R[1] + blackout(.9 * off); if (off > .5) { const h = R[2].ph; s += darkEyes(h.x - 6, h.y + 10, R[2].q * .0055, t); } return s; };
+  let s = R[1] + blackout(off); if (off > .98) { const h = R[2].ph, ss = R[2].s; s += darkEyes(h.x + 22 * ss, h.y - 10 * ss, ss, t); } return s; };
 
 // =====================================================================================================
 // 3 · LONDRES 1964 — sin un céntimo (cartera con polilla), la foto de su hija · «así que piensa»: cartel (£300) → buzón rojo → ¡idea!
@@ -27,10 +27,10 @@ S.oscuras = (t, D, B) => { const E = EVS.oscuras(B); const tA = (E.a || D * .55)
 S.londres = (t, D, B) => { const E = EVS.londres(B); setup(t + B[0].s, { mood: 'londres', light: FOG }); const t2 = B[1] ? B[1].s - B[0].s : D * .55;
   if (t < t2) { const k = clamp(t / (t2 - .2)), z = lerp(-17, -9.4, k), F = V3(-6.6, .16, z), tW = (E.sin || t2 * .45) - .1, tH = (E.cumpleanos || t2 * .7) - .25;
     cam(V3(-3.6, 1.75, z + 6.4), V3(-6.3, 1.45, z - 1), 40);
-    const walking = t < tW; const pose = walking ? Object.assign({ face: 'open', mouth: 'line', hornSwing: 0 }, walkPose(t * 7, { amp: .8 })) : t < tH ? { face: 'wide', mouth: 'o', armR: [150, 20], holdR: WALLET, armL: [20, 10] } : { face: 'wide', mouth: 'line', armR: [140, 30], holdR: PHOTO, armL: [30, 20], headTilt: -8, brows: .6 };
+    const walking = t < tW; const pose = walking ? Object.assign({ face: 'open', mouth: 'line', hornSwing: 0 }, walkPose(t * 7, { amp: .8 })) : t < tH ? { face: 'wide', mouth: 'o', armR: [150, 20], holdR: WALLET, armL: [20, 10] } : { face: 'closed', mouth: 'sad', browTilt: -1, brows: .4, armR: [140, 30], holdR: PHOTO, armL: [30, 20], headTilt: -4 };
     let s = depth([P_('REG', pose, F)]); const h = headScr(F);
     if (t >= tW && t < tH) { const k2 = clamp((t - tW - .25) / 1.4); if (k2 > 0) { const mx = h.x + 120 + k2 * 260 + Math.sin(t * 18) * 20, my = h.y - 60 - k2 * 420; s += `<g transform="translate(${mx.toFixed(1)},${my.toFixed(1)})"><ellipse rx="10" ry="16" fill="#8a8478" stroke="${K}" stroke-width="4"/>` + [-1, 1].map(sd => `<path d="M0,-4 Q${sd * 34},${-30 + Math.sin(t * 40) * 14} ${sd * 30},6Z" fill="#b8b0a0" stroke="${K}" stroke-width="4"/>`).join('') + `</g>`; } }
-    if (t >= tH) s += tears(h, .9, t);
+    if (t >= tH) s += tears2d(F, t);
     return s; }
   const u = t - t2, D2 = D - t2, F = V3(-6.6, .16, -9.2), tP = (E.paquete || t2 + D2 * .75) - t2 - .15, tV = (E.volar || t2 + D2 * .35) - t2;
   whipBlur(t, t2); cam(L3(V3(-2.0, 1.65, -10.6), V3(-2.5, 1.8, -11.0), oc(clamp(u / D2))), V3(-7.0, 1.85, -8.9), 42, .002);
@@ -52,8 +52,8 @@ S.taller = (t, D, B) => { const E = EVS.taller(B); setup(t + B[0].s, { mood: 'ta
   const u = t - t2, D2 = D - t2, tO = (E.otra || t2 + D2 * .45) - t2 - .1;
   whipBlur(t, t2);
   if (u < tO) { cam(L3(V3(.55, 2.4, 1.0), V3(.45, 2.25, .85), oc(clamp(u / tO))), V3(-.3, .35, -.25), 30, .004); return ''; }
-  whipBlur(t, t2 + tO); cam(L3(V3(.5, 1.9, 3.4), V3(.4, 1.85, 3.1), oc(clamp((u - tO) / (D2 - tO)))), V3(.1, 1.5, -1.0), 40, .003);
-  return depth([P_('JOHN', { face: 'wide', mouth: 'o', brows: 1, look: [-14, 6], armR: [40, 120], armL: [20, 10], turn: -.3 }, V3(1.0, 0, -1.25)), P_('REG', { face: 'smug', mouth: 'smirk', look: [12, -4], armR: [150, -110], armL: [14, 10], turn: .3, sweat: true }, V3(-.85, 0, -1.2))]); };
+  whipBlur(t, t2 + tO); cam(L3(V3(.2, 1.95, 6.6), V3(.15, 1.9, 6.1), oc(clamp((u - tO) / (D2 - tO)))), V3(.1, 1.3, .3), 40, .003);
+  return depth([P_('JOHN', { face: 'wide', mouth: 'o', brows: 1, look: [-14, 6], armR: [40, 120], armL: [20, 10], turn: -.3 }, V3(1.05, 0, 1.55)), P_('REG', { face: 'smug', mouth: 'smirk', look: [12, -4], armR: [150, -110], armL: [14, 10], turn: .3, sweat: true }, V3(-1.05, 0, 1.55))]); };
 
 // =====================================================================================================
 // 5 · ETIQUETA — «ZAPATOS» en plantilla (barrido por el lateral) → sello de PORTES DEBIDOS con golpe
@@ -72,7 +72,11 @@ S.niebla = (t, D, B) => { setup(t + B[0].s, { mood: 'niebla', light: FOG }); W.Z
   cam(L3(V3(5.2, 2.3, 4.2), V3(3.4, 2.7, 5.4), oc(clamp(t / D))), V3(.2, 1.6, -2.6), 42, .002);
   const L = []; for (let i = 0; i < 4; i++) { const k = ((t * .9 + i * .27) % 1), x = lerp(-7, 7, k) * (i % 2 ? 1 : -1), F = V3(x, 0, -4.5 - i * 1.6);
     L.push([F, `<g opacity=".45">${who('LONDON', Object.assign({ face: 'open', mouth: 'line', turn: i % 2 ? .6 : -.6 }, walkPose(t * 14 + i, { amp: 1 })), F, ADULT, { shadow: false })}</g>`]); }
-  return depth(L) + `<rect width="1080" height="1920" fill="#c8d0dc" opacity="${(.08 + .05 * Math.sin(t * 8)).toFixed(3)}"/>`; };
+  // los mozos «fantasma» pasan POR DETRÁS de la caja: se tapan con una máscara del contorno de la caja en pantalla
+  const pts = []; for (const x of [-.8, .8]) for (const y of [0, 1.85]) for (const z of [-.86, .86]) pts.push(W.proj(wp(W.CRA, x, y, z)));
+  const x0 = Math.min(...pts.map(p => p.x)), x1 = Math.max(...pts.map(p => p.x)), y0 = Math.min(...pts.map(p => p.y)), y1 = Math.max(...pts.map(p => p.y));
+  const ghosts = `<defs><mask id="mcr"><rect width="1080" height="1920" fill="#fff"/><rect x="${x0.toFixed(0)}" y="${y0.toFixed(0)}" width="${(x1 - x0).toFixed(0)}" height="${(y1 - y0 + 400).toFixed(0)}" fill="#000"/></mask></defs><g mask="url(#mcr)">${depth(L)}</g>`;
+  return ghosts + `<rect width="1080" height="1920" fill="#c8d0dc" opacity="${(.08 + .05 * Math.sin(t * 8)).toFixed(3)}"/>`; };
 
 // =====================================================================================================
 // 7 · DESPEGA → ESCALA AL SOL — el avión sube entre nubes · «y en una escala…»: la caja sola en el carro, en la pista de Bombay

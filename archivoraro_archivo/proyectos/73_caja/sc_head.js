@@ -1,7 +1,7 @@
 // «El hombre que se mandó por correo» (73) — ESTILO 3D: world_caja.js + personajes 2D (cast73.js) + efectos (fx73.js).
 // Gancho en el fotograma 0: Reg dentro de la caja (abierta en corte), con la linterna; la cámara se aleja sin cortes hasta el avión sobre las nubes.
 window.CFG = { capY: 1500, capSize: 96, transDur: .32, blurK: .35, antic: .1, blurChars: false, transDefault: 'swish',
-  trans: { oscuras: 'cut', londres: 'swish', taller: 'swish', etiqueta: 'whip', niebla: 'swish', despega: 'swish', cuece: 'cut', tapa: 'swish', aguanta: 'cut', perth: 'swish', encasa: 'cut', sale: 'swish', cumple: 'swish', factura: 'whip', bucle: 'swish' } };
+  trans: { oscuras: 'cut', londres: 'swish', taller: 'cut', etiqueta: 'whip', niebla: 'cut', despega: 'swish', cuece: 'cut', tapa: 'swish', aguanta: 'cut', perth: 'swish', encasa: 'cut', sale: 'swish', cumple: 'swish', factura: 'whip', bucle: 'swish' } };
 const norm = w => w.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const EVS = {}; window.SCRIPT.forEach(l => { const ws = l.cap.split(' ').map(w => norm(w.split('|')[0])); const prev = EVS[l.sc]; const idx = window.SCRIPT.filter(x => x.sc === l.sc).indexOf(l);
   EVS[l.sc] = B => { const o = prev ? prev(B) : {}; ws.forEach((w, i) => { const k = /^[0-9]/.test(w) ? '_' + w : w; if (k && !(k in o) && B[idx]) o[k] = B[idx].w[i]; }); return o; }; });
@@ -42,7 +42,7 @@ function regInCrate(CRX, pose = {}, t = 0, o = {}) { const fl0 = wp(CRX, -.02, .
   const reg = who('REG', P, F, H, { shadow: false });
   let beam = ''; if (torch && on > .02) { const Lb = q * .62; beam = `<defs><linearGradient id="tb" x1="0" x2="1"><stop offset="0" stop-color="#fff2c0" stop-opacity="${(.6 * on).toFixed(2)}"/><stop offset="1" stop-color="#ffd890" stop-opacity="0"/></linearGradient></defs><g transform="translate(${tip.x.toFixed(1)},${tip.y.toFixed(1)}) rotate(${ang})"><path d="M0,${(-q * .05).toFixed(1)} L${Lb.toFixed(1)},${(-Lb * .34).toFixed(1)} L${Lb.toFixed(1)},${(Lb * .34).toFixed(1)} L0,${(q * .05).toFixed(1)}Z" fill="url(#tb)"/>`;
     for (let i = 0; i < 16; i++) { const k = ((hs(i, 3) + t * .05 * (1 + hs(i, 4))) % 1), x = k * Lb, y = (hs(i, 7) - .5) * x * .6 + Math.sin(t * 2 + i) * 4; beam += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(q * (.006 + hs(i, 9) * .01)).toFixed(1)}" fill="#fff6d8" opacity="${(.75 * (1 - k) * on).toFixed(2)}"/>`; } beam += `</g>`; }
-  return [F, s2 + reg + beam, { H, q, ph }]; }
+  return [F, s2 + reg + beam, { H, q, ph, s }]; }
 // ---------- utilería 2D ----------
 const WALLET = `<g transform="rotate(-10)"><rect x="-46" y="-34" width="92" height="60" rx="8" fill="#6a3a1e" stroke="${K}" stroke-width="6"/><path d="M-46,-12 L46,-12" stroke="${K}" stroke-width="4"/><rect x="-40" y="-30" width="80" height="14" fill="#3a1e0e"/></g>`;
 const PHOTO = `<g transform="rotate(8)"><rect x="-44" y="-96" width="88" height="104" fill="#f6f2e6" stroke="${K}" stroke-width="6"/><rect x="-34" y="-86" width="68" height="70" fill="#9fc8ef"/><circle cx="0" cy="-58" r="20" fill="#fff" stroke="${K}" stroke-width="4"/><path d="M-26,-62 Q-30,-40 -22,-30 M26,-62 Q30,-40 22,-30" stroke="#c89a5a" stroke-width="9" fill="none"/><path d="M-20,-74 Q0,-90 20,-74" stroke="#c89a5a" stroke-width="10" fill="none"/><path d="M-8,-52 Q0,-46 8,-52" stroke="${K}" stroke-width="3" fill="none"/><path d="M-18,-16 Q0,-30 18,-16Z" fill="#f0883a" stroke="${K}" stroke-width="4"/></g>`;
@@ -72,3 +72,8 @@ function darkEyes(x, y, s, t) { const bl = (t % 2.2) > 2.05 ? .1 : 1; return [-1
 
 const hand2d = (x, y, s, r = 0) => `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) rotate(${r.toFixed(0)}) scale(${s.toFixed(3)})"><ellipse cx="0" cy="0" rx="34" ry="42" fill="${K}"/><ellipse cx="-30" cy="-12" rx="12" ry="20" fill="${K}" transform="rotate(30 -30 -12)"/></g>`;
 const tension = (x, y, r, t, n = 8) => { let o = ''; for (let i = 0; i < n; i++) { const a = i / n * 6.283 + t * .4, r0 = r * (1 + .08 * Math.sin(t * 20 + i)); o += `<path d="M${(x + Math.cos(a) * r0).toFixed(1)},${(y + Math.sin(a) * r0).toFixed(1)} L${(x + Math.cos(a) * r0 * 1.25).toFixed(1)},${(y + Math.sin(a) * r0 * 1.25).toFixed(1)}" stroke="#ff4f5a" stroke-width="10" stroke-linecap="round" opacity=".85"/>`; } return o; };
+
+// lágrimas limpias: gotas que nacen en el rabillo de los ojos cerrados y bajan por la mejilla (unidades del muñeco → pantalla con toScr)
+function tears2d(F, t, turn = 0) { let o = ''; [-1, 1].forEach(sd => { for (let k = 0; k < 3; k++) { const ph = (t * .9 + k / 3 + (sd > 0 ? .17 : 0)) % 1, ex = sd * 44 + turn * 26, y = -466 + ph * 70, x = ex + sd * ph * 10;
+  const p = toScr(F, x, y), r = 7 * p.q * (1 - ph * .3); o += `<path d="M${p.x.toFixed(1)},${(p.y - r * 1.8).toFixed(1)} Q${(p.x + r).toFixed(1)},${(p.y - r * .2).toFixed(1)} ${p.x.toFixed(1)},${(p.y + r).toFixed(1)} Q${(p.x - r).toFixed(1)},${(p.y - r * .2).toFixed(1)} ${p.x.toFixed(1)},${(p.y - r * 1.8).toFixed(1)}Z" fill="#8fd0ff" stroke="${K}" stroke-width="${(2.2 * p.q).toFixed(1)}" opacity="${(1 - ph).toFixed(2)}"/>`; } }); return o; }
+const toScr = (F, ux, uy) => { const a = W.proj(F), h = headScr(F), q = (a.y - h.y) / 462; return { x: a.x + ux * q, y: a.y + uy * q, q }; };

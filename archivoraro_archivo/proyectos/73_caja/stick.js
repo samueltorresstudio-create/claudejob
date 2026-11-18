@@ -388,6 +388,7 @@ function stick(o) {
   const my = 42, mx = lx * .25 + TN * 26;
   if (d.mouth === 'smile') h += `<path d="M${mx - 18},${my - 4} Q${mx},${my + 12} ${mx + 18},${my - 4}" stroke="${INKC}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
   else if (d.mouth === 'smirk') h += `<path d="M${mx - 4},${my + 4} Q${mx + 14},${my + 8} ${mx + 26},${my - 6}" stroke="${INKC}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
+  else if (d.mouth === 'sad') h += `<path d="M${mx - 20},${my + 8} Q${mx},${my - 12} ${mx + 20},${my + 8}" stroke="${INKC}" stroke-width="7" fill="none" stroke-linecap="round"/>`;
   else if (d.mouth === 'line') h += `<path d="M${mx - 12},${my} L${mx + 12},${my}" stroke="${INKC}" stroke-width="6" stroke-linecap="round"/>`;
   else if (d.mouth === 'o') h += `<ellipse cx="${mx}" cy="${my + 2}" rx="9" ry="11" fill="${INKC}"/>`;
   else if (d.mouth === 'grin') h += `<rect x="${mx - 30}" y="${my - 14}" width="60" height="30" rx="8" fill="#fff" stroke="${INKC}" stroke-width="6"/><path d="M${mx - 30},${my + 1} L${mx + 30},${my + 1} M${mx - 15},${my - 14} L${mx - 15},${my + 16} M${mx},${my - 14} L${mx},${my + 16} M${mx + 15},${my - 14} L${mx + 15},${my + 16}" stroke="${INKC}" stroke-width="3.5"/>`;

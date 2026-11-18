@@ -514,3 +514,10 @@ Mundo `world_corte.js` (en `archivoraro_archivo/proyectos/72_bufon/parts/`). Zon
   - Si la cámara se aleja (travelling hacia atrás), los del fondo convergen hacia el bufón y siempre acaban tapados.
   - En ese caso quítalos del plano, o sepáralos más de ±2 m si la cámara está quieta.
 - **Re-render parcial:** `FRAMES=lista.json node render.js full 4` con los índices afectados. Incluye la transición de entrada y la de salida de cada escena que cambies: la transición dibuja el último fotograma de la escena anterior.
+
+### 73 · El hombre que se mandó por correo (18-11-2026): lo aprendido
+- **Personaje dentro de una caja abierta:** tablones bajos del frente, postes y herrajes en la capa FG (`fg()`), suelo de la caja y piernas cruzadas con los pies 0,49 m por debajo del suelo de la caja (si no, flota), sombra de contacto propia y luz de linterna. Así no parece superpuesto.
+- **Llorar = cara triste, no cara seria + lágrimas:** `face: 'closed'`, `mouth: 'sad'` (nuevo en stick.js), `browTilt: -1`, y gotas pequeñas que nacen en el rabillo (`tears2d` con `toScr`). Las lágrimas grandes antiguas parecían un fallo.
+- **«A oscuras»:** negro TOTAL (opacidad 1) y luego solo los ojos, del tamaño de los del personaje. Con negro al 90 % se veía el chico detrás y el usuario no lo entendió.
+- **Render que falla con «Target crashed»:** casi siempre es el DISCO lleno (cuota de la sesión). Mira `df -h /tmp`; borra frames de vídeos ya entregados (pide permiso al usuario: el modo automático lo bloquea) y usa 2 workers.
+- Deriva el decorado por zonas (`zone()` + `setMood`) para que cada sitio comparta coordenadas sin estorbarse.

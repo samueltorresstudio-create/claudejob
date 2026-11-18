@@ -29,7 +29,7 @@
     add(new T.CylinderGeometry(.56, .56, .3, 24, 1, false, 0, Math.PI), RED, 0, 2.62, 0, { parent: PB, rz: Math.PI / 2, ry: Math.PI / 2 }); add(RB(1.12, .14, 1.12, .04), RED, 0, 2.5, 0, { parent: PB });
     pl('boothL', PB, '#ffd9a0', 0, 2.0, 0, 5, 1.5);
     // buzón rojo (pillar box)
-    const BXG = new T.Group(); BXG.position.set(-4.5, .16, -7.0); LON.add(BXG); add(new T.CylinderGeometry(.34, .36, 1.45, 28), RED, 0, .72, 0, { parent: BXG }); add(new T.SphereGeometry(.38, 28, 12, 0, Math.PI * 2, 0, Math.PI / 2), RED, 0, 1.46, 0, { parent: BXG, s: [1, .55, 1] });
+    const BXG = new T.Group(); BXG.position.set(-4.3, .16, -21.5); LON.add(BXG); add(new T.CylinderGeometry(.34, .36, 1.45, 28), RED, 0, .72, 0, { parent: BXG }); add(new T.SphereGeometry(.38, 28, 12, 0, Math.PI * 2, 0, Math.PI / 2), RED, 0, 1.46, 0, { parent: BXG, s: [1, .55, 1] });
     add(new T.CylinderGeometry(.4, .4, .12, 28), MAT.black, 0, 1.44, 0, { parent: BXG }); add(new T.CylinderGeometry(.4, .42, .14, 28), MAT.black, 0, .07, 0, { parent: BXG }); add(RB(.36, .05, .06, .02), MAT.black, 0, 1.18, .34, { parent: BXG });
     sign(.34, .2, 64, (g, w, h) => { g.fillStyle = '#f6f2e6'; g.fillRect(0, 0, w, h); txt(g, 'POST', w / 2, h * .38, h * .38, '#c8202a'); txt(g, 'OFFICE', w / 2, h * .76, h * .3, '#c8202a', 800); }, 0, .92, .35, { parent: BXG, d: .01 });
     // cartel de viajes en la pared (billete carísimo)
