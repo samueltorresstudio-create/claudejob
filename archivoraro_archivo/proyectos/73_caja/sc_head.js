@@ -33,12 +33,12 @@ function regInCrate(CRX, pose = {}, t = 0, o = {}) { const fl0 = wp(CRX, -.02, .
   const pf = W.proj(F), ph = W.proj(H), s = Math.hypot(ph.x - pf.x, ph.y - pf.y) / 462; if (!pf.ok) return [F, ''];
   const u = (ux, uy) => ({ x: pf.x + ux * s, y: pf.y + uy * s }), r = a => a * Math.PI / 180, [a1, a2] = P.armR, x1 = 44 + Math.sin(r(a1)) * 90, y1 = -360 + Math.cos(r(a1)) * 90, hx = x1 + Math.sin(r(a1 + a2)) * 86, hy = y1 + Math.cos(r(a1 + a2)) * 86;
   const tip = u(hx + Math.cos(r(ang)) * 86, hy + Math.sin(r(ang)) * 86), fp = W.proj(fl0), q = 462 * s / 1.47, fl = 1 + Math.sin(t * 23) * .03 + Math.sin(t * 37) * .02;
-  const shadow = `<ellipse cx="${(fp.x + q * .02).toFixed(1)}" cy="${(fp.y - q * .02).toFixed(1)}" rx="${(q * .42).toFixed(1)}" ry="${(q * .09).toFixed(1)}" fill="#000" opacity=".38" style="filter:blur(${(q * .03).toFixed(1)}px)"/>`;
+  const shadow = `<ellipse cx="${(fp.x + q * .02).toFixed(1)}" cy="${(fp.y - q * .02).toFixed(1)}" rx="${(q * .42).toFixed(1)}" ry="${(q * .09).toFixed(1)}" fill="#000" opacity=".38"/>`;
   let s2 = shadow;
   if (torch && on > .02) { const wall = W.proj(wp(CRX, -W.CRATE_W / 2 + .08, 1.45, .25));
     s2 = `<defs><radialGradient id="tg"><stop offset="0" stop-color="#ffe7a8" stop-opacity="${(.5 * fl * on).toFixed(2)}"/><stop offset=".5" stop-color="#ffb860" stop-opacity="${(.18 * on).toFixed(2)}"/><stop offset="1" stop-color="#ff9a40" stop-opacity="0"/></radialGradient></defs>` +
       `<ellipse cx="${wall.x.toFixed(1)}" cy="${wall.y.toFixed(1)}" rx="${(q * .8 * fl).toFixed(1)}" ry="${(q * .62 * fl).toFixed(1)}" fill="url(#tg)"/>` +
-      `<g opacity="${(.28 * on).toFixed(2)}" style="filter:brightness(0) blur(${(q * .015).toFixed(1)}px)" transform="translate(${(-q * .28).toFixed(1)},${(-q * .1).toFixed(1)}) translate(${wall.x.toFixed(1)},${wall.y.toFixed(1)}) scale(1.12) translate(${(-wall.x).toFixed(1)},${(-wall.y).toFixed(1)})">${who('REG', Object.assign({}, P, { holdR: null }), F, H, { shadow: false })}</g>` + shadow; }
+      shadow; }
   const reg = who('REG', P, F, H, { shadow: false });
   let beam = ''; if (torch && on > .02) { const Lb = q * .62; beam = `<defs><linearGradient id="tb" x1="0" x2="1"><stop offset="0" stop-color="#fff2c0" stop-opacity="${(.6 * on).toFixed(2)}"/><stop offset="1" stop-color="#ffd890" stop-opacity="0"/></linearGradient></defs><g transform="translate(${tip.x.toFixed(1)},${tip.y.toFixed(1)}) rotate(${ang})"><path d="M0,${(-q * .05).toFixed(1)} L${Lb.toFixed(1)},${(-Lb * .34).toFixed(1)} L${Lb.toFixed(1)},${(Lb * .34).toFixed(1)} L0,${(q * .05).toFixed(1)}Z" fill="url(#tb)"/>`;
     for (let i = 0; i < 16; i++) { const k = ((hs(i, 3) + t * .05 * (1 + hs(i, 4))) % 1), x = k * Lb, y = (hs(i, 7) - .5) * x * .6 + Math.sin(t * 2 + i) * 4; beam += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(q * (.006 + hs(i, 9) * .01)).toFixed(1)}" fill="#fff6d8" opacity="${(.75 * (1 - k) * on).toFixed(2)}"/>`; } beam += `</g>`; }

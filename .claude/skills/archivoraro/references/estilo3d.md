@@ -523,3 +523,6 @@ Mundo `world_corte.js` (en `archivoraro_archivo/proyectos/72_bufon/parts/`). Zon
 - Deriva el decorado por zonas (`zone()` + `setMood`) para que cada sitio comparta coordenadas sin estorbarse.
 - **No recortes el principio del MP3 a ojo.** En el 73 quité 2,33 s «de silencio» y eran «Este hombre se metió…»: el vídeo empezaba a mitad de frase. Mide la energía de los primeros 3 s antes de recortar (o no recortes: `sync_voice.py` ya ajusta el arranque).
 - Arreglo barato si pasa: voz entera + `LINE_STARTS` (salidas antiguas + desfase) para que de la línea 2 en adelante todo quede desplazado un número entero de fotogramas; renombra los fotogramas viejos (+N) y re-renderiza solo la escena 1.
+- **No fuerces `LINE_STARTS` con tiempos de una sincronización anterior** sin comprobarlos contra las pausas reales (`silencedetect`). En el 73 eso dejó los subtítulos una frase por detrás durante 33 s.
+- **«Target crashed» con trap del Compositor (dmesg):** filtros CSS (`filter: blur()` o `brightness()`) sobre grupos SVG enormes en primeros planos. Quítalos en esos planos.
+- Si un navegador con 2 pestañas se cae, lanza 2 navegadores de 1 pestaña con reintento (`loop6.sh`).
