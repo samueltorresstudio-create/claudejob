@@ -1,0 +1,32 @@
+73 · EL HOMBRE QUE SE MANDÓ POR CORREO — guion v1 para ElevenLabs (voz «Stickmans», estabilidad Natural)
+Historia real: Reg Spiers, lanzador de jabalina australiano, 1964. Idea #50 del banco (references/banco_ideas.md). 195 palabras ≈ 65 s (ritmo medido de «Stickmans»: 2,97 palabras/s).
+Datos comprobados (BBC, Wikipedia, Athletics Weekly, Substack de J. McSorley):
+- sin dinero en Londres y quería llegar al cumpleaños de su hija;
+- la caja la hizo su amigo John McSorley y se abría desde dentro;
+- llevaba latas, linterna, manta, almohada y dos botellas (agua y orina);
+- etiquetada como envío de una fábrica de zapatos, a portes debidos;
+- un día de retraso por niebla en Londres y horas al sol en una escala;
+- 63 horas de viaje en total;
+- en Perth oyó a los mozos maldecir el tamaño de la caja y salió del almacén;
+- Air India le reclamó el porte y no lo pagó.
+Pegar tal cual, una frase por línea:
+
+Este hombre se metió en una caja de madera… y se mandó por correo desde Londres hasta Australia.
+Sesenta y tres horas. Sin poder salir.
+Verás, es mil novecientos sesenta y cuatro. Reg está en Londres, sin dinero… y su hija cumple años en unos días.
+Así que piensa: si no puedo viajar como pasajero… viajaré como paquete.
+Un amigo le hace una caja que se abre desde dentro.
+Latas de comida, una linterna… y dos botellas.
+[sarcastic] Una para beber. La otra… mejor no preguntes.
+La mandan como un envío de zapatos… a portes debidos: pagará quien la reciba.
+Primero, niebla: un día entero tirado en el aeropuerto.
+Por fin despega… y en una escala la dejan horas al sol.
+Reg se asa. Podría salir… pero si le pillan, se acabó.
+Aguanta.
+Hasta que oye a dos mozos maldiciendo el tamaño de la caja… con acento australiano.
+[relieved] Está en casa.
+Espera a que no quede nadie… y sale del almacén como si nada.
+Llega a tiempo al cumpleaños de su hija.
+Días después, la aerolínea le manda la factura.
+[deadpan] Y él, muy educado, dice que no la paga.
+Y todo empezó el día en que…
