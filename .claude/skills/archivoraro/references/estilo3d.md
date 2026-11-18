@@ -521,3 +521,5 @@ Mundo `world_corte.js` (en `archivoraro_archivo/proyectos/72_bufon/parts/`). Zon
 - **«A oscuras»:** negro TOTAL (opacidad 1) y luego solo los ojos, del tamaño de los del personaje. Con negro al 90 % se veía el chico detrás y el usuario no lo entendió.
 - **Render que falla con «Target crashed»:** casi siempre es el DISCO lleno (cuota de la sesión). Mira `df -h /tmp`; borra frames de vídeos ya entregados (pide permiso al usuario: el modo automático lo bloquea) y usa 2 workers.
 - Deriva el decorado por zonas (`zone()` + `setMood`) para que cada sitio comparta coordenadas sin estorbarse.
+- **No recortes el principio del MP3 a ojo.** En el 73 quité 2,33 s «de silencio» y eran «Este hombre se metió…»: el vídeo empezaba a mitad de frase. Mide la energía de los primeros 3 s antes de recortar (o no recortes: `sync_voice.py` ya ajusta el arranque).
+- Arreglo barato si pasa: voz entera + `LINE_STARTS` (salidas antiguas + desfase) para que de la línea 2 en adelante todo quede desplazado un número entero de fotogramas; renombra los fotogramas viejos (+N) y re-renderiza solo la escena 1.
