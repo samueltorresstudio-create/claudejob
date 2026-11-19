@@ -158,3 +158,17 @@ Numeración de entregas:
 - Suscriptores: 90 (04-11) → 676 (17-11). Ganados 25-10→14-11: 492; perdidos: 80. Conversión ≈0,22 % (suscriptores por visualización).
 - Metricool no da todavía vídeo a vídeo (visualizaciones/retención salen vacías), ni fuentes de tráfico ni demografía; la lista de vídeos solo llega al 04-11.
 - Mejor hora (Europe/Madrid): martes–viernes a las 16:00 (pico miércoles y jueves); 2.ª franja 10:00; sábado y domingo rinden la mitad.
+
+## Decisión del usuario (19-11-2026): todo el 3D con Blender
+A partir del próximo vídeo, **todo el 3D se hace con Blender** (no con three.js).
+- En este entorno no hay Blender instalado. download.blender.org está bloqueado (403), pero pip ofrece **`bpy` 5.3.0** (Blender como módulo de Python 3.13): `pip install bpy`.
+- No hay GPU (4 núcleos): EEVEE puede no funcionar sin pantalla, y Cycles por CPU es lento. Antes del primer vídeo hay que medir cuánto tarda un fotograma 1080×1920 y avisar al usuario del tiempo total de render.
+- Los personajes 2D, los subtítulos y los efectos se pueden seguir componiendo encima (render de Blender a PNG + capa SVG), o pasar a planos dentro de Blender. Decidirlo con una prueba.
+
+## Errores del 73 que no se pueden repetir (el usuario lo pidió: «aprende de tus errores»)
+1. **Audio:** no recortar el principio del MP3 sin medir que es silencio. Se cortó «Este hombre…».
+2. **Sincronía:** no forzar tiempos de una sincronización vieja. Comprobar las líneas contra las pausas reales y, antes de enviar, mirar en el MP4 FINAL que cada subtítulo sale con su frase.
+3. **Renders:** comprobar el disco (`df -h /tmp`) antes de lanzar. Vigilar que el render avanza de verdad y no decir «va bien» sin mirarlo. Usar un bucle con reintento si se cae.
+4. **Imagen:** revisar caras y efectos antes que el usuario (lágrimas raras, el chico visible tras los ojos «a oscuras»).
+5. **Idioma:** contestar SIEMPRE en español.
+6. **Tokens:** no gastar en pruebas inútiles; avisar del tiempo real y no prometer horas que no se pueden cumplir.
