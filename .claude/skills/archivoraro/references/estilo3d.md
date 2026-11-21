@@ -526,3 +526,14 @@ Mundo `world_corte.js` (en `archivoraro_archivo/proyectos/72_bufon/parts/`). Zon
 - **No fuerces `LINE_STARTS` con tiempos de una sincronización anterior** sin comprobarlos contra las pausas reales (`silencedetect`). En el 73 eso dejó los subtítulos una frase por detrás durante 33 s.
 - **«Target crashed» con trap del Compositor (dmesg):** filtros CSS (`filter: blur()` o `brightness()`) sobre grupos SVG enormes en primeros planos. Quítalos en esos planos.
 - Si un navegador con 2 pestañas se cae, lanza 2 navegadores de 1 pestaña con reintento (`loop6.sh`).
+
+## Lecciones del 74 (primer vídeo con escenarios de Blender, 21-11-2026)
+- **Flujo:** `blender/lago.py` (bpy, coordenadas de three.js convertidas al final) → `lago.glb` + `layout.json` → `mkglb.py` lo embebe en base64 (`glb_lago.js`; file:// no deja hacer fetch) → `GLTFLoader.parse`. El `index.html` carga `sc74.js` y `core3d.js` DESPUÉS de que el GLB esté listo (`window.READY`).
+- **three.js r170** (el bundle `three_post.js` del motor). Si se recompila con GLTFLoader, usar la misma versión: con r160 `NeutralToneMapping` no existe y todo sale mal.
+- **Hay que añadir `scene.add(gltf.scene)`**: los clones se veían y los originales no.
+- **Colores de vértice:** exportar con `export_vertex_color='ACTIVE'` y poner el atributo como activo/render; si no, sale un COLOR_0 blanco.
+- **Normales:** `bmesh.ops.recalc_face_normals` en mallas cerradas (si no, la sección se ve «por dentro»). En superficies abiertas (cuenca) usar `side: DoubleSide` para que la luz no salga negra.
+- **Booleanos en Blender meten un mapa UV a cero** en toda la malla: rehacer las UV en three.js (boxUV) aunque exista `uv`.
+- **GTAO:** toda malla propia necesita `normal` (si no, el agua sale casi negra) y hay que OCULTAR las transparentes (cascada, chorro, bruma) mientras se calcula, o salen rectángulos negros.
+- **Shaders:** `smoothstep(a,b,x)` con a>b es indefinido (NaN → negro). `atan()` corta en ±π: para espirales usar `cos/sin` del ángulo como coordenada de ruido, o sale una costura recta.
+- Suelos «infinitos» de horizonte: que no tapen otras zonas del mundo (el diorama en sección estaba a x = 3000).
