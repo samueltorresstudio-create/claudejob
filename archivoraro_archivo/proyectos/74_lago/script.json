@@ -1,0 +1,14 @@
+[
+{"sc": "gancho", "say": "Un lago entero desapareció en tres horas.", "cap": "UN LAGO ENTERO|b DESAPARECIÓ|p EN TRES HORAS.|y", "pause": 0.1},
+{"sc": "gancho", "say": "Y se tragó once barcazas, una plataforma petrolera… y media isla.", "cap": "Y SE TRAGÓ ONCE|y BARCAZAS, UNA PLATAFORMA PETROLERA… Y MEDIA ISLA.|p", "pause": 0.1},
+{"sc": "agujero", "say": "Todo por un agujero de treinta y cinco centímetros.", "cap": "TODO POR UN AGUJERO DE 35|y CENTÍMETROS.", "pause": 0.1},
+{"sc": "calma", "say": "En 1980, una plataforma buscaba petróleo en el lago Peigneur, en Luisiana: tres metros de agua, nada más.", "cap": "EN 1980,|y UNA PLATAFORMA BUSCABA PETRÓLEO EN EL LAGO PEIGNEUR,|b EN LUISIANA: TRES|y METROS DE AGUA, NADA MÁS.", "pause": 0.1},
+{"sc": "mina", "say": "[curious] Pero justo debajo había una mina de sal gigante… con cincuenta mineros dentro.", "cap": "PERO JUSTO DEBAJO HABÍA UNA MINA DE SAL|b GIGANTE… CON CINCUENTA|y MINEROS DENTRO.", "pause": 0.1},
+{"sc": "broca", "say": "A casi cuatrocientos metros, la broca se atasca. Crac. Acaban de perforar el techo de la mina.", "cap": "A CASI CUATROCIENTOS|y METROS, LA BROCA SE ATASCA. CRAC.|p ACABAN DE PERFORAR EL TECHO|p DE LA MINA.", "pause": 0.1},
+{"sc": "crece", "say": "El agua entra, disuelve la sal, y el agujero crece. Y crece. Y crece.", "cap": "EL AGUA|b ENTRA, DISUELVE LA SAL, Y EL AGUJERO CRECE.|y Y CRECE.|y Y CRECE.|p", "pause": 0.1},
+{"sc": "mineros", "say": "Abajo, los mineros ven entrar agua. Corren al ascensor. Salen todos vivos.", "cap": "ABAJO, LOS MINEROS VEN ENTRAR AGUA.|b CORREN AL ASCENSOR.|y SALEN TODOS VIVOS.|g", "pause": 0.1},
+{"sc": "remolino", "say": "Arriba, el lago empieza a girar. Un remolino se traga la plataforma, las barcazas, los árboles… y parte de una isla.", "cap": "ARRIBA, EL LAGO EMPIEZA A GIRAR.|b UN REMOLINO|p SE TRAGA LA PLATAFORMA, LAS BARCAZAS, LOS ÁRBOLES… Y PARTE DE UNA ISLA.|y", "pause": 0.1},
+{"sc": "cascada", "say": "[sighs] Entonces el canal del mar se da la vuelta. El mar cae en el agujero: una cascada de cincuenta metros, la más alta de Luisiana.", "cap": "ENTONCES EL CANAL DEL MAR SE DA LA VUELTA.|p EL MAR CAE EN EL AGUJERO: UNA CASCADA|b DE CINCUENTA|y METROS, LA MÁS ALTA DE LUISIANA.", "pause": 0.1},
+{"sc": "flotan", "say": "Días después, nueve barcazas salieron flotando como si nada.", "cap": "DÍAS DESPUÉS, NUEVE|y BARCAZAS SALIERON FLOTANDO|b COMO SI NADA.", "pause": 0.1},
+{"sc": "final", "say": "¿Y el lago? Se volvió a llenar. Pero ya no tiene tres metros de profundidad: [amazed] tiene hasta cuatrocientos. Y es de agua salada.", "cap": "¿Y EL LAGO? SE VOLVIÓ A LLENAR.|b PERO YA NO TIENE TRES|y METROS DE PROFUNDIDAD: TIENE HASTA CUATROCIENTOS.|p Y ES DE AGUA SALADA.|b", "pause": 0.1}
+]
