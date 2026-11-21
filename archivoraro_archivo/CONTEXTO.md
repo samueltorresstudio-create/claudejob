@@ -162,7 +162,10 @@ Numeración de entregas:
 ## Decisión del usuario (19-11-2026): todo el 3D con Blender
 A partir del próximo vídeo, **todo el 3D se hace con Blender** (no con three.js).
 - En este entorno no hay Blender instalado. download.blender.org está bloqueado (403), pero pip ofrece **`bpy` 5.3.0** (Blender como módulo de Python 3.13): `pip install bpy`.
-- No hay GPU (4 núcleos): EEVEE puede no funcionar sin pantalla, y Cycles por CPU es lento. Antes del primer vídeo hay que medir cuánto tarda un fotograma 1080×1920 y avisar al usuario del tiempo total de render.
+- No hay GPU (4 núcleos): EEVEE puede no funcionar sin pantalla, y Cycles por CPU es lento.
+- **Instalado el 21-11-2026:** `pip install --no-cache-dir bpy` (Blender 5.3.0, unos 1,5 GB de disco; en un contenedor nuevo hay que reinstalarlo).
+- **Prueba de render (1080×1920):** Cycles por CPU tarda 32 s en una escena mínima (32 muestras + eliminador de ruido). EEVEE y Workbench no arrancan sin GPU.
+- Para liberar disco se borraron los PNG de los fotogramas de 62, 68, 70 y 71 (con permiso del usuario). El código sigue en `proyectos/` y los MP4 siguen en entregas. Antes del primer vídeo hay que medir cuánto tarda un fotograma 1080×1920 y avisar al usuario del tiempo total de render.
 - Los personajes 2D, los subtítulos y los efectos se pueden seguir componiendo encima (render de Blender a PNG + capa SVG), o pasar a planos dentro de Blender. Decidirlo con una prueba.
 
 ## Errores del 73 que no se pueden repetir (el usuario lo pidió: «aprende de tus errores»)
