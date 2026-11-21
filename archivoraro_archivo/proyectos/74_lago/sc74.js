@@ -44,9 +44,13 @@ function dim(A, B, k, col = '#ffffff') { if (k <= 0) return ''; const a = W.proj
 function chips(x, y, s, t, n = 26) { let o = ''; for (let i = 0; i < n; i++) { const k = ((t * 2.2 + hs(i, 1)) % 1), a = -Math.PI * (.08 + .84 * hs(i, 2)), v = (180 + 260 * hs(i, 3)) * s;
   const xx = x + Math.cos(a) * v * k, yy = y + Math.sin(a) * v * k + 520 * s * k * k, r = (3 + 5 * hs(i, 4)) * s; o += `<rect x="${(xx - r).toFixed(1)}" y="${(yy - r).toFixed(1)}" width="${(r * 2).toFixed(1)}" height="${(r * 1.6).toFixed(1)}" fill="#f4f0e6" stroke="${K}" stroke-width="${(1.5 * s).toFixed(1)}" opacity="${(1 - k).toFixed(2)}" transform="rotate(${(hs(i, 5) * 360 + t * 400).toFixed(0)} ${xx.toFixed(1)} ${yy.toFixed(1)})"/>`; } return o; }
 // grietas que se abren (pantalla)
-function crack(x, y, s, k) { if (k <= 0) return ''; let o = ''; for (let i = 0; i < 7; i++) { const a = i / 7 * 6.28 + .3, L = (60 + 90 * hs(i, 7)) * s * eOut(clamp(k * 1.4)); let d = `M${x},${y}`, cx = x, cy = y;
-  for (let j = 1; j <= 4; j++) { cx += Math.cos(a + (hs(i, j) - .5) * .9) * L / 4; cy += Math.sin(a + (hs(i, j) - .5) * .9) * L / 4; d += ` L${cx.toFixed(1)},${cy.toFixed(1)}`; }
-  o += `<path d="${d}" stroke="${K}" stroke-width="${(7 * s).toFixed(1)}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`; } return o; }
+function crack(x, y, s, k) { if (k <= 0) return ''; let o = ''; const e = eOut(clamp(k * 1.4));
+  // grieta en el techo: se abre a los lados (casi horizontal), con ramas cortas; fina y color roca, no patas negras
+  for (let i = 0; i < 4; i++) { const sg = i % 2 ? -1 : 1, a = (sg > 0 ? 0 : Math.PI) + (hs(i, 9) - .5) * .5, L = (150 + 110 * hs(i, 7)) * s * e; let d = `M${x},${y}`, cx = x, cy = y, br = '';
+    for (let j = 1; j <= 6; j++) { const aj = a + (hs(i, j) - .5) * 1.1; cx += Math.cos(aj) * L / 6; cy += Math.sin(aj) * L / 6 * .5; d += ` L${cx.toFixed(1)},${cy.toFixed(1)}`;
+      if (j === 2 || j === 4) { const ab = aj + sg * (hs(i, j + 20) > .5 ? .9 : -.9), lb = L * .22; br += `M${cx.toFixed(1)},${cy.toFixed(1)} L${(cx + Math.cos(ab) * lb).toFixed(1)},${(cy + Math.sin(ab) * lb * .6).toFixed(1)} `; } }
+    o += `<path d="${d} ${br}" stroke="#f6f1e4" stroke-width="${(6 * s).toFixed(1)}" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>`;
+    o += `<path d="${d} ${br}" stroke="#3b2f25" stroke-width="${(3.4 * s).toFixed(1)}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`; } return o; }
 // salpicadura (pantalla)
 function splash(x, y, s, k) { if (k <= 0 || k >= 1) return ''; let o = ''; for (let i = 0; i < 12; i++) { const a = -Math.PI * (.1 + .8 * i / 11), v = (120 + 120 * hs(i, 3)) * s, e = eOut(k), xx = x + Math.cos(a) * v * e, yy = y + Math.sin(a) * v * e + 200 * s * k * k;
   o += `<ellipse cx="${xx.toFixed(1)}" cy="${yy.toFixed(1)}" rx="${(12 * s * (1 - k * .5)).toFixed(1)}" ry="${(16 * s * (1 - k * .5)).toFixed(1)}" fill="#e8f2ee" stroke="${K}" stroke-width="${(3 * s).toFixed(1)}" opacity="${(1 - k).toFixed(2)}"/>`; }
@@ -54,6 +58,14 @@ function splash(x, y, s, k) { if (k <= 0 || k >= 1) return ''; let o = ''; for (
 // gotas que caen del techo de la mina
 function drips(x, y, s, t, n = 10, w = 120) { let o = ''; for (let i = 0; i < n; i++) { const k = (t * 1.5 + hs(i, 2)) % 1, xx = x + (hs(i, 1) - .5) * w * s, yy = y + k * 260 * s;
   o += `<path d="M${xx.toFixed(1)},${(yy - 14 * s).toFixed(1)} Q${(xx + 6 * s).toFixed(1)},${yy.toFixed(1)} ${xx.toFixed(1)},${(yy + 6 * s).toFixed(1)} Q${(xx - 6 * s).toFixed(1)},${yy.toFixed(1)} ${xx.toFixed(1)},${(yy - 14 * s).toFixed(1)}Z" fill="#9fd8ea" stroke="${K}" stroke-width="${(2 * s).toFixed(1)}" opacity="${(1 - k).toFixed(2)}"/>`; } return o; }
+// gotas y espuma que saltan alrededor de un punto 3D (anillo de radio R)
+function sprayRing(t, C, n = 24, R = 20, s = 1) { let o = ''; for (let i = 0; i < n; i++) { const k = (t * 1.3 + hs(i, 4)) % 1, a = hs(i, 1) * 6.283 + t * .9, rr = R * (.7 + .5 * hs(i, 2)), up = (2 + 6 * hs(i, 3)) * Math.sin(Math.PI * k);
+  const P = V3(C.x + Math.cos(a) * rr, C.y + up, C.z + Math.sin(a) * rr), q = W.proj(P); if (!q.ok) continue; const r = clamp(q.ppm * .35 * s * (1 - k * .5), 2, 26);
+  o += `<circle cx="${q.x.toFixed(1)}" cy="${q.y.toFixed(1)}" r="${r.toFixed(1)}" fill="#f2f6f2" opacity="${(.85 * (1 - k)).toFixed(2)}"/>`; } return o; }
+// bandada de garzas blancas (pantalla)
+function birds(t, x0, y0, s = 1, n = 5, vx = 60) { let o = ''; for (let i = 0; i < n; i++) { const x = x0 + t * vx * s + (i % 3) * 70 * s - i * 18 * s, y = y0 + Math.sin(t * 1.3 + i) * 10 * s + (i % 2) * 40 * s - i * 12 * s, f = Math.sin(t * 9 + i * 1.7), w = 34 * s;
+  o += `<path d="M${(x - w).toFixed(1)},${(y - f * 14 * s).toFixed(1)} Q${(x - w * .4).toFixed(1)},${(y - 10 * s).toFixed(1)} ${x.toFixed(1)},${y.toFixed(1)} Q${(x + w * .4).toFixed(1)},${(y - 10 * s).toFixed(1)} ${(x + w).toFixed(1)},${(y - f * 14 * s).toFixed(1)}" stroke="${K}" stroke-width="${(9 * s).toFixed(1)}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>` +
+    `<path d="M${(x - w).toFixed(1)},${(y - f * 14 * s).toFixed(1)} Q${(x - w * .4).toFixed(1)},${(y - 10 * s).toFixed(1)} ${x.toFixed(1)},${y.toFixed(1)} Q${(x + w * .4).toFixed(1)},${(y - 10 * s).toFixed(1)} ${(x + w).toFixed(1)},${(y - f * 14 * s).toFixed(1)}" stroke="#f6f4ee" stroke-width="${(4 * s).toFixed(1)}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`; } return o; }
 // minero (o trabajador) en un punto, mirando a la cámara con giro t
 const man = (name, F, pose = {}, opt = {}) => [F, who(name, pose, F, ADULT, Object.assign({ gy: F.y }, opt))];
 // remolino: fuerza, giro acumulado y estado de la plataforma
@@ -63,25 +75,31 @@ function vortex(t, k, spin, rigSink, rigTilt) { W.setWater({ vs: k, spin, level:
 // =====================================================================================================
 // 1 · GANCHO — vista aérea: el remolino ya gira, la plataforma se inclina y se hunde, las barcazas caen en espiral
 // =====================================================================================================
-S.gancho = (t, D, B) => { setup(t, { mood: 'drama', light: GREY }); const E = EVS.gancho(B); SHAKE = .006;
-  const tB = E.barcazas || 3.2, tP = E.plataforma || 4.4, tI = E.isla || 5.8;
-  vortex(t, .82 + .18 * clamp(t / 3), 1.6 + t * 1.25, 4 + t * 3.2, .22 + t * .05);
-  // barcazas: 4 en órbita; la primera cae al centro justo cuando se dice «barcazas»
-  W.BARGES.forEach((b, i) => { if (i > 5) { b.visible = false; return; } const r0 = [60, 78, 96, 120, 140, 104][i], rate = i === 0 ? 60 / Math.max(.5, tB) : 2 + i * .8, a0 = i * 1.3;
-    const r = orbit(b, i, t, r0, a0, rate); b.visible = r > 3 || t < tB + .3; });
+S.gancho = (t, D, B) => { setup(t, { mood: 'drama', light: GREY }); const E = EVS.gancho(B); const tB = E.barcazas || 3.6, tI = E.isla || 5.9;
+  // el remolino ya está en marcha en el fotograma 0; la plataforma se escora y se hunde
+  vortex(t, .9 + .1 * clamp(t / 2), 2 + t * 1.5, 3 + t * 3.4, .32 + t * .06);
+  W.BARGES.forEach((b, i) => { if (i > 6) { b.visible = false; return; }
+    if (i === 0) { orbit(b, i, t, 34, 1.69, 0, 3); return; }                                   // pasa por delante de la cámara en el primer segundo
+    if (i === 1) { const r = orbit(b, i, t, 70, 4.2, t < tB ? 2 : 2 + (t - tB) * 55, 1.4); b.visible = r > 3; return; }   // la que se traga al decir «barcazas»
+    orbit(b, i, t, [0, 0, 92, 112, 132, 150, 84][i], i * 1.15, 1.5 + i * .4, 1.2); });
   W.TUG.visible = false;
-  // cámara: casi cenital, girando y bajando; al final se inclina hacia la isla
-  const a = -.6 + t * .16, R0 = lerp(90, 160, eIO(clamp(t / D))), H0 = lerp(215, 105, eIO(clamp(t / D)));
-  const p = V3(Math.cos(a) * R0 * .45, H0, Math.sin(a) * R0 * .45 + R0 * .55), l = V3(lerp(0, 40, k01(t, tI - .6, D)), lerp(-18, -6, clamp(t / D)), lerp(0, -10, k01(t, tI - .6, D)));
-  cam(p, l, lerp(50, 46, clamp(t / D)), .0012);
-  let s = ''; const c = W.proj(V3(0, -20, 0)); if (t > tB && t < tB + .5) s += splash(c.x, c.y, .9, (t - tB) / .5);
+  // árboles de la orilla de la isla al final
+  W.ISLTREES.forEach((o, i) => { const kk = k01(t, tI - .3 + i * .06, tI + .9 + i * .06), h = o.userData.home, dir = V3(-h.x, 0, -h.z).normalize();
+    o.position.set(h.x + dir.x * 40 * kk * kk, h.y - 26 * kk * kk, h.z + dir.z * 40 * kk * kk); o.rotation.x = dir.z * 1.3 * kk; o.rotation.z = -dir.x * 1.3 * kk; o.visible = kk < .98; });
+  // cámara: pegada al agua junto a la plataforma → sube de golpe a la vista aérea del remolino → gira hacia la isla
+  const p = sp(t, [[0, V3(-40, 5, 33)], [1.4, V3(-48, 9, 44)], [2.6, V3(-70, 70, 120)], [3.8, V3(-30, 190, 95)], [5.2, V3(60, 175, 120)], [D, V3(40, 120, 150)]]);
+  const l = sp(t, [[0, V3(0, -2, 0)], [1.4, V3(0, -6, 0)], [2.6, V3(0, -14, 0)], [3.8, V3(0, -18, 0)], [5.2, V3(30, -14, -6)], [D, V3(150, -2, -40)]]);
+  SHAKE = t < 2.4 ? .02 : .007; cam(p, l, t < 2 ? 44 : 48, .0012);
+  if (t > 2.1 && t < 3.0 && typeof TR !== 'undefined' && TR) TR.blur('V', Math.sin(Math.PI * (t - 2.1) / .9) * 9);
+  let s = sprayRing(t, V3(0, -4, 0), 30, 26, .9) + (t < 2.4 ? sprayRing(t + 3, W.RIG.main.position.clone().add(V3(0, 1, 0)), 18, 14, 1.1) : '');
+  const c = W.proj(V3(0, -20, 0)); if (t > tB && t < tB + .5) s += splash(c.x, c.y, .9, (t - tB) / .5);
   return s; };
 
 // =====================================================================================================
 // 2 · AGUJERO DE 35 CM — primer plano de la broca tricónica mordiendo la sal; cota de 35 cm
 // =====================================================================================================
 S.agujero = (t, D, B) => { setup(t, { mood: 'bit', light: MINEL }); const E = EVS.agujero(B); SHAKE = .003; const b0 = W.BIT.position;
-  W.BIT.rotation.y = t * 9; W.BIT.position.y = -500 + .06 + Math.sin(t * 40) * .004;
+  W.BIT.rotation.y = t * 9; W.BIT.position.y = -500 - .05 + Math.sin(t * 40) * .004;
   const p = sp(t, [[0, V3(b0.x + 1.5, b0.y + .9, b0.z + 2.1)], [D, V3(b0.x + 1.05, b0.y + .6, b0.z + 1.5)]]);
   cam(p, V3(b0.x, b0.y + .45, b0.z), 36, .004);
   const g = W.proj(V3(b0.x, b0.y + .05, b0.z)), q = W.proj(V3(b0.x + .1, b0.y, b0.z)).x - g.x;
@@ -100,7 +118,7 @@ S.calma = (t, D, B) => { const E = EVS.calma(B); const tT = (E.tres || D * .7) -
     // operarios en la cubierta (plataforma de perforación)
     const R0 = R.position, L = [man('PERF', V3(R0.x + 1.5, 8.5, R0.z + 3.2), { turn: .4, armR: [70 + Math.sin(t * 3) * 10, 60], armL: [20, 30], look: [8, 0] }),
       man('AYUD', V3(R0.x - 3.5, 1.7, R0.z + 5.6), Object.assign(walkPose(t * 5), { turn: -.6 }))];
-    return depth(L); }
+    return depth(L) + birds(t, 80, 380, .8, 5, 55); }
   // sección: el agua solo tiene 3 m (cota)
   const u = t - tT; setup(t, { mood: 'corte', light: DAYL });
   const p = sp(u, [[0, V3(PX - 14, 1.5, ZF + 40)], [D - tT, V3(PX - 20, 0, ZF + 30)]]); cam(p, V3(PX - 6, -1.2, ZF), 40, .001);
@@ -116,7 +134,7 @@ S.mina = (t, D, B) => { setup(t, { mood: 'corte', light: MINEL }); const k = eIO
   const y = lerp(-6, -366.5, k), dist = lerp(60, 44, k);
   cam(V3(PX - 12 + 12 * k, y + 2, ZF + dist), V3(PX - 12 + 12 * k, y - .5, ZF), lerp(40, 42, k), .001);
   if (k > .3 && k < .95) { const v = Math.sin(Math.PI * (k - .3) / .65); if (typeof TR !== 'undefined' && TR) TR.blur('V', v * 10); }
-  return depth(minersFace(t, 8, 1)); };
+  return depth(minersFace(t, 8, 1)) + dim(V3(PX - 19 + 12 * k, 0, ZF + 1), V3(PX - 19 + 12 * k, Math.max(MC, y - 1), ZF + 1), clamp(t / .4) * .999 + .001, '#ffd34a'); };
 
 // =====================================================================================================
 // 5 · BROCA — la tubería baja por la sección; se atasca; ¡crac!; atraviesa el techo de la mina
@@ -149,6 +167,7 @@ S.crece = (t, D, B) => { setup(t, { mood: 'corte', light: MINEL }); const E = EV
   // cámara: empieza en la mina y se aleja hacia arriba a cada «crece»
   const z = [[0, [MC - 6, 60]], [T3[0], [MC - 30, 160]], [T3[1], [-220, 330]], [T3[2], [-170, 520]], [D, [-160, 560]]];
   let yy = z[0][1][0], dd = z[0][1][1]; for (let i = 1; i < z.length; i++) { const k = eIO(clamp((t - z[i - 1][0]) / Math.max(.3, z[i][0] - z[i - 1][0]) * 1.4)); if (t > z[i - 1][0]) { yy = lerp(z[i - 1][1][0], z[i][1][0], k); dd = lerp(z[i - 1][1][1], z[i][1][1], k); } }
+  yy = Math.max(yy, -426 + Math.tan(21 * Math.PI / 180) * dd);
   cam(V3(PX - 10, yy + 10, ZF + dd), V3(PX - 10, yy, ZF), 42, .0008);
   let s = ''; T3.forEach(x => { if (t > x && t < x + .3) SHAKE = .02; });
   return s + depth(minersFace(t, 6, 1)); };
@@ -174,7 +193,7 @@ S.mineros = (t, D, B) => { const E = EVS.mineros(B); const tR = (E.corren || D *
   // fuera: el castillete en la isla, salen al sol y celebran
   const u = t - tV; setup(t, { mood: 'dia', light: DAYL }); const h = W.G.headframe.position;
   const p = V3(h.x + 4, W.ground(h.x + 4, h.z + 36) + 2.6, h.z + 36), l = V3(h.x + 1, h.y + 10, h.z + 2); cam(p.clone().lerp(l, .08 * clamp(u / 2)), l, 44, .002);
-  const L = [0, 1, 2, 3, 4].map(i => { const w = clamp(u * 1.4 - i * .25), x = h.x - 3 + i * 2.1, z = h.z + 9 + w * 6 + (i % 2), F = V3(x, W.ground(x, z) + .02, z);
+  const L = [0, 1, 2, 3, 4].map(i => { const w = clamp(u * 1.4 - i * .25), x = h.x + [-6, -4.2, -2.4, 4.4, 6][i], z = h.z + 9 + w * 6 + (i % 2), F = V3(x, W.ground(x, z) + .02, z);
     return man(['MIN1', 'MIN2', 'MIN3'][i % 3], F, Object.assign(w < 1 ? walkPose(u * 6 + i) : {}, { turn: -.3, face: 'happy', mouth: 'laugh', armL: w >= 1 ? [160, 10] : [20, 30], armR: w >= 1 ? [160, 10] : [20, 30] }), { light: DAYL }); });
   return depth(L); };
 
@@ -196,18 +215,18 @@ S.remolino = (t, D, B) => { setup(t, { mood: 'drama', light: GREY }); const E = 
   else if (t < tA - .2) { const u = t - tP; p = V3(-70 + u * 6, 22, 55); l = V3(0, -10 - u * 3, 0); f = 40; }
   else { const u = t - tA; p = V3(100 + u * 4, 34, 60 - u * 6); l = V3(175, 0, -40 + u * 4); f = 42; }
   SHAKE = .006 + (t > tP && t < tP + .5 ? .02 : 0); cam(p, l, f, .0012);
-  return ''; };
+  return sprayRing(t, V3(0, -4, 0), 34, 28, 1) + (t > tP - .2 && t < tA ? sprayRing(t + 5, W.RIG.main.position.clone().add(V3(0, 2, 0)), 20, 15, 1.2) : ''); };
 
 // =====================================================================================================
 // 9 · CASCADA — el canal fluye al revés (los camaroneros van hacia atrás); el mar cae 50 m en el agujero
 // =====================================================================================================
 S.cascada = (t, D, B) => { const E = EVS.cascada(B); const tF = (E.cae || D * .42) - .25, tL = E.luisiana || D * .86;
-  if (t < tF) { setup(t, { mood: 'drama', light: GREY, water: { drain: 1, fall: 0, pool: -70 } }); W.RIG.main.visible = false; W.BARGES.forEach(b => b.visible = false); W.TUG.visible = false;
+  if (t < tF) { setup(t, { mood: 'drama', light: GREY, water: { drain: 1, fall: clamp(t / 1.2), pool: -70 } }); W.RIG.main.visible = false; W.BARGES.forEach(b => b.visible = false); W.TUG.visible = false;
     W.CU.uFlow.value.set(W.CANAL_DIR.x * -6, W.CANAL_DIR.y * -6);
     W.SHRIMPS.forEach((b, i) => { const h = b.userData.home; b.position.set(h.x - W.CANAL_DIR.x * t * 3.2, .3 + Math.sin(t * 2 + i) * .15, h.z - W.CANAL_DIR.y * t * 3.2); b.rotation.z = Math.sin(t * 1.7 + i) * .05; });
     const c0 = LAYOUT.canal[0], d = W.CANAL_DIR, n = V3(-d.y, 0, d.x); const A = V3(c0[0] + d.x * 120, 0, c0[1] + d.y * 120);
-    const p = A.clone().addScaledVector(n, 34).add(V3(0, 26, 0)).addScaledVector(V3(d.x, 0, d.y), 30), l = V3(c0[0] + d.x * 45, 0, c0[1] + d.y * 45);
-    cam(p.clone().lerp(A.clone().addScaledVector(n, 26).add(V3(0, 18, 0)).addScaledVector(V3(d.x, 0, d.y), -20), eIO(clamp(t / tF))), l.clone().lerp(V3(c0[0], -2, c0[1]), eIO(clamp(t / tF))), 44, .0012);
+    const p = A.clone().addScaledVector(n, 30).add(V3(0, 34, 0)).addScaledVector(V3(d.x, 0, d.y), 20), l = V3(c0[0] + d.x * 45, 0, c0[1] + d.y * 45);
+    cam(p.clone().lerp(A.clone().addScaledVector(n, 18).add(V3(0, 48, 0)).addScaledVector(V3(d.x, 0, d.y), -40), eIO(clamp(t / tF))), l.clone().lerp(V3(c0[0] * .55, -30, c0[1] * .55), eIO(clamp(t / tF))), 46, .0012);
     const PE = W.SHRIMPS[0].position, L = [man('PESC', V3(PE.x, 2.2, PE.z), { turn: .7, face: 'wide', mouth: 'o', armL: [150, 20], armR: [150, 20] }, { light: GREY })];
     return depth(L); }
   // la cascada: desde abajo, en la cuenca vacía; la cámara sube a lo largo de la caída
@@ -215,10 +234,11 @@ S.cascada = (t, D, B) => { const E = EVS.cascada(B); const tF = (E.cae || D * .4
   W.CU.uFlow.value.set(W.CANAL_DIR.x * -8, W.CANAL_DIR.y * -8);
   const F = W.FALL, a = F.userData.ang, out = V3(-Math.cos(a), 0, -Math.sin(a)), side = V3(-out.z, 0, out.x), base = F.position.clone();
   const k = eIO(clamp(u / (D - tF)));
-  const p = base.clone().addScaledVector(out, lerp(120, 140, k)).addScaledVector(side, lerp(-60, -40, k)).add(V3(0, lerp(-40, -8, k), 0));
-  const l = base.clone().addScaledVector(out, 10).add(V3(0, lerp(-26, -20, k), 0));
+  const p = base.clone().addScaledVector(out, lerp(120, 140, k)).addScaledVector(side, lerp(-60, -40, k)).add(V3(0, lerp(-40, -18, k), 0));
+  const l = base.clone().addScaledVector(out, 10).add(V3(0, lerp(-26, -23, k), 0));
   SHAKE = .006; cam(p, l, 46, .0012);
-  return dim(base.clone().addScaledVector(out, 14).addScaledVector(side, 22).add(V3(0, 0, 0)), base.clone().addScaledVector(out, 14).addScaledVector(side, 22).add(V3(0, -48, 0)), (t - (E.cincuenta || tL - 1.2) + .2) / .4, '#ffd34a'); };
+  const bot = W.proj(base.clone().addScaledVector(out, 12).add(V3(0, -46, 0))); let sp2 = ''; for (let j = 0; j < 3; j++) sp2 += splash(bot.x + (j - 1) * 60, bot.y, .9, ((u * 1.4 + j / 3) % 1));
+  return sp2 + sprayRing(t, base.clone().addScaledVector(out, 12).add(V3(0, -46, 0)), 30, 14, .8) + dim(base.clone().addScaledVector(out, 14).addScaledVector(side, 22).add(V3(0, 0, 0)), base.clone().addScaledVector(out, 14).addScaledVector(side, 22).add(V3(0, -48, 0)), (t - (E.cincuenta || tL - 1.2) + .2) / .4, '#ffd34a'); };
 
 // =====================================================================================================
 // 10 · FLOTAN — días después: el lago lleno otra vez; nueve barcazas salen a flote una tras otra
@@ -237,13 +257,13 @@ S.flotan = (t, D, B) => { setup(t, { mood: 'tarde', light: DAYL }); W.RIG.main.v
 // =====================================================================================================
 S.final = (t, D, B) => { const E = EVS.final(B); const tP = (E.pero || D * .25) - .2, tS = (E.salada || D * .85) - .9;
   if (t < tP) { setup(t, { mood: 'tarde', light: DAYL }); W.RIG.main.visible = false; W.BARGES.forEach((b, i) => { b.visible = i < 9; if (i < 9) floatOn(b, -40 + (i % 3) * 34 + (i > 5 ? 10 : 0), -30 + Math.floor(i / 3) * 30, t + i, 0, i * .7); }); W.TUG.visible = false;
-    const p = sp(t, [[0, V3(-160, 70, 230)], [tP, V3(-150, 50, 200)]]); cam(p, V3(0, 0, 0), 44, .001); return ''; }
+    const p = sp(t, [[0, V3(-160, 70, 230)], [tP, V3(-150, 50, 200)]]); cam(p, V3(0, 0, 0), 44, .001); return birds(t, 600, 420, .7, 4, -50); }
   if (t < tS) { const u = t - tP; setup(t, { mood: 'corte', light: DAYL }); W.RIG.corte.visible = false; W.PIPE.visible = false;
     // la sección ahora: el agujero lleno de agua hasta la mina
     W.FUNNEL.visible = true; W.FUNNEL.material.uniforms.uK.value = .95; { const f = W.FUNNEL.geometry.attributes.position, n = f.count / 2; for (let i = 0; i < n; i++) { const v = i / (n - 1), y = -v * 360, w = 10 + 40 * Math.pow(1 - v, 1.6) + 6 * Math.sin(v * 9); f.setXYZ(i * 2, -w, y, 0); f.setXYZ(i * 2 + 1, w, y, 0); } f.needsUpdate = true; }
     W.FLOOD.visible = true; W.FLOOD.position.y = MC - .5;
     const k = eIO(clamp(u / (tS - tP)));
-    cam(V3(PX - 10 - 40 * k, lerp(-10, -190, k) + 8, ZF + lerp(120, 640, k)), V3(PX - 10 - 40 * k, lerp(-14, -190, k), ZF), 42, .0008); if (k > .15 && k < .85 && typeof TR !== 'undefined' && TR) TR.blur('V', 8);
+    cam(V3(PX - 10 - 40 * k, lerp(-30, -190, k) + 8, ZF + lerp(220, 640, k)), V3(PX - 10 - 40 * k, lerp(-34, -190, k), ZF), 42, .0002); if (k > .2 && k < .8 && typeof TR !== 'undefined' && TR) TR.blur('V', 2.5 * Math.sin(Math.PI * (k - .2) / .6));
     return dim(V3(PX + 62, 0, ZF + 1), V3(PX + 62, MC, ZF + 1), (u - .5) / .8, '#6cc6ff'); }
   // salada: el pescador en el muelle prueba el agua
   const u = t - tS; setup(t, { mood: 'tarde', light: DAYL }); W.RIG.main.visible = false;

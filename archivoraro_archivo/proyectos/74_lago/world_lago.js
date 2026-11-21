@@ -45,9 +45,11 @@ const W2 = (() => {
     for (let i = 0; i < 90; i++) { g.strokeStyle = 'rgba(0,0,0,.22)'; g.lineWidth = 1 + rnd() * 2; g.beginPath(); let x = rnd() * w, y = rnd() * h; g.moveTo(x, y); for (let k = 0; k < 6; k++) { x += rnd() * 30 - 15; y += rnd() * 30 - 15; g.lineTo(x, y); } g.stroke(); }
     noise(g, w, h, 12000, ['rgba(0,0,0,.1)', 'rgba(255,255,255,.08)']); });
   const rockT = (base, lines) => tex(512, 512, (g, w, h) => { g.fillStyle = base; g.fillRect(0, 0, w, h); blot(g, w, h, 50, 'rgba(0,0,0,.14)', 20, 90); blot(g, w, h, 40, 'rgba(255,255,255,.1)', 20, 80);
-    for (let i = 0; i < lines; i++) { g.strokeStyle = `rgba(0,0,0,${.06 + rnd() * .1})`; g.lineWidth = 1 + rnd() * 3; g.beginPath(); const y = rnd() * h; g.moveTo(0, y); for (let x = 0; x <= w; x += 32) g.lineTo(x, y + Math.sin(x * .02 + i) * 6 + rnd() * 3); g.stroke(); }
+    for (let i = 0; i < 260; i++) { const x = rnd() * w, y = rnd() * h, r = 1.5 + rnd() * rnd() * 12; g.fillStyle = `rgba(${rnd() < .5 ? '40,30,20' : '255,250,240'},${.18 + rnd() * .2})`; g.beginPath(); g.ellipse(x, y, r * 1.4, r, rnd() * 3, 0, 7); g.fill(); }
+    for (let i = 0; i < lines; i++) { g.strokeStyle = `rgba(0,0,0,${.1 + rnd() * .16})`; g.lineWidth = 1 + rnd() * 3; g.beginPath(); const y = rnd() * h; g.moveTo(0, y); for (let x = 0; x <= w; x += 32) g.lineTo(x, y + Math.sin(x * .02 + i) * 6 + rnd() * 3); g.stroke(); }
     noise(g, w, h, 16000, ['rgba(0,0,0,.12)', 'rgba(255,255,255,.1)'], [1, 4]); });
-  const saltT = tex(512, 512, (g, w, h) => { g.fillStyle = '#d8d5ce'; g.fillRect(0, 0, w, h); for (let i = 0; i < 7; i++) { g.fillStyle = `rgba(${120 + rnd() * 40},${110 + rnd() * 30},${100 + rnd() * 30},${.12 + rnd() * .14})`; const y = rnd() * h; g.fillRect(0, y, w, 8 + rnd() * 30); }
+  const saltT = tex(512, 512, (g, w, h) => { g.fillStyle = '#d8d5ce'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 9; i++) { g.strokeStyle = `rgba(${90 + rnd() * 40},${86 + rnd() * 30},${80 + rnd() * 30},${.1 + rnd() * .12})`; g.lineWidth = 10 + rnd() * 30; g.beginPath(); const x0 = rnd() * w; g.moveTo(x0, 0); for (let y = 0; y <= h; y += 16) g.lineTo(x0 + Math.sin(y * .02 + i) * 40 + Math.sin(y * .05 + i * 2) * 14, y); g.stroke(); } for (let i = 0; i < 7; i++) { g.fillStyle = `rgba(${120 + rnd() * 40},${110 + rnd() * 30},${100 + rnd() * 30},${.12 + rnd() * .14})`; const y = rnd() * h; g.fillRect(0, y, w, 8 + rnd() * 30); }
     for (let i = 0; i < 34; i++) { g.strokeStyle = `rgba(90,80,72,${.12 + rnd() * .2})`; g.lineWidth = 2 + rnd() * 6; g.beginPath(); const y = rnd() * h; g.moveTo(0, y); for (let x = 0; x <= w; x += 24) g.lineTo(x, y + Math.sin(x * .015 + i) * 10); g.stroke(); }
     for (let i = 0; i < 500; i++) { const x = rnd() * w, y = rnd() * h, s = 3 + rnd() * 10; g.fillStyle = `rgba(255,255,255,${.15 + rnd() * .3})`; g.beginPath(); g.moveTo(x, y - s); g.lineTo(x + s * .8, y); g.lineTo(x, y + s); g.lineTo(x - s * .8, y); g.fill(); }
     blot(g, w, h, 30, 'rgba(150,140,120,.16)', 20, 90); noise(g, w, h, 14000, ['rgba(0,0,0,.07)', 'rgba(255,255,255,.12)']); });
@@ -95,8 +97,8 @@ const W2 = (() => {
       body*=.85+.35*max(dot(n,uSun),0.); vec3 c=mix(body,refl,clamp(F*.9+.08,0.,1.));
       float sp=pow(max(dot(reflect(-uSun,n),V),0.),220.); c+=uSunCol*sp*3.2;
       // espuma en espiral (remolino) y bandas blancas
-      float lr=log(r+1.); float spi=fbm(vec2(a2*2.2+lr*3.5, lr*6.-uTime*.6))+.35*fbm(vec2(a2*7.,lr*14.));
-      float fine=fbm(vec2(a2*18.+lr*9., lr*40.)); float foam=(smoothstep(.66,.86,spi)*.75+smoothstep(.62,.8,fine)*.35)*clamp(uVS*2.2,0.,1.)*smoothstep(3.,14.,r)*smoothstep(uVR*1.8,uVR*.5,r);
+      float lr=log(r+1.); float th=a2+lr*1.7, th2=a2*2.+lr*3.4; float spi=fbm(vec2(cos(th),sin(th))*2.6+vec2(lr*3.,-lr*2.-uTime*.3))+.35*fbm(vec2(cos(th2),sin(th2))*6.+vec2(lr*8.,0.));
+      float th3=a2*3.+lr*5.; float fine=fbm(vec2(cos(th3),sin(th3))*9.+vec2(lr*30.,lr*-12.)); float foam=(smoothstep(.66,.86,spi)*.75+smoothstep(.62,.8,fine)*.35)*clamp(uVS*2.2,0.,1.)*smoothstep(3.,14.,r)*smoothstep(uVR*1.8,uVR*.5,r);
       foam+=smoothstep(.6,.9,fbm(P*.6+uTime*.3))*clamp(uVS*2.,0.,1.)*smoothstep(uVR*.7,uVR*.2,r)*.45;
       c=mix(c,vec3(.93,.92,.86),clamp(foam,0.,.95));
       c*=1.-.62*smoothstep(6.,45.,vD); c=mix(c,vec3(.16,.13,.09),smoothstep(30.,70.,vD)*.7);
@@ -158,7 +160,7 @@ const W2 = (() => {
         if(length(vWp.xz)<uHole) discard;`); }; m.needsUpdate = true; });
     each('basin_mud', m => { m.vertexColors = true; m.map = mudT; m.roughness = .85; m.envMapIntensity = .25; m.color.set('#ffffff'); m.side = THREE.DoubleSide; });
     each('lake_mud', m => { m.map = mudT; });
-    ['strat_clay', 'strat_sand'].forEach(n => each(n, m => { m.map = rockT('#e2e2e2', 70); m.roughness = .95; m.map.repeat.set(2, 2); }));
+    ['strat_clay', 'strat_sand'].forEach(n => each(n, m => { m.map = rockT('#e2e2e2', 10); m.roughness = .95; }));
     ['strat_salt', 'strat_salt_dark'].forEach(n => each(n, m => { m.map = saltT; m.roughness = .55; }));
     ['barge_rust', 'rig_hull'].forEach(n => each(n, m => { m.map = rustT; m.roughness = .7; }));
     ['rig_derrick', 'paint_white', 'paint_yellow', 'paint_red', 'paint_blue', 'boat_green', 'tin_roof', 'rig_deck', 'steel_dark'].forEach(n => each(n, m => { m.map = paintT; }));
@@ -166,7 +168,7 @@ const W2 = (() => {
     each('glass', m => { m.metalness = .6; m.roughness = .08; m.envMapIntensity = 1.6; });
     Object.values(MATBY).flat().forEach(m => { if (m.envMapIntensity === 1) m.envMapIntensity = .8; });
     // UV para las texturas pintadas
-    Object.values(G).forEach(o => meshesOf(o).forEach(me => { if (!me.geometry.attributes.uv) boxUV(me.geometry, me.name.startsWith('terrain') || o.name === 'terrain' ? 14 : (o.name === 'corte' || o.name === 'mine' ? 18 : (o.name === 'basin' ? 9 : 3))); }));
+    Object.values(G).forEach(o => meshesOf(o).forEach(me => { if (!me.geometry.attributes.uv || o.name === 'corte') boxUV(me.geometry, me.name.startsWith('terrain') || o.name === 'terrain' ? 14 : (o.name === 'corte' ? 46 : o.name === 'mine' ? 18 : (o.name === 'basin' ? 9 : 3))); }));
   }
   const DRAIN = { value: 0 }, HOLE = { value: 0 };
   // mallas
@@ -189,7 +191,7 @@ const W2 = (() => {
   let SECW, SECTOP, JET, FLOOD, FUNNEL, PIPE_SEC;
   function build() {
     upgradeMaterials(); inkify();
-    { const far = new T.Mesh(new T.RingGeometry(745, 9000, 96, 1), new T.MeshStandardMaterial({ color: '#4a5a30', roughness: 1 })); far.rotation.x = -Math.PI / 2; far.position.set(150, 1.0, 150); far.receiveShadow = true; scene.add(far); }
+    { const far = new T.Mesh(new T.RingGeometry(745, 2300, 96, 1), new T.MeshStandardMaterial({ color: '#4a5a30', roughness: 1 })); far.rotation.x = -Math.PI / 2; far.position.set(150, 1.0, 150); far.receiveShadow = true; scene.add(far); }
     TERR = G.terrain; BASIN = G.basin; BASIN.visible = false; G.crater.visible = false;
     meshesOf(TERR).forEach(m => { m.castShadow = false; m.receiveShadow = true; });
     // plataforma en el centro del lago (flota: el casco cala 1,4 m)
@@ -230,7 +232,7 @@ const W2 = (() => {
     // tubería de perforación en la sección (desde la plataforma hasta la mina)
     PIPE_SEC = new T.Mesh(new T.CylinderGeometry(.45, .45, 1, 10), new T.MeshStandardMaterial({ color: '#7a7d80', metalness: .8, roughness: .35 })); PIPE_SEC.position.set(PIPEX, -180, ZF + .2); scene.add(PIPE_SEC);
     JET = new T.Mesh(new T.CylinderGeometry(1, 1.6, 16, 16, 1, true), jetMat); JET.position.set(PIPEX, -366, ZF - 7); JET.visible = false; scene.add(JET);
-    FLOOD = new T.Mesh(new T.PlaneGeometry(300, 260, 60, 60), waterMat(Object.assign(WU(), {}))); FLOOD.geometry.rotateX(-Math.PI / 2); FLOOD.position.set(CX, -373.9, ZF - 100); FLOOD.visible = false; FLOOD.material.uniforms.uAlpha.value = .8; FLOOD.material.uniforms.uFogD.value = 0; scene.add(FLOOD);
+    FLOOD = new T.Mesh(new T.PlaneGeometry(300, 260, 60, 60), waterMat(Object.assign(WU(), {}))); FLOOD.geometry.rotateX(-Math.PI / 2); FLOOD.position.set(CX, -373.9, ZF - 130.5); FLOOD.visible = false; FLOOD.material.uniforms.uAlpha.value = .8; FLOOD.material.uniforms.uFogD.value = 0; scene.add(FLOOD);
     // embudo que se abre en la sección (agua que baja por el agujero creciente)
     const fg = new T.BufferGeometry(); const NV = 40, pos = [], idx = []; for (let i = 0; i <= NV; i++) { const v = i / NV; pos.push(-1, -v, 0, 1, -v, 0); if (i < NV) { const a = i * 2; idx.push(a, a + 1, a + 3, a, a + 3, a + 2); } }
     fg.setAttribute('position', new T.Float32BufferAttribute(pos, 3)); fg.setIndex(idx); const fuv = []; for (let i = 0; i <= NV; i++) fuv.push(0, i / NV, 1, i / NV); fg.setAttribute('uv', new T.Float32BufferAttribute(fuv, 2));
@@ -264,7 +266,7 @@ const W2 = (() => {
   // ---------- ambientes ----------
   const MOODS = {
     dia: { sun: '#fff0d8', sunI: 3.6, dir: [-.55, .42, .72], hemi: '#cfe2ff', ground: '#6a5a44', hemiI: 1.1, fog: '#cfdde4', fogD: .0011, exp: 1.05, top: '#2f6fc4', mid: '#8fbde8', hor: '#e6eef0', cloud: .55, dark: 0 },
-    drama: { sun: '#ffd6a8', sunI: 2.6, dir: [-.62, .3, .72], hemi: '#b8c4d8', ground: '#6a5c4a', hemiI: 1.35, fog: '#b9c2c6', fogD: .0016, exp: 1.08, top: '#3a5a8a', mid: '#8a9ab0', hor: '#d8d4cc', cloud: .85, dark: .35 },
+    drama: { sun: '#ffd6a8', sunI: 2.6, dir: [-.62, .3, .72], hemi: '#b8c4d8', ground: '#6a5c4a', hemiI: 1.35, fog: '#b9c2c6', fogD: .0011, exp: 1.08, top: '#3a5a8a', mid: '#8a9ab0', hor: '#d8d4cc', cloud: .85, dark: .35 },
     corte: { sun: '#fff0d8', sunI: 3.4, dir: [-.45, .55, .7], hemi: '#d8e8ff', ground: '#8a7a62', hemiI: 1.3, fog: '#d4e0e6', fogD: .0006, exp: 1.08, top: '#2f6fc4', mid: '#8fbde8', hor: '#e6eef0', cloud: .5, dark: 0 },
     mina: { sun: '#fff0d8', sunI: 0, dir: [-.45, .55, .7], hemi: '#ffe6c0', ground: '#3a3028', hemiI: .18, fog: '#1a1612', fogD: .006, exp: 1.2, top: '#2f6fc4', mid: '#8fbde8', hor: '#e6eef0', cloud: .5, dark: 0, bg: '#0d0b09', mineL: 340 },
     bit: { sun: '#ffe8c8', sunI: 2.4, dir: [-.3, .8, .5], hemi: '#ffe6c0', ground: '#5a4a3a', hemiI: .5, fog: '#2a2018', fogD: .02, exp: 1.1, top: '#2f6fc4', mid: '#8fbde8', hor: '#e6eef0', cloud: .5, dark: 0, bg: '#17120e' },
@@ -317,7 +319,7 @@ const W2 = (() => {
   function render() { comp.render(); }
   function setTime(t) { gradeMat.uniforms.time.value = t % 10; skyU.time.value = t; [LU, CU, SU].forEach(u => u.uTime.value = t); if (FLOOD) FLOOD.material.uniforms.uTime.value = t; FU.uTime.value = t; secWaterMat.uniforms.uTime.value = t; jetMat.uniforms.uTime.value = t;
     // bruma de la cascada
-    MIST.forEach((s, i) => { const ph = (t * .35 + i / MIST.length) % 1, sd = Math.sin(i * 12.9) * .5; s.position.set(sd * 34, -46 + ph * 20 + Math.sin(i) * 2, 10 + Math.cos(i * 3.1) * 8 + ph * 6); const sz = 10 + ph * 26; s.scale.set(sz, sz, 1); s.material.opacity = FU.uK.value * .2 * Math.sin(Math.PI * ph); });
+    MIST.forEach((s, i) => { const ph = (t * .35 + i / MIST.length) % 1, sd = Math.sin(i * 12.9) * .5; s.position.set(sd * 34, -46 + ph * 20 + Math.sin(i) * 2, 10 + Math.cos(i * 3.1) * 8 + ph * 6); const sz = 5 + ph * 13; s.scale.set(sz, sz, 1); s.material.opacity = FU.uK.value * .17 * Math.sin(Math.PI * ph); });
     TICK.forEach(f => f(t)); }
   const ray = new T.Raycaster();
   function ground(x, z, y0 = 400) { ray.set(new T.Vector3(x, y0, z), new T.Vector3(0, -1, 0)); ray.far = 1000; const L = []; [TERR, BASIN, RIG.main, CORTE, MINE].forEach(o => o && o.visible !== false && L.push(o)); const h = ray.intersectObjects(L, true); return h.length ? h[0].point.y : 0; }
