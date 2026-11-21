@@ -175,3 +175,9 @@ A partir del próximo vídeo, **todo el 3D se hace con Blender** (no con three.j
 4. **Imagen:** revisar caras y efectos antes que el usuario (lágrimas raras, el chico visible tras los ojos «a oscuras»).
 5. **Idioma:** contestar SIEMPRE en español.
 6. **Tokens:** no gastar en pruebas inútiles; avisar del tiempo real y no prometer horas que no se pueden cumplir.
+
+## Cómo se usa Blender (decisión del usuario, 21-11-2026)
+**Blender se usa para hacer los ESCENARIOS 3D.** Los personajes 2D, subtítulos y efectos siguen como hasta ahora, sobre el render rápido en three.js.
+- Flujo: modelar el decorado en Blender con `bpy` (script `.py` por vídeo) → exportar a **glTF/GLB** (`bpy.ops.export_scene.gltf`, probado: funciona) → cargarlo en el mundo de three.js (`GLTFLoader`) en lugar de construirlo con código.
+- Así el decorado gana calidad (modelado, materiales, luz horneada si hace falta) y el render sigue en unas 3 h por vídeo. Cycles por CPU (32 s por fotograma mínimo) solo para fotogramas sueltos (portadas, planos fijos).
+- Disco liberado el 21-11-2026: 23 GB libres tras borrar los fotogramas de 62, 68, 70, 71, 72 y 73.
