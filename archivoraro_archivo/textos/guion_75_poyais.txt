@@ -1,21 +1,23 @@
-GUION 75 · EL PAÍS QUE NO EXISTÍA (Poyais, 1821-1823) — versión 3, humor seco
-Para ElevenLabs (3 etiquetas suaves). ~180 palabras ≈ 62–63 s (ritmo real del 73: 195 palabras = 68,2 s).
+GUION 75 · EL PAÍS QUE NO EXISTÍA (Poyais, 1821-1823) — versión 4 (la del vídeo), humor seco
+Para ElevenLabs (Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural»). 161 palabras ≈ 62–64 s. 3 etiquetas suaves.
 
 Este hombre vendió un país entero… y cientos de personas se mudaron a vivir allí. Tenía ópera, catedral y palacio real. Un detalle sin importancia: no existía.
 
-Se llamaba Gregor MacGregor, y tenía buen currículum: había sido general en Venezuela. Así que cuando volvió a Gran Bretaña y dijo: «Soy el cacique de Poyais», [curious] nadie se rió.
+Se llamaba Gregor MacGregor, y había sido general en Venezuela. Así que cuando dijo: «Soy el cacique de Poyais», [curious] nadie se rió.
 
-¿Pruebas? Las que hicieran falta. Cuadros de la capital. Un himno nacional. Oficinas en Londres y Edimburgo. Y bonos del país: doscientas mil libras.
+¿Pruebas? Cuadros de la capital. Un himno nacional. Oficinas en Londres y Edimburgo. Y bonos: doscientas mil libras.
 
-Y la gente compró. Invirtieron sus ahorros, y en septiembre de 1822 zarpó el primer barco con setenta colonos. Otro salió de Escocia con doscientos más.
+Y la gente compró. En septiembre de 1822 zarpó el primer barco con setenta colonos. Otro salió de Escocia con doscientos más.
 
-[sighs] Llegaron buscando la ópera. Encontraron mosquitos. Buscaron la catedral. Más mosquitos. Buscaron el palacio… ya te imaginas. No había capital, ni cultivos, ni provisiones. Solo selva.
+[sighs] Llegaron buscando la ópera. Encontraron mosquitos. Buscaron la catedral. Más mosquitos. Buscaron el palacio… ya te imaginas.
 
-Muchos enfermaron. La mayoría no volvió.
+No había capital ni provisiones. Solo selva. Muchos enfermaron. La mayoría no volvió.
 
-¿Y MacGregor? Ya estaba en París. Y años después, volvió a Londres… a vender más bonos de Poyais. Si algo funciona, ¿para qué cambiarlo?
+¿Y MacGregor? Ya estaba en París. Años después, volvió a Londres… a vender más bonos de Poyais. Si algo funciona, ¿para qué cambiarlo?
 
 [amazed] Un país sin ciudades, sin gente y sin ópera. Pero con bonos. Y esos, eso sí, se vendieron todos.
+
+(La versión 3, más larga, de 182 palabras, queda descartada: el vídeo está montado con esta.)
 
 ---
 DATOS COMPROBADOS (22-11-2026): Gregor MacGregor, escocés, general de división en el ejército de Venezuela y Nueva Granada (con Bolívar); en 1821 vuelve a Gran Bretaña diciendo que el rey de la Costa de los Mosquitos lo nombró cacique de Poyais; oficinas en Londres y Edimburgo (terrenos); préstamo de 200.000 £ en oct. 1822 (2.000 bonos de 100 £, todos vendidos hacia el 23-10-1822 según un bono de 1823); la capital «St Joseph» con teatro, ópera, catedral con cúpula, parlamento y palacio real no existía (cuadros e himno encargados para convencer); Honduras Packet zarpó de Londres el 10-09-1822 con ~70 colonos; el Kennersley Castle salió de Leith con ~200 (la fecha varía: oct. 1822 o ene. 1823); al llegar: selva sin ciudad, sin cultivos ni provisiones; entre colonos y muertos las cifras difieren (más de la mitad murió según unas fuentes; ~180 muertos según otras; menos de un tercio volvió según otra); huyó a París en 1823; en 1827 emitió en Londres otro bono (800.000 £, según Wikipedia); volvió a Venezuela en 1839, con pensión, y murió en Caracas en 1845.
