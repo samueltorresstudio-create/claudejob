@@ -166,3 +166,21 @@ Petición del usuario: «más ilógicas». Títulos que suenan imposibles y tien
 13. **Los seis cuervos que no pueden faltar en la Torre de Londres** (?).
 14. **El pueblo de una sola vecina** (?) (Monowi, Nebraska).
 15. **La carretera que se ahoga dos veces al día** (?) (Passage du Gois, Francia).
+
+## Top de 15 «mejor gancho de entretenimiento» (22-11-2026)
+Petición del usuario: «mejores ideas con mejor gancho de entretenimiento». Criterio: la frase 1 ya es un chiste o una imagen imposible, con una persona (o animal) que hace algo absurdo y un giro. ✔ = comprobado en la web el 22-11-2026; (?) = de memoria.
+1. **Poyais** ✔: «Este hombre vendió un país que no existía… y cientos de personas viajaron para vivir en él.» Gregor MacGregor; el primer barco (Honduras Packet, sep. 1822) ~70 colonos y el segundo (Kennersley Castle) ~200; salieron más barcos después (cifras distintas según la fuente).
+2. **El Turco** ✔: «Esta máquina ganó al ajedrez a Napoleón y a Franklin… y dentro había un hombre.» Kempelen, 1770; Franklin ~1783 en París; Napoleón 1809 en Viena (el resultado varía según la fuente: no afirmar que ganó); destruida en un incendio en 1854. Se ve en corte 3D.
+3. **El puente de Londres en el desierto** ✔: «Un millonario compró un puente de Londres… y se lo llevó, pieza a pieza, a Arizona.» McCulloch, 18-04-1968, 2,46 M$ (+ unos 7 M$ para moverlo); ~10.000 bloques numerados. **No contar el «creía que era el Tower Bridge»**: él lo negó.
+4. **El coronel Blood** ✔: «Este hombre intentó robar las joyas de la corona… y el rey le regaló tierras.» 9-05-1671, disfrazado de párroco; exigió hablar solo con Carlos II; perdón y tierras en Irlanda (~500 £ al año).
+5. **El restaurante falso nº 1 de Londres** ✔: «El mejor restaurante de Londres era un cobertizo… y las fotos de la comida eran espuma de afeitar.» Oobah Butler, Vice, 2017; abrió una noche con 10 invitados; cuánto tiempo fue nº 1 varía según la fuente.
+6. **El bocadillo del robo del siglo** ✔: «Robaron diamantes por millones… y los pilló un bocadillo.» Amberes, 15–16-02-2003; salami a medio comer con ADN de Notarbartolo; condenado a 10 años; el valor se discute (de 12 a 100 M$).
+7. **El barril del Niágara** ✔: «Una profesora de 63 años se tiró por las cataratas del Niágara dentro de un barril.» 24-10-1901, Annie Edson Taylor; barril de roble y hierro con un colchón; murió pobre. La edad varía (62/63). **El gato de prueba: sin confirmar.**
+8. **Los hombres murciélago de la Luna** ✔: «Un periódico dijo que había hombres murciélago en la Luna… y mucha gente se lo creyó.» The Sun, desde el 25-08-1835, seis artículos atribuidos a Herschel; la autoría de Locke se discute; las ventas no se hundieron.
+9. **Las cabezas de jabón de Alcatraz** (?): tres presos dejan cabezas falsas en sus camas y desaparecen (1962).
+10. **El sargento Stubby** (?): perro de la Primera Guerra Mundial ascendido a sargento. Lo del espía alemán mordido en el pantalón es leyenda dudosa.
+11. **Sealand** (?): una familia convierte un fuerte antiaéreo del mar en «país» y repele una invasión.
+12. **Magawa** (?): la rata que ganó una medalla de oro por detectar minas.
+13. **La web de un millón de píxeles** (?): Alex Tew, 2005, un dólar por píxel.
+14. **El ejército que fue con 80 y volvió con 81** ✔ leyenda: Liechtenstein 1866; el despliegue es real, pero lo del soldado de más (italiano o enlace austriaco) no está probado: contarlo como leyenda.
+15. **La guerra de 38 minutos** ✔: Zanzíbar, 27-08-1896; 38–45 min según la fuente; unos 500 muertos zanzibaríes y un marino británico herido. **No usar lo de «la factura de los proyectiles»: sin fuente.**
