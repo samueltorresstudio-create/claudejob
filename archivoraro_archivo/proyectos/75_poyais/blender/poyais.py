@@ -219,9 +219,10 @@ def ship(name, hull, trim, sail, flagc):
     for k in range(3): o.cyl((-9.4, 4.8, -1.8 + k * 1.8), (-9.4, 4.8, -1.8 + k * 1.8), .0, M['gold'], 4); o.box((-9.4, 5.2, -1.8 + k * 1.8), (.1, 1.0, .8), M['gold']); o.box((-9.45, 5.2, -1.8 + k * 1.8), (.1, .8, .6), M['wind'])
     for (mx, mh, mr) in [(-3, 17, .38), (2, 20, .42), (7, 15, .34)]:
         o.cyl((mx, 3.6, 0), (mx, mh, 0), mr, M['woodd'], 8)
-        for (yy, ww) in [(mh * .5, 9.), (mh * .78, 7.2)]:
+        for (yy, ww, hh) in [(mh * .5, 9., mh * .5 - 4.6), (mh * .78, 7.2, mh * .28 - .5)]:
             o.cyl((mx, yy, -ww / 2), (mx, yy, ww / 2), .2, M['woodd'], 6)
-            o.sph((mx + .6, yy - 3, 0), 3.4 * ww / 9, M[sail], (.14, 1., 1.), 12, 8)
+            # vela de tebeo: lona rectangular colgada de la verga, con panza en el centro
+            o.box((mx + .45, yy - .2 - hh / 2, 0), (.22, hh, ww * .94), M[sail]); o.box((mx + .7, yy - .2 - hh * .52, 0), (.4, hh * .72, ww * .74), M[sail])
         flag(o, mx, mh, 0, flagc, 1.6)
     o.cyl((10, 3.6, 0), (15, 5.8, 0), .28, M['woodd'], 6); o.sph((11.4, 3.6, 0), .6, M['gold'], (1.5, 1, .8)); o.cyl((15, 5.8, 0), (7, 15, 0), .05, M['iron'], 4)
     for k in range(5):

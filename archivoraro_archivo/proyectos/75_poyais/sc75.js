@@ -11,7 +11,7 @@ const S = {}, W = W2;
 let SHAKE = 0;
 { const _sc = W2.setCam.bind(W2); W2.setCam = (p, l, f, fo, ap) => { const T = window.__T || 0, d = V3(Math.sin(T * 4.59) * .5 + Math.sin(T * 8.61) * .3, Math.sin(T * 5.3 + 1) * .5 + Math.sin(T * 9.7) * .25, 0).multiplyScalar(.008 * p.distanceTo(l) / 8);
   const sh = SHAKE > 0 ? V3(Math.sin(T * 91) * SHAKE, Math.sin(T * 77 + 2) * SHAKE, 0).multiplyScalar(p.distanceTo(l) / 10) : V3(0, 0, 0); return _sc(p.clone().add(d).add(sh), l.clone().add(d.multiplyScalar(.35)).add(sh.multiplyScalar(.6)), f, fo, ap); }; }
-const cam = (p, l, f = 40, ap = .0004) => { W.setCam(p, l, f, p.distanceTo(l), ap); W.render(); };
+const cam = (p, l, f = 40, ap = .0004) => { W.setCam(p, l, f, p.distanceTo(l), ap); };   // el 3D se dibuja al FINAL de cada escena (ver abajo): así salen las bolsas, carteles y edificios que se mueven después de cam()
 function sp(t, Ks) { const n = Ks.length; if (t <= Ks[0][0]) return Ks[0][1].clone(); if (t >= Ks[n - 1][0]) return Ks[n - 1][1].clone(); let i = 0; while (t > Ks[i + 1][0]) i++;
   const u = (t - Ks[i][0]) / (Ks[i + 1][0] - Ks[i][0]), a = Ks[Math.max(0, i - 1)][1], b = Ks[i][1], c = Ks[i + 1][1], d = Ks[Math.min(n - 1, i + 2)][1], u2 = u * u, u3 = u2 * u;
   const f = (p0, p1, p2, p3) => .5 * (2 * p1 + (-p0 + p2) * u + (2 * p0 - 5 * p1 + 4 * p2 - p3) * u2 + (-p0 + 3 * p1 - 3 * p2 + p3) * u3); return V3(f(a.x, b.x, c.x, d.x), f(a.y, b.y, c.y, d.y), f(a.z, b.z, c.z, d.z)); }
@@ -28,6 +28,7 @@ function setup(T, site, mood, light) { W.setTime(T); W.site(site); W.setMood(moo
   W.POOL.bonds.forEach(b => b.visible = false); W.POOL.bags.forEach(b => b.visible = false); W.POOL.stacks.forEach(b => b.visible = false);
   Object.values(W.BLD).forEach(b => { b.rotation.set(0, 0, 0); b.position.copy(b.userData.home); b.visible = true; });
   if (W.G.easelOn) W.G.easelOn.scale.setScalar(1); if (W.G.agotadoOn) { W.G.agotadoOn.visible = false; W.G.agotadoOn.scale.setScalar(1); }
+  W.SITES.city.children.forEach(c => { if (c.name === 'palm') c.visible = true; });
   if (W.G.signpostOn) W.G.signpostOn.rotation.set(0, -.5, 0); if (W.G.cases) W.G.cases.visible = false;
   const [s1, s2] = W.SHIPS; s1.position.set(W.PX + 10.4, 0, 6); s1.rotation.set(0, -Math.PI / 2, 0); s2.position.set(W.PX - 100, 0, -60); s2.rotation.set(0, -Math.PI / 2, 0); }
 function bob(ship, t, k = 1) { const p = ship.position; p.y = W.waterY(p.x, p.z, t) * .6 * k; ship.rotation.z = Math.sin(t * 1.1) * .025 * k; ship.rotation.x = Math.sin(t * .8 + 1) * .02 * k; ship.updateMatrixWorld(); }
@@ -168,12 +169,12 @@ S.barcos = (t, D, B) => { setup(t, 'port', 'puerto', DAYL); const X = W.PX, [s1,
     return depth(L) + gulls(t, 200, 420, .9, 4, 40); }
   if (t < tO) {   // zarpa: el barco avanza hacia mar abierto con los colonos saludando en cubierta
     const u = t - tZ, k = eIO(clamp(u / (tO - tZ))); s1.position.z = 6 + u * u * .9 + u * 1.5; s1.position.x = X + 10.4 + u * .8; bob(s1, t);
-    const tgt = s1.position.clone(); cam(V3(X + 30 - k * 4, 6.5 + k * 2, tgt.z + 18 - k * 4), V3(tgt.x, 6, tgt.z + 2), 50);
+    const tgt = s1.position.clone(); cam(V3(tgt.x + 24 - k * 3, 3.6 + k, tgt.z + 24 - k * 3), V3(tgt.x, 6.8, tgt.z), 48);
     const L = []; for (let i = 0; i < 9; i++) { const lx = -6 + (i % 5) * 3, lz = i < 5 ? 1.5 : -1.2, F = onShip(s1, lx, lz); L.push(man(['COL1', 'COL2', 'DAMA1', 'COL3', 'DAMA2', 'CLERK', 'COL1', 'COL2', 'MARIN'][i], F, { face: i % 2 ? 'happy' : 'open', mouth: i % 2 ? 'laugh' : 'smile', armR: [160, Math.sin(t * 10 + i) * 30], turn: .4 }, { gy: F.y, shadow: false, h: i === 3 ? 1.25 : ADULT })); }
     const q = W.proj(V3(tgt.x, 9, tgt.z)); return depth(L) + gulls(t, 300, 360, 1, 5, 60) + (t70 ? sparkles(q.x, q.y, 220, t, 6, 1.2) : ''); }
   // el de Escocia: barco azul repleto de cabezas, cruzando delante de la cámara
   const u = t - tO, k = eIO(clamp(u / (D - tO))); s2.position.set(X - 20, 0, 60 + u * 3.2); bob(s2, t, 1.3);
-  const tg = s2.position.clone(); cam(lerpV(V3(X + 4, 7, tg.z + 20), V3(X + 2, 8.5, tg.z + 16), k), V3(tg.x, 5, tg.z + 1), 50);
+  const tg = s2.position.clone(); cam(lerpV(V3(tg.x + 25, 3.8, tg.z + 23), V3(tg.x + 21, 4.6, tg.z + 20), k), V3(tg.x, 6.4, tg.z), 48);
   const L = []; for (let i = 0; i < 20; i++) { const lx = -7.5 + (i % 7) * 2.4 + (i > 13 ? 1.2 : 0), lz = [-2, 0, 2][Math.floor(i / 7)], F = onShip(s2, lx, lz); L.push(man(['COL1', 'COL2', 'DAMA1', 'DAMA2', 'COL3', 'CLERK', 'GENT'][i % 7], F, { face: ['happy', 'stars', 'open'][i % 3], mouth: ['laugh', 'big', 'smile'][i % 3], armR: [150 + Math.sin(t * 9 + i) * 20, 20], armL: [i % 2 ? 150 : 20, 20], turn: -.3 }, { gy: F.y, shadow: false, h: i % 7 === 4 ? 1.25 : ADULT })); }
   return depth(L) + gulls(t, 700, 380, 1, 4, -40); };
 
@@ -250,11 +251,14 @@ S.paris = (t, D, B) => { const t1 = B[1] ? B[1].s : D * .28, tVe = wt(B, 'paris'
 //             en Londres, al atardecer, «BONOS AGOTADOS» y MacGregor riéndose encima de las bolsas de dinero
 // =====================================================================================================
 S.final = (t, D, B) => { const t1 = B[1] ? B[1].s : D * .36, tCi = wt(B, 'final', 0, 'ciudades'), tGe = wt(B, 'final', 0, 'gente'), tOp = wt(B, 'final', 0, 'opera'), tBo = wt(B, 'final', 1, 'bonos'), tVe = wt(B, 'final', 1, 'vendieron'), tTo = wt(B, 'final', 1, 'todos');
-  whip(t, [t1]);
+  const cA = tGe - .3, cB = tOp - .2; whip(t, [cA, cB, t1]);
   if (t < t1) { setup(t, 'city', 'poyais', DAYL);
-    const k = eIO(clamp(t / t1)); cam(lerpV(V3(0, 17, 64), V3(0, 15, 57), k), V3(-2, 4.5, -2), 50);
+    // tres planos bajos entre las palmeras y los decorados: cada edificio cae de espaldas en su palabra
+    const sh = t < cA ? 0 : t < cB ? 1 : 2, a0 = [0, cA, cB][sh], a1 = [cA, cB, t1][sh], k = eIO(clamp((t - a0) / Math.max(.3, a1 - a0))), cx = [-21, -47, 11][sh], dz = [17, 15.5, 17][sh];
+    W.SITES.city.children.forEach(c => { if (c.name === 'palm') c.visible = false; });   // fuera las palmeras de delante: tapaban los decorados al caer
+    cam(V3(cx + 2 - 3 * k, 10.5 + k, dz + 3 - k), V3(cx, 3.8, -2.5), 64);
     const fall = (b, t0) => { const kk = clamp((t - t0) / .55); b.rotation.x = -Math.PI / 2 * (kk < 1 ? kk * kk : 1) + (kk >= 1 ? Math.sin((t - t0 - .55) * 18) * .04 * Math.exp(-(t - t0 - .55) * 5) : 0); return kk; };
-    const ev = [[W.BLD.palace, tCi - .05], [W.BLD.parl, tCi + .12], [W.BLD.h1, tGe - .05], [W.BLD.h3, tGe + .05], [W.BLD.h2, tGe + .1], [W.BLD.h4, tGe + .15], [W.BLD.opera, tOp - .05], [W.BLD.cat, tOp + .2]];
+    const ev = [[W.BLD.palace, tCi - .25], [W.BLD.parl, tCi + .05], [W.BLD.h1, tGe - .3], [W.BLD.h3, tGe - .1], [W.BLD.h2, tGe + .1], [W.BLD.h4, tGe + .15], [W.BLD.opera, tOp - .1], [W.BLD.cat, tOp + .12]];
     let s = ''; ev.forEach(([b, t0]) => { fall(b, t0); if (t > t0 + .5 && t < t0 + 1.4) { const p = W.proj(b.position.clone().add(V3(0, .3, -4))); s += puff(p.x, p.y, 120 * Math.min(2, p.ppm / 10), (t - t0 - .5) / .9); } });
     SHAKE = ev.some(([, t0]) => t > t0 + .5 && t < t0 + .75) ? .008 : 0; return s; }
   setup(t, 'london', 'tarde', DUSKL); const X = W.LX;
@@ -263,7 +267,9 @@ S.final = (t, D, B) => { const t1 = B[1] ? B[1].s : D * .36, tCi = wt(B, 'final'
   // montaña de bolsas de dinero con MacGregor encima
   const bags = W.POOL.bags, pile = [[0, 0, 0], [-1, 0, .2], [1, 0, -.1], [-.5, 1.05, 0], [.5, 1.05, .1], [0, 2.05, 0], [-1.9, 0, .5], [1.9, 0, .4], [-1.4, 1, .4], [1.4, 1, .3]];
   bags.forEach((b, i) => { const [x, y, z] = pile[i]; b.visible = true; b.position.set(X + 3.2 + x, y, -19.4 + z); b.rotation.set(0, i * .7, 0); b.scale.setScalar(1); });
-  rain3D(W.POOL.bonds, V3(X + 1.6, 0, -18), t, tVe - .3, 22, 10, 1);
+  rain3D(W.POOL.bonds, V3(X + 1.6, 0, -20.5), t, tVe - .3, 22, 8, .75);
   const top = V3(X + 3.2, 3.2, -19.4), lau = t > tVe - .1;
   const L = [man('MACG', top, { face: lau ? (t > tTo ? 'smug' : 'money') : 'happy', mouth: lau ? (t > tTo ? 'smirk' : 'laugh') : 'smile', wink: t > tTo + .2, holdR: BFAN, armR: [150 + Math.sin(t * 9) * 20, 20], armL: [140, 30], blush: 1, turn: .2, sparkle: t * 3 }, { gy: 2.6, shadow: false })];
   const q = W.proj(V3(X, 4.2, -22)); return depth(L) + coins(540, -200, t, 14, 1, tVe) + (t > tBo - .1 ? rays(q.x, q.y, 320, (t - tBo + .1) / .6, '#ffffff', 16) : ''); };
+// dibuja el 3D después de que la escena haya colocado TODO (antes, lo que se movía tras cam() no salía: bolsas, cartel, edificios que caen)
+Object.keys(S).forEach(k => { const f = S[k]; S[k] = (t, D, B) => { const r = f(t, D, B); W.render(); return r; }; });
