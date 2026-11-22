@@ -1,21 +1,25 @@
-GUION 75 · EL PAÍS QUE NO EXISTÍA (Poyais, 1821-1823)
+GUION 75 · EL PAÍS QUE NO EXISTÍA (Poyais, 1821-1823) — versión 2, más entretenida
 Para ElevenLabs (3 etiquetas suaves). ~180 palabras ≈ 62–63 s (ritmo real del 73: 195 palabras = 68,2 s).
 
-Este hombre vendió un país que no existía. Y cientos de personas viajaron para vivir en él.
+Este hombre vendió un país que no existía. Y cientos de personas se mudaron a vivir allí.
 
-Se llamaba Gregor MacGregor: escocés, y antes, general en las guerras de independencia de Venezuela. En 1821 volvió a Gran Bretaña proclamándose cacique de Poyais. [curious] Un reino en Centroamérica, decía, con ópera, catedral, parlamento y palacio real.
+Se llamaba Gregor MacGregor, y volvió a Gran Bretaña con una frase muy tranquila: «Soy el cacique de Poyais». [curious] Un paraíso en Centroamérica. Con ópera, catedral, parlamento… y palacio real.
 
-Abrió oficinas en Londres y Edimburgo. Vendió terrenos. Vendió bonos del país: reunió doscientas mil libras. Encargó cuadros de la capital, hizo sonar un himno nacional… y casi todos se lo creyeron.
+Y la gente lo creyó. No era un cualquiera: había sido general en Venezuela.
 
-El primer barco zarpó de Londres en septiembre de 1822 con setenta colonos. Otro salió de Escocia con doscientos más.
+¿Pruebas? Cuadros de la capital. Un himno nacional. Oficinas en Londres y Edimburgo, vendiendo terrenos. Y bonos del país: doscientas mil libras.
 
-[sighs] Pero al llegar no había capital. Ni ópera, ni catedral, ni palacio. Nadie había preparado ni cultivos ni provisiones. Solo selva y mosquitos. Muchos enfermaron de fiebre y de hambre, y la mayoría no volvió.
+Nadie preguntó por el palacio. La gente invirtió sus ahorros, y en septiembre de 1822 salió el primer barco, con setenta colonos. Otro, desde Escocia, con doscientos más.
 
-Mientras tanto, MacGregor huyó a París. Y años después, volvió a Londres… a vender más bonos de Poyais.
+[sighs] Los colonos bajaron del barco buscando la ópera. Encontraron mosquitos. No había capital, ni palacio, ni cultivos, ni provisiones. Solo selva.
 
-[amazed] Un país que nunca existió, con bonos, barcos y colonos de verdad. Y que, durante meses, casi nadie puso en duda.
+Muchos enfermaron de fiebre y de hambre. La mayoría no volvió.
+
+¿Y MacGregor? Ya estaba en París. Y años después, volvió a Londres… a vender más bonos de Poyais.
+
+[amazed] Un país sin ciudades, sin gente y sin ópera. Pero con bonos. Y esos, eso sí, se vendieron todos.
 
 ---
-DATOS COMPROBADOS (22-11-2026): Gregor MacGregor, escocés, general de división en el ejército de Venezuela y Nueva Granada (con Bolívar); en 1821 vuelve a Gran Bretaña diciendo que el rey de la Costa de los Mosquitos lo nombró cacique de Poyais; oficinas en Londres y Edimburgo (terrenos); préstamo de 200.000 £ en oct. 1822 (2.000 bonos de 100 £); la capital «St Joseph» con teatro, ópera, catedral con cúpula, parlamento y palacio real no existía (cuadros e himno encargados para convencer); Honduras Packet zarpó de Londres el 10-09-1822 con ~70 colonos; el Kennersley Castle salió de Leith con ~200 (la fecha varía: oct. 1822 o ene. 1823); al llegar: selva sin ciudad, sin cultivos ni provisiones; entre colonos y muertos las cifras difieren (más de la mitad murió según unas fuentes; ~180 muertos según otras; menos de un tercio volvió según otra); huyó a París en 1823; en 1827 emitió en Londres otro bono (800.000 £, según Wikipedia); volvió a Venezuela en 1839, con pensión, y murió en Caracas en 1845.
+DATOS COMPROBADOS (22-11-2026): Gregor MacGregor, escocés, general de división en el ejército de Venezuela y Nueva Granada (con Bolívar); en 1821 vuelve a Gran Bretaña diciendo que el rey de la Costa de los Mosquitos lo nombró cacique de Poyais; oficinas en Londres y Edimburgo (terrenos); préstamo de 200.000 £ en oct. 1822 (2.000 bonos de 100 £, todos vendidos hacia el 23-10-1822 según un bono de 1823); la capital «St Joseph» con teatro, ópera, catedral con cúpula, parlamento y palacio real no existía (cuadros e himno encargados para convencer); Honduras Packet zarpó de Londres el 10-09-1822 con ~70 colonos; el Kennersley Castle salió de Leith con ~200 (la fecha varía: oct. 1822 o ene. 1823); al llegar: selva sin ciudad, sin cultivos ni provisiones; entre colonos y muertos las cifras difieren (más de la mitad murió según unas fuentes; ~180 muertos según otras; menos de un tercio volvió según otra); huyó a París en 1823; en 1827 emitió en Londres otro bono (800.000 £, según Wikipedia); volvió a Venezuela en 1839, con pensión, y murió en Caracas en 1845.
 CUIDADO: no dar cifras exactas de muertos. No decir «ríos de oro», «moneda propia» ni «folleto de Strangeways» (sin comprobar). Los barcos posteriores (Skene, etc.) no se cuentan.
 Fuentes: en.wikipedia.org/wiki/Gregor_MacGregor · history.com/articles/the-con-man-who-invented-his-own-country · britannica.com/story/the-craziest-scam-gregor-macgregor-creates-his-own-country · en.wikipedia.org/wiki/List_of_ships_of_the_Poyais_scheme · historytoday.com/miscellanies/gregor-macgregor-prince-poyais
