@@ -21,7 +21,7 @@ El motor ya está hecho: personajes con decenas de rasgos, decorados, cámara, s
 | pide un **suceso real de una sola parte** (rescates, supervivencia real, «al estilo de los mineros / Sabelotodo») | Usa el **estilo SUCESOS** (`references/sucesos.md`): siluetas sin rostro, fondos pintados con textura, objetos en primer plano, comparaciones de escala, subtítulos arriba. **No** los personajes redondos con cara del canal. |
 | señala un fallo de un vídeo | Arréglalo, re-renderiza solo el tramo afectado y vuelve a entregar. |
 
-No puedes generar la voz: si quiere el vídeo, necesitas su MP3. Al darle el guion, recuérdale la voz: Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural».
+**Voz:** desde el 75 puedes generarla tú con su propia voz clonada (VoiceStudio/OmniVoice en local, sin ElevenLabs): `references/voz_local.md`. Si prefiere ElevenLabs, recuérdale: Eleven v3, voz «Stickmans» (la suya), estabilidad «Natural», y espera su MP3.
 
 ## Referencias (léelas cuando toque)
 

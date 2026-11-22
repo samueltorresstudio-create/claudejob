@@ -1,0 +1,219 @@
+[
+{
+"l": 0,
+"t": "Este hombre vendió un país entero… y cientos de personas se mudaron a vivir allí.",
+"r": "narr",
+"sp": 1,
+"p": 0.35
+},
+{
+"l": 1,
+"t": "Tenía ópera, catedral y palacio real.",
+"r": "alegre",
+"sp": 1,
+"p": 0.4
+},
+{
+"l": 2,
+"t": "Un detalle sin importancia.",
+"r": "seco",
+"sp": 0.93,
+"p": 0.5
+},
+{
+"l": 2,
+"t": "No existía.",
+"r": "seco",
+"sp": 0.88,
+"p": 0.6
+},
+{
+"l": 3,
+"t": "Se llamaba Gregor MacGregor, y había sido general en Venezuela.",
+"r": "narr",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 4,
+"t": "Así que cuando dijo: «Soy el cacique de Poyais»,",
+"r": "plan",
+"sp": 1,
+"p": 0.25
+},
+{
+"l": 4,
+"t": "nadie se rió.",
+"r": "seco",
+"sp": 0.92,
+"p": 0.6
+},
+{
+"l": 5,
+"t": "¿Pruebas?",
+"r": "plan",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 5,
+"t": "Cuadros de la capital. Un himno nacional.",
+"r": "alegre",
+"sp": 1,
+"p": 0.25
+},
+{
+"l": 5,
+"t": "Oficinas en Londres y Edimburgo.",
+"r": "alegre",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 5,
+"t": "Y bonos: doscientas mil libras.",
+"r": "remate",
+"sp": 1,
+"p": 0.6
+},
+{
+"l": 6,
+"t": "Y la gente compró.",
+"r": "seco",
+"sp": 1,
+"p": 0.35
+},
+{
+"l": 6,
+"t": "En septiembre de mil ochocientos veintidós zarpó el primer barco con setenta colonos.",
+"r": "narr",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 6,
+"t": "Otro salió de Escocia con doscientos más.",
+"r": "narr",
+"sp": 1,
+"p": 0.6
+},
+{
+"l": 7,
+"t": "Llegaron buscando la ópera.",
+"r": "serio",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 7,
+"t": "Encontraron mosquitos.",
+"r": "seco",
+"sp": 1,
+"p": 0.35
+},
+{
+"l": 7,
+"t": "Buscaron la catedral.",
+"r": "serio",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 7,
+"t": "Más mosquitos.",
+"r": "seco",
+"sp": 0.92,
+"p": 0.4
+},
+{
+"l": 7,
+"t": "Buscaron el palacio.",
+"r": "serio",
+"sp": 1,
+"p": 0.4
+},
+{
+"l": 7,
+"t": "Ya te imaginas.",
+"r": "seco",
+"sp": 0.9,
+"p": 0.5
+},
+{
+"l": 8,
+"t": "No había capital ni provisiones.",
+"r": "serio",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 8,
+"t": "Solo selva.",
+"r": "serio",
+"sp": 0.9,
+"p": 0.5
+},
+{
+"l": 9,
+"t": "Muchos enfermaron.",
+"r": "serio",
+"sp": 0.92,
+"p": 0.35
+},
+{
+"l": 9,
+"t": "La mayoría no volvió.",
+"r": "serio",
+"sp": 0.88,
+"p": 0.7
+},
+{
+"l": 10,
+"t": "¿Y MacGregor?",
+"r": "plan",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 10,
+"t": "Ya estaba en París.",
+"r": "seco",
+"sp": 1,
+"p": 0.5
+},
+{
+"l": 11,
+"t": "Años después, volvió a Londres, a vender más bonos de Poyais.",
+"r": "narr",
+"sp": 1,
+"p": 0.35
+},
+{
+"l": 11,
+"t": "Si algo funciona, ¿para qué cambiarlo?",
+"r": "remate",
+"sp": 1,
+"p": 0.6
+},
+{
+"l": 12,
+"t": "Un país sin ciudades, sin gente y sin ópera.",
+"r": "serio",
+"sp": 0.95,
+"p": 0.5
+},
+{
+"l": 13,
+"t": "Pero con bonos.",
+"r": "seco",
+"sp": 1,
+"p": 0.35
+},
+{
+"l": 13,
+"t": "Y esos, eso sí, se vendieron todos.",
+"r": "remate",
+"sp": 0.95,
+"p": 0.3
+}
+]
