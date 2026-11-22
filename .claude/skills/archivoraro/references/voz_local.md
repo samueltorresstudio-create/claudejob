@@ -24,3 +24,9 @@ VoiceStudio (debpalash/VoiceStudio → modelo `k2-fsa/OmniVoice`, paquete `omniv
 - Remates y golpes: trozo aparte, velocidad .85–.93 y 0,4–0,5 s de pausa antes («Un detalle sin importancia. ‖ No existía.»).
 - Revisar SIEMPRE con `check.py`: en el 75 salió «Las mosquitos» por «Más mosquitos» y «todo» por «todos»; se rehicieron solo esos.
 - En CPU: ~100 s por trozo corto; un guion de 160 palabras (31 trozos) ≈ 55 min.
+- **Comprobar la sincronía en el MP4 final** (75): medir el arranque real de la voz en `narration.wav` (RMS > 0,02) frente a
+  `beat.start + lead` de `voice.js`. Salió un desfase constante de −0,13 s (voz antes que el subtítulo): se arregla retrasando la voz
+  (relleno de silencio al principio de `narration.wav`, misma duración) y volviendo a mezclar, sin re-renderizar nada.
+- **Números escritos en cifra** («1822», «200.000»): el reparto de tiempos por sílabas los cuenta cortos y las palabras siguientes
+  salen adelantadas (+0,4 s en «zarpó»). Pasar whisper por la voz limpia, corregir esas palabras en `voice.js` y re-renderizar
+  solo su tramo (las escenas que usan `wt()` de esa palabra también cambian).
