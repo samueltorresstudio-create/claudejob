@@ -130,3 +130,21 @@ Criterio: imagen imposible que se entiende en 2 s + causa-efecto que escala + gi
 13. **Las hadas de Cottingley** (1917): dos niñas que engañaron a Conan Doyle con fotos. (?)
 14. **Vesna Vulović** (1972): cayó 10.000 m dentro de un avión y vivió. (?)
 15. **Faro de Flannan Isles** (1900): tres fareros desaparecen. (?) Los detalles «mesa puesta, reloj parado» son embellecimientos; mejor no.
+
+## Top de 15 con la fórmula de la referencia: «Por qué / Cómo / El-La» + cosa real + razón oculta (22-11-2026)
+Fórmula (fotos del usuario): 18 de 29 títulos empiezan por Why/How/The. Tema = **una cosa real que todo el mundo ha visto** + **una razón oculta que nadie entendió**. ✔ = comprobado en la web el 22-11-2026; (?) = de memoria, comprobar antes del guion.
+1. **Por qué las ventanas de los aviones son redondas** ✔ — el Comet (1954) tenía ventanas casi cuadradas; la fatiga del metal en las esquinas rajó el fuselaje en pleno vuelo. Matiz: no es «la forma» sino la concentración de tensión en esquinas y remaches; el Comet 4 volvió en 1958 con ventanas ovaladas.
+2. **Por qué todos los plátanos son el mismo plátano** ✔ — el Cavendish son clones (≈99 % de la exportación, algo menos de la mitad de la producción); sustituyó al Gros Michel, destruido por el mal de Panamá; ahora amenaza la raza TR4 (detectada en Taiwán en 1990, en 21 países según la FAO). No usar el «80 %» de Chiquita.
+3. **Por qué las monedas tienen rayitas en el borde** ✔ — los ladrones recortaban el borde y gastaban la moneda a valor completo («clipping»); Newton (Warden 1696) con la gran reacuñación. Matiz: había bordes con marcas antes de Newton.
+4. **Por qué el queso suizo tiene agujeros (y por qué los pierde)** ✔ — Agroscope: partículas de heno en la leche; con el ordeño moderno entra menos heno y salen menos agujeros. Ojo: no es la única causa.
+5. **Por qué los médicos van de verde** ✔ — Harry Sherman (1914, San Francisco): el blanco deslumbraba y tras mirar sangre veían una imagen verde. Matiz: no era todo blanco antes; el paso fue gradual.
+6. **Por qué la Estatua de la Libertad es verde** (?) — era de cobre marrón; el verdín es la pátina.
+7. **Por qué los tomates ya no saben a tomate** (?) — se seleccionó el color uniforme y se perdió azúcar (estudio de Science de 2012).
+8. **Por qué los barcos llevan el casco rojo por debajo** (?) — pintura antiincrustante con óxido de cobre.
+9. **Por qué apagan las luces del avión al aterrizar** (?) — para que los ojos se adapten a la oscuridad si hay que evacuar.
+10. **Por qué las ventanillas del avión tienen un agujerito** (?) — orificio de equilibrio de presión.
+11. **Por qué las botellas de cerveza son marrones** (?) — la luz ultravioleta estropea el lúpulo («olor a mofeta»).
+12. **Por qué las bolas naranjas en los cables de alta tensión** (?) — para que los aviones los vean.
+13. **Por qué las ruedas son negras** (?) — negro de humo: refuerza el caucho y lo protege.
+14. **Por qué contestamos al teléfono con «hola»** (?) — Edison frente al «ahoy» de Bell.
+15. **Por qué los cuchillos de mesa no tienen punta** ✔ leyenda — la historia de Richelieu (1637) tiene poca base; lo mejor documentado es el decreto de Luis XIV (1669). Contarlo solo como «según la historia».
