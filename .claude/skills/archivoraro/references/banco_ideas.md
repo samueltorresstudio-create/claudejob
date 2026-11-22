@@ -112,3 +112,21 @@ Prompt para pedir más ideas a ChatGPT: `archivoraro_archivo/textos/prompt_chatg
 - Más vistos: Ancient Jar That Warned an Empire 34M, Perfect Railroads Don't Work 29M, Job Nobody Wants in Japan 18M, Sailors Carried Storm Oil 16M, Window That Breaks Japan's Gambling Law 15M, Pink Prison Cell Experiment 10M, Humans Can't Pick Random Numbers 9.3M, Cashiers Keep Winning The Lottery 9.3M.
 - Fórmula de tema: COSA REAL que ya has visto + RAZÓN OCULTA que nunca entendiste ("¿por qué…?"). Título entendible en 2 s, concreto, sin abstracciones.
 - Filtro para ideas nuevas: ¿es algo reconocible/real? ¿hay una razón oculta sorprendente? ¿cabe en un título "Por qué… / Cómo… / El…"?
+
+## Top de 15 «estilo Ricks Clips» (22-11-2026)
+Criterio: imagen imposible que se entiende en 2 s + causa-efecto que escala + giro final; sin contexto político ni «explicación científica». Datos comprobados en la web el 22-11-2026 (✔) o de memoria, por comprobar antes del guion (?).
+1. **Gatos con paracaídas** (Operación Cat Drop, Borneo 1960): «La RAF lanzó gatos en paracaídas sobre una selva… para arreglar un desastre que empezó con un insecticida.» ✔ Real (RAF, Sarawak, 1960); lo documentado es Bario con 23 gatos. **NO decir «14.000 gatos»** (apócrifo). La cadena DDT → avispas → orugas/techos y gatos muertos → ratas está menos documentada: contarla como «según la versión más repetida».
+2. **Ola de melaza** (Boston, 1919): «Una ola de melaza de varios metros bajó por una calle de Boston a unos 55 km/h.» ✔ 15-01-1919, 21 muertos, 150 heridos, ~35 mph; ~2,3 millones de galones (estimación); altura 5–12 m según fuente.
+3. **El fantasma de Heilbronn**: «La asesina más buscada de Europa había dejado su ADN en 40 escenas… y no existía.» ✔ 40 delitos (6 asesinatos; UPI dice 39), 2009: el ADN venía de los bastoncillos; trabajadora de la fábrica. Dato a vigilar: dónde estaba la fábrica (las fuentes no coinciden).
+4. **Meteorito en el sofá** (Ann Hodges, 1954): «Una mujer dormía la siesta… y una roca del espacio atravesó el techo.» ✔ 30-11-1954, Sylacauga (Alabama); única persona documentada herida por un meteorito. Hora y zona del moratón varían según fuente; la casera reclamó la roca (acuerdo de 500 $).
+5. **El planeador Gimli** (Air Canada 143, 1983): «Un Boeing 767 se quedó sin combustible a 12.000 m… y aterrizó en una pista de carreras.» ✔ 23-07-1983, 61 pasajeros + 8 tripulantes, error de unidades (libras/kilos), pista de dragsters en la antigua base de Gimli; sin heridos graves. No afirmar que la carrera estuviera en marcha al aterrizar sin fuente.
+6. **Acoustic Kitty** (CIA, años 60): «La CIA operó a un gato para convertirlo en espía… y lo atropelló un taxi en su primera misión.» ✔ Micro en el oído, transmisor en la base del cráneo; abandonado en 1967; coste 10–20 M$ (cifra no auditada). Documentos desclasificados en 2001.
+7. **Sealand**: un fuerte antiaéreo del mar del Norte convertido en «país» (Roy Bates, 1967). (?)
+8. **Violet Jessop**: sobrevivió al Olympic (1911), al Titanic (1912) y al Britannic (1916). (?)
+9. **Petrov** (1983): el hombre que no creyó a la alarma y no inició una guerra nuclear. (?) Cuidado con el tono político.
+10. **Mary Toft** (1726): la mujer que «parió» conejos y engañó a los médicos del rey. (?)
+11. **Lluvia de carne** (Kentucky, 1876): trozos de carne cayendo del cielo. (?)
+12. **El hombre del aeropuerto** (Mehran Nasseri, París, 1988–2006). (?)
+13. **Las hadas de Cottingley** (1917): dos niñas que engañaron a Conan Doyle con fotos. (?)
+14. **Vesna Vulović** (1972): cayó 10.000 m dentro de un avión y vivió. (?)
+15. **Faro de Flannan Isles** (1900): tres fareros desaparecen. (?) Los detalles «mesa puesta, reloj parado» son embellecimientos; mejor no.
