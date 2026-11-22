@@ -148,3 +148,21 @@ Fórmula (fotos del usuario): 18 de 29 títulos empiezan por Why/How/The. Tema =
 13. **Por qué las ruedas son negras** (?) — negro de humo: refuerza el caucho y lo protege.
 14. **Por qué contestamos al teléfono con «hola»** (?) — Edison frente al «ahoy» de Bell.
 15. **Por qué los cuchillos de mesa no tienen punta** ✔ leyenda — la historia de Richelieu (1637) tiene poca base; lo mejor documentado es el decreto de Luis XIV (1669). Contarlo solo como «según la historia».
+
+## Top de 15 «más ilógicas» (misma fórmula: título absurdo + razón real) (22-11-2026)
+Petición del usuario: «más ilógicas». Títulos que suenan imposibles y tienen una razón real. ✔ = comprobado en la web el 22-11-2026; (?) = de memoria, comprobar antes del guion.
+1. **La autopista que atraviesa un edificio** ✔ (Gate Tower, Osaka): la rampa de la autopista Hanshin pasa por los pisos 5–7 de una torre de oficinas de 16 plantas; los propietarios no cedieron el suelo y se negoció unos 5 años (fuentes secundarias). Pasa como puente, sin tocar el edificio.
+2. **El pueblo que arde desde 1962** ✔ (Centralia, Pensilvania): fuego en un vertedero dentro de una mina a cielo abierto que prendió las vetas de carbón; el Gobierno gastó 3,3 M$ (1962–78) sin apagarlo y compró el pueblo. Población: ~1.000 en 1980, 5 en 2020 (según Wikipedia); perdió el código postal en 2002. La causa exacta se discute (la versión de Dekok: limpieza del vertedero).
+3. **El pueblo que nació de una trampa en un mapa** ✔ (Agloe, Nueva York): inventado por Otto Lindberg y Ernest Alpers (General Drafting) para cazar copias; apareció en un mapa rival y, según la defensa de Rand McNally, había una tienda con ese nombre. Los vecinos dicen que la tienda nunca existió: contarlo como «según el juicio».
+4. **La ciudad que se mudó entera** ✔ (Kiruna, Suecia): la mina de hierro bajo la ciudad debilita el suelo; en agosto 2025 la iglesia (672 t, de 1912) se movió 5 km sobre plataformas; 23 edificios históricos movidos; proyecto de 30 años y unos 3.000 hogares; la nueva ciudad está ~3 km al este. Encaja con el estilo mina del 74.
+5. **La casa que frenó un edificio** ✔ (Edith Macefield, Seattle, 2006): rechazó una oferta de ~1 M$ (la cifra se discute) y construyeron el edificio alrededor; murió en 2008 a los 86; inspiró en parte «Up».
+6. **El cerdo que fue juzgado y ahorcado** ✔ (Falaise, 1386): una cerda condenada por matar a un niño; consta el pago al verdugo (9-01-1386). **No decir que iba vestido con ropa humana** (solo lo cuentan fuentes flojas).
+7. **El pingüino con título de caballero** ✔ (Nils Olav): mascota de la Guardia del Rey de Noruega desde 1972 en el zoo de Edimburgo; caballero en 2008; brigadier en 2016; hoy mayor general. El nombre lo han llevado varios pingüinos (el actual es el tercero).
+8. **El pueblo donde todos viven en el mismo edificio** (?) (Whittier, Alaska): la mayoría vive en Begich Towers; el túnel de acceso cierra de noche.
+9. **El tren que paraba para una sola alumna** ✔ con matiz (Kyu-Shirataki, Hokkaido): la estación se mantuvo hasta marzo de 2016 por la estudiante Kana Harada; algunos medios dicen que ya estaba prevista su clausura, así que lo de «único pasajero» es en parte relato mediático.
+10. **El plátano pegado a la pared que costó 6 millones** (?) (Comedian, Cattelan; vendido en 2024).
+11. **El gato que fue alcalde** (?) (Stubbs, Talkeetna, Alaska).
+12. **El idioma que se habla sin hablar** (?) (silbo gomero, La Gomera).
+13. **Los seis cuervos que no pueden faltar en la Torre de Londres** (?).
+14. **El pueblo de una sola vecina** (?) (Monowi, Nebraska).
+15. **La carretera que se ahoga dos veces al día** (?) (Passage du Gois, Francia).
