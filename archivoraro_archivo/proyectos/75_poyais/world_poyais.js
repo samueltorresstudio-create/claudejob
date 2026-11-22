@@ -90,7 +90,7 @@ const W2 = (() => {
   const waterY = (x, z, t = 0) => (Math.sin(x * .18 + t * 1.1) * .22 + Math.sin(z * .23 - t * .9) * .18) * WU.amp.value;
 
   // ---------- sitios, carga del GLB y plantas ----------
-  const G = {}, SITES = {}, SHIPS = [], POOL = { bonds: [], bags: [], stacks: [] }, GROUND = {}; ['city', 'london', 'port', 'beach', 'paris'].forEach(n => { SITES[n] = new T.Group(); SITES[n].visible = false; scene.add(SITES[n]); });
+  const G = {}, BLD = {}, SITES = {}, SHIPS = [], POOL = { bonds: [], bags: [], stacks: [] }, GROUND = {}; ['city', 'london', 'port', 'beach', 'paris'].forEach(n => { SITES[n] = new T.Group(); SITES[n].visible = false; scene.add(SITES[n]); });
   const LXo = LAY.sites.london[0], PXo = LAY.sites.port[0], BXo = LAY.sites.beach[0], PRo = LAY.sites.paris[0];
   const READY_W = new Promise((resolve, reject) => {
     const b64 = window.GLB_POYAIS, bin = atob(b64), buf = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
@@ -113,7 +113,7 @@ const W2 = (() => {
   const ray = new T.Raycaster();
   function groundAt(site, x, z) { const L = GROUND[site]; if (!L) return 0; ray.set(new T.Vector3(x, 300, z), new T.Vector3(0, -1, 0)); ray.far = 700; const h = ray.intersectObjects(L, false); return h.length ? h[0].point.y : 0; }
   function build() {
-    ['city', 'plaza', 'backstage'].forEach(n => { inkify(G[n]); SITES.city.add(G[n]); }); GROUND.city = meshesOf(G.plaza);
+    ['city', 'plaza', 'backstage', 'b_palace', 'b_parl', 'b_cat', 'b_opera', 'b_h1', 'b_h2', 'b_h3', 'b_h4'].forEach(n => { inkify(G[n]); SITES.city.add(G[n]); }); ['b_palace', 'b_parl', 'b_cat', 'b_opera', 'b_h1', 'b_h2', 'b_h3', 'b_h4'].forEach(n => { BLD[n.slice(2)] = G[n]; G[n].userData.home = G[n].position.clone(); }); GROUND.city = meshesOf(G.plaza);
     ['london', 'london_ground'].forEach(n => { if (n !== 'london_ground') inkify(G[n]); SITES.london.add(G[n]); }); GROUND.london = meshesOf(G.london_ground);
     ['pier', 'quay'].forEach(n => { inkify(G[n]); SITES.port.add(G[n]); }); GROUND.port = meshesOf(G.pier).filter(m => m.name.length >= 0);
     inkify(G.beach); SITES.beach.add(G.beach); GROUND.beach = meshesOf(G.beach); G.beach.traverse(o => { if (o.isMesh) o.castShadow = false; });
@@ -126,7 +126,12 @@ const W2 = (() => {
     [[-17, 20, .4], [-8, 23, -.6], [10, 22, .3], [19, 20, 1.1], [-30, 17, .9], [30, 16, -.8], [-1, 30, .2]].forEach(([x, z, ry], i) => { const c = place(G.palm, 'city', x, 0, z, ry, 1.15 + (i % 3) * .1); c.visible = true; });
     // sitio Londres: atrezo
     const pd = place(G.podium, 'london', LXo, 0, 2); pd.visible = true; const ea = place(G.easel, 'london', LXo - 5.4, 0, 3.6, .5); ea.visible = true; const bs = place(G.bondsign, 'london', LXo + 6.4, 0, -2.5, -.35); bs.visible = true;
-    const ag = place(G.agotado, 'london', LXo + 0, 0, -22); ag.visible = false; G.agotadoOn = ag;
+    const ag = place(G.agotado, 'london', LXo + 0, 0, -22); ag.visible = false; G.agotadoOn = ag; G.podiumOn = pd; G.easelOn = ea; G.bondsignOn = bs;
+    // maletas abandonadas en la playa (para «la mayoría no volvió»)
+    { const mk = (c) => toon({ name: 'case_' + c, color: new T.Color(c) }); const CASES = new T.Group(); [[-1.4, 15.2, .3, '#8a5a2e'], [.4, 15.8, -.5, '#5a7aa8'], [1.8, 15.1, .9, '#a83a2a']].forEach(([x, z, r, c]) => {
+        const g = new T.Group(), b = new T.Mesh(new T.BoxGeometry(.85, .55, .3), mk(c)), hd = new T.Mesh(new T.TorusGeometry(.13, .035, 6, 12, Math.PI), mk('#3a2a1e')); hd.position.y = .27; b.position.y = 0; g.add(b, hd);
+        g.position.set(BXo + x, groundAt('beach', BXo + x, z) + .26, z); g.rotation.set(-.18, r, .12 * Math.sign(r)); b.castShadow = true; CASES.add(g); inkify(g); });
+      CASES.visible = false; SITES.beach.add(CASES); G.cases = CASES; }
     // sitio puerto: barcos amarrados al muelle (la proa a +z), pasarela
     [['ship', PXo + 10.4, 6, 'red'], ['ship2', PXo - 100, -60, 'blue']].forEach(([n, x, z]) => { const s = place(G[n], 'port', x, 0, z, -Math.PI / 2); s.visible = true; SHIPS.push(s); });
     { const g = new T.Mesh(new T.BoxGeometry(4.2, .22, 2.2), toon({ name: 'woodplank', color: new T.Color('#b9824e') })); g.position.set(PXo + 7.5, 2.5, 6); g.rotation.z = .27; g.castShadow = true; SITES.port.add(g); inkify(g); }
@@ -170,5 +175,5 @@ const W2 = (() => {
   function render() { comp.render(); }
   function setTime(t) { skyU.time.value = t; WU.t.value = t; uTime.value = t; TICK.forEach(f => f(t)); }
   const ground = (x, z, siteName) => groundAt(siteName || Object.keys(SITES).find(k => SITES[k].visible) || 'city', x, z);
-  return { T, scene, camera, R, comp, setCam, proj, render, setTime, setMood, site, ground, waterY, SUN, G, SITES, SHIPS, POOL, READY_W, sky, WU, water, dof, bloom, inkify, toon, place, TICK, get mood() { return MOOD; }, LX: LXo, PX: PXo, BX: BXo, PR: PRo };
+  return { BLD, T, scene, camera, R, comp, setCam, proj, render, setTime, setMood, site, ground, waterY, SUN, G, SITES, SHIPS, POOL, READY_W, sky, WU, water, dof, bloom, inkify, toon, place, TICK, get mood() { return MOOD; }, LX: LXo, PX: PXo, BX: BXo, PR: PRo };
 })();

@@ -144,9 +144,11 @@ def b_palace(o):
 def b_house(o, col, roofc, w=6., h=6.):
     fbox(o, 0, 0, w, h, col); fp(o, [(-w / 2 - .5, h), (w / 2 + .5, h), (0, h + 3.2)], roofc, .2); wins(o, -w / 2 + .6, 2.2, w - 1.2, 3, 2, 1, 0, .9, 1.4, False, 'white'); door(o, 0, 1.3, 2.2, 0, 'woodd', False)
     o.box((w * .25, h + 2.2, -.1), (.8, 1.4, .8), M['brick']); struts(o, 0, w, h, -.35, 5)
+BLD = [('b_palace', b_palace, -29, -2.5), ('b_parl', b_parliament, -13.5, .8), ('b_cat', b_cathedral, 2.5, 0), ('b_opera', b_opera, 19.5, 1.6),
+       ('b_h1', lambda o: b_house(o, 'mint', 'roofb'), -44, -2), ('b_h2', lambda o: b_house(o, 'lilac', 'roofr', 6.5, 7.), 35, -1), ('b_h3', lambda o: b_house(o, 'yellow', 'roofg', 5.5, 5.5), -52, -5), ('b_h4', lambda o: b_house(o, 'pink', 'roofb', 6, 6.5), 43, -3)]
+for (nm, fn, x, z) in BLD:      # cada edificio por separado, con el origen en la base: así se pueden caer
+    ob = Obj(nm); fn(ob); ob.finish(); bpy.data.objects[nm].location = (x, -z, 0)
 CITY = Obj('city')
-for (fn, x, z) in [(b_palace, -29, -2.5), (b_parliament, -13.5, .8), (b_cathedral, 2.5, 0), (b_opera, 19.5, 1.6)]: grp(CITY, fn, TR(x, 0, z))
-grp(CITY, lambda o: b_house(o, 'mint', 'roofb'), TR(-44, 0, -2)); grp(CITY, lambda o: b_house(o, 'lilac', 'roofr', 6.5, 7.), TR(35, 0, -1)); grp(CITY, lambda o: b_house(o, 'yellow', 'roofg', 5.5, 5.5), TR(-52, 0, -5)); grp(CITY, lambda o: b_house(o, 'pink', 'roofb', 6, 6.5), TR(43, 0, -3))
 for x in (-22, -7, 9, 24): lamp(CITY, x, 12)
 bunting(CITY, -22, -7, 5.3, 12); bunting(CITY, -7, 9, 5.3, 12); bunting(CITY, 9, 24, 5.3, 12)
 CITY.finish()
@@ -327,7 +329,7 @@ def scatter(n, fx, fz, test, kind_w):
         k = rnd.choices(['palm', 'bigtree', 'fern', 'bush'], kind_w)[0]; out.append([k, round(x, 1), round(z, 1), round(rnd.uniform(0, 6.28), 2), round(rnd.uniform(.8, 1.4), 2)])
     return out
 jung = scatter(1600, (BXO - 160, BXO + 160), (-165, 18), lambda x, z: not (abs(x - BXO) < 7 and z > -30) and hbeach(x, z) > -.5 and math.hypot(x - BXO + 30, z - 4) > 14, [3, 4, 5, 4])
-beachp = scatter(26, (BXO - 70, BXO + 70), (14, 30), lambda x, z: True, [1, 0, 1, 1])
+beachp = scatter(40, (BXO - 70, BXO + 70), (14, 30), lambda x, z: abs(x - BXO) > 13, [1, 0, 1, 1])
 cityp = scatter(160, (-140, 140), (-120, 60), lambda x, z: (abs(x) > 62 or z < -16) and not (abs(x) < 60 and z > 40 and abs(x) < 10), [4, 4, 3, 3])
 lay = dict(jungle=jung, beachp=beachp, cityp=cityp, sites=dict(city=[0, 0], london=[LX, 0], port=[PX, 0], beach=[BXO, 0], paris=[PRX, 0]))
 json.dump(lay, open(os.path.join(OUT, 'layout.json'), 'w'))
