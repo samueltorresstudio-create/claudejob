@@ -10,13 +10,13 @@ DATOS (comprobados en la web el 23-11-2026)
 
 GANCHO (0–4 s): cámara entrando en un casino sin ventanas; un reloj de pared enorme; una mano lo tapa con un trapo negro. Voz: «Entras en un casino a las ocho de la tarde. Sales sin saber qué hora es. No es casualidad.»
 
-GUION (≈190 palabras, voz «alegre», números en letra):
+GUION SIN NOMBRES PROPIOS (el usuario pidió quitarlos; los nombres solo quedan en las notas de datos) (≈190 palabras, voz «alegre», números en letra):
 Entras en un casino a las ocho de la tarde. Sales sin saber qué hora es. No es casualidad.
 Primera regla: nada que te recuerde el mundo de fuera. Ni ventanas, ni relojes.
-Un hombre que dirigió casinos en Las Vegas, Bill Friedman, lo comprobó. Tenía un lado de cristal… y, según él, entre el ochenta y cinco y el noventa por ciento de los clientes dejaban de jugar al ver la luz del día. Así que lo tapó.
+Un hombre que dirigía casinos en Las Vegas lo comprobó. Tenía un lado de cristal… y, según él, entre el ochenta y cinco y el noventa por ciento de los clientes dejaban de jugar al ver la luz del día. Así que lo tapó.
 Con los relojes se dice lo mismo: sin ellos, no sabes cuánto llevas.
 Segunda regla: que no puedas irte en línea recta.
-Friedman diseñaba casinos como laberintos: pasillos cortos y estrechos, techos bajos. Y siempre hay algo más allá de la esquina.
+Ese mismo hombre diseñaba casinos como laberintos: pasillos cortos y estrechos, techos bajos. Y siempre hay algo más allá de la esquina.
 Tercera regla: que perder no suene a perder.
 Se llama pérdida disfrazada de ganancia. Apuestas diez, la máquina te devuelve uno… y suena la música, y se encienden las luces, como si hubieras ganado.
 Unos investigadores de una universidad de Canadá midieron a los jugadores. Su cuerpo reaccionaba casi igual que con una ganancia de verdad. Y recordaban más victorias de las que tuvieron.
@@ -26,7 +26,7 @@ Pero la máquina sigue celebrando… que pierdes.
 ESTRUCTURA (≈64 s)
 0–4    Gancho: reloj tapado con trapo.
 4–10   Regla 1: «NADA DE FUERA»: puerta cerrada, ventana tapiada.
-10–22  Friedman (despacho, gafas, bigote): lado de cristal, siluetas que miran el cielo y se van; plástico negro. Una gráfica de diez siluetas: nueve salen por la puerta.
+10–22  El director del casino (despacho, gafas, bigote): lado de cristal, siluetas que miran el cielo y se van; plástico negro. Una gráfica de diez siluetas: nueve salen por la puerta.
 22–26  Relojes: reloj que se apaga.
 26–38  Regla 2: laberinto en vista cenital con una figura que da vueltas; techos bajos; cámara en dolly por pasillos estrechos.
 38–56  Regla 3: tragaperras con símbolos (sin cifras): entra una moneda grande, salen pocas pequeñas, fiesta de luces; científico con electrodos; burbuja de recuerdo con más victorias.
