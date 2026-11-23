@@ -12,6 +12,7 @@ Este documento resume TODO lo hablado y hecho con el usuario en la sesión larga
 - Metricool conectado (blogId 7875099, Europe/Madrid).
   - Mejores horas en TikTok: 10:00 y 18:00 entre semana.
   - Las series pierden apoyo en cada parte: Apagón 2 tuvo 49 mil; Apagón 3, 827 «me gusta» en 9 h.
+- **Evitar aviones/vehículos como protagonistas en 3D** (23-11-2026: «los aviones los haces bastante mal»). Propuesta actual del 77: el testamento del derby de la cigüeña (`textos/guion_77_stork_derby_PROPUESTA.txt`).
 - **Personajes (23-11-2026):** más detalle, mejores cabezas y rasgos faciales; **nunca rubor rosa en las mejillas** (ver `reglas_75.md`, «Personajes»).
 - **Voz:** el usuario genera el MP3 en ElevenLabs. **Tras el 76 dijo que la voz clonada en local era «muy robótica»: ver `voz_local.md` (frases largas, una referencia, más temperatura, 3 tomas, sin atempo, muestra antes de hacer el vídeo).** **23-11-2026: eligió la toma «alegre» generada en bloques largos sin trocear → voz por defecto de los próximos vídeos (método al principio de `voz_local.md`).** **Ojo: el modelo OmniVoice es CC-BY-NC (no comercial); si el canal monetiza, hay que volver a ElevenLabs de pago (se le avisó el 23-11-2026). Respuesta: **el canal NO está monetizado** → se sigue usando la voz alegre; si algún día monetiza, cambiar a ElevenLabs.**
   - Historias de miedo/suspense: Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural».

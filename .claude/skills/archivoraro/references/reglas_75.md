@@ -58,3 +58,8 @@ Críticas del usuario al vídeo 75 («errores un poco básicos»). **No se rehac
   pliegues, bolsillos y complementos. Boceto de las cabezas en primer plano ANTES de hacer el vídeo y que el usuario las apruebe.
 - **Nunca más el rubor rosa en las mejillas** (`blush`): «no hagas más que se sonrojen de color rosa». Ni en caras felices, ni comiendo,
   ni con vergüenza: la emoción se cuenta con ojos, cejas y boca.
+
+## Qué NO proponer (23-11-2026)
+- **Historias cuyo protagonista sea un avión u otro vehículo en 3D**: el usuario dice que «los aviones los haces en 3D bastante mal» (descartada la idea de Gimli).
+  Proponer historias de personas, interiores y objetos en primer plano (galería, subasta, juzgado, bar, despacho, calle), que es lo que mejor sale.
+  Un vehículo puede salir de fondo y pequeño, nunca como protagonista del plano.
