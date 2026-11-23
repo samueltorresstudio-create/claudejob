@@ -1,8 +1,8 @@
 // «El plátano de seis millones» (76) — ESTILO 3D DE DIBUJO ANIMADO: decorados de Blender (world_platano.js) + personajes 2D (cast76.js) + efectos.
 // Reglas obligatorias (references/reglas_75.md): cámara SIEMPRE en movimiento, transición en cada cambio de plano, caras que cambian con la historia,
 // fondos con detalle, nada atravesado (piernas tras mostradores con clipAbove), nadie en zonas de paso sin motivo.
-window.CFG = { capY: 1500, capSize: 96, transDur: .34, blurK: .35, antic: .1, blurChars: false, transDefault: 'swish',
-  trans: { miami: 'swish', precio: 'push', dudas: 'push', papel: 'swish', come: 'swish', subasta: 'swish', ganador: 'swish', veras: 'push', certificado: 'swish', otro: 'swish', frutero: 'swish', final: 'swish' } };
+window.CFG = { capY: 1500, capSize: 96, transDur: .34, blurK: .35, antic: .1, blurChars: false, transDefault: 'swish', swishRel: 1.15, swishK: .9, pushMax: .3,
+  trans: { miami: 'swish', precio: 'push', dudas: 'push', papel: 'swish', come: 'swish', subasta: 'swish', ganador: 'swish', veras: 'glide', certificado: 'swish', otro: 'swish', frutero: 'swish', final: 'swish' } };
 const norm = w => w.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const EVS = {}; window.SCRIPT.forEach(l => { EVS[l.sc] = EVS[l.sc] || (() => ({})); });
 const capWords = (sc, li) => { const L = window.SCRIPT.filter(l => l.sc === sc)[li]; return L ? L.cap.split(' ').map(w => norm(w.split('|')[0])) : []; };

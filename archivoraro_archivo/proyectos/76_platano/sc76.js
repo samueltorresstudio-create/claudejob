@@ -1,8 +1,8 @@
 // «El plátano de seis millones» (76) — ESTILO 3D DE DIBUJO ANIMADO: decorados de Blender (world_platano.js) + personajes 2D (cast76.js) + efectos.
 // Reglas obligatorias (references/reglas_75.md): cámara SIEMPRE en movimiento, transición en cada cambio de plano, caras que cambian con la historia,
 // fondos con detalle, nada atravesado (piernas tras mostradores con clipAbove), nadie en zonas de paso sin motivo.
-window.CFG = { capY: 1500, capSize: 96, transDur: .34, blurK: .35, antic: .1, blurChars: false, transDefault: 'swish',
-  trans: { miami: 'swish', precio: 'push', dudas: 'push', papel: 'swish', come: 'swish', subasta: 'swish', ganador: 'swish', veras: 'push', certificado: 'swish', otro: 'swish', frutero: 'swish', final: 'swish' } };
+window.CFG = { capY: 1500, capSize: 96, transDur: .34, blurK: .35, antic: .1, blurChars: false, transDefault: 'swish', swishRel: 1.15, swishK: .9, pushMax: .3,
+  trans: { miami: 'swish', precio: 'push', dudas: 'push', papel: 'swish', come: 'swish', subasta: 'swish', ganador: 'swish', veras: 'glide', certificado: 'swish', otro: 'swish', frutero: 'swish', final: 'swish' } };
 const norm = w => w.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const EVS = {}; window.SCRIPT.forEach(l => { EVS[l.sc] = EVS[l.sc] || (() => ({})); });
 const capWords = (sc, li) => { const L = window.SCRIPT.filter(l => l.sc === sc)[li]; return L ? L.cap.split(' ').map(w => norm(w.split('|')[0])) : []; };
@@ -274,12 +274,12 @@ S.certificado = (t, D, B) => { setup(t, 'gallery', 'galeria');
 // 11 · OTRO — te lo comes… y cuelgas otro: plátano nuevo que aparece con un salto y cinta que crece
 // =====================================================================================================
 S.otro = (t, D, B) => { setup(t, 'gallery', 'galeria'); const tY = wt(B, 'otro', 0, 'y'), tCol = wt(B, 'otro', 0, 'colgar'), tOt = wt(B, 'otro', 0, 'otro'), c1 = tY - .1; whip(t, [c1]);
-  const F = V3(-1.6, 0, -15.4);
-  if (t < c1) { W.wallP.visible = false; tapeK(0); const k = seg(t, 0, c1); camK(k, V3(-.5, 2.45, -11.8), V3(-1.6, 2.35, -15.4), 40, V3(-.95, 2.5, -12.7), V3(-1.6, 2.4, -15.4), 36);
-    const L = [man('SUN', F, { turn: .25, face: 'closed', mouth: Math.sin(t * 15) > 0 ? 'line' : 'smile', blush: 1, armR: [20, 30], brows: .3 })], m = mouthAt(F);
+  const F = V3(-.75, 0, -16.0);
+  if (t < c1) { W.wallP.visible = false; tapeK(0); const k = seg(t, 0, c1); camK(k, V3(1.9, 2.3, -17.65), V3(-.75, 1.85, -16.0), 40, V3(1.4, 2.25, -17.8), V3(-.75, 1.9, -16.0), 36);
+    const L = [man('SUN', F, { turn: -.25, face: 'closed', mouth: Math.sin(t * 15) > 0 ? 'line' : 'smile', blush: 1, armR: [20, 30], brows: .3 })], m = mouthAt(F);
     return depth(L) + biteBanana(m.x - m.R * .27, m.y + m.R * .72, m.R * .00575, -34, true); }
   const k = seg(t, c1, D), kb = clamp((t - (tCol - .1)) / .3); W.wallP.visible = kb > 0; W.wallP.scale.setScalar(1.12 * (kb > 0 ? eBack(kb) : .01)); tapeK(eOut(clamp((t - tOt + .1) / .3)));
-  camK(k, V3(1.2, 2.6, -11.8), V3(-.2, 2.8, -17.3), 40, V3(.4, 3.0, -13.0), V3(0, 3.0, -17.4), 32);
+  camK(k, V3(1.2, 2.6, -11.6), V3(-.6, 2.75, -17.3), 42, V3(.1, 2.9, -12.6), V3(-.65, 2.85, -17.4), 40);
   const L = [man('SUN', F, { turn: .35, face: t > tOt ? 'happy' : 'open', mouth: t > tOt ? 'big' : 'smile', armR: t < tOt + .2 ? [155, 25] : [150, 140], holdR: t < tOt + .2 ? TAPEROLL : '', wink: t > tOt + .3, brows: .3 })];
   const q = scrX(BAN); return depth(L) + (kb > 0 ? rays(q.x, q.y, 260, (t - tCol) / .5, '#ffe58a', 14) + sparkles(q.x, q.y, 220, t, 6, 1.2) : ''); };
 

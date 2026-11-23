@@ -42,3 +42,11 @@ Críticas del usuario al vídeo 75 («errores un poco básicos»). **No se rehac
 5. ¿Algún plano con cámara quieta > 2 s o corte seco sin transición?
 6. ¿Cada personaje cambia de cara con la historia?
 7. ¿Algún plano con fondo vacío o más pobre que los demás? ¿Escenarios con diseño?
+8. ¿Las transiciones enseñan pared vacía o algo que aparece un solo fotograma? (fotogramas consecutivos en CADA cambio de escena)
+9. ¿Algún subtítulo tapa los ojos o la cara de un personaje?
+
+## Errores vistos en el 76 (no repetir)
+- **Barrido (`swish`) con giro fijo de 1,1 rad**: en primeros planos (fov 28–40) la cámara gira tanto que salen 3–5 fotogramas de pared lisa y un objeto que aparece un fotograma (parpadeo). Usar el giro relativo al campo de visión: `CFG.swishRel: 1.15` (≈1 semiancho de encuadre) y más desenfoque `CFG.swishK: .9` (`core3d.js` de `proyectos/76_platano/`).
+- **`push` entre dos primeros planos**: la cámara avanza 5 m y se mete dentro de la cabeza. Limitar con `CFG.pushMax: .3` (fracción de la distancia al objetivo) o usar `glide` cuando los dos planos miran a la misma persona.
+- **Plano cercano contra la pared del fondo** = fondo vacío. Colocar la cámara para que detrás quede la sala (cuadros, esculturas, cordones), no la pared lisa.
+- **Sincronía**: tras montar, pasar `wsync.py` (Whisper palabra a palabra frente a los subtítulos) y corregir las palabras con más de 0,15 s de error mirando la energía del audio (`fixwords.js`). Ignorar la primera palabra de cada frase y las «y» (Whisper las adelanta).
