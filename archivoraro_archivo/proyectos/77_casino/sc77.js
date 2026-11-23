@@ -2,7 +2,7 @@
 // Reglas obligatorias (references/reglas_75.md): cámara SIEMPRE en movimiento, transición en cada cambio de plano, caras nuevas según el momento,
 // fondos con detalle, nada atravesado (piernas tras mostradores con clipAbove), nadie en zonas de paso sin motivo, SIN texto en el mundo (solo el subtítulo), SIN nariz, SIN rubor.
 window.CFG = { capY: 1500, capSize: 96, transDur: .34, blurK: .35, antic: .1, blurChars: false, transDefault: 'swish', swishRel: 1.15, swishK: .9, pushMax: .3,
-  trans: { regla1: 'swish', jefe: 'swish', cristal: 'swish', relojes: 'push', regla2: 'swish', laberinto: 'swish', regla3: 'swish', perdida: 'swish', lab: 'swish', bolsillo: 'push', final: 'swish' } };
+  trans: { regla1: 'swish', jefe: 'swish', cristal: 'swish', relojes: 'swish', regla2: 'swish', laberinto: 'swish', regla3: 'swish', perdida: 'swish', lab: 'swish', bolsillo: 'swish', final: 'swish' } };
 const norm = w => w.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const EVS = {}; window.SCRIPT.forEach(l => { EVS[l.sc] = EVS[l.sc] || (() => ({})); });
 const capWords = (sc, li) => { const L = window.SCRIPT.filter(l => l.sc === sc)[li]; return L ? L.cap.split(' ').map(w => norm(w.split('|')[0])) : []; };
@@ -170,12 +170,12 @@ S.lab = (t, D, B) => {
   setup(t, 'lab', 'lab'); W.hero('lab', LX + 3.8, 0, -3.2, -.4, 1);
   if (t < c1) { camK(seg(t, 0, c1), V3(LX + .35, 1.9, 7.45), V3(LX + .15, 1.45, 0), 58, V3(LX + .15, 1.85, 7.2), V3(LX + .15, 1.45, 0), 55);
     return depth([man('JUG', V3(LX - .5, 0, 3.9), { hat: 'eeg', turn: .3, face: 'hypno', mouth: 'pout' }), man('CIEN', V3(LX + 1.05, 0, 2.7), { turn: -.4, face: 'open', mouth: talk(t, .1, c1 - .1, 'smile'), armR: [110, 50], holdR: CLIP2D(1) })]); }
-  if (t < c2) { const u = t - c1, amp = t > tRe - .2 ? clamp((t - tRe + .2) / .5) : .15; W.eeg(t, amp); camK(seg(t, c1, c2), V3(LX - 2.2, 1.7, -1.6), V3(LX - 4.0, 1.6, -6.4), 42, V3(LX - 2.6, 1.7, -2.4), V3(LX - 4.2, 1.6, -6.4), 36);
+  if (t < c2) { const u = t - c1, amp = t > tRe - .2 ? clamp((t - tRe + .2) / .5) : .15; W.eeg(t, amp); camK(seg(t, c1, c2), V3(LX - 1.6, 1.8, -.4), V3(LX - 4.6, 1.75, -6.4), 40, V3(LX - 2.0, 1.8, -1.1), V3(LX - 4.7, 1.75, -6.4), 37);
     const F = V3(LX - 3.6, 0, -4.4), h = headScr(F);
     return depth([man('JUG', F, { hat: 'eeg', turn: .5, face: t > tRe - .2 ? 'stars' : 'hypno', mouth: t > tRe - .2 ? 'cheer' : 'pout', brows: .6 })]) + (t > tRe ? sparkles(h.x, h.y, 200, t, 6, 1.0) : ''); }
-  const u = t - c2; camK(seg(t, c2, D), V3(LX + 2.4, 1.75, 5.4), V3(LX + 1.8, 1.9, .6), 36, V3(LX + 2.1, 1.8, 4.2), V3(LX + 1.8, 2.05, .6), 32);
+  const u = t - c2; camK(seg(t, c2, D), V3(LX + 2.4, 1.75, 5.4), V3(LX + 1.8, 1.9, .6), 36, V3(LX + 2.15, 1.85, 5.0), V3(LX + 1.8, 2.15, .6), 33);
   const F = V3(LX + 1.8, 0, .6), h = headScr(F), n5 = Math.min(5, Math.floor(u * 4.2) + 1), ok = u > .2;
-  return depth([man('JUG', F, { hat: 'eeg', turn: .2, face: 'dreamy', mouth: 'smile' })]) + thoughtB(h.x + 215, h.y - 440, 1.0, clamp((u - .05) / .3), ok ? n5 : 0) + thoughtB(h.x - 215, h.y - 360, .6, clamp((u - 1.6) / .3), 2, '#b8b0c8'); };
+  return depth([man('JUG', F, { hat: 'eeg', turn: .2, face: 'dreamy', mouth: 'smile' })]) + thoughtB(790, 300, 1.0, clamp((u - .05) / .3), ok ? n5 : 0) + thoughtB(255, 330, .6, clamp((u - 1.6) / .3), 2, '#b8b0c8'); };
 
 // =====================================================================================================
 // 11 · BOLSILLO — ya no hacen falta relojes en la pared: llevas uno en el bolsillo
