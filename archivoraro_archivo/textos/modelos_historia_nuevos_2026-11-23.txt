@@ -1,0 +1,15 @@
+MODELOS DE HISTORIA NUEVOS (23-11-2026) — formatos distintos a los que ya hay (curiosidad real con giro, «ilógico con sentido», fábula inventada preso/póker, historia antigua).
+Cumplen el gusto del usuario: imagen imposible en 2 s · plan o caos que escala · nada que exija contexto político/religioso. Datos de los ejemplos: comprobar en la web antes del guion.
+
+A. EL REBOBINADO — se cuenta la historia tal como la vio todo el mundo (un tipo odioso, raro o tonto), llega el golpe, aparece «REWIND» (efecto cinta) y se REPITEN los mismos planos con la causa oculta a la vista. Mismas escenas, otro significado.
+   Ejemplo (inventado): «Un panadero tiraba el mejor pan a la basura cada noche. Todo el barrio le llamaba derrochador.» → rebobinado: el pan lo dejaba «quemado» junto al contenedor porque el padre de un niño hambriento no aceptaba caridad… pero sí basura. Golpe: el niño hoy es el que le compra la panadería.
+B. LA CADENA — un objeto (moneda, paraguas, carta) pasa por 6–7 manos en 60 s; cada eslabón, una mini-historia de 8 s con su emoción; el último eslabón cierra el círculo con el primero.
+   Ejemplo real a comprobar: el bocadillo de Sarajevo, 1914 (el chófer se equivoca de calle, frena delante de una tienda, y justo ahí estaba Gavrilo Princip comprando un bocadillo) → la cadena de «equivocaciones» que acaba en la Primera Guerra Mundial.
+C. EL MISTERIO DE 60 SEGUNDOS — misterio con 3 pistas en pantalla (cuenta atrás «pista 1/3»), el espectador adivina, revelación al final. Sin robos ni crímenes.
+   Ejemplo (inventado): «Cada noche, alguien encendía la luz de un faro abandonado.» Pistas: huellas pequeñas, café aún caliente, la luz se apaga siempre a las 6. Revelación: el último farero, ciego, que lo enciende de memoria.
+D. EL JUICIO ABSURDO — empieza como «la demanda más ridícula de la historia», el juicio va revelando que tenía toda la razón. Reusa el juzgado de `world_carcel.js`.
+   Ejemplo real a comprobar: la mujer que demandó a una cadena de comida rápida por un café caliente (EE. UU., 1994: quemaduras graves, cientos de quejas previas, café a temperatura muy alta).
+E. LA APUESTA — dos personas apuestan algo absurdo, con reloj en pantalla; al final se ve quién tenía razón. Estructura de tensión sencilla.
+   Ejemplo real a comprobar: la apuesta de 1980 entre Julian Simon y Paul Ehrlich sobre el precio de 5 metales en 10 años.
+
+Recomendación: A (REBOBINADO) para el próximo vídeo: truco visual nuevo, reutiliza los planos (render más barato) y encaja en «parece X pero era Y».
