@@ -1,8 +1,12 @@
 const W = W2; let CH = null;
-window.shot = function (n) { W.setTime(2); let s = '';
-  if (!CH) { CH = char3d(W, { top: 0x2a5d8a, armR: [[.08, -.05, .06], [.1, .1, .12]] }); CH.position.set(-1.2, 0, -1.9); CH.rotation.y = .12; }
-  const F = ['picaro', 'serio', 'preocupado', 'sorpresa', 'feliz'][n]; setFace(CH, F);
-  if (n === 0) W.setCam(V3(-1.0, 1.15, .75), V3(-1.2, .98, -1.9), 40, null, .009);
-  else W.setCam(V3(-1.08, 1.42, .05), V3(-1.2, 1.3, -1.9), 34, null, .012);
-  W.render(); document.getElementById('fx').innerHTML = s; };
+const SH = [ // [cara, cámara, mirar, fov, apertura]
+  ['serio', [-1.12, 1.5, .1], [-1.2, 1.32, -1.9], 40, .016],
+  ['serio', [-1.0, 1.1, .9], [-1.2, .95, -1.9], 40, .012],
+  ['preocupado', [-1.12, 1.62, -.2], [-1.2, 1.55, -1.9], 36, .02],
+  ['sorpresa', [-1.12, 1.62, -.2], [-1.2, 1.55, -1.9], 36, .02],
+  ['picaro', [-1.12, 1.62, -.2], [-1.2, 1.55, -1.9], 36, .02],
+  ['feliz', [-1.12, 1.62, -.2], [-1.2, 1.55, -1.9], 36, .02]];
+window.shot = function (n) { W.setTime(2);
+  if (!CH) { W.inkM.visible = false; W.dof.uniforms.maxblur.value = .02; document.getElementById('gl').style.filter = 'saturate(.82) sepia(.12)'; CH = char3d(W, {}); CH.position.set(-1.2, 0, -1.9); CH.rotation.y = .05; }
+  const [f, cp, lk, fov, ap] = SH[n]; setFace(CH, f); W.setCam(V3(...cp), V3(...lk), fov, null, ap); W.render(); document.getElementById('fx').innerHTML = ''; };
 document.title = 'ready';
