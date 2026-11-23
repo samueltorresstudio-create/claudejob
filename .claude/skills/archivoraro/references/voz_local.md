@@ -30,3 +30,14 @@ VoiceStudio (debpalash/VoiceStudio → modelo `k2-fsa/OmniVoice`, paquete `omniv
 - **Números escritos en cifra** («1822», «200.000»): el reparto de tiempos por sílabas los cuenta cortos y las palabras siguientes
   salen adelantadas (+0,4 s en «zarpó»). Pasar whisper por la voz limpia, corregir esas palabras en `voice.js` y re-renderizar
   solo su tramo (las escenas que usan `wt()` de esa palabra también cambian).
+
+## «La voz es muy robótica» (usuario, tras el 76) — cambios OBLIGATORIOS para el siguiente
+Causas en el 76: 35 trozos cortísimos generados por separado (cada uno con su propia entonación, sin hilo), cambio de referencia entre
+trozos (6 tonos distintos), `class_temperature=.5` (entonación plana), pausas recortadas ×0,6, `atempo` 1,07 y cortes con fundido que
+se comen las respiraciones.
+1. **Generar por frases largas o párrafos** (2–3 frases juntas, 8–15 s); trozo aparte SOLO para un remate.
+2. **Una sola referencia por vídeo**, larga (15–20 s) y con energía de narrador contando algo increíble, sacada de sus MP3 reales; nada de saltar de tono en tono.
+3. `class_temperature` ≈ .8 y **3 tomas por frase**: quedarse con la de más variación de tono (desviación de F0 y de energía) que pase `check.py`.
+4. **Sin `atempo` y sin recortar pausas**: si sobra duración, se acorta el guion. Respiraciones y silencios naturales, sin fundidos al cortar.
+5. Antes de generar el vídeo entero, mandar al usuario una **muestra de 2–3 frases** para que apruebe la voz.
+6. Si él puede, su MP3 de ElevenLabs («Stickmans») sigue siendo lo más natural: preguntarle primero.
