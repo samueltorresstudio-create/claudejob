@@ -29,7 +29,35 @@ P = dict(
     slotglow=('#fff6a0'), plastic=('#17141f'), cloth=('#14111a'), skin=('#f4d9b4'), glass=('#bfe6ff'),
 )
 M = {k: mat(k, v) for k, v in P.items()}
-for n in ['carpet', 'plan1', 'plan2', 'plan3', 'slotscr', 'clockface', 'daycity', 'eeg', 'poster', 'chart']: M[n] = mat(n, '#ffffff')
+for n in ['carpet', 'wallpaper', 'ceilingp', 'parquet', 'tilep', 'plan1', 'plan2', 'plan3', 'slotscr', 'clockface', 'daycity', 'eeg', 'poster', 'chart', 'runner', 'art1', 'art2', 'art3', 'icon1', 'icon2', 'icon3', 'icon4']: M[n] = mat(n, '#ffffff')
+
+def sconce(o, x, y, z, ry=0.):
+    def f(q):
+        q.box((0, 0, 0), (.22, .5, .08), M['gold']); q.box((0, .1, .12), (.1, .1, .2), M['gold']); q.sph((0, .38, .2), .16, M['lamp'], seg=8, rings=5); q.cyl((0, .22, .2), (0, .62, .2), .02, M['gold'], 4); q.cyl((0, .5, .2), (0, .8, .2), .24, M['cream'], 10, r1=.1)
+    grp(o, f, TR(x, y, z, ry))
+def dice(o, x, z, s=.9, ry=0.):
+    def f(q):
+        q.box((0, s / 2, 0), (s, s, s), M['white'])
+        for (px, py) in [(-.25, .25), (.25, -.25), (0, 0), (-.25, -.25), (.25, .25)]: q.sph((px * s, s / 2 + py * s, s / 2 + .01), s * .07, M['black'], seg=6, rings=4)
+        for (px, py) in [(-.22, .22), (.22, -.22)]: q.sph((s / 2 + .01, s / 2 + py * s, px * s), s * .07, M['red'], seg=6, rings=4)
+    grp(o, f, TR(x, 0, z, ry))
+def chips(o, x, y, z, n=6, col='red', r=.22):
+    for k in range(n): o.cyl((x, y + k * .06, z), (x, y + k * .06 + .055, z), r, M[col if k % 3 else 'white'], 12)
+def canopy(o, xc, z0, z1, y=2.75):
+    # marquesina de colores sobre una isla de tragaperras: barra dorada, festón de bolas y bombillas
+    L = z1 - z0; o.box((xc, y, (z0 + z1) / 2), (3.1, .16, L), M['goldd']); o.box((xc, y + .12, (z0 + z1) / 2), (2.9, .1, L), M['burg'])
+    n = int(L / .62)
+    for k in range(n):
+        z = z0 + .3 + k * .62; c = ['pink', 'cyan', 'yellow', 'orange'][k % 4]
+        for sd in (-1, 1): o.sph((xc + sd * 1.5, y - .08, z), .24, M[c], (1, .6, 1), seg=8, rings=5)
+        o.sph((xc, y + .22, z), .1, M['lamp'], seg=6, rings=4)
+def framed_obj(name, mname, w, h, fr='gold'):
+    q = Obj(name); q.box((0, 0, 0), (w + .35, h + .35, .14), M[fr]); q.box((0, 0, .08), (w, h, .06), M[mname]); q.box((0, 0, -.08), (w, h, .06), M[mname]); q.finish(origin=(0, 0, 0))
+def sign_obj(name, mname, col):
+    q = Obj(name); q.box((0, 0, 0), (1.8, 1.8, .22), M['plastic']); q.box((0, 0, .13), (1.6, 1.6, .05), M[mname]); q.box((0, 0, -.13), (1.6, 1.6, .05), M[mname])
+    q.box((0, .93, 0), (2.0, .14, .3), M[col]); q.box((0, -.93, 0), (2.0, .14, .3), M[col]); q.box((.93, 0, 0), (.14, 2.0, .3), M[col]); q.box((-.93, 0, 0), (.14, 2.0, .3), M[col])
+    for k in range(8): a = k / 8 * 2 * math.pi; q.sph((math.cos(a) * 1.05, math.sin(a) * 1.05, 0), .09, M['lamp'], seg=6, rings=4)
+    q.cyl((0, 1.0, 0), (0, 2.2, 0), .03, M['iron'], 4); q.finish(origin=(0, 0, 0))
 
 def lamp_bar(o, x, y, z, w, h=.08, d=.08, m='lamp'): o.box((x, y, z), (w, h, d), M[m])
 def stool(o, x, z, col='red'):
@@ -96,20 +124,21 @@ def plant(o, x, z, s=1.):
 HX = 0.
 HF = Obj('hall_floor'); HF.box((0, -.15, 8), (30, .3, 64), M['carpet']); HF.finish(origin=(HX, 0, 0))
 HA = Obj('hall')
-HA.box((0, 2.6, -18.3), (30, 5.4, .6), M['burgd']); HA.box((0, 5.5, -18.2), (30, .24, .6), M['gold']); HA.box((0, .14, -17.95), (30, .28, .12), M['gold'])
+HA.box((0, 2.6, -18.3), (30, 5.4, .6), M['wallpaper']); HA.box((0, 5.5, -18.2), (30, .24, .6), M['gold']); HA.box((0, .14, -17.95), (30, .28, .12), M['gold'])
 for sd in (-1, 1):
-    HA.box((sd * 14.8, 2.6, 8), (.6, 5.4, 64), M['burgd']); HA.box((sd * 14.45, .14, 8), (.12, .28, 64), M['gold']); HA.box((sd * 14.4, 5.2, 8), (.3, .26, 64), M['gold'])
-HA.box((0, 2.6, 40.3), (30, 5.4, .6), M['burgd']); HA.box((0, 5.46, 8), (30, .4, 64), M['burgdd'])      # techo bajo
+    HA.box((sd * 14.8, 2.6, 8), (.6, 5.4, 64), M['wallpaper']); HA.box((sd * 14.45, .14, 8), (.12, .28, 64), M['gold']); HA.box((sd * 14.4, 5.2, 8), (.3, .26, 64), M['gold'])
+HA.box((0, 2.6, 40.3), (30, 5.4, .6), M['wallpaper']); HA.box((0, 5.46, 8), (30, .4, 64), M['ceilingp'])      # techo bajo
+HA.box((0, .62, -17.88), (30, 1.24, .2), M['darkwood']); HA.box((0, 1.28, -17.82), (30, .12, .3), M['gold']); HA.box((0, 1.0, -17.78), (30, .06, .24), M['goldd'])
 wall_panels(HA, 0, 2.2, -17.9, 26, 0., 7); wall_panels(HA, -14.4, 2.2, 8, 56, math.pi / 2, 13); wall_panels(HA, 14.4, 2.2, 8, 56, -math.pi / 2, 13)
 doorway(HA, 0, 39.9, math.pi); doorway(HA, -14.35, 24, math.pi / 2, 2.8, 3.4)
-for z in (-6, 6, 18, 30): chandelier(HA, 0, 4.5, z, .95)
+for z in (4, 15, 26): chandelier(HA, 0, 4.5, z, .95)
 for z in (-12, -2, 8, 18, 28, 36):
     for sd in (-1, 1): column(HA, sd * 9.0, z)
 for z in (-12, 0, 12, 24, 36):
     for sd in (-1, 1): neon_line(HA, (sd * 14.2, 4.8, z), (sd * 14.2, 4.8, z + 6), 'pink' if z % 24 == 0 else 'cyan', .09)
 for k in range(8):                                                   # tiras de luz del techo
     lamp_bar(HA, 0, 5.24, -14 + k * 8, 12, .06, .22)
-for k, z in enumerate((-8, -1, 6, 13, 20, 27)):                      # arcos de neón sobre el pasillo central
+for k, z in enumerate((0, 7, 14, 21, 28)):                      # arcos de neón sobre el pasillo central
     HA.torus((0, .0, z), 3.7, .09, M[['pink', 'cyan', 'gold'][k % 3]], 30, 'X'); HA.torus((0, .0, z), 3.35, .05, M['lamp'], 30, 'X')
 # islas de tragaperras: dos filas espalda con espalda a cada lado; pasillo central libre
 def island(o, xc, z0, n, bodies, step=1.36):
@@ -120,16 +149,20 @@ for isl in (-1, 1): island(HA, isl * 5.6, -10.5, 18, ['burg', 'navy', 'green', '
 roulette(HA, -7.2, -14.2, 0.); roulette(HA, 7.2, -14.2, 0.); cardtable(HA, -2.8, -13.2); cardtable(HA, 2.8, -13.2)
 bar(HA, 0, -16.9, 0.)
 plant(HA, -13.2, -16.6, 1.1); plant(HA, 13.2, -16.6, 1.1)
-HA.box((0, .018, 14), (5.0, .04, 52), M['redd']); HA.box((0, .02, 14), (4.6, .04, 52), M['burg'])        # alfombra central
+for sd in (-1, 1): canopy(HA, sd * 5.6, -11, 14.5)
+for x in (-9.5, -6.2, 6.2, 9.5): sconce(HA, x, 3.0, -17.6)
+for sd in (-1, 1): dice(HA, sd * 4.6, -15.6, 1.0, sd * .4); chips(HA, -1.6, 1.25, -16.4, 7, 'red'); chips(HA, 1.4, 1.25, -16.4, 5, 'blue'); chips(HA, 2.0, 1.25, -16.4, 6, 'green')
+HA.box((0, .018, 14), (5.4, .04, 52), M['gold']); HA.box((0, .024, 14), (5.0, .04, 52), M['runner'])        # alfombra central
 HA.finish(origin=(HX, 0, 0))
 
 # ================================================= DESPACHO DEL DIRECTOR (x = 1000) =================================================
 OX = 1000.
-OF = Obj('office_floor'); OF.box((OX, -.15, 0), (16, .3, 18), M['darkwood']); OF.box((OX, .01, 2), (7, .04, 6), M['burg']); OF.finish(origin=(OX, 0, 0))
+OF = Obj('office_floor'); OF.box((OX, -.15, 0), (16, .3, 18), M['parquet']); OF.box((OX, .01, 2), (7, .04, 6), M['burg']); OF.finish(origin=(OX, 0, 0))
 OA = Obj('office')
-OA.box((OX, 2.3, -8.3), (16, 4.6, .6), M['burgdd']); OA.box((OX, 4.5, -8.2), (16, .22, .5), M['gold']); OA.box((OX, .14, -7.95), (16, .28, .12), M['gold'])
-for sd in (-1, 1): OA.box((OX + sd * 7.8, 2.3, 0), (.6, 4.6, 18), M['burgd']); OA.box((OX + sd * 7.5, 4.5, 0), (.5, .22, 18), M['gold']); OA.box((OX + sd * 7.5, .14, 0), (.12, .28, 18), M['gold'])
-OA.box((OX, 2.3, 9.3), (16, 4.6, .6), M['burgd']); OA.box((OX, 4.7, 0), (16, .4, 18), M['burgdd'])
+OA.box((OX, 2.3, -8.3), (16, 4.6, .6), M['wallpaper']); OA.box((OX, 4.5, -8.2), (16, .22, .5), M['gold']); OA.box((OX, .14, -7.95), (16, .28, .12), M['gold'])
+for sd in (-1, 1): OA.box((OX + sd * 7.8, 2.3, 0), (.6, 4.6, 18), M['wallpaper']); OA.box((OX + sd * 7.5, 4.5, 0), (.5, .22, 18), M['gold']); OA.box((OX + sd * 7.5, .14, 0), (.12, .28, 18), M['gold'])
+OA.box((OX, 2.3, 9.3), (16, 4.6, .6), M['wallpaper']); OA.box((OX, 4.7, 0), (16, .4, 18), M['ceilingp'])
+OA.box((OX, .62, -7.9), (16, 1.24, .2), M['darkwood']); OA.box((OX, 1.28, -7.84), (16, .12, .3), M['gold'])
 for k in range(4): lamp_bar(OA, OX - 4.5 + k * 3, 4.45, 0, .2, .06, 14)
 # escritorio, sillón y planos
 OA.box((OX, .8, -3.6), (4.4, .12, 1.8), M['wood']); OA.box((OX, .75, -3.6), (4.1, .06, 1.6), M['darkwood'])
@@ -140,7 +173,6 @@ OA.cyl((OX + 1.7, .86, -4.1), (OX + 1.7, 1.4, -4.1), .03, M['gold'], 6); OA.cyl(
 OA.box((OX, .5, -5.6), (1.2, 1.0, 1.0), M['burg']); OA.box((OX, 1.45, -6.05), (1.2, 1.5, .14), M['burg'])   # sillón del director
 # pared del fondo: plano enorme en marco dorado
 OA.box((OX, 2.9, -7.9), (6.4, 3.2, .16), M['gold']); OA.box((OX, 2.9, -7.8), (6.0, 2.8, .08), M['plan2'])
-for sd in (-1, 1): OA.box((OX + sd * 4.2, 2.9, -7.9), (1.6, 2.2, .14), M['gold']); OA.box((OX + sd * 4.2, 2.9, -7.82), (1.3, 1.9, .08), M['plan3'])
 # librería y vitrina con trofeos
 for sd in (-1,):
     OA.box((OX - 7.3, 2.0, -3), (.7, 4.0, 5), M['darkwood'])
@@ -151,6 +183,12 @@ for k in range(3): OA.cyl((OX + 6.8, 1.1 + k * .6, -3 + k * 1.0), (OX + 6.8, 1.4
 for sx in (-1, 1): OA.box((OX + sx * 1.6, .35, 1.4), (1.2, .7, 1.1), M['navy']); OA.box((OX + sx * 1.6, .85, 1.85), (1.2, .9, .14), M['navy'])
 OA.cyl((OX - 5.4, 0, 3), (OX - 5.4, 2.6, 3), .05, M['gold'], 6); OA.cyl((OX - 5.4, 2.4, 3), (OX - 5.4, 2.9, 3), .5, M['cream'], 12)
 doorway(OA, OX + 7.45, 4.5, -math.pi / 2, 2.4, 3.4)
+for sd in (-1, 1):                                                   # cortinas pesadas con cenefa dorada
+    OA.box((OX + sd * 5.9, 2.2, -7.7), (1.4, 4.2, .3), M['redd']); OA.box((OX + sd * 5.9, 4.2, -7.62), (1.7, .5, .36), M['gold'])
+    for k in range(5): OA.box((OX + sd * 5.9 - .55 + k * .28, 2.1, -7.5), (.1, 4.0, .16), M['burg'])
+for x in (-3.4, 3.4): sconce(OA, OX + x, 3.2, -7.72)
+OA.cyl((OX + 2.3, .88, -3.2), (OX + 2.3, 1.05, -3.2), .26, M['darkwood'], 10); OA.sph((OX + 2.3, 1.38, -3.2), .34, M['blue'], seg=12, rings=8); OA.torus((OX + 2.3, 1.38, -3.2), .4, .03, M['gold'], 16, 'X')
+chips(OA, OX - 1.3, .9, -3.0, 5, 'red', .12); chips(OA, OX - 1.0, .9, -2.9, 4, 'gold', .12)
 plant(OA, OX + 6.2, 7.6, .9)
 OA.finish(origin=(OX, 0, 0))
 
@@ -159,9 +197,9 @@ GX = 2000.
 GF = Obj('glass_floor'); GF.box((GX, -.15, 4), (32, .3, 46), M['carpet']); GF.finish(origin=(GX, 0, 0))
 GA = Obj('glass')
 # techo, laterales y cristal al fondo: bastidor de hierro y vigas; fuera, ciudad de día
-GA.box((GX, 5.5, 4), (32, .4, 46), M['burgdd'])
-for sd in (-1, 1): GA.box((GX + sd * 15.8, 2.7, 4), (.6, 5.4, 46), M['burgd']); GA.box((GX + sd * 15.4, .14, 4), (.12, .28, 46), M['gold'])
-GA.box((GX, 2.7, 27.3), (32, 5.4, .6), M['burgd'])
+GA.box((GX, 5.5, 4), (32, .4, 46), M['ceilingp'])
+for sd in (-1, 1): GA.box((GX + sd * 15.8, 2.7, 4), (.6, 5.4, 46), M['wallpaper']); GA.box((GX + sd * 15.4, .14, 4), (.12, .28, 46), M['gold'])
+GA.box((GX, 2.7, 27.3), (32, 5.4, .6), M['wallpaper'])
 GA.box((GX, .12, -18.8), (32, .24, .5), M['gold']); GA.box((GX, 5.35, -18.8), (32, .5, .5), M['iron'])
 for k in range(11): GA.box((GX - 15 + k * 3, 2.7, -18.8), (.22, 5.4, .3), M['iron'])
 for r in (1.8, 3.6): GA.box((GX, r, -18.8), (32, .18, .3), M['iron'])
@@ -171,7 +209,10 @@ for z in (-6, 6, 18): chandelier(GA, GX, 4.5, z, .9)
 for sd in (-1, 1): island(GA, GX + sd * 5.8, -13, 11, ['burg', 'navy', 'green', 'red'])
 for z in (-12, 0, 12, 24):
     for sd in (-1, 1): column(GA, GX + sd * 9.4, z)
-GA.box((GX, .02, 6), (4.2, .04, 46), M['burg'])
+for sd in (-1, 1): canopy(GA, GX + sd * 5.8, -13, 1.5)
+for sd in (-1, 1): plant(GA, GX + sd * 8.0, -16.6, 1.2); plant(GA, GX + sd * 11.5, -16.4, 1.0)
+for sd in (-1, 1): GA.box((GX + sd * 4.4, .3, -15.4), (1.6, .6, 1.0), M['wood'])
+GA.box((GX, .018, 4), (5.4, .04, 46), M['gold']); GA.box((GX, .024, 4), (5.0, .04, 46), M['runner'])
 GA.finish(origin=(GX, 0, 0))
 
 # ================================================= LABERINTO (x = 3000): pasillos cortos y estrechos, techo bajo =================================================
@@ -191,7 +232,7 @@ carve(N // 2, N - 1)
 for _ in range(10):
     cx, cz = mrnd.randrange(1, N - 1), mrnd.randrange(1, N - 1); dx, dz = mrnd.choice([(1, 0), (0, 1)]); openE.add((cx, cz, cx + dx, cz + dz)); openE.add((cx + dx, cz + dz, cx, cz))
 x0, z0 = MX - N * CELL / 2, -N * CELL / 2
-def wallbox(o, x, z, sx, sz): o.box((x, WH / 2, z), (sx, WH, sz), M['burgd']); o.box((x, WH + .06, z), (sx + .08, .14, sz + .08), M['gold']); o.box((x, .14, z), (sx + .06, .28, sz + .06), M['gold'])
+def wallbox(o, x, z, sx, sz): o.box((x, WH / 2, z), (sx, WH, sz), M['wallpaper']); o.box((x, WH + .06, z), (sx + .08, .14, sz + .08), M['gold']); o.box((x, .14, z), (sx + .06, .28, sz + .06), M['gold'])
 for cz in range(N + 1):
     for cx in range(N):
         edge = cz in (0, N)
@@ -217,18 +258,16 @@ CO = Obj('corr')
 for sd in (-1, 1):
     for k in range(8):
         z0 = -20 + k * 5.5
-        CO.box((CX + sd * 1.45, WH / 2, z0 + 1.6), (.5, WH, 3.2), M['burgd']); CO.box((CX + sd * 1.45, WH + .06, z0 + 1.6), (.58, .14, 3.28), M['gold']); CO.box((CX + sd * 1.45, .14, z0 + 1.6), (.56, .28, 3.26), M['gold'])
+        CO.box((CX + sd * 1.45, WH / 2, z0 + 1.6), (.5, WH, 3.2), M['wallpaper']); CO.box((CX + sd * 1.45, WH + .06, z0 + 1.6), (.58, .14, 3.28), M['gold']); CO.box((CX + sd * 1.45, .14, z0 + 1.6), (.56, .28, 3.26), M['gold'])
         if k % 2 == (0 if sd < 0 else 1): slot(CO, CX + sd * 1.45 - sd * .5, z0 + 4.1, -sd * math.pi / 2, ['burg', 'navy', 'green', 'red', 'purple'][(k + sd) % 5])
-        else: CO.box((CX + sd * 1.45, WH / 2, z0 + 4.1), (.5, WH, 2.3), M['burgd']); CO.box((CX + sd * 1.45, WH + .06, z0 + 4.1), (.58, .14, 2.38), M['gold'])
+        else: CO.box((CX + sd * 1.45, WH / 2, z0 + 4.1), (.5, WH, 2.3), M['wallpaper']); CO.box((CX + sd * 1.45, WH + .06, z0 + 4.1), (.58, .14, 2.38), M['gold'])
 CO.box((CX, WH + .5, 0), (4.4, .5, 44), M['burgdd'])
 for k in range(10): lamp_bar(CO, CX, WH + .22, -19 + k * 4.2, 1.6, .06, .5)
 CO.finish(origin=(MX, 0, 0))
 
 # ================================================= LABORATORIO (x = 4000) =================================================
 LX = 4000.
-LF = Obj('lab_floor'); LF.box((LX, -.15, 0), (16, .3, 16), M['tile'])
-for k in range(8):
-    LF.box((LX, .005, -7 + k * 2), (16, .02, .05), M['tiled']); LF.box((LX - 7 + k * 2, .005, 0), (.05, .02, 16), M['tiled'])
+LF = Obj('lab_floor'); LF.box((LX, -.15, 0), (16, .3, 16), M['tilep'])
 LF.finish(origin=(LX, 0, 0))
 LA = Obj('lab')
 LA.box((LX, 2.2, -7.9), (16, 4.4, .5), M['mint']); LA.box((LX, .1, -7.62), (16, .2, .1), M['teal'])
@@ -249,6 +288,8 @@ LA.box((LX + 7.0, 1.0, -2), (.9, 2.0, 5), M['white']); [LA.cyl((LX + 6.9, 1.2 + 
 LA.box((LX, .3, 2.5), (1.1, .5, 1.1), M['navy']); LA.box((LX, .85, 2.9), (1.1, 1.2, .2), M['navy']); LA.box((LX, 1.6, 3.0), (.55, .3, .2), M['steel'])
 for sd in (-1, 1): LA.box((LX + sd * .6, .6, 2.5), (.14, .14, .9), M['steel'])
 plant(LA, LX + 6.4, 6.4, .8)
+LA.box((LX - 7.6, 1.2, 2), (.7, 2.4, 3), M['white']); LA.box((LX - 7.2, 2.2, 2), (.1, 1.0, 2.6), M['glass']); LA.box((LX - 7.2, .8, 2), (.1, 1.0, 2.6), M['teal'])
+for k, c in enumerate(['red', 'blue', 'green']): LA.cyl((LX - 7.2 + .1, 2.5, 1.0 + k * 1.0), (LX - 7.2 + .1, 2.8, 1.0 + k * 1.0), .12, M[c], 8)
 LA.finish(origin=(LX, 0, 0))
 
 # ================================================= OBJETOS SUELTOS (se clonan en three.js) =================================================
@@ -267,6 +308,8 @@ PL = Obj('plastic'); PL.box((0, 0, 0), (1, 1, .06), M['plastic'])
 for k in range(10): PL.box((-.45 + k * .1, 0, .05), (.012, 1, .04), M['black'])
 PL.finish(origin=(0, -.5, 0))
 # electrodos / gorro de la prueba se hacen en 2D; aquí queda una tragaperras de laboratorio con cable
+for k in (1, 2, 3): framed_obj('art%d' % k, 'art%d' % k, 2.3 if k != 2 else 1.7, 1.7 if k != 2 else 2.3)
+for k, c in zip((1, 2, 3, 4), ('pink', 'cyan', 'yellow', 'orange')): sign_obj('icon%d' % k, 'icon%d' % k, c)
 lay = dict(sites=dict(hall=[HX, 0], office=[OX, 0], glass=[GX, 0], maze=[MX, 0], lab=[LX, 0]), clock=dict(x=0, y=3.4, z=-17.85), maze=dict(n=N, cell=CELL, x0=x0, z0=z0, wall=WH), glassz=-18.7)
 json.dump(lay, open(os.path.join(OUT, 'layout.json'), 'w'))
 kw = dict(filepath=os.path.join(OUT, 'casino.glb'), export_format='GLB', export_apply=True)
