@@ -129,7 +129,7 @@ HR = banana('banana_big', 1.4, .17); HR.finish()
 WP = Obj('wallpiece')                                               # la obra: plátano pegado a la pared (origen = pared, z=0); la cinta es el objeto `tape`
 grp(WP, lambda q: banana('w', 1.45, .18, 1.0, o=q), TR(0, -.1, .19)); WP.finish()
 def cert_obj():
-    o = Obj('cert'); o.box((0, 0, 0), (1.0, 1.4, .03), M['cert']); o.box((0, 0, .02), (1.04, 1.44, .02), M['gold']); o.cyl((.28, -.5, .03), (.28, -.5, .05), .13, M['wax'], 10)
+    o = Obj('cert'); o.box((0, 0, 0), (1.0, 1.4, .03), M['cert']); o.box((0, 0, -.025), (1.06, 1.46, .02), M['gold']); o.cyl((.28, -.5, .03), (.28, -.5, .05), .13, M['wax'], 10)
     o.box((.2, -.62, .03), (.08, .3, .012), M['red'], 0., 0., .2); o.box((.36, -.62, .03), (.08, .3, .012), M['red'], 0., 0., -.2); return o
 CE = cert_obj(); CE.finish()
 def peeled(name='peeled'):
@@ -193,6 +193,11 @@ GA.box((0, .12, -17.95), (24, .24, .12), M['walld'])
 for sd in (-1, 1):
     GA.box((sd * 11.9, 4.6, -2), (.6, 9.2, 62), M['white']); GA.box((sd * 11.55, .12, -2), (.12, .24, 62), M['walld'])
 GA.box((0, 9.4, -2), (24, .4, 62), M['white'])
+for sx in (-1, 1): GA.box((sx * 7.6, 4.6, 28.6), (8.8, 9.2, .6), M['wall'])
+GA.box((0, 7.4, 28.6), (6.4, 3.6, .6), M['wall']); GA.box((0, 5.5, 28.25), (6.6, .3, .2), M['iron'])
+for sx in (-1.6, 1.6): GA.box((sx, 2.8, 28.3), (3.0, 5.4, .1), M['win']); GA.box((sx, 2.8, 28.25), (3.2, 5.6, .06), M['iron'])
+for i, (nm, x) in enumerate([('paint3', -7.6), ('paint4', 7.6)]): GA.box((x, 4.4, 28.2), (4.6, 3.6, .12), M['gold']); GA.box((x, 4.4, 28.12), (4.0, 3.0, .06), M[nm])
+for x in (-4.2, 4.2): plant(GA, x, 26.6, 1.0)
 for k in range(7):                                                   # carriles de focos
     GA.box((-9 + k * 3, 9.1, -8), (.16, .12, 40), M['iron'])
 for (x, z) in [(-3.2, -12.5), (-1.1, -12.5), (1.1, -12.5), (3.2, -12.5), (0, -9.5)]: spot(GA, x, 8.8, z)
@@ -221,10 +226,16 @@ for sd in (-1, 1): AU.box((AX + sd * 17.3, 5, -2), (.6, 10, 56), M['burgd']); AU
 for k in range(13):                                                  # paneles dorados
     AU.box((AX - 15.6 + k * 2.6, 2.2, -16.96), (2.0, 3.2, .1), M['burg']); AU.box((AX - 15.6 + k * 2.6, 2.2, -16.9), (2.2, 3.4, .06), M['goldd'])
 AU.box((AX, 10.2, -2), (34, .4, 56), M['burgd'])
+AU.box((AX, 5, 25.7), (34, 10, .6), M['burgd']); AU.box((AX, 8.8, 25.3), (34, .5, .8), M['gold'])
+for k in range(13): AU.box((AX - 15.6 + k * 2.6, 2.2, 25.36), (2.0, 3.2, .1), M['burg']); AU.box((AX - 15.6 + k * 2.6, 2.2, 25.3), (2.2, 3.4, .06), M['goldd'])
+AU.box((AX, 2.6, 25.25), (4.4, 5.2, .2), M['darkwood']); AU.box((AX, 2.6, 25.1), (.08, 5.2, .1), M['gold'])
+for sx in (-1, 1): AU.cyl((AX + sx * .5, 2.6, 25.0), (AX + sx * .5, 2.6, 24.9), .12, M['gold'], 10)
+for x in (-11, -6, 6, 11): AU.box((AX + x, 5.4, 25.2), (3.2, 2.4, .1), M['gold']); AU.box((AX + x, 5.4, 25.12), (2.8, 2.0, .06), M['paint' + str(1 + (abs(x) % 4))])
 AU.box((AX, .5, -13), (18, 1., 6.4), M['wood']); AU.box((AX, 1.02, -13), (18.4, .1, 6.6), M['gold'])      # estrado
 AU.box((AX + 10.5, 4.3, -16.82), (4.2, 4.6, .1), M['white']); AU.box((AX, 6.3, -16.9), (11, 6.4, .14), M['gold']); AU.box((AX, 6.3, -16.8), (10.4, 5.8, .06), M['screen'])  # pantalla con el lote
 def lectern(o):
-    o.box((0, 1.5, 0), (2.2, 3., 1.2), M['wood']); o.box((0, 3.05, .1), (2.5, .16, 1.5), M['gold']); o.box((0, 1.6, .62), (1.7, 1.9, .06), M['burg']); o.cyl((0, 1.9, .66), (0, 1.9, .7), .5, M['gold'], 14)
+    o.box((0, .62, 0), (1.4, 1.25, .8), M['wood']); o.box((0, 1.29, .06), (1.6, .1, 1.0), M['gold']); o.box((0, .66, .42), (1.1, .9, .04), M['burg']); o.cyl((0, .78, .43), (0, .78, .47), .26, M['gold'], 14)
+    o.box((0, 1.36, -.1), (.5, .04, .36), M['paper'], 0., -.3)
 grp(AU, lectern, TR(AX - 4.5, .95, -13))
 for sd in (-1, 1):                                                   # cortinas
     AU.box((AX + sd * 14.8, 5., -16.4), (3.4, 9.6, .7), M['redd']); AU.cyl((AX + sd * 13.2, 3., -16.0), (AX + sd * 13.2, 3.2, -16.0), .7, M['gold'], 10)
@@ -250,9 +261,11 @@ ST.box((SX, 12.2, -2), (36, .4, 60), M['black'])
 ST.box((SX, .45, -9), (24, .9, 9), M['black']); ST.box((SX, .93, -9), (24.4, .06, 9.4), M['gold'])
 for k in range(6): ST.box((SX - 13 + k * 5.2, 5.5, -16.0), (.5, 9., .3), M['lamp'])    # tiras LED
 def table(o):
-    o.box((0, 1.4, 0), (9, .16, 2.4), M['white']); o.box((0, .7, .95), (9, 1.4, .1), M['white']); o.box((0, .7, -.6), (9, 1.4, .1), M['white']); o.box((0, 1.45, .6), (9.2, .05, .06), M['gold'])
-    for x in (-3, -1.4, 0, 1.4, 3): o.cyl((x, 1.5, .1), (x, 2.0, .1), .04, M['iron'], 6); o.sph((x, 2.04, .1), .1, M['iron']); o.cyl((x - .1, 1.5, -.2), (x - .1, 1.52, -.2), .35, M['steeld'], 12)
-    o.cyl((0, 1.5, .5), (0, 1.56, .5), .55, M['white'], 14); o.cyl((0, 1.56, .5), (0, 1.58, .5), .4, M['skin'], 14)
+    o.box((0, .8, 0), (6.4, .1, 1.8), M['white']); o.box((0, .42, .86), (6.4, .78, .05), M['white']); o.box((0, .42, -.6), (6.4, .78, .05), M['white']); o.box((0, .78, .9), (6.5, .05, .05), M['gold'])
+    for k in range(9): o.box((-2.9 + k * .72, .42, .89), (.03, .7, .02), M['walld'])
+    for x in (-2.1, -1.2, 1.2, 2.1): o.cyl((x, .85, .15), (x, 1.2, .25), .025, M['iron'], 6); o.sph((x, 1.23, .26), .07, [M['iron'], M['red'], M['blue'], M['iron']][int(x * 10) % 4]); o.cyl((x - .1, .85, -.05), (x - .1, .87, -.05), .14, M['steeld'], 12)
+    o.cyl((0, .85, .4), (0, .88, .4), .42, M['white'], 18); o.cyl((0, .88, .4), (0, .89, .4), .32, M['cream'], 18)
+    for x in (-2.7, 2.7): o.cyl((x, .85, .3), (x, 1.12, .3), .06, M['bluel'], 8); o.cyl((x, 1.12, .3), (x, 1.15, .3), .04, M['white'], 8)
 grp(ST, table, TR(SX, .92, -8.5))
 def camera(o, x, z, ry):
     def f(q):
@@ -266,9 +279,10 @@ ST.finish(origin=(SX, 0, 0))
 # ---------------- CALLE DE NUEVA YORK con el puesto de fruta (x = 3000) ----------------
 NX = 3000.
 NF = Obj('stand_floor'); NF.box((NX, -.2, -2), (80, .4, 90), M['asphalt']); NF.box((NX, .02, 6), (80, .04, 8), M['asphaltd'])
-for k in range(14): NF.box((NX - 36 + k * 5.4, .05, 6), (2.6, .02, .3), M['white'])
-for sd, zz in ((-1, -22), (1, 22)): NF.box((NX, .15, zz), (80, .5, 8), M['sidewalk'])
-for k in range(8): NF.box((NX - 4 + k * .6, .06, 14), (.35, .02, 8), M['white'])
+for k in range(14): NF.box((NX - 36 + k * 5.4, .05, -3.5), (2.6, .02, .3), M['ffd' if False else 'yellow'])
+for zz in (-22, 14.5): NF.box((NX, .15, zz), (80, .5, 8), M['sidewalk'])
+for zz in (-18, 10.5): NF.box((NX, .2, zz), (80, .42, .3), M['stoned'])
+for k in range(8): NF.box((NX + 4 + k * .9, .06, -3.75), (.45, .02, 27.5), M['white'])
 NF.finish(origin=(NX, 0, 0))
 NY = Obj('stand')
 # fachada de la casa de subastas al fondo
@@ -286,20 +300,22 @@ def brown(o, w, h, col, depth=12.):
 for i, (x, col) in enumerate([(-22, 'brick'), (-13.5, 'brick2'), (13.5, 'brick3'), (22, 'brick4')]): grp(NY, lambda q, col=col: brown(q, 8, 15 + (i % 2) * 2, col), TR(NX + x, 0, -24 - (i % 2) * 2))
 # el puesto de fruta
 def stand(o):
-    o.box((0, 1.0, 0), (5, 1.1, 2.4), M['wood']); o.box((0, 1.6, 0), (5.2, .14, 2.6), M['woodd'])
-    for sx in (-2.4, 2.4): o.cyl((sx, 1.6, -1.1), (sx, 5.4, -1.1), .08, M['iron'], 6); o.cyl((sx, 1.6, 1.1), (sx, 4.5, 1.1), .08, M['iron'], 6)
+    o.box((0, .55, 0), (5, .8, 2.4), M['wood']); o.box((0, 1.0, 0), (5.2, .12, 2.6), M['woodd'])
+    for k in range(5): o.box((-2 + k, .55, 1.21), (.06, .7, .03), M['woodd'])
+    for sx in (-2.4, 2.4): o.cyl((sx, 1.0, -1.1), (sx, 5.4, -1.1), .08, M['iron'], 6); o.cyl((sx, 1.0, 1.1), (sx, 4.5, 1.1), .08, M['iron'], 6)
     for k in range(8): o.box((-2.5 + (k + .5) * .625, 4.95 - 0 * k, .1), (.62, .1, 2.9), M['awn1' if k % 2 == 0 else 'awn2'], 0., .3)
     o.box((0, 5.5, -1.2), (5.2, .5, .1), M['awn1'])
-    for k in range(4): o.box((-1.8 + k * 1.2, 1.78, .1), (1.0, .26, .9), M['woodd'])
-    for wx in (-2., 2.): o.cyl((wx, .5, 1.3), (wx, .5, 1.5), .5, M['iron'], 14)
-grp(NY, stand, TR(NX - 5, 0, 13.5, .0))
+    for k in range(4): o.box((-1.8 + k * 1.2, 1.18, .1), (1.0, .26, .9), M['woodd'])
+    for wx in (-2., 2.): o.cyl((wx, .32, 1.3), (wx, .32, 1.45), .32, M['iron'], 14)
+    o.box((2.9, .9, .3), (.6, .5, .6), M['steel']); o.box((2.9, 1.2, .3), (.8, .05, .8), M['steeld'])
+grp(NY, stand, TR(NX - 5, .4, 13.5, .0))
 def taxi(o):
     o.box((0, .9, 0), (5.2, 1.3, 2.4), M['taxi']); o.box((-.3, 1.9, 0), (2.8, .9, 2.2), M['taxi']); o.box((-.3, 1.95, 0), (2.9, .6, 2.25), M['win']); o.box((-.3, 2.5, 0), (.9, .3, .6), M['white'])
     for sx in (-1.6, 1.6):
         for sz in (-1.2, 1.2): o.cyl((sx, .5, sz), (sx, .5, sz + (.2 if sz > 0 else -.2)), .5, M['black'], 12)
-grp(NY, taxi, TR(NX + 9, 0, 4, .0))
+grp(NY, taxi, TR(NX + 17, 0, 4, .0))
 def hydrant(o): o.cyl((0, 0, 0), (0, 1.2, 0), .32, M['red'], 8); o.sph((0, 1.3, 0), .36, M['red']); o.cyl((-.5, .8, 0), (.5, .8, 0), .16, M['redd'], 6)
-grp(NY, hydrant, TR(NX + 16, .4, 20)); lampposts = [(-18, 21), (4, 21), (22, 21)]
+grp(NY, hydrant, TR(NX - 11, .4, 16.8)); lampposts = [(-18, 17.6), (3, 17.6), (22, 17.6)]
 for (x, z) in lampposts: NY.cyl((NX + x, .4, z), (NX + x, 6.5, z), .16, M['iron'], 6); NY.box((NX + x, 6.8, z), (.8, .8, .8), M['lamp']); NY.cyl((NX + x, 7.2, z), (NX + x, 7.8, z), .5, M['iron'], 6, 0.)
 NY.finish(origin=(NX, 0, 0))
 

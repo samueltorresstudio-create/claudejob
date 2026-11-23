@@ -35,7 +35,7 @@ const W2 = (() => {
 
   // ---------- materiales de tebeo ----------
   const toonG = new T.DataTexture(new Uint8Array([120, 185, 235, 255]), 4, 1, T.RedFormat); toonG.minFilter = toonG.magFilter = T.NearestFilter; toonG.needsUpdate = true;
-  const uTime = { value: 0 }, uRipe = { value: .3 }, MATS = {}, SIGN = {}, PAINTED = /^(paint\d|screen|backdrop|cert|subasta|art|frutas|brillo|tape)$/;
+  const uTime = { value: 0 }, uRipe = { value: .3 }, uGold = { value: 0 }, MATS = {}, SIGN = {}, PAINTED = /^(paint\d|screen|backdrop|cert|subasta|art|frutas|brillo|tape)$/;
   const swayMat = m => { m.onBeforeCompile = sh => { sh.uniforms.uTime = uTime; sh.vertexShader = 'uniform float uTime;\n' + sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
     float sw = smoothstep(2.5, 9., position.y); vec3 ip = vec3(0.);
     #ifdef USE_INSTANCING
@@ -43,8 +43,8 @@ const W2 = (() => {
     #endif
     transformed.x += sin(uTime*1.7 + position.z*.5 + ip.x*.31 + ip.z*.17) * .32 * sw; transformed.z += cos(uTime*1.3 + position.x*.4 + ip.z*.23) * .22 * sw;`); }; };
   const DUMMY = (() => { const t = new T.DataTexture(new Uint8Array([255, 255, 255, 255]), 1, 1); t.colorSpace = T.SRGBColorSpace; t.needsUpdate = true; return t; })();
-  const ripeMat = (m, ridge) => { m.map = DUMMY; m.onBeforeCompile = sh => { sh.uniforms.uRipe = uRipe;
-    sh.fragmentShader = 'uniform float uRipe;\nfloat hh(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }\nfloat hn(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.-2.*f); return mix(mix(hh(i),hh(i+vec2(1,0)),f.x),mix(hh(i+vec2(0,1)),hh(i+vec2(1,1)),f.x),f.y); }\n' + sh.fragmentShader.replace('#include <color_fragment>', `#include <color_fragment>
+  const ripeMat = (m, ridge) => { m.map = DUMMY; m.onBeforeCompile = sh => { sh.uniforms.uRipe = uRipe; sh.uniforms.uGold = uGold;
+    sh.fragmentShader = 'uniform float uRipe; uniform float uGold;\nfloat hh(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }\nfloat hn(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.-2.*f); return mix(mix(hh(i),hh(i+vec2(1,0)),f.x),mix(hh(i+vec2(0,1)),hh(i+vec2(1,1)),f.x),f.y); }\n' + sh.fragmentShader.replace('#include <color_fragment>', `#include <color_fragment>
       float u = vMapUv.x, v = vMapUv.y, r = uRipe;
       vec3 green=vec3(.52,.78,.16), yel=vec3(1.,.87,.18), brn=vec3(.55,.31,.09), blk=vec3(.14,.09,.05);
       vec3 c = r<.22 ? mix(green,yel,r/.22) : r<.5 ? yel : r<.78 ? mix(yel,brn,(r-.5)/.28) : mix(brn,blk,(r-.78)/.22);
@@ -60,6 +60,7 @@ const W2 = (() => {
       float bl = hn(vec2(u * 11., v * 6.) + 4.7); c = mix(c, mix(brn, blk, .55), smoothstep(.62, .82, bl) * smoothstep(.4, .85, r) * .75);   // moratones
       float bru = (1. - smoothstep(.0, .11, length(vec2((u - .62) * 2.4, fract(v - .08) - .5)))); c = mix(c, vec3(.45,.28,.1), bru * .55 * (1. - smoothstep(.6, .9, r)));
       c *= ${ridge ? '.92' : '1.12'};
+      vec3 gold = mix(vec3(1.,.78,.2), vec3(1.,.95,.6), .5 + .5 * sin(u * 30. + v * 12.)); c = mix(c, gold * 1.15, uGold);
       diffuseColor.rgb = pow(c, vec3(2.2));`).replace('#include <opaque_fragment>', `#include <opaque_fragment>
       { vec3 nn = normalize(vNormal); float sp = pow(max(dot(nn, normalize(vec3(-.35,.55,.75))), 0.), 22.); float rim = pow(1. - max(dot(nn, vec3(0.,0.,1.)), 0.), 3.);
         gl_FragColor.rgb += vec3(1.,.98,.85) * sp * .42 * (1. - smoothstep(.5,.9,uRipe)) + vec3(.12,.09,.0) * rim * .5; }`); }; };
@@ -103,7 +104,7 @@ const W2 = (() => {
         g.fillStyle = '#ffd34a'; g.beginPath(); g.arc(1500, 180, 60, 0, 7); g.fill(); for (let i = 0; i < 60; i++) { g.fillStyle = ['#ffe58a', '#ff4f7b', '#5fe0d4'][i % 3]; g.globalAlpha = .55; g.fillRect(rn() * w, base + 8 + rn() * (h - base - 10), 6 + rn() * 40, 4); } g.globalAlpha = 1; }),
       // certificado de autenticidad con instrucciones
       cert: cv(768, 1075, (g, w, h) => { g.fillStyle = '#fbf3da'; g.fillRect(0, 0, w, h); g.strokeStyle = '#e0951c'; g.lineWidth = 14; g.strokeRect(20, 20, w - 40, h - 40); g.fillStyle = '#2c3f86'; g.fillRect(70, 70, w - 140, 110);
-        g.fillStyle = '#ffd83a'; g.beginPath(); g.arc(w / 2, 125, 38, 0, 7); g.fill(); g.fillStyle = '#2a2430'; for (let i = 0; i < 12; i++) { g.fillRect(80, 230 + i * 54, i % 4 === 3 ? 330 : w - 160, 18); }
+        g.fillStyle = '#ffd83a'; g.beginPath(); g.arc(w / 2, 125, 38, 0, 7); g.fill(); g.fillStyle = '#7a7486'; for (let i = 0; i < 12; i++) { g.fillRect(80, 236 + i * 54, i % 4 === 3 ? 330 : w - 160 - (i % 3) * 40, 9); }
         g.save(); g.translate(w / 2, 900); g.rotate(-.35); g.fillStyle = '#ffd83a'; g.strokeStyle = KK; g.lineWidth = 8; g.beginPath(); g.moveTo(-90, 10); g.bezierCurveTo(-50, 60, 50, 60, 90, -20); g.bezierCurveTo(100, -40, 80, -40, 72, -28); g.bezierCurveTo(40, 22, -40, 24, -78, -20); g.closePath(); g.fill(); g.stroke(); g.restore(); }),
       // cinta americana: plateada con trama de tela, brillo diagonal, rozaduras y bordes más oscuros
       tape: cv(2048, 292, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#aab2c0'); gr.addColorStop(.1, '#cdd4df'); gr.addColorStop(.38, '#f2f5fa'); gr.addColorStop(.66, '#dde3ec'); gr.addColorStop(.92, '#b9c1cf'); gr.addColorStop(1, '#9aa3b2'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
@@ -114,7 +115,10 @@ const W2 = (() => {
         for (let i = 0; i < 70; i++) { g.fillStyle = `rgba(${rn() > .6 ? '40,46,60' : '255,255,255'},${.04 + rn() * .1})`; g.beginPath(); g.ellipse(rn() * w, rn() * h, 12 + rn() * 80, 2 + rn() * 7, rn() * 3.1, 0, 7); g.fill(); }   // rozaduras y manchas
         for (let k = 0; k < 4; k++) { const x0 = rn() * w; const sh = g.createLinearGradient(x0, 0, x0 + 260, h * .25); sh.addColorStop(0, 'rgba(255,255,255,0)'); sh.addColorStop(.5, 'rgba(255,255,255,.28)'); sh.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = sh; g.fillRect(x0, 0, 260, h); }   // reflejos
         g.fillStyle = 'rgba(70,78,98,.45)'; g.fillRect(0, 0, w, 5); g.fillRect(0, h - 5, w, 5); }),
-      subasta: cv(1792, 205, (g, w, h) => { g.fillStyle = '#2c3f86'; g.fillRect(0, 0, w, h); g.strokeStyle = '#ffd34a'; g.lineWidth = 10; g.strokeRect(14, 14, w - 28, h - 28); g.fillStyle = '#ffd34a'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = '900 120px Inter'; g.fillText('CASA DE SUBASTAS', w / 2, h / 2 + 6); }),
+      subasta: cv(1792, 205, (g, w, h) => { g.fillStyle = '#2c3f86'; g.fillRect(0, 0, w, h); g.strokeStyle = '#ffd34a'; g.lineWidth = 10; g.strokeRect(14, 14, w - 28, h - 28);
+        g.save(); g.translate(w / 2, h / 2 + 8); g.rotate(-.35); g.fillStyle = '#c98a4a'; g.strokeStyle = '#241c2c'; g.lineWidth = 8; g.fillRect(-12, -10, 24, 110); g.strokeRect(-12, -10, 24, 110); g.fillRect(-70, -50, 140, 50); g.strokeRect(-70, -50, 140, 50); g.restore();
+        g.fillStyle = '#ffd34a'; for (const sx of [-1, 1]) for (let k = 0; k < 4; k++) { g.beginPath(); g.arc(w / 2 + sx * (220 + k * 170), h / 2, 22, 0, 7); g.fill(); } }),
+
     };
     for (const k in S) if (SIGN[k]) { SIGN[k].map = S[k]; SIGN[k].needsUpdate = true; }
   }
@@ -137,7 +141,7 @@ const W2 = (() => {
   const place = (o, site, x, y, z, ry = 0, s = 1) => { const c = o.clone(true); c.position.set(x, y, z); c.rotation.y = ry; c.scale.setScalar(s); SITES[site].add(c); return c; };
   const ray = new T.Raycaster();
   function groundAt(site, x, z) { const L = GROUND[site]; if (!L) return 0; ray.set(new T.Vector3(x, 300, z), new T.Vector3(0, -1, 0)); ray.far = 700; const h = ray.intersectObjects(L, false); return h.length ? h[0].point.y : 0; }
-  const LAS = new T.Group(); let POOLL = null, POOLM = null, wall = null, wallAu = null, tapeG = null, tapeAu = null; const BEAMS = [], SPIN = [];
+  let PLATE = null; const LAS = new T.Group(); let POOLL = null, POOLM = null, wall = null, wallAu = null, tapeG = null, tapeAu = null; const BEAMS = [], SPIN = [];
   const radTex = (col, a) => new T.CanvasTexture(((c) => { c.width = c.height = 128; const g = c.getContext('2d'), gr = g.createRadialGradient(64, 64, 2, 64, 64, 64); gr.addColorStop(0, col.replace('A', a)); gr.addColorStop(.35, col.replace('A', a * .55)); gr.addColorStop(1, col.replace('A', 0)); g.fillStyle = gr; g.fillRect(0, 0, 128, 128); return c; })(document.createElement('canvas')));
   function build() {
     ['gallery', 'auction', 'stage', 'stand'].forEach(n => { inkify(G[n]); SITES[n].add(G[n]); SITES[n].add(G[n + '_floor']); });
@@ -145,8 +149,8 @@ const W2 = (() => {
     // la obra: plátano + cinta (objeto aparte, girada) pegados a la pared blanca de la galería y de la sala de subastas
     const art = (site, x, y, z, s) => { const b = place(G.wallpiece, site, x, y, z, 0, s); b.visible = true; const t = place(G.tape, site, x, y - .1 * s, z, 0, s); t.rotation.z = .5; t.visible = true; const ti = place(G.tape_ink, site, x, y - .1 * s, z, 0, s); ti.rotation.z = .5; ti.visible = true; t.userData.ink2 = ti; return [b, t]; };
     [wall, tapeG] = art('gallery', LAY.banana.x, LAY.banana.y, LAY.banana.z, 1.12); [wallAu, tapeAu] = art('auction', AXo + 10.5, 4.3, -16.7, .8);
-    const pl = place(G.banana, 'stage', SXo + .2, 2.78, -8., .3, .42); pl.visible = true; pl.rotation.z = -.15;
-    [[-1.8, 0], [-.6, 1], [.6, 2], [1.8, 3]].forEach(([dx, k]) => { for (let i = 0; i < 3; i++) { const b = place(G.banana, 'stand', NXo - 5 + dx + (i - 1) * .22, 2.03 + i * .06, 13.5 + (i - 1) * .12, .6 * i + k, .28); b.visible = true; b.rotation.z = .2 * (i - 1); } });
+    const pl = place(G.banana, 'stage', SXo + .15, .92 + .97, -8.1, .2, .26); pl.visible = true; pl.rotation.z = -.1; PLATE = pl;
+    [[-1.8, 0], [-.6, 1], [.6, 2], [1.8, 3]].forEach(([dx, k]) => { for (let i = 0; i < 3; i++) { const b = place(G.banana, 'stand', NXo - 5 + dx + (i - 1) * .22, 1.81 + i * .06, 13.5 + (i - 1) * .12, .6 * i + k, .28); b.visible = true; b.rotation.z = .2 * (i - 1); } });
     // ---------- sistema de láseres de seguridad: emisores en las paredes, haces con brillo que barren la obra, puntos de impacto, cámaras y baliza ----------
     const coreM = new T.MeshBasicMaterial({ color: '#ffe3e6', fog: false }), glowM = new T.MeshBasicMaterial({ color: '#ff1f38', transparent: true, opacity: .42, depthWrite: false, blending: T.AdditiveBlending, fog: false });
     const glow2M = new T.MeshBasicMaterial({ color: '#ff3a50', transparent: true, opacity: .16, depthWrite: false, blending: T.AdditiveBlending, fog: false });
@@ -179,6 +183,9 @@ const W2 = (() => {
   }
   function site(n) { Object.keys(SITES).forEach(k => SITES[k].visible = k === n); sky.visible = n === 'stand'; }
   const ripe = v => { uRipe.value = v; };
+  const gold = v => { uGold.value = v; };
+  const DOTS = [];
+  const dots = k => { if (!DOTS.length) for (let i = 0; i < 2; i++) { const g = new T.Group(), d = new T.Mesh(new T.CylinderGeometry(.16, .16, .03, 24).rotateX(Math.PI / 2), toon({ name: 'reddot', color: new T.Color('#e3243a') })); g.add(d); inkify(g); g.position.set(LAY.banana.x + 1.25 + i * .45, LAY.banana.y - .75, LAY.banana.z + .03); SITES.gallery.add(g); DOTS.push(g); } DOTS.forEach((g, i) => { const s = clamp((k - i) * 1.0, 0, 1); g.visible = s > 0; g.scale.setScalar(s > 0 ? eBack(Math.min(1, s * 1.6)) : 1); }); };
   const lasers = on => { LAS.visible = !!on; if (POOLL) POOLL.intensity = on ? 14 : 0; };
   const poolOn = v => { if (POOLM) POOLM.opacity = v; };
 
@@ -209,5 +216,5 @@ const W2 = (() => {
   function render() { comp.render(); }
   function setTime(t) { skyU.time.value = t; uTime.value = t; TICK.forEach(f => f(t)); }
   const ground = (x, z, siteName) => 0;
-  return { T, scene, camera, R, comp, setCam, proj, render, setTime, setMood, site, ground, SUN, G, SITES, READY_W, sky, dof, bloom, inkify, toon, place, TICK, ripe, lasers, poolOn, get wallP() { return wall; }, get tapeP() { return tapeG; }, get mood() { return MOOD; }, AX: AXo, SX: SXo, NX: NXo };
+  return { T, scene, camera, R, comp, setCam, proj, render, setTime, setMood, site, ground, SUN, G, SITES, READY_W, sky, dof, bloom, inkify, toon, place, TICK, ripe, gold, dots, lasers, poolOn, get plate() { return PLATE; }, get wallP() { return wall; }, get tapeP() { return tapeG; }, get mood() { return MOOD; }, AX: AXo, SX: SXo, NX: NXo };
 })();
