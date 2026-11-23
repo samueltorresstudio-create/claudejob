@@ -13,10 +13,11 @@ function smoothPath(P) { const n = P.length; let d = `M${P[0][0].toFixed(1)},${P
 const hsh = (a, b) => { const x = Math.sin(a * 127.1 + b * 311.7) * 43758.5453; return x - Math.floor(x); };
 // ===== 77: rasgos faciales nuevos (más forma de cabeza, orejas, nariz, mejillas SIN rubor rosa, más expresiones) =====
 const FSK = '#f4f6fb';
-function headPath77(chin) { const top = 'M-100,0 A100,100 0 0 1 100,0 ';
+const FO = () => window.FACEOPT77 || { chin: 1, ears: 1, nose: 1, cheeks: 1, extras: 1, shine: 1 };   // interruptores de los rasgos nuevos (clásico = todo a 0)
+function headPath77(chin) { if (!FO().chin) chin = 'round'; const top = 'M-100,0 A100,100 0 0 1 100,0 ';
   const B = { round: 'A100,100 0 0 1 -100,0Z', square: 'C100,48 92,92 52,100 L-52,100 C-92,92 -100,48 -100,0Z', point: 'C100,46 62,96 0,114 C-62,96 -100,46 -100,0Z', wide: 'C108,50 82,98 0,102 C-82,98 -108,50 -100,0Z', long: 'C100,72 70,120 0,128 C-70,120 -100,72 -100,0Z', soft: 'C100,56 82,96 42,106 Q0,116 -42,106 C-82,96 -100,56 -100,0Z' };
   return top + (B[chin] || B.round); }
-function ears77(d) { if (d.ears === 0) return ''; const k = d.ears || 1, TN = d.turn || 0; let s = '';
+function ears77(d) { if (d.ears === 0 || !FO().ears) return ''; const k = d.ears || 1, TN = d.turn || 0; let s = '';
   [-1, 1].forEach(sd => { if (sd * TN < -.38) return; const x = sd * (99 + (k - 1) * 6) + TN * 6;
     s += `<g transform="translate(${x.toFixed(1)},6) scale(${k.toFixed(2)})"><ellipse cx="0" cy="0" rx="14" ry="22" fill="${FSK}" stroke="${INKC}" stroke-width="7"/><path d="M${-sd * 2},-10 Q${sd * 7},-2 ${-sd * 2},12" stroke="${INKC}" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".5"/></g>`; });
   return s; }
@@ -43,8 +44,8 @@ function mouth77(d, mx, my) { const K = INKC; switch (d.mouth) {
   case 'worry': return `<path d="M${mx - 18},${my + 8} Q${mx - 9},${my - 4} ${mx},${my + 6} Q${mx + 9},${my - 4} ${mx + 18},${my + 8}" stroke="${K}" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
   default: return ''; } }
 function faceExtras77(d, TN, E, mx, my, lx, ly, by) { let s = ''; const K = INKC, nx = TN * 30 + lx * .1;
-  if (d.cheeks !== false) [-1, 1].forEach(sd => { s += `<path d="M${(sd * 64 + TN * 26).toFixed(1)},16 Q${(sd * 52 + TN * 26).toFixed(1)},38 ${(sd * 26 + TN * 26).toFixed(1)},40 Q${(sd * 42 + TN * 26).toFixed(1)},28 ${(sd * 64 + TN * 26).toFixed(1)},16Z" fill="#8f98bb" opacity=".15"/>`; });   // volumen de mejilla en gris azulado, nunca rosa
-  if (d.nose !== false) { const st = d.noseStyle || 'button', N = {
+  if (d.cheeks !== false && FO().cheeks) [-1, 1].forEach(sd => { s += `<path d="M${(sd * 64 + TN * 26).toFixed(1)},16 Q${(sd * 52 + TN * 26).toFixed(1)},38 ${(sd * 26 + TN * 26).toFixed(1)},40 Q${(sd * 42 + TN * 26).toFixed(1)},28 ${(sd * 64 + TN * 26).toFixed(1)},16Z" fill="#8f98bb" opacity=".15"/>`; });   // volumen de mejilla en gris azulado, nunca rosa
+  if (d.nose !== false && FO().nose) { const st = d.noseStyle || 'button', N = {
     button: `<path d="M-7,26 Q0,33 8,26" stroke="${K}" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="-2" cy="16" r="3" fill="#fff" opacity=".75"/>`,
     long: `<path d="M3,-2 Q-6,18 -3,28 Q4,34 13,27" stroke="${K}" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-1" cy="12" r="3" fill="#fff" opacity=".7"/>`,
     round: `<path d="M-9,23 Q-11,32 1,32 Q13,32 10,23" stroke="${K}" stroke-width="4.5" fill="#eceef6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-1" cy="20" r="3" fill="#fff" opacity=".9"/><path d="M-4,29 q2,2 4,0 M3,29 q2,2 4,0" stroke="${K}" stroke-width="2.6" fill="none" opacity=".55"/>`,
@@ -52,12 +53,12 @@ function faceExtras77(d, TN, E, mx, my, lx, ly, by) { let s = ''; const K = INKC
     pointy: `<path d="M0,-2 L10,28 L-10,28Z" fill="#eceef6" stroke="${K}" stroke-width="4.5" stroke-linejoin="round"/>`,
     small: `<path d="M-4,26 Q0,30 5,26" stroke="${K}" stroke-width="4.5" fill="none" stroke-linecap="round"/>` };
     s += `<g transform="translate(${nx.toFixed(1)},0)">${N[st] || N.button}</g>`; }
-  if (d.bags) E.forEach(([ex, ey]) => { s += `<path d="M${ex - 15},${ey + 20} Q${ex},${ey + 29} ${ex + 15},${ey + 20}" stroke="${K}" stroke-width="3.6" fill="none" stroke-linecap="round" opacity=".55"/>`; });
-  if (d.lashes) E.forEach(([ex, ey], i) => { const sd = i ? 1 : -1; s += `<path d="M${ex + sd * 17},${ey - 2} l${sd * 10},-7 M${ex + sd * 14},${ey - 8} l${sd * 8},-9 M${ex + sd * 17},${ey + 4} l${sd * 10},-1" stroke="${K}" stroke-width="4.5" stroke-linecap="round"/>`; });
-  if (d.bushy) E.forEach(([ex], i) => { for (let k = 0; k < 4; k++) s += `<path d="M${ex - 12 + k * 8},${by - 6 + Math.abs(k - 1.5)} l${(k - 1.5) * 1.2},-6" stroke="${K}" stroke-width="3" stroke-linecap="round"/>`; });
-  if (d.freckles) for (let k = 0; k < 11; k++) s += `<circle cx="${(nx + (hsh(k, 2) - .5) * 70).toFixed(1)}" cy="${(14 + hsh(k, 5) * 18).toFixed(1)}" r="2.2" fill="#b07a58" opacity=".65"/>`;
-  if (d.stubble) for (let k = 0; k < 90; k++) { const a = .35 + hsh(k, 7) * 2.45, r = 50 + hsh(k, 9) * 44, x = Math.cos(a) * r * 1.02, y = 8 + Math.sin(a) * r; if (Math.abs(x - mx) < 30 && y > 28 && y < 58) continue; s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.9" fill="${d.stubble}" opacity=".55"/>`; }
-  if (d.mole) s += `<circle cx="${d.mole[0] + TN * 20}" cy="${d.mole[1]}" r="4.5" fill="${K}"/>`;
+  if (d.bags && FO().extras) E.forEach(([ex, ey]) => { s += `<path d="M${ex - 15},${ey + 20} Q${ex},${ey + 29} ${ex + 15},${ey + 20}" stroke="${K}" stroke-width="3.6" fill="none" stroke-linecap="round" opacity=".55"/>`; });
+  if (d.lashes && FO().extras) E.forEach(([ex, ey], i) => { const sd = i ? 1 : -1; s += `<path d="M${ex + sd * 17},${ey - 2} l${sd * 10},-7 M${ex + sd * 14},${ey - 8} l${sd * 8},-9 M${ex + sd * 17},${ey + 4} l${sd * 10},-1" stroke="${K}" stroke-width="4.5" stroke-linecap="round"/>`; });
+  if (d.bushy && FO().extras) E.forEach(([ex], i) => { for (let k = 0; k < 4; k++) s += `<path d="M${ex - 12 + k * 8},${by - 6 + Math.abs(k - 1.5)} l${(k - 1.5) * 1.2},-6" stroke="${K}" stroke-width="3" stroke-linecap="round"/>`; });
+  if (d.freckles && FO().extras) for (let k = 0; k < 11; k++) s += `<circle cx="${(nx + (hsh(k, 2) - .5) * 70).toFixed(1)}" cy="${(14 + hsh(k, 5) * 18).toFixed(1)}" r="2.2" fill="#b07a58" opacity=".65"/>`;
+  if (d.stubble && FO().extras) for (let k = 0; k < 90; k++) { const a = .35 + hsh(k, 7) * 2.45, r = 50 + hsh(k, 9) * 44, x = Math.cos(a) * r * 1.02, y = 8 + Math.sin(a) * r; if (Math.abs(x - mx) < 30 && y > 28 && y < 58) continue; s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.9" fill="${d.stubble}" opacity=".55"/>`; }
+  if (d.mole && FO().extras) s += `<circle cx="${d.mole[0] + TN * 20}" cy="${d.mole[1]}" r="4.5" fill="${K}"/>`;
   s += mouth77(d, mx, my); return s; }
 
 function stick(o) {
@@ -460,7 +461,7 @@ function stick(o) {
     else if (d.face === 'dizzy') h += `<path d="M${ex},${ey} m-15,0 a15,15 0 1,1 30,0 a11,11 0 1,1 -22,0 a7,7 0 1,1 14,0 a3,3 0 1,1 -6,0" stroke="${INKC}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
     else if (d.face === 'smug' || d.face === 'angry' || d.face === 'sad') { const tl = d.face === 'angry' ? s2 * 4 : d.face === 'sad' ? -s2 * 6 : -2;
       h += `<path d="M${px - 15},${py - 3 - tl} L${px + 15},${py - 3 + tl} A15 14 0 0 1 ${px - 15},${py - 3 - tl}Z" fill="${INKC}"/><path d="M${px - 19},${py - 4 - tl * 1.2} L${px + 19},${py - 4 + tl * 1.2}" stroke="${INKC}" stroke-width="6" stroke-linecap="round"/>`; }
-    else if (d.face === 'open') h += `<ellipse cx="${px}" cy="${py}" rx="10" ry="13" fill="${INKC}"/><circle cx="${px - 3}" cy="${py - 4.5}" r="3.4" fill="#fff"/>`;
+    else if (d.face === 'open') h += `<ellipse cx="${px}" cy="${py}" rx="10" ry="13" fill="${INKC}"/>${FO().shine ? `<circle cx="${px - 3}" cy="${py - 4.5}" r="3.4" fill="#fff"/>` : ''}`;
     else if (d.face === 'wide') h += `<circle cx="${ex}" cy="${ey}" r="19" fill="#fff" stroke="${INKC}" stroke-width="6"/><circle cx="${ex + lx * .5}" cy="${ey + ly * .5}" r="5.5" fill="${INKC}"/>`;
     else if (d.face === 'closed') h += `<path d="M${ex - 15},${ey} Q${ex},${ey + 10} ${ex + 15},${ey}" stroke="${INKC}" stroke-width="7" fill="none" stroke-linecap="round"/>`;
     else if (d.face === 'happy') h += `<path d="M${ex - 15},${ey + 6} Q${ex},${ey - 11} ${ex + 15},${ey + 6}" stroke="${INKC}" stroke-width="7" fill="none" stroke-linecap="round"/>`; });
