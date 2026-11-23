@@ -12,7 +12,7 @@ Este documento resume TODO lo hablado y hecho con el usuario en la sesión larga
 - Metricool conectado (blogId 7875099, Europe/Madrid).
   - Mejores horas en TikTok: 10:00 y 18:00 entre semana.
   - Las series pierden apoyo en cada parte: Apagón 2 tuvo 49 mil; Apagón 3, 827 «me gusta» en 9 h.
-- **Voz:** el usuario genera el MP3 en ElevenLabs. **Tras el 76 dijo que la voz clonada en local era «muy robótica»: ver `voz_local.md` (frases largas, una referencia, más temperatura, 3 tomas, sin atempo, muestra antes de hacer el vídeo).**
+- **Voz:** el usuario genera el MP3 en ElevenLabs. **Tras el 76 dijo que la voz clonada en local era «muy robótica»: ver `voz_local.md` (frases largas, una referencia, más temperatura, 3 tomas, sin atempo, muestra antes de hacer el vídeo).** **23-11-2026: eligió la toma «alegre» generada en bloques largos sin trocear → voz por defecto de los próximos vídeos (método al principio de `voz_local.md`).**
   - Historias de miedo/suspense: Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural».
   - **Curiosidades nuevas: quiere OTRA voz más alegre y rápida**, y la elegirá él. Haz los vídeos **sin voz** hasta que la mande.
   - No clonar la voz de Edoardo. Nada de susurros.

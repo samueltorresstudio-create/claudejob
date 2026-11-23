@@ -1,5 +1,15 @@
 # Voz clonada en local (VoiceStudio / OmniVoice) — desde el vídeo 75
 
+> **MÉTODO POR DEFECTO desde el 23-11-2026 (elegido por el usuario: «usa la alegre en los próximos vídeos»)**
+> - Referencia **`alegre`** (`refs/alegre.wav`, preso feliz del 70) para TODO el vídeo; nada de cambiar de tono por trozos.
+> - **Sin trocear**: bloques de ~6 frases (≈15 s) de un tirón con `gen2.py` (`proyectos/voz_mejorada/`): `speed=1.05`, `num_step=64`,
+>   `class_temperature=.3`. Las pausas las pone el modelo; no se insertan ni se recortan, y nada de `atempo`.
+> - Unir los bloques con 0,25–0,35 s (o 0,45 si el siguiente empieza con un golpe) y comprobar cada bloque con `score.py`
+>   (Whisper: 0 palabras mal; escuchar arranque y final por si mete restos de la referencia o repite palabras). 2 tomas por bloque.
+> - Números en letra en el texto que se genera. La sincronía se saca como con un MP3 de ElevenLabs: `sync_voice.py` sobre el MP3 entero
+>   (+ `LINE_STARTS` a mano si alguna línea sale dudosa) y luego `wsync.py`/`fixwords.js` para las palabras.
+> - Ritmo: ~16 s para 6 líneas cortas → guion de ~180–190 palabras para 62–65 s.
+
 El usuario narra con **su propia voz** («Stickmans» en ElevenLabs). Desde el 75 la generamos aquí, sin ElevenLabs, con el motor de
 VoiceStudio (debpalash/VoiceStudio → modelo `k2-fsa/OmniVoice`, paquete `omnivoice` de PyPI). Solo clonar SU voz (sus MP3), nunca la de otra persona.
 
