@@ -1,0 +1,47 @@
+77 · EL AVIÓN SIN MOTORES QUE ATERRIZÓ EN UN CIRCUITO DE CARRERAS (Air Canada 143, «el planeador de Gimli», 23-7-1983) — PROPUESTA 23-11-2026
+Historia REAL, verificada en la web el 23-11-2026 (fuentes: Wikipedia, CBC, AOPA, Legion Magazine). Sustituye a la propuesta del pueblo de cartón (descartada: «puedes hacerlo mucho mejor»).
+Por qué: tensión desde el segundo 1 · DOS preguntas abiertas (¿por qué se apagaron? ¿dónde aterrizan?) · cuenta atrás de altura · «cuatro casualidades» · final sin muertos · nada político.
+
+DATOS COMPROBADOS
+- 23-7-1983, Boeing 767 de Air Canada (vuelo 143, Montreal → Edmonton). Se queda sin combustible a unos 41.000 pies (≈12.500 m): 61 pasajeros, 69 personas a bordo contando tripulación.
+- Causa: confusión libras/kilos al repostar (llevaba aproximadamente la mitad del combustible necesario) + el medidor de combustible estaba averiado.
+- Capitán Robert Pearson: piloto de planeadores. Primer oficial Maurice Quintal: había servido en la antigua base aérea de Gimli (cerrada). Winnipeg quedaba fuera de alcance → viran a Gimli.
+- Sin motores, la turbina de emergencia (RAT) da la presión hidráulica justa para mover los mandos.
+- La base se había convertido en circuito de carreras; ese sábado, «Family Day» del Winnipeg Sports Car Club: coches, karts y familias acampando junto al asfalto.
+- El tren de morro no se bloqueó: el morro rozó la valla de las carreras, que ayudó a frenar. Un pequeño fuego lo apagaron con extintores gente del evento. Sin muertos; heridos leves (sobre todo al bajar por el tobogán trasero). El avión se reparó y volvió a volar.
+- NO verificado (no decirlo): niños en bicicleta; duración exacta del planeo; «ladeo» (deslizamiento lateral) exacto → decir «una maniobra de planeador» (comprobar en la web antes del guion final).
+
+GANCHO (0–4 s): zumbido de turbinas… y de golpe SILENCIO TOTAL (se corta el sonido). Exterior: el 767 sobre un mar de nubes, sin ruido. Subtítulo: «SIN MOTORES». Voz: «A doce mil metros de altura, los dos motores de un avión se apagaron. Sesenta y nueve personas dentro.»
+(alternativa: «Un avión sin motores aterrizó en un circuito de carreras… lleno de familias.»)
+
+GUION (≈185 palabras, voz «alegre», números en letra):
+A doce mil metros de altura, los dos motores de un avión se apagaron. Sesenta y nueve personas dentro.
+Y el piloto no tenía ni idea de por qué.
+Sin motores, un avión no cae como una piedra. Planea. Pero la pista más cercana, la de Winnipeg, estaba demasiado lejos.
+Primera casualidad: el capitán era piloto de planeadores.
+Segunda: el copiloto había servido en una base militar abandonada, ahí cerca. Una pista que ya nadie usaba.
+Bajaban demasiado deprisa. Así que el capitán hizo una maniobra de planeador: ladeó el avión a propósito para perder altura sin ganar velocidad.
+Cuando vio la pista, lo entendió: ya no era una base. Era un circuito de carreras. Y ese día era el día de las familias.
+Coches, karts, gente acampando junto al asfalto. Y un avión entero bajando hacia ellos, sin hacer ruido.
+Tocó. El tren delantero se dobló y el morro rozó la valla. Chispas. Y se paró.
+Un pequeño incendio. Lo apagaron unos corredores… con extintores.
+Nadie murió.
+¿Y por qué se habían apagado los motores? Horas antes, en tierra, habían pesado el combustible en libras en lugar de kilos. El avión salió con la mitad.
+Un error de una palabra. Cuatro casualidades. Y sesenta y nueve personas.
+
+ESTRUCTURA (≈64 s)
+0–4    Gancho: ruido → silencio. Cámara pegada al fuselaje y pull-out.
+4–8    Cabina: pilotos con caras detalladas (sudor, cejas, gafas de sol), alarmas mudas, luces rojas.
+8–16   Cuenta atrás: altímetro de agujas bajando; mapa sin texto con una línea de planeo corta y Winnipeg lejos.
+16–24  Casualidad 1 y 2 (icono: una estrella cada una en una esquina; se llena hasta cuatro). El copiloto reconoce la base abandonada.
+24–32  Descenso: se ladea el avión; cámara dentro de la cabina bamboleándose; pasajeros agarrados.
+32–40  El giro del circuito: de pista militar a circuito con coches de colores, karts y tiendas.
+40–50  Aterrizaje: chispas, valla, humo, extintores. Casualidad 3 (la valla) y 4 (los extintores).
+50–56  «Nadie murió»: respiro, abrazos.
+56–62  REBOBINADO: la cinta vuelve atrás al camión de combustible: dos cubos, uno enorme (kilos) y uno pequeño (libras). Sin texto.
+62–64  Última frase y corte a negro. Bucle con el primer silencio.
+
+RETENCIÓN: 2 preguntas abiertas (¿por qué?, ¿dónde?) · cuenta atrás de altura · medidor de casualidades (cuatro estrellas) · silencio en el 0:02 · cambio de plano cada 2–3 s con transición y cámara siempre en movimiento · golpe emocional «Nadie murió» · cierre con revelación.
+PERSONAJES (más detalle, SIN rubor): Pearson (frente ancha, patillas, auriculares), Quintal (bigote, ojos cansados), azafata, 6 pasajeros distintos, familias del circuito (padre con casco, niña con trenzas), corredores con extintores.
+ESCENARIO (Blender): avión en corte (reaprovechar el del 73), cabina 3D, cielo con nubes, base abandonada con grietas en el asfalto, circuito con coches/karts/tiendas.
+SONIDO: turbinas → corte brusco → viento y pitidos; marimba tensa; chispas; aplausos lejanos.
