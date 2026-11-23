@@ -181,3 +181,6 @@ A partir del próximo vídeo, **todo el 3D se hace con Blender** (no con three.j
 - Flujo: modelar el decorado en Blender con `bpy` (script `.py` por vídeo) → exportar a **glTF/GLB** (`bpy.ops.export_scene.gltf`, probado: funciona) → cargarlo en el mundo de three.js (`GLTFLoader`) en lugar de construirlo con código.
 - Así el decorado gana calidad (modelado, materiales, luz horneada si hace falta) y el render sigue en unas 3 h por vídeo. Cycles por CPU (32 s por fotograma mínimo) solo para fotogramas sueltos (portadas, planos fijos).
 - Disco liberado el 21-11-2026: 23 GB libres tras borrar los fotogramas de 62, 68, 70, 71, 72 y 73.
+
+## Reglas obligatorias tras el 75 (23-11-2026)
+El usuario listó fallos «básicos» del 75 (no hay que rehacerlo; aplicar desde el 76): palmera en mitad del camino (todo tiene que ser lógico, nada en zonas de paso), personajes que pasan «por encima» de objetos (profundidad), agua/figuras que parpadean (z-fighting), andar muy malo, cortes de plano sin movimiento de cámara (cámara nunca quieta > 1–2 s), expresiones faciales que cambien con la historia, fondos vacíos en algunos planos y detalle desigual, escenarios «cutres» (diseñarlos mucho mejor). Detalle y lista de comprobación en `.claude/skills/archivoraro/references/reglas_75.md` (enlazado desde SKILL.md).
