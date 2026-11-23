@@ -50,3 +50,11 @@ Críticas del usuario al vídeo 75 («errores un poco básicos»). **No se rehac
 - **`push` entre dos primeros planos**: la cámara avanza 5 m y se mete dentro de la cabeza. Limitar con `CFG.pushMax: .3` (fracción de la distancia al objetivo) o usar `glide` cuando los dos planos miran a la misma persona.
 - **Plano cercano contra la pared del fondo** = fondo vacío. Colocar la cámara para que detrás quede la sala (cuadros, esculturas, cordones), no la pared lisa.
 - **Sincronía**: tras montar, pasar `wsync.py` (Whisper palabra a palabra frente a los subtítulos) y corregir las palabras con más de 0,15 s de error mirando la energía del audio (`fixwords.js`). Ignorar la primera palabra de cada frase y las «y» (Whisper las adelanta).
+
+## Personajes (23-11-2026, tras el 76) — OBLIGATORIO desde el 77
+- «Mejora los personajes con más detalles y mejores cabezas y rasgos faciales.» Cada personaje nuevo: cabeza con más forma y volumen
+  (sombra propia, brillo, orejas, nariz o mentón según el personaje, cejas con grosor, ojos con párpados/iris), rasgos que lo distingan
+  de lejos (peinado con mechones, arrugas, barba de varios días, pecas, lunares, gafas con montura trabajada) y ropa con costuras,
+  pliegues, bolsillos y complementos. Boceto de las cabezas en primer plano ANTES de hacer el vídeo y que el usuario las apruebe.
+- **Nunca más el rubor rosa en las mejillas** (`blush`): «no hagas más que se sonrojen de color rosa». Ni en caras felices, ni comiendo,
+  ni con vergüenza: la emoción se cuenta con ojos, cejas y boca.
