@@ -2,16 +2,16 @@
 // Colores medidos en el vídeo: contorno #311b17, cabeza #f0e0bc→#f0cfbc, chaleco #904448/#761c24/#481116, bombín #937d71/#482a17/#372012, ala #68524f.
 const TD_BODY = 'M300,1230 C320,1110 450,1060 600,1060 C750,1060 880,1110 900,1230 C916,1440 916,1640 910,1720 C900,1840 800,1895 600,1895 C400,1895 300,1840 292,1720 C286,1640 286,1440 300,1230Z';
 const TD_CROWN = 'M265,560 C250,300 430,262 600,262 C780,262 930,320 925,560Z';
-const TD_BRIM = 'M160,566 C300,548 900,540 1030,584 L1022,598 C1000,610 950,628 900,626 C700,610 300,610 200,602 C175,600 158,586 160,566Z';
+const TD_BRIM = 'M156,562 C300,548 880,540 1032,580 L1030,596 C990,606 950,616 900,616 C700,604 320,604 200,592 L158,580Z';
 const TD_MUST = 'M600,902 C560,880 470,882 432,928 C395,972 390,1030 412,1050 C432,1066 452,1040 452,1012 C460,990 520,990 600,996 C680,990 740,990 750,1012 C752,1040 770,1066 790,1052 C812,1032 806,972 768,928 C730,882 640,880 600,902Z';
 function tendero2d(o = {}) {
   const K = '#1e1313', f = o.face || 'serio';
   let s = `<defs>
   <radialGradient id="tdH" cx=".46" cy=".36" r=".66"><stop offset="0" stop-color="#fdf4d8"/><stop offset=".45" stop-color="#f5e4bc"/><stop offset=".8" stop-color="#ecd0b0"/><stop offset="1" stop-color="#d8b49c"/></radialGradient>
   <radialGradient id="tdB" cx=".28" cy=".3" r=".95"><stop offset="0" stop-color="#84222e"/><stop offset=".35" stop-color="#741a24"/><stop offset=".7" stop-color="#5e141e"/><stop offset="1" stop-color="#420e14"/></radialGradient>
-  <radialGradient id="tdHat" cx=".3" cy=".25" r=".9"><stop offset="0" stop-color="#6a4632"/><stop offset=".45" stop-color="#4a2c19"/><stop offset="1" stop-color="#341d10"/></radialGradient>
-  <linearGradient id="tdBrim" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7a625c"/><stop offset=".5" stop-color="#5e4842"/><stop offset="1" stop-color="#3e2c24"/></linearGradient>
-  <linearGradient id="tdMu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5c3018"/><stop offset=".5" stop-color="#4a2814"/><stop offset="1" stop-color="#3a2014"/></linearGradient>
+  <radialGradient id="tdHat" cx=".28" cy=".25" r=".95"><stop offset="0" stop-color="#644030"/><stop offset=".4" stop-color="#4a2c19"/><stop offset=".75" stop-color="#3a2112"/><stop offset="1" stop-color="#2a170c"/></radialGradient>
+  <linearGradient id="tdBrim" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c6460"/><stop offset=".5" stop-color="#60483f"/><stop offset="1" stop-color="#433028"/></linearGradient>
+  <linearGradient id="tdMu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4c2816"/><stop offset="1" stop-color="#46261a"/></linearGradient>
   <linearGradient id="tdTri" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbf4e8"/><stop offset=".55" stop-color="#f2e9dc"/><stop offset="1" stop-color="#cfc6ba"/></linearGradient>
   <radialGradient id="tdBtn" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#dcb44a"/><stop offset="1" stop-color="#b08a2a"/></radialGradient>
   <filter id="tdSoft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22"/></filter>
@@ -31,9 +31,9 @@ function tendero2d(o = {}) {
   s += `<path d="${TD_BODY}" fill="url(#tdB)"/><g clip-path="url(#tdBc)">
     <path d="M290,1300 C280,1480 285,1650 310,1780" stroke="#b05a60" stroke-width="40" fill="none" opacity=".55" filter="url(#tdS2)"/>
     <path d="M318,1270 C306,1450 308,1640 330,1770" stroke="#d48a8a" stroke-width="8" fill="none" opacity=".5" filter="url(#tdS1)"/>
-    <path d="${TD_BODY}" fill="none" stroke="#1a0408" stroke-width="130" opacity=".75" filter="url(#tdSoft)" transform="translate(-45,-40)"/>
+    <path d="${TD_BODY}" fill="none" stroke="#1a0408" stroke-width="110" opacity=".55" filter="url(#tdSoft)" transform="translate(-50,-20)"/><path d="M360,1250 C340,1450 345,1650 380,1800" stroke="#a03644" stroke-width="70" fill="none" opacity=".35" filter="url(#tdSoft)"/>
     <path d="${TD_BODY}" fill="none" stroke="#c46a70" stroke-width="40" opacity=".35" filter="url(#tdS2)" transform="translate(22,10)"/>
-    <ellipse cx="600" cy="1110" rx="380" ry="90" fill="#1e0a0c" opacity=".8" filter="url(#tdSoft)"/>
+    <ellipse cx="600" cy="1100" rx="400" ry="100" fill="#1a080a" opacity=".9" filter="url(#tdSoft)"/><path d="M650,1425 L648,1880" stroke="#3a0a12" stroke-width="5" opacity=".6" filter="url(#tdS1)"/>
     <path d="M420,1650 L530,1652 M752,1648 L862,1640" stroke="#441116" stroke-width="13" stroke-linecap="round" filter="url(#tdS1)"/>
     <path d="M424,1664 L528,1666 M754,1662 L858,1654" stroke="#9a3a44" stroke-width="4" stroke-linecap="round" opacity=".5" filter="url(#tdS1)"/>
   </g><path d="${TD_BODY}" fill="none" stroke="${K}" stroke-width="30" stroke-linejoin="round"/>
@@ -53,20 +53,21 @@ function tendero2d(o = {}) {
     <circle cx="560" cy="700" r="375" fill="none" stroke="#c89c8c" stroke-width="90" opacity=".35" filter="url(#tdSoft)" transform="translate(70,90)"/>
     <path d="M232,640 C214,780 236,940 330,1060" stroke="#e8eef2" stroke-width="16" fill="none" opacity=".9" stroke-linecap="round" filter="url(#tdS1)"/>
     <ellipse cx="590" cy="600" rx="330" ry="40" fill="#5a3a28" opacity=".35" filter="url(#tdSoft)"/>
-  </g><circle cx="590" cy="775" r="375" fill="none" stroke="${K}" stroke-width="30"/>
-  <path d="M950,860 A375,375 0 0 1 580,1150" stroke="${K}" stroke-width="16" fill="none" transform="translate(3,6)" stroke-linecap="round"/>`;
+  </g><circle cx="590" cy="775" r="375" fill="none" stroke="${K}" stroke-width="24"/>
+  <path d="M960,800 A375,375 0 0 1 520,1145" stroke="${K}" stroke-width="18" fill="none" transform="translate(4,7)" stroke-linecap="round"/>`;
   s += face2d(f);
   // bombín: copa chocolate con brillo ancho arriba a la izquierda, sombra de la copa sobre el ala
   s += `<g transform="rotate(${o.hatTilt ?? 1.2},590,580)">
    <path d="${TD_BRIM}" fill="url(#tdBrim)"/>
-   <path d="M170,600 C300,612 700,612 900,628 C960,626 1010,606 1022,598" stroke="#2a1a12" stroke-width="10" fill="none" opacity=".8"/>
-   <path d="${TD_BRIM}" fill="none" stroke="${K}" stroke-width="11" stroke-linejoin="round"/>
+   <path d="M200,594 C320,604 700,604 900,614 C950,614 990,606 1028,594" stroke="#2a1a12" stroke-width="9" fill="none" opacity=".8"/>
+   <path d="M170,572 C300,560 860,552 1010,584" stroke="#8e7670" stroke-width="5" fill="none" opacity=".8"/><path d="${TD_BRIM}" fill="none" stroke="${K}" stroke-width="8" stroke-linejoin="round"/>
    <path d="${TD_CROWN}" fill="url(#tdHat)"/><g clip-path="url(#tdCc)">
-     <path d="M300,500 C290,380 360,300 470,282" stroke="#a88a80" stroke-width="34" fill="none" opacity=".75" stroke-linecap="round" filter="url(#tdS2)"/>
-     <path d="M318,470 C312,380 370,312 450,296" stroke="#c8aca2" stroke-width="10" fill="none" opacity=".6" stroke-linecap="round" filter="url(#tdS1)"/>
+     <path d="M300,500 C290,380 360,300 470,282" stroke="#8a6a5c" stroke-width="40" fill="none" opacity=".55" stroke-linecap="round" filter="url(#tdS2)"/>
+     <path d="M286,450 C296,360 370,296 520,272" stroke="#c8a49a" stroke-width="8" fill="none" opacity=".85" stroke-linecap="round" filter="url(#tdS1)"/>
+     
      <path d="M930,300 C960,420 940,520 900,600 L1000,600 L1000,280Z" fill="#1a0c06" opacity=".6" filter="url(#tdSoft)"/>
      <rect x="250" y="530" width="700" height="40" fill="#1a0c06" opacity=".55" filter="url(#tdS2)"/>
-   </g><path d="${TD_CROWN}" fill="none" stroke="${K}" stroke-width="16" stroke-linejoin="round"/>
+   </g><path d="${TD_CROWN}" fill="none" stroke="${K}" stroke-width="12" stroke-linejoin="round"/>
    <path d="M262,568 C450,556 760,552 925,566" stroke="#241206" stroke-width="16" fill="none" stroke-linecap="round"/>
   </g>`;
   return s;
@@ -79,17 +80,17 @@ function face2d(f) {
     preocupado: 'M456,806 C470,786 530,766 596,742 C606,740 610,758 602,766 C545,790 490,816 468,818 C452,818 448,814 456,806Z',
     sorpresa: 'M462,728 C480,700 560,700 598,720 L596,742 C545,728 490,730 470,744 C456,750 452,738 462,728Z' };
   const flip = d => d.replace(/(-?\d+(\.\d+)?),(-?\d+(\.\d+)?)/g, (m, x, _, y) => `${1210 - +x},${y}`);
-  const bl = browL[f] || browL.serio; s += `<path d="${bl}" fill="${BR}" stroke="${K}" stroke-width="5" stroke-linejoin="round"/><path d="${flip(bl)}" fill="${BR}" stroke="${K}" stroke-width="5" stroke-linejoin="round"/>`;
+  const bl = f === 'preocupado' ? browL.serio : (browL[f] || browL.serio), rl = f === 'preocupado' ? [`rotate(-24,528,775) translate(0,6)`, `rotate(24,682,775) translate(0,6)`] : ['', ''];
+  s += `<path d="${bl}" transform="${rl[0]}" fill="${BR}" stroke="${K}" stroke-width="5" stroke-linejoin="round"/><path d="${flip(bl)}" transform="${rl[1]}" fill="${BR}" stroke="${K}" stroke-width="5" stroke-linejoin="round"/>`;
   if (f === 'sorpresa') s += `<ellipse cx="512" cy="850" rx="34" ry="44" fill="${K}"/><ellipse cx="698" cy="850" rx="34" ry="44" fill="${K}"/><circle cx="522" cy="836" r="7" fill="#fff" opacity=".5"/><circle cx="708" cy="836" r="7" fill="#fff" opacity=".5"/>`;
   else if (f === 'feliz') s += `<path d="M450,860 Q512,800 575,860 M635,860 Q698,800 760,860" stroke="${K}" stroke-width="24" fill="none" stroke-linecap="round"/>`;
   else { const dy = f === 'preocupado' ? 8 : 0;
-    s += `<path d="M470,${848 + dy} A40,44 0 0 0 554,${848 + dy}Z" fill="${K}"/><path d="M656,${852 + dy} A40,44 0 0 0 740,${852 + dy}Z" fill="${K}"/>`;
-    s += `<path d="M446,${840 + dy} L582,${843 + dy} M630,${846 + dy} L766,${849 + dy}" stroke="${K}" stroke-width="24" stroke-linecap="round"/>`; }
+    s += `<path d="M466,${846 + dy} A46,50 0 0 0 558,${846 + dy}Z" fill="${K}"/><path d="M652,${850 + dy} A46,50 0 0 0 744,${850 + dy}Z" fill="${K}"/>`;
+    s += `<path d="M446,${840 + dy} L582,${843 + dy} M630,${846 + dy} L766,${849 + dy}" stroke="${K}" stroke-width="20" stroke-linecap="round"/>`; }
   // bigote: marrón oscuro, más claro arriba, contorno grueso
   s += `<path d="${TD_MUST}" fill="url(#tdMu)"/><g clip-path="url(#tdMc)">
-    <path d="M440,960 C470,915 540,905 600,925 C660,905 730,915 760,960" stroke="#6e3c20" stroke-width="22" fill="none" opacity=".5" stroke-linecap="round" filter="url(#tdS2)"/>
-    <path d="M410,1040 C420,1000 450,990 600,1000 C750,990 780,1000 790,1040" stroke="#2e180e" stroke-width="22" fill="none" opacity=".5" filter="url(#tdS2)"/>
-  </g><path d="${TD_MUST}" fill="none" stroke="${K}" stroke-width="20" stroke-linejoin="round"/>`;
+    <path d="M428,1030 C424,975 470,940 540,936 C570,935 590,945 600,948 C610,945 630,935 660,936 C730,940 776,975 772,1030" stroke="#5e321c" stroke-width="34" fill="none" opacity=".7" stroke-linecap="round" filter="url(#tdS2)"/>
+  </g><path d="${TD_MUST}" fill="none" stroke="${K}" stroke-width="24" stroke-linejoin="round"/>`;
   // boca
   if (f === 'sorpresa') s += `<ellipse cx="600" cy="1050" rx="26" ry="30" fill="#4a1c1e" stroke="${K}" stroke-width="10"/>`;
   else if (f === 'feliz') s += `<path d="M560,1010 Q600,1060 645,1010" stroke="${K}" stroke-width="14" fill="none" stroke-linecap="round"/>`;
