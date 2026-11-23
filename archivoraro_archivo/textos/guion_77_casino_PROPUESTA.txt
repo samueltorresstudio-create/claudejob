@@ -1,36 +1,45 @@
-77 · POR QUÉ LOS CASINOS NO TIENEN RELOJES NI VENTANAS — PROPUESTA (idea del usuario, 23-11-2026). Fórmula «Por qué + cosa real + razón oculta» con giro: la razón que todo el mundo cree es MENTIRA, y el truco real es peor.
-Verificado en la web el 23-11-2026 (casino.org, Mental Floss, Wikipedia/Bill Friedman, Gambling.com, McGill OSS, Universidad de Waterloo / Mike Dixon).
+77 · POR QUÉ LOS CASINOS NO TIENEN RELOJES NI VENTANAS — PROPUESTA v2 (idea del usuario, 23-11-2026). Pidió: «que expliques lo de por qué no hay relojes ni ventanas».
+Fórmula «Por qué + cosa real + razón oculta»: la razón popular («para que pierdas la noción del tiempo») NO tiene pruebas; la razón que cuenta quien dirigió casinos es otra y tiene sentido.
+Fuentes (búsqueda web 23-11-2026; las páginas originales no se pudieron abrir, solo resúmenes): The Hustle, Mental Floss, Wikipedia (Bill Friedman), blog de Friedman (2021), WATG, CardPlayer, Univ. de Waterloo, Gambling.com, McGill OSS.
 
-DATOS COMPROBADOS
-- «Sin relojes ni ventanas para que pierdas la noción del tiempo»: muy repetido, pero SIN pruebas. Bill Friedman (diseñador de casinos) lo califica de mito: según él, los relojes los quitaron porque los jugadores serios lo pidieron. Una revisión de estudios no encontró evidencia concluyente del efecto de ventanas o relojes. Hoy casi todo el mundo lleva un reloj en el bolsillo (el móvil).
-- Distribución en laberinto (Friedman): pasillos cortos y estrechos, techos bajos. El modelo contrario (Steve Wynn y Roger Thomas, «parque de juegos»): líneas de visión abiertas.
-- «Bombean oxígeno para mantenerte despierto» = MITO. Gambling.com midió cuatro casinos de Las Vegas: 20,9 % de oxígeno, igual que en la calle. Viene de la novela «Fools Die» de Mario Puzo (1978).
-- REAL, medido en laboratorio (Universidad de Waterloo, Mike Dixon): «pérdida disfrazada de ganancia»: la tirada devuelve menos de lo apostado pero la máquina celebra con luces y sonido. Respuesta fisiológica (conductancia de la piel) parecida a la de una ganancia real y mayor que la de una pérdida normal; los jugadores recuerdan más victorias de las que tuvieron, sobre todo con sonido. El diseño no cambia el porcentaje de devolución, pero aumenta la frecuencia de esas «ganancias» falsas.
-- NO verificado (no decirlo): que las fichas hagan gastar más; que las bebidas gratis aumenten el gasto; que los casinos prohíban relojes por ley.
+POR QUÉ (EXPLICACIÓN COMPROBADA)
+1. VENTANAS: Bill Friedman dirigió los casinos Castaways y Silver Slipper (Las Vegas, 1977–1990). En el Castaways un lado era de cristal; según él, entre el 85 y el 90 % de los clientes dejaban de jugar y salían al ver la luz del día. Compró un plástico oscuro para taparlo. En su blog (2021) escribe que bastaban unos minutos de ver sol para que la mayoría cobrara y se marchara. (Es SU testimonio; otros estudios no lo confirman ni lo desmienten.)
+2. RELOJES: Friedman dice que los jugadores serios pidieron quitarlos, amenazando con no volver; «no quieren saber la hora, están en un mundo de fantasía y de escape». (Un dato suelto: en 1931, cuando Nevada legalizó el juego, había relojes; solo una fuente.)
+3. RAZÓN PRÁCTICA: el sol directo da reflejos en las pantallas y en las cartas.
+4. IDEA COMÚN: el casino no esconde el tiempo, esconde el mundo de fuera (ventanas, reloj, calle).
+5. ¿Y SIEMPRE ES ASÍ? No: Steve Wynn apostó por la luz natural («su ingrediente secreto»): el Encore tiene nueve pabellones de juego con luz del día y jardín; se considera un cambio respecto a los casinos sin ventanas de Las Vegas. Hoy, además, todos llevamos un reloj en el bolsillo.
+6. NO HAY PRUEBAS de que quitar ventanas y relojes haga perder la noción del tiempo (una revisión de estudios no encontró evidencia concluyente).
+7. TRUCO REAL MEDIDO: «pérdida disfrazada de ganancia» (Univ. de Waterloo, Mike Dixon): la tirada devuelve menos de lo apostado pero la máquina celebra con luces y sonido; la piel reacciona casi como con una ganancia y los jugadores recuerdan más victorias de las que tuvieron.
+8. Mito aparte: «bombean oxígeno» = falso (20,9 %, igual que la calle; viene de una novela de Mario Puzo de 1978). Solo si sobra tiempo.
+NO DECIR (no verificado): fichas que hacen gastar más, bebidas gratis que aumentan el gasto, que sea obligatorio quitar relojes.
 
-GANCHO (0–4 s): cámara entrando por la puerta de un casino lleno de luces; un reloj de pared enorme en el centro; un aspa roja gigante lo tacha y suena «¡mentira!». Voz: «Los casinos no tienen relojes ni ventanas para que pierdas la noción del tiempo. Eso es lo que te han contado. Y es mentira.»
+GANCHO (0–4 s): cámara entrando por la puerta de un casino lleno de luces, sin ventanas; un reloj de pared enorme; una mano lo tapa con un trapo negro. Voz: «Los casinos no tienen relojes ni ventanas para que pierdas la noción del tiempo. Eso dicen. Pero la verdad es más curiosa.»
 
-GUION (≈175 palabras, voz «alegre», números en letra):
-Los casinos no tienen relojes ni ventanas para que pierdas la noción del tiempo. Eso es lo que te han contado. Y es mentira.
-Empecemos por los relojes. Sí, los quitaron. Pero según uno de los diseñadores de casinos más conocidos, no fue un truco: se lo pidieron los jugadores serios.
-Segundo mito: que bombean oxígeno para mantenerte despierto.
-Alguien midió el aire de cuatro casinos de Las Vegas. Veinte coma nueve por ciento. Exactamente igual que en la calle.
-¿De dónde sale entonces? De una novela. En mil novecientos setenta y ocho, el escritor Mario Puzo lo inventó.
-Pero sí hay un truco real. Uno que se ha medido en un laboratorio.
-Se llama pérdida disfrazada de ganancia. Apuestas diez, la máquina te devuelve uno… y suena la música y se encienden las luces, como si hubieras ganado.
-Los investigadores midieron el cuerpo de los jugadores. Reaccionaba casi igual que con una ganancia de verdad. Y después recordaban más victorias de las que habían tenido.
-Hoy ya no hacen falta relojes ni ventanas: llevas uno en el bolsillo.
-Pero la máquina sigue celebrando… que pierdes.
+GUION (≈190 palabras, voz «alegre», números en letra):
+Los casinos no tienen relojes ni ventanas para que pierdas la noción del tiempo. Eso dicen. Pero la verdad es más curiosa.
+Empecemos por las ventanas. Un hombre que dirigió casinos en Las Vegas, Bill Friedman, hizo la prueba.
+En su casino, un lado era todo de cristal. La gente veía el día… y se iba. Según él, entre el ochenta y cinco y el noventa por ciento de los clientes dejaban de jugar al ver la luz.
+Así que tapó el cristal con plástico oscuro.
+¿Y los relojes? Según él, no los quitaron los dueños. Se lo pidieron los jugadores.
+«No quieren saber la hora», decía. «Están en un mundo de fantasía y de escape.»
+Es decir: el casino no esconde el tiempo. Esconde el mundo de fuera.
+Y hay una razón más práctica: el sol da reflejos en las pantallas y en las cartas.
+¿Siempre fue así? No. Steve Wynn apostó por la luz natural, y hoy hay casinos con jardines y luz del día.
+Además, ya no hacen falta relojes: llevas uno en el bolsillo.
+Lo que sí sigue en la máquina es otro truco. Apuestas diez, te devuelve uno, y suena la música, como si hubieras ganado.
+Se llama pérdida disfrazada de ganancia. Y tu cuerpo reacciona casi igual que si hubieras ganado de verdad.
 
-ESTRUCTURA (≈62 s)
-0–4    Gancho: entrada al casino, reloj tachado.
-4–12   Mito 1 (relojes): diseñador con planos y jugadores serios que piden quitar el reloj; cambio de plano cada 2 s.
-12–24  Mito 2 (oxígeno): científico con medidor en cuatro casinos (cuatro planos rápidos, la aguja siempre en el mismo sitio); Puzo escribiendo a máquina con una bombona de oxígeno de broma.
-24–30  Giro: «pero sí hay un truco real»; luces se apagan, solo queda una máquina tragaperras.
-30–48  Pérdida disfrazada: primer plano de la máquina (símbolos de frutas, sin cifras); entra una moneda grande, salen pocas pequeñas, estalla la fiesta de luces y sonido; el jugador con estrellas en los ojos; el científico con electrodos; burbujas de recuerdo: ganó 2, recuerda 5.
-48–58  Cierre: el jugador mira su móvil (hora), la máquina sigue celebrando mientras su montón de monedas disminuye.
-58–62  Última frase y corte a negro.
+ESTRUCTURA (≈64 s)
+0–4    Gancho: casino sin ventanas, reloj tapado con trapo negro.
+4–10   Friedman (despacho en el casino, planos, gafas y bigote): «hizo la prueba».
+10–20  El lado de cristal: la gente mirando el cielo y cogiendo el abrigo; gráfica de 10 siluetas de jugadores con 9 saliendo por la puerta; Friedman tapando el cristal con plástico negro.
+20–32  Relojes: jugadores serios apretando el puño y hablando con el encargado; Friedman con las palabras de «fantasía y escape» (sin texto en el mundo: solo subtítulo); resumen visual: el casino como una burbuja con el mundo de fuera tachado.
+32–38  Razón práctica: sol que da en una pantalla y en las cartas (reflejo).
+38–46  Giro: Wynn y sus pabellones con luz y jardín; casino luminoso.
+46–52  El móvil como reloj de bolsillo.
+52–62  Truco real: tragaperras con símbolos (sin números); entra una moneda grande, salen pocas pequeñas, estalla la fiesta de luces; electrodos en el jugador; burbuja de recuerdo con más victorias.
+62–64  Corte a negro.
 
-RETENCIÓN: promesa «te han mentido» en el 0:04 · tres golpes de «mito → mentira» con sello rojo · giro «pero sí hay un truco real» en el 0:24 · demostración visual de la máquina · final con ironía · cambio de plano cada 2–3 s, cámara siempre en movimiento, transiciones.
-ESCENARIO (Blender): casino con moqueta de dibujos, tragaperras (cajas con pantalla de frutas, sin números), lámparas, ruleta (cilindro). Sin vehículos. Personajes con caras detalladas, SIN rubor.
-SONIDO: música de casino traviesa, campanitas, «sello» de mentira, máquina que celebra, silencio de despedida.
+RETENCIÓN: explicación en pasos con tres golpes («ventanas», «relojes», «razón práctica») · giro del 38 («¿Siempre fue así?») · truco real final · cambio de plano cada 2–3 s, cámara siempre en movimiento, transiciones · caras detalladas SIN rubor · sin texto en objetos del mundo (solo subtítulo) · sin vehículos.
+ESCENARIO (Blender): casino con moqueta de dibujos, tragaperras (cajas con pantalla de frutas, sin cifras), lámparas, ruleta; despacho de Friedman; casino de Wynn con jardín y luz.
+SONIDO: música de casino traviesa, campanitas, trapo/plástico, máquina que celebra, silencio de despedida.
