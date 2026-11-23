@@ -41,3 +41,7 @@ se comen las respiraciones.
 4. **Sin `atempo` y sin recortar pausas**: si sobra duración, se acorta el guion. Respiraciones y silencios naturales, sin fundidos al cortar.
 5. Antes de generar el vídeo entero, mandar al usuario una **muestra de 2–3 frases** para que apruebe la voz.
 6. Si él puede, su MP3 de ElevenLabs («Stickmans») sigue siendo lo más natural: preguntarle primero.
+- **Prueba del 23-11-2026** (`proyectos/voz_mejorada/`): referencia única `ref.wav` = 0–16,95 s del MP3 real del 69 («En Japón te regalan casas…
+  La puerta está abierta.»), gancho del 76 en UNA pieza, `num_step=64`, `class_temperature=.8`, 4 tomas (~5,5 min cada una en CPU).
+  Descartes: una toma metió al principio el final del texto de referencia («la puerta está abierta») y otra repitió «plátano plátano»:
+  **pasar siempre `score.py`** (Whisper + variación de tono) y escuchar el arranque. Sin acelerar sale ~12 s frente a 10,4 s del 76.
