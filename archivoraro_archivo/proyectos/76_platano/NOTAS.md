@@ -18,3 +18,7 @@ Pendiente: aprobación de bocetos → escenas `sc76.js`, voz (clonada o ElevenLa
 - Plátano: UV (u largo, v alrededor) exportadas desde Blender; el shader (`ripeMat`) usa `vMapUv` (hace falta `map` ficticio): aristas con línea oscura, vetas, pecas alargadas, moratones, cuello y punta verdosos, brillo y maduración. Forma orgánica (ligera variación del radio y de la torsión).
 - Cinta: malla de rejilla 130×14 con arrugas suaves (sobre todo donde dobla sobre el plátano), bordes ondulados, extremos rotos irregulares y puntas despegadas; textura de tela con hilos finos, grano, rozaduras y reflejos. SIN contorno por casco invertido (con tanta malla sale con rayas): lleva un contorno plano aparte (`tape_ink`).
 - Lección: planarUV fallaba en la cinta (eje más fino = y); forzar ejes x,y.
+
+## Cinta atravesaba el plátano (corregido 23-11-2026)
+Causa: la cinta era un arco fijo centrado en su propio punto medio, pero el plátano cruzaba ≈0,42 m más abajo (la tira estaba descentrada y girada 0,5 rad), así que el plátano la tapaba o la atravesaba.
+Arreglo: el origen de la cinta = centro del plátano y `tape_z(x,y)` calcula la altura de cada punto sobre la superficie REAL del plátano (radio y curvatura de `banana()`), con bajada suave a la pared por los flancos. Regla: lo que se pega a un objeto debe calcularse sobre su superficie, no con un arco a ojo. Comprobar siempre con 3 ángulos (frente, lateral, picado).

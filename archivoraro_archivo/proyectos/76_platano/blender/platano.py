@@ -65,24 +65,35 @@ def banana(name, L=1.4, R=.17, bend=.95, nr=40, o=None):
     a1 = bend * .5; p1 = (Rc * math.sin(a1), Rc * (1 - math.cos(a1)), 0); d1 = (math.cos(a1), math.sin(a1), 0)
     o.sph((p1[0] + d1[0] * L * .012, p1[1] + d1[1] * L * .012, 0), R * .20, M['tipb'], (1.1, .8, .8)); o.sph((p1[0] + d1[0] * L * .028, p1[1] + d1[1] * L * .028, 0), R * .09, M['stemd'])
     return o
+# --- la cinta sigue la superficie REAL del plátano (para no atravesarlo): se calcula la altura sobre la pared en cada punto de la tira ---
+BR_L, BR_R, BR_BEND, BR_Z, TAPE_ANG = 1.45, .18, 1.0, .19, .5      # plátano de la obra (wallpiece) y giro de la cinta (el origen de la cinta = centro del plátano)
+def _sm(k): k = max(0., min(1., k)); return k * k * (3 - 2 * k)
+def tape_z(x, y, half=.85, wrinkles=True):
+    X = x * math.cos(TAPE_ANG) - y * math.sin(TAPE_ANG); Yr = x * math.sin(TAPE_ANG) + y * math.cos(TAPE_ANG)
+    Rc = BR_L / BR_BEND; a = math.asin(max(-.999, min(.999, X / Rc))); t = a / BR_BEND + .5; wall = .018
+    lift = .06 * _sm((abs(x) - (half - .17)) / .17) ** 1.5
+    if t <= .02 or t >= .98: return wall + lift, 9.
+    body = math.sin(math.pi * (.10 + .80 * t)) ** .45; neck = 1. - .55 * max(0., (.20 - t) / .20) ** 1.6 - .35 * max(0., (t - .86) / .14) ** 1.4
+    r = BR_R * (.34 + .66 * body) * neck * .95; dy = Yr - Rc * (1 - math.cos(a)); d = abs(dy)
+    zs = lambda dd: BR_Z + math.sqrt(max(r * r - dd * dd, 0.)) + .016
+    if d < .85 * r: z = zs(d)
+    else: k = _sm((d - .85 * r) / (.15 * r + .12)); z = zs(.85 * r) * (1 - k) + wall * k
+    if wrinkles:
+        e = math.exp(-((d - r) / .10) ** 2); out = _sm((d - r * .6) / (r * .5 + .1))
+        z += (.007 * math.sin(x * 60 + y * 12) + .0035 * math.sin(x * 110 - y * 26 + 1.1)) * e + .003 * math.sin(x * 30 - y * 20 + .7) * out
+    return z + lift, d
 def tape_obj():
-    # tira de cinta americana en su propio objeto (longitud en x, ancho en y, cara hacia +z). Rejilla fina con arrugas naturales,
-    # extremos rotos irregulares, bordes ligeramente ondulados y puntas despegadas. Se gira en three.js.
-    o = Obj('tape'); half, w, th, NX, NY = .85, .24, .026, 130, 14; bw, sl, top, wall = .36, .17, .19 + .18 + .012, 0.
+    # tira de cinta americana en su propio objeto (longitud en x, ancho en y, cara hacia +z; origen = centro del plátano). Rejilla fina que sigue al plátano,
+    # extremos rotos irregulares, bordes ondulados y puntas despegadas. Se gira en three.js (rotation.z = TAPE_ANG).
+    o = Obj('tape'); half, w, th, NX, NY = .85, .24, .026, 150, 14
     rr = random.Random(9); endL = [half + rr.uniform(-.05, .035) for _ in range(NY + 1)]; endR = [half + rr.uniform(-.05, .035) for _ in range(NY + 1)]
-    for j in range(1, NY, 3): endL[j] -= .03; endR[j] += .02                        # dientes del desgarro
-    def sm(k): k = max(0., min(1., k)); return k * k * (3 - 2 * k)
-    def zb(x): return wall + .018 + (top - wall - .018) * sm((bw + sl - abs(x)) / sl)
-    def wr(x, y):
-        ax = abs(x); e = math.exp(-((ax - (bw + .5 * sl)) / .10) ** 2)          # pliegues donde la cinta dobla sobre el plátano
-        arch = sm((bw + sl - ax) / sl)
-        return (.007 * math.sin(x * 60 + y * 12) + .0035 * math.sin(x * 110 - y * 26 + 1.1)) * e + .0035 * math.sin(x * 30 - y * 20 + .7) * (1 - arch) + .0022 * math.sin(x * 45 + y * 34) * arch
+    for j in range(1, NY, 3): endL[j] -= .03; endR[j] += .02
     T = []; B = []
     for i in range(NX + 1):
         tr, br = [], []
         for j in range(NY + 1):
             tj = j / NY; x = -endL[j] + (endL[j] + endR[j]) * i / NX; y = -w / 2 + w * tj + (.005 * math.sin(x * 38 + j) if j in (0, NY) else 0.)
-            lift = .06 * sm((abs(x) - (half - .17)) / .17) ** 1.5; z = zb(x) + wr(x, y) + lift
+            z = tape_z(x, y)[0]
             tr.append(o.bm.verts.new((x, y, z + th / 2))); br.append(o.bm.verts.new((x, y, z - th / 2)))
         T.append(tr); B.append(br)
     fs = []
@@ -97,18 +108,16 @@ def tape_obj():
     return o
 TP = tape_obj(); TP.finish()
 def tape_ink():        # contorno plano oscuro bajo la cinta (el contorno por inversión de casco no funciona bien con tanta rejilla)
-    o = Obj('tape_ink'); half, w, NX, NY = .85, .24, 130, 14; bw, sl, top, wall = .36, .17, .19 + .18 + .012, 0.
+    o = Obj('tape_ink'); half, w, NX, NY = .85, .24, 150, 14
     rr = random.Random(9); endL = [half + rr.uniform(-.05, .035) for _ in range(NY + 1)]; endR = [half + rr.uniform(-.05, .035) for _ in range(NY + 1)]
     for j in range(1, NY, 3): endL[j] -= .03; endR[j] += .02
-    def sm(k): k = max(0., min(1., k)); return k * k * (3 - 2 * k)
     G_ = []
     for i in range(NX + 1):
         col = []
         for j in range(NY + 1):
             x = -endL[j] + (endL[j] + endR[j]) * i / NX; y = -w / 2 + w * j / NY; ex = .012 if i in (0, NX) else 0.; ey = .012 if j in (0, NY) else 0.
             x += ex * (-1 if i == 0 else 1 if i == NX else 0); y += ey * (-1 if j == 0 else 1 if j == NY else 0)
-            lift = .06 * sm((abs(x) - (half - .17)) / .17) ** 1.5; z = wall + .018 + (top - wall - .018) * sm((bw + sl - abs(x)) / sl) + lift - .02
-            col.append(o.bm.verts.new((x, y, z)))
+            col.append(o.bm.verts.new((x, y, tape_z(x, y, wrinkles=False)[0] - .02)))
         G_.append(col)
     fs = [o.bm.faces.new((G_[i][j], G_[i][j + 1], G_[i + 1][j + 1], G_[i + 1][j])) for i in range(NX) for j in range(NY)]
     k = o.mi(M['inkflat'])
