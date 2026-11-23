@@ -1,0 +1,5 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0}#st{position:relative;width:1170px;height:2080px;overflow:hidden}img,svg{position:absolute;left:0;top:0}</style></head>
+<body><div id="st"><img id="bg" src="bg_0.png" width="1170" height="2080" style="object-fit:cover"><svg id="sv" width="1170" height="2080" viewBox="0 0 1170 2080"></svg></div>
+<script src="tendero2d.js"></script><script>
+window.shot = (f, ov) => { document.getElementById('bg').src = ov ? 'ref_clean.png' : 'bg_0.png'; document.getElementById('sv').innerHTML = `<g opacity="${ov ? .55 : 1}">${tendero2d({ face: f })}</g>`; };
+document.title = 'ready';</script></body></html>
