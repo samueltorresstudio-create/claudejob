@@ -237,11 +237,11 @@ for cz in range(N + 1):
     for cx in range(N):
         edge = cz in (0, N)
         if edge and not (cz == N and cx == N // 2) and not (cz == 0 and cx == N // 2 + 2) or (not edge and (cx, cz - 1, cx, cz) not in openE):
-            wallbox(MA, x0 + (cx + .5) * CELL, z0 + cz * CELL, CELL + WT, WT)
+            wallbox(MA, x0 + (cx + .5) * CELL, z0 + cz * CELL, CELL + WT - .035, WT)
 for cx in range(N + 1):
     for cz in range(N):
         edge = cx in (0, N)
-        if edge or (cx - 1, cz, cx, cz) not in openE: wallbox(MA, x0 + cx * CELL, z0 + (cz + .5) * CELL, WT, CELL + WT)
+        if edge or (cx - 1, cz, cx, cz) not in openE: wallbox(MA, x0 + cx * CELL, z0 + (cz + .5) * CELL, WT, CELL + WT - .06)
 for cx in range(1, N):
     for cz in range(N):
         if (cx - 1, cz, cx, cz) not in openE and mrnd.random() < .30:
@@ -295,7 +295,7 @@ LA.finish(origin=(LX, 0, 0))
 # ================================================= OBJETOS SUELTOS (se clonan en three.js) =================================================
 SL = Obj('slot'); slot_local(SL, 'burg', 'slotglow', True); SL.finish(origin=(0, 0, 0))
 # reloj de pared enorme (marco, esfera pintada) y sus agujas, aparte para poder girarlas
-CK = Obj('clock_big'); CK.cyl((0, 0, 0), (0, 0, .18), 1.35, M['gold'], 28); CK.cyl((0, 0, .18), (0, 0, .24), 1.18, M['clockface'], 28)
+CK = Obj('clock_big'); CK.cyl((0, 0, 0), (0, 0, .18), 1.35, M['gold'], 48); CK.cyl((0, 0, .18), (0, 0, .24), 1.18, M['clockface'], 48)
 for k in range(8): a = k / 8 * 2 * math.pi; CK.sph((math.sin(a) * 1.42, math.cos(a) * 1.42, .2), .1, M['goldd'], seg=6, rings=4)
 CK.finish(origin=(0, 0, 0))
 CM = Obj('hand_min'); CM.box((0, .55, 0), (.12, 1.15, .06), M['black']); CM.finish(origin=(0, 0, 0))

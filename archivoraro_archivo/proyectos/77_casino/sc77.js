@@ -21,8 +21,10 @@ const whip = (t, cuts, w = .1) => { if (typeof TR === 'undefined' || !TR) return
 const talk = (t, a, b, rest = 'smile') => talkM(t, a, b, rest);
 const scrX = v => W.proj(v);
 // paseo de verdad: zancada con las piernas, brazos contrarios y rebote suave; ph = distancia / zancada · π
-function walk2(ph, o = {}) { const A = o.amp ?? 1, s = Math.sin(ph), c = Math.cos(ph);
-  return { legL: [-22 * s * A, 6 + 26 * Math.max(0, s) * A], legR: [22 * s * A, 6 + 26 * Math.max(0, -s) * A], armL: [12 - 24 * s * A, 22], armR: [12 + 24 * s * A, 22], bob: -8 * Math.abs(c) * A + 3, headTilt: s * 2 * A }; }
+// paso para andar HACIA la cámara o DE ESPALDAS (todos los paseos del 77): pies que se levantan alternando, rodillas suaves, balanceo y brazos.
+// (el paso de perfil abría las piernas hacia los lados como tijeras: no usarlo de frente)
+function walk2(ph, o = {}) { return walkPose(ph, { amp: (o.amp ?? 1) * .55 }); }
+
 const LG = { casino: { tint: '#ffe8d0', k: .14, rim: '#ffb0c8', rimA: .6, rimX: -1, rimY: -.6 }, oficina: { tint: '#ffe8c8', k: .12, rim: '#fff0d0', rimA: .5, rimX: 1, rimY: -.6 }, dia: { tint: '#fffaf0', k: .08, rim: '#ffffff', rimA: .5, rimX: -1, rimY: -.6 },
   laberinto: { tint: '#ffd0b8', k: .2, rim: '#ff9a7a', rimA: .6, rimX: 1, rimY: -.6 }, lab: { tint: '#f4fffc', k: .06, rim: '#ffffff', rimA: .4, rimX: -1, rimY: -.6 } };
 const GX = 2000, OX = 1000, MX = 3000, CX = 3040, LX = 4000;
@@ -83,7 +85,7 @@ S.jefe = (t, D, B) => { setup(t, 'office', 'oficina');
   const tV = wt(B, 'jefe', 0, 'vegas'), tC = wt(B, 'jefe', 0, 'comprobo');
   camK(seg(t, 0, D), V3(OX + .9, 2.15, 4.4), V3(OX + .1, 2.0, -5), 40, V3(OX + .35, 1.95, 1.4), V3(OX + .2, 1.95, -5.2), 33);
   const F = V3(OX + .2, 0, -5.1), done = t > tC - .1, P = { turn: .1, face: done ? 'sly' : 'open', mouth: done ? 'half' : talk(t, .15, tC - .1, 'smile'), armR: [105, 40], holdR: BLUEPRINT2D(1.1), brows: .25, bags: false };
-  const h = headScr(F); return depth([man('DIR', F, P, { clip: V3(OX, .88, -3.0) })]) + (t > tV - .1 ? sparkles(h.x, h.y - 40, 190, t, 6, 1.1) : '') + (done ? bulb(h.x + 190, h.y - 150, .8 * eBack(clamp((t - tC) / .3)), 1) : ''); };
+  const h = headScr(F); return depth([man('DIR', F, P, { clip: V3(OX, .86, -4.5) })]) + (t > tV - .1 ? sparkles(h.x, h.y - 40, 190, t, 6, 1.1) : '') + (done ? bulb(h.x + 190, h.y - 150, .8 * eBack(clamp((t - tC) / .3)), 1) : ''); };
 
 // =====================================================================================================
 // 4 · CRISTAL — un lado de cristal, el 85-90 % se iba al ver el día, y lo tapó con plástico negro
@@ -130,7 +132,7 @@ S.regla2 = (t, D, B) => { setup(t, 'maze', 'laberinto'); W.ceiling(false); const
 S.laberinto = (t, D, B) => {
   const tPa = wt(B, 'laberinto', 0, 'pasillos'), tTe = wt(B, 'laberinto', 0, 'techos'), tSi = wt(B, 'laberinto', 0, 'siempre'), c1 = tPa - .15, c2 = tTe - .12, c3 = tSi - .12; whip(t, [c1, c2, c3]);
   if (t < c1) { setup(t, 'office', 'oficina'); camK(seg(t, 0, c1), V3(OX + .6, 2.2, 3.0), V3(OX, 2.6, -7), 44, V3(OX + .3, 2.1, .2), V3(OX + .2, 2.3, -7.6), 36);
-    return depth([man('DIR', V3(OX + .3, 0, -5.2), { turn: -.3, face: 'open', mouth: talk(t, .1, c1 - .1, 'smile'), armR: [150, 25], brows: .2 }, { clip: V3(OX, .88, -3.0) })]); }
+    return depth([man('DIR', V3(OX + .3, 0, -5.2), { turn: -.3, face: 'open', mouth: talk(t, .1, c1 - .1, 'smile'), armR: [150, 25], brows: .2 }, { clip: V3(OX, .86, -4.5) })]); }
   if (t < c2) { setup(t, 'maze', 'laberinto'); const u = t - c1; camK(seg(t, c1, c2), V3(CX, 1.7, 19.5), V3(CX, 1.6, 2), 46, V3(CX, 1.7, 14.5), V3(CX, 1.6, 2), 44);
     const zJ = 13.5 - 1.2 * u; return depth([man('JUG', V3(CX, 0, zJ), Object.assign(walk2((13.5 - zJ) / .5 * Math.PI), { view: 'back' }))]); }
   if (t < c3) { setup(t, 'maze', 'laberinto'); const u = t - c2; camK(seg(t, c2, c3), V3(CX, 1.5, 15), V3(CX, 1.6, 2), 46, V3(CX, 1.4, 12.8), V3(CX, 3.2, -1), 52);

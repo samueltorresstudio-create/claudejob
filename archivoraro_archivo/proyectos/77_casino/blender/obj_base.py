@@ -12,6 +12,13 @@ class Obj:
             for f in v.link_faces: fs.add(f)
         for f in fs: f.material_index = k
     def box(s, c, size, m, ry=0., rx=0., rz=0.):
+        # anti-parpadeo: ninguna cara puede coincidir con la de otra caja. Cada caja crece unos milímetros:
+        # las pequeñas (molduras, adornos) más que las grandes (paredes), así siempre queda delante la pequeña.
+        global _ZK
+        try: _ZK += 1
+        except NameError: _ZK = 0
+        vol = abs(size[0] * size[1] * size[2]); e = .0015 + .006 / (1. + 4. * vol) + .004 * ((_ZK * .6180339887) % 1.)
+        size = tuple(abs(v) + 2 * e for v in size)
         r = bmesh.ops.create_cube(s.bm, size=1.)
         M = Matrix.Translation(Vector(c)) @ Matrix.Rotation(ry, 4, 'Y') @ Matrix.Rotation(rx, 4, 'X') @ Matrix.Rotation(rz, 4, 'Z') @ Matrix.Diagonal((*size, 1))
         s._fin(r['verts'], m, M)

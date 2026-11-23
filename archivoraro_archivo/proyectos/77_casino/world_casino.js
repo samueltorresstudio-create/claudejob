@@ -8,7 +8,7 @@ const W2 = (() => {
   const R = new T.WebGLRenderer({ canvas: GLC, antialias: true, preserveDrawingBuffer: true });
   R.setPixelRatio(1); R.setSize(W, H, false); R.shadowMap.enabled = true; R.shadowMap.type = T.PCFSoftShadowMap;
   R.toneMapping = T.NoToneMapping; R.outputColorSpace = T.SRGBColorSpace;
-  const scene = new T.Scene(), camera = new T.PerspectiveCamera(40, W / H, .1, 5000);
+  const scene = new T.Scene(), camera = new T.PerspectiveCamera(40, W / H, .3, 700);
   const rnd = (() => { let s = 7575; return () => (s = (s * 16807) % 2147483647) / 2147483647; })();
   const TICK = [];
 
@@ -26,7 +26,7 @@ const W2 = (() => {
       gl_FragColor=vec4(c,1.);
 #include <colorspace_fragment>
     }`;
-  const sky = new T.Mesh(new T.SphereGeometry(4000, 48, 24), new T.ShaderMaterial({ side: T.BackSide, depthWrite: false, fog: false, uniforms: skyU,
+  const sky = new T.Mesh(new T.SphereGeometry(600, 48, 24), new T.ShaderMaterial({ side: T.BackSide, depthWrite: false, fog: false, uniforms: skyU,
     vertexShader: 'varying vec3 vd; void main(){ vd=normalize(position); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }', fragmentShader: SKYFS }));
   sky.frustumCulled = false; sky.renderOrder = -10; scene.add(sky);
   scene.fog = new T.FogExp2('#fde7c4', .0016);
@@ -58,7 +58,7 @@ const W2 = (() => {
 
 
   // ---------- moqueta, pantallas y planos pintados en canvas ----------
-  const cv = (w, h, f, rep) => { const c = document.createElement('canvas'); c.width = w; c.height = h; f(c.getContext('2d'), w, h); const t = new T.CanvasTexture(c); t.colorSpace = T.SRGBColorSpace; t.anisotropy = 8; if (rep) { t.wrapS = t.wrapT = T.RepeatWrapping; t.repeat.set(rep[0], rep[1]); } return t; };
+  const cv = (w, h, f, rep) => { const c = document.createElement('canvas'); c.width = w; c.height = h; f(c.getContext('2d'), w, h); const t = new T.CanvasTexture(c); t.colorSpace = T.SRGBColorSpace; t.anisotropy = 16; if (rep) { t.wrapS = t.wrapT = T.RepeatWrapping; t.repeat.set(rep[0], rep[1]); } return t; };
   const KK = '#241c2c';
   const rn0 = (s0) => { let s = s0; return () => (s = (s * 16807) % 2147483647) / 2147483647; };
   function fruit(g, kind, x, y, r) {
@@ -69,7 +69,7 @@ const W2 = (() => {
     else if (kind === 2) { g.fillStyle = '#ffc928'; g.beginPath(); g.moveTo(x - r * .75, y + r * .55); g.quadraticCurveTo(x - r * .8, y - r * .8, x, y - r * .85); g.quadraticCurveTo(x + r * .8, y - r * .8, x + r * .75, y + r * .55); g.closePath(); g.fill(); g.stroke(); g.fillStyle = '#7d5230'; g.beginPath(); g.arc(x, y + r * .7, r * .2, 0, 7); g.fill(); g.stroke(); }
     else if (kind === 3) { g.fillStyle = '#4fd8ff'; g.beginPath(); g.moveTo(x, y - r); g.lineTo(x + r * .8, y - r * .1); g.lineTo(x, y + r); g.lineTo(x - r * .8, y - r * .1); g.closePath(); g.fill(); g.stroke(); g.beginPath(); g.moveTo(x - r * .8, y - r * .1); g.lineTo(x + r * .8, y - r * .1); g.stroke(); }
     else { g.fillStyle = '#ffd34a'; g.beginPath(); for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * .45 : r; g.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); } g.closePath(); g.fill(); g.stroke(); } }
-  const REP = c => { const t = new T.CanvasTexture(c); t.colorSpace = T.SRGBColorSpace; t.wrapS = t.wrapT = T.RepeatWrapping; t.anisotropy = 8; return t; };
+  const REP = c => { const t = new T.CanvasTexture(c); t.colorSpace = T.SRGBColorSpace; t.wrapS = t.wrapT = T.RepeatWrapping; t.anisotropy = 16; return t; };
   const ornament = (g, x, y, r, gold, dark) => { g.save(); g.translate(x, y); g.strokeStyle = gold; g.fillStyle = gold; g.lineWidth = r * .09;
     for (let k = 0; k < 8; k++) { g.rotate(Math.PI / 4); g.beginPath(); g.ellipse(0, -r * .62, r * .17, r * .42, 0, 0, 7); g.stroke(); }
     g.beginPath(); g.arc(0, 0, r * .2, 0, 7); g.fill(); g.fillStyle = dark; g.beginPath(); g.arc(0, 0, r * .08, 0, 7); g.fill(); g.restore(); };
@@ -216,7 +216,7 @@ const W2 = (() => {
     sun.position.copy(look).addScaledVector(SUN, D * 3); sun.target.position.copy(look); sun.target.updateMatrixWorld(); dof.uniforms.focus.value = focus ?? pos.distanceTo(look); dof.uniforms.aperture.value = ap; }
   function proj(p) { const v = p.clone(), cs = v.clone().applyMatrix4(camera.matrixWorldInverse), d = -cs.z; v.project(camera); const ppm = (H / 2) / (d * Math.tan(camera.fov * Math.PI / 360)); return { x: (v.x + 1) / 2 * W, y: (1 - v.y) / 2 * H, d, ppm, ok: d > .1 }; }
   // ---------- post: brillo suave, desenfoque de fondo, color vivo ----------
-  const comp = new EffectComposer(R); comp.setSize(W, H); comp.addPass(new RenderPass(scene, camera));
+  const comp = new EffectComposer(R, new T.WebGLRenderTarget(W, H, { samples: 4, type: T.HalfFloatType })); comp.setSize(W, H); comp.addPass(new RenderPass(scene, camera));
   const bloom = new UnrealBloomPass(new T.Vector2(W / 2, H / 2), .14, .6, .92); comp.addPass(bloom);
   const dof = new BokehPass(scene, camera, { focus: 8, aperture: .0004, maxblur: .004 }); comp.addPass(dof); comp.addPass(new OutputPass());
   const gradeMat = new T.ShaderMaterial({ uniforms: { tDiffuse: { value: null } }, depthTest: false, depthWrite: false, vertexShader: 'varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position.xy,0.,1.); }',
