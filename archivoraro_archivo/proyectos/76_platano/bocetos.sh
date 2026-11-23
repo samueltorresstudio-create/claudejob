@@ -1,6 +1,6 @@
 #!/bin/bash
 cd "$(dirname "$0")"
-L='"site":"gallery","mood":"galeria","pool":0,"pre":["W.wallP.visible=false;W.tapeP.visible=false"],"p":[0,1.5,4.6],"l":[0,1.7,-4],"f":38'
+L='"site":"gallery","mood":"galeria","pool":0,"pre":["W.wallP.visible=false;W.tapeP.visible=false;W.tapeP.userData.ink2.visible=false"],"p":[0,1.5,4.6],"l":[0,1.7,-4],"f":38'
 C() { echo "{$L,\"chars\":[$1]}"; }
 GL='"holdR"'
 ./tshot.sh pv/k1.png "$(C '["CATT",-1.2,-4,{"turn":.25,"face":"smug","mouth":"smirk"}],["GALER",-.4,-4,{"turn":-.2,"face":"open","mouth":"smile"}],["GUARD",.4,-4,{"turn":.2,"face":"open","mouth":"line"}],["EATER",1.2,-4,{"turn":-.2,"face":"smug","mouth":"smirk"}]')" \

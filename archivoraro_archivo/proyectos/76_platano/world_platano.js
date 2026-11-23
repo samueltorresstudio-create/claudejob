@@ -42,20 +42,27 @@ const W2 = (() => {
       ip = instanceMatrix[3].xyz;
     #endif
     transformed.x += sin(uTime*1.7 + position.z*.5 + ip.x*.31 + ip.z*.17) * .32 * sw; transformed.z += cos(uTime*1.3 + position.x*.4 + ip.z*.23) * .22 * sw;`); }; };
-  const ripeMat = (m, ridge) => { m.onBeforeCompile = sh => { sh.uniforms.uRipe = uRipe;
-    sh.vertexShader = 'varying vec3 vP;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n vP = position;');
-    sh.fragmentShader = 'uniform float uRipe; varying vec3 vP;\nfloat hh(vec3 p){ return fract(sin(dot(p,vec3(127.1,311.7,74.7)))*43758.5453); }\n' + sh.fragmentShader.replace('#include <color_fragment>', `#include <color_fragment>
-      float r = uRipe; vec3 green=vec3(.50,.78,.18), yel=vec3(1.,.88,.2), brn=vec3(.52,.30,.10), blk=vec3(.13,.09,.06);
+  const DUMMY = (() => { const t = new T.DataTexture(new Uint8Array([255, 255, 255, 255]), 1, 1); t.colorSpace = T.SRGBColorSpace; t.needsUpdate = true; return t; })();
+  const ripeMat = (m, ridge) => { m.map = DUMMY; m.onBeforeCompile = sh => { sh.uniforms.uRipe = uRipe;
+    sh.fragmentShader = 'uniform float uRipe;\nfloat hh(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }\nfloat hn(vec2 p){ vec2 i=floor(p), f=fract(p); f=f*f*(3.-2.*f); return mix(mix(hh(i),hh(i+vec2(1,0)),f.x),mix(hh(i+vec2(0,1)),hh(i+vec2(1,1)),f.x),f.y); }\n' + sh.fragmentShader.replace('#include <color_fragment>', `#include <color_fragment>
+      float u = vMapUv.x, v = vMapUv.y, r = uRipe;
+      vec3 green=vec3(.52,.78,.16), yel=vec3(1.,.87,.18), brn=vec3(.55,.31,.09), blk=vec3(.14,.09,.05);
       vec3 c = r<.22 ? mix(green,yel,r/.22) : r<.5 ? yel : r<.78 ? mix(yel,brn,(r-.5)/.28) : mix(brn,blk,(r-.78)/.22);
-      c = mix(c, vec3(.56,.74,.16), smoothstep(.48,.70,abs(vP.x)) * (1.-smoothstep(.2,.55,r)) * .75);          // tinte verdoso en los extremos
-      vec3 g = vP*7.5; vec3 cell = floor(g); vec3 fr = fract(g) - .5; float h1 = hh(cell);
-      float d = length(fr + (vec3(hh(cell+1.7), hh(cell+4.1), hh(cell+9.3)) - .5) * .45);
-      float spot = step(1. - smoothstep(.35, 1., r) * .55, h1) * (1. - smoothstep(.17, .27, d)) * smoothstep(.3, .45, r); c = mix(c, mix(brn, blk, .6), spot);
-      float tip = smoothstep(.0,.1,abs(vP.x)-.58); c = mix(c, vec3(.35,.22,.08), tip*.5*step(.5,r));
-      c *= ${ridge ? '.90' : '1.14'};
+      c = mix(c, vec3(.50,.70,.14), (1.-smoothstep(.0,.24,u)) * (1.-smoothstep(.2,.6,r)) * .85);                      // cuello verdoso
+      c = mix(c, vec3(.55,.62,.16), smoothstep(.9,.985,u) * (1.-smoothstep(.2,.6,r)) * .6);                              // punta verdosa
+      c = mix(c, vec3(.28,.19,.08), smoothstep(.93,.995,u) * .75);                                                     // punta oscura
+      c *= .90 + .20 * hn(vec2(v * 52., u * 2.6)) + .04 * hn(vec2(v * 9., u * 40.));                                    // vetas largas de la piel
+      float rv = fract(v * 5.), rl = 1. - smoothstep(.0, .05, min(rv, 1. - rv)); c = mix(c, c * vec3(.58,.5,.28), rl * .8);   // línea oscura en cada arista
+      c = mix(c, c * 1.12 + vec3(.04,.03,.0), smoothstep(.12,.22,abs(rv - .5)) * (1. - rl) * .35);                        // caras algo más claras
+      vec2 gp = vec2(u * 95., v * 38.); vec2 gc = floor(gp), gf = fract(gp) - .5; float hs = hh(gc);
+      float dd = length(vec2(gf.x * .5, gf.y) + (vec2(hh(gc + 3.1), hh(gc + 7.7)) - .5) * .5); float dens = .10 + .6 * smoothstep(.25, .9, r);
+      float fr = step(1. - dens * .5, hs) * (1. - smoothstep(.1, .19, dd)); c = mix(c, vec3(.27,.16,.06), fr * .9 * smoothstep(.05, .3, r));   // pecas
+      float bl = hn(vec2(u * 11., v * 6.) + 4.7); c = mix(c, mix(brn, blk, .55), smoothstep(.62, .82, bl) * smoothstep(.4, .85, r) * .75);   // moratones
+      float bru = (1. - smoothstep(.0, .11, length(vec2((u - .62) * 2.4, fract(v - .08) - .5)))); c = mix(c, vec3(.45,.28,.1), bru * .55 * (1. - smoothstep(.6, .9, r)));
+      c *= ${ridge ? '.92' : '1.12'};
       diffuseColor.rgb = pow(c, vec3(2.2));`).replace('#include <opaque_fragment>', `#include <opaque_fragment>
-      { vec3 nn = normalize(vNormal); float sp = pow(max(dot(nn, normalize(vec3(-.35,.55,.75))), 0.), 26.); float rim = pow(1. - max(dot(nn, vec3(0.,0.,1.)), 0.), 3.);
-        gl_FragColor.rgb += vec3(1.,.98,.85) * sp * .38 * (1. - smoothstep(.5,.9,uRipe)) + vec3(.1,.08,.0) * rim * .5; }`); }; };
+      { vec3 nn = normalize(vNormal); float sp = pow(max(dot(nn, normalize(vec3(-.35,.55,.75))), 0.), 22.); float rim = pow(1. - max(dot(nn, vec3(0.,0.,1.)), 0.), 3.);
+        gl_FragColor.rgb += vec3(1.,.98,.85) * sp * .42 * (1. - smoothstep(.5,.9,uRipe)) + vec3(.12,.09,.0) * rim * .5; }`); }; };
   function toon(m) { if (MATS[m.name]) return MATS[m.name]; const o = new T.MeshToonMaterial({ color: m.color.clone(), gradientMap: toonG, vertexColors: !!m.vertexColors }); o.name = m.name;
     if (m.name === 'bananaskin') ripeMat(o, false); if (m.name === 'bananaridge') ripeMat(o, true); if (PAINTED.test(m.name)) { o.color.set('#ffffff'); SIGN[m.name] = o; } return (MATS[m.name] = o); }
   const inkM = new T.ShaderMaterial({ side: T.BackSide, uniforms: { k: { value: .0021 }, col: { value: new T.Color('#241c2c') } },
@@ -99,12 +106,14 @@ const W2 = (() => {
         g.fillStyle = '#ffd83a'; g.beginPath(); g.arc(w / 2, 125, 38, 0, 7); g.fill(); g.fillStyle = '#2a2430'; for (let i = 0; i < 12; i++) { g.fillRect(80, 230 + i * 54, i % 4 === 3 ? 330 : w - 160, 18); }
         g.save(); g.translate(w / 2, 900); g.rotate(-.35); g.fillStyle = '#ffd83a'; g.strokeStyle = KK; g.lineWidth = 8; g.beginPath(); g.moveTo(-90, 10); g.bezierCurveTo(-50, 60, 50, 60, 90, -20); g.bezierCurveTo(100, -40, 80, -40, 72, -28); g.bezierCurveTo(40, 22, -40, 24, -78, -20); g.closePath(); g.fill(); g.stroke(); g.restore(); }),
       // cinta americana: plateada con trama de tela, brillo diagonal, rozaduras y bordes más oscuros
-      tape: cv(1792, 256, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#9aa3b3'); gr.addColorStop(.08, '#c7ced9'); gr.addColorStop(.35, '#f4f7fb'); gr.addColorStop(.62, '#dfe5ee'); gr.addColorStop(.92, '#b0b9c8'); gr.addColorStop(1, '#8e97a8'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
-        g.strokeStyle = 'rgba(70,80,100,.28)'; g.lineWidth = 2; for (let x = -h; x < w; x += 9) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x + h, h); g.stroke(); g.beginPath(); g.moveTo(x + h, 0); g.lineTo(x, h); g.stroke(); }
-        g.strokeStyle = 'rgba(255,255,255,.35)'; g.lineWidth = 1.5; for (let y = 6; y < h; y += 6) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
-        let s = 11; const rn = () => (s = (s * 16807) % 2147483647) / 2147483647; for (let i = 0; i < 90; i++) { g.fillStyle = `rgba(${rn() > .5 ? '40,46,60' : '255,255,255'},${.05 + rn() * .12})`; g.beginPath(); g.ellipse(rn() * w, rn() * h, 8 + rn() * 50, 2 + rn() * 6, rn() * 3, 0, 7); g.fill(); }
-        const sh = g.createLinearGradient(0, 0, w, h * .2); sh.addColorStop(0, 'rgba(255,255,255,0)'); sh.addColorStop(.42, 'rgba(255,255,255,0)'); sh.addColorStop(.5, 'rgba(255,255,255,.55)'); sh.addColorStop(.58, 'rgba(255,255,255,0)'); sh.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = sh; g.fillRect(0, 0, w, h);
-        g.fillStyle = 'rgba(60,66,84,.55)'; g.fillRect(0, 0, w, 7); g.fillRect(0, h - 7, w, 7); }),
+      tape: cv(2048, 292, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#aab2c0'); gr.addColorStop(.1, '#cdd4df'); gr.addColorStop(.38, '#f2f5fa'); gr.addColorStop(.66, '#dde3ec'); gr.addColorStop(.92, '#b9c1cf'); gr.addColorStop(1, '#9aa3b2'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+        let s = 23; const rn = () => (s = (s * 16807) % 2147483647) / 2147483647;
+        g.lineWidth = 1; for (let x = 0; x < w; x += 3) { g.strokeStyle = `rgba(60,70,90,${.06 + (x % 12 === 0 ? .06 : 0)})`; g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }          // hilos de la urdimbre
+        for (let y = 0; y < h; y += 3) { g.strokeStyle = `rgba(255,255,255,${.10 + (y % 12 === 0 ? .08 : 0)})`; g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }                   // hilos de la trama
+        for (let i = 0; i < 2600; i++) { g.fillStyle = `rgba(${rn() > .5 ? '30,36,52' : '255,255,255'},${.03 + rn() * .07})`; g.fillRect(rn() * w, rn() * h, 1 + rn() * 3, 1 + rn() * 2); }           // grano
+        for (let i = 0; i < 70; i++) { g.fillStyle = `rgba(${rn() > .6 ? '40,46,60' : '255,255,255'},${.04 + rn() * .1})`; g.beginPath(); g.ellipse(rn() * w, rn() * h, 12 + rn() * 80, 2 + rn() * 7, rn() * 3.1, 0, 7); g.fill(); }   // rozaduras y manchas
+        for (let k = 0; k < 4; k++) { const x0 = rn() * w; const sh = g.createLinearGradient(x0, 0, x0 + 260, h * .25); sh.addColorStop(0, 'rgba(255,255,255,0)'); sh.addColorStop(.5, 'rgba(255,255,255,.28)'); sh.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = sh; g.fillRect(x0, 0, 260, h); }   // reflejos
+        g.fillStyle = 'rgba(70,78,98,.45)'; g.fillRect(0, 0, w, 5); g.fillRect(0, h - 5, w, 5); }),
       subasta: cv(1792, 205, (g, w, h) => { g.fillStyle = '#2c3f86'; g.fillRect(0, 0, w, h); g.strokeStyle = '#ffd34a'; g.lineWidth = 10; g.strokeRect(14, 14, w - 28, h - 28); g.fillStyle = '#ffd34a'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = '900 120px Inter'; g.fillText('CASA DE SUBASTAS', w / 2, h / 2 + 6); }),
     };
     for (const k in S) if (SIGN[k]) { SIGN[k].map = S[k]; SIGN[k].needsUpdate = true; }
@@ -132,9 +141,9 @@ const W2 = (() => {
   const radTex = (col, a) => new T.CanvasTexture(((c) => { c.width = c.height = 128; const g = c.getContext('2d'), gr = g.createRadialGradient(64, 64, 2, 64, 64, 64); gr.addColorStop(0, col.replace('A', a)); gr.addColorStop(.35, col.replace('A', a * .55)); gr.addColorStop(1, col.replace('A', 0)); g.fillStyle = gr; g.fillRect(0, 0, 128, 128); return c; })(document.createElement('canvas')));
   function build() {
     ['gallery', 'auction', 'stage', 'stand'].forEach(n => { inkify(G[n]); SITES[n].add(G[n]); SITES[n].add(G[n + '_floor']); });
-    ['banana', 'banana_big', 'wallpiece', 'tape', 'cert', 'peeled', 'emitter', 'seccam', 'beacon'].forEach(n => { inkify(G[n]); G[n].visible = false; });
+    ['banana', 'banana_big', 'wallpiece', 'cert', 'peeled', 'emitter', 'seccam', 'beacon'].forEach(n => { inkify(G[n]); G[n].visible = false; }); G.tape.visible = false; G.tape_ink.visible = false; G.tape_ink.traverse(c => { if (c.isMesh) { c.castShadow = false; c.receiveShadow = false; c.material.side = T.DoubleSide; } });
     // la obra: plátano + cinta (objeto aparte, girada) pegados a la pared blanca de la galería y de la sala de subastas
-    const art = (site, x, y, z, s) => { const b = place(G.wallpiece, site, x, y, z, 0, s); b.visible = true; const t = place(G.tape, site, x, y + .1 * s, z, 0, s); t.rotation.z = .5; t.visible = true; return [b, t]; };
+    const art = (site, x, y, z, s) => { const b = place(G.wallpiece, site, x, y, z, 0, s); b.visible = true; const t = place(G.tape, site, x, y + .1 * s, z, 0, s); t.rotation.z = .5; t.visible = true; const ti = place(G.tape_ink, site, x, y + .1 * s, z, 0, s); ti.rotation.z = .5; ti.visible = true; t.userData.ink2 = ti; return [b, t]; };
     [wall, tapeG] = art('gallery', LAY.banana.x, LAY.banana.y, LAY.banana.z, 1.12); [wallAu, tapeAu] = art('auction', AXo + 10.5, 4.3, -16.7, .8);
     const pl = place(G.banana, 'stage', SXo + .2, 2.78, -8., .3, .42); pl.visible = true; pl.rotation.z = -.15;
     [[-1.8, 0], [-.6, 1], [.6, 2], [1.8, 3]].forEach(([dx, k]) => { for (let i = 0; i < 3; i++) { const b = place(G.banana, 'stand', NXo - 5 + dx + (i - 1) * .22, 2.03 + i * .06, 13.5 + (i - 1) * .12, .6 * i + k, .28); b.visible = true; b.rotation.z = .2 * (i - 1); } });

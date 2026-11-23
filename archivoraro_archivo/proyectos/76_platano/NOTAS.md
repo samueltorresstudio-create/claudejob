@@ -13,3 +13,8 @@ Pendiente: aprobación de bocetos → escenas `sc76.js`, voz (clonada o ElevenLa
 - Plátano: 5 aristas marcadas, cuello fino, rabo con corte claro, punta negra; shader con tinte verdoso en los extremos, manchas redondas, brillo y maduración (`ripe`).
 - Cinta: objeto aparte (`tape`) con trama de tela (canvas con UV forzada x,y), brillo diagonal, rozaduras, puntas rotas en sierra y despegadas, arrugas finas.
 - Láseres: 20 haces con núcleo + halo + resplandor, emisores en paredes y techo, puntos de impacto, barrido animado con `setTime`, cámaras de vigilancia y baliza giratoria.
+
+## Plátano y cinta, 2.ª mejora (23-11-2026)
+- Plátano: UV (u largo, v alrededor) exportadas desde Blender; el shader (`ripeMat`) usa `vMapUv` (hace falta `map` ficticio): aristas con línea oscura, vetas, pecas alargadas, moratones, cuello y punta verdosos, brillo y maduración. Forma orgánica (ligera variación del radio y de la torsión).
+- Cinta: malla de rejilla 130×14 con arrugas suaves (sobre todo donde dobla sobre el plátano), bordes ondulados, extremos rotos irregulares y puntas despegadas; textura de tela con hilos finos, grano, rozaduras y reflejos. SIN contorno por casco invertido (con tanta malla sale con rayas): lleva un contorno plano aparte (`tape_ink`).
+- Lección: planarUV fallaba en la cinta (eje más fino = y); forzar ejes x,y.

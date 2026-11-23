@@ -29,7 +29,7 @@ P = dict(
     taxi=('#ffcc1f'), awn1=('#2f7fe0'), awn2=('#ffffff'), win=('#78bdff'), wind=('#2f4a8a'), cream=('#fbf0d2'), sky=('#9ed6ff'),
 )
 M = {k: mat(k, v) for k, v in P.items()}
-M['bananaskin'] = mat('bananaskin', '#ffd83a'); M['bananaridge'] = mat('bananaridge', '#f2c428'); M['stemcut'] = mat('stemcut', '#e8dba0'); M['stemd'] = mat('stemd', '#4a3c1a'); M['tipb'] = mat('tipb', '#2a2418'); M['laserlens'] = mat('laserlens', '#ff2a3c')
+M['bananaskin'] = mat('bananaskin', '#ffd83a'); M['bananaridge'] = mat('bananaridge', '#f2c428'); M['stemcut'] = mat('stemcut', '#e8dba0'); M['stemd'] = mat('stemd', '#4a3c1a'); M['tipb'] = mat('tipb', '#2a2418'); M['inkflat'] = mat('inkflat', '#241c2c'); M['laserlens'] = mat('laserlens', '#ff2a3c')
 for n in ['tape_x', 'paint1', 'paint2', 'paint3', 'paint4', 'screen', 'backdrop', 'cert', 'art', 'subasta', 'frutas', 'brillo']: M[n] = mat(n, '#ffffff')
 
 def sign(o, name, cx, cy, z, w, h, ry=0.): o.box((cx, cy, z), (w, h, .08), M[name], ry)
@@ -37,11 +37,11 @@ def framed(o, name, cx, cy, z, w, h, ry=0., fr='gold'):
     o.box((cx, cy, z), (w + .5, h + .5, .12), M[fr], ry); o.box((cx, cy, z + .07), (w, h, .06), M[name], ry)
 
 # ---------------- el plátano (héroe) y la cinta ----------------
-def banana(name, L=1.4, R=.17, bend=.95, nr=26, o=None):
+def banana(name, L=1.4, R=.17, bend=.95, nr=40, o=None):
     # 5 aristas marcadas (cada una con 4 vértices), cuello que se estrecha hacia el rabo, punta negra y rabo con corte claro
     o = o or Obj(name); Rc = L / bend; rings = []; sk = M['bananaskin']; rg = M['bananaridge']; st = M['stem']; sc = M['stemcut']
     prof = [(0., 1.), (.30, .95), (.50, .90), (.70, .95)]                      # (fracción de arista, radio relativo): arista viva y valle redondo
-    NV = 20
+    NV = 20; uvl = o.bm.loops.layers.uv.verify(); vr = random.Random(int(L * 100))
     for i in range(nr + 1):
         t = i / nr; a = bend * (t - .5); cx = Rc * math.sin(a); cy = Rc * (1 - math.cos(a)); N = (-math.sin(a), math.cos(a))
         tt = min(1., max(0., t)); body = math.sin(math.pi * (.10 + .80 * tt)) ** .45                  # barriga
@@ -49,13 +49,14 @@ def banana(name, L=1.4, R=.17, bend=.95, nr=26, o=None):
         r = R * (.34 + .66 * body) * neck if 0 < i < nr else R * .18
         ring = []
         for k in range(NV):
-            ridge, j = divmod(k, 4); ph = (ridge + prof[j][0]) / 5 * 2 * math.pi + .35; rr = r * prof[j][1]
+            ridge, j = divmod(k, 4); ph = (ridge + prof[j][0]) / 5 * 2 * math.pi + .35 + .05 * math.sin(t * 6.); rr = r * prof[j][1] * (1. + .035 * math.sin(t * 11. + ridge * 1.9) + .02 * math.sin(t * 27. + k))
             ring.append(o.bm.verts.new((cx + N[0] * math.cos(ph) * rr, cy + N[1] * math.cos(ph) * rr, math.sin(ph) * rr)))
         rings.append(ring)
     for i in range(nr):
         for k in range(NV):
             f = o.bm.faces.new((rings[i][k], rings[i][(k + 1) % NV], rings[i + 1][(k + 1) % NV], rings[i + 1][k]))
             f.material_index = o.mi(st if (i == 0 or i == nr - 1) else (rg if k % 4 in (3, 0) else sk))
+            for lp, (uu, vv) in zip(f.loops, ((i / nr, k / NV), (i / nr, (k + 1) / NV), ((i + 1) / nr, (k + 1) / NV), ((i + 1) / nr, k / NV))): lp[uvl].uv = (uu, vv)
     c0 = o.bm.faces.new(list(reversed(rings[0]))); c1 = o.bm.faces.new(rings[-1]); c0.material_index = o.mi(st); c1.material_index = o.mi(st)
     a0 = bend * (-.5); p0 = (Rc * math.sin(a0), Rc * (1 - math.cos(a0)), 0); d0 = (-math.cos(a0), -math.sin(a0), 0)
     q0 = (p0[0] + d0[0] * L * .05, p0[1] + d0[1] * L * .05, 0); q1 = (p0[0] + d0[0] * L * .14, p0[1] + d0[1] * L * .14 + .02, 0)
@@ -65,34 +66,55 @@ def banana(name, L=1.4, R=.17, bend=.95, nr=26, o=None):
     o.sph((p1[0] + d1[0] * L * .012, p1[1] + d1[1] * L * .012, 0), R * .20, M['tipb'], (1.1, .8, .8)); o.sph((p1[0] + d1[0] * L * .028, p1[1] + d1[1] * L * .028, 0), R * .09, M['stemd'])
     return o
 def tape_obj():
-    # tira de cinta americana en su propio objeto (ejes alineados: longitud en x, ancho en y, cara hacia +z); se gira en three.js
-    o = Obj('tape'); half, w, th, n = .85, .24, .03, 56; bw, sl, top, wall = .36, .17, .19 + .18 + .012, 0.
-    xs = [-half + 2 * half * i / n for i in range(n + 1)]; zs = []
-    for x in xs:
-        k = max(0., min(1., (bw + sl - abs(x)) / sl)); k = k * k * (3 - 2 * k); lift = .05 * max(0., (abs(x) - (half - .16)) / .16) ** 2   # las puntas se despegan
-        zs.append(wall + .018 + (top - wall - .018) * k + lift)
-    V = []
-    for i, x in enumerate(xs):
-        z = zs[i]; V.append([o.bm.verts.new((x, -w / 2, z + th / 2)), o.bm.verts.new((x, w / 2, z + th / 2)), o.bm.verts.new((x, -w / 2, z - th / 2)), o.bm.verts.new((x, w / 2, z - th / 2))])
+    # tira de cinta americana en su propio objeto (longitud en x, ancho en y, cara hacia +z). Rejilla fina con arrugas naturales,
+    # extremos rotos irregulares, bordes ligeramente ondulados y puntas despegadas. Se gira en three.js.
+    o = Obj('tape'); half, w, th, NX, NY = .85, .24, .026, 130, 14; bw, sl, top, wall = .36, .17, .19 + .18 + .012, 0.
+    rr = random.Random(9); endL = [half + rr.uniform(-.05, .035) for _ in range(NY + 1)]; endR = [half + rr.uniform(-.05, .035) for _ in range(NY + 1)]
+    for j in range(1, NY, 3): endL[j] -= .03; endR[j] += .02                        # dientes del desgarro
+    def sm(k): k = max(0., min(1., k)); return k * k * (3 - 2 * k)
+    def zb(x): return wall + .018 + (top - wall - .018) * sm((bw + sl - abs(x)) / sl)
+    def wr(x, y):
+        ax = abs(x); e = math.exp(-((ax - (bw + .5 * sl)) / .10) ** 2)          # pliegues donde la cinta dobla sobre el plátano
+        arch = sm((bw + sl - ax) / sl)
+        return (.007 * math.sin(x * 60 + y * 12) + .0035 * math.sin(x * 110 - y * 26 + 1.1)) * e + .0035 * math.sin(x * 30 - y * 20 + .7) * (1 - arch) + .0022 * math.sin(x * 45 + y * 34) * arch
+    T = []; B = []
+    for i in range(NX + 1):
+        tr, br = [], []
+        for j in range(NY + 1):
+            tj = j / NY; x = -endL[j] + (endL[j] + endR[j]) * i / NX; y = -w / 2 + w * tj + (.005 * math.sin(x * 38 + j) if j in (0, NY) else 0.)
+            lift = .06 * sm((abs(x) - (half - .17)) / .17) ** 1.5; z = zb(x) + wr(x, y) + lift
+            tr.append(o.bm.verts.new((x, y, z + th / 2))); br.append(o.bm.verts.new((x, y, z - th / 2)))
+        T.append(tr); B.append(br)
     fs = []
-    for i in range(n):
-        p, q = V[i], V[i + 1]
-        fs += [o.bm.faces.new((p[0], p[1], q[1], q[0])), o.bm.faces.new((p[3], p[2], q[2], q[3])), o.bm.faces.new((p[2], p[0], q[0], q[2])), o.bm.faces.new((p[1], p[3], q[3], q[1]))]
-    fs += [o.bm.faces.new((V[0][2], V[0][3], V[0][1], V[0][0])), o.bm.faces.new((V[-1][0], V[-1][1], V[-1][3], V[-1][2]))]
+    for i in range(NX):
+        for j in range(NY):
+            fs.append(o.bm.faces.new((T[i][j], T[i][j + 1], T[i + 1][j + 1], T[i + 1][j]))); fs.append(o.bm.faces.new((B[i][j], B[i + 1][j], B[i + 1][j + 1], B[i][j + 1])))
+        fs.append(o.bm.faces.new((T[i][0], T[i + 1][0], B[i + 1][0], B[i][0]))); fs.append(o.bm.faces.new((T[i][NY], B[i][NY], B[i + 1][NY], T[i + 1][NY])))
+    for j in range(NY):
+        fs.append(o.bm.faces.new((T[0][j], B[0][j], B[0][j + 1], T[0][j + 1]))); fs.append(o.bm.faces.new((T[NX][j], T[NX][j + 1], B[NX][j + 1], B[NX][j])))
     k = o.mi(M['tape'])
     for f in fs: f.material_index = k
-    for sd in (-1, 1):                                                      # extremos rotos: dientes de sierra
-        for j in range(6):
-            yy = -w / 2 + (j + .5) * w / 6; x0 = sd * half; zz = zs[0 if sd < 0 else -1]
-            tri = [(x0, yy - w / 12), (x0 + sd * (.035 + .02 * ((j * 7) % 3)), yy), (x0, yy + w / 12)]
-            o.prism(tri, zz - th / 2, zz + th / 2, M['tape'])
-    for xr in (-.66, -.54, -.46, -.12, .10, .27, .44, .60, .72):            # arrugas finas cruzadas
-        i = min(n, max(0, int((xr + half) / (2 * half) * n))); z = zs[i] + th / 2 + .005
-        o.box((xr, 0, z), (.008, w * (.9 if int(abs(xr) * 10) % 2 else .6), .006), M['tape'], 0., 0., .16 if xr > 0 else -.16)
-    for sd in (-1, 1):                                                      # cantos brillantes
-        for i in range(0, n, 2): o.box((xs[i] + half / n, sd * (w / 2 - .01), zs[i] + th / 2 + .004), (2 * half / n * 2.1, .016, .009), M['white'])
     return o
 TP = tape_obj(); TP.finish()
+def tape_ink():        # contorno plano oscuro bajo la cinta (el contorno por inversión de casco no funciona bien con tanta rejilla)
+    o = Obj('tape_ink'); half, w, NX, NY = .85, .24, 130, 14; bw, sl, top, wall = .36, .17, .19 + .18 + .012, 0.
+    rr = random.Random(9); endL = [half + rr.uniform(-.05, .035) for _ in range(NY + 1)]; endR = [half + rr.uniform(-.05, .035) for _ in range(NY + 1)]
+    for j in range(1, NY, 3): endL[j] -= .03; endR[j] += .02
+    def sm(k): k = max(0., min(1., k)); return k * k * (3 - 2 * k)
+    G_ = []
+    for i in range(NX + 1):
+        col = []
+        for j in range(NY + 1):
+            x = -endL[j] + (endL[j] + endR[j]) * i / NX; y = -w / 2 + w * j / NY; ex = .012 if i in (0, NX) else 0.; ey = .012 if j in (0, NY) else 0.
+            x += ex * (-1 if i == 0 else 1 if i == NX else 0); y += ey * (-1 if j == 0 else 1 if j == NY else 0)
+            lift = .06 * sm((abs(x) - (half - .17)) / .17) ** 1.5; z = wall + .018 + (top - wall - .018) * sm((bw + sl - abs(x)) / sl) + lift - .02
+            col.append(o.bm.verts.new((x, y, z)))
+        G_.append(col)
+    fs = [o.bm.faces.new((G_[i][j], G_[i][j + 1], G_[i + 1][j + 1], G_[i + 1][j])) for i in range(NX) for j in range(NY)]
+    k = o.mi(M['inkflat'])
+    for f in fs: f.material_index = k
+    return o
+TI = tape_ink(); TI.finish()
 HB = banana('banana'); HB.finish()                                  # plátano suelto (se clona)
 HR = banana('banana_big', 1.4, .17); HR.finish()
 WP = Obj('wallpiece')                                               # la obra: plátano pegado a la pared (origen = pared, z=0); la cinta es el objeto `tape`
