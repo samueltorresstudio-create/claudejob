@@ -8,6 +8,9 @@
 >   (Whisper: 0 palabras mal; escuchar arranque y final por si mete restos de la referencia o repite palabras). 2 tomas por bloque.
 > - Números en letra en el texto que se genera. La sincronía se saca como con un MP3 de ElevenLabs: `sync_voice.py` sobre el MP3 entero
 >   (+ `LINE_STARTS` a mano si alguna línea sale dudosa) y luego `wsync.py`/`fixwords.js` para las palabras.
+> - **LICENCIA (comprobado 23-11-2026 en la ficha oficial de k2-fsa/OmniVoice): el código es Apache 2.0, pero el MODELO es CC-BY-NC
+>   (solo uso NO comercial) por sus datos de entrenamiento.** Ilimitado en cantidad, pero si el canal cobra (monetización, patrocinios)
+>   no se puede usar: entonces ElevenLabs de pago. Recordárselo al usuario si monetiza.
 > - Ritmo: ~16 s para 6 líneas cortas → guion de ~180–190 palabras para 62–65 s.
 
 El usuario narra con **su propia voz** («Stickmans» en ElevenLabs). Desde el 75 la generamos aquí, sin ElevenLabs, con el motor de
