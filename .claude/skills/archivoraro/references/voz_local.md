@@ -55,3 +55,7 @@ se comen las respiraciones.
   el hilo 0,2 s; trozo cortado en coma 0,1 s; pregunta con respuesta seca («¿Es de oro?» → «¡No!») 0,3 s; antes de un remate 0,42 s;
   +0,06 al cambiar de línea del guion; pausas internas que mete el modelo, como mucho 0,15 s. Primeros 25 s del 76: 27,8 s (antes 25,2
   acelerado / 30,4 con pausas «de manual»). Las pausas largas se reservan para los golpes.
+- **Tampoco le valió («sigue malo, muchas pausas y robótico»)**: el problema era TROCEAR. Cada trozo acaba con entonación de final y las
+  uniones suenan a robot por mucho que se ajusten las pausas. Prueba `gen2.py`: el texto entero de un tirón (6 líneas, ~16 s) con un tono
+  del 76 (`alegre` o `narr`), `speed=1.05` del propio modelo, `class_temperature=.3`; el modelo pone sus pausas (0,15–0,35 s). 0 palabras
+  mal en las 3 tomas, ~5 min por bloque. Si esto tampoco convence, el límite es OmniVoice: pedirle el MP3 de ElevenLabs.
