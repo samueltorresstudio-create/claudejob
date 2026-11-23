@@ -1,33 +1,44 @@
-GUION 76 · EL PLÁTANO DE SEIS MILLONES (Maurizio Cattelan, «Comedian», 2019 → Sotheby's 2024) — v1, humor seco
-Para ElevenLabs (Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural») o para clonar con la voz local (references/voz_local.md). 3 etiquetas suaves. Objetivo ≈ 62–63 s.
-Historia real (idea #7 de la tanda de dinero del 23-11-2026). Estructura del preso: parece absurdo → todos se ríen → «Verás» con la lógica escondida → golpe → bucle con el gancho.
+GUION 76 · EL PLÁTANO DE SEIS MILLONES (Maurizio Cattelan, «Comedian», 2019 → Sotheby's 2024) — v2 (tono hablado, más ganchos abiertos)
+Para ElevenLabs (Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural») o para clonar con la voz local (references/voz_local.md). 3 etiquetas suaves. 181 palabras ≈ 61–63 s.
+Historia real. Estructura del preso: parece absurdo → todos se ríen → lógica escondida → golpe → bucle con el gancho.
+Ganchos abiertos para retención: 0 s «¿Idiota? Espera.» · ~13 s «¿qué han comprado?» (se responde a los ~40 s) · ~50 s el frutero (golpe extra) · final = bucle (otro plátano en la pared).
+(v1 guardada en guion_76_platano_v1.txt)
 
-Un hombre se come un plátano de seis millones de dólares… y no ha tirado el dinero.
+Un tipo pagó seis millones de dólares por un plátano… y se lo comió. ¿Idiota? Espera.
 
-Todo empieza en Miami, en 2019. Un artista, Maurizio Cattelan, pega un plátano a la pared con cinta americana. Sin marco ni cartel. Solo el plátano.
+Miami, 2019. En una pared blanca, un plátano pegado con cinta americana. Sin marco ni cartel.
 
-«¡Es una broma!», dicen todos. Pero se venden dos copias, por ciento veinte mil dólares cada una.
+Todos se ríen. «¡Es una broma!» Hasta que ven el precio: ciento veinte mil dólares. Y se venden dos.
 
-La gente hace cola para fotografiarlo. Un artista lo arranca y se lo come delante de todos.
+Hay cola para hacerse fotos. Entonces un artista lo arranca de la pared… [deadpan] y se lo come. Delante de todos.
 
-Verás: nadie ha comprado la fruta. Han comprado un certificado, con catorce páginas de instrucciones: cómo colgarlo y cada cuánto cambiarlo.
-
-[deadpan] El plátano cuesta unos céntimos. La idea, lo que alguien pague por ella.
+Pero si te lo puedes comer… ¿qué han comprado?
 
 Cinco años después, sale a subasta en Nueva York. Calculan un millón y medio, como mucho.
 
-[amazed] Se vende por seis millones doscientos mil dólares.
+[amazed] Las pujas no paran. Seis millones doscientos mil dólares.
 
-El comprador, un empresario de criptomonedas, se lo come ante las cámaras. Dice que está más rico que los otros.
+El ganador, un empresario de criptomonedas, se lo come ante las cámaras. Dice que está más rico que los otros.
 
-Pero la obra no era el plátano: el certificado sigue siendo suyo, y con él puede colgar otro.
+Pues no compró un plátano: compró un certificado, con catorce páginas de instrucciones. Cómo colgarlo y cada cuánto cambiarlo.
 
-[deadpan] [slowly] Seis millones… de un bocado. Y mañana, otro plátano nuevo… en la pared.
+El plátano cuesta unos céntimos. La idea, seis millones.
+
+¿Y quién vendió ese plátano? Un frutero de la calle, por unos céntimos. Y de agradecimiento, el comprador le prometió cien mil más.
+
+[deadpan] [slowly] Seis millones… de un bocado. Y mañana, otro plátano… en la pared.
 
 ---
-GANCHO (primera frase): «Un hombre se come un plátano de seis millones de dólares… y no ha tirado el dinero.» (imagen más fuerte + pregunta abierta; el final responde y enlaza con el bucle).
-Alternativas: A) «Alguien pega un plátano a la pared con cinta… y otro paga ciento veinte mil dólares.» (cronológica, más suave) · B) «El plátano más caro del mundo se pudre cada pocos días.» (contradicción en una frase).
+GANCHO DE VOZ (v2): «Un tipo pagó seis millones de dólares por un plátano… y se lo comió. ¿Idiota? Espera.» (concreto, cómico, con pregunta y promesa).
 
-DATOS COMPROBADOS (23-11-2026): Comedian, Cattelan, galería Perrotin, Art Basel Miami Beach, dic. 2019; tres ediciones: dos vendidas a 120.000 $ y la tercera a 150.000 $ (no decir «tres vendidas a 120.000»); el artista David Datuna lo arrancó y se lo comió (lo tituló «Hungry Artist»); el certificado de autenticidad lleva instrucciones detalladas (14 páginas con diagramas según la prensa: NYT/Smithsonian) de cómo instalarlo y reponer el plátano; subasta Sotheby's Nueva York, nov. 2024: estimación 1–1,5 M$, 6,2 M$ con comisiones (5,2 M$ de martillo); comprador Justin Sun (empresario de criptomonedas); se lo comió el 29-11-2024 en una rueda de prensa en Hong Kong y dijo que sabía «mucho mejor» que otros; recibe el certificado y las instrucciones para reponerlo.
-CUIDADO: no decir el precio exacto del plátano (solo «unos céntimos»), ni la altura de colocación, ni «cada 3 días» (solo se cita en una fuente); no decir que la galería puso otro plátano tras comérselo Datuna (no confirmado); no afirmar que Sun siga siendo hoy el dueño (solo se confirma que recibió el certificado). «Es una broma» es la reacción general del público, no una cita de nadie concreto.
-Fuentes: fortune.com/2024/11/21/justin-sun-tron-comedian-banana-artwork-sothebys-elon-musk-space · theartnewspaper.com/2019/12/04/maurizio-cattelan-presents-first-new-work-for-a-fair-in-15-yearsand-it-is-a-banana-priced-at-dollar120000 · designboom.com/art/maurizio-cattelan-banana-art-basel-miami-12-06-2019 · foxbusiness.com/lifestyle/crypto-entrepreneur-pays-6-2m-viral-banana-artwork-eats · en.wikipedia.org/wiki/Comedian_(artwork) · smithsonianmag.com/smart-news/these-bananas-duct-taped-to-the-wall-are-worth-millions-hungry-museumgoers-keep-eating-them-180987017
+DATOS COMPROBADOS (23-11-2026): ver v1 + frutero: Shah Alam, empleado de un puesto de fruta (la prensa lo llama frutero/vendedor) en Nueva York, vendió el plátano junto a Sotheby's (precio: 25 o 35 centavos según la fuente → decir «unos céntimos»); Sun escribió que, para darle las gracias, compraría 100.000 plátanos en su puesto (después habló de 25.000 $ en fruta; el NYT cuenta que Alam cobra por horas y que el puesto es de otro: no decir «dueño»). Pujas: se remató a 5,2 M$ de martillo, 6,2 M$ con comisiones: «seis millones doscientos mil» incluye comisiones. La feria retiró la obra un día antes de acabar (demasiada gente) → no se usa en el guion v2 para ganar tiempo.
+Fuentes añadidas: npr.org/2024/11/29/nx-s1-5210800/6-million-banana-art-piece-eaten · news.artnet.com/market/justin-sun-banana-vendor-2577590 · artmajeur.com/en/magazine/2-art-news/justin-sun-eats-maurizio-cattelan-s-6-2-million-banana-orders-100-000-more/336787
+
+OPCIONES DE GANCHO VISUAL (0–3 s) propuestas al usuario el 23-11-2026 (elige una; recomendada A→B→F):
+A) Atraco a un plátano: sala oscura, láseres rojos, guardia sudando; la cámara empuja y la «joya» es un plátano pegado con cinta.
+B) Mordisco: primerísimo plano de la boca abierta, CRUNCH, flashes de cámaras, martillazo de subasta.
+C) La cinta: macro del rollo de cinta americana, RIIIP, se pega sobre el plátano con un golpe y la cámara se aleja a toda la galería en silencio.
+D) Lluvia de oro: sacos y monedas caen sobre el plátano pegado; la pared aguanta; el martillo sube en cámara lenta.
+E) Desfile del plátano: plátano girando bajo focos como una joya, flashes de paparazzis, un «¡ooooh!» y una mosca que aterriza.
+F) Cuenta atrás de podredumbre: time-lapse verde → amarillo → manchas → negro con moscas; una mano pega otro nuevo (sirve de bucle al final).
+Calidad de atrezo pedida: plátano con curva real, estrías, punta y rabo marrones, brillo y contorno grueso, manchas que crecen; cinta plateada con arrugas, borde rasgado y brillo; pared de galería con foco, sombra del plátano y cuadros enormes a los lados para que el plátano destaque. Solo subtítulo como texto en pantalla (el precio se enseña con monedas/sacos, no con cifras).
