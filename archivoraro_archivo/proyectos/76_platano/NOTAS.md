@@ -7,3 +7,9 @@ Reglas aplicadas: `references/reglas_75.md` (nada en zonas de paso, fondos con d
 Lecciones: vertical estrecho → sala de 24 m de ancho; el 2D va siempre encima del 3D (tapar piernas tras la mesa con `clipAt`); el plátano mordido se dibuja como overlay SVG (`biteBanana`) calibrado con `headScr`; `shot.js` evalúa el JSON en Node → pasar objetos SVG como `holdRn:"NOMBRE(args)"`.
 Gancho visual recomendado: A (láseres) → B (mordisco) → F (podredumbre/otro plátano) — ver `bocetos/hoja_gancho.jpg`.
 Pendiente: aprobación de bocetos → escenas `sc76.js`, voz (clonada o ElevenLabs), render, revisión (checklist de reglas_75).
+
+## Mejora total (23-11-2026, a petición del usuario: «todo muy simple»)
+- stick.js ampliado (también vale para vídeos futuros): `trousers` (pantalón de pierna entera con raya, bajo y franja lateral `pstripe`; `jeans` con costuras), `heels` (tacón con tira), `sneaker` (zapatilla con suela y cordones), frac con faldones detrás de las piernas (`tails`) y chaleco `vestCol`, vestido con `pleats`, `hemTrim`, `buckle`, `necklace`, `bodiceTrim`. (Copia anterior: stick.before76.js.)
+- Plátano: 5 aristas marcadas, cuello fino, rabo con corte claro, punta negra; shader con tinte verdoso en los extremos, manchas redondas, brillo y maduración (`ripe`).
+- Cinta: objeto aparte (`tape`) con trama de tela (canvas con UV forzada x,y), brillo diagonal, rozaduras, puntas rotas en sierra y despegadas, arrugas finas.
+- Láseres: 20 haces con núcleo + halo + resplandor, emisores en paredes y techo, puntos de impacto, barrido animado con `setTime`, cámaras de vigilancia y baliza giratoria.

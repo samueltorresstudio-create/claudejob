@@ -29,40 +29,48 @@ P = dict(
     taxi=('#ffcc1f'), awn1=('#2f7fe0'), awn2=('#ffffff'), win=('#78bdff'), wind=('#2f4a8a'), cream=('#fbf0d2'), sky=('#9ed6ff'),
 )
 M = {k: mat(k, v) for k, v in P.items()}
-M['bananaskin'] = mat('bananaskin', '#ffd83a')
-for n in ['paint1', 'paint2', 'paint3', 'paint4', 'screen', 'backdrop', 'cert', 'art', 'subasta', 'frutas', 'brillo']: M[n] = mat(n, '#ffffff')
+M['bananaskin'] = mat('bananaskin', '#ffd83a'); M['bananaridge'] = mat('bananaridge', '#f2c428'); M['stemcut'] = mat('stemcut', '#e8dba0'); M['stemd'] = mat('stemd', '#4a3c1a'); M['tipb'] = mat('tipb', '#2a2418'); M['laserlens'] = mat('laserlens', '#ff2a3c')
+for n in ['tape_x', 'paint1', 'paint2', 'paint3', 'paint4', 'screen', 'backdrop', 'cert', 'art', 'subasta', 'frutas', 'brillo']: M[n] = mat(n, '#ffffff')
 
 def sign(o, name, cx, cy, z, w, h, ry=0.): o.box((cx, cy, z), (w, h, .08), M[name], ry)
 def framed(o, name, cx, cy, z, w, h, ry=0., fr='gold'):
     o.box((cx, cy, z), (w + .5, h + .5, .12), M[fr], ry); o.box((cx, cy, z + .07), (w, h, .06), M[name], ry)
 
 # ---------------- el plátano (héroe) y la cinta ----------------
-def banana(name, L=1.4, R=.17, bend=.95, nr=14, o=None):
-    o = o or Obj(name); Rc = L / bend; rings = []; sk = M['bananaskin']; st = M['stem']
+def banana(name, L=1.4, R=.17, bend=.95, nr=26, o=None):
+    # 5 aristas marcadas (cada una con 4 vértices), cuello que se estrecha hacia el rabo, punta negra y rabo con corte claro
+    o = o or Obj(name); Rc = L / bend; rings = []; sk = M['bananaskin']; rg = M['bananaridge']; st = M['stem']; sc = M['stemcut']
+    prof = [(0., 1.), (.30, .95), (.50, .90), (.70, .95)]                      # (fracción de arista, radio relativo): arista viva y valle redondo
+    NV = 20
     for i in range(nr + 1):
-        t = i / nr; a = bend * (t - .5); cx = Rc * math.sin(a); cy = Rc * (1 - math.cos(a)); Tn = (math.cos(a), math.sin(a)); N = (-math.sin(a), math.cos(a))
-        r = R * (.30 + .70 * math.sin(math.pi * min(1., max(0., .06 + .88 * t))) ** .55) if 0 < i < nr else R * .2
+        t = i / nr; a = bend * (t - .5); cx = Rc * math.sin(a); cy = Rc * (1 - math.cos(a)); N = (-math.sin(a), math.cos(a))
+        tt = min(1., max(0., t)); body = math.sin(math.pi * (.10 + .80 * tt)) ** .45                  # barriga
+        neck = 1. - .55 * max(0., (.20 - tt) / .20) ** 1.6 - .35 * max(0., (tt - .86) / .14) ** 1.4   # cuello fino hacia el rabo y punta afilada
+        r = R * (.34 + .66 * body) * neck if 0 < i < nr else R * .18
         ring = []
-        for k in range(10):
-            ph = k / 10 * 2 * math.pi; rr = r * (1. if k % 2 == 0 else .86)
+        for k in range(NV):
+            ridge, j = divmod(k, 4); ph = (ridge + prof[j][0]) / 5 * 2 * math.pi + .35; rr = r * prof[j][1]
             ring.append(o.bm.verts.new((cx + N[0] * math.cos(ph) * rr, cy + N[1] * math.cos(ph) * rr, math.sin(ph) * rr)))
         rings.append(ring)
-    fs = []
     for i in range(nr):
-        for k in range(10): fs.append((o.bm.faces.new((rings[i][k], rings[i][(k + 1) % 10], rings[i + 1][(k + 1) % 10], rings[i + 1][k])), i))
-    for f, i in fs: f.material_index = o.mi(st if (i == 0 or i == nr - 1) else sk)
+        for k in range(NV):
+            f = o.bm.faces.new((rings[i][k], rings[i][(k + 1) % NV], rings[i + 1][(k + 1) % NV], rings[i + 1][k]))
+            f.material_index = o.mi(st if (i == 0 or i == nr - 1) else (rg if k % 4 in (3, 0) else sk))
     c0 = o.bm.faces.new(list(reversed(rings[0]))); c1 = o.bm.faces.new(rings[-1]); c0.material_index = o.mi(st); c1.material_index = o.mi(st)
-    # rabo (arriba-izquierda) y punta
     a0 = bend * (-.5); p0 = (Rc * math.sin(a0), Rc * (1 - math.cos(a0)), 0); d0 = (-math.cos(a0), -math.sin(a0), 0)
-    o.cyl(p0, (p0[0] + d0[0] * L * .1, p0[1] + d0[1] * L * .1, 0), R * .32, st, 6, R * .26)
+    q0 = (p0[0] + d0[0] * L * .05, p0[1] + d0[1] * L * .05, 0); q1 = (p0[0] + d0[0] * L * .14, p0[1] + d0[1] * L * .14 + .02, 0)
+    o.cyl(p0, q0, R * .26, st, 8, R * .30); o.cyl(q0, q1, R * .30, st, 8, R * .27); o.cyl(q1, (q1[0] + d0[0] * .012, q1[1] + d0[1] * .012, 0), R * .27, sc, 8, R * .27)   # rabo con corte claro
+    o.cyl((q0[0] + d0[0] * .02, q0[1] + d0[1] * .02, 0), (q0[0] + d0[0] * .03, q0[1] + d0[1] * .03, 0), R * .34, M['stemd'], 8, R * .34)
     a1 = bend * .5; p1 = (Rc * math.sin(a1), Rc * (1 - math.cos(a1)), 0); d1 = (math.cos(a1), math.sin(a1), 0)
-    o.sph((p1[0] + d1[0] * L * .015, p1[1] + d1[1] * L * .015, 0), R * .26, st)
+    o.sph((p1[0] + d1[0] * L * .012, p1[1] + d1[1] * L * .012, 0), R * .20, M['tipb'], (1.1, .8, .8)); o.sph((p1[0] + d1[0] * L * .028, p1[1] + d1[1] * L * .028, 0), R * .09, M['stemd'])
     return o
-def tape_pieces(o, cx, cy, wall_z, top_z, ang, half=.8, w=.22, bw=.34, sl=.16, th=.03):
-    # una tira continua de cinta americana: pegada a la pared, sube por el plátano, lo cruza por encima y baja a la pared (en el plano XY girado `ang`)
-    n = 44; xs = [-half + 2 * half * i / n for i in range(n + 1)]; zs = []
+def tape_obj():
+    # tira de cinta americana en su propio objeto (ejes alineados: longitud en x, ancho en y, cara hacia +z); se gira en three.js
+    o = Obj('tape'); half, w, th, n = .85, .24, .03, 56; bw, sl, top, wall = .36, .17, .19 + .18 + .012, 0.
+    xs = [-half + 2 * half * i / n for i in range(n + 1)]; zs = []
     for x in xs:
-        k = max(0., min(1., (bw + sl - abs(x)) / sl)); k = k * k * (3 - 2 * k); zs.append(wall_z + .016 + (top_z - wall_z - .016) * k)
+        k = max(0., min(1., (bw + sl - abs(x)) / sl)); k = k * k * (3 - 2 * k); lift = .05 * max(0., (abs(x) - (half - .16)) / .16) ** 2   # las puntas se despegan
+        zs.append(wall + .018 + (top - wall - .018) * k + lift)
     V = []
     for i, x in enumerate(xs):
         z = zs[i]; V.append([o.bm.verts.new((x, -w / 2, z + th / 2)), o.bm.verts.new((x, w / 2, z + th / 2)), o.bm.verts.new((x, -w / 2, z - th / 2)), o.bm.verts.new((x, w / 2, z - th / 2))])
@@ -73,21 +81,22 @@ def tape_pieces(o, cx, cy, wall_z, top_z, ang, half=.8, w=.22, bw=.34, sl=.16, t
     fs += [o.bm.faces.new((V[0][2], V[0][3], V[0][1], V[0][0])), o.bm.faces.new((V[-1][0], V[-1][1], V[-1][3], V[-1][2]))]
     k = o.mi(M['tape'])
     for f in fs: f.material_index = k
-    allv = [v for r in V for v in r]
-    bmesh.ops.transform(o.bm, matrix=Matrix.Translation(Vector((cx, cy, 0))) @ Matrix.Rotation(ang, 4, 'Z'), verts=allv)
-    c, sn = math.cos(ang), math.sin(ang)
-    for xr in (-.62, -.5, -.41, -.1, .12, .3, .43, .58, .7):                 # arrugas y bordes brillantes
-        i = min(n, max(0, int((xr + half) / (2 * half) * n))); z = zs[i] + th / 2 + .006
-        o.box((cx + xr * c, cy + xr * sn, z), (.02, w * (.9 if int(abs(xr) * 10) % 2 else .6), .012), M['taped'], 0., 0., ang + (.12 if xr > 0 else -.12))
-    for sd in (-1, 1):                                                       # borde de la tira (línea clara a lo largo)
-        for i in range(0, n, 2):
-            xr = xs[i] + half / n; z = zs[i] + th / 2 + .004; o.box((cx + xr * c - sd * (w / 2 - .012) * sn, cy + xr * sn + sd * (w / 2 - .012) * c, z), (2 * half / n * 2.1, .018, .01), M['white'], 0., 0., ang)
-    for sd in (-1, 1):                                                       # puntas despegadas
-        o.box((cx + sd * (half - .02) * c, cy + sd * (half - .02) * sn, zs[0] + .05), (.16, w * .96, .018), M['tape'], 0., sd * .35, ang)
+    for sd in (-1, 1):                                                      # extremos rotos: dientes de sierra
+        for j in range(6):
+            yy = -w / 2 + (j + .5) * w / 6; x0 = sd * half; zz = zs[0 if sd < 0 else -1]
+            tri = [(x0, yy - w / 12), (x0 + sd * (.035 + .02 * ((j * 7) % 3)), yy), (x0, yy + w / 12)]
+            o.prism(tri, zz - th / 2, zz + th / 2, M['tape'])
+    for xr in (-.66, -.54, -.46, -.12, .10, .27, .44, .60, .72):            # arrugas finas cruzadas
+        i = min(n, max(0, int((xr + half) / (2 * half) * n))); z = zs[i] + th / 2 + .005
+        o.box((xr, 0, z), (.008, w * (.9 if int(abs(xr) * 10) % 2 else .6), .006), M['tape'], 0., 0., .16 if xr > 0 else -.16)
+    for sd in (-1, 1):                                                      # cantos brillantes
+        for i in range(0, n, 2): o.box((xs[i] + half / n, sd * (w / 2 - .01), zs[i] + th / 2 + .004), (2 * half / n * 2.1, .016, .009), M['white'])
+    return o
+TP = tape_obj(); TP.finish()
 HB = banana('banana'); HB.finish()                                  # plátano suelto (se clona)
 HR = banana('banana_big', 1.4, .17); HR.finish()
-WP = Obj('wallpiece')                                               # la obra: plátano + cinta pegada a la pared (origen = pared, z=0)
-grp(WP, lambda q: banana('w', 1.45, .18, 1.0, o=q), TR(0, -.1, .19)); tape_pieces(WP, 0, .1, 0., .19 + .18 + .02, .5, .85, .24); WP.finish()
+WP = Obj('wallpiece')                                               # la obra: plátano pegado a la pared (origen = pared, z=0); la cinta es el objeto `tape`
+grp(WP, lambda q: banana('w', 1.45, .18, 1.0, o=q), TR(0, -.1, .19)); WP.finish()
 def cert_obj():
     o = Obj('cert'); o.box((0, 0, 0), (1.0, 1.4, .03), M['cert']); o.box((0, 0, .02), (1.04, 1.44, .02), M['gold']); o.cyl((.28, -.5, .03), (.28, -.5, .05), .13, M['wax'], 10)
     o.box((.2, -.62, .03), (.08, .3, .012), M['red'], 0., 0., .2); o.box((.36, -.62, .03), (.08, .3, .012), M['red'], 0., 0., -.2); return o
@@ -99,6 +108,24 @@ def peeled(name='peeled'):
         o.cyl((pos[0] + math.cos(a) * .1, pos[1], math.sin(a) * .1), (pos[0] + d[0] * 1.5, pos[1] + d[1], d[2] * 1.5), .07, M['banana'], 5, .03)
     return o
 PL = peeled(); PL.finish()
+
+
+# ---------------- material de seguridad: emisor láser, cámara de vigilancia y baliza (se clonan en three.js) ----------------
+def emitter():
+    o = Obj('emitter')
+    o.box((0, 0, -.08), (.62, .46, .16), M['iron']); o.box((0, 0, -.18), (.8, .6, .06), M['steeld'])                     # placa y soporte
+    o.cyl((0, 0, 0), (0, 0, .34), .17, M['black'], 12, .2); o.cyl((0, 0, .32), (0, 0, .4), .13, M['laserlens'], 12, .13)  # cañón y lente roja
+    for sx in (-.2, .2): o.box((sx, .2, .05), (.08, .08, .08), M['laserlens'])                                              # leds
+    o.box((0, -.22, .08), (.3, .06, .1), M['steel']); return o
+EM = emitter(); EM.finish()
+def seccam():
+    o = Obj('seccam')
+    o.cyl((0, 0, 0), (0, .5, 0), .06, M['steeld'], 6); o.box((0, -.12, .2), (.34, .3, .8), M['white']); o.cyl((0, -.12, .6), (0, -.12, .74), .15, M['black'], 12, .17); o.sph((0, -.12, .76), .1, M['bluel'])
+    o.box((0, .08, .2), (.2, .06, .5), M['steeld']); o.sph((.1, -.02, .0), .05, M['laserlens']); return o
+SC = seccam(); SC.finish()
+def beacon():
+    o = Obj('beacon'); o.cyl((0, 0, 0), (0, .12, 0), .34, M['iron'], 12); o.cyl((0, .12, 0), (0, .55, 0), .3, M['laserlens'], 14, .22); o.sph((0, .55, 0), .22, M['laserlens']); return o
+BE = beacon(); BE.finish()
 
 # ---------------- ayudantes de decorado ----------------
 def stanchion(o, x, z, h=1.0): o.cyl((x, 0, z), (x, h, z), .05, M['gold'], 8); o.cyl((x, 0, z), (x, .05, z), .22, M['gold'], 12); o.sph((x, h + .05, z), .1, M['gold'])
