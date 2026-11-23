@@ -2,13 +2,13 @@
 function tendero2d(o = {}) {
   const K = '#2a1b1b', f = o.face || 'serio';
   let s = `<defs>
-  <radialGradient id="tdH" cx=".42" cy=".42" r=".65"><stop offset="0" stop-color="#fbf1dd"/><stop offset=".7" stop-color="#f1e1c8"/><stop offset="1" stop-color="#e8cfc0"/></radialGradient>
-  <linearGradient id="tdB" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9a2a38"/><stop offset=".22" stop-color="#8e2030"/><stop offset=".6" stop-color="#7a1825"/><stop offset=".88" stop-color="#5c111b"/><stop offset="1" stop-color="#480d15"/></linearGradient>
+  <radialGradient id="tdH" cx=".45" cy=".4" r=".62"><stop offset="0" stop-color="#fff6e2"/><stop offset=".55" stop-color="#f6e6cc"/><stop offset=".85" stop-color="#efd6c4"/><stop offset="1" stop-color="#e6c6bc"/></radialGradient>
+  <radialGradient id="tdB" cx=".3" cy=".35" r=".85"><stop offset="0" stop-color="#8e2030"/><stop offset=".45" stop-color="#781726"/><stop offset=".8" stop-color="#5a101c"/><stop offset="1" stop-color="#400a12"/></radialGradient>
   <linearGradient id="tdHat" x1="0" y1="0" x2="1" y2=".3"><stop offset="0" stop-color="#7a4a28"/><stop offset=".5" stop-color="#5e3719"/><stop offset="1" stop-color="#3e2210"/></linearGradient>
   <linearGradient id="tdBrim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a7468"/><stop offset=".25" stop-color="#4a2c18"/><stop offset="1" stop-color="#2e1a0e"/></linearGradient>
   <radialGradient id="tdBtn" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#e2c060"/><stop offset="1" stop-color="#a8822a"/></radialGradient>
-  <filter id="tdSoft"><feGaussianBlur stdDeviation="18"/></filter>
-  <clipPath id="tdBc"><path d="M330,1150 C300,1240 284,1440 288,1640 C292,1800 370,1895 600,1895 C830,1895 908,1800 912,1640 C916,1440 900,1240 870,1150 C760,1120 440,1120 330,1150Z"/></clipPath>
+  <filter id="tdSoft"><feGaussianBlur stdDeviation="18"/></filter><filter id="tdS1"><feGaussianBlur stdDeviation="2.5"/></filter><filter id="tdAll"><feGaussianBlur stdDeviation="1.1"/></filter>
+  <clipPath id="tdBc"><path d="M300,1230 C320,1110 450,1060 600,1060 C750,1060 880,1110 900,1230 C916,1440 916,1640 910,1720 C900,1840 800,1895 600,1895 C400,1895 300,1840 292,1720 C286,1640 286,1440 300,1230Z"/></clipPath>
  </defs>`;
   // piernas
   s += `<path d="M478,1880 L470,2100 M712,1880 L722,2100" stroke="${K}" stroke-width="30" stroke-linecap="round"/>`;
@@ -18,15 +18,15 @@ function tendero2d(o = {}) {
   s += `<path d="${armL}" stroke="${K}" stroke-width="26" fill="none" stroke-linecap="round"/><circle cx="${handL[0]}" cy="${handL[1]}" r="44" fill="${K}"/>`;
   s += `<path d="${armR}" stroke="${K}" stroke-width="26" fill="none" stroke-linecap="round"/><circle cx="${handR[0]}" cy="${handR[1]}" r="44" fill="${K}"/>`;
   // cuerpo (bala granate)
-  const BP = 'M330,1150 C300,1240 284,1440 288,1640 C292,1800 370,1895 600,1895 C830,1895 908,1800 912,1640 C916,1440 900,1240 870,1150 C760,1120 440,1120 330,1150Z';
+  const BP = 'M300,1230 C320,1110 450,1060 600,1060 C750,1060 880,1110 900,1230 C916,1440 916,1640 910,1720 C900,1840 800,1895 600,1895 C400,1895 300,1840 292,1720 C286,1640 286,1440 300,1230Z';
   s += `<path d="${BP}" fill="url(#tdB)"/><g clip-path="url(#tdBc)">
-    <path d="M335,1240 C318,1400 322,1600 350,1770" stroke="#d06878" stroke-width="46" fill="none" opacity=".45" filter="url(#tdSoft)"/><path d="M420,1830 C500,1870 700,1870 800,1830" stroke="#2a060c" stroke-width="50" fill="none" opacity=".4" filter="url(#tdSoft)"/>
+    <path d="M318,1250 C300,1420 302,1620 322,1770" stroke="#c85a6a" stroke-width="18" fill="none" opacity=".5" filter="url(#tdS1)"/><path d="M380,1200 C360,1400 370,1600 400,1760" stroke="#b03848" stroke-width="80" fill="none" opacity=".35" filter="url(#tdSoft)"/><path d="M420,1830 C500,1870 700,1870 800,1830" stroke="#2a060c" stroke-width="50" fill="none" opacity=".4" filter="url(#tdSoft)"/>
     <ellipse cx="600" cy="1150" rx="330" ry="70" fill="#2a0a10" opacity=".55" filter="url(#tdSoft)"/>
     <path d="M880,1220 C900,1450 895,1690 865,1830" stroke="#1e0408" stroke-width="80" fill="none" opacity=".5" filter="url(#tdSoft)"/>
-    <path d="M420,1650 L530,1652 M752,1648 L862,1640" stroke="#3a0c12" stroke-width="11" stroke-linecap="round"/>
+    <path d="M420,1650 L530,1652 M752,1648 L862,1640" stroke="#4a0a14" stroke-width="13" stroke-linecap="round" opacity=".85" filter="url(#tdS1)"/>
   </g><path d="${BP}" fill="none" stroke="${K}" stroke-width="30" stroke-linejoin="round"/><path d="M905,1500 C912,1700 880,1880 600,1898" stroke="${K}" stroke-width="18" fill="none" stroke-linecap="round"/>`;
   // camisa en pico bajo la pajarita, cuello (dos triángulos), pajarita roja de lunares
-  s += `<path d="M602,1318 L700,1318 L652,1412Z" fill="#f2ece2" stroke="${K}" stroke-width="6" stroke-linejoin="round"/>`;
+  s += `<path d="M598,1316 L702,1316 L650,1425Z" fill="#f2ece2" stroke="${K}" stroke-width="6" stroke-linejoin="round"/>`;
   s += `<path d="M515,1222 L640,1222 L585,1322Z" fill="#f4efe6" stroke="${K}" stroke-width="7" stroke-linejoin="round"/><path d="M520,1226 L585,1322 L600,1290Z" fill="#d9d2c6" opacity=".6"/>`;
   s += `<path d="M652,1222 L766,1222 L705,1320Z" fill="#f4efe6" stroke="${K}" stroke-width="7" stroke-linejoin="round"/><path d="M760,1226 L705,1320 L690,1290Z" fill="#d9d2c6" opacity=".6"/>`;
   s += `<path d="M578,1294 L632,1306 L632,1322 L582,1346Z" fill="#d8323a" stroke="${K}" stroke-width="6" stroke-linejoin="round"/><path d="M718,1294 L664,1306 L664,1322 L714,1346Z" fill="#d8323a" stroke="${K}" stroke-width="6" stroke-linejoin="round"/>`;
@@ -36,7 +36,7 @@ function tendero2d(o = {}) {
   s += [1522, 1593, 1665, 1737].map(y => `<circle cx="647" cy="${y}" r="15" fill="url(#tdBtn)" stroke="#5a3a14" stroke-width="3"/>`).join('');
   // cabeza
   s += `<circle cx="590" cy="775" r="375" fill="url(#tdH)"/>
-   <path d="M260,760 C255,900 320,1050 440,1110" stroke="#ffffff" stroke-width="24" fill="none" opacity=".35" stroke-linecap="round" filter="url(#tdSoft)"/>
+   <path d="M245,700 C232,880 300,1040 430,1110" stroke="#ffffff" stroke-width="18" fill="none" opacity=".55" stroke-linecap="round" filter="url(#tdSoft)"/>
    <path d="M600,1150 C760,1150 900,1060 950,900" stroke="#c9a89a" stroke-width="40" fill="none" opacity=".35" filter="url(#tdSoft)"/>
    <circle cx="590" cy="775" r="375" fill="none" stroke="${K}" stroke-width="30"/><path d="M955,850 A375,375 0 0 1 560,1150" stroke="${K}" stroke-width="20" fill="none" transform="translate(4,6)" stroke-linecap="round"/>`;
   s += face2d(f);
@@ -64,8 +64,8 @@ function face2d(f) {
     s += `<path d="M446,${840 + dy} L582,${843 + dy} M630,${846 + dy} L766,${849 + dy}" stroke="${K}" stroke-width="24" stroke-linecap="round"/>`; }
   // bigote: arco grueso con puntas caídas
   const M = 'M600,902 C560,880 470,882 432,928 C395,972 390,1030 412,1050 C432,1066 452,1040 452,1012 C460,990 520,990 600,996 C680,990 740,990 750,1012 C752,1040 770,1066 790,1052 C812,1032 806,972 768,928 C730,882 640,880 600,902Z';
-  s += `<path d="${M}" fill="#683820" stroke="${K}" stroke-width="20" stroke-linejoin="round"/>`;
-  s += `<path d="M430,1010 C440,950 500,925 600,935 C700,925 760,950 772,1010" stroke="#7e4a2c" stroke-width="26" fill="none" opacity=".55" stroke-linecap="round"/>`;
+  s += `<path d="${M}" fill="#47220f" stroke="${K}" stroke-width="22" stroke-linejoin="round"/>`;
+  s += `<path d="M430,1010 C440,950 500,925 600,935 C700,925 760,950 772,1010" stroke="#5c2e16" stroke-width="30" fill="none" opacity=".8" stroke-linecap="round"/>`;
   // boca
   if (f === 'sorpresa') s += `<ellipse cx="600" cy="1050" rx="26" ry="30" fill="#4a1c1e" stroke="${K}" stroke-width="10"/>`;
   else if (f === 'feliz') s += `<path d="M560,1010 Q600,1060 645,1010" stroke="${K}" stroke-width="14" fill="none" stroke-linecap="round"/>`;
