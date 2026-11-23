@@ -73,6 +73,15 @@ const W2 = (() => {
   const ornament = (g, x, y, r, gold, dark) => { g.save(); g.translate(x, y); g.strokeStyle = gold; g.fillStyle = gold; g.lineWidth = r * .09;
     for (let k = 0; k < 8; k++) { g.rotate(Math.PI / 4); g.beginPath(); g.ellipse(0, -r * .62, r * .17, r * .42, 0, 0, 7); g.stroke(); }
     g.beginPath(); g.arc(0, 0, r * .2, 0, 7); g.fill(); g.fillStyle = dark; g.beginPath(); g.arc(0, 0, r * .08, 0, 7); g.fill(); g.restore(); };
+  let SG = null, EG = null;
+  const SEQ = [[0, 2, 4, 1, 3], [2, 4, 0, 3, 1], [4, 0, 2, 1, 3]];
+  function drawSlot(g, w, h, off, lit) { g.fillStyle = '#2a1030'; g.fillRect(0, 0, w, h); g.fillStyle = '#fff6d8'; g.fillRect(40, 60, w - 80, h - 120); g.strokeStyle = KK; g.lineWidth = 10; g.strokeRect(40, 60, w - 80, h - 120);
+    for (let i = 0; i < 3; i++) { const x0 = 56 + i * 216; g.fillStyle = '#ffffff'; g.fillRect(x0, 74, 200, h - 148); g.save(); g.beginPath(); g.rect(x0, 74, 200, h - 148); g.clip(); const o = off[i], base = Math.floor(o), fr = o - base;
+      for (let j = -1; j < 4; j++) fruit(g, SEQ[i][((base + j) % 5 + 5) % 5], x0 + 100, 134 + (j - fr) * 112, 40); g.restore(); g.strokeStyle = KK; g.lineWidth = 10; g.strokeRect(x0, 74, 200, h - 148); }
+    g.strokeStyle = '#e3243a'; g.lineWidth = 7; g.beginPath(); g.moveTo(34, h / 2); g.lineTo(w - 34, h / 2); g.stroke();
+    const ph = lit ? Math.floor(lit * 8) % 2 : 0; for (let k = 0; k < 18; k++) { g.fillStyle = (k + ph) % 2 ? '#ffe34a' : '#ff4f9a'; g.beginPath(); g.arc(30 + k * 42, 28, 11, 0, 7); g.fill(); g.beginPath(); g.arc(30 + k * 42, h - 28, 11, 0, 7); g.fill(); } }
+  function drawEEG(g, w, h, t, amp) { g.fillStyle = '#0c2236'; g.fillRect(0, 0, w, h); g.strokeStyle = 'rgba(120,230,255,.18)'; g.lineWidth = 2; for (let x = 0; x < w; x += 40) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); } for (let y = 0; y < h; y += 40) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
+    [['#5fe0d4', 90], ['#ffd34a', 200], ['#ff4f9a', 310]].forEach(([c, y0], i) => { g.strokeStyle = c; g.lineWidth = 5; g.beginPath(); for (let x = 0; x <= w; x += 5) { const u = x * .05 - t * 6 + i * 2, a = (6 + 6 * Math.sin(u * .7)) + amp * 40 * Math.max(0, Math.sin(u * 1.9)) ** 3; g.lineTo(x, y0 + Math.sin(u * 2.3) * a); } g.stroke(); }); }
   function paintSigns() {
     const S = {
       wallpaper: (() => { const c = document.createElement('canvas'); c.width = c.height = 512; const g = c.getContext('2d'); g.fillStyle = '#8c1f3d'; g.fillRect(0, 0, 512, 512);
@@ -109,10 +118,7 @@ const W2 = (() => {
           g.strokeStyle = '#f0c24a'; g.lineWidth = 5; g.stroke(); g.fillStyle = '#ffd96a'; g.beginPath(); g.arc(0, 0, 10, 0, 7); g.fill(); g.fillStyle = '#2fd0c0'; for (let k = 0; k < 4; k++) { g.beginPath(); g.ellipse(Math.cos(k * 1.571) * 26, Math.sin(k * 1.571) * 26, 9, 4.5, k * 1.571, 0, 7); g.fill(); } g.fillStyle = '#ff6fa8'; for (let k = 0; k < 4; k++) { g.beginPath(); g.arc(Math.cos(k * 1.571 + .785) * 40, Math.sin(k * 1.571 + .785) * 40, 4, 0, 7); g.fill(); } g.restore(); }
         return REP(c); })(),
       // pantalla de la tragaperras: tres rodillos con frutas y bombillas
-      slotscr: cv(768, 512, (g, w, h) => { g.fillStyle = '#2a1030'; g.fillRect(0, 0, w, h); g.fillStyle = '#fff6d8'; g.fillRect(40, 60, w - 80, h - 120); g.strokeStyle = KK; g.lineWidth = 10; g.strokeRect(40, 60, w - 80, h - 120);
-        for (let i = 0; i < 3; i++) { const x0 = 56 + i * 216; g.fillStyle = '#ffffff'; g.fillRect(x0, 74, 200, h - 148); g.strokeRect(x0, 74, 200, h - 148); for (let j = 0; j < 3; j++) fruit(g, [[0, 2, 4], [2, 4, 0], [4, 0, 2]][i][j], x0 + 100, 134 + j * 112, 40); }
-        g.strokeStyle = '#e3243a'; g.lineWidth = 7; g.beginPath(); g.moveTo(34, h / 2); g.lineTo(w - 34, h / 2); g.stroke();
-        for (let k = 0; k < 18; k++) { g.fillStyle = k % 2 ? '#ffe34a' : '#ff4f9a'; g.beginPath(); g.arc(30 + k * 42, 28, 11, 0, 7); g.fill(); g.beginPath(); g.arc(30 + k * 42, h - 28, 11, 0, 7); g.fill(); } }),
+      slotscr: cv(768, 512, (g, w, h) => { SG = g; drawSlot(g, w, h, [0, 0, 0], 0); }),
       // esfera de reloj sin números: solo marcas
       clockface: cv(512, 512, (g, w, h) => { g.fillStyle = '#fffbe8'; g.beginPath(); g.arc(256, 256, 250, 0, 7); g.fill(); g.strokeStyle = KK; g.lineWidth = 12; g.stroke();
         for (let k = 0; k < 60; k++) { const a = k * Math.PI / 30, big = k % 5 === 0, r0 = big ? 196 : 222, r1 = 236; g.lineWidth = big ? (k % 15 === 0 ? 16 : 10) : 4; g.strokeStyle = KK; g.beginPath(); g.moveTo(256 + Math.sin(a) * r0, 256 - Math.cos(a) * r0); g.lineTo(256 + Math.sin(a) * r1, 256 - Math.cos(a) * r1); g.stroke(); } }),
@@ -128,12 +134,13 @@ const W2 = (() => {
         g.strokeStyle = '#fff'; g.lineWidth = 8; g.strokeRect(60, 60, w - 120, h - 120); [[300, 60, 300, 340], [300, 340, 560, 340], [560, 200, 560, 580], [560, 200, 820, 200], [820, 200, 820, 460], [180, 460, 440, 460], [180, 200, 180, 460]].forEach(([a, b, c, d]) => { g.beginPath(); g.moveTo(a, b); g.lineTo(c, d); g.stroke(); }); g.fillStyle = '#ffd34a'; [[240, 400], [640, 300], [900, 520]].forEach(([x, y]) => { g.beginPath(); g.arc(x, y, 18, 0, 7); g.fill(); }); }),
       plan2: cv(1280, 700, (g, w, h) => { g.fillStyle = '#fff6dc'; g.fillRect(0, 0, w, h); const rn = rn0(3); g.strokeStyle = KK; g.lineWidth = 8; g.strokeRect(30, 30, w - 60, h - 60);
         for (let i = 0; i < 9; i++) for (let j = 0; j < 5; j++) { g.fillStyle = ['#ffd2d8', '#cfe8ff', '#d8f0c8', '#ffe9a8'][(i + j) % 4]; g.fillRect(70 + i * 128, 70 + j * 120, 100, 92); g.strokeRect(70 + i * 128, 70 + j * 120, 100, 92); }
-        g.lineWidth = 12; g.strokeStyle = '#e3243a'; g.beginPath(); g.moveTo(w / 2, h - 30); for (let k = 0; k < 9; k++) g.lineTo(w / 2 + (k % 2 ? 160 : -160) * (1 - k / 12), h - 60 - k * 60); g.stroke(); }),
+        const gx = i => 70 + i * 128 - 14, gy = j => 70 + j * 120 - 14, R = [[0, 5], [0, 4], [1, 4], [1, 2], [0, 2], [0, 1], [2, 1], [2, 3], [3, 3], [3, 0]];
+        g.lineWidth = 9; g.strokeStyle = '#e3243a'; g.setLineDash([22, 14]); g.lineCap = 'round'; g.beginPath(); R.forEach(([i, j], k) => k ? g.lineTo(gx(i), gy(j)) : g.moveTo(gx(i), gy(j))); g.stroke(); g.setLineDash([]);
+        g.fillStyle = '#e3243a'; g.beginPath(); g.moveTo(gx(3) - 22, gy(0) + 10); g.lineTo(gx(3) + 22, gy(0) + 10); g.lineTo(gx(3), gy(0) - 26); g.closePath(); g.fill(); }),
       plan3: cv(600, 800, (g, w, h) => { g.fillStyle = '#fbf0d2'; g.fillRect(0, 0, w, h); g.strokeStyle = KK; g.lineWidth = 8; g.strokeRect(24, 24, w - 48, h - 48); g.lineWidth = 6; g.beginPath(); g.moveTo(60, 620); g.lineTo(60, 420); g.lineTo(300, 300); g.lineTo(540, 420); g.lineTo(540, 620); g.closePath(); g.stroke();
         g.fillStyle = '#ffc928'; g.beginPath(); g.arc(300, 170, 80, 0, 7); g.fill(); g.stroke(); g.fillStyle = '#e3243a'; g.fillRect(250, 450, 100, 170); g.strokeRect(250, 450, 100, 170); }),
       // pantalla del laboratorio: ondas y rejilla
-      eeg: cv(640, 400, (g, w, h) => { g.fillStyle = '#0c2236'; g.fillRect(0, 0, w, h); g.strokeStyle = 'rgba(120,230,255,.18)'; g.lineWidth = 2; for (let x = 0; x < w; x += 40) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); } for (let y = 0; y < h; y += 40) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
-        const rn = rn0(9); [['#5fe0d4', 90], ['#ffd34a', 200], ['#ff4f9a', 310]].forEach(([c, y0]) => { g.strokeStyle = c; g.lineWidth = 5; g.beginPath(); for (let x = 0; x <= w; x += 6) { const a = (x > 300 && x < 420 ? 34 : 10) * (1 + rn() * .6); g.lineTo(x, y0 + Math.sin(x * .09 + y0) * a); } g.stroke(); }); }),
+      eeg: cv(640, 400, (g, w, h) => { EG = g; drawEEG(g, w, h, 0, 0); }),
       chart: cv(1024, 480, (g, w, h) => { g.fillStyle = '#fbfbf4'; g.fillRect(0, 0, w, h); g.strokeStyle = KK; g.lineWidth = 8; g.beginPath(); g.moveTo(80, 40); g.lineTo(80, h - 60); g.lineTo(w - 60, h - 60); g.stroke();
         [[150, 170], [300, 240], [450, 130], [600, 300], [750, 200]].forEach(([x, bh], i) => { g.fillStyle = ['#e3453a', '#4f8fe8', '#ffd34a', '#43bd65', '#8a63d2'][i]; g.fillRect(x, h - 60 - bh, 90, bh); g.strokeRect(x, h - 60 - bh, 90, bh); }); }),
     };
@@ -189,6 +196,8 @@ const W2 = (() => {
   const clock = (hh = 8, mm = 0, cover = 0) => { if (!CLOCK) return; HM.rotation.z = -mm / 60 * Math.PI * 2; HH.rotation.z = -((hh % 12) + mm / 60) / 12 * Math.PI * 2; CLOTH.position.y = LAY2.y + 3.4 - 3.4 * cover; CLOTH.visible = cover > .001; };
   const plastic = k => { BEAMS.forEach(b => { b.material.opacity = .32 * (1 - Math.min(1, k * 1.4)); }); if (PLASTIC) { PLASTIC.scale.y = Math.max(.001, 6.2 * k); PLASTIC.position.y = 0; PLASTIC.visible = k > .001; } };
   const ceiling = on => { if (CEIL) CEIL.visible = !!on; };
+  const slotScr = (off, lit = 0) => { if (SG && SIGN.slotscr) { drawSlot(SG, 768, 512, off, lit); SIGN.slotscr.map.needsUpdate = true; } };
+  const eeg = (t, amp = 0) => { if (EG && SIGN.eeg) { drawEEG(EG, 640, 400, t, amp); SIGN.eeg.map.needsUpdate = true; } };
   function site(n) { Object.keys(SITES).forEach(k => SITES[k].visible = k === n); sky.visible = false; BEAMS.forEach(b => b.visible = n === 'glass'); }
 
   // ---------- ambientes ----------
@@ -218,5 +227,5 @@ const W2 = (() => {
   function render() { comp.render(); }
   function setTime(t) { skyU.time.value = t; uTime.value = t; TICK.forEach(f => f(t)); }
   const ground = (x, z, siteName) => 0;
-  return { T, scene, camera, R, comp, setCam, proj, render, setTime, setMood, site, ground, SUN, G, SITES, READY_W, sky, dof, bloom, inkify, toon, place, TICK, hero, clear, clock, plastic, ceiling, get mood() { return MOOD; } };
+  return { T, scene, camera, R, comp, setCam, proj, render, setTime, setMood, site, ground, SUN, G, SITES, READY_W, sky, dof, bloom, inkify, toon, place, TICK, hero, clear, clock, plastic, ceiling, slotScr, eeg, get mood() { return MOOD; } };
 })();

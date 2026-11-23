@@ -26,7 +26,7 @@ P = dict(
     navy=('#2c3f86'), navyd=('#1f2d63'), blue=('#4f8fe8'), green=('#2f9a52'), greenl=('#43bd65'), felt=('#1f7a4a'), teal=('#2cc4b4'), mint=('#bfe8dc'),
     pink=('#ff4f9a'), cyan=('#2fe0ff'), purple=('#8a63d2'), orange=('#ff9a3c'), yellow=('#ffd96a'), lamp=('#fff0b0'), wood=('#b9824e'), woodd=('#7d5230'),
     darkwood=('#5a3a24'), wall=('#f6f3ec'), walld=('#e4dfd3'), tile=('#dfe6ea'), tiled=('#c3ced4'), concrete=('#c9c5bd'), leaf=('#41c261'),
-    slotglow=('#fff6a0'), plastic=('#17141f'), cloth=('#14111a'), skin=('#f4d9b4'), glass=('#bfe6ff'),
+    slotglow=('#fff6a0'), plastic=('#17141f'), cloth=('#2b3a78'), skin=('#f4d9b4'), glass=('#bfe6ff'),
 )
 M = {k: mat(k, v) for k, v in P.items()}
 for n in ['carpet', 'wallpaper', 'ceilingp', 'parquet', 'tilep', 'plan1', 'plan2', 'plan3', 'slotscr', 'clockface', 'daycity', 'eeg', 'poster', 'chart', 'runner', 'art1', 'art2', 'art3', 'icon1', 'icon2', 'icon3', 'icon4']: M[n] = mat(n, '#ffffff')
