@@ -45,3 +45,9 @@ se comen las respiraciones.
   La puerta está abierta.»), gancho del 76 en UNA pieza, `num_step=64`, `class_temperature=.8`, 4 tomas (~5,5 min cada una en CPU).
   Descartes: una toma metió al principio el final del texto de referencia («la puerta está abierta») y otra repitió «plátano plátano»:
   **pasar siempre `score.py`** (Whisper + variación de tono) y escuchar el arranque. Sin acelerar sale ~12 s frente a 10,4 s del 76.
+- **23-11-2026: el usuario prefiere la voz del 76 (trozos con tonos) a la de referencia única**, pero «tiene pausas raras, robóticas, mal
+  hechas». Medido en sus MP3 reales (`pauses.py`, 5 vídeos): **punto ≈ 0,37 s (0,32–0,41), pregunta ≈ 0,38, coma ≈ 0,25**. En el 76 las
+  pausas eran todas de 0,14–0,36 (mediana 0,23: pausas ×0,6 + `atempo`), iguales entre sí, con colas cortadas a 40 ms y silencio digital.
+  Nuevo montaje `assemble2.py` (`proyectos/voz_mejorada/`): pausa según la puntuación medida, remate 0,5, +0,08 al cambiar de frase del
+  guion, ±10 % de variación, colas naturales de 150 ms con caída suave, tono de sala a −66 dB y **sin `atempo`** (ajustar la duración con
+  el guion). Sale un 20 % más largo: escribir guiones de ~175 palabras para 62–65 s.
