@@ -1,12 +1,12 @@
 GUION 76 · EL PLÁTANO DE SEIS MILLONES (Cattelan, «Comedian», 2019 → Sotheby's 2024) — v3, ESTILO DE LAS CUENTAS DE REFERENCIA
-Para ElevenLabs (Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural») o voz local clonada (references/voz_local.md). 187 palabras ≈ 62–63 s. 3 etiquetas suaves.
+Para ElevenLabs (Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural») o voz local clonada (references/voz_local.md). 185 palabras ≈ 62–63 s. 3 etiquetas suaves.
 Molde de references/guion_estilo_virales.md (analizado de @Celyxi, @JapanimationCLIPS, @Emuuexplains y la bomba): gancho paradójico en 2.ª persona, pista sembrada que se cobra al final, hipótesis descartadas, «Verás» tardío, escalada, chiste extra y bucle.
 Pista sembrada: «Con cada uno te dan un papel» (a los ~15 s) → es el certificado (~40 s).
 (v1 y v2 guardadas: guion_76_platano_v1.txt / _v2.txt)
 
 Compras un plátano por seis millones de dólares… y te lo comes.
 
-Todo empieza en Miami, en 2019. Feria de arte. En una pared blanca, un plátano pegado con cinta americana. Cuesta ciento veinte mil dólares.
+Todo empieza en Miami, en 2019. En una pared blanca, un plátano pegado con cinta americana. Cuesta ciento veinte mil dólares.
 
 Crees que es una broma.
 
@@ -14,9 +14,9 @@ Crees que es una broma.
 
 Con cada uno te dan un papel. Nada más.
 
-Hay cola para hacerse fotos. Entonces un artista se acerca… lo arranca… [deadpan] y se lo come.
+Hay cola para hacerse fotos. Un artista se acerca… lo arranca… [deadpan] y se lo come.
 
-Cinco años después, vuelve a salir a subasta, en Nueva York. Calculan un millón y medio, como mucho.
+Cinco años después, sale a subasta, en Nueva York. Calculan un millón y medio, como mucho.
 
 [amazed] Las pujas no paran. Seis millones doscientos mil dólares.
 
