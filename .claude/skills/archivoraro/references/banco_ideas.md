@@ -31,6 +31,17 @@ El patrón:
 - **un plan o un caos concreto que escala**;
 - **nada que necesite contexto político, religioso o una «explicación científica»**.
 
+## Los más virales del canal (dato del usuario, 24-11-2026) — ESTO es lo que hay que repetir
+- **68 · La red de la portería** ≈ 300.000 visitas.
+- **70 · El preso que pidió cinco años más** ≈ 300.000 visitas.
+- **71 · El que siempre pierde al póker** ≈ 260.000 visitas.
+Qué tienen en común:
+1. **La primera frase es una contradicción**, algo que nadie haría o que no tiene sentido: pedir más cárcel, perder a propósito durante 30 años, goles que nadie sabía si eran gol. Te obliga a quedarte para entenderlo.
+2. **Un hombre normal en un sitio que todos conocen**: cárcel, bar con amigos, campo de fútbol. Nada de reglas, ni estudios, ni psicología.
+3. **Un plan secreto o un problema que se resuelve con ingenio**, y la explicación llega al final («ah, ¡era eso!»).
+4. **Final redondo que vuelve al principio** (bucle): «Por eso esta noche, otra vez… tira la escalera de color».
+5. Dos fórmulas ganadoras: **fábula del plan secreto** (inventada, contada como historia: 70 y 71) y **origen de algo cotidiano con un problema que se ve** (real: 68, fútbol).
+
 ## Lo que NO engancha (24-11-2026, tras el 77 · casinos)
 El usuario: «las ideas son una puta mierda… no tienen un buen gancho». Compara con lo que ve al hacer scroll en YouTube Shorts: esos le enganchan, los nuestros no. Tampoco le gustaron las animaciones, las expresiones ni el guion del 77 (el vídeo se queda como está).
 Por qué falló el 77:
