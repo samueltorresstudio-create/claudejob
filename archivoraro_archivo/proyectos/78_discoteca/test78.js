@@ -5,7 +5,7 @@ window.shot = (name, o) => { const W = W2; W.site(o.site); W.setTime(o.t || 3); 
   const L = (o.chars || []).map(([n, x, z, pose0, h, y0]) => { const pose = Object.assign({}, pose0 || {}); ['holdRn', 'holdLn'].forEach(k => { if (pose[k]) { pose[k.slice(0, 5)] = new Function('return (' + pose[k] + ')')(); delete pose[k]; } }); const F = V3(x, y0 ?? 0, z); let sv = who(n, pose || {}, F, h || ADULT, { gy: F.y }); return [W.camera.position.distanceTo(F), sv]; }).sort((a, b) => b[0] - a[0]).map(a => a[1]).join('');
   // personajes estilo .99 (pj99): [función, x, z, cara, altura, {flip, sombra}]
   const TINT = { calle: '0.93 0 0 0 0.03  0 0.88 0 0 0.0  0 0 1.0 0 0.05  0 0 0 1 0', pista: '0.95 0 0 0 0.05  0 0.85 0 0 0  0 0 1.0 0 0.06  0 0 0 1 0', aula: '1 0 0 0 0  0 0.98 0 0 0  0 0 0.94 0 0  0 0 0 1 0' };
-  const PJ = (o.pj || []).map(([fn, x, z, face, h, op]) => { op = op || {}; const F = V3(x, 0, z), a = W.proj(F), b = W.proj(V3(x, h || 1.8, z)); if (!a.ok) return [0, '']; const s = (a.y - b.y) / (1700 + (window.PJ_LEG ?? 480));
+  const PJ = (o.pj || []).map(([fn, x, z, face, h, op]) => { op = op || {}; const F = V3(x, 0, z), a = W.proj(F), b = W.proj(V3(x, h || 1.8, z)); if (!a.ok) return [0, '']; const s = (a.y - b.y) / (1700 + (window.PJ_LEG ?? 380));
       const svg = window[fn](Object.assign({ face }, op.o || {})); const fl = op.flip ? `translate(${(1190 * s).toFixed(1)},0) scale(-1,1)` : '';
       return [W.camera.position.distanceTo(F), `<g transform="translate(${(a.x - 595 * s).toFixed(1)},${(a.y - 2100 * s).toFixed(1)}) scale(${s.toFixed(4)}) ${fl}" filter="url(#tintF)">${svg}</g>`]; })
     .sort((a, b) => b[0] - a[0]).map(a => a[1]).join('');
