@@ -26,7 +26,7 @@ function anselmo2d(o = {}) {
   return pjT(Object.assign({
     id: 'an', bodyPath: BODY.gordo, bodyEdge: 'M930,1450 C940,1620 860,1780 600,1802',
     top: ['#3a3a44', '#2a2a32', '#1c1c22', '#0e0e12', '#6a6a7a', '#a8a8bc'], hatC: ['#4a4a52', '#2a2a30', '#18181c', '#0a0a0c'],
-    brow: '#a8a49c', cheeks: 1, legs: legsAt(500, 690, 1790),
+    brow: '#a8a49c', legs: legsAt(500, 690, 1790),
     armL: 'M300,1300 C240,1420 215,1560 210,1680', handL: [210, 1690], armR: 'M890,1300 C950,1420 975,1560 980,1680', handR: [980, 1690],
     bodyIn: id => `<path d="M510,1160 C540,1300 560,1500 560,1790 L640,1790 C640,1500 660,1300 690,1160Z" fill="#8a8a94"/><path d="M560,1300 L560,1790" stroke="#5a5a64" stroke-width="6" opacity=".6"/>
       ${[1420, 1500, 1580, 1660].map(y => `<circle cx="600" cy="${y}" r="12" fill="#3a3a44" stroke="${TK}" stroke-width="4"/>`).join('')}
@@ -74,7 +74,7 @@ function bruno2d(o = {}) {
 function lucia2d(o = {}) {
   return `<g transform="translate(590,2100) scale(.8) translate(-590,-2100)">` + pjT(Object.assign({
     id: 'lu', bodyPath: BODY.nina, bodyEdge: 'M745,1300 C740,1400 800,1560 850,1720', top: ['#f4c84a', '#e8b030', '#c89020', '#8a6010', '#fae08a', '#fff4c8'],
-    hatC: ['#000', '#000', '#000', '#000'], cheeks: 1, lashes: 1, brow: '#4a2a14', legs: legsAt(530, 660, 1740),
+    hatC: ['#000', '#000', '#000', '#000'], lashes: 1, brow: '#4a2a14', legs: legsAt(530, 660, 1740),
     armL: 'M455,1250 C400,1380 370,1500 360,1600', handL: [360, 1610], armR: 'M735,1250 C790,1380 820,1500 830,1600', handR: [830, 1610],
     back: id => [-1, 1].map(sd => `<path d="M${590 + sd * 330},700 C${590 + sd * 470},740 ${590 + sd * 480},900 ${590 + sd * 420},1010 C${590 + sd * 400},940 ${590 + sd * 370},820 ${590 + sd * 320},760Z" fill="#6a3a1a" stroke="${TK}" stroke-width="12" stroke-linejoin="round"/>`).join(''),
     under: id => `<path d="M524,1940 L524,2080 M666,1940 L666,2080" stroke="#f6f2ea" stroke-width="40"/><path d="M500,2090 L550,2090 M640,2090 L690,2090" stroke="#7a1a1a" stroke-width="28" stroke-linecap="round"/>`,
@@ -114,7 +114,7 @@ function carmen2d(o = {}) {
   return pjT(Object.assign({
     id: 'ca', bodyPath: BODY.gabardina, bodyEdge: 'M822,1300 C840,1500 870,1750 896,1958',
     top: ['#d8c094', '#c4aa7a', '#a68c5c', '#6e5a36', '#ecdcbc', '#fff4e0'], hatC: ['#d8404a', '#c02a36', '#901c26', '#5a0e16'],
-    lashes: 1, lips: '#b8283a', cheeks: 1, brow: '#1a1212', legs: legsAt(520, 670, 1970),
+    lashes: 1, lips: '#b8283a', brow: '#1a1212', legs: legsAt(520, 670, 1970),
     armL: 'M378,1260 C330,1400 330,1520 380,1560 C420,1590 480,1560 520,1520', handL: [528, 1515], armR: 'M812,1260 C860,1420 880,1560 885,1700', handR: [885, 1712],
     back: id => `<path d="M215,700 C200,880 220,1040 300,1110 C380,1130 380,1060 360,980 C340,880 340,780 360,700Z M965,700 C980,880 960,1040 880,1110 C800,1130 800,1060 820,980 C840,880 840,780 820,700Z" fill="#1e1616" stroke="${TK}" stroke-width="12" stroke-linejoin="round"/>`,
     bodyIn: id => `<path d="M595,1100 L520,1500 L595,1960 M595,1100 L670,1500" stroke="#6e5a36" stroke-width="10" fill="none" opacity=".8"/>
@@ -189,7 +189,7 @@ function rey2d(o = {}) {
   return pjT(Object.assign({
     id: 'ry', bodyPath: BODY_REY, gloves: null, bodyEdge: 'M1000,1300 C1030,1550 1050,1800 1058,2080', legs: null,
     top: ['#c0283a', '#a01c2c', '#7a1220', '#4a0a12', '#e85a6a', '#ff9aa8'], hatC: ['#000', '#000', '#000', '#000'],
-    brow: '#f0ece4', cheeks: 1,
+    brow: '#f0ece4',
     armL: 'M310,1300 C250,1420 240,1500 270,1560', handL: [275, 1570], armR: 'M880,1300 C940,1420 945,1520 915,1590', handR: [912, 1600],
     bodyIn: id => `
       <defs><pattern id="${id}Brc" width="70" height="70" patternUnits="userSpaceOnUse"><rect width="70" height="70" fill="#e2b84a"/><path d="M35,4 L66,35 L35,66 L4,35Z" fill="none" stroke="#b88a2a" stroke-width="5"/><circle cx="35" cy="35" r="7" fill="#c02a2a" stroke="#7a5a10" stroke-width="3"/><circle cx="0" cy="0" r="5" fill="#f4dc8a"/><circle cx="70" cy="70" r="5" fill="#f4dc8a"/><circle cx="70" cy="0" r="5" fill="#f4dc8a"/><circle cx="0" cy="70" r="5" fill="#f4dc8a"/></pattern>
@@ -234,7 +234,7 @@ function chef2d(o = {}) {
   return pjT(Object.assign({
     id: 'ch', bodyPath: BODY_CHEF, gloves: null, bodyEdge: 'M840,1350 C900,1500 910,1720 600,1862',
     top: ['#ffffff', '#f2eee6', '#d8d2c6', '#a8a094', '#ffffff', '#ffffff'], hatC: ['#ffffff', '#f6f4ee', '#dcd8ce', '#b8b2a6'],
-    brow: '#3a2418', cheeks: 1, legs: legsAt(520, 670, 1850),
+    brow: '#3a2418', legs: legsAt(520, 670, 1850),
     armL: 'M402,1250 C330,1400 300,1540 290,1660', handL: [290, 1670], armR: 'M788,1250 C860,1380 880,1460 880,1500', handR: [880, 1510],
     bodyIn: id => `
       <path d="M520,1130 C560,1180 640,1180 680,1130" stroke="#d8d2c6" stroke-width="10" fill="none"/>

@@ -470,3 +470,4 @@ Personajes 2D con el acabado aprobado del tendero (`tendero2d.js`): cabeza esfer
 - Siempre bocetos primero (cuerpo entero + 5 expresiones) junto al tendero para comparar el acabado, y esperar el «sí».
 - Nunca copiar personajes de vídeos de referencia: solo el estilo.
 - **Contorno (v2, 24-11-2026)**: `pjOutline()` añade un contorno exterior de la silueta con filtro (dilatar + desplazar 3,5 px): más grueso abajo a la derecha y más fino arriba a la izquierda, borde algo suave. Las patas y los brazos quedan FUERA del filtro (siguen finos). Línea de la cabeza 20 px + dos arcos de sombra que la engordan abajo a la derecha + filo claro arriba a la izquierda. Brillo suave arriba a la izquierda del cuerpo. Catálogo: `catalogo_modelos_v2.jpg`.
+- **Sin coloretes** (pedido del usuario 24-11-2026): no poner mofletes rosados a ningún personaje (`cheeks` desactivado en `pjT`).

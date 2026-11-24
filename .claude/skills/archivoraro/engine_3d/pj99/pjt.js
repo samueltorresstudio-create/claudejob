@@ -80,7 +80,7 @@ function faceT(f, o, id) {
   else if (f === 'feliz') s += `<path d="M450,860 Q512,800 575,860 M635,860 Q698,800 760,860" stroke="${K}" stroke-width="24" fill="none" stroke-linecap="round"/>` + lash(450, 858, -1) + lash(760, 858, 1);
   else if (f === 'picaro') s += pupil(512, 846) + lid(446, 582, 840) + `<path d="M635,860 Q698,800 760,860" stroke="${K}" stroke-width="24" fill="none" stroke-linecap="round"/>` + lash(446, 840, -1) + lash(760, 858, 1);
   else { const dy = f === 'preocupado' ? 8 : 0; s += pupil(512, 846 + dy) + pupil(698, 850 + dy) + lid(446, 582, 840 + dy) + lid(630, 766, 846 + dy) + lash(446, 840 + dy, -1) + lash(766, 849 + dy, 1); }
-  if (o.cheeks) s += `<ellipse cx="400" cy="950" rx="60" ry="32" fill="#e07a7a" opacity=".35" filter="url(#${id}S2)"/><ellipse cx="800" cy="950" rx="60" ry="32" fill="#e07a7a" opacity=".35" filter="url(#${id}S2)"/>`;
+  if (o.cheeks && false) s += `<ellipse cx="400" cy="950" rx="60" ry="32" fill="#e07a7a" opacity=".35" filter="url(#${id}S2)"/><ellipse cx="800" cy="950" rx="60" ry="32" fill="#e07a7a" opacity=".35" filter="url(#${id}S2)"/>`;
   if (o.freckles) s += [[390, 930], [420, 960], [450, 925], [770, 930], [800, 960], [740, 950]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="7" fill="#b8704a" opacity=".7"/>`).join('');
   // boca rellena con contorno (estilo del tendero: formas gruesas)
   const lip = o.lips || null, M = { // [relleno, d]
@@ -100,7 +100,7 @@ function paco2d(o = {}) {
   return pjT(Object.assign({
     id: 'pa', bodyPath: PACO_BODY, bodyEdge: 'M792,1420 C800,1650 790,1820 600,1860',
     top: ['#4a7cb0', '#335f90', '#244870', '#142e4c', '#7aaad8', '#b8d8f4'],
-    hatC: ['#8a8278', '#6a6258', '#504840', '#36302a'], freckles: 1, cheeks: 1, brow: '#a04a1c', gap: 1,
+    hatC: ['#8a8278', '#6a6258', '#504840', '#36302a'], freckles: 1, brow: '#a04a1c', gap: 1,
     legs: 'M530,1840 L524,2100 M662,1840 L668,2100',
     armL: 'M412,1260 C370,1420 345,1600 335,1760', handL: [335, 1770], armR: 'M778,1260 C820,1420 845,1600 855,1745', handR: [855, 1755],
     bodyIn: id => `<path d="${PACO_BODY}" fill="none" stroke="#1a3450" stroke-width="0"/>
@@ -150,7 +150,7 @@ function remedios2d(o = {}) {
   return pjT(Object.assign({
     id: 're', bodyPath: REM_BODY, bodyEdge: 'M800,1300 C790,1400 760,1470 760,1480 C860,1680 930,1880 960,2080', legs: null,
     top: ['#348a66', '#26704f', '#1a523a', '#0e3424', '#5ab08c', '#a8e4c8'],
-    hatC: ['#9a5aae', '#7a3e90', '#5a2a6e', '#3e1a50'], lashes: 1, lips: '#c4283a', cheeks: 1, brow: '#4a2a1a',
+    hatC: ['#9a5aae', '#7a3e90', '#5a2a6e', '#3e1a50'], lashes: 1, lips: '#c4283a', brow: '#4a2a1a',
     armL: 'M400,1250 C350,1380 320,1500 300,1590', handL: [298, 1600],
     armR: 'M792,1250 C840,1420 860,1560 870,1700', handR: [870, 1712],
     back: id => `<circle cx="880" cy="960" r="105" fill="#6a3a1e" stroke="${TK}" stroke-width="14"/><path d="M820,920 C850,880 900,880 930,910" stroke="#9a5a34" stroke-width="12" fill="none" opacity=".7" stroke-linecap="round"/><path d="M800,1000 C840,1040 900,1040 950,1010" stroke="#4a2410" stroke-width="10" fill="none"/>`,
