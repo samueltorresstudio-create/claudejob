@@ -45,3 +45,31 @@ Dos grabaciones de pantalla del usuario (≈28 s en total). Hojas: `ref_99_sheet
 4. Fondos muy llenos de objetos de colores variados (no planos ni lisos), con DOF pero reconocibles.
 5. Atrezo con texto en español legible pegado al personaje.
 6. Push-in lento en cada plano.
+
+## Movimiento (análisis 24-11-2026, a 8–15 fps + medición con OpenCV `proyectos/73_boceto_capsula/cam_motion.py`)
+
+### Cámara
+- **Cortes secos** entre planos (no vuela de un plano a otro). Un plano cada **1,4–2,6 s** (≈ 2–4 palabras de subtítulo).
+- Cada plano cambia de tamaño o de ángulo: primer plano → plano por encima del hombro → general exterior → primerísimo plano → detalle de objeto → plano de grupo.
+- **Dentro del plano la cámara nunca está quieta**: acercamiento lento del **1–6 %** por plano y deriva lateral de 10–100 px (en 1080 de ancho).
+- **Plano de situación** (fachada del almacén): acercamiento fuerte + grúa hacia arriba, **zoom ×1,4–1,5 en ~4 s**, con el letrero bajando en el encuadre. Un transeúnte desenfocado pasa por delante (primer término) para dar profundidad.
+- Planos de detalle (cartel «$1,00», botella) con el personaje cortado en el borde y gente al fondo.
+- Desenfoque fuerte del fondo siempre; personaje nítido.
+
+### Brazos
+- Brazos de goma: **una sola curva suave**, sin codo. Grosor constante, mano bola.
+- **Pose a pose**: el brazo pasa de la pose A a la B en **2–3 fotogramas (≈0,1–0,15 s)** con frenada suave y luego **se queda quieto**. Nada de balanceo continuo.
+- Gestos vistos: levantar un cartel junto a la cara; sostener un objeto delante del pecho; **señalar** con el brazo totalmente recto hacia un lado; cruzar los brazos; dar un billete (brazo estirado al otro personaje); mano levantada a la altura del hombro (saludo/explicación); mano en la barbilla.
+- El objeto que se sostiene va pegado a la mano y se mueve con ella.
+
+### Cuerpo, caras y andar
+- Los personajes están **casi quietos**: no hay respiración ni balanceo apreciable. La vida la dan la cámara, los brazos y la cara.
+- **La cara cambia en la palabra clave** (cejas, ojos cerrados contentos, ojos de punto en la sorpresa, guiño). Cambio instantáneo, sin transición.
+- Giro de cabeza = los rasgos se desplazan hacia un lado de la esfera (¾), el cuerpo apenas gira.
+- **Andar**: en estos 28 s no hay un paseo completo; solo un transeúnte en primer término que cruza con un ligero bote de la cabeza. Para andar usaremos piernas de palo alternando + bote vertical pequeño (pendiente de ver un ejemplo).
+
+### Escenarios 3D
+- **Interior del almacén (s. XIX)**: estanterías de madera hasta el techo llenas de latas, cajas y frascos de colores (rojo, verde, azul, amarillo, blanco); mostrador largo de madera con cajones y tiradores de latón; caja registradora dorada; estufa de hierro barriga; barriles de manzanas; taburetes; columnas de hierro; lámparas colgantes de tulipa blanca; techo con molduras; suelo de tablas; ventanales muy luminosos al fondo.
+- **Exterior**: fachada con letrero verde «ALMACÉN GENERAL» en letras doradas, cristales con rótulos dorados «ABARROTES · FERRETERÍA», columnas verde agua, puertas dobles acristaladas, cielo azul con nubes.
+- **Luz**: cálida, suave, con rebote (iluminación global), ventanas quemadas con bloom, motas de polvo flotando, niebla ligera, viñeta. Sin contornos negros en el escenario (solo los personajes tienen contorno).
+- Personajes 2D colocados dentro del 3D a escala (≈1,7 m), con sombra suave en el suelo y el fondo desenfocado detrás.
