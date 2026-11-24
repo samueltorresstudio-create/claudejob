@@ -29,7 +29,7 @@ function pjT(o) {
   if (o.under) s += o.under(id);
   const armL = o.armL || 'M305,1260 C250,1400 215,1600 205,1760', handL = o.handL || [205, 1770];
   const armR = o.armR || 'M888,1270 C930,1420 965,1600 985,1745', handR = o.handR || [985, 1755];
-  const hand = ([x, y]) => `<circle cx="${x}" cy="${y}" r="44" fill="#261717"/><circle cx="${x - 14}" cy="${y - 16}" r="12" fill="#5a4440" opacity=".45" filter="url(#${id}S1)"/>`;
+  const hand = ([x, y]) => o.gloves ? `<circle cx="${x}" cy="${y}" r="46" fill="${o.gloves}" stroke="${TK}" stroke-width="12"/><path d="M${x - 26},${y - 14} A30,30 0 0 1 ${x + 6},${y - 30}" stroke="#fff" stroke-width="8" fill="none" opacity=".8" stroke-linecap="round"/><path d="M${x - 20},${y + 30} L${x + 20},${y + 30}" stroke="#b8b2a8" stroke-width="6"/>` : `<circle cx="${x}" cy="${y}" r="44" fill="#261717"/><circle cx="${x - 14}" cy="${y - 16}" r="12" fill="#5a4440" opacity=".45" filter="url(#${id}S1)"/>`;
   s += `<path d="${armL}" stroke="#261717" stroke-width="${o.armW || 26}" fill="none" stroke-linecap="round"/>${hand(handL)}<path d="${armR}" stroke="#261717" stroke-width="${o.armW || 26}" fill="none" stroke-linecap="round"/>${hand(handR)}`;
   const defsEnd = s.indexOf('</defs>') + 7, limbs = s.slice(defsEnd); s = s.slice(0, defsEnd); // patas y brazos fuera del contorno grueso (siguen finos)
   // cuerpo: igual que el tendero (luz a la izquierda, sombra interior derecha/abajo, sombra de la cabeza)
