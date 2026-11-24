@@ -16,7 +16,7 @@ function pjT(o) {
  </defs>`;
   const BP = o.bodyPath || TD_BODY;
   if (o.back) s += o.back(id);
-  s += `<path d="M478,1880 L470,2100 M712,1880 L722,2100" stroke="#261717" stroke-width="30" stroke-linecap="round"/>`;
+  s += o.legs === null ? '' : `<path d="${o.legs || 'M478,1880 L470,2100 M712,1880 L722,2100'}" stroke="#261717" stroke-width="30" stroke-linecap="round"/>`;
   if (o.under) s += o.under(id);
   const armL = o.armL || 'M305,1260 C250,1400 215,1600 205,1760', handL = o.handL || [205, 1770];
   const armR = o.armR || 'M888,1270 C930,1420 965,1600 985,1745', handR = o.handR || [985, 1755];
@@ -24,14 +24,14 @@ function pjT(o) {
   s += `<path d="${armL}" stroke="#261717" stroke-width="26" fill="none" stroke-linecap="round"/>${hand(handL)}<path d="${armR}" stroke="#261717" stroke-width="26" fill="none" stroke-linecap="round"/>${hand(handR)}`;
   // cuerpo: igual que el tendero (luz a la izquierda, sombra interior derecha/abajo, sombra de la cabeza)
   s += `<path d="${BP}" fill="url(#${id}B)"/><g clip-path="url(#${id}Bc)">
-    <path d="M290,1300 C280,1480 285,1650 310,1780" stroke="${c[4]}" stroke-width="40" fill="none" opacity=".55" filter="url(#${id}S2)"/>
-    <path d="M318,1270 C306,1450 308,1640 330,1770" stroke="${c[5]}" stroke-width="8" fill="none" opacity=".5" filter="url(#${id}S1)"/>
+    <path d="${BP}" fill="none" stroke="${c[4]}" stroke-width="60" opacity=".45" filter="url(#${id}S2)" transform="translate(30,6)"/>
+    <path d="${BP}" fill="none" stroke="${c[5]}" stroke-width="10" opacity=".45" filter="url(#${id}S1)" transform="translate(12,2)"/>
     <path d="${BP}" fill="none" stroke="#08060a" stroke-width="110" opacity=".55" filter="url(#${id}So)" transform="translate(-50,-20)"/>
     <path d="${BP}" fill="none" stroke="${c[5]}" stroke-width="40" opacity=".3" filter="url(#${id}S2)" transform="translate(22,10)"/>
     <ellipse cx="600" cy="1100" rx="400" ry="100" fill="#08060a" opacity=".85" filter="url(#${id}So)"/>
     ${o.bodyIn ? o.bodyIn(id) : ''}
   </g><path d="${BP}" fill="none" stroke="${K}" stroke-width="30" stroke-linejoin="round"/>
-  <path d="M908,1420 C918,1650 900,1840 600,1900" stroke="${K}" stroke-width="16" fill="none" stroke-linecap="round"/>`;
+  <path d="${o.bodyEdge || 'M908,1420 C918,1650 900,1840 600,1900'}" stroke="${K}" stroke-width="16" fill="none" stroke-linecap="round"/>`;
   if (o.front) s += o.front(id);
   // cabeza (idéntica al tendero)
   s += `<circle cx="590" cy="775" r="375" fill="url(#${id}H)"/><g clip-path="url(#${id}Hc)">
@@ -73,61 +73,100 @@ function faceT(f, o, id) {
     serio: `M548,1012 C580,1004 620,1004 652,1012 C656,1026 652,1034 640,1032 C612,1026 588,1026 560,1032 C548,1034 544,1026 548,1012Z`,
     preocupado: `M540,1030 C560,1010 580,1010 600,1022 C620,1034 640,1034 660,1014 C668,1028 662,1042 648,1046 C628,1050 612,1042 600,1036 C586,1030 572,1032 556,1046 C542,1050 534,1042 540,1030Z`,
     picaro: `M560,1018 C600,1030 640,1024 676,996 C688,1000 690,1014 680,1024 C646,1054 600,1056 562,1038 C550,1032 550,1020 560,1018Z` };
-  if (f === 'feliz') s += `<path d="M520,990 C560,1000 640,1000 680,990 C688,1060 640,1100 600,1100 C560,1100 512,1060 520,990Z" fill="#5a1c20" stroke="${K}" stroke-width="16" stroke-linejoin="round"/><path d="M556,1070 C580,1050 620,1050 644,1070 C630,1090 570,1090 556,1070Z" fill="#c8505a"/>` + (lip ? `<path d="M520,990 C560,1000 640,1000 680,990" stroke="${lip}" stroke-width="10" fill="none"/>` : '');
+  if (f === 'feliz') s += `<path d="M520,990 C560,1000 640,1000 680,990 C688,1060 640,1100 600,1100 C560,1100 512,1060 520,990Z" fill="#5a1c20" stroke="${K}" stroke-width="16" stroke-linejoin="round"/><path d="M556,1070 C580,1050 620,1050 644,1070 C630,1090 570,1090 556,1070Z" fill="#c8505a"/>` + (o.gap ? `<path d="M534,1000 L594,1004 L592,1030 L538,1026Z M608,1004 L666,1000 L662,1026 L610,1030Z" fill="#fbf6ec" stroke="${K}" stroke-width="5"/>` : '') + (lip ? `<path d="M520,990 C560,1000 640,1000 680,990" stroke="${lip}" stroke-width="10" fill="none"/>` : '');
   else if (f === 'sorpresa') s += `<ellipse cx="600" cy="1040" rx="34" ry="42" fill="#5a1c20" stroke="${lip || K}" stroke-width="${lip ? 16 : 14}"/>`;
   else s += `<path d="${M[f] || M.serio}" fill="${lip || K}" stroke="${K}" stroke-width="${lip ? 7 : 4}" stroke-linejoin="round"/>` + (lip ? `<path d="M570,1012 C590,1008 610,1008 630,1012" stroke="#ff9a9a" stroke-width="5" opacity=".6" fill="none"/>` : '');
   return s;
 }
 
-// ---------- PACO, el repartidor (inventado): gorra plana gris azulada, pelo pelirrojo, pecas, jersey azul, bandolera con cartera ----------
+// ---------- PACO, el repartidor de periódicos (inventado): flaco y alto, gorra de repartidor, pelo pelirrojo, pecas, diente mellado,
+// jersey de rayas en el bajo, bufanda, bandolera con periódicos ----------
+const PACO_BODY = 'M408,1190 C414,1110 500,1078 595,1078 C690,1078 776,1110 782,1190 C792,1380 798,1600 794,1730 C788,1820 720,1856 595,1856 C470,1856 402,1820 396,1730 C392,1600 398,1380 408,1190Z';
 function paco2d(o = {}) {
   return pjT(Object.assign({
-    id: 'pa', top: ['#3a6a9a', '#2a5480', '#1e3e62', '#122a44', '#6a9ac8', '#a8c8e8'],
-    hatC: ['#8a96a4', '#5e6a78', '#46505c', '#2e3640'], freckles: 1, cheeks: 1, brow: '#7a3a18',
-    back: () => '',
-    bodyIn: id => `<path d="M300,1560 L910,1560" stroke="#0e2238" stroke-width="10" opacity=".5"/>${[1600, 1650, 1700, 1750, 1800].map(y => `<path d="M310,${y} L900,${y}" stroke="#0e2238" stroke-width="4" opacity=".25"/>`).join('')}`,
-    front: id => `<path d="M560,1180 L640,1180 L600,1260Z" fill="url(#${id}Tri)" stroke="${TK}" stroke-width="7" stroke-linejoin="round"/>
-      <path d="M520,1150 L600,1200 L560,1250 L500,1200Z M680,1150 L600,1200 L640,1250 L700,1200Z" fill="url(#${id}Tri)" stroke="${TK}" stroke-width="7" stroke-linejoin="round"/>
-      <path d="M760,1150 C700,1350 560,1550 400,1720" stroke="#6a4024" stroke-width="44" fill="none" stroke-linecap="round"/><path d="M760,1150 C700,1350 560,1550 400,1720" stroke="${TK}" stroke-width="56" fill="none" stroke-linecap="round" opacity="0"/>
-      <path d="M770,1160 C708,1356 566,1556 404,1728" stroke="#8a5a34" stroke-width="10" fill="none" opacity=".7"/>
-      <path d="M300,1660 L520,1660 C530,1660 536,1668 536,1678 L530,1860 C530,1872 520,1880 508,1880 L314,1880 C302,1880 294,1872 294,1860 L288,1678 C288,1668 294,1660 300,1660Z" fill="#7a4a28" stroke="${TK}" stroke-width="14" stroke-linejoin="round"/>
-      <path d="M290,1670 L536,1670 L530,1760 C460,1776 360,1776 292,1760Z" fill="#8e5a32" stroke="${TK}" stroke-width="10" stroke-linejoin="round"/>
-      <rect x="398" y="1740" width="28" height="34" rx="5" fill="#c49e36" stroke="${TK}" stroke-width="5"/>
-      <path d="M310,1690 L520,1690" stroke="#b07a4c" stroke-width="6" opacity=".6"/>`,
-    headIn: () => '',
-    hat: id => `<path d="M228,700 C232,620 248,600 268,610 C262,660 258,700 262,760 L240,780Z" fill="#c8602a" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/><path d="M952,700 C948,620 932,600 912,610 C918,660 922,700 918,760 L940,780Z" fill="#c8602a" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>
-      <path d="M300,640 C360,600 420,600 470,620 C430,640 400,670 380,700 C350,680 320,660 300,640Z" fill="#d8703a" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>
-      <g transform="rotate(-3,590,560)">
-      <path d="M232,640 C200,440 380,330 620,330 C860,330 990,440 960,600 C900,560 780,540 600,545 C440,550 320,580 232,640Z" fill="url(#${id}Hat)" stroke="${TK}" stroke-width="14" stroke-linejoin="round"/>
-      <path d="M300,500 C340,400 450,350 560,346" stroke="#c0c8d2" stroke-width="10" fill="none" opacity=".75" stroke-linecap="round" filter="url(#${id}S1)"/>
-      <path d="M620,334 C640,420 640,500 620,548" stroke="#2e3640" stroke-width="8" fill="none" opacity=".6"/>
-      <circle cx="620" cy="336" r="16" fill="#46505c" stroke="${TK}" stroke-width="6"/>
-      <path d="M232,640 C330,600 460,585 600,590 C690,592 760,600 800,612 C760,660 600,690 420,680 C320,676 250,668 232,640Z" fill="#46505c" stroke="${TK}" stroke-width="11" stroke-linejoin="round"/>
-      <path d="M270,640 C380,618 520,612 640,616" stroke="#8a96a4" stroke-width="6" fill="none" opacity=".8"/>
-      <path d="M260,660 C340,672 460,676 560,672" stroke="#1a1e24" stroke-width="10" fill="none" opacity=".5" filter="url(#${id}S1)"/></g>`
+    id: 'pa', bodyPath: PACO_BODY, bodyEdge: 'M792,1420 C800,1650 790,1820 600,1860',
+    top: ['#4a7cb0', '#335f90', '#244870', '#142e4c', '#7aaad8', '#b8d8f4'],
+    hatC: ['#8a8278', '#6a6258', '#504840', '#36302a'], freckles: 1, cheeks: 1, brow: '#a04a1c', gap: 1,
+    legs: 'M530,1840 L524,2100 M662,1840 L668,2100',
+    armL: 'M412,1260 C370,1420 345,1600 335,1760', handL: [335, 1770], armR: 'M778,1260 C820,1420 845,1600 855,1745', handR: [855, 1755],
+    bodyIn: id => `<path d="${PACO_BODY}" fill="none" stroke="#1a3450" stroke-width="0"/>
+      ${[1700, 1740, 1780, 1820].map(y => `<path d="M380,${y} L810,${y}" stroke="#d8c25a" stroke-width="16" opacity=".9"/>`).join('')}
+      ${[420, 470, 520, 570, 620, 670, 720, 770].map(x => `<path d="M${x},1690 L${x},1860" stroke="#142e4c" stroke-width="4" opacity=".45"/>`).join('')}
+      <path d="M380,1690 L810,1690" stroke="#142e4c" stroke-width="8" opacity=".6"/>
+      `,
+    front: id => `
+      <path d="M470,1110 C520,1150 670,1150 720,1110 L740,1170 C680,1215 510,1215 450,1170Z" fill="#c8302e" stroke="${TK}" stroke-width="10" stroke-linejoin="round"/>
+      <path d="M470,1130 C530,1165 660,1165 720,1130" stroke="#f08070" stroke-width="7" fill="none" opacity=".6"/>
+      <path d="M690,1180 L700,1360 L650,1352 L668,1190Z" fill="#b02624" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>
+      ${[1240, 1290, 1330].map(y => `<path d="M${652 + (y - 1190) * .02},${y} L${700},${y + 4}" stroke="#f0d060" stroke-width="7"/>`).join('')}
+      <path d="M760,1130 C710,1330 600,1520 470,1680" stroke="#5a361c" stroke-width="48" fill="none" stroke-linecap="round"/>
+      <path d="M760,1130 C710,1330 600,1520 470,1680" stroke="${TK}" stroke-width="62" fill="none" stroke-linecap="round" opacity=".0"/>
+      <path d="M748,1140 C700,1330 592,1512 462,1672" stroke="#8a5a34" stroke-width="10" fill="none" opacity=".8"/>
+      <path d="M776,1140 C726,1336 614,1530 484,1690" stroke="#2e1a0c" stroke-width="8" fill="none" opacity=".7"/>
+      <rect x="560" y="1530" width="26" height="40" rx="6" fill="#c49e36" stroke="${TK}" stroke-width="6" transform="rotate(38,573,1550)"/>
+      <path d="M300,1620 L330,1560 L430,1590 L410,1650Z" fill="#f2ece0" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/><path d="M335,1585 L415,1608 M330,1600 L405,1622" stroke="#6a6258" stroke-width="5"/>
+      <path d="M380,1600 L420,1530 L520,1560 L490,1630Z" fill="#fbf6ea" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/><path d="M425,1555 L505,1578 M418,1572 L495,1595 M412,1590 L470,1607" stroke="#6a6258" stroke-width="5"/>
+      <path d="M300,1640 L560,1640 C572,1640 580,1650 578,1662 L566,1850 C565,1862 555,1872 542,1872 L322,1872 C308,1872 298,1862 298,1850 L288,1662 C287,1650 292,1640 300,1640Z" fill="#7a4a28" stroke="${TK}" stroke-width="14" stroke-linejoin="round"/>
+      <path d="M292,1650 L578,1650 L572,1740 C490,1762 380,1762 294,1740Z" fill="#9a6238" stroke="${TK}" stroke-width="10" stroke-linejoin="round"/>
+      <path d="M306,1668 L560,1668" stroke="#c48a5a" stroke-width="6" opacity=".7"/><path d="M300,1840 L560,1840" stroke="#4a2a14" stroke-width="10" opacity=".6"/>
+      <rect x="418" y="1726" width="30" height="36" rx="5" fill="#c49e36" stroke="${TK}" stroke-width="5"/>
+      ${[[330, 1690], [520, 1690], [330, 1820], [540, 1820]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="5" fill="#d8b07a"/>`).join('')}`,
+    hat: id => `
+      <path d="M226,720 C220,650 236,610 262,600 C258,650 256,700 262,780 L238,800Z" fill="#c85a22" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>
+      <path d="M954,720 C960,650 944,610 918,600 C922,650 924,700 918,780 L942,800Z" fill="#c85a22" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>
+      <path d="M330,640 C380,610 430,610 470,630 C440,650 420,690 410,720 C380,700 350,670 330,640Z" fill="#d86a2e" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>
+      <path d="M360,650 C385,640 410,640 430,648" stroke="#f0a060" stroke-width="6" fill="none" opacity=".7"/>
+      <g transform="rotate(-2.5,590,560)">
+      <path d="M205,600 C170,470 300,330 560,320 C800,312 990,420 975,560 C972,600 950,622 920,630 C760,600 420,600 260,632 C232,632 212,622 205,600Z" fill="url(#${id}Hat)" stroke="${TK}" stroke-width="14" stroke-linejoin="round"/>
+      ${[[590, 330, 380, 600], [590, 330, 500, 605], [590, 330, 690, 605], [590, 330, 820, 610]].map(([x1, y1, x2, y2]) => `<path d="M${x1},${y1} Q${(x1 + x2) / 2 + (x2 < 590 ? -30 : 30)},${(y1 + y2) / 2} ${x2},${y2}" stroke="#36302a" stroke-width="6" fill="none" opacity=".55"/>`).join('')}
+      <path d="M270,520 C300,420 420,350 560,342" stroke="#c8c0b4" stroke-width="12" fill="none" opacity=".7" stroke-linecap="round" filter="url(#${id}S1)"/>
+      <circle cx="590" cy="334" r="18" fill="#504840" stroke="${TK}" stroke-width="7"/>
+      <path d="M940,450 C970,520 960,590 920,630" stroke="#1e1a16" stroke-width="40" fill="none" opacity=".35" filter="url(#${id}S2)"/>
+      <path d="M380,610 C470,596 710,596 800,610 C820,640 800,676 760,684 C660,700 520,700 420,684 C380,676 362,640 380,610Z" fill="#46403a" stroke="${TK}" stroke-width="12" stroke-linejoin="round"/>
+      <path d="M400,624 C500,612 690,612 780,624" stroke="#8a8278" stroke-width="6" fill="none" opacity=".8"/>
+      </g>
+      <ellipse cx="590" cy="700" rx="230" ry="26" fill="#3a2418" opacity=".3" filter="url(#${id}S2)"/>`
   }, o));
 }
 
-// ---------- DOÑA REMEDIOS (inventada): pamela morada con lazo y pluma, moño castaño, pestañas, labios rojos, vestido verde botella con cuello de encaje y broche ----------
+// ---------- DOÑA REMEDIOS (inventada): silueta de reloj de arena con falda de campana, pamela morada con flores y pluma, rizos,
+// pestañas, labios rojos, cuello de encaje, broche, cinturón con lazo, bolso colgado del brazo ----------
+const REM_BODY = 'M392,1190 C400,1100 492,1068 595,1068 C698,1068 790,1100 798,1190 C810,1300 790,1400 752,1470 C850,1660 930,1880 965,2085 L225,2085 C260,1880 340,1660 438,1470 C400,1400 380,1300 392,1190Z';
 function remedios2d(o = {}) {
   return pjT(Object.assign({
-    id: 're', top: ['#2e7a5a', '#226448', '#174a34', '#0c2e20', '#5aa886', '#9adcc0'],
-    hatC: ['#8a4a9e', '#6a3480', '#4e2462', '#341646'], lashes: 1, lips: '#c4283a', cheeks: 1, brow: '#4a2a1a',
-    back: id => `<circle cx="880" cy="980" r="110" fill="#6a3a1e" stroke="${TK}" stroke-width="14"/><path d="M820,940 C850,900 900,900 930,930" stroke="#9a5a34" stroke-width="12" fill="none" opacity=".7" stroke-linecap="round"/>`,
-    front: id => `<path d="M420,1150 C470,1230 540,1260 600,1260 C660,1260 730,1230 780,1150 L800,1190 C760,1270 680,1310 600,1310 C520,1310 440,1270 400,1190Z" fill="#f6f0e4" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>
-      ${[...Array(9)].map((_, i) => { const x = 430 + i * 43, y = 1210 + Math.sin(i / 8 * Math.PI) * 80; return `<circle cx="${x}" cy="${y + 20}" r="16" fill="#f6f0e4" stroke="${TK}" stroke-width="5"/>`; }).join('')}
-      <circle cx="600" cy="1330" r="32" fill="url(#${id}Btn)" stroke="${TK}" stroke-width="7"/><circle cx="600" cy="1330" r="14" fill="#2e8a6a" stroke="${TK}" stroke-width="4"/><circle cx="592" cy="1320" r="5" fill="#fff" opacity=".8"/>
-      ${[1480, 1560, 1640, 1720].map(y => `<circle cx="600" cy="${y}" r="13" fill="url(#${id}Btn)" stroke="#3a1a10" stroke-width="4"/>`).join('')}`,
-    headIn: () => '',
-    hat: id => `<circle cx="240" cy="920" r="16" fill="#f6f2ea" stroke="${TK}" stroke-width="5"/><circle cx="940" cy="920" r="16" fill="#f6f2ea" stroke="${TK}" stroke-width="5"/>
-      <path d="M232,700 C240,600 330,560 420,560 C380,600 350,650 340,720 C300,700 260,690 232,700Z" fill="#6a3a1e" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/><path d="M948,700 C940,600 850,560 760,560 C800,600 830,650 840,720 C880,700 920,690 948,700Z" fill="#6a3a1e" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>
+    id: 're', bodyPath: REM_BODY, bodyEdge: 'M800,1300 C790,1400 760,1470 760,1480 C860,1680 930,1880 960,2080', legs: null,
+    top: ['#348a66', '#26704f', '#1a523a', '#0e3424', '#5ab08c', '#a8e4c8'],
+    hatC: ['#9a5aae', '#7a3e90', '#5a2a6e', '#3e1a50'], lashes: 1, lips: '#c4283a', cheeks: 1, brow: '#4a2a1a',
+    armL: 'M400,1250 C350,1380 320,1500 300,1590', handL: [298, 1600],
+    armR: 'M792,1250 C840,1420 860,1560 870,1700', handR: [870, 1712],
+    back: id => `<circle cx="880" cy="960" r="105" fill="#6a3a1e" stroke="${TK}" stroke-width="14"/><path d="M820,920 C850,880 900,880 930,910" stroke="#9a5a34" stroke-width="12" fill="none" opacity=".7" stroke-linecap="round"/><path d="M800,1000 C840,1040 900,1040 950,1010" stroke="#4a2410" stroke-width="10" fill="none"/>`,
+    bodyIn: id => `<path d="M438,1470 C540,1500 650,1500 752,1470" stroke="#0e3424" stroke-width="16" fill="none" opacity=".6"/>
+      ${[[470, 1560, 380, 2080], [560, 1560, 520, 2080], [640, 1560, 680, 2080], [720, 1560, 820, 2080]].map(([x1, y1, x2, y2]) => `<path d="M${x1},${y1} C${x1},${(y1 + y2) / 2} ${x2},${(y1 + y2) / 2} ${x2},${y2}" stroke="#0e3424" stroke-width="12" fill="none" opacity=".45" filter="url(#${id}S1)"/><path d="M${x1 - 14},${y1 + 20} C${x1 - 14},${(y1 + y2) / 2} ${x2 - 20},${(y1 + y2) / 2} ${x2 - 20},${y2}" stroke="#5ab08c" stroke-width="6" fill="none" opacity=".35" filter="url(#${id}S1)"/>`).join('')}
+      <path d="M260,1980 C450,2010 750,2010 940,1980" stroke="#0a2418" stroke-width="40" opacity=".4" filter="url(#${id}S2)"/>`,
+    front: id => `
+      <path d="M436,1450 C530,1478 660,1478 756,1450 L762,1500 C660,1528 530,1528 430,1500Z" fill="#1a1a1a" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>
+      <path d="M560,1470 C520,1440 480,1450 485,1485 C490,1515 530,1510 560,1490Z M630,1470 C670,1440 710,1450 705,1485 C700,1515 660,1510 630,1490Z" fill="#2a2a2a" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>
+      <rect x="575" y="1462" width="40" height="36" rx="8" fill="#c49e36" stroke="${TK}" stroke-width="6"/>
+      <path d="M440,1150 C490,1225 545,1252 595,1252 C645,1252 700,1225 750,1150 L770,1188 C725,1265 660,1300 595,1300 C530,1300 465,1265 420,1188Z" fill="#f6f0e4" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>
+      ${[...Array(9)].map((_, i) => { const x = 440 + i * 39, y = 1210 + Math.sin(i / 8 * Math.PI) * 78; return `<path d="M${x - 16},${y + 6} A18,18 0 0 0 ${x + 20},${y + 6}" fill="#f6f0e4" stroke="${TK}" stroke-width="5"/><circle cx="${x + 2}" cy="${y + 10}" r="4" fill="#c8c0b0"/>`; }).join('')}
+      <circle cx="595" cy="1326" r="34" fill="url(#${id}Btn)" stroke="${TK}" stroke-width="7"/><circle cx="595" cy="1326" r="15" fill="#2e8a6a" stroke="${TK}" stroke-width="4"/><circle cx="587" cy="1316" r="5" fill="#fff" opacity=".8"/>
+      ${[1380, 1420].map(y => `<circle cx="595" cy="${y}" r="11" fill="url(#${id}Btn)" stroke="#3a1a10" stroke-width="4"/>`).join('')}
+      <path d="M298,1600 C250,1640 240,1680 240,1700 M298,1600 C350,1640 360,1680 360,1700" stroke="#3a2214" stroke-width="10" fill="none"/><circle cx="298" cy="1600" r="44" fill="#261717"/>
+      <path d="M210,1700 L390,1700 C402,1700 410,1710 408,1722 L392,1830 C390,1842 380,1850 368,1850 L232,1850 C220,1850 210,1842 208,1830 L192,1722 C190,1710 198,1700 210,1700Z" fill="#7a2a3a" stroke="${TK}" stroke-width="12" stroke-linejoin="round"/>
+      <path d="M196,1730 C260,1760 340,1760 406,1730" stroke="#5a1a28" stroke-width="10" fill="none"/><circle cx="300" cy="1752" r="12" fill="#c49e36" stroke="${TK}" stroke-width="5"/>
+      <path d="M210,1720 L380,1720" stroke="#b05468" stroke-width="6" opacity=".6"/>`,
+    hat: id => `<circle cx="236" cy="930" r="17" fill="#f6f2ea" stroke="${TK}" stroke-width="5"/><circle cx="944" cy="930" r="17" fill="#f6f2ea" stroke="${TK}" stroke-width="5"/>
+      ${[[300, 660], [360, 640], [420, 630]].map(([x, y]) => `<path d="M${x},${y} C${x - 30},${y + 20} ${x - 20},${y + 70} ${x + 20},${y + 60} C${x + 40},${y + 50} ${x + 20},${y + 20} ${x},${y + 30}" fill="#6a3a1e" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>`).join('')}
+      <path d="M940,690 C930,620 860,590 790,590 C820,630 840,670 846,730 C880,720 912,708 940,690Z" fill="#6a3a1e" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>
       <g transform="rotate(-6,590,560)">
-      <path d="M80,600 C200,540 420,520 600,520 C800,520 1000,540 1110,600 C1080,640 1000,660 900,650 C700,630 480,630 280,650 C180,660 100,640 80,600Z" fill="url(#${id}Hat)" stroke="${TK}" stroke-width="12" stroke-linejoin="round"/>
-      <path d="M120,600 C300,560 500,550 640,552" stroke="#b07ac4" stroke-width="8" fill="none" opacity=".7"/>
-      <path d="M330,560 C320,380 440,320 600,320 C760,320 870,380 860,560Z" fill="url(#${id}Hat)" stroke="${TK}" stroke-width="12" stroke-linejoin="round"/>
-      <path d="M380,500 C380,420 440,360 530,348" stroke="#c49ad8" stroke-width="10" fill="none" opacity=".75" stroke-linecap="round" filter="url(#${id}S1)"/>
-      <path d="M334,500 C500,480 700,480 858,500 L860,556 C700,540 500,540 332,556Z" fill="#e8c4ec" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>
-      <path d="M760,500 C800,440 880,440 880,490 C880,530 820,530 780,512 C820,560 820,610 780,620 C740,620 740,560 760,520Z" fill="#e8c4ec" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>
+      <path d="M70,604 C200,540 420,520 600,520 C800,520 1010,540 1120,604 C1092,648 1006,666 900,656 C700,636 480,636 280,656 C176,666 96,646 70,604Z" fill="url(#${id}Hat)" stroke="${TK}" stroke-width="12" stroke-linejoin="round"/>
+      <path d="M110,604 C300,562 500,552 640,554" stroke="#c48ad8" stroke-width="8" fill="none" opacity=".7"/>
+      <path d="M200,646 C400,628 700,628 980,648" stroke="#2a1036" stroke-width="12" fill="none" opacity=".5" filter="url(#${id}S1)"/>
+      <path d="M330,560 C320,380 440,318 600,318 C760,318 870,380 860,560Z" fill="url(#${id}Hat)" stroke="${TK}" stroke-width="12" stroke-linejoin="round"/>
+      <path d="M380,500 C380,420 440,360 530,346" stroke="#d4aae6" stroke-width="10" fill="none" opacity=".75" stroke-linecap="round" filter="url(#${id}S1)"/>
+      <path d="M334,500 C500,480 700,480 858,500 L860,556 C700,540 500,540 332,556Z" fill="#f0cce8" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>
+      ${[[740, 500, '#e84a6a'], [790, 470, '#f4d040'], [835, 505, '#e84a6a'], [700, 520, '#f6f0f0']].map(([x, y, c]) => `<g transform="translate(${x},${y})">${[0, 72, 144, 216, 288].map(a => `<ellipse cx="0" cy="-20" rx="15" ry="22" fill="${c}" stroke="${TK}" stroke-width="5" transform="rotate(${a})"/>`).join('')}<circle r="11" fill="#f4c030" stroke="${TK}" stroke-width="4"/></g>`).join('')}
+      <path d="M760,520 C740,560 700,580 670,575 C690,550 720,530 760,520Z" fill="#4a8a3a" stroke="${TK}" stroke-width="6" stroke-linejoin="round"/>
       <path d="M850,470 C900,330 980,230 1060,200 C1040,280 990,380 880,480Z" fill="#f2e6d4" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>
       <path d="M865,470 C920,360 980,280 1050,212" stroke="#b8a68e" stroke-width="5" fill="none"/>
       ${[0, 1, 2, 3, 4, 5].map(i => `<path d="M${900 + i * 25},${400 - i * 35} l${30},-10" stroke="#b8a68e" stroke-width="4"/>`).join('')}</g>`
