@@ -214,3 +214,10 @@ Petición del usuario: «mejores ideas con mejor gancho de entretenimiento». Cr
 13. **La web de un millón de píxeles** (?): Alex Tew, 2005, un dólar por píxel.
 14. **El ejército que fue con 80 y volvió con 81** ✔ leyenda: Liechtenstein 1866; el despliegue es real, pero lo del soldado de más (italiano o enlace austriaco) no está probado: contarlo como leyenda.
 15. **La guerra de 38 minutos** ✔: Zanzíbar, 27-08-1896; 38–45 min según la fuente; unos 500 muertos zanzibaríes y un marino británico herido. **No usar lo de «la factura de los proyectiles»: sin fuente.**
+
+## Ideas «plan raro + giro» (estilo ref .99, 24-11-2026)
+| # | idea | gancho | dato comprobado | ojo |
+|---|---|---|---|---|
+| 21 | Fabricantes de neumáticos que regalaban guías de restaurantes (Michelin, 1900) | «Una fábrica de ruedas regaló 35.000 libros… de dónde comer.» | Guía gratis en 1900, unas 35.000 copias, para que la gente condujera más y gastara ruedas | La anécdota del libro calzando un banco y el cobro (1920) son de la propia marca: contarlo como «cuentan que…» |
+| 22 | El jefe de una cervecera que perdió una apuesta en una cacería (Guinness, 1951–1955) | «Un hombre falló un disparo… y nació el libro de récords.» | Hugh Beaver, director de Guinness, cacería en Irlanda 1951, chorlito dorado; libro en 1955 para zanjar discusiones de bar | Fechas exactas varían: decir «en 1951» y «4 años después» |
+| 23 | Por qué los anillos de compromiso llevan diamante (De Beers, 1938–1948) | «Tu anillo de compromiso es… un anuncio.» | Campaña de N.W. Ayer desde 1938; «A Diamond Is Forever» (1947, Frances Gerety); en 1951, 8 de cada 10 novias con diamante | El «10 % antes de la guerra» no es fiable: no decirlo |
