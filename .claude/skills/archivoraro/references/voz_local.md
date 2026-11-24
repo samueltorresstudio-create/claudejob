@@ -72,3 +72,8 @@ se comen las respiraciones.
   uniones suenan a robot por mucho que se ajusten las pausas. Prueba `gen2.py`: el texto entero de un tirón (6 líneas, ~16 s) con un tono
   del 76 (`alegre` o `narr`), `speed=1.05` del propio modelo, `class_temperature=.3`; el modelo pone sus pausas (0,15–0,35 s). 0 palabras
   mal en las 3 tomas, ~5 min por bloque. Si esto tampoco convence, el límite es OmniVoice: pedirle el MP3 de ElevenLabs.
+
+## 78 · voz «como la referencia .99» (24-11-2026)
+- El usuario pidió clonar la voz de la narración del .99 (otro canal): **NO se clona la voz de otra persona**; se imita solo el estilo (ritmo ~2,8 pal/s, tono cómplice, diálogos con voz de personaje, cortes secos) con SU voz.
+- Primera prueba (ref `alegre` 8 s, speed .9): le gustó el ritmo, pero «tú sí, tú no» y la voz en general «robóticos».
+- v2 (`proyectos/78_discoteca/voz/gen78b.py`): referencias MÁS LARGAS de sus MP3 con diálogo dentro (`preso.wav` 0–10,95 s del 70 con «Vale. Cinco años más»; `poker.wav` 0–13,8 s del 71), `class_temperature=.8`, `num_step=64`, `speed=.92`, y el diálogo escrito como tal: `y dice: «Tú, sí». «Tú… no».`. Medir con Whisper el hueco entre «tú» y «sí»: > 0,6 s suena a robot (preso_a); 0,35 s suena natural (poker_a).
