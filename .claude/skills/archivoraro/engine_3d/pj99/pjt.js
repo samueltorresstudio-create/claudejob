@@ -1,6 +1,15 @@
 // Personajes propios con EXACTAMENTE el mismo acabado que el tendero (tendero2d.js): mismo cuerpo, cabeza, contorno, sombras,
 // cejas gruesas en bloque, ojos de párpado con media pupila, sombrero 3D sombreado. Requiere tendero2d.js (TD_BODY, TD_CROWN, TD_BRIM).
 const TK = '#1e1313';
+// contorno exterior de la silueta: más grueso abajo a la derecha, borde suave (como la referencia)
+function pjOutline(id, svg) {
+  return `<defs><filter id="${id}OL" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+    <feMorphology in="SourceAlpha" operator="dilate" radius="7" result="d1"/><feOffset in="d1" dx="3" dy="5" result="o1"/>
+    <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="d2"/><feMerge result="m"><feMergeNode in="o1"/><feMergeNode in="d2"/></feMerge>
+    <feComponentTransfer in="m" result="mk"><feFuncA type="linear" slope="3"/></feComponentTransfer>
+    <feFlood flood-color="#1a0f10"/><feComposite in2="mk" operator="in" result="ol"/><feGaussianBlur in="ol" stdDeviation=".9" result="olb"/>
+    <feMerge><feMergeNode in="olb"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g filter="url(#${id}OL)">${svg}</g>`;
+}
 function pjT(o) {
   const id = o.id, f = o.face || 'serio', K = TK, c = o.top; // c = [luz, medio, sombra, borde, brillo, filo]
   let s = `<defs>
@@ -22,6 +31,7 @@ function pjT(o) {
   const armR = o.armR || 'M888,1270 C930,1420 965,1600 985,1745', handR = o.handR || [985, 1755];
   const hand = ([x, y]) => `<circle cx="${x}" cy="${y}" r="44" fill="#261717"/><circle cx="${x - 14}" cy="${y - 16}" r="12" fill="#5a4440" opacity=".45" filter="url(#${id}S1)"/>`;
   s += `<path d="${armL}" stroke="#261717" stroke-width="${o.armW || 26}" fill="none" stroke-linecap="round"/>${hand(handL)}<path d="${armR}" stroke="#261717" stroke-width="${o.armW || 26}" fill="none" stroke-linecap="round"/>${hand(handR)}`;
+  const defsEnd = s.indexOf('</defs>') + 7, limbs = s.slice(defsEnd); s = s.slice(0, defsEnd); // patas y brazos fuera del contorno grueso (siguen finos)
   // cuerpo: igual que el tendero (luz a la izquierda, sombra interior derecha/abajo, sombra de la cabeza)
   s += `<path d="${BP}" fill="url(#${id}B)"/><g clip-path="url(#${id}Bc)">
     <path d="${BP}" fill="none" stroke="${c[4]}" stroke-width="60" opacity=".45" filter="url(#${id}S2)" transform="translate(30,6)"/>
@@ -29,8 +39,9 @@ function pjT(o) {
     <path d="${BP}" fill="none" stroke="#08060a" stroke-width="110" opacity=".55" filter="url(#${id}So)" transform="translate(-50,-20)"/>
     <path d="${BP}" fill="none" stroke="${c[5]}" stroke-width="40" opacity=".3" filter="url(#${id}S2)" transform="translate(22,10)"/>
     <ellipse cx="600" cy="1100" rx="400" ry="100" fill="#08060a" opacity=".85" filter="url(#${id}So)"/>
+    <ellipse cx="470" cy="1300" rx="70" ry="150" fill="#ffffff" opacity=".13" filter="url(#${id}So)" transform="rotate(12,470,1300)"/>
     ${o.bodyIn ? o.bodyIn(id) : ''}
-  </g><path d="${BP}" fill="none" stroke="${K}" stroke-width="30" stroke-linejoin="round"/>
+  </g><path d="${BP}" fill="none" stroke="${K}" stroke-width="22" stroke-linejoin="round"/>
   <path d="${o.bodyEdge || 'M908,1420 C918,1650 900,1840 600,1900'}" stroke="${K}" stroke-width="16" fill="none" stroke-linecap="round"/>`;
   if (o.front) s += o.front(id);
   // cabeza (idéntica al tendero)
@@ -39,12 +50,14 @@ function pjT(o) {
     <path d="M232,640 C214,780 236,940 330,1060" stroke="#e8eef2" stroke-width="16" fill="none" opacity=".9" stroke-linecap="round" filter="url(#${id}S1)"/>
     <ellipse cx="590" cy="600" rx="330" ry="40" fill="#5a3a28" opacity=".35" filter="url(#${id}So)"/>
     ${o.headIn ? o.headIn(id) : ''}
-  </g><circle cx="590" cy="775" r="375" fill="none" stroke="${K}" stroke-width="24"/>
-  <path d="M960,800 A375,375 0 0 1 520,1145" stroke="${K}" stroke-width="18" fill="none" transform="translate(4,7)" stroke-linecap="round"/>`;
+  </g><circle cx="590" cy="775" r="375" fill="none" stroke="${K}" stroke-width="20"/>
+  <path d="M940,620 A375,375 0 0 1 440,1118" stroke="${K}" stroke-width="10" fill="none" transform="translate(3,5)" stroke-linecap="round"/>
+  <path d="M955,820 A375,375 0 0 1 560,1148" stroke="${K}" stroke-width="12" fill="none" transform="translate(5,8)" stroke-linecap="round"/>
+  <path d="M300,520 A375,375 0 0 1 560,402" stroke="#4a3a36" stroke-width="5" fill="none" opacity=".5" transform="translate(4,4)"/>`;
   s += faceT(f, o, id);
   if (o.faceTop) s += o.faceTop(id, f);
   if (o.hat) s += o.hat(id);
-  return s;
+  return limbs + pjOutline(id, s);
 }
 
 // cara con el mismo dibujo que el tendero: cejas en bloque, ojos de párpado + media pupila; boca rellena con contorno si no hay bigote
