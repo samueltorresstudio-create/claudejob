@@ -356,3 +356,139 @@ function millonario2d(o = {}) {
       <path d="M330,520 C400,460 480,440 560,436" stroke="#8a8090" stroke-width="16" fill="none" opacity=".8" stroke-linecap="round"/>`
   }, o));
 }
+
+// shared gradients for metal / wood
+function metalDefs(id) {
+  return `<defs><linearGradient id="${id}Fe" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e8ecf0"/><stop offset=".35" stop-color="#a8b0b8"/><stop offset=".7" stop-color="#6a727c"/><stop offset="1" stop-color="#3a4048"/></linearGradient>
+    <linearGradient id="${id}Fe2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dfe4ea"/><stop offset=".5" stop-color="#9aa2ac"/><stop offset="1" stop-color="#555c66"/></linearGradient>
+    <linearGradient id="${id}Wd" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c88a4a"/><stop offset=".4" stop-color="#9a5e28"/><stop offset="1" stop-color="#5a300e"/></linearGradient>
+    <linearGradient id="${id}Au" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4dc8a"/><stop offset=".5" stop-color="#d0a840"/><stop offset="1" stop-color="#8a6a1a"/></linearGradient></defs>`;
+}
+
+// 12. LEGIONARIO ROMANO: casco con cresta roja y carrilleras, armadura de láminas, falda de tiras de cuero, capa roja, escudo rojo con rayos dorados, espada corta
+const BODY_ROM = 'M270,1180 C290,1090 430,1066 595,1066 C760,1066 900,1090 920,1180 C915,1350 870,1500 840,1600 C820,1660 740,1680 595,1680 C450,1680 370,1660 350,1600 C320,1500 275,1350 270,1180Z';
+function romano2d(o = {}) {
+  return pjT(Object.assign({
+    id: 'ro', bodyPath: BODY_ROM, bodyEdge: 'M918,1260 C900,1420 860,1560 600,1682',
+    top: ['#e8ecf0', '#b8c0c8', '#8a929c', '#4a5058', '#ffffff', '#ffffff'], hatC: ['#000', '#000', '#000', '#000'], brow: '#2a1a14',
+    legs: legsAt(520, 670, 1880), armW: 30,
+    armL: 'M282,1240 C230,1380 210,1480 215,1560', handL: [215, 1570], armR: 'M908,1240 C960,1360 975,1440 975,1520', handR: [975, 1530],
+    back: id => `<path d="M300,1150 C220,1400 200,1700 230,1960 C400,2000 780,2000 950,1960 C980,1700 960,1400 880,1150Z" fill="#a01c22" stroke="${TK}" stroke-width="12" stroke-linejoin="round"/><path d="M300,1300 C270,1500 260,1700 270,1940 M880,1300 C910,1500 920,1700 910,1940" stroke="#5a0a10" stroke-width="20" fill="none" opacity=".6"/>`,
+    under: id => `<path d="M360,1640 L830,1640 L860,1900 L330,1900Z" fill="#a01c22" stroke="${TK}" stroke-width="10" stroke-linejoin="round"/>
+      ${[...Array(9)].map((_, i) => { const x = 370 + i * 52; return `<path d="M${x},1640 L${x + 44},1640 L${x + 44 + (i - 4) * 6},1860 L${x + (i - 4) * 6},1860Z" fill="#8a5a2a" stroke="${TK}" stroke-width="6" stroke-linejoin="round"/><circle cx="${x + 22 + (i - 4) * 5}" cy="1830" r="7" fill="url(#${id}Au)" stroke="${TK}" stroke-width="3"/><path d="M${x + 8},1650 L${x + 8 + (i - 4) * 5},1840" stroke="#b88a4a" stroke-width="5" opacity=".7"/>`; }).join('')}
+      ${[514, 676].map(x => `<path d="M${x - 24},1980 L${x + 24},1980 M${x - 24},2020 L${x + 24},2020 M${x - 24},2060 L${x + 24},2060" stroke="#6a3a14" stroke-width="10" stroke-linecap="round"/>`).join('')}`,
+    bodyIn: id => metalDefs(id) + `${[1240, 1330, 1420, 1510, 1600].map((y, k) => `<path d="M250,${y} C400,${y + 30} 790,${y + 30} 940,${y}" stroke="#4a5058" stroke-width="10" fill="none"/><path d="M250,${y + 12} C400,${y + 42} 790,${y + 42} 940,${y + 12}" stroke="#ffffff" stroke-width="6" fill="none" opacity=".55"/>${[380, 595, 810].map(x => `<circle cx="${x}" cy="${y + 34}" r="7" fill="url(#${id}Au)" stroke="${TK}" stroke-width="3"/>`).join('')}`).join('')}
+      <path d="M595,1080 L595,1250" stroke="#4a5058" stroke-width="8"/>`,
+    front: id => `${[-1, 1].map(sd => `<path d="M${595 + sd * 180},1090 C${595 + sd * 290},1080 ${595 + sd * 340},1130 ${595 + sd * 340},1210 C${595 + sd * 300},1230 ${595 + sd * 220},1220 ${595 + sd * 150},1190Z" fill="url(#${id}Fe2)" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/><path d="M${595 + sd * 190},1130 C${595 + sd * 270},1125 ${595 + sd * 310},1150 ${595 + sd * 325},1190" stroke="#4a5058" stroke-width="6" fill="none"/>`).join('')}
+      <path d="M380,1640 L810,1640 L812,1690 L378,1690Z" fill="#6a3a14" stroke="${TK}" stroke-width="8"/>${[440, 520, 670, 750].map(x => `<rect x="${x - 16}" y="1648" width="32" height="34" rx="4" fill="url(#${id}Au)" stroke="${TK}" stroke-width="4"/>`).join('')}
+      <g transform="translate(215,1600)">
+        <path d="M-150,-260 C-60,-290 60,-290 150,-260 C170,-80 170,120 150,300 C60,330 -60,330 -150,300 C-170,120 -170,-80 -150,-260Z" fill="#b8202a" stroke="${TK}" stroke-width="12" stroke-linejoin="round"/>
+        <path d="M-130,-240 C-50,-264 50,-264 130,-240 C148,-80 148,110 130,280 C50,304 -50,304 -130,280 C-148,110 -148,-80 -130,-240Z" fill="none" stroke="url(#${id}Au)" stroke-width="14"/>
+        <path d="M-115,-180 C-130,-60 -130,80 -110,220" stroke="#ff6a6a" stroke-width="14" fill="none" opacity=".45" stroke-linecap="round"/>
+        <path d="M120,-220 C140,-60 140,120 120,260" stroke="#5a0a10" stroke-width="30" fill="none" opacity=".45" filter="url(#${id}S2)"/>
+        ${[0, 45, 90, 135, 180, 225, 270, 315].map(a => `<path d="M0,0 L${Math.cos(a * Math.PI / 180) * 110},${Math.sin(a * Math.PI / 180) * 210}" stroke="url(#${id}Au)" stroke-width="12" stroke-linecap="round"/>`).join('')}
+        <path d="M-60,-80 C-30,-110 30,-110 60,-80 M-60,80 C-30,110 30,110 60,80" stroke="url(#${id}Au)" stroke-width="12" fill="none"/>
+        <circle r="46" fill="url(#${id}Fe)" stroke="${TK}" stroke-width="9"/><circle cx="-14" cy="-14" r="14" fill="#fff" opacity=".7"/>
+      </g>
+      <g transform="translate(975,1530) rotate(-20)">
+        <path d="M-20,-60 L20,-60 L14,-330 L0,-370 L-14,-330Z" fill="url(#${id}Fe)" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/><path d="M0,-70 L0,-350" stroke="#4a5058" stroke-width="4"/>
+        <rect x="-56" y="-72" width="112" height="22" rx="10" fill="url(#${id}Au)" stroke="${TK}" stroke-width="7"/>
+        <rect x="-16" y="-50" width="32" height="86" rx="8" fill="url(#${id}Wd)" stroke="${TK}" stroke-width="7"/>
+        <circle cx="0" cy="50" r="22" fill="url(#${id}Au)" stroke="${TK}" stroke-width="7"/>
+      </g>
+      <circle cx="975" cy="1530" r="46" fill="#261717"/><path d="M944,1514 C954,1498 972,1492 988,1496" stroke="#5a4440" stroke-width="7" fill="none" opacity=".6" stroke-linecap="round"/>`,
+    hat: id => metalDefs(id + 'h') + `<path d="M200,700 C180,430 360,330 590,330 C820,330 1000,430 980,700 C940,650 880,620 820,610 L360,610 C300,620 240,650 200,700Z" fill="url(#${id}hFe)" stroke="${TK}" stroke-width="13" stroke-linejoin="round"/>
+      <path d="M270,520 C320,420 440,370 560,362" stroke="#ffffff" stroke-width="16" fill="none" opacity=".8" stroke-linecap="round"/>
+      <path d="M190,640 C300,600 880,600 990,640 L1000,690 C880,660 300,660 180,690Z" fill="url(#${id}hFe2)" stroke="${TK}" stroke-width="10" stroke-linejoin="round"/>
+      <path d="M380,610 C470,600 710,600 800,610 L806,640 L374,640Z" fill="url(#${id}hAu)" stroke="${TK}" stroke-width="7"/>
+      ${[-1, 1].map(sd => `<path d="M${590 + sd * 330},640 C${590 + sd * 380},760 ${590 + sd * 370},900 ${590 + sd * 300},1000 C${590 + sd * 260},960 ${590 + sd * 250},860 ${590 + sd * 270},700Z" fill="url(#${id}hFe2)" stroke="${TK}" stroke-width="10" stroke-linejoin="round"/><circle cx="${590 + sd * 320}" cy="820" r="12" fill="url(#${id}hAu)" stroke="${TK}" stroke-width="4"/>`).join('')}
+      <path d="M560,340 L560,280 L620,280 L620,340Z" fill="url(#${id}hAu)" stroke="${TK}" stroke-width="8"/>
+      <path d="M360,300 C380,130 800,130 820,300 C760,270 680,250 590,250 C500,250 420,270 360,300Z" fill="#c0242c" stroke="${TK}" stroke-width="11" stroke-linejoin="round"/>
+      ${[...Array(12)].map((_, i) => { const x = 390 + i * 36; return `<path d="M${x},${265 - Math.sin(i / 11 * Math.PI) * 110} L${x + 4},${290 - Math.sin(i / 11 * Math.PI) * 30}" stroke="#7a1018" stroke-width="6"/>`; }).join('')}
+      <path d="M400,250 C440,170 540,150 600,152" stroke="#ff7a7a" stroke-width="12" fill="none" opacity=".6" stroke-linecap="round"/>`
+  }, o));
+}
+
+// 13. MINERO: robusto, casco con lámpara encendida, cara y ropa con hollín, camisa a cuadros remangada, mono con tirantes, pico al hombro, farol en la otra mano
+const BODY_MIN = 'M300,1190 C320,1096 450,1066 595,1066 C740,1066 870,1096 890,1190 C910,1380 905,1580 880,1720 C860,1820 760,1860 595,1860 C430,1860 330,1820 310,1720 C285,1580 280,1380 300,1190Z';
+function minero2d(o = {}) {
+  return pjT(Object.assign({
+    id: 'mn', bodyPath: BODY_MIN, bodyEdge: 'M892,1300 C906,1520 880,1800 600,1862',
+    top: ['#a84a3a', '#8a3a2c', '#6a2a20', '#3a140e', '#d0745e', '#f0a890'], hatC: ['#e8c040', '#d0a020', '#a07810', '#6a4a08'], brow: '#2a1a14',
+    legs: legsAt(515, 675, 1850), armW: 30,
+    armL: 'M310,1250 C260,1380 245,1480 250,1580', handL: [250, 1590], armR: 'M885,1260 C905,1250 885,1235 850,1230', handR: [850, 1230],
+    bodyIn: id => metalDefs(id) + `<defs><pattern id="${id}Pl" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M0,0 L80,0 M0,40 L80,40" stroke="#3a140e" stroke-width="10" opacity=".55"/><path d="M0,0 L0,80 M40,0 L40,80" stroke="#3a140e" stroke-width="10" opacity=".55"/><path d="M20,0 L20,80 M0,20 L80,20" stroke="#e8c8a0" stroke-width="3" opacity=".35"/></pattern></defs>
+      <path d="${BODY_MIN}" fill="url(#${id}Pl)"/>
+      <path d="M330,1420 C460,1440 730,1440 860,1420 L890,1860 L300,1860Z" fill="#3a4a6a" stroke="${TK}" stroke-width="10" stroke-linejoin="round"/>
+      <path d="M420,1440 L380,1090 M770,1440 L810,1090" stroke="#3a4a6a" stroke-width="54"/><path d="M420,1440 L380,1090 M770,1440 L810,1090" stroke="${TK}" stroke-width="5" opacity=".0"/>
+      ${[[420, 1440], [770, 1440]].map(([x, y]) => `<rect x="${x - 24}" y="${y - 44}" width="48" height="48" rx="6" fill="url(#${id}Au)" stroke="${TK}" stroke-width="6"/>`).join('')}
+      <rect x="520" y="1480" width="150" height="120" rx="10" fill="#2e3c58" stroke="${TK}" stroke-width="7"/><path d="M530,1500 L660,1500" stroke="#6a7a9a" stroke-width="5"/>
+      <path d="M595,1600 L595,1860" stroke="#1e2a40" stroke-width="7"/>
+      ${[[380, 1700, 60], [760, 1560, 46], [470, 1320, 38], [720, 1780, 50], [640, 1250, 34]].map(([x, y, r]) => `<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r * .6}" fill="#1a1414" opacity=".35" filter="url(#${id}S2)"/>`).join('')}`,
+    front: id => `<path d="M470,1110 C520,1180 670,1180 720,1110" stroke="#d8c8a8" stroke-width="16" fill="none"/>
+      <g transform="translate(850,1230) rotate(22)">
+        <rect x="-15" y="-430" width="30" height="520" rx="12" fill="url(#${id}Wd)" stroke="${TK}" stroke-width="8"/><path d="M-6,-410 L-6,70" stroke="#e0a868" stroke-width="5" opacity=".6"/>
+        <path d="M-170,-440 C-90,-490 90,-490 170,-440 L178,-412 C90,-454 -90,-454 -178,-412Z" fill="url(#${id}Fe2)" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>
+        <rect x="-32" y="-470" width="64" height="66" rx="8" fill="url(#${id}Fe)" stroke="${TK}" stroke-width="8"/><path d="M-140,-452 C-70,-476 70,-476 140,-452" stroke="#ffffff" stroke-width="6" fill="none" opacity=".7"/>
+      </g>
+      <circle cx="850" cy="1230" r="46" fill="#261717"/>
+      <g transform="translate(250,1590)">
+        <path d="M-40,0 C-40,-40 40,-40 40,0" stroke="${TK}" stroke-width="10" fill="none"/>
+        <rect x="-60" y="20" width="120" height="30" rx="8" fill="url(#${id}Au)" stroke="${TK}" stroke-width="7"/>
+        <path d="M-50,50 L50,50 L44,170 L-44,170Z" fill="#ffe8a0" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>
+        <ellipse cx="0" cy="120" rx="22" ry="34" fill="#ffb040"/><ellipse cx="0" cy="124" rx="10" ry="18" fill="#fff4c0"/>
+        <path d="M-50,50 L-44,170 M50,50 L44,170 M0,50 L0,170" stroke="${TK}" stroke-width="7"/>
+        <rect x="-62" y="166" width="124" height="28" rx="8" fill="url(#${id}Au)" stroke="${TK}" stroke-width="7"/>
+        <circle cx="0" cy="110" r="110" fill="#ffc060" opacity=".22" filter="url(#${id}So)"/>
+      </g>
+      <circle cx="250" cy="1590" r="46" fill="#261717"/>`,
+    headIn: id => `${[[400, 960, 70], [780, 900, 50], [560, 1060, 40], [700, 1040, 30]].map(([x, y, r]) => `<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r * .55}" fill="#3a2a24" opacity=".35" filter="url(#${id}S2)"/>`).join('')}
+      <path d="M232,780 C240,900 280,1000 330,1060 C300,960 280,860 290,760Z M948,780 C940,900 900,1000 850,1060 C880,960 900,860 890,760Z" fill="#3a2a20"/>`,
+    faceTop: (id, f) => `<path d="M410,1010 C440,1080 520,1120 590,1120 C660,1120 740,1080 770,1010 C740,1050 660,1070 590,1070 C520,1070 440,1050 410,1010Z" fill="#3a2a24" opacity=".3"/>${[...Array(26)].map((_, i) => `<circle cx="${420 + (i * 67) % 350}" cy="${1030 + (i * 41) % 80}" r="4" fill="#2a1c18" opacity=".55"/>`).join('')}`,
+    hat: id => metalDefs(id + 'h') + `<path d="M232,780 C240,900 280,1000 330,1060 C300,960 280,860 290,760" fill="none" stroke="${TK}" stroke-width="8"/><path d="M948,780 C940,900 900,1000 850,1060 C880,960 900,860 890,760" fill="none" stroke="${TK}" stroke-width="8"/>
+      <path d="M220,660 C200,420 380,320 590,320 C800,320 980,420 960,660Z" fill="url(#${id}Hat)" stroke="${TK}" stroke-width="13" stroke-linejoin="round"/>
+      <path d="M590,322 L590,660" stroke="#a07810" stroke-width="40"/><path d="M590,322 L590,660" stroke="${TK}" stroke-width="5" opacity=".5" transform="translate(-20,0)"/><path d="M590,322 L590,660" stroke="${TK}" stroke-width="5" opacity=".5" transform="translate(20,0)"/>
+      <path d="M290,520 C330,420 430,370 530,360" stroke="#fff4b0" stroke-width="16" fill="none" opacity=".8" stroke-linecap="round"/>
+      <path d="M150,650 C300,610 880,610 1030,650 C1040,690 1000,710 960,706 C760,690 420,690 220,706 C180,710 140,690 150,650Z" fill="url(#${id}Hat)" stroke="${TK}" stroke-width="11" stroke-linejoin="round"/>
+      ${[[300, 450], [860, 470], [440, 620]].map(([x, y]) => `<ellipse cx="${x}" cy="${y}" rx="40" ry="18" fill="#3a2a14" opacity=".35" filter="url(#${id}S1)"/>`).join('')}
+      <g transform="translate(590,470)"><circle r="96" fill="#ffd060" opacity=".35" filter="url(#${id}So)"/><rect x="-70" y="-60" width="140" height="120" rx="20" fill="url(#${id}hFe)" stroke="${TK}" stroke-width="10"/><circle r="44" fill="#fff8d0" stroke="${TK}" stroke-width="8"/><circle r="26" fill="#ffffff"/><circle cx="-12" cy="-12" r="9" fill="#fff" opacity=".9"/></g>
+      <path d="M560,560 L620,560 L610,600 L570,600Z" fill="#6a4a10" opacity=".4"/>`
+  }, o));
+}
+
+// 14. PIRATA (elegido por mí): casaca larga roja con botones dorados, tricornio con calavera, parche, barba negra trenzada, garfio, pata de palo, loro verde en el hombro
+const BODY_PIR = 'M360,1190 C372,1096 476,1066 595,1066 C714,1066 818,1096 830,1190 C850,1400 880,1640 910,1900 C760,1950 430,1950 280,1900 C310,1640 340,1400 360,1190Z';
+function pirata2d(o = {}) {
+  return pjT(Object.assign({
+    id: 'pi', bodyPath: BODY_PIR, bodyEdge: 'M832,1300 C850,1520 880,1760 906,1898',
+    top: ['#c03a34', '#a02a26', '#7a1c1a', '#4a0e0c', '#e87068', '#ffb0a8'], hatC: ['#3a3236', '#2a2226', '#1a1418', '#0a0608'], brow: '#1a1212',
+    legs: 'M520,1920 L514,2100', armW: 28,
+    armL: 'M366,1250 C320,1400 300,1500 300,1600', handL: [300, 1610], armR: 'M824,1250 C880,1380 900,1440 905,1500', handR: [905, 1510],
+    under: id => metalDefs(id) + `<path d="M672,1920 L668,2060" stroke="url(#${id}Wd)" stroke-width="40" stroke-linecap="round"/><path d="M672,1920 L668,2060" stroke="${TK}" stroke-width="52" stroke-linecap="round" opacity="0"/><ellipse cx="668" cy="2075" rx="24" ry="12" fill="#3a2010" stroke="${TK}" stroke-width="6"/><path d="M650,1950 L690,1950" stroke="${TK}" stroke-width="6"/>`,
+    bodyIn: id => `<path d="M520,1100 C540,1400 545,1650 540,1930 L650,1930 C645,1650 650,1400 670,1100Z" fill="#f2e6c8"/>${[1250, 1350, 1450].map(y => `<path d="M560,${y} C590,${y + 14} 610,${y + 14} 640,${y}" stroke="#c8b890" stroke-width="6" fill="none"/>`).join('')}
+      <path d="M340,1520 C460,1550 730,1550 850,1520 L852,1590 C730,1620 460,1620 338,1590Z" fill="#2a1a10" stroke="${TK}" stroke-width="8"/><rect x="555" y="1515" width="80" height="78" rx="8" fill="url(#${id}Au)" stroke="${TK}" stroke-width="7"/><rect x="575" y="1535" width="40" height="38" rx="4" fill="#2a1a10"/>
+      ${[1240, 1340, 1440, 1660, 1760].map(y => `<circle cx="490" cy="${y}" r="15" fill="url(#${id}Au)" stroke="${TK}" stroke-width="5"/><circle cx="700" cy="${y}" r="15" fill="url(#${id}Au)" stroke="${TK}" stroke-width="5"/>`).join('')}
+      <path d="M470,1100 C480,1300 500,1500 500,1930 M720,1100 C710,1300 690,1500 690,1930" stroke="#e8c040" stroke-width="10" fill="none"/>
+      ${[[420, 1700, 360, 1930], [770, 1700, 830, 1930]].map(([x1, y1, x2, y2]) => `<path d="M${x1},${y1} L${x2},${y2}" stroke="#4a0e0c" stroke-width="14" opacity=".6"/>`).join('')}`,
+    front: id => `<g transform="translate(905,1510)"><path d="M0,-10 L0,60 C0,140 -90,150 -100,80 C-104,50 -80,40 -66,60" stroke="url(#${id}Fe)" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0,-10 L0,60 C0,140 -90,150 -100,80" stroke="${TK}" stroke-width="5" fill="none" opacity=".6" transform="translate(6,2)"/><path d="M-62,62 L-74,46 L-54,52Z" fill="url(#${id}Fe)" stroke="${TK}" stroke-width="5"/>
+        <path d="M-40,-60 L40,-60 L50,0 L-50,0Z" fill="#5a2a14" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/><path d="M-40,-46 L40,-46" stroke="#e8c040" stroke-width="6"/></g>
+      `,
+    headIn: id => `<path d="M240,880 C250,1080 400,1210 590,1210 C780,1210 930,1080 940,880 C880,960 790,990 720,970 C680,1010 500,1010 460,970 C390,990 300,960 240,880Z" fill="#1e1616"/>
+      <path d="M320,980 C380,1070 470,1110 590,1120" stroke="#4a3a3a" stroke-width="12" fill="none" opacity=".7" stroke-linecap="round"/>`,
+    faceTop: (id, f) => `<path d="M240,880 C250,1080 400,1210 590,1210 C780,1210 930,1080 940,880 C880,960 790,990 720,970 C680,1010 500,1010 460,970 C390,990 300,960 240,880Z" fill="none" stroke="${TK}" stroke-width="10" stroke-linejoin="round"/>
+      ${[540, 640].map(x => `<path d="M${x},1190 C${x - 10},1250 ${x + 10},1290 ${x},1340" stroke="#1e1616" stroke-width="34" stroke-linecap="round"/>${[1230, 1280].map(y => `<path d="M${x - 18},${y} L${x + 18},${y}" stroke="#c03a34" stroke-width="10"/>`).join('')}<path d="M${x},1190 C${x - 10},1250 ${x + 10},1290 ${x},1340" stroke="#4a3a3a" stroke-width="6" fill="none" transform="translate(-8,0)"/>`).join('')}
+      <path d="M300,700 C400,760 560,800 760,780" stroke="${TK}" stroke-width="12" fill="none"/>
+      <ellipse cx="698" cy="840" rx="70" ry="58" fill="#1a1212" stroke="${TK}" stroke-width="6"/><path d="M660,816 C680,804 710,804 730,812" stroke="#5a4a4a" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M760,780 C840,770 900,740 950,700" stroke="${TK}" stroke-width="12" fill="none"/>`,
+    hat: id => `<g transform="translate(290,1120)"><path d="M0,40 C-60,20 -90,-60 -50,-120 C-20,-160 50,-150 70,-100 C90,-50 70,20 30,40Z" fill="#3aa040" stroke="${TK}" stroke-width="9" stroke-linejoin="round"/>
+        <path d="M-40,0 C-90,40 -110,100 -100,150 L-60,90 L-40,150 L-20,40Z" fill="#2a7a30" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>
+        <path d="M10,40 C-10,80 -40,130 -50,180 L-20,180 L0,110 L20,180 L40,180 C40,120 30,70 30,40Z" fill="#c03a34" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/><path d="M-6,120 L34,120" stroke="#2a5aa8" stroke-width="10"/>
+        <circle cx="10" cy="-90" r="30" fill="#fff" stroke="${TK}" stroke-width="7"/><circle cx="16" cy="-92" r="13" fill="${TK}"/><circle cx="20" cy="-96" r="4" fill="#fff"/>
+        <path d="M50,-80 C110,-90 120,-40 80,-20 C70,-40 60,-50 44,-50Z" fill="#f4c040" stroke="${TK}" stroke-width="7" stroke-linejoin="round"/><path d="M56,-62 C80,-62 96,-56 100,-44" stroke="#8a6a10" stroke-width="5" fill="none"/>
+        <path d="M-50,-110 C-30,-150 20,-160 50,-130" stroke="#7ad070" stroke-width="10" fill="none" opacity=".8" stroke-linecap="round"/>
+        <path d="M-10,40 L-16,64 M20,40 L26,64" stroke="#e8a040" stroke-width="8" stroke-linecap="round"/></g><path d="M90,620 C200,560 300,500 360,380 C420,300 760,300 820,380 C880,500 980,560 1090,620 C1000,700 870,690 780,640 C700,610 480,610 400,640 C310,690 180,700 90,620Z" fill="url(#${id}Hat)" stroke="${TK}" stroke-width="13" stroke-linejoin="round"/>
+      <path d="M160,610 C260,570 330,520 380,430" stroke="#6a5a60" stroke-width="12" fill="none" opacity=".8" stroke-linecap="round"/>
+      <path d="M90,620 C180,680 300,700 400,640 C480,610 700,610 780,640 C880,700 1000,680 1090,620" stroke="#e8c040" stroke-width="14" fill="none"/>
+      <g transform="translate(590,470)"><path d="M-52,-10 C-52,-60 52,-60 52,-10 C52,20 30,30 24,46 L-24,46 C-30,30 -52,20 -52,-10Z" fill="#f6f2ea" stroke="${TK}" stroke-width="7"/><circle cx="-20" cy="-8" r="13" fill="${TK}"/><circle cx="20" cy="-8" r="13" fill="${TK}"/><path d="M-4,20 L4,20 L0,8Z" fill="${TK}"/><path d="M-80,40 L80,90 M80,40 L-80,90" stroke="#f6f2ea" stroke-width="16" stroke-linecap="round"/><path d="M-80,40 L80,90 M80,40 L-80,90" stroke="${TK}" stroke-width="4" stroke-linecap="round" opacity=".6"/></g>`
+  }, o));
+}
