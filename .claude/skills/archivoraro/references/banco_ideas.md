@@ -31,6 +31,9 @@ El patrón:
 - **un plan o un caos concreto que escala**;
 - **nada que necesite contexto político, religioso o una «explicación científica»**.
 
+## Referencias de Shorts que le gustan (24-11-2026)
+Análisis completo (guion, escenarios, personajes, expresiones, movimiento, cámara) en `archivoraro_archivo/referencias/shorts_2026-11-24/ANALISIS.md`. **Léelo antes de proponer ideas o montar un vídeo.** Plantilla de guion: gancho = final absurdo → «resulta que» → escalada → broma de un secundario → giro en el que otro gana → concepto con nombre o remate → bucle cortado a media frase.
+
 ## Los más virales del canal (dato del usuario, 24-11-2026) — ESTO es lo que hay que repetir
 - **68 · La red de la portería** ≈ 300.000 visitas.
 - **70 · El preso que pidió cinco años más** ≈ 300.000 visitas.

@@ -1,3 +1,5 @@
+> **24-11-2026 · Nivel a alcanzar**: ver `archivoraro_archivo/referencias/shorts_2026-11-24/ANALISIS.md` (expresión nueva casi en cada palabra, 60 % primeros planos, efectos exagerados, decorados texturizados con niebla y rayos de luz, menos paseos).
+
 # ESTILO 3D: el estilo por defecto del canal desde noviembre de 2026
 
 **Cuándo:** todos los vídeos nuevos, salvo que el usuario pida otra cosa. Los sucesos reales de una parte siguen usando `sucesos.md`. El motor SVG antiguo (`engine/`) queda solo para retocar vídeos o series que ya estaban hechos con él.

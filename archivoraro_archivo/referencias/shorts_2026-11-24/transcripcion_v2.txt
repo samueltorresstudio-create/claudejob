@@ -1,0 +1,28 @@
+   0.0-   3.0 Se lavó la cara con jugo de limón y entró a robar un banco sin máscara.
+   3.0-   6.3 Resulta que en 1995 robar un banco significaba cámaras en cada rincón y hasta 20 años
+   6.3-   7.3 de cárcel si te reconocían.
+   7.3-   9.8 Pero un amigo le había contado un secreto, el jugo de limón es tinta invisible, escribes
+   9.8-  10.8 con él y no se ve nada.
+  10.8-  12.4 Así que si te lo pones en la cara, las cámaras tampoco te ven.
+  12.4-  13.4 Su amigo se reía.
+  13.4-  14.6 Limón, vas a robar un banco o hacer limonada.
+  14.6-  15.6 Pero él no es tonto.
+  15.6-  16.6 Primero lo prueba.
+  16.6-  18.0 Se exprime 2 limones en la cara, le agarra de los ojos, agarra una polaroid y se
+  18.0-  19.0 toma una foto.
+  19.0-  20.0 La foto sale en blanco.
+  20.0-  21.0 Funciona.
+  21.0-  25.7 El agero le entrega el dinero sin dejar de mirarle la cara, que brilla y gotea limón.
+  25.7-  27.5 Y como fue tan fácil, roba otro banco el mismo día.
+  27.5-  28.9 Esa noche su cara sale en el noticiero de las fe.
+  28.9-  30.5 En menos de una hora, la policía toca su puerta.
+  30.5-  32.0 ¿Cómo alguien puede estar tan seguro de algo tan absurdo?
+  32.0-  33.5 Bueno, se llama efecto Dan and Kruger.
+  33.5-  35.2 Cuanto menos sabes de algo, más seguro estás de que lo dominas.
+  35.2-  37.2 ¿Alguna vez cantaste en la ducha convencido de que sonabas increíble?
+  37.2-  38.2 Igual.
+  38.2-  39.2 Y la foto en blanco.
+  39.2-  40.2 Nadie sabe si la película estaba vencida o si apuntó al techo.
+  40.2-  41.7 Pero en la comisaría, cuando el detective le pone el vídeo, él se queda mirando
+  41.7-  42.7 su propia cara y dice.
+  42.7-  44.2 Pero, si le puse el jugo.
