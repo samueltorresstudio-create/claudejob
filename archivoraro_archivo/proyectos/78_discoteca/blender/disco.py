@@ -27,7 +27,7 @@ P = dict(
     rubber='#2a2630', hydrant='#d8342c', bin='#3f6a4a', bag='#1f1c24', chalk='#f4f2ea', skin='#f4d9b4', paper='#f7f0d8',
 )
 M = {k: mat(k, v) for k, v in P.items()}
-PAINT = ['asphalt', 'sidewalk', 'brick', 'brick2', 'plaster', 'shutter', 'shopwin', 'win', 'neon', 'doorglass', 'puddle', 'ledfloor', 'woodfloor', 'wallclub',
+PAINT = ['poster2', 'asphalt', 'sidewalk', 'brick', 'brick2', 'plaster', 'shutter', 'shopwin', 'win', 'neon', 'doorglass', 'puddle', 'ledfloor', 'woodfloor', 'wallclub',
          'ceilclub', 'speaker', 'barmirror', 'board', 'parquet', 'wallcream', 'poster', 'books', 'list', 'cabinet']
 for n in PAINT: M[n] = mat(n, '#ffffff')
 
@@ -119,6 +119,29 @@ ST.box((SX, 5, 17.2), (70, 10, .5), M['brick2'])
 for k in range(12):
     x = SX - 27 + k * 5
     for y in (2.2, 5.4, 8.2): ST.box((x, y, 16.9), (1.6, 1.8, .1), M['win'])
+
+# --- más atrezo en la calle (nivel de las referencias) ---
+for sd in (-1, 1):   # jardineras con arbusto a los lados de la puerta
+    x = SX + sd * 2.9
+    ST.box((x, .55, -8.3), (1.0, .8, .8), M['black']); ST.box((x, .97, -8.3), (1.06, .06, .86), M['gold'])
+    for (dx, dy, r) in [(0, 1.45, .45), (-.28, 1.25, .32), (.3, 1.3, .34), (.05, 1.8, .3)]: ST.sph((x + dx, dy, -8.3), r, M['leaf'], seg=10, rings=7)
+for (x, m) in [(SX - 5.6, 'poster'), (SX + 5.6, 'poster2'), (SX - 8.0, 'poster2')]:   # carteles en la pared
+    ST.box((x, 2.4, -8.98), (1.5, 2.1, .04), M[m]); ST.box((x, 2.4, -9.0), (1.6, 2.2, .02), M['black'])
+for (x, y) in [(SX - 6.5, 8.3), (SX + 4.2, 8.6), (SX - 16, 6.8), (SX + 15, 6.4)]:   # aparatos de aire acondicionado
+    ST.box((x, y, -8.7), (1.0, .7, .5), M['steel']); ST.box((x - .1, y, -8.44), (.6, .55, .02), M['iron']); ST.cyl((x + .4, y - .35, -8.6), (x + .4, y - 1.2, -8.6), .02, M['iron'], 4)
+# guirnaldas de bombillas desde la fachada hasta las farolas, por encima de la cola
+for (x0, x1) in [(SX - 2.2, SX - 7.95), (SX - 4, SX - 7.95)]:
+    pts = []
+    for k in range(13):
+        t = k / 12; x = x0 + (x1 - x0) * t; y = 4.7 - 1.2 * math.sin(math.pi * t) + (5.2 - 4.7) * t; z = -8.9 + (-.6 + 8.9) * t
+        pts.append((x, y, z))
+    for k in range(12): ST.cyl(pts[k], pts[k + 1], .012, M['iron'], 4)
+    for k in range(1, 12, 1): ST.sph((pts[k][0], pts[k][1] - .08, pts[k][2]), .07, M['lamp'], seg=8, rings=5)
+# cables entre fachadas (arriba) y una señal de prohibido aparcar
+for k in range(3): ST.cyl((SX - 30, 9.3 - k * .3, -9 + k * .2), (SX + 30, 9.1 - k * .25, 16.9), .018, M['iron'], 4)
+ST.cyl((SX + 7.5, .15, -.5), (SX + 7.5, 2.6, -.5), .04, M['iron'], 6); ST.cyl((SX + 7.5, 2.75, -.5), (SX + 7.5, 2.75, -.45), .32, M['red'], 20); ST.cyl((SX + 7.5, 2.75, -.44), (SX + 7.5, 2.75, -.42), .24, M['blue'] if 'blue' in M else M['cyan'], 20)
+# bolardos en el bordillo
+for x in (SX - 3, SX + 3, SX - 12, SX + 12): ST.cyl((x, .15, -.4), (x, .9, -.4), .09, M['iron'], 10); ST.sph((x, .9, -.4), .09, M['iron'], seg=8, rings=5)
 ST.finish(origin=(SX, 0, 0))
 
 # ================================================= PISTA (x = 1000) =================================================

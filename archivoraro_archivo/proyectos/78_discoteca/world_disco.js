@@ -23,30 +23,34 @@ const W2 = (() => {
   sky.frustumCulled = false; sky.renderOrder = -10; scene.add(sky);
   scene.fog = new T.FogExp2('#241a3a', .02);
   const hemi = new T.HemisphereLight('#ffffff', '#ffd9a0', 1.7); scene.add(hemi);
+  { const es = new T.Scene(); es.background = new T.Color('#0a0814'); const add = (c, x, y, z, w, h, i = 4) => { const m = new T.Mesh(new T.PlaneGeometry(w, h), new T.MeshBasicMaterial({ color: new T.Color(c).multiplyScalar(i), side: T.DoubleSide })); m.position.set(x, y, z); m.lookAt(0, 0, 0); es.add(m); };
+    add('#ff3fa0', -6, 3, -6, 6, 2); add('#2fe8ff', 7, 2, -4, 5, 1.5); add('#ffcf7a', 0, 8, 2, 8, 3, 3); add('#ffcf7a', -5, 2, 7, 4, 3, 2); add('#8a5cff', 6, 4, 6, 4, 2, 2.5);
+    const pm = new T.PMREMGenerator(R); scene.environment = pm.fromScene(es, 0, .1, 100).texture; }
   const SUN = new T.Vector3(-.3, .8, .5).normalize();
   const sun = new T.DirectionalLight('#fff1c9', 1.4); sun.castShadow = true; sun.shadow.mapSize.set(4096, 4096); sun.shadow.bias = -.0004; sun.shadow.normalBias = .06; scene.add(sun, sun.target);
 
   // ---------- materiales de tebeo (como el 77) + materiales que BRILLAN (neón, bombillas, ventanas encendidas, suelo de luces) ----------
   const toonG = new T.DataTexture(new Uint8Array([110, 175, 235, 255]), 4, 1, T.RedFormat); toonG.minFilter = toonG.magFilter = T.NearestFilter; toonG.needsUpdate = true;
   const MATS = {}, SIGN = {};
-  const PAINTED = /^(asphalt|sidewalk|brick|brick2|plaster|shutter|shopwin|win|neon|doorglass|ledfloor|woodfloor|wallclub|ceilclub|speaker|barmirror|board|parquet|wallcream|poster|books|list)$/;
+  const PAINTED = /^(poster2|asphalt|sidewalk|brick|brick2|plaster|shutter|shopwin|win|neon|doorglass|ledfloor|woodfloor|wallclub|ceilclub|speaker|barmirror|board|parquet|wallcream|poster|books|list)$/;
   const TILE = { asphalt: 6, sidewalk: 3, brick: 2.4, brick2: 2.4, plaster: 3, win: 2.0, woodfloor: 4, wallclub: 3, ceilclub: 4, speaker: 1.3, parquet: 2.5, wallcream: 3, books: 2.4, shutter: 5.2 };
   const GLOW = /^(lamp|lampwarm|neonP|neonC|neonY|neon|ledfloor|shopwin|win|poster)$/;
   const MIRROR = new T.ShaderMaterial({ uniforms: { time: uTime }, extensions: { derivatives: true },
     vertexShader: 'varying vec3 vP; varying vec3 vW; void main(){ vec4 w=modelMatrix*vec4(position,1.); vW=w.xyz; vP=(modelViewMatrix*vec4(position,1.)).xyz; gl_Position=projectionMatrix*viewMatrix*w; }',
     fragmentShader: `uniform float time; varying vec3 vP; varying vec3 vW; float h(vec3 p){ return fract(sin(dot(floor(p*40.),vec3(12.9898,78.233,37.719)))*43758.5453); }
-      void main(){ vec3 n=normalize(cross(dFdx(vW),dFdy(vW))); float r=h(vW); vec3 base=mix(vec3(.38,.36,.5),vec3(.92,.92,1.),r*r); float sp=step(.93,fract(r*7.+time*1.3)); vec3 tint=mix(vec3(1.,.4,.8),vec3(.3,.95,1.),fract(r*3.));
-        float l=.55+.45*max(0.,dot(n,normalize(vec3(-.4,.6,.7)))); vec3 c=base*l+tint*.18+vec3(1.)*sp*1.4; gl_FragColor=vec4(c,1.);
+      void main(){ vec3 n=normalize(cross(dFdx(vW),dFdy(vW))); float r=h(vW); vec3 base=mix(vec3(.18,.17,.26),vec3(.75,.75,.85),r*r*r); float sp=step(.93,fract(r*7.+time*1.3)); vec3 tint=mix(vec3(1.,.4,.8),vec3(.3,.95,1.),fract(r*3.));
+        float l=.55+.45*max(0.,dot(n,normalize(vec3(-.4,.6,.7)))); vec3 c=base*l+tint*.12+vec3(1.)*sp*.9; gl_FragColor=vec4(c,1.);
 #include <colorspace_fragment>
       }` });
   function toon(m) { if (MATS[m.name]) return MATS[m.name]; let o; if (m.name === 'steeld') return (MATS[m.name] = MIRROR);
     if (GLOW.test(m.name)) { o = new T.MeshBasicMaterial({ color: m.color.clone(), fog: !/^(neon|neonP|neonC|neonY)$/.test(m.name) }); o.name = m.name; if (PAINTED.test(m.name)) { o.color.set('#ffffff'); SIGN[m.name] = o; } return (MATS[m.name] = o); }
-    o = new T.MeshToonMaterial({ color: m.color.clone(), gradientMap: toonG }); o.name = m.name;
+    const RG = { gold: [.32, .85], goldd: [.35, .85], steel: [.22, .9], steeld: [.3, .9], iron: [.45, .6], glass: [.05, .2], doorglass: [.04, .3], asphalt: [.42, 0], sidewalk: [.75, 0], curb: [.8, 0], velvet: [.85, 0], velvetd: [.85, 0], black: [.45, .1], rubber: [.9, 0], wood: [.55, 0], woodd: [.55, 0], woodfloor: [.35, 0], bottleG: [.08, .1], bottleA: [.08, .1], bottleB: [.08, .1], bottleR: [.08, .1], barmirror: [.05, .7], hydrant: [.4, .2], bin: [.5, .3], bag: [.35, 0], speaker: [.8, 0], purple: [.8, 0], purpled: [.8, 0] }[m.name] || [.78, 0];
+    o = new T.MeshStandardMaterial({ color: m.color.clone(), roughness: RG[0], metalness: RG[1], envMapIntensity: 1.0 }); o.name = m.name;
     if (PAINTED.test(m.name)) { o.color.set('#ffffff'); SIGN[m.name] = o; }
     o.onBeforeCompile = sh => { sh.vertexShader = 'varying vec3 vWP;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n vWP = (modelMatrix * vec4(transformed, 1.0)).xyz;');
       sh.fragmentShader = 'varying vec3 vWP;\nuniform vec3 RIMC;\nfloat mh(vec3 p){ return fract(sin(dot(p, vec3(127.1, 311.7, 74.7))) * 43758.5453); }\nfloat mn(vec3 p){ vec3 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f); return mix(mix(mix(mh(i), mh(i + vec3(1,0,0)), f.x), mix(mh(i + vec3(0,1,0)), mh(i + vec3(1,1,0)), f.x), f.y), mix(mix(mh(i + vec3(0,0,1)), mh(i + vec3(1,0,1)), f.x), mix(mh(i + vec3(0,1,1)), mh(i + vec3(1,1,1)), f.x), f.y), f.z); }\n' + sh.fragmentShader
-        .replace('#include <color_fragment>', '#include <color_fragment>\n diffuseColor.rgb *= .88 + .24 * mn(vWP * 2.3) + .06 * mn(vWP * 9.);')
-        .replace('#include <opaque_fragment>', '#include <opaque_fragment>\n { float rim = pow(1. - clamp(dot(normalize(vNormal), normalize(vViewPosition)), 0., 1.), 3.); gl_FragColor.rgb += RIMC * rim * .22; }'); sh.uniforms.RIMC = RIMU; };
+        .replace('#include <color_fragment>', '#include <color_fragment>\n diffuseColor.rgb *= .92 + .14 * mn(vWP * 2.3) + .05 * mn(vWP * 9.);')
+        ; sh.uniforms.RIMC = RIMU; };
     return (MATS[m.name] = o); }
   const RIMU = { value: new T.Color('#ff6fd0') };
   const inkM = new T.ShaderMaterial({ side: T.BackSide, uniforms: { k: { value: .0031 }, col: { value: new T.Color('#16121c') } },
@@ -127,6 +131,10 @@ const W2 = (() => {
       wallcream: tex(512, 512, (g, w, h) => { const rn = rn0(31); g.fillStyle = '#e9dfc8'; g.fillRect(0, 0, w, h); speck(g, w, h, 2000, ['#ddd2ba', '#f2e9d6'], 1, 3, rn); }),
       books: tex(512, 160, (g, w, h) => { const rn = rn0(37); let x = 0; while (x < w) { const bw = 14 + rn() * 26, bh = 100 + rn() * 50; g.fillStyle = ['#c8342c', '#2c5fa8', '#2f9a52', '#e0a42a', '#6a3a8a', '#e8e0c8'][Math.floor(rn() * 6)]; g.fillRect(x, h - bh, bw, bh); g.strokeStyle = KK; g.lineWidth = 3; g.strokeRect(x, h - bh, bw, bh); g.fillStyle = 'rgba(255,255,255,.4)'; g.fillRect(x + 3, h - bh + 12, bw - 6, 4); x += bw + 1; } }),
       poster: cv(1200, 600, (g, w, h) => { g.fillStyle = '#0a0612'; g.fillRect(0, 0, w, h); for (let i = 0; i < 14; i++) { g.strokeStyle = ['#ff3fa0', '#2fe8ff', '#8a5cff', '#ffe45a'][i % 4]; g.lineWidth = 10; g.globalAlpha = .75; g.beginPath(); for (let x = 0; x <= w; x += 10) g.lineTo(x, h / 2 + Math.sin(x * .012 + i * .6) * (40 + i * 12) * Math.sin(i + x * .003)); g.stroke(); } g.globalAlpha = 1; neonText(g, 'ESPEJO', w / 2, h / 2, 170, '#ffe0f2', '#ff3fa0'); }),
+      poster2: cv(600, 840, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#ffd34a'); gr.addColorStop(1, '#ff6a3c'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+        g.fillStyle = '#16121c'; g.font = '900 120px Inter'; g.textAlign = 'center'; g.fillText('FIESTA', w / 2, 170); g.fillText('80s', w / 2, 300); g.beginPath(); g.arc(w / 2, 520, 150, 0, 7); g.fill(); g.fillStyle = '#ffd34a'; g.beginPath(); g.arc(w / 2, 520, 40, 0, 7); g.fill();
+        g.strokeStyle = '#ffd34a'; g.lineWidth = 6; for (let r = 60; r < 150; r += 20) { g.beginPath(); g.arc(w / 2, 520, r, 0, 7); g.stroke(); } g.fillStyle = '#16121c'; g.font = '900 64px Inter'; g.fillText('SÁBADO', w / 2, 760);
+        g.fillStyle = 'rgba(255,255,255,.35)'; g.fillRect(0, 0, w, 30); g.strokeStyle = 'rgba(0,0,0,.25)'; g.lineWidth = 3; g.beginPath(); g.moveTo(40, 0); g.lineTo(90, h); g.stroke(); }),
       list: cv(400, 320, (g, w, h) => { g.fillStyle = '#fbf6e8'; g.fillRect(0, 0, w, h); g.strokeStyle = '#9a9aa8'; g.lineWidth = 3; for (let y = 50; y < h; y += 36) { g.beginPath(); g.moveTo(20, y); g.lineTo(w - 20, y); g.stroke(); }
         g.strokeStyle = '#e3453a'; g.lineWidth = 5; for (let y = 50; y < h; y += 36) { if ((y / 36 | 0) % 2) { g.beginPath(); g.moveTo(40, y - 12); g.lineTo(w - 60, y - 10); g.stroke(); } else { g.strokeStyle = '#2f9a52'; g.beginPath(); g.moveTo(40, y - 14); g.lineTo(52, y - 4); g.lineTo(72, y - 24); g.stroke(); g.strokeStyle = '#e3453a'; } } }),
     };
@@ -165,7 +173,8 @@ const W2 = (() => {
   function pool(site, x, y, z, r, col, op = .5) { const m = new T.Mesh(new T.CircleGeometry(r, 40), new T.MeshBasicMaterial({ map: dotTex, color: col, transparent: true, depthWrite: false, blending: T.AdditiveBlending, opacity: op, fog: false }));
     m.rotation.x = -Math.PI / 2; m.position.set(x, y, z); m.renderOrder = 2; SITES[site].add(m); return m; }
   function build() {
-    [['street', 'street_floor'], ['dance', 'dance_floor'], ['aula', 'aula_floor']].forEach(([a, b]) => { inkify(G[a]); SITES[a].add(G[a]); SITES[a].add(G[b]); });
+    [['street', 'street_floor'], ['dance', 'dance_floor'], ['aula', 'aula_floor']].forEach(([a, b]) => { SITES[a].add(G[a]); SITES[a].add(G[b]); });
+    addLights();
     const S0 = LAY.sites.street[0], D0 = LAY.sites.dance[0];
     // calle: conos de luz de farolas, focos del cartel, charcos que reflejan el neón, luz rosa en la acera
     for (const x of [S0 - 9, S0 + 9, S0 - 26, S0 + 26]) { const hx = x + (x < S0 ? 1.05 : -1.05); BEAMS.push({ m: beam('street', V3(hx, 5.3, -.6), V3(hx, 0, -.6), '#ffd98a', .3, 2.4, .22), k: .22 }); POOLS.push(pool('street', hx, .17, -.6, 2.8, '#ffcf7a', .55)); }
@@ -186,13 +195,22 @@ const W2 = (() => {
     // aula: luz cálida de la lámpara sobre la mesa y la pizarra
     BEAMS.push({ m: beam('aula', V3(LAY.sites.aula[0] + 1.4, 5.1, -2.6), V3(LAY.sites.aula[0] + 1.4, 0, -2.6), '#ffe3a0', .1, 2.2, .16), k: .16 });
   }
+  function addLights() { const S0 = LAY.sites.street[0], D0 = LAY.sites.dance[0], A0 = LAY.sites.aula[0];
+    const PL = (site, c, i, x, y, z, d = 18) => { const l = new T.PointLight(c, i, d, 1.6); l.position.set(x, y, z); SITES[site].add(l); return l; };
+    PL('street', '#ff3fa0', 33, S0, 6.3, -7.6, 16); PL('street', '#2fe8ff', 10, S0 - 3.6, 6.6, -7.8, 10); PL('street', '#2fe8ff', 10, S0 + 3.6, 6.6, -7.8, 10);
+    PL('street', '#ffc870', 22, S0, 3.4, -5.6, 12); PL('street', '#ffc870', 14, S0 - 2.4, 3.5, -6, 8); PL('street', '#ffc870', 14, S0 + 2.4, 3.5, -6, 8);
+    for (const x of [S0 - 9, S0 + 9, S0 - 26, S0 + 26]) PL('street', '#ffd08a', 30, x + (x < S0 ? 1.05 : -1.05), 5.0, -.6, 14);
+    PL('street', '#ffb24a', 22, S0 + 13.5, 2.2, -7.5, 10); PL('street', '#8a9aff', 8, S0 - 8, 7, 4, 30);
+    const SPL = []; (LAY.spots || []).forEach(([x, y, z], i) => { if (i % 2) return; const c = COLS[i % COLS.length]; const l = new T.SpotLight(c, 50, 16, .42, .55, 1.4); l.position.set(x, y, z); l.target.position.set(x, 0, -4.5); SITES.dance.add(l, l.target); SPL.push(l); });
+    PL('dance', '#ff3fa0', 22, D0, 1.0, -4.5, 12); PL('dance', '#2fe8ff', 16, D0 - 9, 3, -2, 14); PL('dance', '#ffb070', 16, D0 + 11, 3, -4, 10); PL('dance', '#8a5cff', 22, D0, 5, -12, 16); PL('dance', '#ffd08a', 8, D0 - 12, 1.2, -4, 6);
+    PL('aula', '#ffe3a0', 25, A0 + 1.4, 4.9, -2.6, 14); PL('aula', '#fff4e0', 9, A0, 4, 3, 20); }
   function site(n) { Object.keys(SITES).forEach(k => SITES[k].visible = k === n); sky.visible = n === 'street'; }
 
   // ---------- ambientes ----------
   const MOODS = {
-    calle: { sun: '#9ab0ff', sunI: .9, dir: [-.4, .8, .5], hemi: '#9aa0ff', ground: '#ff6fc0', hemiI: 2.2, fog: '#2a1a46', fogD: .016, top: '#0b1030', hor: '#4a2a66', bloom: .9, rim: '#ff6fd0' },
-    pista: { sun: '#ff9ae0', sunI: .8, dir: [-.2, .9, .4], hemi: '#c09aff', ground: '#ff3fa0', hemiI: 2.0, fog: '#3a1a5a', fogD: .03, top: '#000', hor: '#000', bloom: 1.05, rim: '#4ff0ff' },
-    aula: { sun: '#fff0d0', sunI: 1.4, dir: [-.3, .8, .5], hemi: '#fff4e0', ground: '#c89a6a', hemiI: 2.6, fog: '#e8dcc4', fogD: .004, top: '#000', hor: '#000', bloom: .25, rim: '#ffe0b0' },
+    calle: { sun: '#a8b8ff', sunI: .55, dir: [-.4, .8, .5], hemi: '#8090c8', ground: '#3a2a30', hemiI: .55, fog: '#161a34', fogD: .012, top: '#0b1030', hor: '#4a2a66', bloom: .9, rim: '#ff6fd0' },
+    pista: { sun: '#ff9ae0', sunI: .25, dir: [-.2, .9, .4], hemi: '#9080c0', ground: '#401830', hemiI: .5, fog: '#20122e', fogD: .022, top: '#000', hor: '#000', bloom: 1.05, rim: '#4ff0ff' },
+    aula: { sun: '#fff0d0', sunI: 1.0, dir: [-.3, .8, .5], hemi: '#fff4e0', ground: '#8a6a4a', hemiI: 1.1, fog: '#e8dcc4', fogD: .004, top: '#000', hor: '#000', bloom: .25, rim: '#ffe0b0' },
   };
   let MOOD = 'calle';
   function setMood(m) { if (!MOODS[m]) m = 'calle'; MOOD = m; const Mo = MOODS[m]; sun.color.set(Mo.sun); sun.intensity = Mo.sunI; SUN.set(...Mo.dir).normalize(); hemi.color.set(Mo.hemi); hemi.groundColor.set(Mo.ground); hemi.intensity = Mo.hemiI;
@@ -203,10 +221,11 @@ const W2 = (() => {
   function proj(p) { const v = p.clone(), cs = v.clone().applyMatrix4(camera.matrixWorldInverse), d = -cs.z; v.project(camera); const ppm = (H / 2) / (d * Math.tan(camera.fov * Math.PI / 360)); return { x: (v.x + 1) / 2 * W, y: (1 - v.y) / 2 * H, d, ppm, ok: d > .1 }; }
   // ---------- post: brillo fuerte en neones, desenfoque de fondo, color ----------
   const comp = new EffectComposer(R, new T.WebGLRenderTarget(W, H, { samples: 4, type: T.HalfFloatType })); comp.setSize(W, H); comp.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new T.Vector2(W / 2, H / 2), .9, .55, .72); comp.addPass(bloom);
-  const dof = new BokehPass(scene, camera, { focus: 8, aperture: .0004, maxblur: .006 }); comp.addPass(dof); comp.addPass(new OutputPass());
+  const gtao = new GTAOPass(scene, camera, W, H, undefined, { radius: .9, distanceExponent: 1.4, thickness: 1.5, scale: 1.1, samples: 12 }, { lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 5, rings: 2, samples: 8 }); gtao.blendIntensity = .9; /* GTAO desactivado: manchas junto a los neones */
+  const bloom = new UnrealBloomPass(new T.Vector2(W / 2, H / 2), .7, .5, .8); comp.addPass(bloom);
+  const dof = new BokehPass(scene, camera, { focus: 8, aperture: .0004, maxblur: .016 }); comp.addPass(dof); comp.addPass(new OutputPass());
   const gradeMat = new T.ShaderMaterial({ uniforms: { tDiffuse: { value: null } }, depthTest: false, depthWrite: false, vertexShader: 'varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position.xy,0.,1.); }',
-    fragmentShader: 'uniform sampler2D tDiffuse; varying vec2 vUv; void main(){ vec3 c=texture2D(tDiffuse,vUv).rgb; float l=dot(c,vec3(.299,.587,.114)); c=mix(vec3(l),c,1.16); c=c*c*(3.-2.*c)*.25+c*.75; float v=smoothstep(1.15,.35,length(vUv-.5)*1.6); c*=.72+.28*v; gl_FragColor=vec4(c,1.); }' });
+    fragmentShader: 'uniform sampler2D tDiffuse; varying vec2 vUv; void main(){ vec3 c=texture2D(tDiffuse,vUv).rgb; c=c/(1.+max(c-.85,0.)*.9); c=clamp(c,0.,1.); float l=dot(c,vec3(.299,.587,.114)); c=clamp(mix(vec3(l),c,1.1),0.,1.); c=c*c*(3.-2.*c)*.3+c*.7; c*=vec3(1.04,1.0,.96); float v=smoothstep(1.15,.35,length(vUv-.5)*1.6); c*=.72+.28*v; gl_FragColor=vec4(c,1.); }' });
   const gq = new T.Mesh(new T.PlaneGeometry(2, 2), gradeMat); gq.frustumCulled = false; const gScene = new T.Scene(); gScene.add(gq); const gCam = new T.OrthographicCamera(-1, 1, 1, -1, 0, 1);
   comp.addPass({ enabled: true, needsSwap: true, clear: false, renderToScreen: false, setSize() { }, dispose() { }, render(r, write, read) { gradeMat.uniforms.tDiffuse.value = read.texture; r.setRenderTarget(this.renderToScreen ? null : write); r.render(gScene, gCam); } });
   function render() { comp.render(); }
