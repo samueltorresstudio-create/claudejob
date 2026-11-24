@@ -49,7 +49,7 @@ function pjT(o) {
   s += `<circle cx="590" cy="775" r="375" fill="url(#${id}H)"/><g clip-path="url(#${id}Hc)">
     <circle cx="560" cy="700" r="375" fill="none" stroke="#c89c8c" stroke-width="90" opacity=".35" filter="url(#${id}So)" transform="translate(70,90)"/>
     <path d="M232,640 C214,780 236,940 330,1060" stroke="#e8eef2" stroke-width="16" fill="none" opacity=".9" stroke-linecap="round" filter="url(#${id}S1)"/>
-    <ellipse cx="590" cy="600" rx="330" ry="40" fill="#5a3a28" opacity=".35" filter="url(#${id}So)"/>
+    ${o.bald ? '' : '<ellipse cx="590" cy="600" rx="330" ry="40" fill="#5a3a28" opacity=".35" filter="url(#' + id + 'So)"/>'}
     ${o.headIn ? o.headIn(id) : ''}
   </g><circle cx="590" cy="775" r="375" fill="none" stroke="${K}" stroke-width="20"/>
   <path d="M940,620 A375,375 0 0 1 440,1118" stroke="${K}" stroke-width="10" fill="none" transform="translate(3,5)" stroke-linecap="round"/>

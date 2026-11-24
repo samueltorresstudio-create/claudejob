@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0}#st{position:relative;width:1170px;height:2080px;overflow:hidden}svg{position:absolute;left:0;top:0}</style></head>
+<body><div id="st"><svg id="bg" width="1170" height="2080" viewBox="0 0 1170 2080"></svg><svg id="sv" width="1170" height="2080" viewBox="0 0 1170 2080"></svg></div>
+<script src="tendero2d.js"></script><script src="pjt.js"></script><script src="models.js"></script><script src="models78.js"></script><script>
+// fondo de boceto: calle de noche desenfocada con neones (bokeh)
+let b = `<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1238"/><stop offset=".6" stop-color="#3a1a4a"/><stop offset="1" stop-color="#5a2a4a"/></linearGradient><filter id="bl"><feGaussianBlur stdDeviation="26"/></filter></defs><rect width="1170" height="2080" fill="url(#g)"/><g filter="url(#bl)">`;
+let s = 7; const r = () => (s = (s * 16807) % 2147483647) / 2147483647;
+for (let i = 0; i < 40; i++) b += `<circle cx="${r() * 1170}" cy="${r() * 1500}" r="${30 + r() * 80}" fill="${['#ff3fa0', '#2fe8ff', '#ffd34a', '#8a5cff'][i % 4]}" opacity="${.15 + r() * .35}"/>`;
+b += `<rect x="0" y="1700" width="1170" height="400" fill="#2a1830"/></g>`;
+document.getElementById('bg').innerHTML = b;
+const FX = `<defs><radialGradient id="vg" cx=".5" cy=".45" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#0a0410" stop-opacity=".55"/></radialGradient></defs><rect width="1170" height="2080" fill="url(#vg)"/>`;
+window.shot = (who, f) => { const F = { tendero: tendero2d, portero: portero2d, guapo: guapo2d, jersey: jersey2d }[who]; document.getElementById('sv').innerHTML = F({ face: f }) + FX; };
+document.title = 'ready';</script></body></html>
