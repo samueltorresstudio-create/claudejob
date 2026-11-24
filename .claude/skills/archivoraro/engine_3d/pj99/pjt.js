@@ -25,13 +25,15 @@ function pjT(o) {
  </defs>`;
   const BP = o.bodyPath || TD_BODY;
   if (o.back) s += o.back(id);
-  s += o.legs === null ? '' : `<path d="${o.legs || 'M478,1880 L470,2100 M712,1880 L722,2100'}" stroke="#261717" stroke-width="30" stroke-linecap="round"/>`;
+  // piernas un 30 % más largas (pedido del usuario 24-11-2026): el cuerpo y la cabeza suben LEG px y los pies se quedan en el suelo (y = 2100)
+  const LEG = o.legX ?? 75, upLeg = d => d.replace(/(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/g, (m, x, y) => +y >= 2090 ? m : `${x},${+y - LEG}`);
+  const legsSvg = o.legs === null ? '' : `<path d="${upLeg(o.legs || 'M478,1880 L470,2100 M712,1880 L722,2100')}" stroke="#261717" stroke-width="30" stroke-linecap="round"/>`;
   if (o.under) s += o.under(id);
   const armL = o.armL || 'M305,1260 C250,1400 215,1600 205,1760', handL = o.handL || [205, 1770];
   const armR = o.armR || 'M888,1270 C930,1420 965,1600 985,1745', handR = o.handR || [985, 1755];
   const hand = ([x, y]) => o.gloves ? `<circle cx="${x}" cy="${y}" r="46" fill="${o.gloves}" stroke="${TK}" stroke-width="12"/><path d="M${x - 26},${y - 14} A30,30 0 0 1 ${x + 6},${y - 30}" stroke="#fff" stroke-width="8" fill="none" opacity=".8" stroke-linecap="round"/><path d="M${x - 20},${y + 30} L${x + 20},${y + 30}" stroke="#b8b2a8" stroke-width="6"/>` : `<circle cx="${x}" cy="${y}" r="44" fill="#261717"/><circle cx="${x - 14}" cy="${y - 16}" r="12" fill="#5a4440" opacity=".45" filter="url(#${id}S1)"/>`;
   s += `<path d="${armL}" stroke="#261717" stroke-width="${o.armW || 26}" fill="none" stroke-linecap="round"/>${hand(handL)}<path d="${armR}" stroke="#261717" stroke-width="${o.armW || 26}" fill="none" stroke-linecap="round"/>${hand(handR)}`;
-  if (o.shadow !== false) s = s.replace('</defs>', `</defs><ellipse cx="${o.shadowX || 595}" cy="${o.shadowY || 2096}" rx="${o.shadowW || 300}" ry="40" fill="#140a06" opacity=".45" filter="url(#${id}So)"/>`);
+  const shadowSvg = o.shadow === false ? '' : `<ellipse cx="${o.shadowX || 595}" cy="${o.shadowY || 2096}" rx="${o.shadowW || 300}" ry="40" fill="#140a06" opacity=".45" filter="url(#${id}So)"/>`;
   const defsEnd = s.indexOf('</defs>') + 7, limbs = s.slice(defsEnd); s = s.slice(0, defsEnd); // patas y brazos fuera del contorno grueso (siguen finos)
   // cuerpo: igual que el tendero (luz a la izquierda, sombra interior derecha/abajo, sombra de la cabeza)
   s += `<path d="${BP}" fill="url(#${id}B)"/><g clip-path="url(#${id}Bc)">
@@ -58,7 +60,8 @@ function pjT(o) {
   s += faceT(f, o, id);
   if (o.faceTop) s += o.faceTop(id, f);
   if (o.hat) s += o.hat(id);
-  return limbs + pjOutline(id, s);
+  const defs0 = s.slice(0, s.indexOf('</defs>') + 7), body0 = s.slice(s.indexOf('</defs>') + 7);
+  return shadowSvg + legsSvg + `<g transform="translate(0,${-LEG})">${limbs}${pjOutline(id, defs0 + body0)}</g>`;
 }
 
 // cara con el mismo dibujo que el tendero: cejas en bloque, ojos de párpado + media pupila; boca rellena con contorno si no hay bigote
