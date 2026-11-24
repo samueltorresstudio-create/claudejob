@@ -31,6 +31,20 @@ El patrón:
 - **un plan o un caos concreto que escala**;
 - **nada que necesite contexto político, religioso o una «explicación científica»**.
 
+## Lo que NO engancha (24-11-2026, tras el 77 · casinos)
+El usuario: «las ideas son una puta mierda… no tienen un buen gancho». Compara con lo que ve al hacer scroll en YouTube Shorts: esos le enganchan, los nuestros no. Tampoco le gustaron las animaciones, las expresiones ni el guion del 77 (el vídeo se queda como está).
+Por qué falló el 77:
+- era una **lista de datos** («tres reglas»), no una historia: sin protagonista con nombre, sin nada en juego, sin giro;
+- el gancho era una **afirmación** («no es casualidad»), no una imagen que pare el dedo;
+- necesitaba explicación (psicología, «se dice»), justo lo que ya estaba en la lista de «meh».
+Filtro obligatorio antes de proponer una idea (si falla uno, se descarta):
+1. ¿El **primer fotograma sin sonido** haría parar el scroll? (imagen imposible, peligro o algo absurdo, no un decorado bonito).
+2. ¿Hay **una persona concreta** con algo que perder?
+3. ¿La situación **escala** cada pocos segundos?
+4. ¿Hay **giro o final** que dé ganas de comentarlo o verlo otra vez?
+5. ¿Se cuenta **sin contexto** ni explicación científica?
+Antes de la próxima ronda: pedirle 3–5 Shorts de referencia que le hayan enganchado y sacar de ellos el formato (gancho, ritmo, tipo de historia, animación).
+
 Prompt para pedir más ideas a ChatGPT: `archivoraro_archivo/textos/prompt_chatgpt_ideas.txt`.
 
 ## Top de las guardadas, con la primera frase del vídeo (18-11-2026)
