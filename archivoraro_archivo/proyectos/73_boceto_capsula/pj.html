@@ -1,6 +1,6 @@
 <!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0}#st{position:relative;width:1170px;height:2080px;overflow:hidden}img,svg{position:absolute;left:0;top:0}</style></head>
 <body><div id="st"><img src="bg_0.png" width="1170" height="2080"><svg id="sv" width="1170" height="2080" viewBox="0 0 1170 2080"></svg></div>
-<script src="tendero2d.js"></script><script src="pj2d.js"></script><script>
+<script src="tendero2d.js"></script><script src="pj2d.js"></script><script src="pjt.js"></script><script>
 const FX = `<defs><radialGradient id="vg" cx=".5" cy=".45" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#1a0c04" stop-opacity=".55"/></radialGradient></defs><rect width="1170" height="2080" fill="#ffb060" opacity=".04"/><rect width="1170" height="2080" fill="url(#vg)"/>`;
-window.shot = (who, f) => { const F = { cajero: cajero2d, clienta: clienta2d, cocinero: cocinero2d, abuela: abuela2d }[who]; document.getElementById('sv').innerHTML = F({ face: f }) + FX; };
+window.shot = (who, f) => { const F = { cajero: cajero2d, clienta: clienta2d, cocinero: cocinero2d, abuela: abuela2d, paco: paco2d, remedios: remedios2d, tendero: tendero2d }[who]; document.getElementById('sv').innerHTML = F({ face: f }) + FX; };
 document.title = 'ready';</script></body></html>
