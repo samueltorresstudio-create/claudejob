@@ -321,7 +321,7 @@ function millonario2d(o = {}) {
     id: 'mi', bodyPath: BODY_MILL, bodyEdge: 'M880,1350 C910,1560 880,1800 600,1872',
     top: ['#7a3a90', '#622a78', '#4a1c5c', '#2c0e38', '#a868c0', '#d8a8e8'], hatC: ['#000', '#000', '#000', '#000'], brow: '#1a1212',
     legs: legsAt(510, 680, 1860),
-    armL: 'M322,1260 C260,1400 240,1540 240,1660', handL: [240, 1670], armR: 'M868,1260 C920,1400 935,1560 940,1690', handR: [940, 1700],
+    armL: 'M322,1260 C260,1400 240,1540 240,1660', handL: [240, 1670], armR: 'M868,1260 C920,1400 935,1500 940,1610', handR: [940, 1620],
     bodyIn: id => `<path d="M500,1100 C540,1300 560,1500 560,1870 L630,1870 C630,1500 650,1300 690,1100Z" fill="#f6f2ea"/>
       <path d="M470,1090 C520,1250 540,1400 560,1560 C500,1500 430,1400 340,1260 C380,1180 420,1120 470,1090Z M720,1090 C670,1250 650,1400 630,1560 C690,1500 760,1400 850,1260 C810,1180 770,1120 720,1090Z" fill="#e2b84a" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>
       <path d="M480,1120 C510,1250 530,1380 548,1500 M710,1120 C680,1250 660,1380 642,1500" stroke="#fff0b0" stroke-width="8" fill="none" opacity=".7"/>
@@ -333,7 +333,7 @@ function millonario2d(o = {}) {
       <path d="M590,1300 C620,1360 700,1380 760,1350" stroke="#e8c860" stroke-width="10" fill="none"/>${[0, 1, 2, 3, 4, 5].map(i => `<circle cx="${600 + i * 30}" cy="${1312 + Math.sin(i / 5 * Math.PI) * 48}" r="8" fill="#f4dc8a" stroke="#6a4a10" stroke-width="2"/>`).join('')}
       <defs><radialGradient id="${id}Sk" cx=".35" cy=".35" r=".8"><stop offset="0" stop-color="#ead8a8"/><stop offset=".55" stop-color="#d2b67a"/><stop offset="1" stop-color="#9a7c46"/></radialGradient>
         <pattern id="${id}Jt" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M0,8 L16,8 M8,0 L8,16" stroke="#8a6c3a" stroke-width="2" opacity=".35"/></pattern></defs>
-      <g transform="translate(925,1700)">
+      <g transform="translate(925,1620)">
         <path d="M-40,20 C-150,60 -190,180 -160,280 C-130,370 -40,400 30,400 C110,400 200,370 220,280 C240,180 190,60 90,20Z" fill="url(#${id}Sk)" stroke="${TK}" stroke-width="12" stroke-linejoin="round"/>
         <path d="M-40,20 C-150,60 -190,180 -160,280 C-130,370 -40,400 30,400 C110,400 200,370 220,280 C240,180 190,60 90,20Z" fill="url(#${id}Jt)"/>
         <path d="M200,250 C190,330 130,385 40,392" stroke="#6a4c22" stroke-width="30" fill="none" opacity=".45" filter="url(#${id}S2)"/>
@@ -348,7 +348,7 @@ function millonario2d(o = {}) {
         <path d="M60,30 C90,60 100,90 80,110 M64,32 C40,70 40,100 56,118" stroke="#7a2a1a" stroke-width="10" fill="none" stroke-linecap="round"/>
         ${[[-30, -66], [30, -72]].map(([x, y]) => `<ellipse cx="${x}" cy="${y}" rx="22" ry="10" fill="#e8c860" stroke="${TK}" stroke-width="5"/><ellipse cx="${x}" cy="${y - 4}" rx="12" ry="4" fill="#fff0a0" opacity=".8"/>`).join('')}
       </g>
-      <circle cx="940" cy="1700" r="46" fill="#261717"/><path d="M909,1684 C919,1668 937,1662 953,1666" stroke="#5a4440" stroke-width="7" fill="none" opacity=".6" stroke-linecap="round"/><circle cx="965" cy="1682" r="12" fill="#e8c860" stroke="${TK}" stroke-width="4"/><circle cx="240" cy="1670" r="44" fill="#261717"/><circle cx="264" cy="1650" r="12" fill="#e8c860" stroke="${TK}" stroke-width="4"/><circle cx="264" cy="1650" r="5" fill="#3a8ad8"/>`,
+      <circle cx="940" cy="1620" r="46" fill="#261717"/><path d="M909,1604 C919,1588 937,1582 953,1586" stroke="#5a4440" stroke-width="7" fill="none" opacity=".6" stroke-linecap="round"/><circle cx="965" cy="1602" r="12" fill="#e8c860" stroke="${TK}" stroke-width="4"/><circle cx="240" cy="1670" r="44" fill="#261717"/><circle cx="264" cy="1650" r="12" fill="#e8c860" stroke="${TK}" stroke-width="4"/><circle cx="264" cy="1650" r="5" fill="#3a8ad8"/>`,
     faceTop: (id, f) => mustache(id, MUST.fino, '#1a1212', '#4a3a3a') + (f === 'sorpresa' || f === 'feliz' ? '' : `<g transform="rotate(-12,650,1030)"><rect x="640" y="1012" width="190" height="36" rx="12" fill="#6a3a1a" stroke="${TK}" stroke-width="8"/><rect x="700" y="1012" width="34" height="36" fill="#c02a2a" stroke="${TK}" stroke-width="5"/><circle cx="830" cy="1030" r="16" fill="#e85a2a"/><circle cx="830" cy="1030" r="8" fill="#ffd040"/></g>
       ${[[880, 960, 22], [920, 880, 30], [900, 790, 38]].map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#e8e4e0" opacity=".55" filter="url(#${id}S1)"/>`).join('')}`),
     hat: id => `<path d="M224,760 C210,540 380,420 600,420 C820,420 970,540 956,760 C930,660 880,600 820,580 C720,560 640,566 590,580 C520,566 440,560 360,580 C300,600 250,660 224,760Z" fill="#1a1212" stroke="${TK}" stroke-width="12" stroke-linejoin="round"/>
