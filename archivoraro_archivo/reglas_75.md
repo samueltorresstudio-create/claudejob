@@ -16,3 +16,5 @@
 - **Personaje detrás de una mesa**: el recorte (`clip`) va en el borde TRASERO del tablero (el más alto en pantalla con cámara por encima), no en el delantero; si no, las piernas salen pintadas encima de la mesa.
 - (77) Tragaperras en pasillos estrechos: el taburete sale 0,95 m hacia delante y quedaba en el centro del pasillo; el personaje 2D que anda por ahí parecía pisarlo. En pasillos, máquinas sin taburete (`slot(..., st=False)`) y revisar siempre el suelo entre cámara y personaje.
 - (77) La cámara NUNCA atraviesa a un personaje 2D: si avanza por un pasillo, el personaje va a un lado y la cámara se para antes de llegar a él (si no, la cara llena la pantalla, sale un fotograma blanco y el «?» se queda flotando). Personaje quieto = z fija; si se desplaza, con paso (walk2), nunca deslizándose.
+
+- (24-11-2026) **Texto en el atrezo: SÍ.** Calendarios, carteles, carretes, noticiero, monitores con letras en español en 2–4 objetos clave que expliquen la historia. Lo prohibido son los rótulos flotantes sobre la imagen (etiquetas tipo «1943»). El 77 se hizo sin texto en el mundo por un malentendido.

@@ -78,4 +78,4 @@ Plantilla común a los cuatro:
 4. **Biblioteca de efectos**: grietas en el suelo, escombros, polvo, rayos, resplandores, gotas, lluvia de billetes, humo, chispas.
 5. **Decorados**: más textura (hierba con briznas, hojas, suciedad), niebla volumétrica, rayos de luz, desenfoque fuerte, color propio por escena; cortes en sección y mapas cenitales.
 6. **Menos paseos**: cortar en vez de andar; si anda, hacia la cámara y con efecto.
-7. **Pendiente de decidir con el usuario**: permitir texto en atrezo clave (calendario, cartel, noticiero), como en las referencias.
+7. **Texto en atrezo clave: SÍ** (calendario, cartel, noticiero; en español), confirmado por el usuario. Rótulos flotantes: NO.

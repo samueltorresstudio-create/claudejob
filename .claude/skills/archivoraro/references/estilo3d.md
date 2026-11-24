@@ -1,4 +1,4 @@
-> **24-11-2026 · Nivel a alcanzar**: ver `archivoraro_archivo/referencias/shorts_2026-11-24/ANALISIS.md` (expresión nueva casi en cada palabra, 60 % primeros planos, efectos exagerados, decorados texturizados con niebla y rayos de luz, menos paseos).
+> **24-11-2026 · Nivel a alcanzar**: ver `archivoraro_archivo/referencias/shorts_2026-11-24/ANALISIS.md` (expresión nueva casi en cada palabra, 60 % primeros planos, efectos exagerados, decorados texturizados con niebla y rayos de luz, menos paseos). **Texto escrito en objetos del decorado: SÍ** (calendario, cartel, tele, carrete; en español, 2–4 por vídeo); rótulos flotantes encima del vídeo: NO.
 
 # ESTILO 3D: el estilo por defecto del canal desde noviembre de 2026
 
