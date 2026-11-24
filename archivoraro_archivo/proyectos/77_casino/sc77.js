@@ -137,9 +137,9 @@ S.laberinto = (t, D, B) => {
     const zJ = 13.5 - 1.2 * u; return depth([man('JUG', V3(CX, 0, zJ), Object.assign(walk2((13.5 - zJ) / .5 * Math.PI), { view: 'back' }))]); }
   if (t < c3) { setup(t, 'maze', 'laberinto'); const u = t - c2; camK(seg(t, c2, c3), V3(CX, 1.5, 15), V3(CX, 1.6, 2), 46, V3(CX, 1.4, 12.8), V3(CX, 3.2, -1), 52);
     const zJ = 9.4 - .6 * u; return depth([man('JUG', V3(CX, 0, zJ), Object.assign(walk2((10.5 - zJ) / .5 * Math.PI), { view: 'back' }))]); }
-  setup(t, 'maze', 'laberinto'); W.hero('maze', CX, 0, -12.5, 0, 1); const u = t - c3; camK(seg(t, c3, D), V3(CX, 1.7, 14), V3(CX, 1.7, -4), 46, V3(CX, 1.7, 4.4), V3(CX, 1.7, -6), 40);
-  const zJ = 8 - .6 * u, h = scrX(V3(CX, 1.9, zJ)); const q = scrX(V3(CX, 1.7, -12.4));
-  return depth([man('JUG', V3(CX, 0, zJ), { turn: -.3, face: 'up', mouth: 'o', armR: [60, 30], look: [-4, -8] })]) + sparkles(q.x, q.y, 130, t, 6, 1.0) + qmark(h.x + 150, h.y - 30, 1.0, (u - .3) / .3); };
+  setup(t, 'maze', 'laberinto'); W.hero('maze', CX, 0, -12.5, 0, 1); const u = t - c3; camK(seg(t, c3, D), V3(CX + .3, 1.7, 14), V3(CX, 1.7, -4), 46, V3(CX + .05, 1.75, 11.6), V3(CX + .25, 1.8, -6), 36);
+  const zJ = 7.6, h = scrX(V3(CX - .42, 1.9, zJ)); const q = scrX(V3(CX, 1.7, -12.4));
+  return depth([man('JUG', V3(CX - .42, 0, zJ), { turn: -.3, face: 'up', mouth: 'o', armR: [60, 30], look: [-4, -8] })]) + sparkles(q.x, q.y, 130, t, 6, 1.0) + qmark(h.x + 150, h.y - 30, 1.0, (u - .3) / .3); };
 
 // =====================================================================================================
 // 8 · REGLA 3 — que perder no suene a perder
