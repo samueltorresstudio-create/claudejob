@@ -452,3 +452,11 @@ Mundo `world_corte.js` (en `archivoraro_archivo/proyectos/72_bufon/parts/`). Zon
   - entra con una cortinilla de borde rasgado (`tornWipe`).
 - **Franjas negras que se cierran** al «dejar de respirar», con los ojos centrados en la franja que queda.
 - **«Solo se oyen tus cascabeles»:** en el audio se quita TODA la música y quedan solo los cascabeles.
+
+### Cámara «mezcla» (pedido del usuario 24-11-2026): referencia .99 + nuestras transiciones
+Es la cámara por defecto a partir de ahora. Análisis completo en `archivoraro_archivo/referencias/ref_99_analisis.md`.
+- **Dentro de una escena (mismo sitio): cortes secos** (`'cut'`, y `CFG.flash = false`: la referencia no hace destello). Un plano nuevo cada **1,4–2,6 s** (cada 2–4 palabras), cambiando tamaño o ángulo: primer plano → por encima del hombro → detalle de objeto → plano de grupo…
+- **Cada plano se mueve**: acercamiento lento del **3–6 %** (outCubic) + deriva lateral pequeña. Nunca cámara fija.
+- **Al cambiar de sitio (escena nueva): nuestras transiciones** `fly` / `whip` / `swish` (las de la cuenta 3D), con desenfoque de movimiento. Reglas de siempre: `swish` entre zonas con paredes, `glide` si alguien habla en la primera sílaba.
+- **Plano de situación** al llegar a un sitio nuevo (fachada, exterior): acercamiento fuerte + grúa hacia arriba (**×1,4 en 3–4 s**), con alguien desenfocado cruzando por delante.
+- Fondo siempre desenfocado y personaje nítido.
