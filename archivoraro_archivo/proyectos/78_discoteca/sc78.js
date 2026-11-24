@@ -2,7 +2,7 @@
 // Reglas: cámara siempre en movimiento y pocos cortes (barridos entre planos), expresión nueva en las palabras clave, andar como el del limón
 // (piernas rectas que se levantan por turnos + bote), NADA del decorado delante de un personaje 2D (se colocan siempre con el camino libre a cámara).
 window.CFG = { capY: 1365, capSize: 92, transDur: .38, blurK: .45, antic: .1, blurChars: false, transDefault: 'swish', swishRel: 1.1, swishK: .8,
-  trans: { gancho: 'cut', norma: 'whip', mira: 'whip', gym: 'whip', entra: 'swish', rival: 'swish', pista: 'swish', barra: 'whip', disfraz: 'swish', valgo: 'whip', aula: 'swish', psico: 'whip', foto: 'swish', entera: 'swish', reflejo: 'whip', bucle: 'swish' } };
+  trans: { gancho: 'cut', norma: 'whip', mira: 'whip', gym: 'glide', entra: 'swish', rival: 'swish', pista: 'swish', barra: 'whip', disfraz: 'swish', valgo: 'glide', aula: 'swish', psico: 'whip', foto: 'swish', entera: 'swish', reflejo: 'whip', bucle: 'swish' } };
 const norm = w => w.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const EVS = {}; window.SCRIPT.forEach(l => { EVS[l.sc] = EVS[l.sc] || (() => ({})); });
 const capWords = (sc, li) => { const L = window.SCRIPT.filter(l => l.sc === sc)[li]; return L ? L.cap.split(' ').map(w => norm(w.split('|')[0])) : []; };
@@ -27,7 +27,12 @@ function pj(fn, F, face, h = 1.8, op = {}) { const a = W.proj(F), b = W.proj(V3(
   return [F, `<g transform="translate(${(a.x - 595 * s).toFixed(1)},${(a.y - 2100 * s).toFixed(1)}) scale(${s.toFixed(4)}) ${fl}" filter="url(#tintF)" ${op.op != null ? `opacity="${op.op}"` : ''}>${svg}</g>`]; }
 function handAt(F, h, lx, ly, flip = 0) { const a = W.proj(F), b = W.proj(V3(F.x, F.y + h, F.z)), s = (a.y - b.y) / (1700 + PJ_LEGX); const X = flip ? 1190 - lx : lx; return { x: a.x - 595 * s + X * s, y: a.y - 2100 * s + (ly - PJ_LEGX) * s, s }; }
 const depth = L => L.filter(x => x && x[1]).map(([p, s]) => [W.camera.position.distanceTo(p), s]).sort((a, b) => b[0] - a[0]).map(x => x[1]).join('');
-const out = (L, extra = '') => `<defs><filter id="tintF" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="${LG[MOOD]}"/></filter></defs>` + depth(L) + extra;
+// capas de las referencias («9 efectos»): bruma de color por escena + motas de polvo flotando (encima del mundo, detrás de nada importante)
+const HAZE = { calle: ['#ff6fc0', .10, '#3a4aa0', .14], pista: ['#ff3fa0', .12, '#4ff0ff', .08], aula: ['#ffd8a0', .14, '#fff4e0', .06] };
+function dust(t, n = 26) { let o = ''; const T = window.__T || t; for (let i = 0; i < n; i++) { const x = (hs(i, 21) * 1080 + T * (8 + hs(i, 22) * 14) + Math.sin(T * .7 + i) * 20) % 1080, y = (hs(i, 23) * 1700 + 80 - T * (6 + hs(i, 24) * 10) + 1920) % 1920, r = 1.6 + hs(i, 25) * 3.2, a = .18 + .35 * hs(i, 26) * (.6 + .4 * Math.sin(T * 2 + i));
+    o += `<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${r.toFixed(1)}" fill="#fff6e0" opacity="${a.toFixed(2)}"/>`; } return o; }
+const haze = () => { const [c1, a1, c2, a2] = HAZE[MOOD]; return `<defs><linearGradient id="hzG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c2}" stop-opacity="${a2}"/><stop offset=".55" stop-color="${c1}" stop-opacity="0"/><stop offset="1" stop-color="${c1}" stop-opacity="${a1}"/></linearGradient></defs><rect width="1080" height="1920" fill="url(#hzG)"/>`; };
+const out = (L, extra = '') => `<defs><filter id="tintF" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="${LG[MOOD]}"/></filter></defs>` + depth(L) + haze() + `<g filter="url(#dustB)">${dust()}</g><defs><filter id="dustB"><feGaussianBlur stdDeviation="1.2"/></filter></defs>` + extra;
 const talk = (t, a, b) => t > a && t < b ? .35 + .65 * Math.abs(Math.sin((t - a) * 17)) : 0;
 const walk = (t, rate = 7.2, amp = 1) => ({ ph: t * rate, amp });
 const dance = (t, i = 0, amp = .55) => ({ ph: t * 8 + i * 1.7, amp });
@@ -124,7 +129,7 @@ S.barra = (t, D, B) => { setup(t, 'dance', 'pista'); const tPr = ls(B, 1), tOy =
 // =====================================================================================================
 S.disfraz = (t, D, B) => { setup(t, 'street', 'calle'); const tUn = wt(B, 'disfraz', 0, 'uno'), tGa = wt(B, 'disfraz', 0, 'gafas');
   if (t < tUn) { camK(seg(t, 0, tUn), V3(-3.6, 1.45, -1.6), V3(-2.4, 1.5, -4.45), 40, V3(-1.2, 1.5, -1.8), V3(-1.4, 1.55, -4.45), 38, .008, 2.7);
-    return out([pj('guapo2d', V3(-1.25, 0, -4.45), 'preocupado', 1.85, { o: { disfraz: t > tGa ? 1 : 0 } }), pj('guapo2d', V3(-2.9, 0, -4.45), 'serio', 1.85, { o: { disfraz: 1 }, flip: 1 })], sparks(540, 820, 1, t)); }
+    return out([pj('guapo2d', V3(-1.25, 0, -4.45), 'preocupado', 1.85, { o: { disfraz: t > tGa ? 1 : 0 } }), pj('guapo2d', V3(-2.9, 0, -4.45), 'serio', 1.85, { o: { disfraz: 1 }, flip: 1 })]); }
   camK(seg(t, tUn, D), V3(-1.1, 1.82, -2.4), V3(-1.25, 1.72, -4.45), 30, V3(-1.15, 1.85, -2.8), V3(-1.25, 1.74, -4.45), 28, .03, 1.7);
   return out([pj('guapo2d', V3(-1.25, 0, -4.45), 'feliz', 1.85, { o: { disfraz: 1 } })], glint(560, 1000, 1, t)); };
 
@@ -153,9 +158,9 @@ S.aula = (t, D, B) => { setup(t, 'aula', 'aula'); const tEf = ls(B, 1), tCe = ls
 // 12 · PSICO — dos tarjetas: al guapísimo un 10, a la persona normal un 4
 // =====================================================================================================
 S.psico = (t, D, B) => { setup(t, 'aula', 'aula'); const tGu = wt(B, 'psico', 0, 'guapisima'), tNo = wt(B, 'psico', 0, 'normal'), tPe = wt(B, 'psico', 0, 'peor');
-  const k = seg(t, 0, D); camK(k, V3(2000.2, 1.5, 3.4), V3(2000.3, 1.4, -2.0), 50, V3(2000.5, 1.5, 3.0), V3(2000.5, 1.4, -2.0), 47, .004, 4.6);
+  const k = seg(t, 0, D); camK(k, V3(2000.3, 1.5, 4.0), V3(2000.35, 1.4, -2.0), 54, V3(2000.5, 1.5, 3.7), V3(2000.5, 1.4, -2.0), 52, .004, 5.3);
   const UP = { armR: 'M785,1260 C870,1180 930,1100 970,1000', handR: [975, 990] };
-  const Fc = V3(2001.7, 0, -1.3), L = [pj('guapo2d', V3(1999.1, 0, -1.7), 'picaro', 1.85), pj('jersey2d', V3(2000.4, 0, -1.7), t < tPe ? 'serio' : 'preocupado', 1.7), pj('chica2_2d', Fc, t < tNo ? 'feliz' : 'serio', 1.68, { o: UP, flip: 1 })];
+  const Fc = V3(2001.25, 0, -1.2), L = [pj('guapo2d', V3(1999.1, 0, -1.7), 'picaro', 1.85), pj('jersey2d', V3(2000.4, 0, -1.7), t < tPe ? 'serio' : 'preocupado', 1.7), pj('chica2_2d', Fc, t < tNo ? 'feliz' : 'serio', 1.68, { o: UP, flip: 1 })];
   const hC = handAt(Fc, 1.68, 975, 990, 1), sC = hC.s * 1.3, card = t < tNo ? CARD('10', '#2f9a52') : CARD('4', '#d8342c'), pop = t < tNo ? clamp((t - tGu + .1) / .25) : clamp((t - tNo) / .25);
   return out(L, pop > 0 ? `<g transform="translate(${hC.x.toFixed(0)},${(hC.y + 30 * sC).toFixed(0)}) scale(${(sC * eBack(pop)).toFixed(3)})">${card}</g>` : ''); };
 
@@ -181,7 +186,7 @@ function confettiR(t) { let o = ''; const cols = ['#ff4f9a', '#ffd23a', '#2fe0ff
 // 15 · REFLEJO — el portero ve su reflejo en la puerta de cristal y lo echa
 // =====================================================================================================
 S.reflejo = (t, D, B) => { setup(t, 'dance', 'pista'); const tRe = wt(B, 'reflejo', 0, 'reflejo'), tSi = wt(B, 'reflejo', 0, 'sin');
-  camK(seg(t, 0, D), V3(1002.6, 1.5, 3.3), V3(1000.2, 1.3, 5.9), 48, V3(1002.4, 1.55, 3.6), V3(1000.1, 1.35, 5.9), 44, .004, 3.0);
+  camK(seg(t, 0, D), V3(1003.6, 1.45, 1.6), V3(1000.0, 1.3, 5.6), 50, V3(1003.4, 1.5, 1.9), V3(999.9, 1.35, 5.6), 47, .004, 4.4);
   const g0 = W.proj(V3(999.15, 2.3, 5.86)), g1 = W.proj(V3(1000.85, 0, 5.86)), g2 = W.proj(V3(999.15, 0, 5.86)), g3 = W.proj(V3(1000.85, 2.3, 5.86));
   const pr = t > tSi ? 1 : 0, f = t < tSi ? 'serio' : 'enfadado';
   const real = pj('portero2d', V3(999.85, 0, 5.15), f, 2.0, { o: { point: pr } });
