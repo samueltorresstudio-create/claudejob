@@ -270,3 +270,58 @@ function chef2d(o = {}) {
       <path d="M290,640 C450,608 760,608 905,640" stroke="#b8b0a4" stroke-width="10" fill="none" opacity=".7"/>`
   }, o));
 }
+
+// 10. JUEZ: toga negra larga hasta el suelo con pliegues, puñetas de encaje en las muñecas, cuello blanco con chorrera, medalla dorada con cadena,
+// gafas de media luna, pelo gris peinado hacia atrás con entradas, mazo de madera
+const BODY_JUEZ = 'M360,1190 C372,1096 476,1066 595,1066 C714,1066 818,1096 830,1190 C850,1400 900,1750 930,2085 L260,2085 C290,1750 340,1400 360,1190Z';
+function juez2d(o = {}) {
+  const cuff = (x, y) => `<g transform="translate(${x},${y})">${[0, 1, 2, 3, 4, 5, 6, 7].map(i => { const a = i / 8 * Math.PI * 2; return `<circle cx="${Math.cos(a) * 46}" cy="${Math.sin(a) * 22 - 40}" r="20" fill="#fbf8f2" stroke="${TK}" stroke-width="5"/>`; }).join('')}<ellipse cy="-40" rx="40" ry="16" fill="#e8e2d6"/></g>`;
+  return pjT(Object.assign({
+    id: 'ju', bodyPath: BODY_JUEZ, bodyEdge: 'M832,1300 C860,1550 900,1820 926,2080', legs: null,
+    top: ['#3a3a44', '#26262e', '#18181e', '#0a0a0e', '#6a6a7a', '#9a9aac'], hatC: ['#000', '#000', '#000', '#000'], brow: '#8a8680',
+    armL: 'M366,1250 C320,1400 300,1520 300,1640', handL: [300, 1650], armR: 'M824,1250 C880,1360 900,1420 905,1470', handR: [905, 1480],
+    bodyIn: id => `${[[430, 1300, 360, 2085], [500, 1350, 470, 2085], [690, 1350, 720, 2085], [760, 1300, 830, 2085]].map(([x1, y1, x2, y2]) => `<path d="M${x1},${y1} C${x1},${(y1 + y2) / 2} ${x2},${(y1 + y2) / 2} ${x2},${y2}" stroke="#000" stroke-width="16" fill="none" opacity=".5" filter="url(#${id}S1)"/><path d="M${x1 - 16},${y1 + 30} C${x1 - 16},${(y1 + y2) / 2} ${x2 - 18},${(y1 + y2) / 2} ${x2 - 18},${y2}" stroke="#7a7a8c" stroke-width="6" fill="none" opacity=".45" filter="url(#${id}S1)"/>`).join('')}
+      <path d="M595,1300 L595,2085" stroke="#000" stroke-width="8" opacity=".6"/>
+      <path d="M360,1190 C420,1280 480,1330 520,1500 L520,1700 M830,1190 C770,1280 710,1330 670,1500 L670,1700" stroke="#4a4a58" stroke-width="40" fill="none" opacity=".5"/>`,
+    front: id => `<path d="M500,1110 L690,1110 L700,1170 C640,1190 550,1190 490,1170Z" fill="#fbf8f2" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>
+      <path d="M545,1170 C520,1230 530,1300 595,1330 C660,1300 670,1230 645,1170Z" fill="#fbf8f2" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>
+      ${[1205, 1245, 1285].map(y => `<path d="M${555 - (y - 1205) * .1},${y} Q595,${y + 18} ${635 + (y - 1205) * .1},${y}" stroke="#c8c0b4" stroke-width="6" fill="none"/>`).join('')}
+      <path d="M470,1160 C500,1300 560,1400 595,1420 C630,1400 690,1300 720,1160" stroke="#d8b040" stroke-width="9" fill="none"/>${[...Array(9)].map((_, i) => { const t = i / 8, x = 470 + t * 250, y = 1160 + Math.sin(t * Math.PI) * 250; return `<circle cx="${x}" cy="${y}" r="7" fill="#e8c860" stroke="#6a4a10" stroke-width="2"/>`; }).join('')}
+      <circle cx="595" cy="1450" r="44" fill="url(#${id}Btn)" stroke="${TK}" stroke-width="8"/><circle cx="595" cy="1450" r="26" fill="none" stroke="#8a6a1a" stroke-width="5"/><path d="M580,1440 L610,1440 M595,1428 L595,1468 M575,1462 L615,1462" stroke="#8a6a1a" stroke-width="5"/>
+      ${cuff(300, 1690)}${cuff(905, 1520)}<circle cx="300" cy="1650" r="44" fill="#261717"/>
+      <g transform="translate(905,1480) rotate(-35)"><rect x="-14" y="-200" width="28" height="200" rx="10" fill="#8a5a2a" stroke="${TK}" stroke-width="8"/><rect x="-80" y="-280" width="160" height="90" rx="22" fill="#9a6432" stroke="${TK}" stroke-width="9"/><path d="M-80,-262 L80,-262 M-80,-208 L80,-208" stroke="#d8b040" stroke-width="10"/><path d="M-66,-250 C-30,-262 30,-262 60,-250" stroke="#c89060" stroke-width="7" fill="none" opacity=".8"/></g>
+      <circle cx="905" cy="1480" r="44" fill="#261717"/>`,
+    headIn: id => `<path d="M222,770 C212,640 250,560 318,516 C306,600 312,690 346,780 C300,800 248,798 222,770Z M958,770 C968,640 930,560 862,516 C874,600 868,690 834,780 C880,800 932,798 958,770Z" fill="#b8b4ae"/><path d="M250,700 C258,640 280,590 310,560 M930,700 C922,640 900,590 870,560" stroke="#e8e4de" stroke-width="9" fill="none" opacity=".85"/><ellipse cx="540" cy="470" rx="150" ry="60" fill="#fff" opacity=".3" filter="url(#${id}S2)"/>`,
+    faceTop: (id, f) => `<path d="M440,872 L585,872 A72,60 0 0 1 440,872Z M625,876 L770,876 A72,60 0 0 1 625,876Z" fill="#dfeef4" fill-opacity=".2" stroke="#8a6a2a" stroke-width="11" stroke-linejoin="round"/><path d="M585,876 Q605,860 625,876" stroke="#8a6a2a" stroke-width="9" fill="none"/><path d="M440,872 L240,820 M770,876 L940,820" stroke="#8a6a2a" stroke-width="8"/>`,
+    hat: id => `<path d="M222,770 C212,640 250,560 318,516 C306,600 312,690 346,780 C300,800 248,798 222,770Z M958,770 C968,640 930,560 862,516 C874,600 868,690 834,780 C880,800 932,798 958,770Z" fill="none" stroke="${TK}" stroke-width="10" stroke-linejoin="round"/>${[[330, 560, 600, 440, 860, 540], [350, 600, 600, 480, 850, 590], [380, 640, 600, 520, 820, 630]].map(([x1, y1, x2, y2, x3, y3]) => `<path d="M${x1},${y1} Q${x2},${y2 - 40} ${x3},${y3}" stroke="${TK}" stroke-width="16" fill="none" stroke-linecap="round"/><path d="M${x1},${y1} Q${x2},${y2 - 40} ${x3},${y3}" stroke="#b8b4ae" stroke-width="8" fill="none" stroke-linecap="round"/>`).join('')}`
+  }, o));
+}
+
+// 11. MILLONARIO: cuerpo de tonel, batín de terciopelo morado con solapas de raso dorado, pañuelo de seda, pelo negro engominado hacia atrás,
+// bigote fino, puro con humo, cadena de oro, anillos, saco de dinero con el símbolo $
+const BODY_MILL = 'M320,1200 C340,1092 460,1062 595,1062 C730,1062 850,1092 870,1200 C910,1380 912,1580 880,1720 C850,1830 740,1870 595,1870 C450,1870 340,1830 310,1720 C278,1580 280,1380 320,1200Z';
+function millonario2d(o = {}) {
+  return pjT(Object.assign({
+    id: 'mi', bodyPath: BODY_MILL, bodyEdge: 'M880,1350 C910,1560 880,1800 600,1872',
+    top: ['#7a3a90', '#622a78', '#4a1c5c', '#2c0e38', '#a868c0', '#d8a8e8'], hatC: ['#000', '#000', '#000', '#000'], brow: '#1a1212',
+    legs: legsAt(510, 680, 1860),
+    armL: 'M322,1260 C260,1400 240,1540 240,1660', handL: [240, 1670], armR: 'M868,1260 C930,1400 950,1540 950,1650', handR: [950, 1660],
+    bodyIn: id => `<path d="M500,1100 C540,1300 560,1500 560,1870 L630,1870 C630,1500 650,1300 690,1100Z" fill="#f6f2ea"/>
+      <path d="M470,1090 C520,1250 540,1400 560,1560 C500,1500 430,1400 340,1260 C380,1180 420,1120 470,1090Z M720,1090 C670,1250 650,1400 630,1560 C690,1500 760,1400 850,1260 C810,1180 770,1120 720,1090Z" fill="#e2b84a" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>
+      <path d="M480,1120 C510,1250 530,1380 548,1500 M710,1120 C680,1250 660,1380 642,1500" stroke="#fff0b0" stroke-width="8" fill="none" opacity=".7"/>
+      <path d="M330,1560 C450,1590 740,1590 860,1560 L858,1620 C740,1650 450,1650 332,1620Z" fill="#e2b84a" stroke="${TK}" stroke-width="7"/>
+      <path d="M560,1590 C520,1650 500,1720 510,1760 M630,1590 C670,1650 690,1720 680,1760" stroke="#e2b84a" stroke-width="22" fill="none" stroke-linecap="round"/><circle cx="510" cy="1770" r="20" fill="#e2b84a" stroke="${TK}" stroke-width="6"/><circle cx="680" cy="1770" r="20" fill="#e2b84a" stroke="${TK}" stroke-width="6"/>
+      ${[[400, 1700], [790, 1700], [420, 1400], [770, 1400]].map(([x, y]) => `<path d="M${x},${y} l10,-24 l10,24 l-10,24Z" fill="#a868c0" opacity=".5"/>`).join('')}`,
+    front: id => `<path d="M555,1130 C520,1180 520,1240 555,1270 L595,1250 L635,1270 C670,1240 670,1180 635,1130Z" fill="#c02a3a" stroke="${TK}" stroke-width="8" stroke-linejoin="round"/>${[[560, 1180], [600, 1220], [630, 1170]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="7" fill="#f6e8d0"/>`).join('')}
+      <path d="M760,1330 L770,1300 L800,1310 L790,1345Z M772,1330 L790,1290 L812,1300" fill="#f0e0a0" stroke="${TK}" stroke-width="5"/>
+      <path d="M590,1300 C620,1360 700,1380 760,1350" stroke="#e8c860" stroke-width="10" fill="none"/>${[0, 1, 2, 3, 4, 5].map(i => `<circle cx="${600 + i * 30}" cy="${1312 + Math.sin(i / 5 * Math.PI) * 48}" r="8" fill="#f4dc8a" stroke="#6a4a10" stroke-width="2"/>`).join('')}
+      <g transform="translate(990,1760)"><path d="M-120,0 C-150,-60 -120,-120 -60,-140 L60,-140 C120,-120 150,-60 120,0 C140,80 100,140 0,140 C-100,140 -140,80 -120,0Z" fill="#d8c494" stroke="${TK}" stroke-width="11" stroke-linejoin="round"/><path d="M-70,-140 C-40,-180 40,-180 70,-140 C40,-120 -40,-120 -70,-140Z" fill="#c4ac78" stroke="${TK}" stroke-width="9"/><path d="M-60,-140 L60,-140" stroke="#8a2a2a" stroke-width="14" stroke-linecap="round"/>
+        <text y="70" text-anchor="middle" font-family="Georgia,serif" font-weight="900" font-size="150" fill="#3a8a3a" stroke="${TK}" stroke-width="6">$</text><path d="M-100,-40 C-110,0 -100,60 -70,100" stroke="#f0e4c0" stroke-width="12" fill="none" opacity=".7" stroke-linecap="round"/></g>
+      <circle cx="950" cy="1660" r="44" fill="#261717"/><circle cx="975" cy="1640" r="12" fill="#e8c860" stroke="${TK}" stroke-width="4"/><circle cx="240" cy="1670" r="44" fill="#261717"/><circle cx="264" cy="1650" r="12" fill="#e8c860" stroke="${TK}" stroke-width="4"/><circle cx="264" cy="1650" r="5" fill="#3a8ad8"/>`,
+    faceTop: (id, f) => mustache(id, MUST.fino, '#1a1212', '#4a3a3a') + (f === 'sorpresa' || f === 'feliz' ? '' : `<g transform="rotate(-12,650,1030)"><rect x="640" y="1012" width="190" height="36" rx="12" fill="#6a3a1a" stroke="${TK}" stroke-width="8"/><rect x="700" y="1012" width="34" height="36" fill="#c02a2a" stroke="${TK}" stroke-width="5"/><circle cx="830" cy="1030" r="16" fill="#e85a2a"/><circle cx="830" cy="1030" r="8" fill="#ffd040"/></g>
+      ${[[880, 960, 22], [920, 880, 30], [900, 790, 38]].map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#e8e4e0" opacity=".55" filter="url(#${id}S1)"/>`).join('')}`),
+    hat: id => `<path d="M224,760 C210,540 380,420 600,420 C820,420 970,540 956,760 C930,660 880,600 820,580 C720,560 640,566 590,580 C520,566 440,560 360,580 C300,600 250,660 224,760Z" fill="#1a1212" stroke="${TK}" stroke-width="12" stroke-linejoin="round"/>
+      ${[[320, 640, 520, 470], [420, 580, 600, 450], [560, 572, 720, 460], [700, 580, 860, 520]].map(([x1, y1, x2, y2]) => `<path d="M${x1},${y1} C${(x1 + x2) / 2},${y1 - 80} ${x2 - 40},${y2} ${x2},${y2}" stroke="#4a4248" stroke-width="10" fill="none" stroke-linecap="round"/>`).join('')}
+      <path d="M330,520 C400,460 480,440 560,436" stroke="#8a8090" stroke-width="16" fill="none" opacity=".8" stroke-linecap="round"/>`
+  }, o));
+}
