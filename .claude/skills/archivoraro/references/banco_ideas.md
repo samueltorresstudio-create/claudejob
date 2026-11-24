@@ -51,6 +51,7 @@ Por qué falló el 77:
 - era una **lista de datos** («tres reglas»), no una historia: sin protagonista con nombre, sin nada en juego, sin giro;
 - el gancho era una **afirmación** («no es casualidad»), no una imagen que pare el dedo;
 - necesitaba explicación (psicología, «se dice»), justo lo que ya estaba en la lista de «meh».
+**Antes de proponer, busca la idea en este banco y en `archivoraro_archivo/textos/ideas_*.txt`: NO repitas ideas ya dichas** (el 24-11-2026 repetí la Torre Eiffel y Agloe y el usuario se dio cuenta).
 Filtro obligatorio antes de proponer una idea (si falla uno, se descarta):
 1. ¿El **primer fotograma sin sonido** haría parar el scroll? (imagen imposible, peligro o algo absurdo, no un decorado bonito).
 2. ¿Hay **una persona concreta** con algo que perder?
@@ -205,7 +206,8 @@ Petición del usuario: «mejores ideas con mejor gancho de entretenimiento». Cr
 6. **El bocadillo del robo del siglo** ✔: «Robaron diamantes por millones… y los pilló un bocadillo.» Amberes, 15–16-02-2003; salami a medio comer con ADN de Notarbartolo; condenado a 10 años; el valor se discute (de 12 a 100 M$).
 7. **El barril del Niágara** ✔: «Una profesora de 63 años se tiró por las cataratas del Niágara dentro de un barril.» 24-10-1901, Annie Edson Taylor; barril de roble y hierro con un colchón; murió pobre. La edad varía (62/63). **El gato de prueba: sin confirmar.**
 8. **Los hombres murciélago de la Luna** ✔: «Un periódico dijo que había hombres murciélago en la Luna… y mucha gente se lo creyó.» The Sun, desde el 25-08-1835, seis artículos atribuidos a Herschel; la autoría de Locke se discute; las ventas no se hundieron.
-9. **Las cabezas de jabón de Alcatraz** (?): tres presos dejan cabezas falsas en sus camas y desaparecen (1962).
+9. **Las cabezas de jabón de Alcatraz** ⭐ **GUARDADA (24-11-2026, el usuario: «guarda la 3»)**: tres presos dejan cabezas falsas en sus camas y desaparecen (1962).
+   - Versión con la plantilla de las referencias en `archivoraro_archivo/textos/ideas_78_ronda3_2026-11-24.txt` (n.º 3): gancho «Tres presos se fugaron de la cárcel más segura del mundo… y dejaron sus cabezas en la cama»; cucharas afiladas, taladro con motor de aspiradora, cabezas de jabón/papel/pelo de la peluquería, balsa de 50+ chubasqueros; broma del guardia «Buenas noches, chicos»; giro: la cabeza que rueda, nunca hallados, carta «estamos vivos» (sin confirmar). Datos comprobados 24-11-2026 (FBI, NPS, NPR).
 10. **El sargento Stubby** (?): perro de la Primera Guerra Mundial ascendido a sargento. Lo del espía alemán mordido en el pantalón es leyenda dudosa.
 11. **Sealand** (?): una familia convierte un fuerte antiaéreo del mar en «país» y repele una invasión.
 12. **Magawa** (?): la rata que ganó una medalla de oro por detectar minas.
