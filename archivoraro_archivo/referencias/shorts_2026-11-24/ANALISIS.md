@@ -79,3 +79,24 @@ Plantilla común a los cuatro:
 5. **Decorados**: más textura (hierba con briznas, hojas, suciedad), niebla volumétrica, rayos de luz, desenfoque fuerte, color propio por escena; cortes en sección y mapas cenitales.
 6. **Menos paseos**: cortar en vez de andar; si anda, hacia la cámara y con efecto.
 7. **Texto en atrezo clave: SÍ** (calendario, cartel, noticiero; en español), confirmado por el usuario. Rótulos flotantes: NO.
+
+## 9. Gancho y retención vídeo a vídeo (medido, 24-11-2026)
+
+Montaje medido con detector de cortes (grabaciones a 2×: duraciones reales = ×2).
+
+| Vídeo | Plano medio real | Primer segundo (lo que ves) | Trucos de retención |
+|---|---|---|---|
+| v1 gato espía | 1,25 s | Primer plano enorme del gato con el micrófono brillando en la oreja | Problema 1 / problema 2 (lista que promete más), cambio de animal (paloma), calendario «ENERO 1965», lluvia de billetes, **pantalla negra con solo sonido** en el atropello, bucle cortado |
+| v2 limón | 1,5 s | El ladrón exprimiéndose limones en la cara, ojos `><`, gotas cayendo | Pregunta abierta («¿por qué?»), prueba con polaroid (mini suspense), mapa cenital del banco con cámaras en rojo, tele con la noticia, pizarra que se dibuja sola, ejemplo de tu vida, bucle |
+| v3 túnel | continuo (transiciones de cámara, casi sin cortes secos) | Corte en sección del suelo con el túnel + el preso saliendo DENTRO de la cámara acorazada | Cámara que viaja de un sitio a otro sin cortar (sección → cámara → celda), luz que sale del agujero, registro celda a celda (cuenta atrás visual), doble giro |
+| v4 árbol | 1,2 s | Un coche estrellándose contra el árbol, con polvo y tapacubos volando | Contador «DÍAS SIN ACCIDENTE: 7 → 0», cartel luminoso, sheriff con ojos rojos y asfalto que se raja, plano subjetivo con lluvia, ojos en espiral, bucle |
+| Nuestro 77 | 1,2 s | Jugador de espaldas andando por la sala | Mismo ritmo de cortes… pero planos generales, caras pequeñas, sin efectos |
+
+Conclusiones:
+1. **El ritmo de cortes ya lo teníamos**: lo que falla es el CONTENIDO de cada plano.
+2. **Primer fotograma = la imagen absurda EN ACCIÓN**, en primer plano o plano medio, con partículas (gotas, polvo, chispas). Nunca un plano de situación tranquilo.
+3. **Pregunta abierta en los 3 primeros segundos** («¿por qué?», «resulta que…»).
+4. **Cada frase tiene su objeto visual** que la demuestra: calendario para la fecha, tele para la noticia, contador para la cifra, mapa para el plan, pizarra para el concepto.
+5. **Interruptores de patrón** cada 8–10 s: cambio brusco de punto de vista (cenital, sección, subjetivo, negro con sonido, inserto de objeto en macro).
+6. **Cara grande y expresión nueva** en casi cada plano; la reacción exagerada vale más que la acción.
+7. **Remate + bucle**: la última frase se corta y empalma con la primera (se ve dos veces → más retención).
