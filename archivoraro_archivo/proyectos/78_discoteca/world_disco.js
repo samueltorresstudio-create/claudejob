@@ -177,40 +177,40 @@ const W2 = (() => {
     addLights();
     const S0 = LAY.sites.street[0], D0 = LAY.sites.dance[0];
     // calle: conos de luz de farolas, focos del cartel, charcos que reflejan el neón, luz rosa en la acera
-    for (const x of [S0 - 9, S0 + 9, S0 - 26, S0 + 26]) { const hx = x + (x < S0 ? 1.05 : -1.05); BEAMS.push({ m: beam('street', V3(hx, 5.3, -.6), V3(hx, 0, -.6), '#ffd98a', .3, 2.4, .22), k: .22 }); POOLS.push(pool('street', hx, .17, -.6, 2.8, '#ffcf7a', .55)); }
-    for (const sd of [-1, 1]) BEAMS.push({ m: beam('street', V3(S0 + sd * 2.5, 8.9, -8.5), V3(S0 + sd * 1.0, 6.2, -8.6), '#ffffff', .1, .9, .18), k: .18 });
-    POOLS.push(pool('street', S0, .2, -6.5, 5.5, '#ff3fa0', .55)); POOLS.push(pool('street', S0 - 6, .17, -4.6, 6, '#8a5cff', .28)); POOLS.push(pool('street', S0 + 13.5, .17, -6.5, 4.5, '#ffb24a', .5));
-    [[S0 - 2.5, 3.5, 2.2, '#ff3fa0'], [S0 + 4, 7, 1.6, '#2fe8ff'], [S0 - 9, 9, 2.4, '#ffcf7a'], [S0 + 7, 2.2, 1.2, '#ff3fa0']].forEach(([x, z, r, c]) => { const m = new T.Mesh(new T.CircleGeometry(r, 32), new T.MeshBasicMaterial({ color: '#141022', transparent: true, opacity: .75, depthWrite: false })); m.rotation.x = -Math.PI / 2; m.scale.y = .55; m.position.set(x, .012, z); SITES.street.add(m); POOLS.push(pool('street', x, .02, z, r * .9, c, .45)); });
+    for (const x of [S0 - 6.5, S0 + 6.5, S0 - 19, S0 + 19]) { const hx = x + (x > S0 ? .75 : -.75); BEAMS.push({ m: beam('street', V3(hx, 4.1, -.5), V3(hx, 0, -.5), '#ffd98a', .12, 1.6, .16), k: .16 }); POOLS.push(pool('street', hx, .17, -.5, 2.2, '#ffcf7a', .5)); }
+    POOLS.push(pool('street', S0, .2, -5.0, 2.6, '#ffc870', .45));
+    POOLS.push(pool('street', S0, .2, -5.6, 2.4, '#ff3fa0', .35)); POOLS.push(pool('street', S0 - 11, .17, -4.8, 3.5, '#ffd08a', .35)); POOLS.push(pool('street', S0 + 10, .17, -5.0, 3.0, '#ffb24a', .45));
+    [[S0 - 2.5, 3.0, 1.4, '#ff3fa0'], [S0 + 3.5, 5.5, 1.1, '#ffd08a'], [S0 - 7, 7.5, 1.6, '#ffcf7a']].forEach(([x, z, r, c]) => { const m = new T.Mesh(new T.CircleGeometry(r, 32), new T.MeshBasicMaterial({ color: '#141022', transparent: true, opacity: .55, depthWrite: false })); m.rotation.x = -Math.PI / 2; m.scale.y = .55; m.position.set(x, .012, z); SITES.street.add(m); POOLS.push(pool('street', x, .02, z, r * .9, c, .35)); });
     // pista: haces de los focos que se mueven, bola de espejos que gira y destellos en paredes y suelo
-    (LAY.spots || []).forEach(([x, y, z], i) => { const c = COLS[i % COLS.length]; BEAMS.push({ m: beam('dance', V3(x, y, z), V3(x, 0, -4.5), c, .14, 1.4, .34), k: .34, x, y, z, i, c }); });
+    (LAY.spots || []).forEach(([x, y, z], i) => { const c = COLS[i % COLS.length]; BEAMS.push({ m: beam('dance', V3(x, y, z), V3(x, 0, -3), c, .1, .9, .26), k: .26, x, y, z, i, c }); });
     BALL = G.dance.getObjectByName ? null : null;
     const SP = new T.BufferGeometry(), N = 420, pos = new Float32Array(N * 3), col = new Float32Array(N * 3), rn = rn0(41);
     for (let i = 0; i < N; i++) { const a = rn() * Math.PI * 2, b = rn(); let x, y, z; const r = rn();
-      if (r < .4) { x = D0 + (rn() - .5) * 28; y = .8 + rn() * 7.5; z = -13.9; } else if (r < .6) { x = D0 - 14.4; y = .8 + rn() * 7.5; z = -13 + rn() * 19; } else if (r < .8) { x = D0 + 14.4; y = 1.5 + rn() * 7; z = -13 + rn() * 19; } else { x = D0 + (rn() - .5) * 26; y = .06; z = -13 + rn() * 18; }
+      if (r < .4) { x = D0 + (rn() - .5) * 18; y = .5 + rn() * 2.8; z = -9.95; } else if (r < .6) { x = D0 - 8.95; y = .5 + rn() * 2.8; z = -9.5 + rn() * 15; } else if (r < .8) { x = D0 + 8.95; y = .5 + rn() * 2.8; z = -9.5 + rn() * 15; } else { x = D0 + (rn() - .5) * 16; y = .06; z = -9.5 + rn() * 15; }
       pos.set([x, y, z], i * 3); const c = new T.Color(['#ffffff', '#ffd0f0', '#c0f4ff', '#fff0b0'][i % 4]); col.set([c.r, c.g, c.b], i * 3); }
     SP.setAttribute('position', new T.BufferAttribute(pos, 3)); SP.setAttribute('color', new T.BufferAttribute(col, 3));
     const spark = new T.Points(SP, new T.PointsMaterial({ size: .16, map: dotTex, vertexColors: true, transparent: true, depthWrite: false, blending: T.AdditiveBlending, fog: false, sizeAttenuation: true }));
     spark.renderOrder = 4; SITES.dance.add(spark); SPARK.push(spark);
-    POOLS.push(pool('dance', D0, .09, -4.5, 7, '#ff3fa0', .18));
+    POOLS.push(pool('dance', D0, .09, -3, 4, '#ff3fa0', .18));
     // aula: luz cálida de la lámpara sobre la mesa y la pizarra
-    BEAMS.push({ m: beam('aula', V3(LAY.sites.aula[0] + 1.4, 5.1, -2.6), V3(LAY.sites.aula[0] + 1.4, 0, -2.6), '#ffe3a0', .1, 2.2, .16), k: .16 });
+    BEAMS.push({ m: beam('aula', V3(LAY.sites.aula[0] + 1.1, 2.25, -3), V3(LAY.sites.aula[0] + 1.1, 0, -3), '#ffe3a0', .1, 1.3, .14), k: .14 });
   }
   function addLights() { const S0 = LAY.sites.street[0], D0 = LAY.sites.dance[0], A0 = LAY.sites.aula[0];
     const PL = (site, c, i, x, y, z, d = 18) => { const l = new T.PointLight(c, i, d, 1.6); l.position.set(x, y, z); SITES[site].add(l); return l; };
-    PL('street', '#ff3fa0', 33, S0, 6.3, -7.6, 16); PL('street', '#2fe8ff', 10, S0 - 3.6, 6.6, -7.8, 10); PL('street', '#2fe8ff', 10, S0 + 3.6, 6.6, -7.8, 10);
-    PL('street', '#ffc870', 22, S0, 3.4, -5.6, 12); PL('street', '#ffc870', 14, S0 - 2.4, 3.5, -6, 8); PL('street', '#ffc870', 14, S0 + 2.4, 3.5, -6, 8);
-    for (const x of [S0 - 9, S0 + 9, S0 - 26, S0 + 26]) PL('street', '#ffd08a', 30, x + (x < S0 ? 1.05 : -1.05), 5.0, -.6, 14);
-    PL('street', '#ffb24a', 22, S0 + 13.5, 2.2, -7.5, 10); PL('street', '#8a9aff', 8, S0 - 8, 7, 4, 30);
-    const SPL = []; (LAY.spots || []).forEach(([x, y, z], i) => { if (i % 2) return; const c = COLS[i % COLS.length]; const l = new T.SpotLight(c, 50, 16, .42, .55, 1.4); l.position.set(x, y, z); l.target.position.set(x, 0, -4.5); SITES.dance.add(l, l.target); SPL.push(l); });
-    PL('dance', '#ff3fa0', 22, D0, 1.0, -4.5, 12); PL('dance', '#2fe8ff', 16, D0 - 9, 3, -2, 14); PL('dance', '#ffb070', 16, D0 + 11, 3, -4, 10); PL('dance', '#8a5cff', 22, D0, 5, -12, 16); PL('dance', '#ffd08a', 8, D0 - 12, 1.2, -4, 6);
-    PL('aula', '#ffe3a0', 25, A0 + 1.4, 4.9, -2.6, 14); PL('aula', '#fff4e0', 9, A0, 4, 3, 20); }
+    PL('street', '#ff3fa0', 5, S0, 4.4, -5.2, 6);
+    PL('street', '#ffc870', 4, S0, 2.6, -4.6, 5); PL('street', '#ffd08a', 8, S0 - 11, 2.3, -5.3, 8); PL('street', '#ffe080', 6, S0 + 10, 2.5, -5.5, 7);
+    for (const x of [S0 - 6.5, S0 + 6.5, S0 - 19, S0 + 19]) PL('street', '#ffd08a', 14, x + (x > S0 ? .75 : -.75), 3.9, -.5, 10);
+    PL('street', '#8a9aff', 4, S0 - 3, 6, 6, 30);
+    const SPL = []; (LAY.spots || []).forEach(([x, y, z], i) => { if (i % 2) return; const c = COLS[i % COLS.length]; const l = new T.SpotLight(c, 22, 8, .5, .55, 1.4); l.position.set(x, y, z); l.target.position.set(x, 0, -3); SITES.dance.add(l, l.target); SPL.push(l); });
+    PL('dance', '#ff3fa0', 12, D0, .6, -3, 7); PL('dance', '#2fe8ff', 8, D0 - 7, 2.6, -2.5, 9); PL('dance', '#ffb070', 9, D0 + 7, 2.6, -3, 7); PL('dance', '#8a5cff', 12, D0, 2.8, -8.5, 10); PL('dance', '#ffd08a', 8, D0 - 12, 1.2, -4, 6);
+    PL('aula', '#ffe3a0', 12, A0 + 1.1, 2.1, -3, 8); PL('aula', '#fff4e0', 3, A0, 2.0, 2, 14); }
   function site(n) { Object.keys(SITES).forEach(k => SITES[k].visible = k === n); sky.visible = n === 'street'; }
 
   // ---------- ambientes ----------
   const MOODS = {
     calle: { sun: '#a8b8ff', sunI: .55, dir: [-.4, .8, .5], hemi: '#8090c8', ground: '#3a2a30', hemiI: .55, fog: '#161a34', fogD: .012, top: '#0b1030', hor: '#4a2a66', bloom: .9, rim: '#ff6fd0' },
     pista: { sun: '#ff9ae0', sunI: .25, dir: [-.2, .9, .4], hemi: '#9080c0', ground: '#401830', hemiI: .5, fog: '#20122e', fogD: .022, top: '#000', hor: '#000', bloom: 1.05, rim: '#4ff0ff' },
-    aula: { sun: '#fff0d0', sunI: 1.0, dir: [-.3, .8, .5], hemi: '#fff4e0', ground: '#8a6a4a', hemiI: 1.1, fog: '#e8dcc4', fogD: .004, top: '#000', hor: '#000', bloom: .25, rim: '#ffe0b0' },
+    aula: { sun: '#fff0d0', sunI: 1.0, dir: [-.3, .8, .5], hemi: '#fff4e0', ground: '#8a6a4a', hemiI: .7, fog: '#e8dcc4', fogD: .004, top: '#000', hor: '#000', bloom: .25, rim: '#ffe0b0' },
   };
   let MOOD = 'calle';
   function setMood(m) { if (!MOODS[m]) m = 'calle'; MOOD = m; const Mo = MOODS[m]; sun.color.set(Mo.sun); sun.intensity = Mo.sunI; SUN.set(...Mo.dir).normalize(); hemi.color.set(Mo.hemi); hemi.groundColor.set(Mo.ground); hemi.intensity = Mo.hemiI;
@@ -231,7 +231,7 @@ const W2 = (() => {
   function render() { comp.render(); }
   function setTime(t) { skyU.time.value = t; uTime.value = t; TICK.forEach(f => f(t));
     if (LG && SIGN.ledfloor) { drawLED(LG, 768, 768, t); SIGN.ledfloor.map.needsUpdate = true; }
-    BEAMS.forEach(b => { if (b.i === undefined) return; const a = t * (.9 + (b.i % 3) * .25) + b.i * 1.7, tx = LAY.sites.dance[0] + Math.sin(a) * 3.6, tz = -4.5 + Math.cos(a * 1.3) * 3.6; b.m.lookAt(V3(tx, 0, tz)); b.m.rotateX(-Math.PI / 2); b.m.material.opacity = b.k * (.75 + .25 * Math.sin(t * 5 + b.i)); });
+    BEAMS.forEach(b => { if (b.i === undefined) return; const a = t * (.9 + (b.i % 3) * .25) + b.i * 1.7, tx = LAY.sites.dance[0] + Math.sin(a) * 2.2, tz = -3 + Math.cos(a * 1.3) * 2.2; b.m.lookAt(V3(tx, 0, tz)); b.m.rotateX(-Math.PI / 2); b.m.material.opacity = b.k * (.75 + .25 * Math.sin(t * 5 + b.i)); });
     SPARK.forEach(sp => { sp.material.size = .13 + .05 * Math.sin(t * 7); const p = sp.geometry.attributes.position; sp.rotation.y = 0; sp.position.x = Math.sin(t * .6) * .9; sp.position.y = Math.cos(t * .5) * .4; }); }
   const ground = () => 0;
   return { T, scene, camera, R, comp, setCam, proj, render, setTime, setMood, site, ground, SUN, G, SITES, READY_W, sky, dof, bloom, inkify, toon, TICK, get mood() { return MOOD; } };
