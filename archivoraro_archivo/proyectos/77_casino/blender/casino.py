@@ -63,7 +63,7 @@ def lamp_bar(o, x, y, z, w, h=.08, d=.08, m='lamp'): o.box((x, y, z), (w, h, d),
 def stool(o, x, z, col='red'):
     o.cyl((x, 0, z), (x, .5, z), .05, M['steeld'], 6); o.cyl((x, 0, z), (x, .04, z), .22, M['steeld'], 10); o.cyl((x, .5, z), (x, .62, z), .24, M[col], 12)
 
-def slot_local(o, body='burg', glow='slotglow', hero=False):
+def slot_local(o, body='burg', glow='slotglow', hero=False, st=True):
     # máquina tragaperras mirando a +z: cuerpo, bandeja, pantalla, rótulo de bombillas, palanca y taburete
     o.box((0, .45, 0), (.92, .9, .84), M[body]); o.box((0, .45, .43), (.78, .7, .04), M['black']); o.box((0, .9, 0), (.98, .08, .9), M['gold'])
     o.box((0, .78, .5), (.72, .12, .24), M['steel']); o.box((0, .72, .5), (.6, .06, .2), M['steeld'])
@@ -75,9 +75,9 @@ def slot_local(o, body='burg', glow='slotglow', hero=False):
     if hero:
         for k in range(9): o.sph((-.4 + k * .1, 1.82, .5), .035, M['lamp'], seg=6, rings=4)
         for k in range(5): o.sph((-.4 + k * .2, 2.1, .46), .05, M['pink' if k % 2 else 'cyan'], seg=6, rings=4)
-    stool(o, 0, .95, 'red' if body != 'red' else 'navy')
+    if st: stool(o, 0, .95, 'red' if body != 'red' else 'navy')
 
-def slot(o, x, z, ry=0., body='burg', glow='slotglow'): grp(o, lambda q: slot_local(q, body, glow), TR(x, 0, z, ry))
+def slot(o, x, z, ry=0., body='burg', glow='slotglow', st=True): grp(o, lambda q: slot_local(q, body, glow, st=st), TR(x, 0, z, ry))
 
 def chandelier(o, x, y, z, s=1.):
     o.cyl((x, y + 1.4, z), (x, y + .5, z), .05, M['iron'], 6); o.torus((x, y + .3, z), 1.2 * s, .09, M['gold'], 22); o.torus((x, y - .2, z), .75 * s, .08, M['gold'], 18); o.sph((x, y - .6, z), .3, M['gold'])
@@ -259,7 +259,7 @@ for sd in (-1, 1):
     for k in range(8):
         z0 = -20 + k * 5.5
         CO.box((CX + sd * 1.45, WH / 2, z0 + 1.6), (.5, WH, 3.2), M['wallpaper']); CO.box((CX + sd * 1.45, WH + .06, z0 + 1.6), (.58, .14, 3.28), M['gold']); CO.box((CX + sd * 1.45, .14, z0 + 1.6), (.56, .28, 3.26), M['gold'])
-        if k % 2 == (0 if sd < 0 else 1): slot(CO, CX + sd * 1.45 - sd * .5, z0 + 4.1, -sd * math.pi / 2, ['burg', 'navy', 'green', 'red', 'purple'][(k + sd) % 5])
+        if k % 2 == (0 if sd < 0 else 1): slot(CO, CX + sd * 1.45 - sd * .5, z0 + 4.1, -sd * math.pi / 2, ['burg', 'navy', 'green', 'red', 'purple'][(k + sd) % 5], st=False)
         else: CO.box((CX + sd * 1.45, WH / 2, z0 + 4.1), (.5, WH, 2.3), M['wallpaper']); CO.box((CX + sd * 1.45, WH + .06, z0 + 4.1), (.58, .14, 2.38), M['gold'])
 CO.box((CX, WH + .5, 0), (4.4, .5, 44), M['burgdd'])
 for k in range(10): lamp_bar(CO, CX, WH + .22, -19 + k * 4.2, 1.6, .06, .5)
