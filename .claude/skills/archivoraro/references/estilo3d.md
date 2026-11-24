@@ -460,3 +460,12 @@ Es la cámara por defecto a partir de ahora. Análisis completo en `archivoraro_
 - **Al cambiar de sitio (escena nueva): nuestras transiciones** `fly` / `whip` / `swish` (las de la cuenta 3D), con desenfoque de movimiento. Reglas de siempre: `swish` entre zonas con paredes, `glide` si alguien habla en la primera sílaba.
 - **Plano de situación** al llegar a un sitio nuevo (fachada, exterior): acercamiento fuerte + grúa hacia arriba (**×1,4 en 3–4 s**), con alguien desenfocado cruzando por delante.
 - Fondo siempre desenfocado y personaje nítido.
+
+## Personajes estilo «.99» (pedido del usuario 24-11-2026) — `engine_3d/pj99/`
+Personajes 2D con el acabado aprobado del tendero (`tendero2d.js`): cabeza esfera crema con borde de luz frío a la izquierda y sombra cálida abajo a la derecha, contorno casi negro `#1e1313` (24–30 px, más grueso abajo a la derecha), cuerpo con sombra interior, franja oscura bajo la cabeza, cejas gruesas en bloque, ojos de párpado con media pupila, sombreros con brillo fino en el borde y sombra sobre el ala. Coordenadas: fotograma 1170×2080, cabeza en (590,775) R 375.
+- `pjt.js` → `pjT(opciones)`: constructor común (cuerpo `bodyPath`, piernas `legs`, brazos `armL/armR/armW`, colores `top`/`hatC`, capas `back/under/bodyIn/front/headIn/faceTop/hat`, cara `brow/lashes/lips/cheeks/freckles/gap`). Expresiones: `serio, feliz, picaro, sorpresa, preocupado`.
+- `models.js`: piezas (cuerpos `BODY.gordo/fuerte/nina/anciano/gabardina`, `PACO_BODY` flaco, `REM_BODY` reloj de arena, bigotes `MUST.morsa/fino`, `mustache()`, `glasses()`) y 8 modelos de prueba: Paco, Doña Remedios, Don Anselmo, Bruno, Lucía, Tomás, Carmen, Sargento Ruiz (`catalogo_modelos.jpg`).
+- **REGLA DEL USUARIO: los modelos del catálogo NO se reutilizan tal cual en los vídeos.** Para cada vídeo se diseñan personajes NUEVOS según la historia (época, país, oficio, edad, clase social, carácter) combinando y adaptando las piezas: **silueta distinta para cada personaje** (no todos con el mismo cuerpo), sombrero/pelo, vello facial, ropa con 3–5 detalles con sentido, atrezo propio.
+- **Los personajes evolucionan con la historia**: si pasa el tiempo, envejecen (canas, gafas, bastón); si se arruinan o se hacen ricos, cambia la ropa; heridas, suciedad, uniforme nuevo… Lo que cambia se ve.
+- Siempre bocetos primero (cuerpo entero + 5 expresiones) junto al tendero para comparar el acabado, y esperar el «sí».
+- Nunca copiar personajes de vídeos de referencia: solo el estilo.
