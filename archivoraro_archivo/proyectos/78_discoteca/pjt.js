@@ -27,8 +27,12 @@ function pjT(o) {
   if (o.back) s += o.back(id);
   // piernas un 30 % más largas (pedido del usuario 24-11-2026): el cuerpo y la cabeza suben LEG px y los pies se quedan en el suelo (y = 2100)
   const LEG = o.legX ?? (window.PJ_LEG ?? 380), upLeg = d => d.replace(/(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/g, (m, x, y) => +y >= 2090 ? m : `${x},${+y - LEG}`);
-  const legsSvg = o.legs === null ? '' : `<path d="${upLeg(o.legs || 'M478,1880 L470,2100 M712,1880 L722,2100')}" stroke="#261717" stroke-width="30" stroke-linecap="round"/>`;
-  if (o.under) s += o.under(id);
+  const W8 = o.walk, wph = W8 ? W8.ph : 0, wa = W8 ? (W8.amp ?? 1) : 0;
+  const liftL = wa * 70 * Math.max(0, Math.sin(wph)), liftR = wa * 70 * Math.max(0, -Math.sin(wph));
+  const BOB = -wa * 26 * Math.abs(Math.sin(wph)), SWAY = wa * 2.2 * Math.sin(wph);
+  const walkLegs = d => { let n = 0; return d.replace(/(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/g, (m, x, y) => { const isFoot = +y >= 2090; const leg = Math.floor(n / 2); n++; if (!isFoot) return `${x},${(+y + BOB).toFixed(1)}`; const lf = leg === 0 ? liftL : liftR; return `${(+x + (leg === 0 ? 1 : -1) * lf * .15).toFixed(1)},${(+y - lf).toFixed(1)}`; }); };
+  const legsSvg = o.legs === null ? '' : `<path d="${(W8 ? walkLegs : (d => d))(upLeg(o.legs || 'M478,1880 L470,2100 M712,1880 L722,2100'))}" stroke="#261717" stroke-width="30" stroke-linecap="round"/>`;
+  const underSvg = o.under ? o.under(id) : '';   // calcetines/zapatos: van con las piernas (pies en el suelo)
   const armL = o.armL || 'M305,1260 C250,1400 215,1600 205,1760', handL = o.handL || [205, 1770];
   const armR = o.armR || 'M888,1270 C930,1420 965,1600 985,1745', handR = o.handR || [985, 1755];
   const hand = ([x, y]) => o.gloves ? `<circle cx="${x}" cy="${y}" r="46" fill="${o.gloves}" stroke="${TK}" stroke-width="12"/><path d="M${x - 26},${y - 14} A30,30 0 0 1 ${x + 6},${y - 30}" stroke="#fff" stroke-width="8" fill="none" opacity=".8" stroke-linecap="round"/><path d="M${x - 20},${y + 30} L${x + 20},${y + 30}" stroke="#b8b2a8" stroke-width="6"/>` : `<circle cx="${x}" cy="${y}" r="44" fill="#261717"/><circle cx="${x - 14}" cy="${y - 16}" r="12" fill="#5a4440" opacity=".45" filter="url(#${id}S1)"/>`;
@@ -61,7 +65,7 @@ function pjT(o) {
   if (o.faceTop) s += o.faceTop(id, f);
   if (o.hat) s += o.hat(id);
   const defs0 = s.slice(0, s.indexOf('</defs>') + 7), body0 = s.slice(s.indexOf('</defs>') + 7);
-  return shadowSvg + legsSvg + `<g transform="translate(0,${-LEG})">${limbs}${pjOutline(id, defs0 + body0)}</g>`;
+  return shadowSvg + legsSvg + (W8 ? '' : underSvg) + `<g transform="translate(0,${(-LEG + BOB).toFixed(1)}) rotate(${SWAY.toFixed(2)},595,2000)">${limbs}${pjOutline(id, defs0 + body0)}</g>`;
 }
 
 // cara con el mismo dibujo que el tendero: cejas en bloque, ojos de párpado + media pupila; boca rellena con contorno si no hay bigote
@@ -72,8 +76,8 @@ function faceT(f, o, id) {
     sorpresa: 'M462,728 C480,700 560,700 598,720 L596,742 C545,728 490,730 470,744 C456,750 452,738 462,728Z',
     feliz: 'M460,752 C478,722 560,722 598,746 L596,768 C545,752 490,756 468,768 C454,774 452,762 460,752Z' };
   const flip = d => d.replace(/(-?\d+(\.\d+)?),(-?\d+(\.\d+)?)/g, (m, x, _, y) => `${1210 - +x},${y}`);
-  const bl = f === 'preocupado' ? browL.serio : (browL[f] || (f === 'picaro' ? browL.feliz : browL.serio));
-  const rl = f === 'preocupado' ? ['rotate(-24,528,775) translate(0,6)', 'rotate(24,682,775) translate(0,6)'] : f === 'picaro' ? ['translate(0,14)', 'translate(0,-20)'] : ['', ''];
+  const bl = f === 'enfadado' ? browL.serio : f === 'preocupado' ? browL.serio : (browL[f] || (f === 'picaro' ? browL.feliz : browL.serio));
+  const rl = f === 'enfadado' ? ['rotate(20,528,775) translate(0,26)', 'rotate(-20,682,775) translate(0,26)'] : f === 'preocupado' ? ['rotate(-24,528,775) translate(0,6)', 'rotate(24,682,775) translate(0,6)'] : f === 'picaro' ? ['translate(0,14)', 'translate(0,-20)'] : ['', ''];
   const bw = o.browThin ? `transform-origin:528px 770px;` : '';
   const sc = o.browThin ? ' scale(1,.7)' : '';
   s += `<g transform="${o.browThin ? 'translate(0,230) scale(1,.7)' : ''}"><path d="${bl}" transform="${rl[0]}" fill="${BR}" stroke="${K}" stroke-width="5" stroke-linejoin="round"/><path d="${flip(bl)}" transform="${rl[1]}" fill="${BR}" stroke="${K}" stroke-width="5" stroke-linejoin="round"/></g>`;
@@ -91,7 +95,8 @@ function faceT(f, o, id) {
     serio: `M548,1012 C580,1004 620,1004 652,1012 C656,1026 652,1034 640,1032 C612,1026 588,1026 560,1032 C548,1034 544,1026 548,1012Z`,
     preocupado: `M540,1030 C560,1010 580,1010 600,1022 C620,1034 640,1034 660,1014 C668,1028 662,1042 648,1046 C628,1050 612,1042 600,1036 C586,1030 572,1032 556,1046 C542,1050 534,1042 540,1030Z`,
     picaro: `M560,1018 C600,1030 640,1024 676,996 C688,1000 690,1014 680,1024 C646,1054 600,1056 562,1038 C550,1032 550,1020 560,1018Z` };
-  if (f === 'feliz') s += `<path d="M520,990 C560,1000 640,1000 680,990 C688,1060 640,1100 600,1100 C560,1100 512,1060 520,990Z" fill="#5a1c20" stroke="${K}" stroke-width="16" stroke-linejoin="round"/><path d="M556,1070 C580,1050 620,1050 644,1070 C630,1090 570,1090 556,1070Z" fill="#c8505a"/>` + (o.gap ? `<path d="M534,1000 L594,1004 L592,1030 L538,1026Z M608,1004 L666,1000 L662,1026 L610,1030Z" fill="#fbf6ec" stroke="${K}" stroke-width="5"/>` : '') + (lip ? `<path d="M520,990 C560,1000 640,1000 680,990" stroke="${lip}" stroke-width="10" fill="none"/>` : '');
+  if (o.talk && f !== 'feliz' && f !== 'sorpresa') { const h = 14 + 30 * o.talk; s += `<path d="M540,1010 C570,${1000} 630,1000 660,1010 C664,${1010 + h} 630,${1020 + h} 600,${1020 + h} C570,${1020 + h} 536,${1010 + h} 540,1010Z" fill="#5a1c20" stroke="${K}" stroke-width="12" stroke-linejoin="round"/>`; }
+  else if (f === 'feliz') s += `<path d="M520,990 C560,1000 640,1000 680,990 C688,1060 640,1100 600,1100 C560,1100 512,1060 520,990Z" fill="#5a1c20" stroke="${K}" stroke-width="16" stroke-linejoin="round"/><path d="M556,1070 C580,1050 620,1050 644,1070 C630,1090 570,1090 556,1070Z" fill="#c8505a"/>` + (o.gap ? `<path d="M534,1000 L594,1004 L592,1030 L538,1026Z M608,1004 L666,1000 L662,1026 L610,1030Z" fill="#fbf6ec" stroke="${K}" stroke-width="5"/>` : '') + (lip ? `<path d="M520,990 C560,1000 640,1000 680,990" stroke="${lip}" stroke-width="10" fill="none"/>` : '');
   else if (f === 'sorpresa') s += `<ellipse cx="600" cy="1040" rx="34" ry="42" fill="#5a1c20" stroke="${lip || K}" stroke-width="${lip ? 16 : 14}"/>`;
   else s += `<path d="${M[f] || M.serio}" fill="${lip || K}" stroke="${K}" stroke-width="${lip ? 7 : 4}" stroke-linejoin="round"/>` + (lip ? `<path d="M570,1012 C590,1008 610,1008 630,1012" stroke="#ff9a9a" stroke-width="5" opacity=".6" fill="none"/>` : '');
   return s;

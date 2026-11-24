@@ -32,9 +32,9 @@ const W2 = (() => {
   // ---------- materiales de tebeo (como el 77) + materiales que BRILLAN (neón, bombillas, ventanas encendidas, suelo de luces) ----------
   const toonG = new T.DataTexture(new Uint8Array([110, 175, 235, 255]), 4, 1, T.RedFormat); toonG.minFilter = toonG.magFilter = T.NearestFilter; toonG.needsUpdate = true;
   const MATS = {}, SIGN = {};
-  const PAINTED = /^(poster2|asphalt|sidewalk|brick|brick2|plaster|shutter|shopwin|win|neon|doorglass|ledfloor|woodfloor|wallclub|ceilclub|speaker|barmirror|board|parquet|wallcream|poster|books|list)$/;
+  const PAINTED = /^(regscreen|poster2|asphalt|sidewalk|brick|brick2|plaster|shutter|shopwin|win|neon|doorglass|ledfloor|woodfloor|wallclub|ceilclub|speaker|barmirror|board|parquet|wallcream|poster|books|list)$/;
   const TILE = { asphalt: 6, sidewalk: 3, brick: 2.4, brick2: 2.4, plaster: 3, win: 2.0, woodfloor: 4, wallclub: 3, ceilclub: 4, speaker: 1.3, parquet: 2.5, wallcream: 3, books: 2.4, shutter: 5.2 };
-  const GLOW = /^(lamp|lampwarm|neonP|neonC|neonY|neon|ledfloor|shopwin|win|poster)$/;
+  const GLOW = /^(regscreen|lamp|lampwarm|neonP|neonC|neonY|neon|ledfloor|shopwin|win|poster)$/;
   const MIRROR = new T.ShaderMaterial({ uniforms: { time: uTime }, extensions: { derivatives: true },
     vertexShader: 'varying vec3 vP; varying vec3 vW; void main(){ vec4 w=modelMatrix*vec4(position,1.); vW=w.xyz; vP=(modelViewMatrix*vec4(position,1.)).xyz; gl_Position=projectionMatrix*viewMatrix*w; }',
     fragmentShader: `uniform float time; varying vec3 vP; varying vec3 vW; float h(vec3 p){ return fract(sin(dot(floor(p*40.),vec3(12.9898,78.233,37.719)))*43758.5453); }
@@ -43,7 +43,7 @@ const W2 = (() => {
 #include <colorspace_fragment>
       }` });
   function toon(m) { if (MATS[m.name]) return MATS[m.name]; let o; if (m.name === 'steeld') return (MATS[m.name] = MIRROR);
-    if (GLOW.test(m.name)) { o = new T.MeshBasicMaterial({ color: m.color.clone(), fog: !/^(neon|neonP|neonC|neonY)$/.test(m.name) }); o.name = m.name; if (PAINTED.test(m.name)) { o.color.set('#ffffff'); SIGN[m.name] = o; } return (MATS[m.name] = o); }
+    if (GLOW.test(m.name)) { o = new T.MeshBasicMaterial({ color: m.color.clone(), fog: !/^(neon|neonP|neonC|neonY)$/.test(m.name) }); o.name = m.name; if (PAINTED.test(m.name)) { o.color.set(m.name === 'shopwin' ? '#8a7a6a' : '#ffffff'); SIGN[m.name] = o; } return (MATS[m.name] = o); }
     const RG = { gold: [.32, .85], goldd: [.35, .85], steel: [.22, .9], steeld: [.3, .9], iron: [.45, .6], glass: [.05, .2], doorglass: [.04, .3], asphalt: [.42, 0], sidewalk: [.75, 0], curb: [.8, 0], velvet: [.85, 0], velvetd: [.85, 0], black: [.45, .1], rubber: [.9, 0], wood: [.55, 0], woodd: [.55, 0], woodfloor: [.35, 0], bottleG: [.08, .1], bottleA: [.08, .1], bottleB: [.08, .1], bottleR: [.08, .1], barmirror: [.05, .7], hydrant: [.4, .2], bin: [.5, .3], bag: [.35, 0], speaker: [.8, 0], purple: [.8, 0], purpled: [.8, 0] }[m.name] || [.78, 0];
     o = new T.MeshStandardMaterial({ color: m.color.clone(), roughness: RG[0], metalness: RG[1], envMapIntensity: 1.0 }); o.name = m.name;
     if (PAINTED.test(m.name)) { o.color.set('#ffffff'); SIGN[m.name] = o; }
@@ -70,7 +70,9 @@ const W2 = (() => {
   const neonText = (g, txt, x, y, size, col, glow) => { g.save(); g.font = `900 ${size}px Inter`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineJoin = 'round';
     for (const [bl, a] of [[size * .5, .55], [size * .22, .8]]) { g.shadowColor = glow; g.shadowBlur = bl; g.strokeStyle = glow; g.globalAlpha = a; g.lineWidth = size * .09; g.strokeText(txt, x, y); }
     g.globalAlpha = 1; g.shadowBlur = size * .1; g.strokeStyle = col; g.lineWidth = size * .05; g.strokeText(txt, x, y); g.shadowBlur = 0; g.fillStyle = 'rgba(255,255,255,.08)'; g.fillText(txt, x, y); g.restore(); };
-  let LG = null;
+  let LG = null, RG = null;
+  function drawReg(g, w, h, n) { g.fillStyle = '#0a1a10'; g.fillRect(0, 0, w, h); g.fillStyle = '#5fe08a'; g.font = '900 120px Inter'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.shadowColor = '#5fe08a'; g.shadowBlur = 20; g.fillText(n.toLocaleString('es-ES') + ' €', w / 2, h / 2 + 6); g.shadowBlur = 0; }
+  const regTotal = n => { if (RG && SIGN.regscreen) { drawReg(RG, 512, 220, n); SIGN.regscreen.map.needsUpdate = true; } };
   function drawLED(g, w, h, t) { const n = 6, cs = w / n, pal = ['#ff3fa0', '#2fe8ff', '#ffe45a', '#8a5cff', '#ff8a3c', '#3dff9a'];
     g.fillStyle = '#0c0814'; g.fillRect(0, 0, w, h);
     for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) { const ph = Math.sin(t * 3.1 + i * 1.3 + j * .7) + Math.sin(t * 1.7 - j * 1.1 + i * .4), on = ph > -.2, c = pal[(i * 7 + j * 3 + Math.floor(t * 2.2)) % pal.length];
@@ -135,6 +137,7 @@ const W2 = (() => {
         g.fillStyle = '#16121c'; g.font = '900 120px Inter'; g.textAlign = 'center'; g.fillText('FIESTA', w / 2, 170); g.fillText('80s', w / 2, 300); g.beginPath(); g.arc(w / 2, 520, 150, 0, 7); g.fill(); g.fillStyle = '#ffd34a'; g.beginPath(); g.arc(w / 2, 520, 40, 0, 7); g.fill();
         g.strokeStyle = '#ffd34a'; g.lineWidth = 6; for (let r = 60; r < 150; r += 20) { g.beginPath(); g.arc(w / 2, 520, r, 0, 7); g.stroke(); } g.fillStyle = '#16121c'; g.font = '900 64px Inter'; g.fillText('SÁBADO', w / 2, 760);
         g.fillStyle = 'rgba(255,255,255,.35)'; g.fillRect(0, 0, w, 30); g.strokeStyle = 'rgba(0,0,0,.25)'; g.lineWidth = 3; g.beginPath(); g.moveTo(40, 0); g.lineTo(90, h); g.stroke(); }),
+      regscreen: cv(512, 220, (g, w, h) => { RG = g; drawReg(g, w, h, 1240); }),
       list: cv(400, 320, (g, w, h) => { g.fillStyle = '#fbf6e8'; g.fillRect(0, 0, w, h); g.strokeStyle = '#9a9aa8'; g.lineWidth = 3; for (let y = 50; y < h; y += 36) { g.beginPath(); g.moveTo(20, y); g.lineTo(w - 20, y); g.stroke(); }
         g.strokeStyle = '#e3453a'; g.lineWidth = 5; for (let y = 50; y < h; y += 36) { if ((y / 36 | 0) % 2) { g.beginPath(); g.moveTo(40, y - 12); g.lineTo(w - 60, y - 10); g.stroke(); } else { g.strokeStyle = '#2f9a52'; g.beginPath(); g.moveTo(40, y - 14); g.lineTo(52, y - 4); g.lineTo(72, y - 24); g.stroke(); g.strokeStyle = '#e3453a'; } } }),
     };
@@ -198,7 +201,7 @@ const W2 = (() => {
   function addLights() { const S0 = LAY.sites.street[0], D0 = LAY.sites.dance[0], A0 = LAY.sites.aula[0];
     const PL = (site, c, i, x, y, z, d = 18) => { const l = new T.PointLight(c, i, d, 1.6); l.position.set(x, y, z); SITES[site].add(l); return l; };
     PL('street', '#ff3fa0', 5, S0, 4.4, -5.2, 6);
-    PL('street', '#ffc870', 4, S0, 2.6, -4.6, 5); PL('street', '#ffd08a', 8, S0 - 11, 2.3, -5.3, 8); PL('street', '#ffe080', 6, S0 + 10, 2.5, -5.5, 7);
+    PL('street', '#ffc870', 4, S0, 2.6, -4.6, 5); PL('street', '#ffd08a', 3, S0 - 11, 2.0, -4.3, 7); PL('street', '#ffe080', 6, S0 + 10, 2.5, -5.5, 7);
     for (const x of [S0 - 6.5, S0 + 6.5, S0 - 19, S0 + 19]) PL('street', '#ffd08a', 14, x + (x > S0 ? .75 : -.75), 3.9, -.5, 10);
     PL('street', '#8a9aff', 4, S0 - 3, 6, 6, 30);
     const SPL = []; (LAY.spots || []).forEach(([x, y, z], i) => { if (i % 2) return; const c = COLS[i % COLS.length]; const l = new T.SpotLight(c, 22, 8, .5, .55, 1.4); l.position.set(x, y, z); l.target.position.set(x, 0, -3); SITES.dance.add(l, l.target); SPL.push(l); });
@@ -234,5 +237,5 @@ const W2 = (() => {
     BEAMS.forEach(b => { if (b.i === undefined) return; const a = t * (.9 + (b.i % 3) * .25) + b.i * 1.7, tx = LAY.sites.dance[0] + Math.sin(a) * 2.2, tz = -3 + Math.cos(a * 1.3) * 2.2; b.m.lookAt(V3(tx, 0, tz)); b.m.rotateX(-Math.PI / 2); b.m.material.opacity = b.k * (.75 + .25 * Math.sin(t * 5 + b.i)); });
     SPARK.forEach(sp => { sp.material.size = .13 + .05 * Math.sin(t * 7); const p = sp.geometry.attributes.position; sp.rotation.y = 0; sp.position.x = Math.sin(t * .6) * .9; sp.position.y = Math.cos(t * .5) * .4; }); }
   const ground = () => 0;
-  return { T, scene, camera, R, comp, setCam, proj, render, setTime, setMood, site, ground, SUN, G, SITES, READY_W, sky, dof, bloom, inkify, toon, TICK, get mood() { return MOOD; } };
+  return { regTotal, T, scene, camera, R, comp, setCam, proj, render, setTime, setMood, site, ground, SUN, G, SITES, READY_W, sky, dof, bloom, inkify, toon, TICK, get mood() { return MOOD; } };
 })();

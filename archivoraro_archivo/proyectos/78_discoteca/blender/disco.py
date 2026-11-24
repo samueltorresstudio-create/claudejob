@@ -27,7 +27,7 @@ P = dict(
 )
 M = {k: mat(k, v) for k, v in P.items()}
 PAINT = ['asphalt', 'sidewalk', 'brick', 'brick2', 'plaster', 'shutter', 'shopwin', 'win', 'neon', 'doorglass', 'ledfloor', 'woodfloor', 'wallclub',
-         'ceilclub', 'speaker', 'barmirror', 'board', 'parquet', 'wallcream', 'poster', 'poster2', 'books', 'list', 'menu']
+         'ceilclub', 'speaker', 'barmirror', 'board', 'parquet', 'wallcream', 'poster', 'poster2', 'books', 'list', 'menu', 'regscreen']
 for n in PAINT: M[n] = mat(n, '#ffffff')
 
 def bush(o, x, y, z, r=.45, n=9):
@@ -149,6 +149,16 @@ BX = DX + 7.4
 D.box((BX, .55, -3), (.8, 1.1, 8), M['wood']); D.box((BX - .1, 1.13, -3), (1.1, .06, 8.2), M['black']); D.box((BX - .42, .2, -3), (.04, .05, 8), M['neonP'])
 for k in range(5):
     z = -6.4 + k * 1.6; D.cyl((BX - .95, 0, z), (BX - .95, .72, z), .035, M['steel'], 10); D.cyl((BX - .95, .72, z), (BX - .95, .8, z), .2, M['velvet'], 20); D.torus((BX - .95, .3, z), .15, .015, M['steel'], 16)
+
+# caja registradora 3D sobre la barra (cuerpo de latón, teclas, pantalla con el total, cajón con billetes)
+RX, RY, RZ = BX - .15, 1.16, -2.7
+def reg(o):
+    o.box((0, .16, 0), (.46, .3, .4), M['gold']); o.box((0, .02, .05), (.5, .06, .44), M['goldd'])
+    o.box((0, .34, -.08), (.42, .14, .26), M['gold']); o.box((-.02, .44, -.12), (.3, .16, .06), M['black']); o.box((-.02, .44, -.088), (.26, .12, .01), M['regscreen'])
+    for i in range(3):
+        for j in range(4): o.cyl((-.14 + j * .085, .32 + i * .0, .1 - i * .07), (-.14 + j * .085, .35, .1 - i * .07), .028, M['cream'], 10)
+    o.box((0, .11, .23), (.4, .1, .06), M['goldd']); o.cyl((.25, .2, .0), (.36, .26, .0), .015, M['steel'], 8); o.sph((.37, .27, 0), .03, M['red'], seg=10, rings=6)
+grp(D, reg, TR(RX, RY, RZ, -math.pi / 2))
 D.box((DX + 8.95, 1.9, -3), (.06, 1.6, 7), M['barmirror'])
 for y in (1.3, 1.9, 2.5):
     D.box((DX + 8.75, y, -3), (.35, .04, 7.4), M['gold'])
