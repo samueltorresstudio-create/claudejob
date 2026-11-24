@@ -103,3 +103,71 @@ function clienta2d(o = {}) {
   s += `<ellipse cx="440" cy="900" rx="40" ry="22" fill="#e89090" opacity=".35" filter="url(#${id}S2)"/><ellipse cx="760" cy="900" rx="40" ry="22" fill="#e89090" opacity=".35" filter="url(#${id}S2)"/>`;
   return s;
 }
+
+// ---------- COCINERO (nuevo): gorro alto blanco, chaquetilla cruzada blanca, pañuelo rojo al cuello, bigote fino rizado, mofletes ----------
+function cocinero2d(o = {}) {
+  const id = 'co', f = o.face || 'orgulloso';
+  let s = pjDefs(id, ['#ffffff', '#f2eee6', '#d8d2c6', '#b4aca0']);
+  s += `<path d="M478,1880 L470,2100 M712,1880 L722,2100" stroke="#261717" stroke-width="30" stroke-linecap="round"/>` + pjArms(o);
+  const inner = `<path d="M600,1240 C640,1400 700,1600 720,1880" stroke="#a8a094" stroke-width="10" fill="none" opacity=".8"/>
+    ${[1380, 1500, 1620].map(y => [520, 780].map(x => `<circle cx="${x + (y - 1380) * .06}" cy="${y}" r="16" fill="#e8e2d6" stroke="${PK}" stroke-width="5"/>`).join('')).join('')}
+    <path d="M300,1820 C450,1860 760,1860 905,1820" stroke="#9a9286" stroke-width="40" opacity=".4" filter="url(#${id}S2)"/>`;
+  s += pjBody(id, TD_BODY).replace('%IN%', inner);
+  // pañuelo rojo anudado al cuello
+  s += `<path d="M450,1150 C520,1200 680,1200 750,1150 L760,1200 C680,1250 520,1250 440,1200Z" fill="#c8302e" stroke="${PK}" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M610,1215 L560,1330 L620,1300 L650,1340 L660,1220Z" fill="#b02624" stroke="${PK}" stroke-width="8" stroke-linejoin="round"/>`;
+  s += pjHead(id);
+  // gorro de cocinero alto con pliegues y banda
+  s += `<path d="M290,560 C220,520 210,380 300,340 C300,200 440,140 520,200 C560,110 720,120 760,210 C860,160 990,250 930,360 C1000,420 960,540 900,560Z" fill="#fbfaf6" stroke="${PK}" stroke-width="14" stroke-linejoin="round"/>
+    <path d="M420,250 C430,380 420,470 430,560 M590,190 C600,330 590,460 600,560 M770,240 C760,380 770,470 760,560" stroke="#cfc8bc" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M330,330 C360,280 420,260 460,262" stroke="#ffffff" stroke-width="14" fill="none" opacity=".9" stroke-linecap="round"/>
+    <path d="M270,560 C450,520 760,520 920,560 L912,640 C750,600 450,600 278,640Z" fill="#f0ede6" stroke="${PK}" stroke-width="12" stroke-linejoin="round"/>
+    <path d="M300,620 C450,590 760,590 900,620" stroke="#b8b0a4" stroke-width="10" fill="none" opacity=".7"/>`;
+  // cara: cejas altas, ojos cerrados de orgullo o de punto, mofletes rosados, bigote fino con puntas rizadas
+  const K = PK;
+  s += `<ellipse cx="420" cy="900" rx="60" ry="34" fill="#e88080" opacity=".4" filter="url(#${id}S2)"/><ellipse cx="780" cy="900" rx="60" ry="34" fill="#e88080" opacity=".4" filter="url(#${id}S2)"/>`;
+  s += `<path d="M450,710 Q510,680 570,705 M630,705 Q690,680 750,710" stroke="#3a2418" stroke-width="22" fill="none" stroke-linecap="round"/>`;
+  if (f === 'orgulloso') s += `<path d="M460,800 Q510,770 560,800 M640,800 Q690,770 740,800" stroke="${K}" stroke-width="20" fill="none" stroke-linecap="round"/>`;
+  else if (f === 'enfadado') s = s.replace('M450,710 Q510,680 570,705 M630,705 Q690,680 750,710', 'M450,690 Q520,700 575,740 M625,740 Q680,700 750,690') + `<path d="M470,795 L555,800 M645,800 L730,795" stroke="${K}" stroke-width="20" stroke-linecap="round"/><path d="M490,805 A30,30 0 0 0 545,805Z M655,805 A30,30 0 0 0 710,805Z" fill="${K}"/>`;
+  else s += `<ellipse cx="510" cy="795" rx="28" ry="38" fill="${K}"/><ellipse cx="690" cy="795" rx="28" ry="38" fill="${K}"/><circle cx="520" cy="782" r="8" fill="#fff" opacity=".8"/><circle cx="700" cy="782" r="8" fill="#fff" opacity=".8"/>`;
+  s += `<path d="M600,880 C560,862 500,866 470,885 C440,904 420,890 405,862 C395,900 430,935 480,925 C530,915 570,905 600,912 C630,905 670,915 720,925 C770,935 805,900 795,862 C780,890 760,904 730,885 C700,866 640,862 600,880Z" fill="#3a2418" stroke="${K}" stroke-width="10" stroke-linejoin="round"/>`;
+  s += f === 'sorpresa' ? `<ellipse cx="600" cy="990" rx="28" ry="34" fill="#4a1c1e" stroke="${K}" stroke-width="10"/>` : f === 'enfadado' ? `<path d="M550,990 Q600,965 650,990" stroke="${K}" stroke-width="15" fill="none" stroke-linecap="round"/>` : `<path d="M545,965 Q600,1015 655,965" stroke="${K}" stroke-width="15" fill="none" stroke-linecap="round"/>`;
+  return s;
+}
+
+// ---------- ABUELA (nueva): moño gris, gafas redondas, chal morado de punto, vestido mostaza, collar de perlas ----------
+function abuela2d(o = {}) {
+  const id = 'ab', f = o.face || 'dulce';
+  let s = pjDefs(id, ['#d8a84a', '#c49438', '#a07428', '#6e4e18']);
+  // moño detrás de la cabeza
+  s += `<circle cx="590" cy="360" r="120" fill="#b8b4ae" stroke="${PK}" stroke-width="14"/><path d="M520,330 C560,290 620,290 660,330" stroke="#e8e4de" stroke-width="12" fill="none" opacity=".8" stroke-linecap="round"/><path d="M500,380 C560,420 640,420 690,370" stroke="#8a867e" stroke-width="10" fill="none"/>`;
+  s += `<path d="M478,1880 L470,2100 M712,1880 L722,2100" stroke="#261717" stroke-width="30" stroke-linecap="round"/>` + pjArms(o);
+  // vestido largo mostaza
+  s += `<path d="M300,1560 L250,2080 L960,2080 L905,1560Z" fill="url(#${id}B)" stroke="${PK}" stroke-width="26" stroke-linejoin="round"/>
+    ${[1700, 1850, 2000].map(y => `<path d="M${280 + (y - 1560) * -.05},${y} L${925 + (y - 1560) * .1},${y}" stroke="#8a6420" stroke-width="10" opacity=".6"/>`).join('')}`;
+  s += pjBody(id, TD_BODY).replace('%IN%', '');
+  // chal morado de punto sobre los hombros (triángulo hacia abajo) con flecos
+  s += `<path d="M290,1200 C350,1120 470,1090 600,1090 C730,1090 850,1120 910,1200 L880,1360 L600,1560 L320,1360Z" fill="#6a3a7a" stroke="${PK}" stroke-width="14" stroke-linejoin="round"/>
+    ${[0, 1, 2, 3, 4, 5].map(i => `<path d="M${330 + i * 50},${1360 + i * 34} L${325 + i * 50},${1410 + i * 34}" stroke="#4a2456" stroke-width="8" stroke-linecap="round"/><path d="M${870 - i * 50},${1360 + i * 34} L${875 - i * 50},${1410 + i * 34}" stroke="#4a2456" stroke-width="8" stroke-linecap="round"/>`).join('')}
+    ${[1200, 1260, 1320, 1380, 1440].map(y => `<path d="M${400 + (y - 1200) * .8},${y} L${800 - (y - 1200) * .8},${y}" stroke="#8a52a0" stroke-width="6" stroke-dasharray="14 12" opacity=".7"/>`).join('')}
+    <path d="M330,1220 C420,1150 520,1130 600,1130" stroke="#9a6aae" stroke-width="16" fill="none" opacity=".6" stroke-linecap="round"/>`;
+  // collar de perlas
+  s += [...Array(11)].map((_, i) => { const a = Math.PI * (.15 + .7 * i / 10); return `<circle cx="${600 - Math.cos(a) * 150}" cy="${1130 + Math.sin(a) * 90}" r="15" fill="#f6f2ea" stroke="${PK}" stroke-width="4"/>`; }).join('');
+  s += pjHead(id);
+  // pelo gris recogido (frente) con ondas
+  s += `<path d="M228,720 C220,500 380,410 590,410 C800,410 960,500 952,720 C900,620 790,560 700,555 C640,600 560,600 500,555 C400,560 290,620 228,720Z" fill="#c4c0ba" stroke="${PK}" stroke-width="12" stroke-linejoin="round"/>
+    <path d="M300,560 C380,480 480,450 560,450 M640,450 C740,460 840,510 890,570" stroke="#e8e4de" stroke-width="12" fill="none" opacity=".8" stroke-linecap="round"/>
+    <path d="M590,420 L590,560" stroke="#8a867e" stroke-width="8"/>`;
+  // cara: cejas grises finas, ojos tras gafas redondas, mofletes, sonrisa
+  const K = PK;
+  s += `<ellipse cx="420" cy="920" rx="56" ry="30" fill="#e88080" opacity=".4" filter="url(#${id}S2)"/><ellipse cx="780" cy="920" rx="56" ry="30" fill="#e88080" opacity=".4" filter="url(#${id}S2)"/>`;
+  s += `<path d="M450,${f === 'preocupada' ? 690 : 680} Q505,${f === 'preocupada' ? 650 : 660} 560,${f === 'preocupada' ? 670 : 680} M640,${f === 'preocupada' ? 670 : 680} Q695,${f === 'preocupada' ? 650 : 660} 750,${f === 'preocupada' ? 690 : 680}" stroke="#8a867e" stroke-width="14" fill="none" stroke-linecap="round"/>`;
+  if (f === 'dulce') s += `<path d="M475,790 Q505,765 535,790 M665,790 Q695,765 725,790" stroke="${K}" stroke-width="16" fill="none" stroke-linecap="round"/>`;
+  else s += `<ellipse cx="505" cy="790" rx="22" ry="${f === 'sorpresa' ? 32 : 26}" fill="${K}"/><ellipse cx="695" cy="790" rx="22" ry="${f === 'sorpresa' ? 32 : 26}" fill="${K}"/><circle cx="512" cy="780" r="6" fill="#fff" opacity=".8"/><circle cx="702" cy="780" r="6" fill="#fff" opacity=".8"/>`;
+  s += `<circle cx="505" cy="790" r="68" fill="#dfeef4" fill-opacity=".18" stroke="#8a6a2a" stroke-width="11"/><circle cx="695" cy="790" r="68" fill="#dfeef4" fill-opacity=".18" stroke="#8a6a2a" stroke-width="11"/>
+    <path d="M573,785 Q600,770 627,785" stroke="#8a6a2a" stroke-width="10" fill="none"/><path d="M437,780 L300,750 M763,780 L900,750" stroke="#8a6a2a" stroke-width="8"/>
+    <path d="M470,750 Q490,735 510,738" stroke="#fff" stroke-width="7" fill="none" opacity=".7" stroke-linecap="round"/><path d="M660,750 Q680,735 700,738" stroke="#fff" stroke-width="7" fill="none" opacity=".7" stroke-linecap="round"/>`;
+  s += `<path d="M590,860 Q575,900 600,905" stroke="#c8a088" stroke-width="10" fill="none" stroke-linecap="round"/>`;
+  s += f === 'sorpresa' ? `<ellipse cx="600" cy="985" rx="26" ry="32" fill="#4a1c1e" stroke="${K}" stroke-width="10"/>` : f === 'preocupada' ? `<path d="M555,990 Q600,965 645,990" stroke="${K}" stroke-width="14" fill="none" stroke-linecap="round"/>` : `<path d="M540,960 Q600,1010 660,960" stroke="${K}" stroke-width="14" fill="none" stroke-linecap="round"/>`;
+  return s;
+}
