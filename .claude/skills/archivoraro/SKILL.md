@@ -26,6 +26,7 @@ El motor ya está hecho: personajes con decenas de rasgos, decorados, cámara, s
 ## Referencias (léelas cuando toque)
 
 - `references/banco_ideas.md` — **banco de ideas de curiosidades reales** con gancho y datos contrastados (y qué hay que decir con cuidado). Míralo cuando pida ideas; añade las nuevas y marca las hechas.
+- `references/camara_animacion.md` — **OBLIGATORIO en cada vídeo (28-11-2026)**: cámara siempre en movimiento (`followcam.js`), cero personajes recortados (`check_cam.js`), personajes vivos (`pj99/life.js`), luz y color. Se comprueba con números antes de renderizar.
 - `references/estilo3d.md` — **ESTILO 3D (por defecto)**: motor `engine_3d/` (mundo three.js con contorno, noche con neones, personajes `stick.js` + `hair.js`, luz del sitio sobre los personajes, subtítulo de una palabra), reglas de personajes y ropa que pidió el usuario, cámara y montaje, velocidades. Ejemplo `example/gravedad_3d/`.
 
 - `references/guion_estilo_virales.md` — **molde de guion de las cuentas de referencia** (@Celyxi, @JapanimationCLIPS, @Emuuexplains, la bomba): gancho paradójico en 2.ª persona, pista sembrada, hipótesis descartadas, «Verás» tardío, escalada, bucle. Úsalo para TODO guion nuevo.

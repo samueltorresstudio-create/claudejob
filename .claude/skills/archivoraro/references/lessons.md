@@ -33,6 +33,12 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
 - Amarillo sobre pared clara no se ve.
 - Escenas nocturnas: oscuras pero legibles (`dark` .4–.5 con hueco de luz en los personajes).
 
+## Cámara y animación (28-11-2026, tras el 78)
+
+- «La cámara permanecía quieta demasiado tiempo»: el 78 tenía 16,8 s de cámara parada y personajes recortados en casi todas las escenas. Cada plano se mueve (zoom, trucking, grúa, órbita, seguimiento) y se audita con `check_cam` antes de renderizar. Ver `camara_animacion.md`.
+- **Nunca recortar personajes** (cabeza, brazos, manos, piernas): la cámara se calcula desde las posiciones de los personajes (`followcam.js`), no a mano, y anticipa su movimiento.
+- Personajes rígidos: parpadeo, mirada, cabeza, respiración, gestos y labial con las palabras (`life.js`); andar con fase ligada a la distancia.
+
 ## Duración y formato
 
 - YouTube: más de 60 s, siempre (59,3 s no valió).

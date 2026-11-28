@@ -31,10 +31,16 @@ function pjT(o) {
   const liftL = wa * 70 * Math.max(0, Math.sin(wph)), liftR = wa * 70 * Math.max(0, -Math.sin(wph));
   const BOB = -wa * 26 * Math.abs(Math.sin(wph)), SWAY = wa * 2.2 * Math.sin(wph);
   const walkLegs = d => { let n = 0; return d.replace(/(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/g, (m, x, y) => { const isFoot = +y >= 2090; const leg = Math.floor(n / 2); n++; if (!isFoot) return `${x},${(+y + BOB).toFixed(1)}`; const lf = leg === 0 ? liftL : liftR; return `${(+x + (leg === 0 ? 1 : -1) * lf * .15).toFixed(1)},${(+y - lf).toFixed(1)}`; }); };
-  const legsSvg = o.legs === null ? '' : `<path d="${(W8 ? walkLegs : (d => d))(upLeg(o.legs || 'M478,1880 L470,2100 M712,1880 L722,2100'))}" stroke="#261717" stroke-width="30" stroke-linecap="round"/>`;
+  const legPath = o.legs === null ? '' : (W8 ? walkLegs : (d => d))(upLeg(o.legs || 'M478,1880 L470,2100 M712,1880 L722,2100'));
+  const feet = legPath ? (() => { const n = legPath.match(/-?\d+(?:\.\d+)?/g).map(Number); return [[n[2], n[3]], [n[6], n[7]]]; })() : [];
+  const shoeC = o.shoeC || '#241616', shoes = o.under ? '' : feet.map(([x, y], i) => `<g transform="translate(${x},${y - 6})"><ellipse cx="0" cy="0" rx="54" ry="25" fill="${shoeC}" stroke="${TK}" stroke-width="7"/><path d="M-34,-10 Q0,-22 30,-10" stroke="#fff" stroke-width="6" fill="none" opacity=".35" stroke-linecap="round"/><path d="M-50,14 Q0,26 52,14" stroke="#0a0606" stroke-width="7" fill="none" opacity=".6"/></g>`).join('');
+  const legsSvg = o.legs === null ? '' : `<path d="${legPath}" stroke="#261717" stroke-width="30" stroke-linecap="round"/>` + shoes;
   const underSvg = o.under ? o.under(id) : '';   // calcetines/zapatos: van con las piernas (pies en el suelo)
-  const armL = o.armL || 'M305,1260 C250,1400 215,1600 205,1760', handL = o.handL || [205, 1770];
-  const armR = o.armR || 'M888,1270 C930,1420 965,1600 985,1745', handR = o.handR || [985, 1755];
+  const moveArm = (path, hand, d) => { if (!d) return [path, hand]; const n = path.match(/-?\d+(?:\.\d+)?/g).map(Number); n[2] += d[0] * .15; n[3] += d[1] * .15; n[4] += d[0] * .6; n[5] += d[1] * .6; n[6] += d[0]; n[7] += d[1];
+    return [`M${n[0]},${n[1]} C${n[2]},${n[3]} ${n[4]},${n[5]} ${n[6]},${n[7]}`, [hand[0] + d[0], hand[1] + d[1]]]; };
+  const AA = o.armA || {};
+  const [armL, handL] = moveArm(o.armL || 'M305,1260 C250,1400 215,1600 205,1760', o.handL || [205, 1770], AA.L);
+  const [armR, handR] = moveArm(o.armR || 'M888,1270 C930,1420 965,1600 985,1745', o.handR || [985, 1755], AA.R);
   const hand = ([x, y]) => o.gloves ? `<circle cx="${x}" cy="${y}" r="46" fill="${o.gloves}" stroke="${TK}" stroke-width="12"/><path d="M${x - 26},${y - 14} A30,30 0 0 1 ${x + 6},${y - 30}" stroke="#fff" stroke-width="8" fill="none" opacity=".8" stroke-linecap="round"/><path d="M${x - 20},${y + 30} L${x + 20},${y + 30}" stroke="#b8b2a8" stroke-width="6"/>` : `<circle cx="${x}" cy="${y}" r="44" fill="#261717"/><circle cx="${x - 14}" cy="${y - 16}" r="12" fill="#5a4440" opacity=".45" filter="url(#${id}S1)"/>`;
   s += `<path d="${armL}" stroke="#261717" stroke-width="${o.armW || 26}" fill="none" stroke-linecap="round"/>${hand(handL)}<path d="${armR}" stroke="#261717" stroke-width="${o.armW || 26}" fill="none" stroke-linecap="round"/>${hand(handR)}`;
   const shadowSvg = o.shadow === false ? '' : `<ellipse cx="${o.shadowX || 595}" cy="${o.shadowY || 2096}" rx="${o.shadowW || 300}" ry="40" fill="#140a06" opacity=".45" filter="url(#${id}So)"/>`;
@@ -51,6 +57,7 @@ function pjT(o) {
   </g><path d="${BP}" fill="none" stroke="${K}" stroke-width="22" stroke-linejoin="round"/>
   <path d="${o.bodyEdge || 'M908,1420 C918,1650 900,1840 600,1900'}" stroke="${K}" stroke-width="16" fill="none" stroke-linecap="round"/>`;
   if (o.front) s += o.front(id);
+  const HD = o.head || null; if (HD) s += `<g transform="translate(${HD[0].toFixed(1)},${HD[1].toFixed(1)}) rotate(${HD[2].toFixed(2)},590,1160)">`;
   // cabeza (idéntica al tendero)
   s += `<circle cx="590" cy="775" r="375" fill="url(#${id}H)"/><g clip-path="url(#${id}Hc)">
     <circle cx="560" cy="700" r="375" fill="none" stroke="#c89c8c" stroke-width="90" opacity=".35" filter="url(#${id}So)" transform="translate(70,90)"/>
@@ -64,8 +71,9 @@ function pjT(o) {
   s += faceT(f, o, id);
   if (o.faceTop) s += o.faceTop(id, f);
   if (o.hat) s += o.hat(id);
+  if (HD) s += '</g>';
   const defs0 = s.slice(0, s.indexOf('</defs>') + 7), body0 = s.slice(s.indexOf('</defs>') + 7);
-  return shadowSvg + legsSvg + (W8 ? '' : underSvg) + `<g transform="translate(0,${(-LEG + BOB).toFixed(1)}) rotate(${SWAY.toFixed(2)},595,2000)">${limbs}${pjOutline(id, defs0 + body0)}</g>`;
+  return shadowSvg + legsSvg + (W8 ? '' : underSvg) + `<g transform="translate(0,${(-LEG + BOB).toFixed(1)}) rotate(${(SWAY + (o.lean || 0)).toFixed(2)},595,2000) translate(595,2000) scale(1,${(1 + (o.breath || 0)).toFixed(4)}) translate(-595,-2000)">${limbs}${pjOutline(id, defs0 + body0)}</g>`;
 }
 
 // cara con el mismo dibujo que el tendero: cejas en bloque, ojos de párpado + media pupila; boca rellena con contorno si no hay bigote
@@ -82,9 +90,11 @@ function faceT(f, o, id) {
   const sc = o.browThin ? ' scale(1,.7)' : '';
   s += `<g transform="${o.browThin ? 'translate(0,230) scale(1,.7)' : ''}"><path d="${bl}" transform="${rl[0]}" fill="${BR}" stroke="${K}" stroke-width="5" stroke-linejoin="round"/><path d="${flip(bl)}" transform="${rl[1]}" fill="${BR}" stroke="${K}" stroke-width="5" stroke-linejoin="round"/></g>`;
   const lid = (x0, x1, y) => `<path d="M${x0},${y} L${x1},${y + 3}" stroke="${K}" stroke-width="20" stroke-linecap="round"/>`;
-  const pupil = (cx, y) => `<path d="M${cx - 46},${y} A46,50 0 0 0 ${cx + 46},${y}Z" fill="${K}"/>`;
+  const lk = o.look || [0, 0], blk = (o.blink || 0) > .5;
+  const pupil = (cx, y) => blk ? '' : `<path d="M${cx - 46},${y} A46,50 0 0 0 ${cx + 46},${y}Z" fill="${K}" transform="translate(${lk[0].toFixed(1)},${lk[1].toFixed(1)})"/>`;
   const lash = (x, y, sd) => o.lashes ? `<path d="M${x},${y} l${sd * 26},-20 M${x - sd * 6},${y + 8} l${sd * 30},-4" stroke="${K}" stroke-width="10" stroke-linecap="round"/>` : '';
-  if (f === 'sorpresa') s += `<ellipse cx="512" cy="850" rx="34" ry="44" fill="${K}"/><ellipse cx="698" cy="850" rx="34" ry="44" fill="${K}"/><circle cx="522" cy="836" r="7" fill="#fff" opacity=".5"/><circle cx="708" cy="836" r="7" fill="#fff" opacity=".5"/>` + lash(468, 820, -1) + lash(742, 820, 1);
+  if (f === 'sorpresa' && blk) s += lid(446, 582, 850) + lid(630, 766, 850);
+  else if (f === 'sorpresa') s += `<ellipse cx="512" cy="850" rx="34" ry="44" fill="${K}"/><ellipse cx="698" cy="850" rx="34" ry="44" fill="${K}"/><circle cx="522" cy="836" r="7" fill="#fff" opacity=".5"/><circle cx="708" cy="836" r="7" fill="#fff" opacity=".5"/>` + lash(468, 820, -1) + lash(742, 820, 1);
   else if (f === 'feliz') s += `<path d="M450,860 Q512,800 575,860 M635,860 Q698,800 760,860" stroke="${K}" stroke-width="24" fill="none" stroke-linecap="round"/>` + lash(450, 858, -1) + lash(760, 858, 1);
   else if (f === 'picaro') s += pupil(512, 846) + lid(446, 582, 840) + `<path d="M635,860 Q698,800 760,860" stroke="${K}" stroke-width="24" fill="none" stroke-linecap="round"/>` + lash(446, 840, -1) + lash(760, 858, 1);
   else { const dy = f === 'preocupado' ? 8 : 0; s += pupil(512, 846 + dy) + pupil(698, 850 + dy) + lid(446, 582, 840 + dy) + lid(630, 766, 846 + dy) + lash(446, 840 + dy, -1) + lash(766, 849 + dy, 1); }

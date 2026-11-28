@@ -4,5 +4,7 @@ set -e
 K="$(cd "$(dirname "$0")/.." && pwd)"; WS="$1"; P="$WS/$2"
 [ -z "$2" ] && { echo "usage: new_3d.sh <workspace_dir> <project_name>"; exit 1; }
 mkdir -p "$P"
-cp "$K"/engine_3d/{three_post.js,util3d.js,world3d.js,stick.js,hair.js,core3d.js,render.js,index.html} "$P/"
+cp "$K"/engine_3d/{three_post.js,util3d.js,world3d.js,stick.js,hair.js,core3d.js,render.js,index.html,followcam.js,check_cam.js,check_cam.py} "$P/"
+mkdir -p "$P/pj" && cp "$K"/engine_3d/pj99/{pjt.js,life.js} "$P/pj/"
+echo "Cámara/animación (obligatorio): references/camara_animacion.md · followcam.js, pj/life.js, check_cam.js"
 echo "$P ready (estilo 3D). Escenas: scenes_p.js → cp scenes_p.js scenes.js (no hace falta cat de props)."
