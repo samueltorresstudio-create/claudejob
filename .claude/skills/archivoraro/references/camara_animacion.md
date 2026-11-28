@@ -30,6 +30,12 @@ W.setCam(V3(...c.pos), V3(...c.look), c.fov);
 - Si el grupo es ANCHO el límite es el ancho y el zoom (`occ`) ya no mueve la cámara: añade siempre un cambio de `yaw` y/o `elev` y/o `side` para que se mueva igualmente (el audit lo avisa).
 - La deriva de mano (seno lento ±5 cm en `W2.setCam`) se mantiene encima de todo.
 
+### Lo que hacen las referencias de 15 M (28-11-2026, `referencias/shorts_2026-11-28/ANALISIS.md`)
+- El movimiento estrella es el **acercamiento lento continuo** (≈50 % de los planos), luego travelling lateral y alejamiento para revelar. Plano medio cada 3,5–4,5 s; cámara quieta < 5 % del tiempo.
+- **Plano medio deliberado** (cortado a la cintura o al pecho) para diálogos y burlas; cuerpo entero para acciones; nunca cabezas ni manos cortadas.
+- Objeto-contador gigante y repetido (termómetro, calendario, pizarra) y cortes en sección.
+- Fundidos rápidos con acercamiento entre planos del mismo sitio.
+
 ### Catálogo de movimientos (combínalos; cada plano lleva al menos DOS)
 | movimiento | cómo con `FC.shot` |
 |---|---|

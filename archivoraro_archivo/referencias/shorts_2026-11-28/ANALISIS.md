@@ -27,3 +27,35 @@ Grabadas del móvil a 2× (duración real ≈ el doble: 70–85 s). Caballos mar
 - Objeto con texto en español (saco «CAL», números pintados en el caballo).
 - Contraste de color por historia: noche azul + fuego naranja; mediodía amarillo; incendio rojo.
 - Subtítulo de 1 palabra, blanco con contorno negro, centro-abajo.
+
+## Análisis visual completo (vídeo entero, 1 fotograma/s; hojas `*_completo.jpg`)
+### Tipos de movimiento de cámara (flujo óptico por plano, duraciones reales)
+| | planos | duración media | acercar | alejar | travelling lateral | grúa | quieto |
+|---|---|---|---|---|---|---|---|
+| naranjas | 16 | 4,4 s | 11 | 3 | 2 | 0 | 0 |
+| caballos | 23 | 3,6 s | 9 | 4 | 6 | 2 | 2 |
+| cal | 10* | 7,6 s | 2 | 1 | 2 | 2 | 3 |
+(*la grabación de la cal tiene un tramo pausado). **El movimiento estrella es el ACERCAMIENTO lento continuo** (la mitad de los planos), seguido de travelling lateral y alejamiento para revelar. Planos largos (hasta 12–15 s) que nunca se paran: la cámara sigue empujando y el plano se renueva con cambios de expresión y objetos que entran.
+### Encuadre
+- Mucho **plano medio y primer plano** (cara al 40–60 % del cuadro, cortado a la cintura o al pecho a propósito) para diálogos y reacciones; plano general solo para situar (huerto entero, valle con el pueblo, incendio). El corte por la cintura es DELIBERADO (plano medio), nunca cabezas ni manos cortadas.
+- Contrapicados del vecino burlón; picados/cenitales para el «mapa» (el valle, el establo ardiendo desde arriba).
+### Objetos-contador e insertos (lo que más se repite)
+- **Termómetro de aguja gigante** en el centro del plano, 6–8 veces (la aguja baja de −2 a −6; en la cal sube de 35 a 50). **Letrero-calendario JUE/VIE/SÁB/DOM** que pasa de día. **Números pintados** en los caballos y, al final, en la frente del vecino.
+- **Cortes en sección / macro**: naranja partida con cristales de hielo, naranja dentro de su burbuja de hielo con carámbanos, corteza que se raja, bichos entrando por la grieta, saco «CAL».
+### Luz y color (cuentan la emoción)
+- Naranjas: **noche azul + fuego naranja** (complementarios) y la resolución al **amanecer rosa-dorado**: el cambio de luz marca el final feliz.
+- Caballos: incendio rojo-naranja con humo negro enorme; el «después» de día verde y limpio.
+- Cal: mediodía amarillo con cielo azul; el sol dibujado gigante en la explicación.
+- Siempre humo, chispas, partículas (vaho, brasas, gotas) y profundidad: filas de árboles, pueblo con campanario al fondo, columnas de humo.
+### Personajes
+- Mismo estilo que el nuestro (.99): cuerpo de alubia, cara redonda, expresión nueva casi en cada palabra (ojos `><`, dientes en rejilla, ojos como platos, guiño). El vecino burlón con su atrezo propio (sombrero de paja, mochila de fumigar). **Los animales en 3D** (caballos, perro), más detallados que las personas.
+### Transiciones
+- Cortes en la palabra + **fundidos rápidos con acercamiento** (se ve la imagen siguiente transparente encima: termómetro sobre el árbol, cara sobre el huerto). Sin barridos raros.
+### Final
+- La imagen final es un **chiste visual** (el vecino con el número pintado en la frente; el puesto de naranjas con todo el valle haciendo cola).
+
+## Qué aplicar al 79 (vacas)
+- La **pizarra de litros** = el termómetro: inserto grande y repetido (22 → … → 27), y el **calendario de días** (DÍA 1 / DÍA 5 / DÍA 10) como letrero.
+- Dos establos en paralelo (el del Cine y el del vecino con estufa), con luz distinta: el del vecino cálido de estufa pero gris de ánimo; el del Cine frío… que se vuelve cálido al subir la leche.
+- Inserto en sección: la vaca por dentro (la «llave de la leche» que se cierra con el estrés) y el visor por dentro con el prado.
+- Acercamientos lentos continuos como movimiento principal; planos medios de cara para las burlas del vecino; final con chiste visual (el vecino con unas gafas puestas a sus vacas… o a sí mismo).
