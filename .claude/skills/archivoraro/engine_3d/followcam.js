@@ -7,6 +7,7 @@
 //   FC.frame(subs, o)        encuadre mínimo que contiene a TODOS los sujetos:  {yaw, fov, asp, occ, margin, aim, elev, minD, maxD}
 //   FC.follow(fn, t, o)      igual, pero fn(t) → sujetos que se MUEVEN; filtra el centro (suave) y mira al futuro (`ahead`) para que nadie salga del plano
 //   FC.shot(fn, t, T, a, b)  plano de duración T que va de la configuración a → b (yaw, occ, aim, elev, fov, side…) con ease; siempre en movimiento
+//   o.box = [x0, x1, z0, z1]: límites de la sala (la cámara se queda dentro y abre el ángulo si hace falta)
 //   FC.audit(camFn, subsFn, T)  comprueba un plano (cada 0,1 s): devuelve las infracciones (recortes, cámara quieta)
 //
 // Opciones por defecto: yaw 0 (mira hacia −z; el eje derecho es +x), fov 40° vertical, asp 1080/1920, occ .55 (los sujetos ocupan el 55 % del alto del plano),
@@ -39,7 +40,13 @@
     d = Math.max(d, H / (2 * tn * o.occ) - 0);                    // ocupación: el grupo ocupa `occ` del alto
     d = clamp(d, o.minD, o.maxD);
     const C = [cx + r[0] * o.side, cy, cz + r[2] * o.side];
-    return { pos: [C[0] - f[0] * d, C[1] + o.elev, C[2] - f[2] * d], look: C, fov: o.fov, d };
+    // o.box = [x0, x1, z0, z1]: la cámara no puede salir de la sala → si no cabe, se acerca hasta la pared y ABRE el ángulo para que todos sigan dentro
+    let fov = o.fov;
+    if (o.box) { const [x0, x1, z0, z1] = o.box; let tmax = 1e9; const bx = -f[0], bz = -f[2];
+      if (bx > 1e-6) tmax = Math.min(tmax, (x1 - C[0]) / bx); if (bx < -1e-6) tmax = Math.min(tmax, (x0 - C[0]) / bx);
+      if (bz > 1e-6) tmax = Math.min(tmax, (z1 - C[2]) / bz); if (bz < -1e-6) tmax = Math.min(tmax, (z0 - C[2]) / bz);
+      tmax = Math.max(o.minD, tmax); if (d > tmax) { fov = 2 * Math.atan(Math.tan(o.fov * D2R / 2) * d / tmax) / D2R; d = tmax; } }
+    return { pos: [C[0] - f[0] * d, C[1] + o.elev, C[2] - f[2] * d], look: C, fov, d };
   }
 
   // sujetos en movimiento: fn(t) → [sujetos]; mira `back` s atrás y `ahead` s adelante y encuadra la UNIÓN (así nadie sale del plano al arrancar a andar)

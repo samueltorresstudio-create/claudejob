@@ -1,0 +1,128 @@
+[
+{
+"sc": "gancho",
+"say": "Este granjero le puso gafas de realidad virtual a sus vacas…",
+"cap": "ESTE GRANJERO LE PUSO GAFAS DE REALIDAD VIRTUAL A SUS VACAS…",
+"pause": 0.1
+},
+{
+"sc": "pienso",
+"say": "mientras su vecino les compraba el pienso más caro.",
+"cap": "MIENTRAS SU VECINO LES COMPRABA EL PIENSO MÁS CARO.",
+"pause": 0.1
+},
+{
+"sc": "burla",
+"say": "«¿Y qué les vas a poner, el telediario?»",
+"cap": "«¿Y QUÉ LES VAS A PONER, EL TELEDIARIO?»",
+"pause": 0.1
+},
+{
+"sc": "nieve",
+"say": "Es invierno en Turquía: meses de nieve,",
+"cap": "ES INVIERNO EN TURQUÍA: MESES DE NIEVE,",
+"pause": 0.1
+},
+{
+"sc": "pared",
+"say": "y las vacas encerradas mirando la misma pared.",
+"cap": "Y LAS VACAS ENCERRADAS MIRANDO LA MISMA PARED.",
+"pause": 0.1
+},
+{
+"sc": "pizarra",
+"say": "Y una vaca aburrida da menos leche: veintidós litros al día. Ni uno más.",
+"cap": "Y UNA VACA ABURRIDA DA MENOS LECHE: VEINTIDÓS LITROS AL DÍA. NI UNO MÁS.",
+"pause": 0.1
+},
+{
+"sc": "apodo",
+"say": "En el pueblo ya le llaman «el Cine».",
+"cap": "EN EL PUEBLO YA LE LLAMAN «EL CINE».",
+"pause": 0.1
+},
+{
+"sc": "vecino",
+"say": "El vecino lo tiene claro: pienso de primera, vitaminas… y una estufa en el establo.",
+"cap": "EL VECINO LO TIENE CLARO: PIENSO DE PRIMERA, VITAMINAS… Y UNA ESTUFA EN EL ESTABLO.",
+"pause": 0.1
+},
+{
+"sc": "prueba",
+"say": "El Cine solo tiene unas gafas y dos vacas para probar.",
+"cap": "EL CINE SOLO TIENE UNAS GAFAS Y DOS VACAS PARA PROBAR.",
+"pause": 0.1
+},
+{
+"sc": "prado",
+"say": "Les pone un prado de verano: hierba, flores, sol… y música clásica.",
+"cap": "LES PONE UN PRADO DE VERANO: HIERBA, FLORES, SOL… Y MÚSICA CLÁSICA.",
+"pause": 0.1
+},
+{
+"sc": "dia1",
+"say": "Día uno: las vacas ni se mueven.",
+"cap": "DÍA UNO: LAS VACAS NI SE MUEVEN.",
+"pause": 0.1
+},
+{
+"sc": "risa",
+"say": "El vecino se parte de risa.",
+"cap": "EL VECINO SE PARTE DE RISA.",
+"pause": 0.1
+},
+{
+"sc": "dia5",
+"say": "Día cinco: la pizarra empieza a subir.",
+"cap": "DÍA CINCO: LA PIZARRA EMPIEZA A SUBIR.",
+"pause": 0.1
+},
+{
+"sc": "dia10",
+"say": "Día diez: veintisiete litros.",
+"cap": "DÍA DIEZ: VEINTISIETE LITROS.",
+"pause": 0.1
+},
+{
+"sc": "vecino22",
+"say": "Y en el establo de al lado, con estufa y vitaminas… veintidós.",
+"cap": "Y EN EL ESTABLO DE AL LADO, CON ESTUFA Y VITAMINAS… VEINTIDÓS.",
+"pause": 0.1
+},
+{
+"sc": "porque",
+"say": "¿Por qué? Porque una vaca estresada retiene la leche… y una tranquila la suelta.",
+"cap": "¿POR QUÉ? PORQUE UNA VACA ESTRESADA RETIENE LA LECHE… Y UNA TRANQUILA LA SUELTA.",
+"pause": 0.1
+},
+{
+"sc": "cabeza",
+"say": "Y a su cabeza le da igual que la hierba sea de mentira.",
+"cap": "Y A SU CABEZA LE DA IGUAL QUE LA HIERBA SEA DE MENTIRA.",
+"pause": 0.1
+},
+{
+"sc": "expertos",
+"say": "Los expertos aún lo dudan… pero la pizarra no miente.",
+"cap": "LOS EXPERTOS AÚN LO DUDAN… PERO LA PIZARRA NO MIENTE.",
+"pause": 0.1
+},
+{
+"sc": "sueno",
+"say": "El Cine encarga diez gafas más, para sus ciento ochenta vacas.",
+"cap": "EL CINE ENCARGA DIEZ GAFAS MÁS, PARA SUS CIENTO OCHENTA VACAS.",
+"pause": 0.1
+},
+{
+"sc": "tienda",
+"say": "Y el vecino vuelve a la tienda… y esta vez no compra pienso.",
+"cap": "Y EL VECINO VUELVE A LA TIENDA… Y ESTA VEZ NO COMPRA PIENSO.",
+"pause": 0.1
+},
+{
+"sc": "final",
+"say": "Compra unas gafas.",
+"cap": "COMPRA UNAS GAFAS.",
+"pause": 0.1
+}
+]
