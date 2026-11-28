@@ -95,7 +95,7 @@ const W2 = (() => {
     if (R > 0) { g.globalAlpha = Math.min(1, R * 1.6); cow(780, 330, 1); g.strokeStyle = Y; g.lineWidth = 8; g.beginPath(); g.arc(800, 140, 44, 0, 7); g.stroke(); for (let i = 0; i < 8; i++) { const a = i / 8 * Math.PI * 2; g.beginPath(); g.moveTo(800 + Math.cos(a) * 60, 140 + Math.sin(a) * 60); g.lineTo(800 + Math.cos(a) * 86, 140 + Math.sin(a) * 86); g.stroke(); }
       tap(790, 470, true); g.strokeStyle = C; g.lineWidth = 7; g.beginPath(); g.moveTo(740, 650); g.lineTo(840, 650); g.lineTo(825, 700); g.lineTo(755, 700); g.closePath(); g.stroke(); txt(g, '+', 930, 560, 120, Y); g.globalAlpha = 1; } }
   let DG = null, DAYN = 1;
-  function drawDay(g, w, h, n) { g.fillStyle = '#b8864e'; g.fillRect(0, 0, w, h); g.fillStyle = '#f4ecd8'; g.fillRect(16, 16, w - 32, h - 32); txt(g, 'DÍA', w / 2, 74, 62, '#7a4a24'); txt(g, String(n), w / 2, 170, 120, '#c8342c'); }
+  function drawDay(g, w, h, n) { g.fillStyle = '#b8864e'; g.fillRect(0, 0, w, h); g.fillStyle = '#f4ecd8'; g.fillRect(16, 16, w - 32, h - 32); txt(g, 'DÍA', w / 2, 74, 62, '#7a4a24'); if (n > 0) txt(g, String(n), w / 2, 170, 120, '#c8342c'); }
   const setChalk = n => { CHN = n; if (CH && SIGN.chalk) { drawChalk(CH, 1040, 720, n); SIGN.chalk.map.needsUpdate = true; } };
   function book(g, x, y, bw, bh, col, rn) { g.fillStyle = col; g.fillRect(x, y - bh, bw, bh); g.fillStyle = 'rgba(255,255,255,.22)'; g.fillRect(x + 3, y - bh + 3, 4, bh - 6); g.fillStyle = 'rgba(0,0,0,.25)'; g.fillRect(x + bw - 5, y - bh, 5, bh);
     g.fillStyle = 'rgba(255,240,200,.75)'; g.fillRect(x + 4, y - bh + bh * .2, bw - 8, 5); g.fillRect(x + 4, y - bh * .25, bw - 8, 4); g.strokeStyle = KK; g.lineWidth = 2.5; g.strokeRect(x, y - bh, bw, bh); }
