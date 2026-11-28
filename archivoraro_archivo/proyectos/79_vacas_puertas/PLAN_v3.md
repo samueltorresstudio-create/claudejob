@@ -43,7 +43,7 @@ Cada frase se entiende con el volumen quitado y sin leer el subtítulo. La acci�
   - el dibujo `vaca2d` aprobado, más una **versión en 3/4** nueva del mismo dibujo;
   - poses: cabezaCaida, bostezo, mastica, ojosCerrados, balanceo, lameAire, muge, nervios (tiembla, cola que azota, gotas de sudor) y alivio.
 - **El que no habla siempre reacciona**, y la reacción está escrita en cada plano.
-- Personajes y vacas **siempre de cara a la cámara**, nunca vistos de canto.
+- Personajes y vacas **de cara o en 3/4**, nunca vistos de canto.
 
 ### Luz (valores; los ajusto en la hoja de bocetos)
 | sitio | luz clave | sombra | pared / suelo | otros |
@@ -120,7 +120,7 @@ Lo que lleva cada uno en la mano va anotado en cada plano. La tiza: en 11 se le 
    - *Sus vacas comen sin ganas.*
 
 **Frase 7 (unos 3,2 s)** · «El Cine solo tiene unas gafas y dos vacas para probar.» (*ver la pregunta del final*)
-10. [PP de las manos con el visor → alejamiento que revela · corte] *gafas*: levanta el visor a la luz (destello). *dos vacas*: la cámara se aleja y aparecen 2 vacas escalonadas en profundidad; él hace **«2» con los dedos**, cerca de la cámara. *Una muge (boca abierta, onda).*
+10. [PP de las manos con el visor → alejamiento que revela · corte] *gafas*: levanta el visor a la luz (destello). *dos vacas*: la cámara se aleja y aparecen 2 vacas escalonadas en profundidad; él hace **«2» con los dedos**, cerca de la cámara. *Una muge (boca abierta, onda); la otra mira el visor con curiosidad.*
 
 **Frase 8 (unos 4 s)** · «Les pone un prado de verano: hierba, flores, sol… y música clásica.»
 11. [PP del visor · acercamiento que **entra** · fundido] Pulsa el botón y la cámara se mete en el visor.
@@ -162,7 +162,7 @@ Lo que lleva cada uno en la mano va anotado en cada plano. La tiza: en 11 se le 
 
 **Frase 16 (unos 3,8 s)** · «El Cine encarga diez gafas más, para sus ciento ochenta vacas.»
 24. [PM · grúa que baja y sube · corte] Pide por teléfono (`manoOreja`, con la cara en el tercio de arriba). *diez gafas*: en el tercio de abajo caen **10 cajas GAFAS VR**, una por pulso, que rebotan y se apilan.
-25. [PG · alejamiento grande · fundido] *ciento ochenta vacas*: el establo largo con filas sin fin. **Se encienden 12 visores en ola** y el resto de vacas sigue sin visor. El Cine, en medio, abre los brazos.
+25. [PG · alejamiento grande · fundido] *ciento ochenta vacas*: el establo largo con filas sin fin. **Se encienden 12 visores en ola** y el resto de vacas sigue sin visor. El Cine, pequeño en medio de las filas sin fin, abre los brazos.
 
 **Frase 17 (unos 3,2 s)** · «Y el vecino vuelve a la tienda… y esta vez no compra pienso.»
 26. [PM · travelling que lo acompaña en diagonal · corte] Suena la campanilla de la puerta. Entra el vecino con gorro, cabizbajo. El tendero le ofrece el saco de PIENSO y él **lo aparta con la mano**. *El tendero: `sorpresaBoca`.*
