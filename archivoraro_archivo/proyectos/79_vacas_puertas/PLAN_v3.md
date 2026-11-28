@@ -7,7 +7,7 @@ Cada frase se entiende con el volumen quitado y sin leer el subtítulo. La acci�
 
 ### Ritmo
 - Las referencias están grabadas a 2×: en tiempo real cortan cada **3,4–3,8 s**.
-- **28 planos en unos 68 s, una media de 2,4 s.** Va algo más rápido que las referencias, porque nuestro guion tiene más frases, pero nunca 4 acciones en 1 s.
+- **28 planos en unos 64 s (62 s de voz + 2 s del chiste final), una media de 2,3 s.** Va algo más rápido que las referencias, porque nuestro guion tiene más frases, pero nunca 4 acciones en 1 s.
 - **Una acción por palabra con carga.**
 - Entre cortes se alterna la escala (PG ↔ PP, PM ↔ inserto). Nunca más de 2 acercamientos seguidos.
 
@@ -72,9 +72,11 @@ Pizarra LITROS POR VACA (el Cine) y la del vecino, que es el mismo objeto; letre
 ### Estado (máquina de estados comprobada por programa)
 | frases | pizarra Cine | pizarra vecino | DÍA | vacas con visor | luz Cine |
 |---|---|---|---|---|---|
-| 1–8 | 22 (escrito en la frase 4) | 22 (se ve en la 6) | vacío | 1A: 1 · desde la 7: 2 | fría |
+| 1 (adelanto) | – | – | – | 2 (la del primer término y otra al fondo) | fría |
+| 2–9 | 22 (escrito en la frase 4) | 22 (se ve en la 6) | vacío | 0 (el Cine lleva un visor en la mano en el 8) | fría |
+| 10–15 | 22 | 22 | vacío → 1 | 2 | fría |
 | 9 | 22 | | 1 | 2, quietas | fría |
-| 10 | 22→23→24 | | 5 | 2, empiezan a balancearse | fría |
+| 16 | 22→23→24 | | 5 | 2, quietas (se balancean desde el 21) | fría |
 | 11 en adelante | 27 | 22 | 10 | 2 | dorada |
 | 16 | | | | 12 (2 + 10) | |
 
@@ -84,10 +86,10 @@ Lo que lleva cada uno en la mano va anotado en cada plano. La tiza no se suelta 
 **[tipo · movimiento · entrada]** — acción por palabra · *reacción del otro* · lo que se mueve solo.
 
 **Frase 1 (unos 6 s)** · «Este granjero le puso gafas de realidad virtual a sus vacas… mientras su vecino les compraba el pienso más caro.»
-1. [PM 3/4 · acercamiento · fotograma 0] Establo del Cine. Desde el fotograma 0 tiene en las manos un visor; la vaca, en 3/4 y separada en diagonal, todavía no lleva nada.
+1. [PM 3/4 · acercamiento · fotograma 0] Establo del Cine. Es un **adelanto** de la prueba: al fondo, otra vaca ya lleva visor. Desde el fotograma 0 tiene en las manos el segundo visor; la vaca del primer término, en 3/4 y separada en diagonal, todavía no lleva nada.
    - *Este granjero*: levanta el visor.
    - *le puso gafas*: se lo encaja a la vaca; la correa hace clic, el visor se enciende y su luz verde ilumina el morro.
-   - *a sus vacas*: la vaca pone ojos `platos`; el Cine, `confiado`, levanta el pulgar.
+   - *a sus vacas*: la cámara deja ver las dos vacas con visor; la del primer término pone ojos `platos`; el Cine, `confiado`, levanta el pulgar.
    - Barrote del cubículo desenfocado delante.
 2. [PM contrapicado ligero · lateral · corte en «mientras»] La tienda: el tendero tras el mostrador; la caja GAFAS VR, ya en la estantería del fondo.
    - El vecino **deja los billetes de un golpe** y el tendero le da el saco PIENSO PREMIUM (las estrellas brillan).
@@ -109,7 +111,7 @@ Lo que lleva cada uno en la mano va anotado en cada plano. La tiza no se suelta 
 
 **Frase 5 (unos 2,2 s)** · «En el pueblo ya le llaman "el Cine".»
 8. [PM · lateral · corte] Calle nevada con tejados y campanario.
-   - El Cine pasa en diagonal con **el visor subido en la frente**.
+   - El Cine pasa en diagonal con **un visor en la mano**, mirándolo.
    - A un lado, sin taparle, dos vecinos del pueblo (otra ropa y otras caras) **con un cubo de palomitas**: uno hace la pantalla de cine con las manos y el otro se ríe comiendo palomitas.
    - *El Cine, de reojo: `duda`.*
 
@@ -130,14 +132,14 @@ Lo que lleva cada uno en la mano va anotado en cada plano. La tiza no se suelta 
 13. [PM · lateral · fundido de salida hacia atrás] *música clásica*: las notas salen de los visores. **Las vacas parpadean desconcertadas: todavía no se balancean.** El Cine dirige con la tiza como si fuera una batuta, muy serio.
 
 **Frase 9 (unos 3,5 s)** · «Día uno: las vacas ni se mueven. El vecino se parte de risa.»
-14. [lateral del letrero DÍA a las vacas · corte] *Día uno*: el letrero pasa a «1». *ni se mueven*: las vacas, petrificadas. **Una mosca grande** les vuela en zigzag y se les posa en el morro: ni un parpadeo.
+14. [lateral del letrero DÍA a las vacas · corte] *Día uno*: el letrero pasa a «1». *ni se mueven*: las vacas, petrificadas. **Una mosca grande** les vuela en zigzag y se les posa en el morro: ni se inmutan.
 15. [PM · alejamiento con temblor · corte] El vecino, en la puerta. La risa empieza 0,3 s antes de la palabra:
    - `risaAtras`: cabeza atrás, ojos ^^ y boca enorme;
    - se dobla sujetándose la tripa (`tripaRisa`) y le saltan lágrimas.
    - *El Cine, al fondo: suspira y deja caer los hombros.*
 
 **Frase 10 (unos 2 s)** · «Día cinco: la pizarra empieza a subir.»
-16. [grúa que sube con los números · corte] El letrero DÍA pasa a 5. En la pizarra, 22 → 23 → 24. El Cine se acerca con las cejas arriba (`platos`). *Detrás, las vacas empiezan a balancearse con los ojos cerrados.*
+16. [grúa que sube con los números · corte] El letrero DÍA pasa a 5. En la pizarra, 22 → 23 → 24. El Cine se acerca con las cejas arriba (`platos`).
 
 **Frase 11 (unos 1,8 s)** · «Día diez: veintisiete litros.»
 17. [alejamiento con aire arriba · corte] El letrero DÍA pasa a 10.
@@ -172,8 +174,8 @@ Lo que lleva cada uno en la mano va anotado en cada plano. La tiza no se suelta 
 **Frase 18 (unos 1 s de voz + 2 s sin voz)** · «Compra unas gafas.»
 27. [PM · acercamiento · corte] El vecino **señala la caja GAFAS VR** con un dedo enorme. *El tendero: `platos`.*
 28. [PM · alejamiento que revela · corte, sin voz] Chiste final:
-   - el establo del vecino con la estufa apagada y sus vacas con visor, balanceándose;
-   - el vecino, con las gafas en la frente y los brazos cruzados… **se las baja a los ojos** y se pone a balancearse también.
+   - el establo del vecino con la estufa apagada: **una** de sus vacas con el visor que ha comprado, balanceándose feliz;
+   - el vecino, con los brazos cruzados y cara de `duda`, se agacha a mirar dentro del visor… y acaba balanceándose él también.
    - Corte a negro.
 
 ## 3. Revisión con los 4 agentes
@@ -183,5 +185,5 @@ Lo que lleva cada uno en la mano va anotado en cada plano. La tiza no se suelta 
 
 No se avanza con un BLOQUEA abierto.
 
-## 4. Pregunta para el usuario
+## 4. Pregunta para el usuario (los planos 1, 10 y 13 suponen «dos gafas»; si dice que no, el Cine pasa el visor de una vaca a otra)
 La frase 7 dice «unas gafas», pero se prueban en **dos** vacas (en la historia real fueron dos). Propuesta: «El Cine solo tiene **dos gafas**… y dos vacas para probar». Si no, el Cine pasaría el mismo visor de una vaca a otra.

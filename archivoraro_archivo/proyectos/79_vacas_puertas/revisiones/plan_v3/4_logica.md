@@ -1,0 +1,2 @@
+# 2.ª vuelta · lógica (Sonnet) · aprobado con los cambios (aplicados) salvo la pregunta al usuario
+Aplicado: plano 1 como adelanto (2 vacas con visor; 0 visores en 2–9); plano 8 con el visor en la mano, no en la frente; plano 14 «ni se inmutan»; plano 16 sin balanceo (desde el 21); plano 28 con UNA vaca con el visor comprado y el vecino que se asoma y acaba balanceándose; duración real ≈ 64 s; cajas del 24 entre y 900–1250 (ya estaba). Pendiente del usuario: «unas gafas» → «dos gafas» en la frase 7.
