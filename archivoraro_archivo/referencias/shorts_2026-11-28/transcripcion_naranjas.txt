@@ -1,0 +1,29 @@
+es
+   0.0-   2.0 Cubrió sus naranjas de hielo mientras todo el valle prendía fogatas.
+   2.0-   3.5 ¡Oye, heladero! La helada no necesita ayuda!
+   3.5-   5.2 Cuatro horas al dos bajo cero y la naranja se congela por dentro.
+   5.2-   5.8 Adiós, cosecha.
+   5.8-   6.9 Su vecino tiene una carreta llena de leña.
+   6.9-   8.4 Él tiene un estanque, un balde y doce arbolitos.
+   8.4-  10.2 Así que le hace agujeros a unas latas y las cuello de las ramas para que goten.
+  10.2-  11.2 Y ya no puede parar en toda la noche.
+  11.2-  12.7 A media noche, cada naranja ya es una bola de hielo.
+  12.7-  13.9 ¡Heladero! Uno de naranja, por favor.
+  13.9-  15.2 A las dos, junto a las fogatas, hace un grado.
+  15.2-  17.1 Junto a él, cero. Y bajando. Los vecinos hasta hacen maloaviscos.
+  17.1-  20.0 Menos uno, menos dos, le hacen los brazos. ¡Vete a dormir! ¡Eso ya no se salva! ¡Dímelo al amanecer!
+  20.0-  21.7 A las tres se acaba la leña y lo peor aún no llega.
+  21.7-  22.7 ¡Quemanla cerca! ¡Después la carreta!
+  22.7-  23.8 Una por una se apagan las fogatas.
+  23.8-  24.8 El valle cae a seis bajo cero.
+  24.8-  26.1 El truco es que el agua al congelarse suelta calor.
+  26.1-  27.7 Mientras siga cayendo agua, la naranja bajo el hielo se queda en cero.
+  27.7-  28.5 Nunca llega a dos bajo cero.
+  28.5-  29.7 Al amanecer, los vecinos parten sus naranjas.
+  29.7-  30.2 Hielo por dentro.
+  30.2-  30.9 Y nadie le dice nada.
+  30.9-  32.4 Él rompe el hielo y saca una naranja perfecta.
+  32.4-  32.8 Llena de jugo.
+  32.8-  34.2 Ese invierno todo el valle le compró naranjas.
+  34.2-  34.7 Al heladero.
+  34.7-  35.9 Ese licutor cubrió sus naranjas.

@@ -1,0 +1,6 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0}#st{position:relative;width:1170px;height:2080px;overflow:hidden}img,svg{position:absolute;left:0;top:0}</style></head>
+<body><div id="st"><img id="bg" src="bg_0.png" width="1170" height="2080" style="object-fit:cover"><svg id="sv" width="1170" height="2080" viewBox="0 0 1170 2080"></svg></div>
+<script src="tendero2d.js"></script><script>
+const FX = `<defs><radialGradient id="vg" cx=".5" cy=".45" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#1a0c04" stop-opacity=".55"/></radialGradient></defs><rect width="1170" height="2080" fill="#ffb060" opacity=".04"/><rect width="1170" height="2080" fill="url(#vg)"/>` + [[120,300,5],[1040,420,4],[980,1150,6],[90,1500,4],[1100,1700,3],[200,960,3],[860,220,4],[1010,1900,5]].map(([x,y,r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#ffe8c0" opacity=".55"/>`).join('');
+window.shot = (f, ov) => { document.getElementById('bg').src = ov ? 'ref_clean.png' : 'bg_0.png'; document.getElementById('sv').innerHTML = `<g opacity="${ov ? .55 : 1}" filter="url(#tdAll)">${tendero2d({ face: f })}</g>` + (ov ? '' : FX); };
+document.title = 'ready';</script></body></html>

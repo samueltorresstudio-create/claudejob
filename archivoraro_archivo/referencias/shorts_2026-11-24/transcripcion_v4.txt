@@ -1,0 +1,16 @@
+   0.0-   2.3 If you plant a tree beside an empty road, cars will steal right into it.
+   2.3-   4.8 You see, the road runs dead straight for miles, and the only thing beside it is this one tree.
+   4.8-   6.1 But somehow, somebody hits it every week.
+   6.1-   8.1 So the town nails a giant flashing arrow to it, so nobody can miss it.
+   8.1-  10.1 Yet the crash is double. The tow truck guy starts parking out there with a lawn chair,
+  10.1-  11.1 and he's never made more money in his life.
+  11.1-  12.4 Eventually, the sheriff drives out to see what's going on.
+  12.4-  14.5 He goes 15 miles an hour with both hands on the wheel, and slams right into it.
+  14.5-  16.6 He climbs out furious, grabs an axe off the tow truck, and chops the thing down.
+  16.6-  18.7 While the tow truck guy watches his whole business fall over, the second his cruiser's fixed,
+  18.7-  21.2 the sheriff drives back out to enjoy his nice empty road, and plows straight into the stone.
+  21.2-  22.0 So how does this keep happening?
+  22.0-  24.7 Well, it's called target fixation. After miles of nothing, that tree sticks out like a lighthouse,
+  24.7-  27.5 especially with a giant flashing arrow pointing at it, so every driver's eyes lock onto it and won't let go.
+  27.5-  30.0 And while they stare, their hands slowly turn the wheel toward it, even when it's just a stump.
+  30.0-  31.3 If you plant a tree beside-

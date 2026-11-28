@@ -1,0 +1,116 @@
+[
+{
+"sc": "gancho",
+"say": "Este hombre se metió en una caja de madera… y se mandó por correo desde Londres hasta Australia.",
+"cap": "ESTE HOMBRE SE METIÓ EN UNA CAJA|y DE MADERA… Y SE MANDÓ POR CORREO|p DESDE LONDRES|b HASTA AUSTRALIA.|y",
+"pause": 0.1
+},
+{
+"sc": "oscuras",
+"say": "Sesenta y tres horas. A oscuras.",
+"cap": "63|y HORAS. A OSCURAS.|p",
+"pause": 0.1
+},
+{
+"sc": "londres",
+"say": "Verás, es mil novecientos sesenta y cuatro: Reg está en Londres sin un céntimo… y se va a perder el cumpleaños de su hija.",
+"cap": "VERÁS, ES 1964:|y REG ESTÁ EN LONDRES|b SIN UN CÉNTIMO…|p Y SE VA A PERDER EL CUMPLEAÑOS|y DE SU HIJA.",
+"pause": 0.1
+},
+{
+"sc": "londres",
+"say": "Así que piensa: si no puedo volar como pasajero… volaré como paquete.",
+"cap": "ASÍ QUE PIENSA: SI NO PUEDO VOLAR COMO PASAJERO… VOLARÉ COMO PAQUETE.|y",
+"pause": 0.1
+},
+{
+"sc": "taller",
+"say": "Su amigo le hace la caja: latas de comida, una linterna… y dos botellas.",
+"cap": "SU AMIGO LE HACE LA CAJA:|y LATAS DE COMIDA, UNA LINTERNA… Y DOS BOTELLAS.|b",
+"pause": 0.1
+},
+{
+"sc": "taller",
+"say": "Una para beber. La otra… mejor no preguntes.",
+"cap": "UNA PARA BEBER.|b LA OTRA… MEJOR NO PREGUNTES.|p",
+"pause": 0.1
+},
+{
+"sc": "etiqueta",
+"say": "Etiqueta: «zapatos». A portes debidos: que pague quien la reciba.",
+"cap": "ETIQUETA: «ZAPATOS».|y A PORTES DEBIDOS:|p QUE PAGUE QUIEN LA RECIBA.",
+"pause": 0.1
+},
+{
+"sc": "niebla",
+"say": "Primero, niebla: un día entero en el almacén.",
+"cap": "PRIMERO, NIEBLA:|b UN DÍA ENTERO EN EL ALMACÉN.",
+"pause": 0.1
+},
+{
+"sc": "despega",
+"say": "Por fin despega… y en una escala la dejan horas al sol.",
+"cap": "POR FIN DESPEGA…|y Y EN UNA ESCALA LA DEJAN HORAS AL SOL.|y",
+"pause": 0.1
+},
+{
+"sc": "cuece",
+"say": "Reg se cuece como un pollo al horno.",
+"cap": "REG SE CUECE|p COMO UN POLLO AL HORNO.|y",
+"pause": 0.1
+},
+{
+"sc": "tapa",
+"say": "Podría abrir la tapa… pero un paquete que sale andando llama un poco la atención.",
+"cap": "PODRÍA ABRIR LA TAPA… PERO UN PAQUETE QUE SALE ANDANDO|y LLAMA UN POCO LA ATENCIÓN.",
+"pause": 0.1
+},
+{
+"sc": "aguanta",
+"say": "Aguanta.",
+"cap": "AGUANTA.|p",
+"pause": 0.1
+},
+{
+"sc": "perth",
+"say": "Hasta que oye a dos trabajadores maldiciendo la caja… con acento australiano.",
+"cap": "HASTA QUE OYE A DOS TRABAJADORES MALDICIENDO|p LA CAJA… CON ACENTO AUSTRALIANO.|y",
+"pause": 0.1
+},
+{
+"sc": "encasa",
+"say": "Está en casa.",
+"cap": "ESTÁ EN CASA.|g",
+"pause": 0.1
+},
+{
+"sc": "sale",
+"say": "Espera a que no quede nadie… y sale del aeropuerto como si nada.",
+"cap": "ESPERA A QUE NO QUEDE NADIE… Y SALE DEL AEROPUERTO|b COMO SI NADA.",
+"pause": 0.1
+},
+{
+"sc": "cumple",
+"say": "Llega justo a tiempo al cumpleaños.",
+"cap": "LLEGA JUSTO A TIEMPO|y AL CUMPLEAÑOS.|y",
+"pause": 0.1
+},
+{
+"sc": "factura",
+"say": "Días después, la aerolínea le manda la factura del paquete.",
+"cap": "DÍAS DESPUÉS, LA AEROLÍNEA LE MANDA LA FACTURA|p DEL PAQUETE.",
+"pause": 0.1
+},
+{
+"sc": "factura",
+"say": "Él, muy educado, dice que no la paga.",
+"cap": "ÉL, MUY EDUCADO, DICE QUE NO LA PAGA.|y",
+"pause": 0.1
+},
+{
+"sc": "bucle",
+"say": "Y todo empezó el día en que…",
+"cap": "Y TODO EMPEZÓ EL DÍA EN QUE…",
+"pause": 0.1
+}
+]

@@ -33,6 +33,21 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
 - Amarillo sobre pared clara no se ve.
 - Escenas nocturnas: oscuras pero legibles (`dark` .4–.5 con hueco de luz en los personajes).
 
+## Cámara y animación (28-11-2026, tras el 78)
+
+- «La cámara permanecía quieta demasiado tiempo»: el 78 tenía 16,8 s de cámara parada y personajes recortados en casi todas las escenas. Cada plano se mueve (zoom, trucking, grúa, órbita, seguimiento) y se audita con `check_cam` antes de renderizar. Ver `camara_animacion.md`.
+- **Nunca recortar personajes** (cabeza, brazos, manos, piernas): la cámara se calcula desde las posiciones de los personajes (`followcam.js`), no a mano, y anticipa su movimiento.
+- Personajes rígidos: parpadeo, mirada, cabeza, respiración, gestos y labial con las palabras (`life.js`); andar con fase ligada a la distancia.
+
+- (28-11-2026) **Cámara quieta como mucho 1 s.** Todo lo que dice el guion se ve; algo pasa siempre. 4 revisores Sonnet (luces, cámara, personajes/escenarios, lógica/bugs) antes de enseñar guion y vídeo.
+
+## Guiones (28-11-2026)
+
+- **El gancho SIEMPRE empieza con la acción rara, dicha en una frase completa y con su resultado**: «Le pusieron gafas de realidad virtual a estas vacas… y empezaron a dar más leche», «Este hombre se metió en una caja… y se mandó por correo», «Un hombre lleva treinta años perdiendo al póker… a propósito». NO frases telegráficas («Gafas de realidad virtual… para vacas.» / «Turquía. Invierno.») ni ganchos de ambiente que escondan la acción («Estas vacas están pastando en un prado de verano…»): el usuario los rechazó los dos.
+- **No explicar la duda nada más plantearla**: si la 1.ª frase abre la pregunta («¿por qué gafas a unas vacas?»), la 2.ª NO puede dar la razón («es invierno…»). La razón se guarda hasta el 60–70 %; antes van la pregunta agrandada, la prueba y el que se ríe. Y en imagen tampoco se enseña la respuesta antes de tiempo.
+- **El gancho NO lleva el resultado**: «Le pusieron gafas a estas vacas… y empezaron a dar más leche» ya cuenta el final. El gancho es la acción rara + algo que agrande la duda («…y no es ninguna broma»); el resultado se descubre en pantalla a mitad (la pizarra: 27) y el porqué al 60–70 %.
+- **Céntrate en la idea**: nada de nombres propios ni de cómo se enteró el protagonista («vio un vídeo de Rusia») si no aportan; el contexto que explica el plan («Resulta que en invierno pasan meses encerradas…») SÍ va al principio, como en las referencias. Molde de `referencias/shorts_2026-11-24/ANALISIS.md` §1: acción absurda → «Resulta que…» → el plan → broma del secundario → prueba → resultado → por qué funciona → remate. **Sin bucle** (el usuario, 28-11-2026: «lo del bucle no hace falta»): el vídeo acaba en el remate.
+
 ## Duración y formato
 
 - YouTube: más de 60 s, siempre (59,3 s no valió).
@@ -81,3 +96,7 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
   - **lo que queda bajo el agua no se dibuja** (nada de piernas fantasma transparentes);
   - el bostezo tiene que quedar **por encima** de la línea del agua.
 - Personaje «normalito»: añade un objeto que le dé identidad cultural (carriel, sombrero vueltiao, canalete).
+
+## 79 · Comparado con las referencias de 15 M (28-11-2026)
+- **«Muy malo» comparado con naranjas/caballos.** Causa: personajes diminutos en plano general, cámara de frente a la pared, mitad inferior de suelo vacío, nadie hace nada con las manos, luz beige y apagada, todo en el mismo establo. Arreglo: **plano medio o medio-general**, con el protagonista ocupando el 40–60 % del alto; cámara a la altura del pecho y en diagonal (3/4) para que el fondo tenga profundidad; contorno de tinta también en el decorado; luz de sol fuerte y colores saturados.
+- **NO hacer la vaca en 3D**: la de Blender salió «feísima». Las vacas son SIEMPRE el dibujo `vaca2d` aprobado, pero grandes y cerca de cámara, no en fila al fondo.

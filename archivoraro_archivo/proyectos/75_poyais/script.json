@@ -1,0 +1,86 @@
+[
+ {
+  "sc": "gancho",
+  "say": "Este hombre vendió un país entero… y cientos de personas se mudaron a vivir allí.",
+  "cap": "ESTE HOMBRE VENDIÓ UN PAÍS|y ENTERO… Y CIENTOS|b DE PERSONAS SE MUDARON A VIVIR ALLÍ.",
+  "pause": 0.1
+ },
+ {
+  "sc": "gancho",
+  "say": "Tenía ópera, catedral y palacio real.",
+  "cap": "TENÍA ÓPERA,|p CATEDRAL|b Y PALACIO|y REAL.",
+  "pause": 0.1
+ },
+ {
+  "sc": "gancho",
+  "say": "Un detalle sin importancia: no existía.",
+  "cap": "UN DETALLE SIN IMPORTANCIA: NO EXISTÍA.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "cacique",
+  "say": "Se llamaba Gregor MacGregor, y había sido general en Venezuela.",
+  "cap": "SE LLAMABA GREGOR|y MACGREGOR, Y HABÍA SIDO GENERAL|b EN VENEZUELA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "cacique",
+  "say": "Así que cuando dijo: «Soy el cacique de Poyais», nadie se rió.",
+  "cap": "ASÍ QUE CUANDO DIJO: SOY EL CACIQUE|y DE POYAIS,|p NADIE SE RIÓ.|b",
+  "pause": 0.1
+ },
+ {
+  "sc": "pruebas",
+  "say": "¿Pruebas? Cuadros de la capital. Un himno nacional. Oficinas en Londres y Edimburgo. Y bonos: doscientas mil libras.",
+  "cap": "¿PRUEBAS?|p CUADROS|b DE LA CAPITAL. UN HIMNO|b NACIONAL. OFICINAS EN LONDRES Y EDIMBURGO. Y BONOS:|y 200.000|y LIBRAS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "barcos",
+  "say": "Y la gente compró. En septiembre de 1822 zarpó el primer barco con setenta colonos. Otro salió de Escocia con doscientos más.",
+  "cap": "Y LA GENTE COMPRÓ.|y EN SEPTIEMBRE DE 1822|b ZARPÓ EL PRIMER BARCO CON 70|y COLONOS. OTRO SALIÓ DE ESCOCIA CON 200|y MÁS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "selva",
+  "say": "Llegaron buscando la ópera. Encontraron mosquitos. Buscaron la catedral. Más mosquitos. Buscaron el palacio… ya te imaginas.",
+  "cap": "LLEGARON BUSCANDO LA ÓPERA. ENCONTRARON MOSQUITOS.|p BUSCARON LA CATEDRAL. MÁS MOSQUITOS.|p BUSCARON EL PALACIO… YA TE IMAGINAS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "selva",
+  "say": "No había capital ni provisiones. Solo selva.",
+  "cap": "NO HABÍA CAPITAL NI PROVISIONES. SOLO SELVA.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "selva",
+  "say": "Muchos enfermaron. La mayoría no volvió.",
+  "cap": "MUCHOS ENFERMARON.|p LA MAYORÍA NO VOLVIÓ.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "paris",
+  "say": "¿Y MacGregor? Ya estaba en París.",
+  "cap": "¿Y MACGREGOR?|y YA ESTABA EN PARÍS.|b",
+  "pause": 0.1
+ },
+ {
+  "sc": "paris",
+  "say": "Años después, volvió a Londres… a vender más bonos de Poyais. Si algo funciona, ¿para qué cambiarlo?",
+  "cap": "AÑOS DESPUÉS, VOLVIÓ A LONDRES… A VENDER MÁS BONOS|y DE POYAIS. SI ALGO FUNCIONA, ¿PARA QUÉ CAMBIARLO?|b",
+  "pause": 0.1
+ },
+ {
+  "sc": "final",
+  "say": "Un país sin ciudades, sin gente y sin ópera.",
+  "cap": "UN PAÍS SIN CIUDADES, SIN GENTE Y SIN ÓPERA.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "final",
+  "say": "Pero con bonos. Y esos, eso sí, se vendieron todos.",
+  "cap": "PERO CON BONOS.|y Y ESOS, ESO SÍ, SE VENDIERON TODOS.|g",
+  "pause": 0.1
+ }
+]

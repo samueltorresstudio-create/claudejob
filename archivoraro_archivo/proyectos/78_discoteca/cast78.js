@@ -1,0 +1,20 @@
+// Reparto del 78 «La discoteca donde solo entran los feos». Diseños propios del canal (cabeza redonda, cuerpo-prenda), sin nariz ni rubor.
+const _P = { rich: true, eyeStyle: 'palo', legLen: 1.2 };
+const COCKTAIL2D = (s = 1) => `<g transform="scale(${s})"><path d="M-26,-70 L26,-70 L4,-30 L4,-4 L16,0 L-16,0 L-4,-4 L-4,-30Z" fill="#cfefff" fill-opacity=".55" stroke="#16121c" stroke-width="6" stroke-linejoin="round"/><path d="M-20,-64 L20,-64 L6,-40 L-6,-40Z" fill="#ff3fa0"/><circle cx="18" cy="-74" r="9" fill="#ffd34a" stroke="#16121c" stroke-width="4"/><path d="M10,-60 L30,-96" stroke="#2fe8ff" stroke-width="5" stroke-linecap="round"/></g>`;
+const LIST2D = (s = 1) => `<g transform="rotate(-6) scale(${s})"><rect x="-46" y="-120" width="92" height="120" rx="6" fill="#2a2430" stroke="#16121c" stroke-width="6"/><rect x="-36" y="-108" width="72" height="96" rx="3" fill="#fbf6e8"/><path d="M-26,-92 L24,-92 M-26,-74 L24,-74 M-26,-56 L24,-56 M-26,-38 L24,-38" stroke="#a8a2b8" stroke-width="4"/><path d="M-28,-94 L20,-88 M-28,-58 L18,-52" stroke="#e3453a" stroke-width="5"/><rect x="-16" y="-128" width="32" height="14" rx="4" fill="#9aa1ad" stroke="#16121c" stroke-width="4"/></g>`;
+window.CAST78 = {
+  // El portero: enorme, traje negro, camiseta negra, gafas de sol con reflejo de neón, calvo con barba de puntos, reloj dorado. Cara de póker.
+  POR: Object.assign({}, _P, { fstyle: 'C', outfit: 'suit', top: '#1b1720', topD: '#100d14', shirt: '#2a2430', tie: '#2a2430', sunglasses: 'rainbow', hair2: 'bald', hairCol: '#2a2430', stubble: '#3a3440', chin: 'square', ears: 1.15, browArch: 0, brows: -1.4, belly: 1.45, legLen: 1.05, trousers: '#1b1720', shoes: '#0f0d12', sole: '#0f0d12', wrist: '#ffc928', face: 'deadpan', mouth: 'line' }),
+  // El guapo del gimnasio: camisa blanca planchada, tupé engominado brillante, mandíbula cuadrada, sonrisa de anuncio
+  GYM: Object.assign({}, _P, { fstyle: 'A', outfit: 'shirt', top: '#f2f6ff', topD: '#c8d4ea', shirt: '#f2f6ff', hair2: 'tupe', hairCol: '#3a2416', chin: 'square', belly: .88, legLen: 1.32, trousers: '#2a2e3a', shoes: '#7a4a22', sole: '#2a1a10', wrist: '#c9ced6', face: 'smug', mouth: 'grin' }),
+  // El del jersey de su abuela: jersey mostaza con lunares rojos, gafas, despeinado, pecas, orejas grandes
+  JER: Object.assign({}, _P, { fstyle: 'A', outfit: 'cardigan', top: '#d9a032', topD: '#b07a1c', dots: '#c8342c', shirt: '#f4f2ec', glasses: true, hair2: 'messy', hairCol: '#7a4a22', freckles: true, bushy: true, ears: 1.22, belly: 1.12, legLen: 1.0, trousers: '#6a5a46', shoes: '#4a3a2a', face: 'open', mouth: 'smile' }),
+  // El de la copa («¿y yo por qué he entrado?»): camiseta verde, rapado, barba de puntos, barriguita
+  COPA: Object.assign({}, _P, { fstyle: 'A', outfit: 'tee', top: '#43bd65', topD: '#2f9a52', hair2: 'buzz', hairCol: '#2a2420', stubble: '#3a3440', chin: 'round', belly: 1.25, legLen: 1.05, trousers: '#3a4a7a', jeans: true, shoes: '#f4f2ec', sneaker: '#2a2430', face: 'wide', mouth: 'o' }),
+  // Bailarinas de dentro
+  CHI1: Object.assign({}, _P, { fstyle: 'A', outfit: 'dress', top: '#ff3fa0', topD: '#c81e78', sash: '#ffd34a', buckle: '#ffd34a', earrings: true, hoops: true, hair2: 'curly', hairCol: '#2a1a14', hose: '#f0d4bc', shoes: '#ffd34a', heels: '#c8901a', sole: '#16121c', belly: 1.05, legLen: 1.15, face: 'happy', mouth: 'laugh' }),
+  CHI2: Object.assign({}, _P, { fstyle: 'A', outfit: 'tee', top: '#8a5cff', topD: '#6a3ad8', hair2: 'side', bun: '#ffd96a', hairCol: '#ffd96a', glasses: true, earrings: true, trousers: '#1b1720', shoes: '#f4f2ec', sneaker: '#ff3fa0', belly: .98, legLen: 1.2, face: 'closed', mouth: 'smile' }),
+  // El dueño de la competencia: traje morado, camisa amarilla, cadena de oro, bigote, engominado
+  RIV: Object.assign({}, _P, { fstyle: 'A', outfit: 'suit', top: '#7a4ad0', topD: '#5a2ea8', shirt: '#ffc928', tie: '#ff3fa0', chain: true, hair2: 'slick', hairCol: '#16121c', mustache: '#16121c', chin: 'wide', belly: 1.3, legLen: 1.08, trousers: '#5a2ea8', shoes: '#16121c', sole: '#16121c', wrist: '#ffc928', face: 'smug', mouth: 'laugh' }),
+};
+window.CAST77 = window.CAST78;

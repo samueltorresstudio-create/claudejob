@@ -1,0 +1,37 @@
+77 · LAS TRES REGLAS SECRETAS DE LOS CASINOS (relojes, ventanas, laberinto, máquinas que celebran) — PROPUESTA v3 (23-11-2026)
+El usuario: «da igual que lo de los relojes sea un mito» → se cuenta la idea clásica (el casino te aísla del mundo de fuera y de la hora) con el cuidado de decir «se dice» / «según él» donde no hay pruebas, y se apoya en lo que sí está comprobado.
+Estructura de 3 reglas = cuenta atrás para retención.
+
+DATOS (comprobados en la web el 23-11-2026)
+- Regla 1 (nada que te recuerde el mundo): Bill Friedman dirigió los casinos Castaways y Silver Slipper (Las Vegas, 1977–1990). En el Castaways un lado era de cristal; según él, entre el 85 y el 90 % de los clientes dejaban de jugar al ver la luz del día; compró un plástico oscuro para taparlo (The Hustle; blog de Friedman, 2021). RELOJES: «se dice»; Friedman afirma que los jugadores serios pidieron quitarlos; no hay estudios concluyentes → decir «se dice».
+- Regla 2 (laberinto): Friedman defiende pasillos cortos y estrechos, techos bajos y curiosidad por lo que hay tras la esquina (Mental Floss, e-architect). Algunos casinos modernos, como los de Steve Wynn, hacen lo contrario (luz natural, líneas de visión abiertas).
+- Regla 3 (perder no suena a perder): «pérdida disfrazada de ganancia» (Universidad de Waterloo, Canadá, Mike Dixon): la máquina devuelve menos de lo apostado pero celebra con luces y sonido; la piel reacciona casi igual que con una ganancia real y se recuerdan más victorias de las que hubo.
+- NO decir (sin comprobar): fichas, bebidas gratis, oxígeno bombeado (falso), que quitar relojes esté demostrado.
+
+GANCHO (0–4 s): cámara entrando en un casino sin ventanas; un reloj de pared enorme; una mano lo tapa con un trapo negro. Voz: «Entras en un casino a las ocho de la tarde. Sales sin saber qué hora es. No es casualidad.»
+
+GUION SIN NOMBRES PROPIOS (el usuario pidió quitarlos; los nombres solo quedan en las notas de datos) (≈190 palabras, voz «alegre», números en letra):
+Entras en un casino a las ocho de la tarde. Sales sin saber qué hora es. No es casualidad.
+Primera regla: nada que te recuerde el mundo de fuera. Ni ventanas, ni relojes.
+Un hombre que dirigía casinos en Las Vegas lo comprobó. Tenía un lado de cristal… y, según él, entre el ochenta y cinco y el noventa por ciento de los clientes dejaban de jugar al ver la luz del día. Así que lo tapó.
+Con los relojes se dice lo mismo: sin ellos, no sabes cuánto llevas.
+Segunda regla: que no puedas irte en línea recta.
+Ese mismo hombre diseñaba casinos como laberintos: pasillos cortos y estrechos, techos bajos. Y siempre hay algo más allá de la esquina.
+Tercera regla: que perder no suene a perder.
+Se llama pérdida disfrazada de ganancia. Apuestas diez, la máquina te devuelve uno… y suena la música, y se encienden las luces, como si hubieras ganado.
+Unos investigadores de una universidad de Canadá midieron a los jugadores. Su cuerpo reaccionaba casi igual que con una ganancia de verdad. Y recordaban más victorias de las que tuvieron.
+Hoy casi nadie necesita un reloj en la pared: llevas uno en el bolsillo.
+Pero la máquina sigue celebrando… que pierdes.
+
+ESTRUCTURA (≈64 s)
+0–4    Gancho: reloj tapado con trapo.
+4–10   Regla 1: «NADA DE FUERA»: puerta cerrada, ventana tapiada.
+10–22  El director del casino (despacho, gafas, bigote): lado de cristal, siluetas que miran el cielo y se van; plástico negro. Una gráfica de diez siluetas: nueve salen por la puerta.
+22–26  Relojes: reloj que se apaga.
+26–38  Regla 2: laberinto en vista cenital con una figura que da vueltas; techos bajos; cámara en dolly por pasillos estrechos.
+38–56  Regla 3: tragaperras con símbolos (sin cifras): entra una moneda grande, salen pocas pequeñas, fiesta de luces; científico con electrodos; burbuja de recuerdo con más victorias.
+56–64  Cierre: móvil en el bolsillo; la máquina celebrando; corte a negro.
+
+RETENCIÓN: número de reglas (1, 2, 3) en pantalla como iconos · ventanas → laberinto → máquina (cada regla más sorprendente) · cambio de plano cada 2–3 s, cámara siempre en movimiento, transiciones · caras detalladas SIN rubor · solo subtítulo como texto · sin vehículos.
+ESCENARIO (Blender): casino con moqueta de dibujos, tragaperras (cajas con pantalla de frutas), ruleta, lámparas; despacho de Friedman; laberinto en vista cenital.
+SONIDO: música de casino traviesa, campanitas, trapo, máquina que celebra, silencio final.

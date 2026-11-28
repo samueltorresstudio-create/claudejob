@@ -2,8 +2,8 @@
 const _P = { rich: true, eyeStyle: 'palo', legLen: 1.18 };
 window.CAST72 = {
   // El bufón: traje a cuartos verde y amarillo, rombos rojos, cuello y bajo de picos con cascabeles, mallas roja y verde, zapatos de punta, gorro de tres puntas
-  BUFON: Object.assign({}, _P, { outfit: 'jester', top: '#2f8a4a', topD: '#1f6636', top2: '#e8b830', top3: '#c8302e', hat: 'jester', hatCol: '#2f8a4a', hatCol2: '#e8b830', hatCol3: '#c8302e',
-    hose: ['#c8302e', '#2f8a4a'], poulaine: '#e8b830', coif: ['#2f8a4a', '#e8b830'], belly: .92, legLen: 1.14, face: 'smug', mouth: 'smirk' }),
+  BUFON: Object.assign({}, _P, { outfit: 'jester', jv2: true, top: '#c8302e', topD: '#9a2220', top2: '#e8b830', top3: '#2f8a4a', hat: 'jester2', hatCol: '#c8302e', hatCol2: '#e8b830',
+    hose: ['#e8b830', '#c8302e'], poulaine: '#c8302e', belly: 1.04, legLen: 1.02, face: 'smug', mouth: 'smirk' }),
   // El rey (Felipe VI de Francia): manto azul con flores de lis y borde de armiño, jubón dorado, corona de lises, barba oscura rizada
   REY: Object.assign({}, _P, { outfit: 'king', top: '#2a4aa8', topD: '#18306e', vest: '#e7c24a', sash: 'none', lis: true, cape: '#22408f', hat: 'crownLis', velvet: '#2a4aa8', noMedal: true,
     hair2: 'curly', hairCol: '#2a1a12', beard: '#2a1a12', mustache: '#2a1a12', belly: 1.18, legLen: 1.2, shoes: '#2a1a12', sole: '#1b1720', face: 'smug', mouth: 'line' }),

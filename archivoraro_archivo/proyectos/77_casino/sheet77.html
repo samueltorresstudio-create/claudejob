@@ -1,0 +1,14 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:#e9e4da}svg{display:block}</style></head>
+<body><svg id="s" width="1620" height="1920" viewBox="0 0 1620 1920"></svg>
+<script src="util3d.js"></script><script src="stick.js"></script><script src="hair.js"></script><script src="cast77.js"></script>
+<script>
+// spec: {w,h,cells:[{x,y,w,h,bg,label,items:[{n,pose,x,y,s}]}]}; cada elemento se dibuja con stick(); y=0 son los pies, la cabeza queda en y=-470.
+window.sheet = spec => { const s = document.getElementById('s'); s.setAttribute('width', spec.w); s.setAttribute('height', spec.h); s.setAttribute('viewBox', `0 0 ${spec.w} ${spec.h}`);
+  let o = `<rect width="${spec.w}" height="${spec.h}" fill="#ece7dd"/>`;
+  spec.cells.forEach((c, i) => { const id = 'c' + i; o += `<defs><clipPath id="${id}"><rect x="${c.x}" y="${c.y}" width="${c.w}" height="${c.h}" rx="22"/></clipPath></defs><rect x="${c.x}" y="${c.y}" width="${c.w}" height="${c.h}" rx="22" fill="${c.bg || '#f6f1e6'}" stroke="#bfb6a4" stroke-width="3"/><g clip-path="url(#${id})">`;
+    (c.items || []).forEach(it => { const pose = Object.assign({}, window.CAST77[it.n] || {}, it.pose || {}); if (pose.holdRn) { pose.holdR = new Function('return (' + pose.holdRn + ')')(); delete pose.holdRn; } if (pose.holdLn) { pose.holdL = new Function('return (' + pose.holdLn + ')')(); delete pose.holdLn; }
+      window.FACEOPT77 = it.opt || undefined; o += `<g transform="translate(${it.x},${it.y}) scale(${it.s || .6})">${stick(pose)}</g>`; });
+    o += `</g>`; if (c.label) o += `<text x="${c.x + c.w / 2}" y="${c.labelTop ? c.y + (c.ls || 34) + 10 : c.y + c.h - 14}" text-anchor="middle" font-family="Inter, Arial" font-weight="800" font-size="${c.ls || 34}" fill="#3a3340" stroke="#f6f1e6" stroke-width="7" paint-order="stroke">${c.label}</text>`; });
+  s.innerHTML = o; };
+</script></body></html>

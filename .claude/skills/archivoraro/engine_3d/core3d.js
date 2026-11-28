@@ -9,12 +9,17 @@ function wordTimes(b) {
 const BEATS = SCRIPT.map((l, i) => Object.assign({}, l, VOICE.beats[i]));
 let _ss = 0; BEATS.forEach((b, i) => { if (i === 0 || BEATS[i - 1].sc !== b.sc) _ss = b.start; b.sStart = _ss; b.wt = wordTimes(b); });
 BEATS.forEach(b => { const grp = BEATS.filter(x => x.sStart === b.sStart); b.sDur = grp.reduce((a, x) => a + x.d, 0); b.B = grp.map(x => ({ s: x.start - b.sStart, d: x.d, lead: x.lead, vdur: x.vdur, w: x.wt.map(w => w + x.start - b.sStart) })); });
+window.__SCENES = {}; BEATS.forEach(b => { window.__SCENES[b.sc] = { sStart: b.sStart, sDur: b.sDur, B: b.B }; });
 const TOTAL = VOICE.total, CUT = TOTAL - VOICE.tail; window.TOTAL = TOTAL;
 const evAbs = {}; BEATS.filter(b => b.start === b.sStart).forEach(b => { const E = (EVS[b.sc] || (() => ({})))(b.B); for (const k in E) { const v = E[k]; evAbs[b.sc + '.' + k] = Array.isArray(v) ? v.map(x => x + b.sStart) : v + b.sStart; } });
 window.EVENTS = { total: TOTAL, cut: CUT, ev: evAbs, beats: BEATS.map(b => ({ start: b.start, d: b.d, sc: b.sc, cut: b.start === b.sStart, words: b.wt.map(w => w + b.start), lead: b.lead, vdur: b.vdur })) };
 // all caption words (absolute time, text, colour)
-const WORDS = []; BEATS.forEach(b => b.cap.split(' ').forEach((w, i) => { const [tx, c] = w.split('|'); WORDS.push([b.start + b.wt[i], tx.replace(/[.,…:;]+$/g, ''), c || '']); }));
-const ACC = { y: YEL, p: PINK, b: BLUE, g: GREEN };
+const WORDS = []; BEATS.forEach(b => b.cap.split(' ').forEach((w, i) => { const [tx, c] = w.split('|'); WORDS.push([b.start + b.wt[i], tx.replace(/[«»]/g, '').replace(/[.,…:;]+$/g, ''), c || '', tx]); }));
+// grupos de subtítulo: 2 palabras (1 si la palabra es larga o acaba en signo de puntuación; nunca juntar el final de una frase con el principio de otra)
+const GROUPS = []; { let cur = null; WORDS.forEach((w, i) => { const raw = (w[3] || w[1]); const end = /[.,…:;?!»]$/.test(raw);
+  if (!cur) cur = { t: w[0], ws: [] }; cur.ws.push(raw.replace(/[«»…]/g, '').toUpperCase()); cur.end = (WORDS[i + 1] ? WORDS[i + 1][0] : w[0] + .6);
+  const len = cur.ws.join(' ').length; if (cur.ws.length >= 2 || end || len > 11) { cur.txt = cur.ws.join(' '); GROUPS.push(cur); cur = null; } });
+  if (cur) { cur.txt = cur.ws.join(' '); GROUPS.push(cur); } }
 const fxEl = document.getElementById('fx'), capEl = document.getElementById('cap'), glEl = document.getElementById('gl');
 // ---------- camera transitions between shots (reference style: the camera flies / whips / pushes into the next shot, with motion blur) ----------
 // CFG.blurK (multiplica el desenfoque de las transiciones; <1 = más suave), CFG.antic (s de anticipación antes del cambio).
@@ -30,13 +35,14 @@ const TR = (() => { if (typeof W2 === 'undefined' || !W2.setCam) return null; co
   const fsvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); fsvg.setAttribute('width', 0); fsvg.setAttribute('height', 0); fsvg.style.position = 'absolute';
   fsvg.innerHTML = '<defs><filter id="mbH" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur id="mbHs" stdDeviation="0 0"/></filter><filter id="mbV" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur id="mbVs" stdDeviation="0 0"/></filter></defs>';
   // el desenfoque va SOLO al mundo (canvas 3D + capa de personajes), nunca al subtítulo: el texto queda nítido aunque la cámara se mueva
-  document.body.appendChild(fsvg); const setF = v => { glEl.style.filter = v; fxEl.style.filter = CFG.blurChars === false ? '' : v; };   // CFG.blurChars:false → los personajes nunca se desenfocan (regla del tutorial)
+  document.body.appendChild(fsvg); const setF = v => { glEl.style.filter = v; const g2 = document.getElementById('gl2'); if (g2) g2.style.filter = v; fxEl.style.filter = CFG.blurChars === false ? '' : v; };   // CFG.blurChars:false → los personajes nunca se desenfocan (regla del tutorial)
   function blur(kind, amt) { if (amt < .4) { setF(''); return; } if (kind === 'H') { document.getElementById('mbHs').setAttribute('stdDeviation', `${amt.toFixed(1)} ${(amt * .15).toFixed(1)}`); setF('url(#mbH)'); }
     else if (kind === 'R') setF(`blur(${(amt * .45).toFixed(1)}px)`); else { document.getElementById('mbVs').setAttribute('stdDeviation', `${(amt * .15).toFixed(1)} ${amt.toFixed(1)}`); setF('url(#mbV)'); } }
   return { st, probe, blur, V }; })();
 const sm = x => x * x * (3 - 2 * x), sm5 = x => x * x * x * (x * (x * 6 - 15) + 10);
 window.render = function (T) {
   window.__T = T;
+  const g2v = document.getElementById('gl2'); if (g2v) g2v.style.visibility = T >= CUT ? 'hidden' : 'visible';
   if (T >= CUT) { glEl.style.visibility = 'hidden'; fxEl.innerHTML = ''; capEl.innerHTML = ''; return; }
   glEl.style.visibility = 'visible';
   let bi = BEATS.findIndex(b => T >= b.start && T < b.start + b.d); if (bi < 0) bi = BEATS.length - 1;
@@ -50,13 +56,13 @@ window.render = function (T) {
     if (a && z) { inTr = true; const k = st / TD, e = sm5(k), V = TR.V, bump = Math.sin(Math.PI * k);
       TR.st.ov = () => { let p = a.p.clone().lerp(z.p, e), l = a.l.clone().lerp(z.l, e), f = a.f + (z.f - a.f) * e;
         if (kind === 'fly' || kind === 'pull') { const back = p.clone().sub(l).normalize(), D = a.p.distanceTo(z.p) + 6; p.addScaledVector(back, bump * D * (kind === 'pull' ? .9 : .45)); p.y += bump * D * .35; f += bump * 10; }
-        if (kind === 'push') { const fw = l.clone().sub(p).normalize(); p.addScaledVector(fw, bump * 5); f -= bump * 14; }
-        if (kind === 'swish') { const P0 = k < .5 ? a : z, fw = P0.l.clone().sub(P0.p), yaw = (k < .5 ? 1 : -1) * bump * 1.1, c = Math.cos(yaw), s2 = Math.sin(yaw); p = P0.p.clone(); f = P0.f; l = p.clone().add(new V(fw.x * c - fw.z * s2, fw.y, fw.x * s2 + fw.z * c)); }
+        if (kind === 'push') { const fw = l.clone().sub(p), dd = fw.length(); fw.normalize(); p.addScaledVector(fw, bump * Math.min(5, dd * (CFG.pushMax ?? 1))); f -= bump * 14; }
+        if (kind === 'swish') { const P0 = k < .5 ? a : z, fw = P0.l.clone().sub(P0.p), hf = Math.atan(Math.tan(P0.f * Math.PI / 360) * 1080 / 1920), yaw = (k < .5 ? 1 : -1) * bump * (CFG.swishRel ? CFG.swishRel * hf : (CFG.swishYaw ?? 1.1)), c = Math.cos(yaw), s2 = Math.sin(yaw); p = P0.p.clone(); f = P0.f; l = p.clone().add(new V(fw.x * c - fw.z * s2, fw.y, fw.x * s2 + fw.z * c)); }
         if (kind === 'whip') { const fw = l.clone().sub(p), yaw = bump * .75, c = Math.cos(yaw), s2 = Math.sin(yaw); l = p.clone().add(new V(fw.x * c - fw.z * s2, fw.y, fw.x * s2 + fw.z * c)); }
         return { p, l, f, apK: 1 - bump * .8 }; };
       // first half: the previous shot keeps its characters while the camera leaves; second half: the new shot (switch hidden at peak blur)
       svg = (k < .5 && kind !== 'glide' ? S[prev.sc](prev.sDur - .001, prev.sDur, prev.B) : S[b.sc](st, b.sDur, b.B)) || ''; TR.st.ov = null;
-      const amt = kind === 'glide' ? 0 : bump * (kind === 'whip' || kind === 'swish' ? 30 : kind === 'push' ? 14 : 18) * (CFG.blurK ?? 1); TR.blur(kind === 'whip' || kind === 'swish' ? 'H' : kind === 'push' ? 'R' : 'V', amt);
+      const amt = kind === 'glide' ? 0 : bump * (kind === 'whip' || kind === 'swish' ? 30 * (CFG.swishK ?? CFG.blurK ?? 1) : (kind === 'push' ? 14 : 18) * (CFG.blurK ?? 1)); TR.blur(kind === 'whip' || kind === 'swish' ? 'H' : kind === 'push' ? 'R' : 'V', amt);
       if (kind === 'push' && k < .5) svg += `<rect width="1080" height="1920" fill="#fff" opacity="${(.25 * Math.sin(Math.PI * k * 2)).toFixed(3)}"/>`; } }
   if (!inTr) svg = S[b.sc](st, b.sDur, b.B) || '';
   // the previous scene accelerates into the transition: last .18 s gets a little push + blur (anticipation)
@@ -66,10 +72,12 @@ window.render = function (T) {
   if (cutK < .1 && CFG.flash !== false && (!TR || kind === 'cut')) svg += `<rect width="1080" height="1920" fill="#fff" opacity="${(.18 * (1 - cutK / .1)).toFixed(3)}"/>`;
   svg += `<defs><radialGradient id="vg3" cx=".5" cy=".45" r=".8"><stop offset=".62" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".32"/></radialGradient></defs><rect width="1080" height="1920" fill="url(#vg3)"/>`;
   fxEl.innerHTML = svg;
-  // caption: one word, centre of the screen, pops in, stays until the next word
-  let w = null, wn = null; for (let i = 0; i < WORDS.length; i++) if (T >= WORDS[i][0] - .02) { w = WORDS[i]; wn = WORDS[i + 1]; }
-  let c = ''; if (w && (!wn || T < wn[0]) && T < w[0] + 1.4) { const k = clamp((T - w[0]) / .12), sc = 1.22 - .22 * eOut(k), col = ACC[w[2]] || '#ffffff', fs = CFG.capSize || 100;
-    c = `<g transform="translate(540,${CFG.capY || 880}) scale(${sc.toFixed(3)})"><text x="0" y="0" text-anchor="middle" font-family="Inter" font-weight="900" font-size="${fs}" letter-spacing="-2" fill="${col}" stroke="#14121c" stroke-width="${fs * .17}" stroke-linejoin="round" paint-order="stroke" style="filter:drop-shadow(0 8px 0 rgba(0,0,0,.35))">${w[1]}</text></g>`; }
+  // subtítulo como las referencias (24-11-2026): grupos de 1–2 palabras en MAYÚSCULAS, todo blanco, contorno negro grueso, a ~71 % de la altura,
+  // aparece el grupo entero cuando empieza su primera palabra y se queda hasta el siguiente grupo
+  let gi = -1; for (let i = 0; i < GROUPS.length; i++) if (T >= GROUPS[i].t - .02) gi = i;
+  let c = ''; const G = GROUPS[gi], GN = GROUPS[gi + 1];
+  if (G && (!GN || T < GN.t) && T < G.end + .35) { const k = clamp((T - G.t) / .1), sc = 1.08 - .08 * eOut(k), fs = CFG.capSize || 92;
+    c = `<g transform="translate(540,${CFG.capY || 1365}) scale(${sc.toFixed(3)})"><text x="0" y="0" text-anchor="middle" font-family="Inter" font-weight="900" font-size="${fs}" letter-spacing="-1" fill="#ffffff" stroke="#0e0c12" stroke-width="${(fs * .2).toFixed(1)}" stroke-linejoin="round" paint-order="stroke" style="filter:drop-shadow(0 5px 3px rgba(0,0,0,.45))">${G.txt}</text></g>`; }
   capEl.innerHTML = c;
 };
 window.render(0);

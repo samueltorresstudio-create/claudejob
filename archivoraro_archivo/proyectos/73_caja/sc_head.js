@@ -1,0 +1,79 @@
+// «El hombre que se mandó por correo» (73) — ESTILO 3D: world_caja.js + personajes 2D (cast73.js) + efectos (fx73.js).
+// Gancho en el fotograma 0: Reg dentro de la caja (abierta en corte), con la linterna; la cámara se aleja sin cortes hasta el avión sobre las nubes.
+window.CFG = { capY: 1500, capSize: 96, transDur: .32, blurK: .35, antic: .1, blurChars: false, transDefault: 'swish',
+  trans: { oscuras: 'cut', londres: 'swish', taller: 'cut', etiqueta: 'whip', niebla: 'cut', despega: 'swish', cuece: 'cut', tapa: 'swish', aguanta: 'cut', perth: 'swish', encasa: 'cut', sale: 'swish', cumple: 'swish', factura: 'whip', bucle: 'swish' } };
+const norm = w => w.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
+const EVS = {}; window.SCRIPT.forEach(l => { const ws = l.cap.split(' ').map(w => norm(w.split('|')[0])); const prev = EVS[l.sc]; const idx = window.SCRIPT.filter(x => x.sc === l.sc).indexOf(l);
+  EVS[l.sc] = B => { const o = prev ? prev(B) : {}; ws.forEach((w, i) => { const k = /^[0-9]/.test(w) ? '_' + w : w; if (k && !(k in o) && B[idx]) o[k] = B[idx].w[i]; }); return o; }; });
+const S = {}, W = W2;
+window.READY = Promise.resolve();
+let SHAKE = 0;
+{ const _sc = W2.setCam.bind(W2); W2.setCam = (p, l, f, fo, ap) => { const T = window.__T || 0, d = V3(Math.sin(T * 4.59) * .5 + Math.sin(T * 8.61) * .3, Math.sin(T * 5.3 + 1) * .5 + Math.sin(T * 9.7) * .25, 0).multiplyScalar(.012 * p.distanceTo(l) / 8);
+  const sh = SHAKE > 0 ? V3(Math.sin(T * 91) * SHAKE, Math.sin(T * 77 + 2) * SHAKE, 0) : V3(0, 0, 0); return _sc(p.clone().add(d).add(sh), l.clone().add(d.multiplyScalar(.35)).add(sh.multiplyScalar(.6)), f, fo, ap); }; }
+const cam = (p, l, f = 40, ap = .0022) => { W.setCam(p, l, f, p.distanceTo(l), ap); W.render(); };
+function sp(t, Ks) { const n = Ks.length; if (t <= Ks[0][0]) return Ks[0][1].clone(); if (t >= Ks[n - 1][0]) return Ks[n - 1][1].clone(); let i = 0; while (t > Ks[i + 1][0]) i++;
+  const u = (t - Ks[i][0]) / (Ks[i + 1][0] - Ks[i][0]), a = Ks[Math.max(0, i - 1)][1], b = Ks[i][1], c = Ks[i + 1][1], d = Ks[Math.min(n - 1, i + 2)][1], u2 = u * u, u3 = u2 * u;
+  const f = (p0, p1, p2, p3) => .5 * (2 * p1 + (-p0 + p2) * u + (2 * p0 - 5 * p1 + 4 * p2 - p3) * u2 + (-p0 + 3 * p1 - 3 * p2 + p3) * u3); return V3(f(a.x, b.x, c.x, d.x), f(a.y, b.y, c.y, d.y), f(a.z, b.z, c.z, d.z)); }
+function whipBlur(t, t0, dur = .22) { const k = clamp((t - t0 + dur / 2) / dur); if (k > 0 && k < 1 && typeof TR !== 'undefined' && TR) TR.blur('H', Math.sin(Math.PI * k) * 26); }
+const TORCHL = { tint: '#ffcf8a', k: .26, rim: '#ffe2a8', rimA: .7, rimX: 1, rimY: -.2 }, HOT = { tint: '#ffb070', k: .3, rim: '#ffe0a0', rimA: .6, rimX: -1, rimY: -.6 }, FOG = { tint: '#c8d0e0', k: .16, rim: '#e8f0ff', rimA: .45, rimX: -1, rimY: -.6 };
+// estado del mundo que cada escena puede tocar (se restablece en setup)
+function setup(T, o = {}) { W.setTime(T); W.setMood(o.mood || 'aire'); W.setFg(!!o.fg); W.charLight = o.light || IN; SHAKE = 0;
+  [W.CR, W.CRT, W.CRA, W.CRP].forEach(c => { c.userData.top.rotation.z = 0; }); W.CRP.position.set(.1, .51, 0); W.CRP.rotation.set(0, 0, 0); W.CRA.position.set(.1, .51, 0); W.CRA.rotation.set(0, 0, 0);
+  W.SUPT.children.forEach(c => c.visible = true); W.LIGHTS.torchL.color.set('#ffd08a'); W.ZG.casa && (W.ZG.casa.userData.door.rotation.y = 0); }
+const depth = L => L.filter(x => x && x[1]).map(([p, s]) => [W.camera.position.distanceTo(p), s]).sort((a, b) => b[0] - a[0]).map(x => x[1]).join('');
+const P_ = (name, pose, F, opt) => [F, who(name, pose, F, ADULT, opt)];
+const eIO2 = k => k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+const wp = (obj, x, y, z) => { obj.updateMatrixWorld(true); return V3(x, y, z).applyMatrix4(obj.matrixWorld); };
+const SITP = (seatY, footY) => ({ y0: seatY - .8026, legLen: (seatY - footY) / .6358, legL: [55, 58], legR: [55, 58] });
+// ---------- Reg dentro de una caja abierta (sentado con las piernas cruzadas; sombra propia, resplandor de linterna y su sombra en la pared) ----------
+const TORCHSVG = (ang) => `<g transform="rotate(${ang})"><rect x="-12" y="-13" width="74" height="26" rx="7" fill="#3a3842" stroke="${K}" stroke-width="5"/><rect x="6" y="-13" width="10" height="26" fill="#c9ced6" stroke="${K}" stroke-width="3"/><path d="M60,-15 L86,-24 L86,24 L60,15Z" fill="#5a5862" stroke="${K}" stroke-width="5" stroke-linejoin="round"/><ellipse cx="86" cy="0" rx="6" ry="22" fill="#fff6c0" stroke="${K}" stroke-width="3"/></g>`;
+function regInCrate(CRX, pose = {}, t = 0, o = {}) { const fl0 = wp(CRX, -.02, .07, 0), F = V3(fl0.x, fl0.y - .49, fl0.z), H = V3(F.x, F.y + 1.47, F.z);
+  const ang = o.tang ?? -78, torch = o.torch !== false, on = o.on ?? 1;
+  const P = Object.assign({ legLen: .56, legL: [84, 150], legR: [84, 150], armL: [40, 120], armR: [62, 70], holdR: torch ? TORCHSVG(ang) : null, face: 'wide', mouth: 'o', sweat: true, turn: .85 }, pose);
+  const pf = W.proj(F), ph = W.proj(H), s = Math.hypot(ph.x - pf.x, ph.y - pf.y) / 462; if (!pf.ok) return [F, ''];
+  const u = (ux, uy) => ({ x: pf.x + ux * s, y: pf.y + uy * s }), r = a => a * Math.PI / 180, [a1, a2] = P.armR, x1 = 44 + Math.sin(r(a1)) * 90, y1 = -360 + Math.cos(r(a1)) * 90, hx = x1 + Math.sin(r(a1 + a2)) * 86, hy = y1 + Math.cos(r(a1 + a2)) * 86;
+  const tip = u(hx + Math.cos(r(ang)) * 86, hy + Math.sin(r(ang)) * 86), fp = W.proj(fl0), q = 462 * s / 1.47, fl = 1 + Math.sin(t * 23) * .03 + Math.sin(t * 37) * .02;
+  const shadow = `<ellipse cx="${(fp.x + q * .02).toFixed(1)}" cy="${(fp.y - q * .02).toFixed(1)}" rx="${(q * .42).toFixed(1)}" ry="${(q * .09).toFixed(1)}" fill="#000" opacity=".38"/>`;
+  let s2 = shadow;
+  if (torch && on > .02) { const wall = W.proj(wp(CRX, -W.CRATE_W / 2 + .08, 1.45, .25));
+    s2 = `<defs><radialGradient id="tg"><stop offset="0" stop-color="#ffe7a8" stop-opacity="${(.5 * fl * on).toFixed(2)}"/><stop offset=".5" stop-color="#ffb860" stop-opacity="${(.18 * on).toFixed(2)}"/><stop offset="1" stop-color="#ff9a40" stop-opacity="0"/></radialGradient></defs>` +
+      `<ellipse cx="${wall.x.toFixed(1)}" cy="${wall.y.toFixed(1)}" rx="${(q * .8 * fl).toFixed(1)}" ry="${(q * .62 * fl).toFixed(1)}" fill="url(#tg)"/>` +
+      shadow; }
+  const reg = who('REG', P, F, H, { shadow: false });
+  let beam = ''; if (torch && on > .02) { const Lb = q * .62; beam = `<defs><linearGradient id="tb" x1="0" x2="1"><stop offset="0" stop-color="#fff2c0" stop-opacity="${(.6 * on).toFixed(2)}"/><stop offset="1" stop-color="#ffd890" stop-opacity="0"/></linearGradient></defs><g transform="translate(${tip.x.toFixed(1)},${tip.y.toFixed(1)}) rotate(${ang})"><path d="M0,${(-q * .05).toFixed(1)} L${Lb.toFixed(1)},${(-Lb * .34).toFixed(1)} L${Lb.toFixed(1)},${(Lb * .34).toFixed(1)} L0,${(q * .05).toFixed(1)}Z" fill="url(#tb)"/>`;
+    for (let i = 0; i < 16; i++) { const k = ((hs(i, 3) + t * .05 * (1 + hs(i, 4))) % 1), x = k * Lb, y = (hs(i, 7) - .5) * x * .6 + Math.sin(t * 2 + i) * 4; beam += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(q * (.006 + hs(i, 9) * .01)).toFixed(1)}" fill="#fff6d8" opacity="${(.75 * (1 - k) * on).toFixed(2)}"/>`; } beam += `</g>`; }
+  return [F, s2 + reg + beam, { H, q, ph, s }]; }
+// ---------- utilería 2D ----------
+const WALLET = `<g transform="rotate(-10)"><rect x="-46" y="-34" width="92" height="60" rx="8" fill="#6a3a1e" stroke="${K}" stroke-width="6"/><path d="M-46,-12 L46,-12" stroke="${K}" stroke-width="4"/><rect x="-40" y="-30" width="80" height="14" fill="#3a1e0e"/></g>`;
+const PHOTO = `<g transform="rotate(8)"><rect x="-44" y="-96" width="88" height="104" fill="#f6f2e6" stroke="${K}" stroke-width="6"/><rect x="-34" y="-86" width="68" height="70" fill="#9fc8ef"/><circle cx="0" cy="-58" r="20" fill="#fff" stroke="${K}" stroke-width="4"/><path d="M-26,-62 Q-30,-40 -22,-30 M26,-62 Q30,-40 22,-30" stroke="#c89a5a" stroke-width="9" fill="none"/><path d="M-20,-74 Q0,-90 20,-74" stroke="#c89a5a" stroke-width="10" fill="none"/><path d="M-8,-52 Q0,-46 8,-52" stroke="${K}" stroke-width="3" fill="none"/><path d="M-18,-16 Q0,-30 18,-16Z" fill="#f0883a" stroke="${K}" stroke-width="4"/></g>`;
+const STAMP = `<g transform="rotate(0)"><rect x="-10" y="-120" width="20" height="70" rx="8" fill="#7a4a22" stroke="${K}" stroke-width="5"/><circle cx="0" cy="-124" r="18" fill="#7a4a22" stroke="${K}" stroke-width="5"/><rect x="-40" y="-52" width="80" height="22" rx="4" fill="#3a3a40" stroke="${K}" stroke-width="5"/><rect x="-36" y="-32" width="72" height="12" fill="#c42e2c" stroke="${K}" stroke-width="3"/></g>`;
+const HAMMER = `<g transform="rotate(-30)"><rect x="-7" y="-130" width="14" height="140" rx="6" fill="#9a6a3a" stroke="${K}" stroke-width="5"/><rect x="-40" y="-160" width="80" height="34" rx="6" fill="#5a5a62" stroke="${K}" stroke-width="5"/></g>`;
+const ENVEL = `<g transform="rotate(-8)"><rect x="-58" y="-86" width="116" height="78" rx="6" fill="#f2e6c4" stroke="${K}" stroke-width="6"/><path d="M-58,-86 L0,-44 L58,-86" stroke="${K}" stroke-width="5" fill="none"/>` + `<g transform="translate(-40,-80)">` + [0, 1, 2, 3].map(i => `<rect x="${i * 20}" y="66" width="10" height="6" fill="${i % 2 ? '#2f5fb0' : '#c42e2c'}"/>`).join('') + `</g></g>`;
+const GLASS = `<g transform="rotate(-10)"><path d="M-16,-70 L16,-70 L8,-40 L-8,-40Z" fill="#ffe8a0" fill-opacity=".85" stroke="${K}" stroke-width="5" stroke-linejoin="round"/><path d="M0,-40 L0,-10 M-14,-8 L14,-8" stroke="${K}" stroke-width="5"/></g>`;
+const SHADES = `<g><rect x="-150" y="-490" width="300" height="60" rx="20" fill="none"/></g>`;
+// factura en primer plano (tarjeta de papel)
+function invoice2d(x, y, s, k) { if (k <= 0) return ''; const sc = s * (.6 + .4 * eBack(clamp(k))); return `<g transform="translate(${x},${y}) scale(${sc.toFixed(3)}) rotate(-4)"><rect x="-230" y="-300" width="460" height="600" fill="#f6f2e6" stroke="${K}" stroke-width="10"/>` +
+  `<text x="0" y="-220" text-anchor="middle" font-family="Inter" font-weight="900" font-size="64" fill="${K}">FACTURA</text><path d="M-190,-180 L190,-180" stroke="${K}" stroke-width="6"/>` +
+  [['Transporte aéreo', -110], ['1 paquete «zapatos»', -50], ['Londres → Perth', 10], ['Peso: 1 hombre', 70]].map(([t2, yy]) => `<text x="-190" y="${yy}" font-family="Inter" font-weight="700" font-size="36" fill="#4a4450">${t2}</text>`).join('') +
+  `<path d="M-190,130 L190,130" stroke="${K}" stroke-width="4" stroke-dasharray="10 8"/><text x="-190" y="210" font-family="Inter" font-weight="900" font-size="54" fill="#c42e2c">A PAGAR</text><text x="190" y="210" text-anchor="end" font-family="Inter" font-weight="900" font-size="54" fill="#c42e2c">£££</text></g>`; }
+function paperPlane(x, y, s, rot) { return `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) rotate(${rot.toFixed(1)}) scale(${s.toFixed(3)})"><path d="M-80,0 L80,-10 L-50,-40Z" fill="#f6f2e6" stroke="${K}" stroke-width="6" stroke-linejoin="round"/><path d="M-80,0 L80,-10 L-40,30Z" fill="#e2dccc" stroke="${K}" stroke-width="6" stroke-linejoin="round"/></g>`; }
+function grawlix(x, y, s, t, k) { if (k <= 0 || k >= 1) return ''; const sy = ['#', '@', '!', '$', '%', '&']; let o = `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${(s * (.8 + .2 * eBack(clamp(k * 4)))).toFixed(3)})"><path d="M-150,-70 Q-160,-140 -40,-150 Q90,-160 150,-110 Q190,-50 120,-10 L60,0 L30,50 L20,-2 L-90,0 Q-150,-10 -150,-70Z" fill="#fff" stroke="${K}" stroke-width="8" stroke-linejoin="round"/>`;
+  for (let i = 0; i < 5; i++) o += `<text x="${-100 + i * 50}" y="${-55 + Math.sin(t * 20 + i) * 6}" text-anchor="middle" font-family="Inter" font-weight="900" font-size="56" fill="${['#c42e2c', '#1b1720', '#2f5fb0'][i % 3]}" transform="rotate(${(hs(i, Math.floor(t * 8)) - .5) * 30} ${-100 + i * 50} -70)">${sy[(i + Math.floor(t * 9)) % 6]}</text>`;
+  return o + `</g>`; }
+function confetti(t, k, n = 70) { if (k <= 0) return ''; let o = ''; const cols = ['#c42e2c', '#e8b830', '#2f6fbf', '#3a8a5a', '#f08a3a', '#9a5ac8']; for (let i = 0; i < n; i++) { const x = 540 + (hs(i, 1) - .5) * 1100 * Math.min(1, k * 2), y = -40 + k * 900 * (.5 + hs(i, 2)) + Math.sin(t * 3 + i) * 20, r = (hs(i, 3) * 360 + t * 300 * (hs(i, 4) - .5));
+  o += `<rect x="${(x - 9).toFixed(1)}" y="${(y - 5).toFixed(1)}" width="18" height="10" fill="${cols[i % 6]}" transform="rotate(${r.toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})" opacity="${clamp(2 - k).toFixed(2)}"/>`; } return o; }
+function heatOverlay(k, t) { if (k <= 0) return ''; let o = `<rect width="1080" height="1920" fill="#ff6a20" opacity="${(.16 * k).toFixed(3)}" style="mix-blend-mode:multiply"/>`; for (let i = 0; i < 7; i++) { const x = 80 + i * 150, y = 1920 - ((t * 160 + i * 300) % 2200);
+  o += `<path d="M${x},${y} q20,-40 0,-80 q-20,-40 0,-80 q20,-40 0,-80" stroke="#fff3d0" stroke-width="6" fill="none" opacity="${(.3 * k).toFixed(2)}" stroke-linecap="round"/>`; } return o; }
+function bulb(x, y, s, k) { if (k <= 0) return ''; const sc = s * eBack(clamp(k * 2)); return `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${sc.toFixed(3)})">` + [0, 1, 2, 3, 4, 5, 6].map(i => { const a = -Math.PI / 2 + (i - 3) * .42; return `<path d="M${Math.cos(a) * 70},${Math.sin(a) * 70} L${Math.cos(a) * 100},${Math.sin(a) * 100}" stroke="#ffd34a" stroke-width="10" stroke-linecap="round"/>`; }).join('') +
+  `<circle r="46" fill="#ffe680" stroke="${K}" stroke-width="7"/><rect x="-20" y="40" width="40" height="30" rx="6" fill="#c9ced6" stroke="${K}" stroke-width="6"/><path d="M-14,0 Q0,-24 14,0" stroke="${K}" stroke-width="5" fill="none"/></g>`; }
+const blackout = a => a > 0 ? `<rect width="1080" height="1920" fill="#06060a" opacity="${clamp(a).toFixed(3)}"/>` : '';
+// ojos en la oscuridad (pantalla)
+function darkEyes(x, y, s, t) { const bl = (t % 2.2) > 2.05 ? .1 : 1; return [-1, 1].map(sd => `<ellipse cx="${(x + sd * 34 * s).toFixed(1)}" cy="${y.toFixed(1)}" rx="${(22 * s).toFixed(1)}" ry="${(24 * s * bl).toFixed(1)}" fill="#f6f2e6"/><circle cx="${(x + sd * 34 * s + 4 * s).toFixed(1)}" cy="${(y + 2 * s).toFixed(1)}" r="${(9 * s * bl).toFixed(1)}" fill="${K}"/>`).join(''); }
+
+const hand2d = (x, y, s, r = 0) => `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) rotate(${r.toFixed(0)}) scale(${s.toFixed(3)})"><ellipse cx="0" cy="0" rx="34" ry="42" fill="${K}"/><ellipse cx="-30" cy="-12" rx="12" ry="20" fill="${K}" transform="rotate(30 -30 -12)"/></g>`;
+const tension = (x, y, r, t, n = 8) => { let o = ''; for (let i = 0; i < n; i++) { const a = i / n * 6.283 + t * .4, r0 = r * (1 + .08 * Math.sin(t * 20 + i)); o += `<path d="M${(x + Math.cos(a) * r0).toFixed(1)},${(y + Math.sin(a) * r0).toFixed(1)} L${(x + Math.cos(a) * r0 * 1.25).toFixed(1)},${(y + Math.sin(a) * r0 * 1.25).toFixed(1)}" stroke="#ff4f5a" stroke-width="10" stroke-linecap="round" opacity=".85"/>`; } return o; };
+
+// lágrimas limpias: gotas que nacen en el rabillo de los ojos cerrados y bajan por la mejilla (unidades del muñeco → pantalla con toScr)
+function tears2d(F, t, turn = 0) { let o = ''; [-1, 1].forEach(sd => { for (let k = 0; k < 3; k++) { const ph = (t * .9 + k / 3 + (sd > 0 ? .17 : 0)) % 1, ex = sd * 44 + turn * 26, y = -466 + ph * 70, x = ex + sd * ph * 10;
+  const p = toScr(F, x, y), r = 7 * p.q * (1 - ph * .3); o += `<path d="M${p.x.toFixed(1)},${(p.y - r * 1.8).toFixed(1)} Q${(p.x + r).toFixed(1)},${(p.y - r * .2).toFixed(1)} ${p.x.toFixed(1)},${(p.y + r).toFixed(1)} Q${(p.x - r).toFixed(1)},${(p.y - r * .2).toFixed(1)} ${p.x.toFixed(1)},${(p.y - r * 1.8).toFixed(1)}Z" fill="#8fd0ff" stroke="${K}" stroke-width="${(2.2 * p.q).toFixed(1)}" opacity="${(1 - ph).toFixed(2)}"/>`; } }); return o; }
+const toScr = (F, ux, uy) => { const a = W.proj(F), h = headScr(F), q = (a.y - h.y) / 462; return { x: a.x + ux * q, y: a.y + uy * q, q }; };

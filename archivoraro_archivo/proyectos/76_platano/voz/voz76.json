@@ -1,0 +1,247 @@
+[
+{
+"l": 0,
+"t": "Compras un plátano por seis millones de dólares.",
+"r": "plan",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 0,
+"t": "Y te lo comes.",
+"r": "seco",
+"sp": 0.92,
+"p": 0.5
+},
+{
+"l": 1,
+"t": "Todo empieza en Miami, en dos mil diecinueve.",
+"r": "narr",
+"sp": 1,
+"p": 0.25
+},
+{
+"l": 2,
+"t": "En una pared blanca, un plátano pegado con cinta americana.",
+"r": "narr",
+"sp": 1,
+"p": 0.25
+},
+{
+"l": 3,
+"t": "Cuesta ciento veinte mil dólares.",
+"r": "remate",
+"sp": 0.96,
+"p": 0.45
+},
+{
+"l": 4,
+"t": "Crees que es una broma.",
+"r": "seco",
+"sp": 1,
+"p": 0.4
+},
+{
+"l": 5,
+"t": "¿Es de oro?",
+"r": "plan",
+"sp": 1,
+"p": 0.15
+},
+{
+"l": 5,
+"t": "¡No!",
+"r": "seco",
+"sp": 1,
+"p": 0.25
+},
+{
+"l": 5,
+"t": "¿Lo hizo un genio?",
+"r": "plan",
+"sp": 1,
+"p": 0.15
+},
+{
+"l": 5,
+"t": "¡No!",
+"r": "seco",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 5,
+"t": "Es un plátano.",
+"r": "seco",
+"sp": 0.95,
+"p": 0.3
+},
+{
+"l": 5,
+"t": "Y se venden dos.",
+"r": "remate",
+"sp": 0.95,
+"p": 0.5
+},
+{
+"l": 6,
+"t": "Con cada uno te dan un papel.",
+"r": "narr",
+"sp": 1,
+"p": 0.2
+},
+{
+"l": 6,
+"t": "Nada más.",
+"r": "seco",
+"sp": 0.95,
+"p": 0.45
+},
+{
+"l": 7,
+"t": "Hay cola para hacerse fotos.",
+"r": "alegre",
+"sp": 1,
+"p": 0.25
+},
+{
+"l": 7,
+"t": "Un artista se acerca, lo arranca,",
+"r": "serio",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 7,
+"t": "y se lo come.",
+"r": "seco",
+"sp": 0.92,
+"p": 0.55
+},
+{
+"l": 8,
+"t": "Cinco años después, sale a subasta, en Nueva York.",
+"r": "narr",
+"sp": 1,
+"p": 0.2
+},
+{
+"l": 9,
+"t": "Calculan un millón y medio, como mucho.",
+"r": "seco",
+"sp": 1,
+"p": 0.35
+},
+{
+"l": 10,
+"t": "Las pujas no paran.",
+"r": "alegre",
+"sp": 1,
+"p": 0.2
+},
+{
+"l": 10,
+"t": "¡Seis millones doscientos mil dólares!",
+"r": "alegre",
+"sp": 0.95,
+"p": 0.5
+},
+{
+"l": 11,
+"t": "El ganador, un empresario de criptomonedas, lo presenta ante las cámaras,",
+"r": "narr",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 11,
+"t": "y se lo come.",
+"r": "seco",
+"sp": 0.92,
+"p": 0.5
+},
+{
+"l": 12,
+"t": "¿Idiota? Verás.",
+"r": "plan",
+"sp": 0.95,
+"p": 0.4
+},
+{
+"l": 13,
+"t": "Aquel papel es un certificado: catorce páginas de instrucciones.",
+"r": "serio",
+"sp": 1,
+"p": 0.25
+},
+{
+"l": 13,
+"t": "Cómo colgarlo y cada cuánto cambiarlo.",
+"r": "narr",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 13,
+"t": "Lo que compras es la idea.",
+"r": "serio",
+"sp": 1,
+"p": 0.2
+},
+{
+"l": 13,
+"t": "El plátano cuesta unos céntimos.",
+"r": "seco",
+"sp": 1,
+"p": 0.4
+},
+{
+"l": 14,
+"t": "Puedes comerte el plátano,",
+"r": "alegre",
+"sp": 1,
+"p": 0.2
+},
+{
+"l": 14,
+"t": "y colgar otro.",
+"r": "remate",
+"sp": 0.95,
+"p": 0.45
+},
+{
+"l": 15,
+"t": "¿Y el frutero que se lo vendió?",
+"r": "plan",
+"sp": 1,
+"p": 0.2
+},
+{
+"l": 15,
+"t": "Por unos céntimos.",
+"r": "seco",
+"sp": 1,
+"p": 0.3
+},
+{
+"l": 15,
+"t": "De agradecimiento, el comprador le prometió cien mil plátanos más.",
+"r": "alegre",
+"sp": 1,
+"p": 0.45
+},
+{
+"l": 16,
+"t": "Seis millones, de un bocado.",
+"r": "remate",
+"sp": 0.92,
+"p": 0.4
+},
+{
+"l": 16,
+"t": "Y mañana, otro plátano en la pared.",
+"r": "remate",
+"sp": 0.9,
+"p": 0.3
+}
+]

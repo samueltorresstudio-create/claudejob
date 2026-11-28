@@ -1,0 +1,3 @@
+#!/bin/bash
+# uso: ./tshot.sh out.png '{json}' ...
+cd "$(dirname "$0")"; PAGE=test76.html node shot.js "$@"

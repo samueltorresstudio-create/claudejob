@@ -1,0 +1,104 @@
+[
+ {
+  "sc": "gancho",
+  "say": "Compras un plátano por seis millones de dólares… y te lo comes.",
+  "cap": "COMPRAS UN PLÁTANO|y POR SEIS MILLONES|g DE DÓLARES… Y TE LO COMES.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "miami",
+  "say": "Todo empieza en Miami, en 2019.",
+  "cap": "TODO EMPIEZA EN MIAMI,|b EN 2019.|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "miami",
+  "say": "En una pared blanca, un plátano pegado con cinta americana.",
+  "cap": "EN UNA PARED BLANCA, UN PLÁTANO|y PEGADO CON CINTA|b AMERICANA.",
+  "pause": 0.1
+ },
+ {
+  "sc": "precio",
+  "say": "Cuesta 120.000 dólares.",
+  "cap": "CUESTA 120.000|g DÓLARES.",
+  "pause": 0.1
+ },
+ {
+  "sc": "precio",
+  "say": "Crees que es una broma.",
+  "cap": "CREES QUE ES UNA BROMA.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "dudas",
+  "say": "¿Es de oro? No. ¿Lo hizo un genio? No. Es un plátano. Y se venden dos.",
+  "cap": "¿ES DE ORO?|y NO.|p ¿LO HIZO UN GENIO?|b NO.|p ES UN PLÁTANO.|y Y SE VENDEN DOS.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "papel",
+  "say": "Con cada uno te dan un papel. Nada más.",
+  "cap": "CON CADA UNO TE DAN UN PAPEL.|y NADA MÁS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "come",
+  "say": "Hay cola para hacerse fotos. Un artista se acerca… lo arranca… y se lo come.",
+  "cap": "HAY COLA PARA HACERSE FOTOS.|b UN ARTISTA SE ACERCA… LO ARRANCA…|p Y SE LO COME.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "subasta",
+  "say": "Cinco años después, sale a subasta, en Nueva York.",
+  "cap": "CINCO AÑOS|y DESPUÉS, SALE A SUBASTA,|b EN NUEVA YORK.",
+  "pause": 0.1
+ },
+ {
+  "sc": "subasta",
+  "say": "Calculan un millón y medio, como mucho.",
+  "cap": "CALCULAN UN MILLÓN|g Y MEDIO, COMO MUCHO.",
+  "pause": 0.1
+ },
+ {
+  "sc": "subasta",
+  "say": "Las pujas no paran. Seis millones doscientos mil dólares.",
+  "cap": "LAS PUJAS NO PARAN.|p ¡SEIS MILLONES|g DOSCIENTOS MIL|g DÓLARES!",
+  "pause": 0.1
+ },
+ {
+  "sc": "ganador",
+  "say": "El ganador, un empresario de criptomonedas, lo presenta ante las cámaras… y se lo come.",
+  "cap": "EL GANADOR,|y UN EMPRESARIO DE CRIPTOMONEDAS,|b LO PRESENTA ANTE LAS CÁMARAS… Y SE LO COME.|p",
+  "pause": 0.1
+ },
+ {
+  "sc": "veras",
+  "say": "¿Idiota? Verás.",
+  "cap": "¿IDIOTA?|p VERÁS.|y",
+  "pause": 0.1
+ },
+ {
+  "sc": "certificado",
+  "say": "Aquel papel es un certificado: catorce páginas de instrucciones. Cómo colgarlo y cada cuánto cambiarlo. Lo que compras es la idea; el plátano cuesta unos céntimos.",
+  "cap": "AQUEL PAPEL ES UN CERTIFICADO:|y CATORCE PÁGINAS|b DE INSTRUCCIONES. CÓMO COLGARLO Y CADA CUÁNTO CAMBIARLO. LO QUE COMPRAS ES LA IDEA;|y EL PLÁTANO CUESTA UNOS CÉNTIMOS.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "otro",
+  "say": "Puedes comerte el plátano… y colgar otro.",
+  "cap": "PUEDES COMERTE EL PLÁTANO…|y Y COLGAR OTRO.|g",
+  "pause": 0.1
+ },
+ {
+  "sc": "frutero",
+  "say": "¿Y el frutero que se lo vendió? Por unos céntimos. De agradecimiento, el comprador le prometió cien mil plátanos más.",
+  "cap": "¿Y EL FRUTERO|g QUE SE LO VENDIÓ? POR UNOS CÉNTIMOS.|p DE AGRADECIMIENTO, EL COMPRADOR LE PROMETIÓ CIEN MIL|y PLÁTANOS|y MÁS.",
+  "pause": 0.1
+ },
+ {
+  "sc": "final",
+  "say": "Seis millones… de un bocado. Y mañana, otro plátano… en la pared.",
+  "cap": "SEIS MILLONES…|g DE UN BOCADO.|p Y MAÑANA, OTRO PLÁTANO…|y EN LA PARED.",
+  "pause": 0.1
+ }
+]

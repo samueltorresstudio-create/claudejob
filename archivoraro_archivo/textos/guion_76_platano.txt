@@ -1,0 +1,45 @@
+GUION 76 · EL PLÁTANO DE SEIS MILLONES (Cattelan, «Comedian», 2019 → Sotheby's 2024) — v3, ESTILO DE LAS CUENTAS DE REFERENCIA
+Para ElevenLabs (Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural») o voz local clonada (references/voz_local.md). 185 palabras ≈ 62–63 s. 3 etiquetas suaves.
+Molde de references/guion_estilo_virales.md (analizado de @Celyxi, @JapanimationCLIPS, @Emuuexplains y la bomba): gancho paradójico en 2.ª persona, pista sembrada que se cobra al final, hipótesis descartadas, «Verás» tardío, escalada, chiste extra y bucle.
+Pista sembrada: «Con cada uno te dan un papel» (a los ~15 s) → es el certificado (~40 s).
+(v1 y v2 guardadas: guion_76_platano_v1.txt / _v2.txt)
+
+Compras un plátano por seis millones de dólares… y te lo comes.
+
+Todo empieza en Miami, en 2019. En una pared blanca, un plátano pegado con cinta americana. Cuesta ciento veinte mil dólares.
+
+Crees que es una broma.
+
+¿Es de oro? No. ¿Lo hizo un genio? No. Es un plátano. Y se venden dos.
+
+Con cada uno te dan un papel. Nada más.
+
+Hay cola para hacerse fotos. Un artista se acerca… lo arranca… [deadpan] y se lo come.
+
+Cinco años después, sale a subasta, en Nueva York. Calculan un millón y medio, como mucho.
+
+[amazed] Las pujas no paran. Seis millones doscientos mil dólares.
+
+El ganador, un empresario de criptomonedas, lo presenta ante las cámaras… y se lo come.
+
+¿Idiota? Verás.
+
+Aquel papel es un certificado: catorce páginas de instrucciones. Cómo colgarlo y cada cuánto cambiarlo. Lo que compras es la idea; el plátano cuesta unos céntimos.
+
+Puedes comerte el plátano… y colgar otro.
+
+¿Y el frutero que se lo vendió? Por unos céntimos. De agradecimiento, el comprador le prometió cien mil plátanos más.
+
+[deadpan] [slowly] Seis millones… de un bocado. Y mañana, otro plátano… en la pared.
+
+---
+DATOS y CUIDADOS: iguales que en v2 (ver guion_76_platano_v2.txt). «Es una broma» = reacción general. «Se venden dos» = dos de las tres copias a 120.000 $ cada una (la tercera, 150.000 $). El papel = certificado de autenticidad con instrucciones (14 páginas según NYT/Smithsonian). No decir precio exacto del plátano ni que Sun siga siendo hoy el dueño.
+
+OPCIONES DE GANCHO VISUAL (0–3 s) propuestas al usuario el 23-11-2026 (elige una; recomendada A→B→F):
+A) Atraco a un plátano: sala oscura, láseres rojos, guardia sudando; la cámara empuja y la «joya» es un plátano pegado con cinta.
+B) Mordisco: primerísimo plano de la boca abierta, CRUNCH, flashes de cámaras, martillazo de subasta.
+C) La cinta: macro del rollo de cinta americana, RIIIP, se pega sobre el plátano con un golpe y la cámara se aleja a toda la galería en silencio.
+D) Lluvia de oro: sacos y monedas caen sobre el plátano pegado; la pared aguanta; el martillo sube en cámara lenta.
+E) Desfile del plátano: plátano girando bajo focos como una joya, flashes de paparazzis, un «¡ooooh!» y una mosca que aterriza.
+F) Cuenta atrás de podredumbre: time-lapse verde → amarillo → manchas → negro con moscas; una mano pega otro nuevo (sirve de bucle al final).
+Calidad de atrezo pedida: plátano con curva real, estrías, punta y rabo marrones, brillo y contorno grueso, manchas que crecen; cinta plateada con arrugas, borde rasgado y brillo; pared de galería con foco, sombra del plátano y cuadros enormes a los lados para que el plátano destaque. Solo subtítulo como texto en pantalla (el precio se enseña con monedas/sacos, no con cifras).

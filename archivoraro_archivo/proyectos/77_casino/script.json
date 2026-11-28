@@ -1,0 +1,14 @@
+[
+ {"sc":"gancho","say":"Entras en un casino a las ocho de la tarde. Sales sin saber qué hora es. No es casualidad.","cap":"ENTRAS EN UN CASINO|y A LAS OCHO DE LA TARDE.|b SALES SIN SABER QUÉ HORA ES.|p NO ES CASUALIDAD.|y","pause":0.1},
+ {"sc":"regla1","say":"Primera regla: nada que te recuerde el mundo de fuera. Ni ventanas, ni relojes.","cap":"PRIMERA REGLA:|y NADA QUE TE RECUERDE|b EL MUNDO DE FUERA.|g NI VENTANAS, NI RELOJES.|p","pause":0.1},
+ {"sc":"jefe","say":"Un hombre que dirigía casinos en Las Vegas lo comprobó.","cap":"UN HOMBRE QUE DIRIGÍA|b CASINOS EN LAS VEGAS|y LO COMPROBÓ.|g","pause":0.1},
+ {"sc":"cristal","say":"Tenía un lado de cristal… y, según él, entre el ochenta y cinco y el noventa por ciento de los clientes dejaban de jugar al ver la luz del día. Así que lo tapó.","cap":"TENÍA UN LADO DE CRISTAL…|b Y, SEGÚN ÉL,|y ENTRE EL 85 Y EL 90 POR CIENTO|g DE LOS CLIENTES DEJABAN DE JUGAR|p AL VER LA LUZ DEL DÍA.|y ASÍ QUE LO TAPÓ.|b","pause":0.1},
+ {"sc":"relojes","say":"Con los relojes se dice lo mismo: sin ellos, no sabes cuánto llevas.","cap":"CON LOS RELOJES|y SE DICE LO MISMO:|b SIN ELLOS, NO SABES|g CUÁNTO LLEVAS.|p","pause":0.1},
+ {"sc":"regla2","say":"Segunda regla: que no puedas irte en línea recta.","cap":"SEGUNDA REGLA:|y QUE NO PUEDAS IRTE|b EN LÍNEA RECTA.|g","pause":0.1},
+ {"sc":"laberinto","say":"Ese mismo hombre diseñaba casinos como laberintos: pasillos cortos y estrechos, techos bajos. Y siempre hay algo más allá de la esquina.","cap":"ESE MISMO HOMBRE DISEÑABA|b CASINOS COMO LABERINTOS:|y PASILLOS CORTOS Y ESTRECHOS,|g TECHOS BAJOS.|p Y SIEMPRE HAY ALGO|y MÁS ALLÁ DE LA ESQUINA.|b","pause":0.1},
+ {"sc":"regla3","say":"Tercera regla: que perder no suene a perder.","cap":"TERCERA REGLA:|y QUE PERDER|b NO SUENE A PERDER.|p","pause":0.1},
+ {"sc":"perdida","say":"Se llama pérdida disfrazada de ganancia. Apuestas diez, la máquina te devuelve uno… y suena la música, y se encienden las luces, como si hubieras ganado.","cap":"SE LLAMA PÉRDIDA|y DISFRAZADA DE GANANCIA.|g APUESTAS DIEZ,|b LA MÁQUINA TE DEVUELVE UNO…|p Y SUENA LA MÚSICA,|y Y SE ENCIENDEN LAS LUCES,|g COMO SI HUBIERAS GANADO.|p","pause":0.1},
+ {"sc":"lab","say":"Unos investigadores de una universidad de Canadá midieron a los jugadores. Su cuerpo reaccionaba casi igual que con una ganancia de verdad. Y recordaban más victorias de las que tuvieron.","cap":"UNOS INVESTIGADORES|b DE UNA UNIVERSIDAD DE CANADÁ|y MIDIERON A LOS JUGADORES.|g SU CUERPO REACCIONABA|p CASI IGUAL QUE CON UNA|y GANANCIA DE VERDAD.|b Y RECORDABAN MÁS VICTORIAS|g DE LAS QUE TUVIERON.|p","pause":0.1},
+ {"sc":"bolsillo","say":"Hoy casi nadie necesita un reloj en la pared: llevas uno en el bolsillo.","cap":"HOY CASI NADIE NECESITA|y UN RELOJ EN LA PARED:|b LLEVAS UNO|g EN EL BOLSILLO.|p","pause":0.1},
+ {"sc":"final","say":"Pero la máquina sigue celebrando… que pierdes.","cap":"PERO LA MÁQUINA|y SIGUE CELEBRANDO…|b QUE PIERDES.|p","pause":0.1}
+]

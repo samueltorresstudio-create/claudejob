@@ -1,0 +1,39 @@
+77 · LOS DOCE VECINOS QUE FINGIERON SER TRES MIL — PROPUESTA (23-11-2026) · fábula inventada, base: «aldeas Potemkin» (decorados para engañar a un inspector). Fusiona: «el pueblo que desapareció» + «ilógico con sentido» + cuenta atrás + doble giro + bucle.
+Cumple gusto del usuario: imagen imposible en 2 s · plan que escala · nada político · emoción · personajes reutilizables (12 personas, muchos disfraces).
+
+GANCHO (0–4 s): plaza llena de gente; a los 1,5 s la cámara pasa por detrás y se ve que es CARTÓN sujeto con palos, con una abuela sosteniendo el último. Frase: «Doce personas convencieron a un inspector de que su pueblo tenía tres mil habitantes.»
+(alternativa: «Este pueblo tenía doce vecinos… y lo hizo pasar por una ciudad.»)
+
+GUION (≈175 palabras, voz «alegre», números en letra):
+Doce personas convencieron a un inspector de que su pueblo tenía tres mil habitantes.
+Una ley decía que, con menos de tres mil, cerraban el centro de salud. Y en el pueblo vivían doce. Doce.
+El inspector llegaba a mediodía. Tenían cuatro horas.
+Primero, las casas vacías: ventanas pintadas en cartón, con una luz detrás.
+Después, la plaza: cuarenta muñecos de cartón y un altavoz con ruido de gente.
+El único autobús daba la vuelta a la manzana. Y otra vez. Y otra.
+Y la abuela Pilar, con doce sombreros distintos, cruzaba la plaza cada cinco minutos.
+Entonces llegó el inspector. Cuatro horas antes.
+Corrieron. El panadero hizo de cola entera. El cura, de coro.
+El inspector lo anotaba todo, sin decir una palabra.
+Al final abrió el maletín, y dijo: «Sé contar. Y llevo todo el día contando a la misma abuela.»
+Se quedaron helados.
+Pero sacó el sello y firmó: tres mil.
+«Nadie se disfraza siete veces por un sitio que no quiere.»
+Un año después volvió. Sin maletín. Con una maleta.
+Ya eran trece.
+
+ESTRUCTURA (63 s):
+0–4    Gancho: plaza «llena» → cámara detrás: cartón.
+4–10   Ley y los doce vecinos (retratos rápidos, cada uno con cara y gesto distintos; sin rubor).
+10–14  Reloj de la torre: «cuatro horas». Tic-tac.
+14–30  Montaje de trucos, uno cada ~2,5 s; la plaza SE LLENA visiblemente (medidor sin texto: más y más figuras).
+30–34  GIRO 1: campana; el inspector llega cuatro horas antes. Todo en la cara de Pilar (sombrero a medio poner).
+34–48  Carrera: doble plano (lo que ve él / lo que pasa detrás de las casas); Pilar cambia de sombrero por 7.ª vez.
+48–54  GIRO 2: abre el maletín: «Sé contar.»
+54–60  Firma: tres mil. Frase final.
+60–63  Un año después: maleta. «Ya eran trece.» Corte a negro.
+
+RETENCIÓN: pregunta abierta en el segundo 4 («¿cómo?») · «encuentra a la abuela» (reconocer a Pilar en cada plano) · reloj en cuenta atrás · dos giros (llega antes / sabía) · bucle: «Doce…» ↔ «Ya eran trece» (al repetir cambia el sentido) · cambio de plano cada 2–3 s con transición y cámara siempre en movimiento.
+PERSONAJES (cabezas con más detalle, SIN rubor): Pilar (arrugas, gafas de cadena, moño), panadero (cejas gruesas, harina en la ceja), médico (ojeras), cura, alcalde (bigote de lado), niño con diente de menos, inspector (frente grande, gafas finas, maletín, labios apretados) y 5 vecinos más.
+ESCENARIO (Blender): plaza de pueblo con iglesia de torre y reloj, panadería, centro de salud, fachadas de cartón por detrás con andamio de palos (visible solo en los planos «por detrás»).
+SONIDO: marimba traviesa, tic-tac, murmullo falso de multitud, campana, sello al firmar.

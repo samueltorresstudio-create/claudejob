@@ -5,7 +5,7 @@ description: Crea vídeos verticales animados para el canal «Archivo Raro» (Ti
 
 # Archivo Raro
 
-Canal en español de historias de supervivencia, misterio y terror suave. **Desde noviembre de 2026 el estilo por defecto es el ESTILO 3D** (`references/estilo3d.md`): mundo en 3D con contorno y luz de cine, personajes 2D de cabeza redonda blanca y cuerpo-prenda, subtítulo de una palabra en el centro y corte final a negro. El estilo vectorial antiguo (personajes redondos con HUD amarillo, `engine/`) queda solo para retocar vídeos o series ya hechos con él. El usuario habla español de España; contéstale siempre así, de forma directa y breve. Él pone la voz con ElevenLabs; tú haces todo lo demás.
+Canal en español de historias de supervivencia, misterio y terror suave. **Desde el 20-11-2026 el usuario quiere TODO el 3D hecho con Blender** (`bpy` por pip; ver `archivoraro_archivo/CONTEXTO.md`, apartado Blender, y los errores del 73 que no se pueden repetir). **Lee SIEMPRE `references/reglas_75.md`**: reglas obligatorias que el usuario pidió tras el 75 (escenarios con lógica, sin bugs ni parpadeos, andar, cámara siempre en movimiento, expresiones, fondos con detalle). **Desde noviembre de 2026 el estilo por defecto es el ESTILO 3D** (`references/estilo3d.md`): mundo en 3D con contorno y luz de cine, personajes 2D de cabeza redonda blanca y cuerpo-prenda, subtítulo de una palabra en el centro y corte final a negro. El estilo vectorial antiguo (personajes redondos con HUD amarillo, `engine/`) queda solo para retocar vídeos o series ya hechos con él. El usuario habla español de España; contéstale siempre así, de forma directa y breve. Él pone la voz con ElevenLabs; tú haces todo lo demás.
 
 El motor ya está hecho: personajes con decenas de rasgos, decorados, cámara, subtítulos, sonido sintetizado y render. Tu trabajo es dirigir: buena historia, buenos planos, buen sonido y cero errores de lógica. Los dos vídeos de `example/` son el listón de calidad.
 
@@ -21,13 +21,15 @@ El motor ya está hecho: personajes con decenas de rasgos, decorados, cámara, s
 | pide un **suceso real de una sola parte** (rescates, supervivencia real, «al estilo de los mineros / Sabelotodo») | Usa el **estilo SUCESOS** (`references/sucesos.md`): siluetas sin rostro, fondos pintados con textura, objetos en primer plano, comparaciones de escala, subtítulos arriba. **No** los personajes redondos con cara del canal. |
 | señala un fallo de un vídeo | Arréglalo, re-renderiza solo el tramo afectado y vuelve a entregar. |
 
-No puedes generar la voz: si quiere el vídeo, necesitas su MP3. Al darle el guion, recuérdale la voz: Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural».
+**Voz:** desde el 75 puedes generarla tú con su propia voz clonada (VoiceStudio/OmniVoice en local, sin ElevenLabs): `references/voz_local.md`. Si prefiere ElevenLabs, recuérdale: Eleven v3, voz «Stickmans» (la suya), estabilidad «Natural», y espera su MP3.
 
 ## Referencias (léelas cuando toque)
 
 - `references/banco_ideas.md` — **banco de ideas de curiosidades reales** con gancho y datos contrastados (y qué hay que decir con cuidado). Míralo cuando pida ideas; añade las nuevas y marca las hechas.
+- `references/camara_animacion.md` — **OBLIGATORIO en cada vídeo (28-11-2026)**: cámara siempre en movimiento (`followcam.js`), cero personajes recortados (`check_cam.js`), personajes vivos (`pj99/life.js`), luz y color. Se comprueba con números antes de renderizar.
 - `references/estilo3d.md` — **ESTILO 3D (por defecto)**: motor `engine_3d/` (mundo three.js con contorno, noche con neones, personajes `stick.js` + `hair.js`, luz del sitio sobre los personajes, subtítulo de una palabra), reglas de personajes y ropa que pidió el usuario, cámara y montaje, velocidades. Ejemplo `example/gravedad_3d/`.
 
+- `references/guion_estilo_virales.md` — **molde de guion de las cuentas de referencia** (@Celyxi, @JapanimationCLIPS, @Emuuexplains, la bomba): gancho paradójico en 2.ª persona, pista sembrada, hipótesis descartadas, «Verás» tardío, escalada, bucle. Úsalo para TODO guion nuevo.
 - `references/ideas.md` — fórmulas de gancho, estructura de serie y de vídeo suelto, duraciones, revisión de lógica, formato del guion para ElevenLabs.
 - `references/engine.md` — cómo funciona el motor, `script.json`, `scenes_p.js`, todas las opciones de personajes, helpers y atrezo.
 - `references/sound.md` — `audio.py`: API del mezclador, estructura de la banda sonora y recetas de efectos.

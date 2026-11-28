@@ -1,0 +1,33 @@
+GUION 76 · EL PLÁTANO DE SEIS MILLONES (Maurizio Cattelan, «Comedian», 2019 → Sotheby's 2024) — v1, humor seco
+Para ElevenLabs (Eleven v3, «Edoardo – Dark Measured Natural», estabilidad «Natural») o para clonar con la voz local (references/voz_local.md). 3 etiquetas suaves. Objetivo ≈ 62–63 s.
+Historia real (idea #7 de la tanda de dinero del 23-11-2026). Estructura del preso: parece absurdo → todos se ríen → «Verás» con la lógica escondida → golpe → bucle con el gancho.
+
+Un hombre se come un plátano de seis millones de dólares… y no ha tirado el dinero.
+
+Todo empieza en Miami, en 2019. Un artista, Maurizio Cattelan, pega un plátano a la pared con cinta americana. Sin marco ni cartel. Solo el plátano.
+
+«¡Es una broma!», dicen todos. Pero se venden dos copias, por ciento veinte mil dólares cada una.
+
+La gente hace cola para fotografiarlo. Un artista lo arranca y se lo come delante de todos.
+
+Verás: nadie ha comprado la fruta. Han comprado un certificado, con catorce páginas de instrucciones: cómo colgarlo y cada cuánto cambiarlo.
+
+[deadpan] El plátano cuesta unos céntimos. La idea, lo que alguien pague por ella.
+
+Cinco años después, sale a subasta en Nueva York. Calculan un millón y medio, como mucho.
+
+[amazed] Se vende por seis millones doscientos mil dólares.
+
+El comprador, un empresario de criptomonedas, se lo come ante las cámaras. Dice que está más rico que los otros.
+
+Pero la obra no era el plátano: el certificado sigue siendo suyo, y con él puede colgar otro.
+
+[deadpan] [slowly] Seis millones… de un bocado. Y mañana, otro plátano nuevo… en la pared.
+
+---
+GANCHO (primera frase): «Un hombre se come un plátano de seis millones de dólares… y no ha tirado el dinero.» (imagen más fuerte + pregunta abierta; el final responde y enlaza con el bucle).
+Alternativas: A) «Alguien pega un plátano a la pared con cinta… y otro paga ciento veinte mil dólares.» (cronológica, más suave) · B) «El plátano más caro del mundo se pudre cada pocos días.» (contradicción en una frase).
+
+DATOS COMPROBADOS (23-11-2026): Comedian, Cattelan, galería Perrotin, Art Basel Miami Beach, dic. 2019; tres ediciones: dos vendidas a 120.000 $ y la tercera a 150.000 $ (no decir «tres vendidas a 120.000»); el artista David Datuna lo arrancó y se lo comió (lo tituló «Hungry Artist»); el certificado de autenticidad lleva instrucciones detalladas (14 páginas con diagramas según la prensa: NYT/Smithsonian) de cómo instalarlo y reponer el plátano; subasta Sotheby's Nueva York, nov. 2024: estimación 1–1,5 M$, 6,2 M$ con comisiones (5,2 M$ de martillo); comprador Justin Sun (empresario de criptomonedas); se lo comió el 29-11-2024 en una rueda de prensa en Hong Kong y dijo que sabía «mucho mejor» que otros; recibe el certificado y las instrucciones para reponerlo.
+CUIDADO: no decir el precio exacto del plátano (solo «unos céntimos»), ni la altura de colocación, ni «cada 3 días» (solo se cita en una fuente); no decir que la galería puso otro plátano tras comérselo Datuna (no confirmado); no afirmar que Sun siga siendo hoy el dueño (solo se confirma que recibió el certificado). «Es una broma» es la reacción general del público, no una cita de nadie concreto.
+Fuentes: fortune.com/2024/11/21/justin-sun-tron-comedian-banana-artwork-sothebys-elon-musk-space · theartnewspaper.com/2019/12/04/maurizio-cattelan-presents-first-new-work-for-a-fair-in-15-yearsand-it-is-a-banana-priced-at-dollar120000 · designboom.com/art/maurizio-cattelan-banana-art-basel-miami-12-06-2019 · foxbusiness.com/lifestyle/crypto-entrepreneur-pays-6-2m-viral-banana-artwork-eats · en.wikipedia.org/wiki/Comedian_(artwork) · smithsonianmag.com/smart-news/these-bananas-duct-taped-to-the-wall-are-worth-millions-hungry-museumgoers-keep-eating-them-180987017

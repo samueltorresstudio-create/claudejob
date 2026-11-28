@@ -3,12 +3,13 @@
   // SALA DEL TRONO (corte de Francia, 1340): x ∈ [-7, 7], z ∈ [-16, 12], 11 m de alto. Trono al fondo (z = -14.2) sobre una tarima de 3 escalones,
   // alfombra azul con lises desde el portón (z = 12) hasta la tarima, columnas con estandartes, vidrieras con haces de luz a la izquierda, tapiz de lises y rosetón.
   // =====================================================================================================
+  const WEAVE = texHB(256, 256, (g, H, w, h) => weave(H, w, h, 4), .6).bump; WEAVE.repeat.set(12, 12);
   const HX0 = -7, HX1 = 7, HZ0 = -16, HZ1 = 12, HH = 11;
   const inHall = p => p.x > HX0 - 2 && p.x < HX1 + 2 && p.z > HZ0 - 2 && p.z < HZ1 + 8 && p.y < HH + 1;
   const goldT = tex(256, 256, (g, w, h) => { const gr = g.createLinearGradient(0, 0, w, h); gr.addColorStop(0, '#f6d46a'); gr.addColorStop(.5, '#d8a63a'); gr.addColorStop(1, '#b8862a'); g.fillStyle = gr; g.fillRect(0, 0, w, h); for (let i = 0; i < 60; i++) { g.strokeStyle = `rgba(${rnd() > .5 ? '255,240,190' : '120,80,20'},${.15 + rnd() * .2})`; g.lineWidth = 1 + rnd() * 3; g.beginPath(); const x = rnd() * w, y = rnd() * h; g.moveTo(x, y); g.lineTo(x + (rnd() - .5) * 60, y + (rnd() - .5) * 60); g.stroke(); } noise(g, w, h, 3000, ['rgba(0,0,0,.06)', 'rgba(255,255,255,.08)']); });
-  const GOLD = STD({ map: goldT, color: '#ffffff', metalness: .25, roughness: .4, emissive: '#3a2400', emissiveIntensity: .18 });
-  const GOLDD = STD({ map: goldT, color: '#c8a070', metalness: .25, roughness: .45, emissive: '#2a1800', emissiveIntensity: .15 });
-  const IRON = STD({ color: '#3a3a42', metalness: .45, roughness: .5 });
+  const GOLD = STD({ map: goldT, color: '#ffe2a0', metalness: .85, roughness: .3, envMapIntensity: 1.3, emissive: '#3a2400', emissiveIntensity: .06 });
+  const GOLDD = STD({ map: goldT, color: '#d8b070', metalness: .8, roughness: .38, envMapIntensity: 1.2, emissive: '#2a1800', emissiveIntensity: .05 });
+  const IRON = STD({ color: '#34343c', metalness: .75, roughness: .42 });
   const flameM = new T.MeshBasicMaterial({ color: '#ffd27a', transparent: true, opacity: .95, depthWrite: false });
   const flameM2 = new T.MeshBasicMaterial({ color: '#ff9a3a', transparent: true, opacity: .72, depthWrite: false });
   const FLAMES = [];   // [malla, fase] para el parpadeo
@@ -30,18 +31,15 @@
   const drawLis = (g, x, y, s, col) => { g.save(); g.translate(x, y); g.scale(s / 60, s / 60); g.fillStyle = col; g.strokeStyle = 'rgba(60,40,0,.65)'; g.lineWidth = 3;
     const p = new Path2D('M0,-34 C9,-24 11,-12 4,-2 L-4,-2 C-11,-12 -9,-24 0,-34Z M-5,0 C-14,-2 -26,-8 -26,-20 C-26,-28 -18,-32 -12,-28 C-18,-26 -18,-18 -12,-14 C-8,-10 -6,-6 -5,0Z M5,0 C14,-2 26,-8 26,-20 C26,-28 18,-32 12,-28 C18,-26 18,-18 12,-14 C8,-10 6,-6 5,0Z M-14,0 L14,0 L14,7 L-14,7Z M-4,7 C-6,14 -12,20 -18,22 L-4,22 L0,12 L4,22 L18,22 C12,20 6,14 4,7Z');
     g.fill(p); g.stroke(p); g.restore(); };
-  const stoneWarm = STD({ map: tex(512, 512, (g, w, h) => { g.fillStyle = '#7e766a'; g.fillRect(0, 0, w, h); const rows = 8, bh = h / rows;
-    for (let r = 0; r < rows; r++) { let x = -(r % 2) * 40; while (x < w) { const bw = 70 + rnd() * 60; const c = new T.Color('#cbbfa4').offsetHSL((rnd() - .5) * .02, (rnd() - .5) * .06, (rnd() - .5) * .08); g.fillStyle = '#' + c.getHexString(); g.fillRect(x + 3, r * bh + 3, bw - 6, bh - 6);
-      g.fillStyle = 'rgba(255,255,255,.12)'; g.fillRect(x + 3, r * bh + 3, bw - 6, 3); g.fillStyle = 'rgba(0,0,0,.14)'; g.fillRect(x + 3, r * bh + bh - 7, bw - 6, 4); x += bw; } }
-    noise(g, w, h, 12000, ['rgba(0,0,0,.06)', 'rgba(255,255,255,.05)']); blot(g, w, h, 8, 'rgba(60,40,20,.12)', 30, 90); }), roughness: .95 });
-  const carpetT = tex(256, 1024, (g, w, h) => { g.fillStyle = '#1f3a8f'; g.fillRect(0, 0, w, h); noise(g, w, h, 8000, ['rgba(0,0,0,.08)', 'rgba(255,255,255,.04)']);
-    for (let y = 64; y < h; y += 128) drawLis(g, w / 2, y, 56, '#e0b03a');
-    g.fillStyle = '#e8b830'; g.fillRect(0, 0, 22, h); g.fillRect(w - 22, 0, 22, h); g.fillStyle = '#a8241e'; g.fillRect(22, 0, 8, h); g.fillRect(w - 30, 0, 8, h); });
+  const stoneWarm = PBR(ashlar('#c6b89c', '#5e574b', 5), { roughness: .93, bump: 3 })
+  const carpetTX = fabricPBR((g, w, h) => { g.fillStyle = '#26408a'; g.fillRect(0, 0, w, h); blot(g, w, h, 30, 'rgba(0,0,0,.08)', 20, 90);
+    for (let y = 64; y < h; y += 128) drawLis(g, w / 2, y, 56, '#d4a83c');
+    g.fillStyle = '#d8a83a'; g.fillRect(0, 0, 22, h); g.fillRect(w - 22, 0, 22, h); g.fillStyle = '#962420'; g.fillRect(22, 0, 8, h); g.fillRect(w - 30, 0, 8, h); blot(g, w, h, 14, 'rgba(255,255,255,.04)', 20, 60); }, 256, 1024), carpetT = carpetTX.map, carpetB = carpetTX.bump
   carpetT.wrapT = T.RepeatWrapping;
-  const redCarpetM = STD({ map: tex(256, 256, (g, w, h) => { g.fillStyle = '#8a1f22'; g.fillRect(0, 0, w, h); noise(g, w, h, 6000, ['rgba(0,0,0,.1)', 'rgba(255,255,255,.04)']); }), roughness: 1 });
+  const redCarpetM = PBR(fabricPBR((g, w, h) => { g.fillStyle = '#6a1a1c'; g.fillRect(0, 0, w, h); blot(g, w, h, 20, 'rgba(0,0,0,.12)', 15, 60); blot(g, w, h, 10, 'rgba(255,200,180,.05)', 15, 50); }), { roughness: 1, bump: .8 })
 
   // ---------- suelo, paredes y techo ----------
-  floorXZ(HX0, HX1, HZ0, HZ1 + 6, 0, STD({ map: marbleT('#eadfc6', '#8a2f2c'), roughness: .34 }), 4);
+  floorXZ(HX0, HX1, HZ0, HZ1 + 6, 0, PBR(marblePBR('#d8ceb6', '#56544c'), { roughness: .18, bump: .5, envMapIntensity: 1.1 }), 4);
   wallZY(HZ0, HZ1, 0, HH, HX0, stoneWarm, 3, -1); wallZY(HZ0, HZ1, 0, HH, HX1, stoneWarm, 3, 1);
   wallXY(HX0, HX1, 0, HH, HZ0, stoneWarm, 3);
   // pared del portón (agujero central 3.6 × 6)
@@ -50,12 +48,12 @@
   // zócalo de madera y friso pintado azul con lises a lo largo de las paredes laterales
   [HX0 + .06, HX1 - .06].forEach((x, i) => { add(RB(.1, 1.1, HZ1 - HZ0, .02), MAT.woodDk, x, .55, (HZ0 + HZ1) / 2);
     const fr = tex(2048, 128, (g, w, h) => { lisPattern(g, w, h, '#22408f', '#e0b03a', 128, 70); g.fillStyle = '#e8b830'; g.fillRect(0, 0, w, 10); g.fillRect(0, h - 10, w, 10); });
-    add(new T.PlaneGeometry(HZ1 - HZ0, .9), STD({ map: fr, roughness: .8 }), x + (i ? -.04 : .04), 5.9, (HZ0 + HZ1) / 2, { ry: i ? -Math.PI / 2 : Math.PI / 2, cast: false, noInk: true }); });
+    add(new T.PlaneGeometry(HZ1 - HZ0, .9), STD({ map: fr, bumpMap: WEAVE, bumpScale: .6, roughness: .85 }), x + (i ? -.04 : .04), 5.9, (HZ0 + HZ1) / 2, { ry: i ? -Math.PI / 2 : Math.PI / 2, cast: false, noInk: true }); });
   // techo de vigas
-  floorXZ(HX0, HX1, HZ0, HZ1, HH, STD({ map: planksT('#4a2e1c'), roughness: .9 }), 3, { rx: Math.PI / 2 });
+  floorXZ(HX0, HX1, HZ0, HZ1, HH, PBR(planksPBR('#4a2e1c', 8), { roughness: .85 }), 3, { rx: Math.PI / 2 });
   for (let z = HZ0 + 1; z < HZ1; z += 2.4) add(RB(HX1 - HX0, .45, .4, .04), MAT.woodDk, 0, HH - .3, z);
   // ---------- columnas con estandartes ----------
-  const colM = STD({ map: tex(256, 512, (g, w, h) => { g.fillStyle = '#d8c6a0'; g.fillRect(0, 0, w, h); for (let k = 0; k < 9; k++) { g.fillStyle = 'rgba(0,0,0,.12)'; g.fillRect(0, k * h / 9, w, 3); } noise(g, w, h, 6000, ['rgba(0,0,0,.06)', 'rgba(255,255,255,.06)']); for (let k = 0; k < 6; k++) { g.fillStyle = 'rgba(0,0,0,.08)'; g.fillRect(k * w / 6, 0, 6, h); } }), roughness: .9 });
+  const colM = PBR(ashlar('#d4c4a2', '#7e7260', 9, 512), { roughness: .9, bump: 2 })
   const banT = (c1, c2) => tex(256, 768, (g, w, h) => { g.clearRect(0, 0, w, h); g.fillStyle = c1; g.beginPath(); g.moveTo(0, 0); g.lineTo(w, 0); g.lineTo(w, h); g.lineTo(w / 2, h * .86); g.lineTo(0, h); g.closePath(); g.fill();
     noise(g, w, h * .86, 3000, ['rgba(0,0,0,.08)', 'rgba(255,255,255,.05)']); drawLis(g, w / 2, h * .3, 150, c2); drawLis(g, w / 2 - 60, h * .58, 70, c2); drawLis(g, w / 2 + 60, h * .58, 70, c2);
     g.strokeStyle = c2; g.lineWidth = 14; g.beginPath(); g.moveTo(10, 0); g.lineTo(10, h - 14); g.lineTo(w / 2, h * .86 - 10); g.lineTo(w - 10, h - 14); g.lineTo(w - 10, 0); g.stroke(); });
@@ -73,9 +71,9 @@
     drawLis(g, w / 2, h * .45, 120, '#f4d26a'); g.strokeStyle = '#1b1720'; g.lineWidth = 10; g.strokeRect(0, 0, w, h); });
   const archShape = (w, h) => { const s = new T.Shape(); s.moveTo(-w / 2, 0); s.lineTo(-w / 2, h - w * .6); s.quadraticCurveTo(-w / 2, h - w * .05, 0, h); s.quadraticCurveTo(w / 2, h - w * .05, w / 2, h - w * .6); s.lineTo(w / 2, 0); s.closePath(); return s; };
   const shaftT = tex(64, 256, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(255,236,190,.55)'); gr.addColorStop(.7, 'rgba(255,226,170,.18)'); gr.addColorStop(1, 'rgba(255,220,160,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
-  const shaftM = new T.MeshBasicMaterial({ map: shaftT, transparent: true, depthWrite: false, blending: T.AdditiveBlending, side: T.DoubleSide, opacity: .55 });
+  const shaftM = new T.MeshBasicMaterial({ map: shaftT, transparent: true, depthWrite: false, blending: T.AdditiveBlending, side: T.DoubleSide, opacity: .55 }); shaftM.visible = false;
   const patchT = tex(128, 256, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 4, w / 2, h / 2, w * .9); gr.addColorStop(0, 'rgba(255,236,190,.65)'); gr.addColorStop(1, 'rgba(255,236,190,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
-  const patchM = new T.MeshBasicMaterial({ map: patchT, transparent: true, depthWrite: false, blending: T.AdditiveBlending, opacity: .5 });
+  const patchM = new T.MeshBasicMaterial({ map: patchT, transparent: true, depthWrite: false, blending: T.AdditiveBlending, opacity: .5 }); patchM.visible = false;
   [-11, -6, -1, 4, 9].forEach(z => { const g = new T.Group(); g.position.set(HX0 + .08, 3.4, z - 2.5); g.rotation.y = Math.PI / 2; scene.add(g);
     const sh = archShape(1.5, 4.4); add(new T.ShapeGeometry(sh), STD({ map: glassT(), emissive: '#ffffff', emissiveMap: null, emissiveIntensity: .0, roughness: .6 }), 0, 0, .02, { parent: g, cast: false, noInk: true }).material.emissiveMap = null;
     const m = g.children[g.children.length - 1]; m.material = new T.MeshBasicMaterial({ map: glassT() });
@@ -85,6 +83,11 @@
     q.setAttribute('position', new T.Float32BufferAttribute([...A, ...B, ...C, ...A, ...C, ...D], 3)); q.setAttribute('uv', new T.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1], 2));
     const shf = new T.Mesh(q, shaftM); shf.renderOrder = 8; shf.userData.noInk = true; scene.add(shf);
     add(new T.PlaneGeometry(2.2, 1.6), patchM, HX0 + 4.6, .015, z - 2, { rx: -Math.PI / 2, cast: false, noInk: true }).renderOrder = 7; });
+  // arcos apuntados entre columnas (arquería gótica a lo largo de la nave)
+  { const ring = (w, h, w2, h2) => { const o = archShape(w, h); o.holes.push(new T.Path(archShape(w2, h2).getPoints(32))); return o; };
+    const ag = new T.ExtrudeGeometry(ring(5.0, 3.0, 4.2, 2.55), { depth: .5, bevelEnabled: true, bevelThickness: .03, bevelSize: .03, bevelSegments: 1 });
+    [-1, 1].forEach(sd => [-11, -6, -1, 4].forEach(z => { const m = add(ag, colM, sd * 4.7 - .25 * sd, 7.9, z + 2.5, { ry: Math.PI / 2 }); m.position.x = sd * 4.7 - (sd > 0 ? .25 : -.25); }));
+    [-1, 1].forEach(sd => [-11, -6, -1, 4, 9].forEach(z => { add(new T.CylinderGeometry(.56, .44, .35, 20), GOLDD, sd * 4.7, 7.75, z); add(new T.CylinderGeometry(.5, .5, .12, 20), colM, sd * 4.7, 7.95, z); })); }
   // ventanas altas a la derecha (sin haz, solo luz de cielo)
   [-11, -6, -1, 4, 9].forEach(z => { const g = new T.Group(); g.position.set(HX1 - .08, 4.2, z - 2.5); g.rotation.y = -Math.PI / 2; scene.add(g);
     add(new T.ShapeGeometry(archShape(1.3, 3.6)), new T.MeshBasicMaterial({ map: glassT() }), 0, 0, .02, { parent: g, cast: false, noInk: true });
@@ -94,20 +97,26 @@
   const THRONE = new T.Vector3(0, .75, -14.0);   // asiento del trono (centro), el rey mira hacia +z
   [[0, 3.6, -11.2], [1, 3.0, -11.75], [2, 2.4, -12.3]].forEach(([k, hw, z0]) => { const y0 = k * .25; BX(-hw, hw, y0, y0 + .25, -15.6, z0, redCarpetM); add(RB(hw * 2 + .04, .05, .06, .01), GOLD, 0, y0 + .25, z0 + .01); });
   // alfombra azul desde el portón a la tarima
-  add(new T.PlaneGeometry(2.6, HZ1 + 6 - (-11.2)), STD({ map: carpetT, roughness: 1 }), 0, .012, (HZ1 + 6 - 11.2) / 2, { rx: -Math.PI / 2, cast: false, noInk: true }).material.map.repeat.set(1, 8);
+  add(new T.PlaneGeometry(2.6, HZ1 + 6 - (-11.2)), STD({ map: carpetT, bumpMap: carpetB, bumpScale: 1, roughness: 1 }), 0, .012, (HZ1 + 6 - 11.2) / 2, { rx: -Math.PI / 2, cast: false, noInk: true }).material.map.repeat.set(1, 8); carpetB.repeat.set(1, 8);
   // trono
-  { const g = new T.Group(); g.position.copy(THRONE); scene.add(g);
+  // asiento a 1,29 m (los pies del rey en la tarima, 0,75): brazos ALTOS y metidos hacia dentro para que tapen los costados del rey sentado.
+  // Las piezas marcadas con fg (brazos, pomos y cojín) se pintan también POR ENCIMA de los personajes cuando la escena lo pide (setFg).
+  const FGO = [];
+  { const g = new T.Group(); g.position.copy(THRONE); scene.add(g); const fg = m => { m.userData.fg = true; FGO.push(m); return m; };
     const velvet = STD({ map: tex(256, 512, (gg, w, h) => lisPattern(gg, w, h, '#22408f', '#e8b830', 96, 52)), roughness: 1 });
-    add(RB(1.3, .42, 1.0, .06), GOLD, 0, .0, 0, { parent: g }); add(RB(1.1, .14, .86, .06), STD({ color: '#22408f', roughness: 1 }), 0, .28, .04, { parent: g });
+    add(RB(1.4, .62, 1.0, .05), GOLD, 0, .1, 0, { parent: g }); add(RB(1.2, .05, 1.02, .02), GOLDD, 0, -.16, 0, { parent: g });
+    add(RB(.98, .16, .9, .06), STD({ color: '#22408f', roughness: .95, bumpMap: WEAVE, bumpScale: .6 }), 0, .47, .02, { parent: g }); add(RB(1.0, .04, .06, .02), GOLDD, 0, .4, .48, { parent: g });
     const back = new T.ExtrudeGeometry(archShape(1.4, 2.9), { depth: .18, bevelEnabled: true, bevelThickness: .03, bevelSize: .03, bevelSegments: 2 }); add(back, GOLD, 0, .1, -.5, { parent: g });
-    add(new T.ShapeGeometry(archShape(1.05, 2.4)), velvet, 0, .3, -.24, { parent: g, cast: false, noInk: true }); add(new T.TorusGeometry(.2, .035, 8, 24), GOLDD, 0, 2.55, -.24, { parent: g }); add(new T.SphereGeometry(.08, 12, 10), STD({ color: '#c8243a', roughness: .3 }), 0, 2.55, -.22, { parent: g });
-    [-1, 1].forEach(sd => { add(RB(.16, .5, .9, .04), GOLD, sd * .66, .42, .05, { parent: g }); add(new T.SphereGeometry(.13, 16, 12), GOLD, sd * .66, .74, .48, { parent: g });
+    add(new T.ShapeGeometry(archShape(1.05, 2.4)), velvet, 0, .45, -.24, { parent: g, cast: false, noInk: true }); add(new T.TorusGeometry(.2, .035, 8, 24), GOLDD, 0, 2.6, -.24, { parent: g }); add(new T.SphereGeometry(.08, 12, 10), STD({ color: '#c8243a', roughness: .3 }), 0, 2.6, -.22, { parent: g });
+    [-1, 1].forEach(sd => { fg(add(RB(.17, .44, .98, .05), GOLD, sd * .57, .72, .02, { parent: g })); fg(add(RB(.22, .06, 1.02, .03), GOLDD, sd * .57, .96, .02, { parent: g }));
+      fg(add(new T.SphereGeometry(.13, 18, 14), GOLD, sd * .57, 1.07, .47, { parent: g })); fg(add(new T.CylinderGeometry(.07, .1, .1, 14), GOLDD, sd * .57, .97, .47, { parent: g }));
       add(new T.ConeGeometry(.09, .4, 12), GOLD, sd * .62, 2.86, -.42, { parent: g }); add(new T.SphereGeometry(.07, 12, 10), GOLD, sd * .62, 3.1, -.42, { parent: g }); });
-    add(new T.ConeGeometry(.11, .5, 12), GOLD, 0, 3.2, -.42, { parent: g }); add(new T.SphereGeometry(.09, 12, 10), GOLD, 0, 3.5, -.42, { parent: g });
-    add(RB(.9, .12, .5, .03), GOLDD, 0, -.26, .6, { parent: g }); }
+    add(new T.ConeGeometry(.11, .5, 12), GOLD, 0, 3.2, -.42, { parent: g }); add(new T.SphereGeometry(.09, 12, 10), GOLD, 0, 3.5, -.42, { parent: g }); }
   // tapiz de lises detrás del trono
-  { const tp = tex(1024, 1024, (g, w, h) => { lisPattern(g, w, h, '#22408f', '#e0b03a', 128, 76, '#e8b830'); for (let x = 20; x < w; x += 18) { g.fillStyle = '#e8b830'; g.fillRect(x, h - 18, 8, 18); } });
-    add(new T.PlaneGeometry(6.4, 6.6), STD({ map: tp, roughness: .95 }), 0, 4.9, HZ0 + .05, { cast: false, noInk: true }); add(new T.CylinderGeometry(.06, .06, 6.8, 12), GOLD, 0, 8.25, HZ0 + .12, { rz: Math.PI / 2 });
+  { const tp = tex(1024, 1024, (g, w, h) => { lisPattern(g, w, h, '#1e3470', '#c9a040', 128, 76, '#c9a040'); for (let x = 20; x < w; x += 18) { g.fillStyle = '#e8b830'; g.fillRect(x, h - 18, 8, 18); } });
+    { const tg = new T.PlaneGeometry(6.4, 6.6, 96, 1), pa = tg.attributes.position; for (let i = 0; i < pa.count; i++) { const x = pa.getX(i), y = pa.getY(i); pa.setZ(i, (Math.sin(x * 4.2) * .5 + Math.sin(x * 9.7 + 1) * .2) * .07 * (.6 + .4 * (3.3 - y) / 6.6)); } tg.computeVertexNormals();
+      add(tg, STD({ map: tp, bumpMap: WEAVE, bumpScale: .8, roughness: .9, sheen: 1 }), 0, 4.9, HZ0 + .14, { cast: false, noInk: true });
+      for (let k = 0; k < 64; k++) add(new T.CylinderGeometry(.012, .012, .22, 5), GOLDD, -3.15 + k * .1, 1.5, HZ0 + .16 + Math.sin((-3.15 + k * .1) * 4.2) * .035, { cast: false, noInk: true }); } add(new T.CylinderGeometry(.06, .06, 6.8, 12), GOLD, 0, 8.25, HZ0 + .12, { rz: Math.PI / 2 });
     [-1, 1].forEach(sd => add(new T.SphereGeometry(.12, 12, 10), GOLD, sd * 3.45, 8.25, HZ0 + .12)); }
   // rosetón
   { const rt = tex(512, 512, (g, w, h) => { g.fillStyle = '#1b1720'; g.fillRect(0, 0, w, h); const cx = w / 2, cy = h / 2; const cols = ['#2f5fbf', '#c8302e', '#e8b830', '#3a9a5a', '#7fb2ec'];
@@ -120,7 +129,7 @@
     add(new T.TorusGeometry(.32, .025, 8, 24), IRON, x, y + 1.85, z, { rx: Math.PI / 2 }); for (let k = 0; k < 5; k++) { const a = k / 5 * 6.283; candle(x + Math.cos(a) * .32, y + 1.86, z + Math.sin(a) * .32, .2); } candle(x, y + 1.9, z, .26); };
   candelabra(-2.4, .75, -13.3); candelabra(2.4, .75, -13.3);
   const brazier = (x, z) => { add(new T.CylinderGeometry(.42, .22, .38, 18, 1, true), STD({ color: '#8a5a2a', metalness: .4, roughness: .45, side: T.DoubleSide }), x, 1.0, z); add(new T.CylinderGeometry(.05, .08, .82, 8), IRON, x, .41, z);
-    [0, 1, 2].forEach(k => { const f = flame(x + Math.cos(k * 2.1) * .14, 1.12, z + Math.sin(k * 2.1) * .14, 4.2); }); };
+    [0, 1, 2, 3, 4, 5, 6].forEach(k => { const f = flame(x + Math.cos(k * .9) * (k ? .18 : 0), 1.12, z + Math.sin(k * .9) * (k ? .18 : 0), k ? 1.25 + (k % 2) * .45 : 2.0); }); add(new T.CylinderGeometry(.36, .36, .06, 18), STD({ color: '#3a1a0a', emissive: '#ff5a10', emissiveIntensity: .8, roughness: 1 }), x, 1.14, z, { cast: false, noInk: true }); };
   brazier(-2.9, -10.6); brazier(2.9, -10.6);
   // lámparas de corona con velas
   [[-6.5], [1.5]].forEach(([z]) => { add(new T.TorusGeometry(1.15, .05, 8, 40), IRON, 0, 6.9, z, { rx: Math.PI / 2 }); for (let k = 0; k < 10; k++) { const a = k / 10 * 6.283; candle(Math.cos(a) * 1.15, 6.93, z + Math.sin(a) * 1.15, .18); }
@@ -143,7 +152,12 @@
   // ---------- mesa del banquete (se enseña con setBanquet) ----------
   const BANQ = new T.Group(); scene.add(BANQ); const BT = new T.Vector3(0, .9, -9.6);
   { const cloth = STD({ map: tex(512, 128, (g, w, h) => { g.fillStyle = '#f4efe2'; g.fillRect(0, 0, w, h); g.fillStyle = '#22408f'; g.fillRect(0, h * .38, w, h * .24); for (let x = 20; x < w; x += 64) drawLis(g, x, h / 2, 26, '#e8b830'); noise(g, w, h, 2000, ['rgba(0,0,0,.04)']); }), roughness: .9 });
-    add(RB(6.6, .1, 1.3, .03), cloth, 0, .9, BT.z, { parent: BANQ }); add(RB(6.64, .5, 1.34, .02), cloth, 0, .62, BT.z, { parent: BANQ, cast: false });
+    const clothTop = PBR(fabricPBR((g, w, h) => { g.fillStyle = '#ece4d0'; g.fillRect(0, 0, w, h); blot(g, w, h, 20, 'rgba(120,100,70,.08)', 20, 80); blot(g, w, h, 6, 'rgba(140,40,40,.08)', 8, 22); }), { roughness: .95, bump: .6 });
+    add(RB(6.6, .06, 1.3, .015), clothTop, 0, .92, BT.z, { parent: BANQ });
+    { const dg = new T.PlaneGeometry(6.7, .62, 140, 1), pa = dg.attributes.position; for (let i = 0; i < pa.count; i++) { const x = pa.getX(i), y = pa.getY(i); pa.setZ(i, (Math.sin(x * 9) * .5 + Math.sin(x * 23 + 1) * .25) * .028 * (.4 + .6 * (.31 - y) / .62)); } dg.computeVertexNormals();
+      const dm = STD({ map: cloth.map, bumpMap: WEAVE, bumpScale: .6, roughness: .95, side: T.DoubleSide }); add(dg, dm, 0, .6, BT.z + .66, { parent: BANQ, cast: false, noInk: true });
+      [-1, 1].forEach(sd => { const sg = new T.PlaneGeometry(1.34, .62, 40, 1), sp = sg.attributes.position; for (let i = 0; i < sp.count; i++) sp.setZ(i, Math.sin(sp.getX(i) * 11) * .02); sg.computeVertexNormals(); add(sg, dm, sd * 3.33, .6, BT.z, { parent: BANQ, ry: sd * Math.PI / 2, cast: false, noInk: true }); });
+      add(RB(6.5, .5, 1.2, .02), STD({ color: '#3a2a1e', roughness: .9 }), 0, .62, BT.z, { parent: BANQ, cast: false }); }
     const gob = new T.LatheGeometry([[0, 0], [.05, 0], [.052, .01], [.012, .03], [.01, .1], [.04, .12], [.05, .17], [.048, .2]].map(([r, y]) => new T.Vector2(r, y)), 20);
     for (let k = 0; k < 7; k++) { const x = -2.7 + k * .9; add(gob, GOLD, x, .95, BT.z + .22, { parent: BANQ }); add(new T.CylinderGeometry(.16, .14, .02, 20), STD({ color: '#d8d2c4', metalness: .3, roughness: .4 }), x + .25, .96, BT.z + .3, { parent: BANQ }); }
     const fowl = (x) => { add(new T.SphereGeometry(.22, 16, 12), STD({ color: '#b8642a', roughness: .5, emissive: '#3a1a08', emissiveIntensity: .2 }), x, 1.08, BT.z, { parent: BANQ, s: [1.2, .75, .9] }); [-1, 1].forEach(sd => add(new T.CapsuleGeometry(.05, .16, 4, 8), STD({ color: '#a8541e' }), x + sd * .18, 1.1, BT.z + .14, { parent: BANQ, rz: sd * .9 })); add(new T.CylinderGeometry(.34, .3, .04, 24), GOLD, x, .97, BT.z, { parent: BANQ }); };

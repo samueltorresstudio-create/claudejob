@@ -1,3 +1,5 @@
+> **24-11-2026 · Nivel a alcanzar**: ver `archivoraro_archivo/referencias/shorts_2026-11-24/ANALISIS.md` (expresión nueva casi en cada palabra, 60 % primeros planos, efectos exagerados, decorados texturizados con niebla y rayos de luz, menos paseos). **Texto escrito en objetos del decorado: SÍ** (calendario, cartel, tele, carrete; en español, 2–4 por vídeo); rótulos flotantes encima del vídeo: NO.
+
 # ESTILO 3D: el estilo por defecto del canal desde noviembre de 2026
 
 **Cuándo:** todos los vídeos nuevos, salvo que el usuario pida otra cosa. Los sucesos reales de una parte siguen usando `sucesos.md`. El motor SVG antiguo (`engine/`) queda solo para retocar vídeos o series que ya estaban hechos con él.
@@ -452,3 +454,113 @@ Mundo `world_corte.js` (en `archivoraro_archivo/proyectos/72_bufon/parts/`). Zon
   - entra con una cortinilla de borde rasgado (`tornWipe`).
 - **Franjas negras que se cierran** al «dejar de respirar», con los ojos centrados en la franja que queda.
 - **«Solo se oyen tus cascabeles»:** en el audio se quita TODA la música y quedan solo los cascabeles.
+
+### Segunda ronda del 72 (feedback del usuario, 17-11-2026)
+- **«El bufón es raro»:** la capucha que enmarcaba la cara parecía un casco, el cuerpo era flaco, las piernas larguísimas y había cascabeles por todas partes. El bufón nuevo (`hat: 'jester2'`, `jv2: true` en `stick.js`):
+  - gorro clásico partido en dos colores, con tres puntas blandas que caen y un cascabel en cada una;
+  - sin capucha;
+  - traje a cuartos rojo y amarillo, cuello de 6 picos con 3 cascabeles;
+  - cuerpo y piernas normales.
+
+  Si un personaje «es raro», simplifícalo y compáralo con el resto del reparto: misma silueta de cuerpo y pocas piezas que se lean bien.
+- **«El rey parece superpuesto en el trono»:** el personaje 2D se pinta siempre encima del 3D. Arreglo: **capa de primer término**.
+  - Las piezas marcadas con `fg` (brazos del trono, pomos, cojín) se recortan de la imagen final con una máscara y se pintan EN OTRO CANVAS (`gl2`) encima de los personajes.
+  - Se activa por escena con `setup({ fg: true })`. **Solo cuando nadie está delante del trono.**
+  - Además: asiento más alto (1,29 m), brazos metidos hacia dentro para que tapen los costados, el rey sin capa al sentarse, piernas casi rectas con calzas azules y pies en la tarima.
+  - Sirve para cualquier mueble que deba tapar a un personaje (mesa, barra, mostrador).
+  - **Corrección tras ver el resultado («cuando está sentado está bug»):**
+    - el COJÍN no va en la capa de primer término: si lo tapa, el rey parece cortado por la cintura y las piernas salen sueltas. Solo van delante los brazos del trono y los pomos;
+    - el cuerpo se apoya SOBRE el cojín (pies del personaje a mitad del asiento, z -13,75) y las piernas bajan por delante del asiento hasta la tarima;
+    - sin sombra de suelo (`shadow: false`);
+    - sin luz de contorno (`rimA: 0`): en primer plano el contorno dibujaba una raya gris entre el cuerpo y el brazo.
+- **«Los escenarios parecen de plastilina de mala calidad»:** lo que más cambia el resultado:
+  1. **Texturas con relieve** (`parts/w1b_pbr.js`): cada textura se pinta en color y en altura (bumpMap). Hay:
+     - sillería con juntas hundidas y grietas;
+     - mármol con vetas;
+     - tablones con veta y nudos;
+     - adoquines mojados;
+     - revoco;
+     - tejas;
+     - trama de tela.
+  2. **Mapa de entorno PMREM**, con `scene.environmentIntensity` por ambiente: el oro pasa a ser metal de verdad (metalness .85) y el mármol y los adoquines mojados reflejan.
+  3. **Oclusión ambiental `GTAOPass`** (viene en `three_post.js`): sombras de contacto en rincones, pies de columnas y juntas.
+  4. **Cantos menos redondeados** (`RB` con radio por defecto .02) y **contorno de tinta más fino** (k .0012).
+  5. **Menos saturación** en la gradación (mezcla .98, no 1.14) y colores apagados en vez de primarios puros.
+  6. **Detalle:**
+     - tapiz con pliegues de verdad (geometría ondulada) y flecos;
+     - arquería gótica entre columnas;
+     - mantel con caída plisada;
+     - barcos con castillos abiertos y jarcia.
+  - Quita los haces de luz transparentes con GTAO: los toma como superficies y salen como barras negras.
+  - Coste: el fotograma pasa de unos 3 s a 6–7 s en previsualización.
+
+### Voz real más larga de lo pedido (72, 17-11-2026)
+- El MP3 de «Stickmans» duraba 69,4 s y el usuario quería 63–67 s.
+- **No se acelera la voz.** Se acortan solo las pausas largas: cada silencio de más de 0,30 s se queda en 0,30 s más el 40 % de lo que sobraba (ffmpeg `silencedetect` a -38 dB, d = 0,18).
+- Con eso se ganaron 2,9 s y la voz quedó en 66,5 s. El vídeo dura 66,9 s, sin oír cortes.
+- Después, `sync_voice.py` con el WAV recortado y `check_sync.py`: 0 líneas dudosas.
+- **Renders de más de 2 h:** lánzalos desacoplados (`setsid nohup node render.js full 4 … &`). Para que avise al terminar, usa una espera en segundo plano (`until grep -q "^frames" log`): las tareas en segundo plano se cortan a las 2 h.
+
+### Revisión del render final del 72 (17-11-2026): fallos que solo se ven en el vídeo entero
+- **Bloques negros enormes (18,3 s y 20,9 s).** Un solo píxel NaN de la escena se convierte, con el `UnrealBloomPass`, en un rectángulo negro de media pantalla.
+  - No es geometría: no aparece al hacer raycast ni al renderizar sin post. Se encuentra apagando los pases uno a uno (`W2.comp.passes[i].enabled = false`).
+  - Arreglo fijo en `w5_api.js`: un pase de saneado antes del bloom. Con `isnan`/`isinf`, cambia el píxel malo por la media de sus vecinos.
+  - Detector: `python3 -I scripts/blackblock.py <proyecto> [i0] [i1]` cuenta los píxeles de negro puro. Da falsos positivos con la tinta de los contornos y con los fundidos a negro; mira la hoja de los marcados.
+- **Transición `whip` o `push` entre zonas lejanas del mundo.** La cámara cruza el mapa: de la sala de guerra (x = 60) al puerto (x = 300) pasaba por la plaza de noche y por el cielo.
+  - Entre zonas distintas, usa `swish`, que gira sin moverse de sitio, o `cut`.
+  - Usa `cut` si al plano anterior le pueden aparecer personajes pegados a la cámara al girar: con `blurChars: false` se ven nítidos y enormes, de espaldas.
+- **Cabezas cortadas por el borde de arriba en un alejamiento.** El plano empezaba en el mapa y los nobles salían decapitados durante 0,5 s.
+  - Arreglo: que entren andando desde los lados (`walkPose`) justo cuando la cabeza ya cabe. El momento se calcula con `frame.py`.
+  - No los hagas aparecer de golpe.
+- **Puntas del gorro del bufón tapando cabezas de nobles al fondo.** El gorro v2 mide unos ±0,85 m. En la proyección, quien esté detrás a menos de unos 0,2 rad del eje del bufón queda tapado.
+  - Si la cámara se aleja (travelling hacia atrás), los del fondo convergen hacia el bufón y siempre acaban tapados.
+  - En ese caso quítalos del plano, o sepáralos más de ±2 m si la cámara está quieta.
+- **Re-render parcial:** `FRAMES=lista.json node render.js full 4` con los índices afectados. Incluye la transición de entrada y la de salida de cada escena que cambies: la transición dibuja el último fotograma de la escena anterior.
+
+### 73 · El hombre que se mandó por correo (18-11-2026): lo aprendido
+- **Personaje dentro de una caja abierta:** tablones bajos del frente, postes y herrajes en la capa FG (`fg()`), suelo de la caja y piernas cruzadas con los pies 0,49 m por debajo del suelo de la caja (si no, flota), sombra de contacto propia y luz de linterna. Así no parece superpuesto.
+- **Llorar = cara triste, no cara seria + lágrimas:** `face: 'closed'`, `mouth: 'sad'` (nuevo en stick.js), `browTilt: -1`, y gotas pequeñas que nacen en el rabillo (`tears2d` con `toScr`). Las lágrimas grandes antiguas parecían un fallo.
+- **«A oscuras»:** negro TOTAL (opacidad 1) y luego solo los ojos, del tamaño de los del personaje. Con negro al 90 % se veía el chico detrás y el usuario no lo entendió.
+- **Render que falla con «Target crashed»:** casi siempre es el DISCO lleno (cuota de la sesión). Mira `df -h /tmp`; borra frames de vídeos ya entregados (pide permiso al usuario: el modo automático lo bloquea) y usa 2 workers.
+- Deriva el decorado por zonas (`zone()` + `setMood`) para que cada sitio comparta coordenadas sin estorbarse.
+- **No recortes el principio del MP3 a ojo.** En el 73 quité 2,33 s «de silencio» y eran «Este hombre se metió…»: el vídeo empezaba a mitad de frase. Mide la energía de los primeros 3 s antes de recortar (o no recortes: `sync_voice.py` ya ajusta el arranque).
+- Arreglo barato si pasa: voz entera + `LINE_STARTS` (salidas antiguas + desfase) para que de la línea 2 en adelante todo quede desplazado un número entero de fotogramas; renombra los fotogramas viejos (+N) y re-renderiza solo la escena 1.
+- **No fuerces `LINE_STARTS` con tiempos de una sincronización anterior** sin comprobarlos contra las pausas reales (`silencedetect`). En el 73 eso dejó los subtítulos una frase por detrás durante 33 s.
+- **«Target crashed» con trap del Compositor (dmesg):** filtros CSS (`filter: blur()` o `brightness()`) sobre grupos SVG enormes en primeros planos. Quítalos en esos planos.
+- Si un navegador con 2 pestañas se cae, lanza 2 navegadores de 1 pestaña con reintento (`loop6.sh`).
+
+## Lecciones del 74 (primer vídeo con escenarios de Blender, 21-11-2026)
+- **Flujo:** `blender/lago.py` (bpy, coordenadas de three.js convertidas al final) → `lago.glb` + `layout.json` → `mkglb.py` lo embebe en base64 (`glb_lago.js`; file:// no deja hacer fetch) → `GLTFLoader.parse`. El `index.html` carga `sc74.js` y `core3d.js` DESPUÉS de que el GLB esté listo (`window.READY`).
+- **three.js r170** (el bundle `three_post.js` del motor). Si se recompila con GLTFLoader, usar la misma versión: con r160 `NeutralToneMapping` no existe y todo sale mal.
+- **Hay que añadir `scene.add(gltf.scene)`**: los clones se veían y los originales no.
+- **Colores de vértice:** exportar con `export_vertex_color='ACTIVE'` y poner el atributo como activo/render; si no, sale un COLOR_0 blanco.
+- **Normales:** `bmesh.ops.recalc_face_normals` en mallas cerradas (si no, la sección se ve «por dentro»). En superficies abiertas (cuenca) usar `side: DoubleSide` para que la luz no salga negra.
+- **Booleanos en Blender meten un mapa UV a cero** en toda la malla: rehacer las UV en three.js (boxUV) aunque exista `uv`.
+- **GTAO:** toda malla propia necesita `normal` (si no, el agua sale casi negra) y hay que OCULTAR las transparentes (cascada, chorro, bruma) mientras se calcula, o salen rectángulos negros.
+- **Shaders:** `smoothstep(a,b,x)` con a>b es indefinido (NaN → negro). `atan()` corta en ±π: para espirales usar `cos/sin` del ángulo como coordenada de ruido, o sale una costura recta.
+- Suelos «infinitos» de horizonte: que no tapen otras zonas del mundo (el diorama en sección estaba a x = 3000).
+- **Revisión del render completo del 74 (fallos que se escaparon a los previews):** (1) grietas dibujadas como rayos negros desde un punto = parecen una araña; en un techo, grietas finas, casi horizontales, color roca con halo claro y ramas cortas. (2) Cuando la cámara se aleja de un corte, comprobar que el encuadre nunca baja del fondo del bloque (franja gris vacía): limitar la altura con `y >= fondo + tan(fov/2)·dist`. (3) Los planos de agua que inundan un corte no pueden pasar de la cara del corte (ZF). (4) Niebla de cascada con sprites pequeños (≤18 m) y opacidad ≤ .17; si no, son manchas blancas. (5) El desenfoque de movimiento (`TR.blur`) en un plano largo lo hace ilegible: máximo 2–3 y solo en el centro del movimiento. (6) Grupos de personajes: dejar libre la franja del subtítulo (ninguna cabeza detrás de la palabra).
+- **Revisión del render completo del 75 (Poyais):** (1) **`cam()` NO debe dibujar el 3D**: si `W.render()` va dentro de `cam()`, todo lo que la escena mueve DESPUÉS (bolsas de dinero, cartel que cae, edificios que se derrumban, bonos que llueven) no sale nunca, porque `setup()` lo vuelve a esconder en el fotograma siguiente; en el 75, MacGregor flotaba en el aire sin su montaña de bolsas. Solución: `cam()` solo coloca la cámara y al final del `sc*.js` se envuelve cada escena para dibujar al terminar: `Object.keys(S).forEach(k => { const f = S[k]; S[k] = (t, D, B) => { const r = f(t, D, B); W.render(); return r; }; });`. (2) Un plano de «se derrumba todo» no puede tener palmeras ni farolas entre la cámara y los decorados: esconder las de delante en ese plano y usar 2–3 planos cortos, uno por edificio que cae. (3) Velas de barco: nunca elipsoides apilados (parecen muñecos de nieve); lona rectangular colgada de la verga con una panza en el centro.
+> **Desde el 28-11-2026 la cámara y la animación siguen `references/camara_animacion.md` (cámara siempre viva con `followcam.js`, 0 recortes comprobados con `check_cam`, personajes con `life.js`).** Lo de abajo es el complemento de montaje.
+
+### Cámara «mezcla» (pedido del usuario 24-11-2026): referencia .99 + nuestras transiciones
+Es la cámara por defecto a partir de ahora. Análisis completo en `archivoraro_archivo/referencias/ref_99_analisis.md`.
+- **Dentro de una escena (mismo sitio): cortes secos** (`'cut'`, y `CFG.flash = false`: la referencia no hace destello). Un plano nuevo cada **1,4–2,6 s** (cada 2–4 palabras), cambiando tamaño o ángulo: primer plano → por encima del hombro → detalle de objeto → plano de grupo…
+- **Cada plano se mueve**: acercamiento lento del **3–6 %** (outCubic) + deriva lateral pequeña. Nunca cámara fija.
+- **Al cambiar de sitio (escena nueva): nuestras transiciones** `fly` / `whip` / `swish` (las de la cuenta 3D), con desenfoque de movimiento. Reglas de siempre: `swish` entre zonas con paredes, `glide` si alguien habla en la primera sílaba.
+- **Plano de situación** al llegar a un sitio nuevo (fachada, exterior): acercamiento fuerte + grúa hacia arriba (**×1,4 en 3–4 s**), con alguien desenfocado cruzando por delante.
+- Fondo siempre desenfocado y personaje nítido.
+
+## Personajes estilo «.99» (pedido del usuario 24-11-2026) — `engine_3d/pj99/`
+Personajes 2D con el acabado aprobado del tendero (`tendero2d.js`): cabeza esfera crema con borde de luz frío a la izquierda y sombra cálida abajo a la derecha, contorno casi negro `#1e1313` (24–30 px, más grueso abajo a la derecha), cuerpo con sombra interior, franja oscura bajo la cabeza, cejas gruesas en bloque, ojos de párpado con media pupila, sombreros con brillo fino en el borde y sombra sobre el ala. Coordenadas: fotograma 1170×2080, cabeza en (590,775) R 375.
+- `pjt.js` → `pjT(opciones)`: constructor común (cuerpo `bodyPath`, piernas `legs`, brazos `armL/armR/armW`, colores `top`/`hatC`, capas `back/under/bodyIn/front/headIn/faceTop/hat`, cara `brow/lashes/lips/cheeks/freckles/gap`). Expresiones: `serio, feliz, picaro, sorpresa, preocupado`.
+- `models.js`: piezas (cuerpos `BODY.gordo/fuerte/nina/anciano/gabardina`, `PACO_BODY` flaco, `REM_BODY` reloj de arena, bigotes `MUST.morsa/fino`, `mustache()`, `glasses()`) y modelos de prueba: Paco, Doña Remedios, Don Anselmo, Bruno, Lucía, Tomás, Carmen, Sargento Ruiz (`catalogo_modelos_v2.jpg`), General, Rey y Chef (`militar_rey_chef_v2.jpg`, `rey_chef_v3.jpg`), Juez y Millonario (`juez_millonario_v2.jpg`), Legionario, Minero y Pirata (`romano_minero_pirata.jpg`; `metalDefs()` degradados de metal/madera/oro; `BODY_JUEZ` toga hasta el suelo, `BODY_MILL` tonel; cuerpos `BODY_MIL`, `BODY_REY` con capa hasta el suelo, `BODY_CHEF` en pera).
+- **REGLA DEL USUARIO: los modelos del catálogo NO se reutilizan tal cual en los vídeos.** Para cada vídeo se diseñan personajes NUEVOS según la historia (época, país, oficio, edad, clase social, carácter) combinando y adaptando las piezas: **silueta distinta para cada personaje** (no todos con el mismo cuerpo), sombrero/pelo, vello facial, ropa con 3–5 detalles con sentido, atrezo propio.
+- **Los personajes evolucionan con la historia**: si pasa el tiempo, envejecen (canas, gafas, bastón); si se arruinan o se hacen ricos, cambia la ropa; heridas, suciedad, uniforme nuevo… Lo que cambia se ve.
+- Siempre bocetos primero (cuerpo entero + 5 expresiones) junto al tendero para comparar el acabado, y esperar el «sí».
+- Nunca copiar personajes de vídeos de referencia: solo el estilo.
+- **Contorno (v2, 24-11-2026)**: `pjOutline()` añade un contorno exterior de la silueta con filtro (dilatar + desplazar 3,5 px): más grueso abajo a la derecha y más fino arriba a la izquierda, borde algo suave. Las patas y los brazos quedan FUERA del filtro (siguen finos). Línea de la cabeza 20 px + dos arcos de sombra que la engordan abajo a la derecha + filo claro arriba a la izquierda. Brillo suave arriba a la izquierda del cuerpo. Catálogo: `catalogo_modelos_v2.jpg`.
+- **Piernas largas** (pedido del usuario 24-11-2026: con +75 px «siguen igual»): `pjT` sube cuerpo y cabeza `legX` = **380 px** (window.PJ_LEG; con 480 el usuario pidió un 14 % menos) y deja los pies en el suelo (y = 2100) → piernas ≈ 30 % de la altura. En 3D la altura total (cabeza a pies) = h metros con escala `(a.y − b.y) / (1700 + PJ_LEG)`. Escala del decorado REAL (puerta 2,25 m): personajes 1,8 m, portero 2 m.
+- **Sin coloretes** (pedido del usuario 24-11-2026): no poner mofletes rosados a ningún personaje (`cheeks` desactivado en `pjT`).
+- **Objetos en la mano** (pedido 24-11-2026): el objeto pasa POR DENTRO del puño (mango visible por encima y por debajo de la mano bola, la mano se dibuja encima), con volumen (degradado, brillo, sombra), contorno y detalles (anillas, nudos, textura). Ejemplos: mazo del juez y saco de dinero del millonario en `models.js`. Nada cortado por el borde del encuadre.
+- **EXIGENCIA DEL USUARIO (24-11-2026): cada modelo nuevo se entrega YA BIEN HECHO a la primera, nunca básico.** Antes de enseñarlo, revisa a 2× cada zona y corrige tú: (1) nivel de detalle como el rey/chef v3 — 6–10 detalles con volumen (degradados de metal/madera/oro con `metalDefs()`, brillos, sombras, remaches, costuras, texturas, pliegues); (2) objetos agarrados por dentro del puño y dentro del encuadre; (3) nada flotando ni pegado en sitios raros (animales posados sobre algo que se vea: el hombro queda tapado por la cabeza → sobre el ala del sombrero); (4) nada que tape mal la cara ni rasgos que asomen (el parche cubre el ojo en TODAS las expresiones); (5) manchas/hollín como manchas suaves, nunca trazos que parezcan cejas; (6) sombra de contacto en el suelo; (7) comprobar las 5 expresiones.

@@ -6,13 +6,11 @@
   const GX = 60, GX0 = 53, GX1 = 67, GZ0 = -7, GZ1 = 7, GH = 5.5;
   const inWar = p => p.x > GX0 - 1 && p.x < GX1 + 1 && p.z > GZ0 - 1 && p.z < GZ1 + 1 && p.y < GH + .5;
   const MT = new T.Vector3(GX, .92, 0);   // centro del tablero del mapa
-  const stoneDkW = STD({ map: tex(512, 512, (g, w, h) => { g.fillStyle = '#4a4238'; g.fillRect(0, 0, w, h); const rows = 8, bh = h / rows;
-    for (let r = 0; r < rows; r++) { let x = -(r % 2) * 40; while (x < w) { const bw = 70 + rnd() * 60; const c = new T.Color('#9a8a70').offsetHSL(0, (rnd() - .5) * .05, (rnd() - .5) * .1); g.fillStyle = '#' + c.getHexString(); g.fillRect(x + 3, r * bh + 3, bw - 6, bh - 6);
-      g.fillStyle = 'rgba(255,255,255,.1)'; g.fillRect(x + 3, r * bh + 3, bw - 6, 3); x += bw; } } noise(g, w, h, 12000, ['rgba(0,0,0,.08)', 'rgba(255,255,255,.04)']); blot(g, w, h, 8, 'rgba(30,20,10,.18)', 30, 90); }), roughness: .95 });
-  floorXZ(GX0, GX1, GZ0, GZ1, 0, STD({ map: planksT('#6a4428', 6), roughness: .8 }), 3);
+  const stoneDkW = PBR(ashlar('#8a7e6a', '#2e2a24', 6, 1024, { grime: 1 }), { roughness: .95, bump: 3 })
+  floorXZ(GX0, GX1, GZ0, GZ1, 0, PBR(planksPBR('#6a4428', 6, 1024, { nails: true }), { roughness: .62, bump: 1.5 }), 3);
   wallZY(GZ0, GZ1, 0, GH, GX0, stoneDkW, 3, -1); wallZY(GZ0, GZ1, 0, GH, GX1, stoneDkW, 3, 1); wallXY(GX0, GX1, 0, GH, GZ0, stoneDkW, 3);
   wallXY(GX0, GX - 1, 0, GH, GZ1, stoneDkW, 3, { ry: Math.PI }); wallXY(GX + 1, GX1, 0, GH, GZ1, stoneDkW, 3, { ry: Math.PI }); wallXY(GX - 1, GX + 1, 3, GH, GZ1, stoneDkW, 3, { ry: Math.PI });
-  floorXZ(GX0, GX1, GZ0, GZ1, GH, STD({ map: planksT('#3a2416'), roughness: .9 }), 3, { rx: Math.PI / 2 });
+  floorXZ(GX0, GX1, GZ0, GZ1, GH, PBR(planksPBR('#3a2416', 8), { roughness: .9 }), 3, { rx: Math.PI / 2 });
   for (let z = GZ0 + 1.2; z < GZ1; z += 2.2) add(RB(GX1 - GX0, .32, .3, .03), MAT.woodDk, GX, GH - .2, z);
   // puerta (por donde entra el mensajero) y pasillo con antorcha
   let WDOOR;
@@ -84,11 +82,12 @@
   // la horca en el centro del fondo con su ahorcado (silueta), cuervos (2D) y el castillo sobre la colina.
   // =====================================================================================================
   const PX = 120; const inPlaza = p => p.x > PX - 40 && p.x < PX + 40 && p.z > -60 && p.z < 30;
-  const wetCobble = STD({ map: cobbleT, color: '#6a6a78', roughness: .28, metalness: .25 });
+  const wetCobble = PBR(cobblePBR('#7a7684'), { roughness: .26, metalness: .1, bump: 3, envMapIntensity: 1.4 })
   floorXZ(PX - 26, PX + 26, -30, 16, 0, wetCobble, 3);
+  const PLB = plasterPBR('#d8ccb0', 512).bump;
   const timberT = tex(512, 512, (g, w, h) => { g.fillStyle = '#d8ccb0'; g.fillRect(0, 0, w, h); noise(g, w, h, 8000, ['rgba(0,0,0,.06)', 'rgba(255,255,255,.05)']); g.fillStyle = '#3a2416'; [0, .5].forEach(f => g.fillRect(0, h * f, w, 22)); [0, .33, .66].forEach(f => g.fillRect(w * f, 0, 22, h));
     g.lineWidth = 18; g.strokeStyle = '#3a2416'; g.beginPath(); g.moveTo(0, 0); g.lineTo(w * .33, h * .5); g.moveTo(w * .66, h * .5); g.lineTo(w, 0); g.stroke(); });
-  const timberM = STD({ map: timberT, roughness: .9 }), roofM = STD({ map: tex(256, 256, (g, w, h) => { g.fillStyle = '#5a2a22'; g.fillRect(0, 0, w, h); for (let y = 0; y < h; y += 16) for (let x = -(y / 16 % 2) * 12; x < w; x += 24) { g.fillStyle = `rgba(${90 + rnd() * 40},${40 + rnd() * 20},${30 + rnd() * 20},1)`; g.fillRect(x + 1, y + 1, 22, 14); } }), roughness: .9 });
+  const timberM = STD({ map: timberT, bumpMap: PLB, bumpScale: 1.5, roughness: .9 }), roofM = PBR(roofPBR('#7a3a2c'), { roughness: .8, bump: 2.5 });
   const litWin = new T.MeshBasicMaterial({ color: '#ffc870' }), darkWin = STD({ color: '#141a28' });
   const house = (x, z, w, d, h, ry) => { const g = new T.Group(); g.position.set(x, 0, z); g.rotation.y = ry; scene.add(g); add(RB(w, h, d, .03), timberM, 0, h / 2, 0, { parent: g });
     const sh = new T.Shape(); sh.moveTo(-w / 2 - .3, 0); sh.lineTo(0, w * .55); sh.lineTo(w / 2 + .3, 0); sh.closePath(); add(new T.ExtrudeGeometry(sh, { depth: d + .4, bevelEnabled: false }), roofM, 0, h, -d / 2 - .2, { parent: g });
@@ -99,7 +98,7 @@
     .forEach(([x, z, w, d, h, ry]) => house(PX + x, z, w, d, h, ry));
   // horca
   const GALLOWS = new T.Vector3(PX, 0, -10);
-  { const wd = STD({ map: planksT('#4a3020', 4), roughness: .9 }); BX(PX - 1.8, PX + 1.8, 0, 1.2, -11.8, -8.2, wd); for (let k = 0; k < 4; k++) BX(PX - .7, PX + .7, 0, .3 * (k + 1), -8.2 + .3 * (3 - k) + .01, -8.2 + .3 * (4 - k), wd);
+  { const wd = PBR(planksPBR('#4a3020', 4, 512), { roughness: .85, bump: 2 }); BX(PX - 1.8, PX + 1.8, 0, 1.2, -11.8, -8.2, wd); for (let k = 0; k < 4; k++) BX(PX - .7, PX + .7, 0, .3 * (k + 1), -8.2 + .3 * (3 - k) + .01, -8.2 + .3 * (4 - k), wd);
     [-1, 1].forEach(sd => add(RB(.24, 4.4, .24, .03), wd, PX + sd * 1.2, 1.2 + 2.2, -10.6)); add(RB(3.0, .24, .26, .03), wd, PX, 5.4, -10.6); add(RB(.16, 1.2, .16, .02), wd, PX - .8, 4.9, -10.6, { rz: .8 });
     const rope = add(new T.CylinderGeometry(.022, .022, 1.5, 6), STD({ color: '#8a7050' }), PX + .3, 4.6, -10.6, { cast: false }); }
   const HANGED = new T.Group(); HANGED.position.set(PX + .3, 3.86, -10.6); scene.add(HANGED);
@@ -131,8 +130,9 @@
   const sailT = (fr) => tex(256, 256, (g, w, h) => { for (let k = 0; k < 6; k++) { g.fillStyle = fr ? (k % 2 ? '#f4efe2' : '#22408f') : (k % 2 ? '#e8b830' : '#a8241e'); g.fillRect(k * w / 6, 0, w / 6, h); }
     if (fr) drawLis(g, w / 2, h / 2, 110, '#e8b830'); else { g.fillStyle = '#f2ede0'; g.fillRect(0, 0, w, h); g.fillStyle = '#c8302e'; g.fillRect(w * .42, 0, w * .16, h); g.fillRect(0, h * .42, w, h * .16); }
     noise(g, w, h, 2000, ['rgba(0,0,0,.08)']); });
-  const SAILFR = STD({ map: sailT(true), side: T.DoubleSide, roughness: .9 }), SAILEN = STD({ map: sailT(false), side: T.DoubleSide, roughness: .9 });
-  const hullM = STD({ map: tex(512, 256, (g, w, h) => { g.fillStyle = '#6a4428'; g.fillRect(0, 0, w, h); for (let k = 0; k < 9; k++) { g.fillStyle = k % 2 ? '#5e3c22' : '#74502e'; g.fillRect(0, k * h / 9, w, h / 9 - 3); g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(0, (k + 1) * h / 9 - 3, w, 3); } for (let i = 0; i < 60; i++) { g.fillStyle = '#2a1a10'; g.beginPath(); g.arc(rnd() * w, Math.floor(rnd() * 9) * h / 9 + 6, 2.5, 0, 7); g.fill(); } noise(g, w, h, 4000, ['rgba(0,0,0,.08)']); }), roughness: .85, side: T.DoubleSide }), hullDk = STD({ map: planksT('#4a2e1a', 5), roughness: .85 });
+  const SAILB = texHB(256, 256, (g, H, w, h) => weave(H, w, h, 3), .5).bump; SAILB.repeat.set(4, 4); const SAILFR = STD({ map: sailT(true), bumpMap: SAILB, bumpScale: .8, side: T.DoubleSide, roughness: .9 }), SAILEN = STD({ map: sailT(false), bumpMap: SAILB, bumpScale: .8, side: T.DoubleSide, roughness: .9 });
+  const HULLTX = planksPBR('#6a4428', 9, 512); [HULLTX.map, HULLTX.bump].forEach(t => { t.center.set(.5, .5); t.rotation = Math.PI / 2; });
+  const hullM = PBR(HULLTX, { roughness: .8, bump: 2, side: T.DoubleSide }), hullDk = STD({ map: planksT('#4a2e1a', 5), roughness: .85 });
   const fireM = new T.MeshBasicMaterial({ color: '#ff9a3a', transparent: true, opacity: .9, depthWrite: false, blending: T.AdditiveBlending }), fireM2 = new T.MeshBasicMaterial({ color: '#ffe08a', transparent: true, opacity: .9, depthWrite: false, blending: T.AdditiveBlending });
   // casco de coca: secciones a lo largo de x, manga que se cierra en proa y popa, fondo redondo y arrufo que sube en los extremos
   const HULLG = (() => { const L = 6.2, Bm = 2.4, D = 1.3, NX = 24, NS = 12, pos = [], uv = [], idx = [];
@@ -140,9 +140,12 @@
       for (let j = 0; j <= NS; j++) { const th = Math.PI * j / NS, y = yt + (yb - yt) * Math.sin(th) ** .8; const z = hw * Math.cos(th) * (1 - .12 * Math.sin(th)); pos.push(x, y, z); uv.push(i / NX * 3, j / NS); } }
     for (let i = 0; i < NX; i++) for (let j = 0; j < NS; j++) { const a = i * (NS + 1) + j, b2 = a + NS + 1; idx.push(a, b2, a + 1, b2, b2 + 1, a + 1); }
     const g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new T.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals(); return g; })();
+  const ROPE = new T.LineBasicMaterial({ color: '#2a2018' });
   const cog = (fr) => { const g = new T.Group(); scene.add(g); const b = new T.Group(); g.add(b);
     add(HULLG, hullM, 0, 0, 0, { parent: b }); add(new T.PlaneGeometry(5.0, 1.9), hullDk, 0, 1.0, 0, { parent: b, rx: -Math.PI / 2, cast: false, noInk: true });
-    add(RB(1.5, .9, 1.9, .08), hullDk, 2.3, 1.85, 0, { parent: b }); add(RB(1.4, .85, 1.8, .08), hullDk, -2.35, 1.8, 0, { parent: b });
+    [[2.3, 1.62, 1.5, 1.9], [-2.35, 1.55, 1.4, 1.8]].forEach(([x, y, w, d]) => { add(RB(w, .12, d, .01), hullM, x, y, 0, { parent: b }); [-1, 1].forEach(a => [-1, 1].forEach(c => add(new T.CylinderGeometry(.05, .05, .7, 6), hullDk, x + a * (w / 2 - .06), y + .35, c * (d / 2 - .06), { parent: b }))); [-1, 1].forEach(c => add(RB(w, .42, .05, .01), hullM, x, y + .27, c * (d / 2 - .03), { parent: b })); add(RB(.05, .42, d, .01), hullM, x + Math.sign(x) * (w / 2 - .03), y + .27, 0, { parent: b }); });
+    { const pts = [], M = [0, 9.4, 0]; [[3.15, 1.7, 0], [-3.15, 1.7, 0], [.5, 1.15, 1.15], [.5, 1.15, -1.15], [-.5, 1.15, 1.15], [-.5, 1.15, -1.15], [1.4, 1.2, 1.05], [1.4, 1.2, -1.05]].forEach(q => pts.push(...M, ...q));
+      [[-2.2, 8.2, 0, 2.2, 8.2, 0]].forEach(q => pts.push(...q)); const lg = new T.BufferGeometry(); lg.setAttribute('position', new T.Float32BufferAttribute(pts, 3)); b.add(new T.LineSegments(lg, ROPE)); }
     [[2.3, 2.36, 1.62, 2.02], [-2.35, 2.29, 1.52, 1.92]].forEach(([x, y, w, d]) => { add(RB(w, .1, d, .04), hullM, x, y, 0, { parent: b }); [-1, 1].forEach(sd => add(RB(w, .26, .08, .03), hullM, x, y + .16, sd * (d / 2 - .04), { parent: b })); });
     add(new T.CylinderGeometry(.11, .14, 8.5, 10), MAT.woodDk, 0, 5.3, 0, { parent: b }); add(new T.CylinderGeometry(.06, .06, 4.6, 8), MAT.woodDk, 0, 8.2, 0, { parent: b, rx: Math.PI / 2 });
     const sail = add(new T.PlaneGeometry(4.4, 4.6, 8, 8), fr ? SAILFR : SAILEN, 0, 5.85, .2, { parent: b, cast: false, noInk: true, ry: Math.PI / 2 }); { const pa = sail.geometry.attributes.position; for (let i = 0; i < pa.count; i++) { const x = pa.getX(i), y = pa.getY(i); pa.setZ(i, (1 - (x / 2.2) ** 2) * .45 * (1 - ((y - .5) / 2.6) ** 2)); } sail.geometry.computeVertexNormals(); }
