@@ -41,6 +41,10 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
 
 - (28-11-2026) **Cámara quieta como mucho 1 s.** Todo lo que dice el guion se ve; algo pasa siempre. 4 revisores Sonnet (luces, cámara, personajes/escenarios, lógica/bugs) antes de enseñar guion y vídeo.
 
+## Guiones (28-11-2026)
+
+- **El gancho SIEMPRE empieza con la acción rara, dicha en una frase completa y con su resultado**: «Le pusieron gafas de realidad virtual a estas vacas… y empezaron a dar más leche», «Este hombre se metió en una caja… y se mandó por correo», «Un hombre lleva treinta años perdiendo al póker… a propósito». NO frases telegráficas («Gafas de realidad virtual… para vacas.» / «Turquía. Invierno.») ni ganchos de ambiente que escondan la acción («Estas vacas están pastando en un prado de verano…»): el usuario los rechazó los dos.
+
 ## Duración y formato
 
 - YouTube: más de 60 s, siempre (59,3 s no valió).
