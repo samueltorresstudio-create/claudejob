@@ -20,7 +20,7 @@ GUION v7 (para la voz) — el usuario: céntrate, sin nombre del granjero ni ví
 15. Y a su cabeza le da igual que el prado sea falso.
 16. Eso sí, los expertos dudan: nadie lo ha medido en serio.
 17. Pero mientras fuera sigue nevando… dentro del establo es verano.
-18. Y por eso, en pleno invierno…   (→ bucle: «…en pleno invierno / le pusieron gafas de realidad virtual a estas vacas»)
+(sin bucle: el usuario no lo quiere, 28-11-2026)
 
 GUION v6 (descartado: se desviaba con el nombre y el vídeo de Rusia)
  (para la voz) — el usuario: «y empezaron a dar más leche» en la 1.ª frase ya es la respuesta. El gancho solo plantea la acción rara; el resultado (27) se descubre en la pizarra y el porqué al 60 %.
