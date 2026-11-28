@@ -96,3 +96,7 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
   - **lo que queda bajo el agua no se dibuja** (nada de piernas fantasma transparentes);
   - el bostezo tiene que quedar **por encima** de la línea del agua.
 - Personaje «normalito»: añade un objeto que le dé identidad cultural (carriel, sombrero vueltiao, canalete).
+
+## 79 · Comparado con las referencias de 15 M (28-11-2026)
+- **«Muy malo» comparado con naranjas/caballos.** Causa: personajes diminutos en plano general, cámara de frente a la pared, mitad inferior de suelo vacío, nadie hace nada con las manos, luz beige y apagada, todo en el mismo establo. Arreglo: **plano medio o medio-general**, con el protagonista ocupando el 40–60 % del alto; cámara a la altura del pecho y en diagonal (3/4) para que el fondo tenga profundidad; contorno de tinta también en el decorado; luz de sol fuerte y colores saturados.
+- **NO hacer la vaca en 3D**: la de Blender salió «feísima». Las vacas son SIEMPRE el dibujo `vaca2d` aprobado, pero grandes y cerca de cámara, no en fila al fondo.
