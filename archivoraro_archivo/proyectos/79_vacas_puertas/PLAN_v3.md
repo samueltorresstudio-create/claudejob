@@ -48,12 +48,14 @@ Cada frase se entiende con el volumen quitado y sin leer el subtítulo. La acci�
 ### Luz (valores; los ajusto en la hoja de bocetos)
 | sitio | luz clave | sombra | pared / suelo | otros |
 |---|---|---|---|---|
-| Cine, antes del 27 | #FFF4E0, 5200 K, fuerte, con haz duro por la ventana | azul #4A6FA5 al 35 % | pared ocre #D9A25F, suelo de paja #E0B050 | rim frío #8FD0FF del lado de la ventana |
-| Cine, después del 27 | 3600 K | púrpura cálido #7A4A6A | | ventanas naranjas, +10 % de brillo, cambio en 0,6 s con destello de 2 fotogramas; visores que iluminan los morros #3CF0B0 |
+| Cine, antes del 27 | #FFF4E0, 5200 K, luz de nieve por la ventana (blanda, fría; haz suave, nunca sol duro mientras nieva) | azul #4A6FA5 al 35 % | pared ocre #D9A25F, suelo más oscuro #C98A3A (separado de la pared) | rim frío #8FD0FF del lado de la ventana |
+| Cine, después del 27 | 3600 K: la luz tiñe, el material no cambia | púrpura cálido #7A4A6A | pared ≈#E39A4F, suelo ≈#C98A3A; **blanco de las vacas tope #FBE6C8** (no más naranja) | ventanas naranjas, +10 % de brillo, cambio en 0,6 s con destello de 2 fotogramas; se mantiene el rim #8FD0FF; visores que iluminan los morros #3CF0B0 |
 | establo del vecino | estufa #FF7A30 a la derecha (parpadeo 8 Hz ±15 %) | ventana #5A8CFF a la izquierda | | en la frase 12, −20 % de saturación y algo más oscuro: «cargado» |
-| exterior nevado | sol bajo | azul #6E8CC8 al 45 % | nieve tope #E8EEF8 | cielo #2B3F7A → #F4B98A; ventanas #FFB347 |
+| exterior nevado | plano 4 (nevada fuerte): cielo cubierto, sin sol; planos 3 y 8: sol bajo entre nubes | azul #6E8CC8 al 45 % | nieve tope #E8EEF8 | cielo cubierto #8A9AB8 → #D8DEE8 (plano 4) / #2B3F7A → #F4B98A (3 y 8); ventanas #FFB347 |
 | prado | sol #FFE066 con anillo #FFB347 | verde #2F7A3A | verde #4CAF3A | cielo #3FA0F0 → #9AD8FF |
 | tienda | lámpara #FFB45A | | estantes de colores saturados | |
+| vecino, plano 28 (estufa apagada) | ventana #5A8CFF + luz de los visores #3CF0B0 en las caras | azul oscuro | | sin parpadeo de estufa |
+| pizarra | | | #16322A con marco #7A4A25 | tiza #FFF6D0; el 27 en #FFD84A |
 | 180 vacas | penumbra azul #1E2B4A | | | visores en ola, foco dorado sobre el Cine |
 
 En todos:
