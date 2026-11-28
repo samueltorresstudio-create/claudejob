@@ -15,7 +15,7 @@
   const TOP = 1.12, D2R = Math.PI / 180;
   const lerp = (a, b, k) => a + (b - a) * k, clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
   const eIO = k => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
-  const eMix = k => .5 * k + .5 * (.5 - Math.cos(Math.PI * k) / 2);   // casi lineal con extremos suaves: nunca «parado» al empezar ni al acabar
+  const eMix = k => .7 * k + .3 * (.5 - Math.cos(Math.PI * k) / 2);   // casi lineal con extremos suaves: nunca «parado» al empezar ni al acabar
   const DEF = { yaw: 0, fov: 40, asp: 1080 / 1920, occ: .55, margin: .88, aim: 0, side: 0, elev: 0, minD: 1.6, maxD: 18 };
 
   function frame(subs, o) {
@@ -66,16 +66,16 @@
   const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]], dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2], cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
   const norm = a => { const l = Math.hypot(a[0], a[1], a[2]) || 1; return [a[0] / l, a[1] / l, a[2] / l]; };
 
-  // comprobación sin render: camFn(t) → cam, subsFn(t) → sujetos. Infracciones: pies/cabeza/lados fuera, o cámara quieta ≥ 1,5 s
+  // comprobación sin render: camFn(t) → cam, subsFn(t) → sujetos. Infracciones: pies/cabeza/lados fuera, o cámara quieta > 1 s
   function audit(camFn, subsFn, T, o) {
-    o = Object.assign({ asp: DEF.asp, edge: .97, still: .3 }, o || {}); const bad = [], cams = [];
+    o = Object.assign({ asp: DEF.asp, edge: .97, still: .2 }, o || {}); const bad = [], cams = [];
     for (let t = 0; t <= T; t += .1) {
       const cam = camFn(t); cams.push(cam);
       subsFn(t).forEach((q, i) => [[q.x, q.y, q.z], [q.x, q.y + q.h * TOP, q.z], [q.x - q.w, q.y + q.h * .5, q.z], [q.x + q.w, q.y + q.h * .5, q.z]].forEach((p, j) => {
         const [x, y, z] = project(cam, p, o.asp); if (z < .3 || Math.abs(x) > o.edge || Math.abs(y) > o.edge) bad.push({ t: +t.toFixed(1), sujeto: i, parte: ['pies', 'cabeza', 'izq', 'der'][j] });
       }));
     }
-    for (let i = 0; i + 15 < cams.length; i++) { const a = cams[i], b = cams[i + 15]; if (Math.max(Math.hypot(...sub(a.pos, b.pos)), Math.hypot(...sub(a.look, b.look))) < o.still && Math.abs(a.fov - b.fov) < 2.5) bad.push({ t: +(i * .1).toFixed(1), quieta: '≥1,5 s' }); }
+    for (let i = 0; i + 10 < cams.length; i++) { const a = cams[i], b = cams[i + 10]; if (Math.max(Math.hypot(...sub(a.pos, b.pos)), Math.hypot(...sub(a.look, b.look))) < o.still && Math.abs(a.fov - b.fov) < 2.5) bad.push({ t: +(i * .1).toFixed(1), quieta: '>1 s' }); }
     return bad;
   }
 

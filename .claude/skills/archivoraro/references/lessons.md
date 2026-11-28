@@ -39,6 +39,8 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
 - **Nunca recortar personajes** (cabeza, brazos, manos, piernas): la cámara se calcula desde las posiciones de los personajes (`followcam.js`), no a mano, y anticipa su movimiento.
 - Personajes rígidos: parpadeo, mirada, cabeza, respiración, gestos y labial con las palabras (`life.js`); andar con fase ligada a la distancia.
 
+- (28-11-2026) **Cámara quieta como mucho 1 s.** Todo lo que dice el guion se ve; algo pasa siempre. 4 revisores Sonnet (luces, cámara, personajes/escenarios, lógica/bugs) antes de enseñar guion y vídeo.
+
 ## Duración y formato
 
 - YouTube: más de 60 s, siempre (59,3 s no valió).

@@ -4,12 +4,12 @@ tot_static = 0; tot_crop = 0
 for sc, I in D.items():
     rows = [r for r in I['rows'] if 'cam' in r and r['cam']]
     errs = [r for r in I['rows'] if 'err' in r]
-    # cámara quieta: ventanas de 1,5 s sin movimiento apreciable
-    static = []; n = 15
+    # cámara quieta: ventanas de 1 s sin movimiento apreciable (regla del usuario 28-11-2026)
+    static = []; n = 10
     for i in range(0, max(0, len(rows) - n)):
         a, b = rows[i]['cam'], rows[i + n]['cam']
         mv = max(math.dist(a[0:3], b[0:3]), math.dist(a[3:6], b[3:6]))
-        if mv < .30 and abs(a[6] - b[6]) < 2.5: static.append(rows[i]['t'])
+        if mv < .20 and abs(a[6] - b[6]) < 1.7: static.append(rows[i]['t'])
     crop = {}
     for r in rows:
         for q in r['pj']:
@@ -22,5 +22,5 @@ for sc, I in D.items():
             if msg: crop.setdefault(q['fn'], set()).update(msg); crop[q['fn']].add('t=%.1f' % r['t'])
     ns = len(static) * .1; nc = len(set(t for q in crop.values() for t in q if t.startswith('t=')))
     tot_static += ns
-    print(f"{sc:8s} dur {I['dur']:.1f}s  cámara quieta ≥1,5 s: {ns:4.1f}s  recortes: {sorted(crop.items()) if crop else '—'}  {('ERR ' + errs[0]['err']) if errs else ''}")
+    print(f"{sc:8s} dur {I['dur']:.1f}s  cámara quieta >1 s: {ns:4.1f}s  recortes: {sorted(crop.items()) if crop else '—'}  {('ERR ' + errs[0]['err']) if errs else ''}")
 print('total ventanas quietas', round(tot_static, 1))

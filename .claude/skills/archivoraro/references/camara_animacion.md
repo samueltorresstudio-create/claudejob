@@ -13,7 +13,7 @@ Medido con `engine_3d/check_cam.js` + `check_cam.py` (audita 17 escenas sin rend
 
 ## 2 · Cámara (prioridad 1)
 
-**Regla: en ningún momento hay 1,5 s con la cámara parada** (posición, mirada y fov casi iguales). Un plano de 6 s tiene que cambiar de verdad: se nota en tamaño, ángulo o altura.
+**Regla (endurecida por el usuario el 28-11-2026): la cámara está quieta COMO MUCHO 1 SEGUNDO** (posición, mirada y fov casi iguales). Un plano de 6 s tiene que cambiar de verdad: se nota en tamaño, ángulo o altura.
 
 ### Cómo se hace: `engine_3d/followcam.js` (`FC`)
 Las cámaras ya no se colocan a mano: se **calculan a partir de los personajes**. Cada sujeto = `{x,y,z,h,w}` (pies, altura, semiancho; `w` ≈ .30·h de pie y ≈ .52·h señalando con el brazo estirado).
@@ -80,7 +80,18 @@ W.setCam(V3(...c.pos), V3(...c.look), c.fov);
 - Profundidad: bruma de color por escena, motas de polvo, luces desenfocadas al fondo (bokeh), fondo siempre más desenfocado que el personaje.
 - Coherencia de emoción: sorpresa/tensión = más frío y más contraste; alivio/triunfo = más cálido y más brillante. La identidad visual (paleta, tipo de letra, cartelería) no cambia en todo el vídeo.
 
-## 6 · Orden de trabajo y lista de comprobación (cada vídeo)
+## 6 · Guion 100 % visual (pedido del usuario 28-11-2026)
+- «Cualquier cosa que diga el guion, hazla visual para que no sea un vídeo parado ni aburrido; constantemente tiene que estar pasando algo.» Cada frase del guion lleva en la lista de planos QUÉ SE VE, QUÉ SE MUEVE (personaje u objeto) y QUÉ HACE LA CÁMARA. Las ideas abstractas («el estrés baja la leche») se enseñan con un objeto o un esquema dibujado (grifo, nube), nunca con texto flotante.
+
+## 7 · Cuatro revisores (subagentes Sonnet) en cada vídeo (pedido del usuario 28-11-2026)
+Con el guion y los bocetos, y otra vez con los fotogramas del montaje, se lanzan 4 subagentes con el modelo **sonnet**, cada uno con las reglas de la skill y el material:
+1. **Luces y color** (plan de luz por ambiente, separación personaje/fondo, sobreexposición, emoción del color).
+2. **Cámara** (movimiento por plano, nunca > 1 s quieta, nada recortado, sin atravesar paredes, sin mareo).
+3. **Personajes y escenarios** (detalle, siluetas, animación, decorados y objetos que faltan, escala, nada delante de un personaje).
+4. **Lógica y bugs** (continuidad, datos comprobados en la web, recorte de palabras, errores de código).
+Sus informes se aplican antes de enseñar el guion/vídeo al usuario.
+
+## 8 · Orden de trabajo y lista de comprobación (cada vídeo)
 
 1. **Guion de cámara por escena** (en una tabla antes de programar): intención, plano inicial → final, movimiento (de la tabla), personajes presentes y por dónde andan.
 2. Escenas con `FC.shot/follow` y sujetos = las funciones de posición del dibujo; personajes con `LIFE.of`.
