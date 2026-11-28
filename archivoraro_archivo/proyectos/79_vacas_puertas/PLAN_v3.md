@@ -25,7 +25,7 @@ Cada frase se entiende con el volumen quitado y sin leer el subtítulo. La acci�
   - en los saltos y los brazos arriba se deja un 25 % de aire por encima.
 - **Transiciones:**
   - corte seco en la palabra, por defecto;
-  - **fundido con acercamiento solo en 2 sitios**: al entrar y salir del visor (con máscara de lente redondeada mientras se está dentro) y al revelar las 180 vacas.
+  - **fundido con acercamiento solo en 2 sitios**: el visor (entrada y salida cuentan como uno, con máscara de lente redondeada mientras se está dentro) y la revelación de las 180 vacas.
   - Los días se ven en el **letrero DÍA de la pared**, junto a la pizarra, con un lateral que va del letrero a la acción. Sin insertos sueltos.
 
 ### Actuación (por programar)
@@ -49,7 +49,7 @@ Cada frase se entiende con el volumen quitado y sin leer el subtítulo. La acci�
 | sitio | luz clave | sombra | pared / suelo | otros |
 |---|---|---|---|---|
 | Cine, antes del 27 | #FFF4E0, 5200 K, luz de nieve por la ventana (blanda, fría; haz suave, nunca sol duro mientras nieva) | azul #4A6FA5 al 35 % | pared ocre #D9A25F, suelo más oscuro #C98A3A (separado de la pared) | rim frío #8FD0FF del lado de la ventana |
-| Cine, después del 27 | 3600 K: la luz tiñe, el material no cambia | púrpura cálido #7A4A6A | pared ≈#E39A4F, suelo ≈#C98A3A; **blanco de las vacas tope #FBE6C8** (no más naranja) | ventanas naranjas, +10 % de brillo, cambio en 0,6 s con destello de 2 fotogramas; se mantiene el rim #8FD0FF; visores que iluminan los morros #3CF0B0 |
+| Cine, después del 27 | 3600 K: la luz tiñe, el material no cambia | púrpura cálido #7A4A6A | pared ≈#E39A4F, suelo ≈#C98A3A; **blanco de las vacas tope #FBE6C8** (no más naranja) | ventanas naranjas, +10 % de brillo, cambio en 0,6 s empezando con el salto, sin destello; se mantiene el rim #8FD0FF; visores que iluminan los morros #3CF0B0 |
 | establo del vecino | estufa #FF7A30 a la derecha (parpadeo 8 Hz ±15 %) | ventana #5A8CFF a la izquierda | | en la frase 12, −20 % de saturación y algo más oscuro: «cargado» |
 | exterior nevado | plano 4 (nevada fuerte): cielo cubierto, sin sol; planos 3 y 8: sol bajo entre nubes | azul #6E8CC8 al 45 % | nieve tope #E8EEF8 | cielo cubierto #8A9AB8 → #D8DEE8 (plano 4) / #2B3F7A → #F4B98A (3 y 8); ventanas #FFB347 |
 | prado | sol #FFE066 con anillo #FFB347 | verde #2F7A3A | verde #4CAF3A | cielo #3FA0F0 → #9AD8FF |
@@ -78,7 +78,7 @@ Pizarra LITROS POR VACA (el Cine) y la del vecino, que es el mismo objeto; letre
 | 11 en adelante | 27 | 22 | 10 | 2 | dorada |
 | 16 | | | | 12 (2 + 10) | |
 
-Lo que lleva cada uno en la mano va anotado en cada plano. La tiza: en 11 se le escapa y la **coge al vuelo**.
+Lo que lleva cada uno en la mano va anotado en cada plano. La tiza no se suelta nunca: en el salto del 11 la lleva en la mano.
 
 ## 2. Lista de planos (28)
 **[tipo · movimiento · entrada]** — acción por palabra · *reacción del otro* · lo que se mueve solo.
@@ -86,7 +86,7 @@ Lo que lleva cada uno en la mano va anotado en cada plano. La tiza: en 11 se le 
 **Frase 1 (unos 6 s)** · «Este granjero le puso gafas de realidad virtual a sus vacas… mientras su vecino les compraba el pienso más caro.»
 1. [PM 3/4 · acercamiento · fotograma 0] Establo del Cine. Desde el fotograma 0 tiene en las manos un visor; la vaca, en 3/4 y separada en diagonal, todavía no lleva nada.
    - *Este granjero*: levanta el visor.
-   - *le puso gafas*: se lo encaja; la correa hace clic, el visor se enciende y su luz verde ilumina el morro.
+   - *le puso gafas*: se lo encaja a la vaca; la correa hace clic, el visor se enciende y su luz verde ilumina el morro.
    - *a sus vacas*: la vaca pone ojos `platos`; el Cine, `confiado`, levanta el pulgar.
    - Barrote del cubículo desenfocado delante.
 2. [PM contrapicado ligero · lateral · corte en «mientras»] La tienda: el tendero tras el mostrador; la caja GAFAS VR, ya en la estantería del fondo.
@@ -130,20 +130,20 @@ Lo que lleva cada uno en la mano va anotado en cada plano. La tiza: en 11 se le 
 13. [PM · lateral · fundido de salida hacia atrás] *música clásica*: las notas salen de los visores. **Las vacas parpadean desconcertadas: todavía no se balancean.** El Cine dirige con la tiza como si fuera una batuta, muy serio.
 
 **Frase 9 (unos 3,5 s)** · «Día uno: las vacas ni se mueven. El vecino se parte de risa.»
-14. [lateral del letrero DÍA a las vacas · corte] *Día uno*: el letrero pasa a «1». *ni se mueven*: las vacas, petrificadas. El Cine les pasa la mano por delante del visor y **una mosca grande** les vuela en zigzag y se les posa en el morro: ni un parpadeo.
+14. [lateral del letrero DÍA a las vacas · corte] *Día uno*: el letrero pasa a «1». *ni se mueven*: las vacas, petrificadas. **Una mosca grande** les vuela en zigzag y se les posa en el morro: ni un parpadeo.
 15. [PM · alejamiento con temblor · corte] El vecino, en la puerta. La risa empieza 0,3 s antes de la palabra:
    - `risaAtras`: cabeza atrás, ojos ^^ y boca enorme;
-   - se dobla, `tripaRisa`, `palmadaRodilla`, y le saltan lágrimas.
+   - se dobla sujetándose la tripa (`tripaRisa`) y le saltan lágrimas.
    - *El Cine, al fondo: suspira y deja caer los hombros.*
 
 **Frase 10 (unos 2 s)** · «Día cinco: la pizarra empieza a subir.»
-16. [grúa que sube con los números · corte] El letrero DÍA pasa a 5. En la pizarra, 22 → 23 → 24 y crece una flecha. El Cine se acerca con las cejas arriba (`platos`). *Detrás, las vacas empiezan a balancearse con los ojos cerrados.*
+16. [grúa que sube con los números · corte] El letrero DÍA pasa a 5. En la pizarra, 22 → 23 → 24. El Cine se acerca con las cejas arriba (`platos`). *Detrás, las vacas empiezan a balancearse con los ojos cerrados.*
 
 **Frase 11 (unos 1,8 s)** · «Día diez: veintisiete litros.»
 17. [alejamiento con aire arriba · corte] El letrero DÍA pasa a 10.
    - El Cine, en 3/4 junto a la pizarra sin taparla, escribe el **27 en amarillo**.
-   - **Salta con los brazos arriba**; la tiza sale disparada y la coge al vuelo.
-   - Destello y cambio a luz dorada en 0,6 s.
+   - **Salta con los brazos arriba**, con la tiza en la mano.
+   - La luz pasa a dorada en 0,6 s, empezando con el salto (sin destello).
 
 **Frase 12 (unos 3,3 s)** · «Y en el establo de al lado, con estufa y vitaminas… veintidós.»
 18. [lateral · corte] El establo del vecino, más oscuro y apagado.
@@ -153,7 +153,7 @@ Lo que lleva cada uno en la mano va anotado en cada plano. La tiza: en 11 se le 
 
 **Frase 13 (unos 4,5 s)** · «¿Por qué? Porque una vaca estresada retiene la leche… y una tranquila la suelta.»
 19. [PM · acercamiento · corte] *¿Por qué?*: el Cine se rasca la cabeza (`rascaCabeza`).
-20. [PM · lateral · corte] *estresada retiene*: una vaca del vecino, sin visor, al lado de la estufa: tiembla, azota la cola, suda, tiene una nube con rayo y su cubo está **vacío**.
+20. [PP · acercamiento · corte] *estresada retiene*: la cara de una vaca del vecino, sin visor, junto a la estufa: tiembla, suda y tiene una nube con rayo encima. Da una coz y su cubo **vacío** rueda por la parte de abajo del plano (por encima de y=1250).
 21. [PM · lateral en el mismo sentido · corte] *tranquila la suelta*: la vaca del Cine, con visor: ojos cerrados, corazones, cara de `alivio`, y **un chorro de leche** cae en su cubo.
 
 **Frase 14 (unos 3,5 s)** · «Y a su cabeza le da igual que la hierba sea de mentira.»
@@ -163,7 +163,7 @@ Lo que lleva cada uno en la mano va anotado en cada plano. La tiza: en 11 se le 
 23. [PM · lateral de la tele a la pizarra · corte] La tele del estante, ahora encendida: un experto con bata y corbata, **sin gafas**, niega con la cabeza y levanta una ceja. *El Cine la mira con los brazos cruzados.* *la pizarra no miente*: se gira y da dos golpes al 27 (`confiado`).
 
 **Frase 16 (unos 3,8 s)** · «El Cine encarga diez gafas más, para sus ciento ochenta vacas.»
-24. [PM · grúa que baja y sube · corte] Pide por teléfono (`manoOreja`, con la cara en el tercio de arriba). *diez gafas*: en el tercio de abajo caen **10 cajas GAFAS VR**, una por pulso, que rebotan y se apilan.
+24. [PM · grúa que baja y sube · corte] Pide por teléfono (`manoOreja`, con la cara entre y=350 y y=750). *diez gafas*: caen **10 cajas GAFAS VR** en menos de 1 s, a ritmo de pulso, rebotan y se apilan entre y=900 y y=1250 (fuera del subtítulo).
 25. [PG · alejamiento grande · fundido] *ciento ochenta vacas*: el establo largo con filas sin fin. **Se encienden 12 visores en ola** y el resto de vacas sigue sin visor. El Cine, pequeño en medio de las filas sin fin, abre los brazos.
 
 **Frase 17 (unos 3,2 s)** · «Y el vecino vuelve a la tienda… y esta vez no compra pienso.»
@@ -171,7 +171,7 @@ Lo que lleva cada uno en la mano va anotado en cada plano. La tiza: en 11 se le 
 
 **Frase 18 (unos 1 s de voz + 2 s sin voz)** · «Compra unas gafas.»
 27. [PM · acercamiento · corte] El vecino **señala la caja GAFAS VR** con un dedo enorme. *El tendero: `platos`.*
-28. [PM · acercamiento · corte, sin voz] Chiste final:
+28. [PM · alejamiento que revela · corte, sin voz] Chiste final:
    - el establo del vecino con la estufa apagada y sus vacas con visor, balanceándose;
    - el vecino, con las gafas en la frente y los brazos cruzados… **se las baja a los ojos** y se pone a balancearse también.
    - Corte a negro.

@@ -1,0 +1,2 @@
+# 2.ª vuelta · cámara (Sonnet) · aprobado con los cambios (aplicados)
+Plano 17 aligerado (sin tiza al vuelo, luz dorada sin destello que empieza con el salto); plano 24 dentro de y 350–1250 (cara 350–750, cajas 900–1250, caen en <1 s); una acción menos en 14 (sin la mano), 15 (sin palmada en la rodilla) y 16 (sin flecha); plano 20 en PP (alterna escala en 19–21); plano 1 «se lo encaja a la vaca»; plano 28 alejamiento que revela; fundidos: el visor (entrada+salida) cuenta como un sitio.
