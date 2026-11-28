@@ -1,4 +1,18 @@
-# Molde de guion de las cuentas de referencia (analizado el 23-11-2026)
+# Molde de guion de las cuentas de referencia
+
+## MOLDE PRINCIPAL (28-11-2026): «el raro contra el peligro y el vecino lógico» — 3 vídeos, 15 M de visitas
+Análisis en `archivoraro_archivo/referencias/shorts_2026-11-28/ANALISIS.md`. Usar SIEMPRE que la idea lo permita:
+1. Gancho: «Este [granjero] hizo [algo absurdo]… mientras [el vecino / todos] hacía [lo lógico]». Sin nombres propios.
+2. Burla con mote inmediata (el mote vuelve al final).
+3. Peligro con número y plazo (1–2 frases).
+4. El vecino hace lo lógico, en paralelo.
+5. Reloj con cifras que avanzan (día 1, día 5, día 10 / a las dos, a las tres) y un objeto-contador en pantalla.
+6. Lo lógico falla o no mejora.
+7. El truco en 2 frases simples, tarde.
+8. Remate irónico con el mote (el vecino acaba copiándole / todos le compran).
+Sin desviarse: nada de cómo se enteró, nombres, fechas largas.
+
+## Molde anterior (23-11-2026)
 
 Salido de 4 referencias del usuario, ya analizadas fotograma a fotograma en `archivoraro_archivo/referencias/`: **@Celyxi** («preso, 5 años más»), **@JapanimationCLIPS** («casas gratis en Japón»), **@Emuuexplains** («el chiste más peligroso de Francia») y **la bomba que no explotaba**. Todas duran 60–69 s, 140–250 palabras, frases de 2–8 palabras, un plano nuevo cada 1–2,5 s, sin silencios, y terminan en **bucle** (la última frase enlaza con la primera). Nuestra voz «Stickmans» va a ≈ 2,97 palabras/s → 180–190 palabras para 62–63 s.
 
