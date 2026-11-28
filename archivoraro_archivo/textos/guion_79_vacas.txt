@@ -1,8 +1,29 @@
-79 · LAS VACAS CON GAFAS DE REALIDAD VIRTUAL — guion v7 (28-11-2026)
+79 · LAS VACAS CON GAFAS DE REALIDAD VIRTUAL — guion v8 (28-11-2026)
 Historia real (Izzet Koçak, Aksaray, Turquía, invierno 2021-22). Molde de las referencias: gancho con el resultado → sitio y problema → pista (pizarra 22) → idea rara → el que se ríe → prueba → resultado (27) → «¿por qué?» con algo sencillo → escalada (180 vacas) → giro honesto (nadie lo ha medido) → remate → bucle.
 ≈ 185 palabras ≈ 62–64 s. Una frase = un plano (o varios). Todo lo que se dice SE VE.
 
-GUION v7 (para la voz) — el usuario: céntrate, sin nombre del granjero ni vídeo de Rusia; el invierno puede ir al principio; seguir los guiones de las referencias (shorts_2026-11-24: gancho con la acción absurda → «Resulta que…» → el plan → la broma del secundario → la prueba → el resultado → por qué funciona → giro/remate → bucle).
+GUION v8 · DEFINITIVO PROPUESTO (para la voz) — molde de las referencias, sin nombres, sin bucle. 186 palabras ≈ 62–64 s.
+Dramatizado: el vecino (risa y «¿dónde se compran?») y «se le cae la tiza». Real: Turquía, invierno encerradas, 2 vacas, 22→27 (según el granjero), prado de verano + música clásica, 10 gafas más y 180 vacas, expertos escépticos, estrés → retiene la leche.
+ 1. Le pusieron gafas de realidad virtual a estas vacas.
+ 2. Resulta que en Turquía, en invierno, pasan meses encerradas… mirando la misma pared.
+ 3. Y la leche no sube: veintidós litros por vaca. Ni uno más.
+ 4. Así que el granjero piensa: si las vacas no pueden ir al prado… el prado irá a las vacas.
+ 5. El vecino se parte de risa: «¿Y qué les vas a poner, dibujos?»
+ 6. Pero va en serio.
+ 7. Prueba con dos vacas… y dentro de las gafas aparece un prado de verano, con flores, sol y música clásica.
+ 8. Las vacas se quedan quietas. Mastican despacio.
+ 9. Diez días después, mira la pizarra… y se le cae la tiza.
+10. Esas dos vacas: veintisiete litros.
+11. El vecino deja de reírse… y pregunta dónde se compran.
+12. Y él encarga diez gafas más: quiere ponérselas a sus ciento ochenta vacas.
+13. ¿Por qué funciona?
+14. Porque una vaca estresada retiene la leche… y una tranquila la suelta.
+15. Y a su cabeza le da igual que la hierba sea de mentira.
+16. Eso sí: los expertos dudan, y nadie lo ha medido en serio.
+17. Pero mientras fuera sigue nevando… dentro del establo es verano.
+
+GUION v7 (anterior)
+ (para la voz) — el usuario: céntrate, sin nombre del granjero ni vídeo de Rusia; el invierno puede ir al principio; seguir los guiones de las referencias (shorts_2026-11-24: gancho con la acción absurda → «Resulta que…» → el plan → la broma del secundario → la prueba → el resultado → por qué funciona → giro/remate → bucle).
  1. Le pusieron gafas de realidad virtual a estas vacas.
  2. Resulta que en Turquía, en invierno, pasan meses encerradas mirando la misma pared.
  3. Y una vaca aburrida da menos leche.
