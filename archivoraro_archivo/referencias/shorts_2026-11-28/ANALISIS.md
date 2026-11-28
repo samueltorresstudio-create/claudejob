@@ -59,3 +59,12 @@ Grabadas del móvil a 2× (duración real ≈ el doble: 70–85 s). Caballos mar
 - Dos establos en paralelo (el del Cine y el del vecino con estufa), con luz distinta: el del vecino cálido de estufa pero gris de ánimo; el del Cine frío… que se vuelve cálido al subir la leche.
 - Inserto en sección: la vaca por dentro (la «llave de la leche» que se cierra con el estrés) y el visor por dentro con el prado.
 - Acercamientos lentos continuos como movimiento principal; planos medios de cara para las burlas del vecino; final con chiste visual (el vecino con unas gafas puestas a sus vacas… o a sí mismo).
+
+## Movimientos (tiras a 6 fps de 8 momentos por vídeo: `mov_sheet0-2.jpg`, 28-11-2026)
+**Regla que sale de mirarlos: cada VERBO del guion se hace con el cuerpo, y los objetos se mueven solos.**
+- Acciones con el cuerpo: pinta el tronco con la brocha (brazo arriba-abajo), fumiga (nube amarilla), sierra ramas, perfora latas con el martillo (brazo arriba → golpe), cuelga latas, carga cubos, «le arden los brazos» (encorvado, cubos colgando, cara de esfuerzo), cierra la cadena del establo (brazo estirado arriba), «¡salgan!» (los dos brazos arriba), habla por el móvil (mano a la oreja), se ríe con la cabeza atrás y el puño arriba, malvaviscos en un palo junto al fuego, señala, pone los brazos en jarras.
+- Objetos y efectos que se mueven solos: la aguja del termómetro que baja/sube, el vapor de la corteza, el humo, las gotas que caen de las latas, el hielo que crece, la grieta que avanza, los bichos que suben por el tronco, el fuego que parpadea, las chispas, la nieve/el vaho.
+- Caras: cambian casi cada palabra (guiño, dientes en rejilla, ojos como platos, gota de sudor, ojos cerrados de risa).
+- Andan poco y casi siempre en diagonal hacia la cámara; los animales (caballos) se mueven en 3D (cabeza, patas).
+## Aplicado en el 79
+Le pone las gafas a la vaca con las manos (las gafas viajan de la mano a la cara), escribe con la tiza (brazo que traza + polvo), suspira (cabeza abajo + vaho), el vecino carga el saco, señala, se calienta las manos en la estufa, se ríe con lágrimas, suda en el 22 y baila al final; mosca alrededor de la vaca aburrida (oreja y cola la espantan), pisadas y vaho en la nieve, destellos en el 27, corazones de la vaca feliz.

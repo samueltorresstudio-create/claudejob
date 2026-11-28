@@ -78,6 +78,10 @@ W.setCam(V3(...c.pos), V3(...c.look), c.fov);
 - Cambio de expresión en cada palabra clave (`serio → sorpresa → feliz…`), con 1–2 fotogramas de «anticipación» (cabeza atrás, ojos grandes) antes del golpe.
 - Cada acción tiene inicio–desarrollo–final: nada cambia de posición de un fotograma a otro; los giros y los saltos de pose pasan por `sOut/seg` (mín. 0,25 s).
 
+### Acciones (pedido del usuario 28-11-2026, tras analizar los movimientos de las referencias de 15 M)
+- **Cada verbo del guion se hace con el cuerpo** (pintar, cargar, señalar, escribir, poner las gafas, reír, sudar, saltar) y **los objetos se mueven solos** (agujas, vapor, humo, gotas, grietas, bichos, nieve, vaho). Ver `referencias/shorts_2026-11-28/ANALISIS.md` (Movimientos).
+- Herramientas en `proyectos/79_vacas_puertas/video/sc79.js`: `scr()` (punto del dibujo → pantalla), `reach()` (brazo `armA` hasta un punto de la pantalla), objetos sueltos que viajan de la mano a su sitio (`vrProp`), `breath` (vaho), `sweat`, `tears`, `sparkle`, `hearts`, `fly`, `chalkDust`, `steps` (pisadas en nieve).
+
 ## 5 · Luz y color
 
 - **Luz de contorno (rim)** en los personajes: borde claro del color del neón/luz dominante en un lado (filtro `tintF` por escena + un `feColorMatrix` más cálido en el lado de la luz principal). Separa personaje y fondo.
