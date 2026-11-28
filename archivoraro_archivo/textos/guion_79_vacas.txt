@@ -1,23 +1,23 @@
-79 · LAS VACAS CON GAFAS DE REALIDAD VIRTUAL — guion v1 (28-11-2026)
+79 · LAS VACAS CON GAFAS DE REALIDAD VIRTUAL — guion v2 (28-11-2026)
 Historia real (Izzet Koçak, Aksaray, Turquía, invierno 2021-22). Molde de las referencias: gancho con el resultado → sitio y problema → pista (pizarra 22) → idea rara → el que se ríe → prueba → resultado (27) → «¿por qué?» con algo sencillo → escalada (180 vacas) → giro honesto (nadie lo ha medido) → remate → bucle.
 ≈ 185 palabras ≈ 62–64 s. Una frase = un plano (o varios). Todo lo que se dice SE VE.
 
-GUION (para la voz)
- 1. Este granjero le puso a sus vacas gafas de realidad virtual.
- 2. Y empezaron a dar más leche.
+GUION v2 (para la voz) — tras los 4 revisores Sonnet; 186 palabras ≈ 63–65 s
+ 1. Gafas de realidad virtual… para vacas.
+ 2. Y dan más leche.
  3. Turquía. Invierno.
- 4. Fuera hay nieve hasta las rodillas, y las vacas llevan meses encerradas.
- 5. Cada mañana, Izzet apunta los litros en una pizarra: veintidós.
+ 4. Fuera, todo nieve. Las vacas, encerradas en el establo.
+ 5. Cada mañana, Izzet apunta lo que da cada vaca: veintidós litros.
  6. Ni uno más.
- 7. Las vacas comen, mugen… y miran la misma pared.
- 8. Una noche, Izzet ve un vídeo en el móvil: en Rusia ya lo habían probado.
+ 7. Comen, mugen… y miran siempre la misma pared.
+ 8. Hasta que una noche ve un vídeo: en Rusia ya lo habían probado.
  9. Pide unas gafas por internet.
 10. Su vecino se parte de risa: «¿Le vas a poner la tele a una vaca?»
 11. Izzet no le hace caso.
 12. Le pone las gafas a dos vacas… y dentro: un prado verde de verano.
-13. Hierba, sol, flores… y música clásica de fondo.
-14. La vaca deja de moverse. Mastica. Parece tranquila.
-15. Días después, la pizarra: veintisiete.
+13. Hierba, sol, flores… y música clásica.
+14. Una de ellas deja de moverse. Mastica. Parece tranquila.
+15. Diez días después, las dos con gafas: veintisiete.
 16. ¿Y por qué iba a funcionar?
 17. Una vaca estresada suelta menos leche.
 18. Una vaca tranquila, más.
@@ -26,7 +26,9 @@ GUION (para la voz)
 21. Eso sí: los expertos dudan, y nadie lo ha medido en serio.
 22. Pero las vacas no ven las noticias.
 23. Ven un prado.
-24. Y por eso, este granjero le puso a sus vacas…   (corte → bucle con la 1)
+24. Por eso Izzet quiere ponerles a todas…   (corte → bucle con la 1)
+
+CAMBIOS DE LA v2: pizarra «LITROS POR VACA»; bucle «Por eso Izzet quiere ponerles a todas… / Gafas de realidad virtual… para vacas»; dos vacas con gafas; «diez días después»; vecino en la verja del establo; ventanas y calendario de invierno; planos con la vaca expresiva sin ojos (boca, orejas, cola, el prado moviéndose en el visor). Planos detallados de cámara en proyectos/79_vacas_puertas/revisiones/camara.md.
 
 LISTA DE PLANOS (cámara SIEMPRE en movimiento: como mucho 1 s quieta; nadie recortado; personajes vivos: parpadeo, mirada, labial, gestos)
  1. ESTABLO. Primerísimo plano del visor de una vaca (el prado brilla en la pantalla) → la cámara se aleja rápido y sube (grúa) y descubre la fila de 4 vacas con gafas e Izzet orgulloso delante, gafas en la mano.
