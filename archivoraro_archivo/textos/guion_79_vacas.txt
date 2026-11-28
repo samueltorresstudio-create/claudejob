@@ -1,8 +1,32 @@
-79 · LAS VACAS CON GAFAS DE REALIDAD VIRTUAL — guion v5 (28-11-2026)
+79 · LAS VACAS CON GAFAS DE REALIDAD VIRTUAL — guion v6 (28-11-2026)
 Historia real (Izzet Koçak, Aksaray, Turquía, invierno 2021-22). Molde de las referencias: gancho con el resultado → sitio y problema → pista (pizarra 22) → idea rara → el que se ríe → prueba → resultado (27) → «¿por qué?» con algo sencillo → escalada (180 vacas) → giro honesto (nadie lo ha medido) → remate → bucle.
 ≈ 185 palabras ≈ 62–64 s. Una frase = un plano (o varios). Todo lo que se dice SE VE.
 
-GUION v5 (para la voz) — el usuario: no dar la duda en la 1.ª frase y la razón en la 2.ª. El porqué (invierno + prado) se guarda hasta el 60 %; antes, solo la pregunta («solo les cambiaron lo que ven») y la prueba (22→27). En el gancho el visor brilla pero NO se ve qué hay dentro hasta la frase 14.
+GUION v6 (para la voz) — el usuario: «y empezaron a dar más leche» en la 1.ª frase ya es la respuesta. El gancho solo plantea la acción rara; el resultado (27) se descubre en la pizarra y el porqué al 60 %.
+ 1. Le pusieron gafas de realidad virtual a estas vacas… y no es ninguna broma.
+ 2. Su dueño, Izzet, un granjero turco, apunta cada mañana lo que da cada vaca: veintidós litros.
+ 3. Ni uno más.
+ 4. Una noche ve un vídeo de Rusia… y se le ocurre una locura.
+ 5. Compra unas gafas.
+ 6. El vecino se ríe: «¿Le vas a poner la tele a una vaca?»
+ 7. Pues sí.
+ 8. Se las pone a dos vacas… y le da al play.
+ 9. Diez días después, mira la pizarra… y no se lo cree.
+10. Esas dos vacas: veintisiete litros.
+11. El vecino ya no se ríe.
+12. ¿Qué ven ahí dentro?
+13. Verás: es invierno, fuera todo está nevado, y llevan meses encerradas mirando una pared.
+14. Y en las gafas… un prado de verano, con flores y música clásica.
+15. Una vaca estresada suelta menos leche. Una vaca tranquila, más.
+16. Y el prado, aunque sea falso, las calma.
+17. Izzet encarga diez gafas más… y quiere llegar a sus ciento ochenta vacas.
+18. Los expertos dudan: nadie lo ha medido.
+19. A las vacas les da igual.
+20. Fuera sigue nevando… pero ellas están en pleno verano.
+21. Y por eso, en pleno invierno…   (→ bucle: «…en pleno invierno / le pusieron gafas de realidad virtual a estas vacas…»)
+
+GUION v5 (descartado: el gancho ya daba el resultado)
+ (para la voz) — el usuario: no dar la duda en la 1.ª frase y la razón en la 2.ª. El porqué (invierno + prado) se guarda hasta el 60 %; antes, solo la pregunta («solo les cambiaron lo que ven») y la prueba (22→27). En el gancho el visor brilla pero NO se ve qué hay dentro hasta la frase 14.
  1. Le pusieron gafas de realidad virtual a estas vacas… y empezaron a dar más leche.
  2. No les cambiaron la comida, ni el establo… solo lo que ven.
  3. Su dueño, Izzet, un granjero turco, apunta cada mañana lo que da cada vaca: veintidós litros.

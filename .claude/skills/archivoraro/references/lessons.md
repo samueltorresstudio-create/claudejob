@@ -45,6 +45,7 @@ Revisa esta lista con la hoja de contacto delante antes de entregar cualquier v�
 
 - **El gancho SIEMPRE empieza con la acción rara, dicha en una frase completa y con su resultado**: «Le pusieron gafas de realidad virtual a estas vacas… y empezaron a dar más leche», «Este hombre se metió en una caja… y se mandó por correo», «Un hombre lleva treinta años perdiendo al póker… a propósito». NO frases telegráficas («Gafas de realidad virtual… para vacas.» / «Turquía. Invierno.») ni ganchos de ambiente que escondan la acción («Estas vacas están pastando en un prado de verano…»): el usuario los rechazó los dos.
 - **No explicar la duda nada más plantearla**: si la 1.ª frase abre la pregunta («¿por qué gafas a unas vacas?»), la 2.ª NO puede dar la razón («es invierno…»). La razón se guarda hasta el 60–70 %; antes van la pregunta agrandada, la prueba y el que se ríe. Y en imagen tampoco se enseña la respuesta antes de tiempo.
+- **El gancho NO lleva el resultado**: «Le pusieron gafas a estas vacas… y empezaron a dar más leche» ya cuenta el final. El gancho es la acción rara + algo que agrande la duda («…y no es ninguna broma»); el resultado se descubre en pantalla a mitad (la pizarra: 27) y el porqué al 60–70 %.
 
 ## Duración y formato
 
